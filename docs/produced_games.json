@@ -1,0 +1,28 @@
+cat > registry/produced_games.json << 'EOF'
+{
+  "version": 1,
+  "games": [
+    {
+      "id": "airplane_shooter",
+      "name": "Airplane Shooter",
+      "tags": ["shooter", "arcade"],
+      "core_loop": "move dodge shoot waves",
+      "created_at": "2026-01-18"
+    },
+    {
+      "id": "camp_conquest",
+      "name": "Camp Conquest",
+      "tags": ["rts", "capture"],
+      "core_loop": "spawn units capture camps",
+      "created_at": "2026-01-18"
+    },
+    {
+      "id": "gold_miner",
+      "name": "Gold Miner",
+      "tags": ["arcade", "hook"],
+      "core_loop": "aim hook pull loot",
+      "created_at": "2026-01-18"
+    }
+  ]
+}
+EOF
