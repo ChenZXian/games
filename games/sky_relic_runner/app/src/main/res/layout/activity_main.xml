@@ -1,0 +1,221 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/root"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <com.android.boot.GameView
+    android:id="@+id/game_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
+
+  <RelativeLayout
+    android:id="@+id/ui_layer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+      android:id="@+id/hud"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentStart="true"
+      android:layout_marginStart="12dp"
+      android:layout_marginTop="10dp"
+      android:orientation="vertical">
+
+      <TextView
+        android:id="@+id/text_distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/cst_text_primary"
+        android:textSize="16sp"
+        android:text="Distance" />
+
+      <TextView
+        android:id="@+id/text_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/cst_text_primary"
+        android:textSize="16sp"
+        android:text="Score" />
+
+      <TextView
+        android:id="@+id/text_energy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/cst_text_primary"
+        android:textSize="16sp"
+        android:text="Energy" />
+
+      <TextView
+        android:id="@+id/text_combo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/cst_text_accent"
+        android:textSize="14sp"
+        android:text="Combo" />
+    </LinearLayout>
+
+    <Button
+      android:id="@+id/btn_pause"
+      android:layout_width="52dp"
+      android:layout_height="52dp"
+      android:layout_alignParentEnd="true"
+      android:layout_marginEnd="12dp"
+      android:layout_marginTop="10dp"
+      android:text="II"
+      android:textColor="@color/cst_text_primary"
+      android:textSize="16sp"
+      android:background="@drawable/btn_round" />
+
+    <Button
+      android:id="@+id/btn_jump"
+      android:layout_width="96dp"
+      android:layout_height="56dp"
+      android:layout_alignParentStart="true"
+      android:layout_alignParentBottom="true"
+      android:layout_marginStart="12dp"
+      android:layout_marginBottom="12dp"
+      android:text="Jump"
+      android:textColor="@color/cst_text_primary"
+      android:textSize="16sp"
+      android:background="@drawable/btn_round" />
+
+    <Button
+      android:id="@+id/btn_skill"
+      android:layout_width="96dp"
+      android:layout_height="56dp"
+      android:layout_alignParentEnd="true"
+      android:layout_alignParentBottom="true"
+      android:layout_marginEnd="12dp"
+      android:layout_marginBottom="12dp"
+      android:text="Skill"
+      android:textColor="@color/cst_text_primary"
+      android:textSize="16sp"
+      android:background="@drawable/btn_round" />
+
+    <FrameLayout
+      android:id="@+id/panel_menu"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="@color/cst_panel_overlay">
+
+      <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:background="@drawable/panel_round">
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Sky Relic Runner"
+          android:textColor="@color/cst_text_primary"
+          android:textSize="24sp"
+          android:layout_gravity="center_horizontal" />
+
+        <Button
+          android:id="@+id/btn_start"
+          android:layout_width="200dp"
+          android:layout_height="56dp"
+          android:layout_marginTop="18dp"
+          android:text="@string/btn_start"
+          android:textColor="@color/cst_text_primary"
+          android:textSize="18sp"
+          android:background="@drawable/btn_round" />
+      </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
+      android:id="@+id/panel_pause"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="@color/cst_panel_overlay"
+      android:visibility="gone">
+
+      <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:background="@drawable/panel_round">
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Paused"
+          android:textColor="@color/cst_text_primary"
+          android:textSize="22sp"
+          android:layout_gravity="center_horizontal" />
+
+        <Button
+          android:id="@+id/btn_resume"
+          android:layout_width="200dp"
+          android:layout_height="56dp"
+          android:layout_marginTop="12dp"
+          android:text="@string/btn_resume"
+          android:textColor="@color/cst_text_primary"
+          android:textSize="18sp"
+          android:background="@drawable/btn_round" />
+
+        <Button
+          android:id="@+id/btn_restart_pause"
+          android:layout_width="200dp"
+          android:layout_height="56dp"
+          android:layout_marginTop="10dp"
+          android:text="@string/btn_restart"
+          android:textColor="@color/cst_text_primary"
+          android:textSize="18sp"
+          android:background="@drawable/btn_round" />
+      </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
+      android:id="@+id/panel_game_over"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="@color/cst_panel_overlay"
+      android:visibility="gone">
+
+      <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:background="@drawable/panel_round">
+
+        <TextView
+          android:id="@+id/text_final"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Final"
+          android:textColor="@color/cst_text_primary"
+          android:textSize="20sp"
+          android:layout_gravity="center_horizontal" />
+
+        <TextView
+          android:id="@+id/text_best"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="8dp"
+          android:text="Best"
+          android:textColor="@color/cst_text_secondary"
+          android:textSize="16sp"
+          android:layout_gravity="center_horizontal" />
+
+        <Button
+          android:id="@+id/btn_restart"
+          android:layout_width="200dp"
+          android:layout_height="56dp"
+          android:layout_marginTop="14dp"
+          android:text="@string/btn_restart"
+          android:textColor="@color/cst_text_primary"
+          android:textSize="18sp"
+          android:background="@drawable/btn_round" />
+      </LinearLayout>
+    </FrameLayout>
+  </RelativeLayout>
+</FrameLayout>
