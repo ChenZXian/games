@@ -27,6 +27,7 @@ id text_paused
 id text_score
 id text_title
 layout activity_main
+mipmap app_icon
 string app_name
 string btn_pause
 string btn_restart
