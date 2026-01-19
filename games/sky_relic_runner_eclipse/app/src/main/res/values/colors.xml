@@ -1,0 +1,14 @@
+<resources>
+    <color name="cst_bg_main">#0E1224</color>
+    <color name="cst_bg_far">#141A36</color>
+    <color name="cst_panel">#222949</color>
+    <color name="cst_panel_light">#2E3966</color>
+    <color name="cst_text">#E6ECFF</color>
+    <color name="cst_accent">#4CD4FF</color>
+    <color name="cst_accent_warm">#FFB347</color>
+    <color name="cst_hazard">#FF4C6A</color>
+    <color name="cst_runner">#8AF4FF</color>
+    <color name="cst_platform">#3C4A7A</color>
+    <color name="cst_particle">#6C7BC7</color>
+    <color name="cst_icon_bg">#11162B</color>
+</resources>
