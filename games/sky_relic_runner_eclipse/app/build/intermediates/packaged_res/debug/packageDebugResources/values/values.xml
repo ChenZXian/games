@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="app_icon_background">#0B1026</color>
+    <color name="cst_accent">#4CD4FF</color>
+    <color name="cst_accent_warm">#FFB347</color>
+    <color name="cst_bg_far">#141A36</color>
+    <color name="cst_bg_main">#0E1224</color>
+    <color name="cst_hazard">#FF4C6A</color>
+    <color name="cst_icon_bg">#11162B</color>
+    <color name="cst_panel">#222949</color>
+    <color name="cst_panel_light">#2E3966</color>
+    <color name="cst_particle">#6C7BC7</color>
+    <color name="cst_platform">#3C4A7A</color>
+    <color name="cst_runner">#8AF4FF</color>
+    <color name="cst_text">#E6ECFF</color>
+    <string name="app_name">Sky Relic Runner Eclipse</string>
+    <string name="btn_menu">Menu</string>
+    <string name="btn_mute">Mute</string>
+    <string name="btn_restart">Restart</string>
+    <string name="btn_resume">Resume</string>
+    <string name="btn_start">Start</string>
+    <string name="label_best">Best</string>
+    <string name="label_dash">Dash</string>
+    <string name="label_distance">Distance</string>
+    <string name="label_energy">Energy</string>
+    <string name="label_game_over">Run Ended</string>
+    <string name="label_jump">Jump</string>
+    <string name="label_pause">Pause</string>
+    <string name="label_score">Score</string>
+    <string name="label_tap_start">Tap Start</string>
+    <style name="Theme.SkyRelicRunner" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/cst_panel</item>
+        <item name="colorPrimaryVariant">@color/cst_panel_light</item>
+        <item name="colorSecondary">@color/cst_accent</item>
+        <item name="android:statusBarColor">@color/cst_bg_main</item>
+        <item name="android:navigationBarColor">@color/cst_bg_main</item>
+    </style>
+</resources>
