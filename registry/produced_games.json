@@ -56,6 +56,13 @@
       "tags": ["runner", "platformer", "endless", "dash", "rune"],
       "core_loop": "auto-run through staggered platforms time jump hold and energy dash to survive collapsing ledges while collecting shards cores and rune double-score bursts",
       "created_at": "2026-01-18"
+    },
+    {
+      "id": "mosaic_studio",
+      "name": "Mosaic Studio",
+      "tags": ["design", "puzzle", "creativity"],
+      "core_loop": "design puzzle: recreate target mosaic on grid with tools (brush line fill mirror) and score by accuracy with optional constraints",
+      "created_at": "2026-01-18"
     }
   ]
 }
