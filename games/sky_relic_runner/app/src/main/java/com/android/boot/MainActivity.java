@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity implements GameView.Listener {
   private GameView gameView;
+  private BgmSynth bgm;
   private TextView textDistance;
   private TextView textScore;
   private TextView textEnergy;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements GameView.Listener
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
+    bgm = new BgmSynth();
     gameView = findViewById(R.id.game_view);
     textDistance = findViewById(R.id.text_distance);
     textScore = findViewById(R.id.text_score);
@@ -76,6 +78,9 @@ public class MainActivity extends AppCompatActivity implements GameView.Listener
   @Override
   protected void onResume() {
     super.onResume();
+    if (bgm != null) {
+      bgm.start();
+    }
     gameView.onActivityResume();
   }
 
@@ -83,6 +88,9 @@ public class MainActivity extends AppCompatActivity implements GameView.Listener
   protected void onPause() {
     super.onPause();
     gameView.onActivityPause();
+    if (bgm != null) {
+      bgm.stop();
+    }
   }
 
   @Override

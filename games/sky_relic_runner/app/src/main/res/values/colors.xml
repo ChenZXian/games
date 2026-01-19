@@ -1,16 +1,16 @@
 <resources>
-  <color name="cst_bg_top">#3B3F7A</color>
-  <color name="cst_bg_bottom">#151C36</color>
+  <color name="cst_bg_top">#2E3A7A</color>
+  <color name="cst_bg_bottom">#0B1026</color>
   <color name="cst_text_primary">#F7F2E8</color>
-  <color name="cst_text_secondary">#C9C2B4</color>
-  <color name="cst_text_accent">#F7C96B</color>
-  <color name="cst_ui_button">#2A355A</color>
-  <color name="cst_ui_button_pressed">#1E2745</color>
-  <color name="cst_panel_overlay">#AA0D1020</color>
-  <color name="cst_panel">#1F2748</color>
-  <color name="cst_panel_edge">#35416F</color>
-  <color name="cst_energy">#4ED2C6</color>
+  <color name="cst_text_secondary">#C7D0EA</color>
+  <color name="cst_text_accent">#58D6FF</color>
+  <color name="cst_ui_button">#202C56</color>
+  <color name="cst_ui_button_pressed">#162047</color>
+  <color name="cst_panel_overlay">#B20A0E1F</color>
+  <color name="cst_panel">#18224A</color>
+  <color name="cst_panel_edge">#3C57A8</color>
+  <color name="cst_energy">#4FE6D5</color>
   <color name="cst_shard">#79B8FF</color>
-  <color name="cst_rune">#F28B82</color>
-  <color name="cst_hazard">#C55E5E</color>
+  <color name="cst_rune">#B48BFF</color>
+  <color name="cst_hazard">#FF6B6B</color>
 </resources>

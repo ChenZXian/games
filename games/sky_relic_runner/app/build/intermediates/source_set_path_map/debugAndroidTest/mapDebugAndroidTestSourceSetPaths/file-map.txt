@@ -1,0 +1,5 @@
+com.android.boot.test.app-androidTest-0 D:\Cursor\games\games\sky_relic_runner\app\build\generated\res\resValues\androidTest\debug
+com.android.boot.test.app-updated_navigation_xml-1 D:\Cursor\games\games\sky_relic_runner\app\build\generated\updated_navigation_xml\debugAndroidTest
+com.android.boot.test.app-mergeDebugAndroidTestResources-2 D:\Cursor\games\games\sky_relic_runner\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
+com.android.boot.test.app-mergeDebugAndroidTestResources-3 D:\Cursor\games\games\sky_relic_runner\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
+com.android.boot.test.app-debugAndroidTest-4 D:\Cursor\games\games\sky_relic_runner\app\build\intermediates\merged_res\debugAndroidTest\mergeDebugAndroidTestResources

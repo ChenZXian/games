@@ -1,312 +1,278 @@
-# CURSOR_RULES v1.0
+# CURSOR_RULES v1.8
 
-- Version: v1.0
+- Version: v1.8
 - Scope: Cursor rules for refining and finalizing Android Java mini-games in this monorepo
 - Status: Stable
 
----
+------
 
-## Table of Contents
+## 0. Phase Auto-Detection and Phase Lock (Hard Rule)
 
-1. Mandatory Preflight
-2. Knowledge Base Workflow
-3. Repository Hard Constraints
-4. Workflow Constraints
-5. Baseline Enforcement
-6. Validation and Build Requirements
-7. Registry and Git Rules
-8. Role Definition
-9. Versioning Policy
+Cursor must automatically determine the working phase based on user intent,
+then lock the phase for the entire current run.
 
----
+### 0.1 Phase Detection Source (User-Only)
 
-## 1. Mandatory Preflight
+Phase detection must rely ONLY on the latest explicit user request.
 
-Before any modification, validation, or build, always run:
+Do NOT infer phase from:
 
-```powershell
+- build logs
+- Gradle output
+- validation results
+- tool suggestions
+- file contents
+- internal plans containing words like build / apk / validate
+
+### 0.2 Phase Lock
+
+Once INIT or PACK is selected, the phase is locked.
+
+- If INIT is detected, PACK actions are strictly forbidden.
+- Phase switching is allowed ONLY if the user explicitly requests it
+  in a new message.
+
+------
+
+## 0.3 Phase Detection Logic
+
+### INIT Phase (Initialization)
+
+Trigger INIT if user intent includes meanings such as:
+
+- initialize
+- initialization
+- make it runnable
+- fix to run
+- Android Studio run
+- Android Studio sync
+- environment fix
+- dependency fix
+- make it start
+- fix crash on launch
+
+### PACK Phase (Packaging)
+
+Trigger PACK ONLY if user intent explicitly includes:
+
+- package
+- build apk
+- generate apk
+- export apk
+- zip artifact
+- release build
+- final package
+- submit
+- update registry
+
+### OPTIMIZE Phase (Default)
+
+If neither INIT nor PACK is detected, default to OPTIMIZE.
+
+------
+
+## 1. Mandatory Preflight (Phase-Aware)
+
+### 1.1 INIT Phase
+
+Always run environment doctor first:
+
 powershell -ExecutionPolicy Bypass -File tools/env/doctor.ps1
-```
 
-If Doctor fails:
+If doctor fails:
 
 1. Stop immediately.
 2. Fix environment or project configuration.
-3. Do not continue until Doctor passes.
+3. Do not proceed until doctor passes.
 
----
+INIT verification rules:
 
-## 2. Knowledge Base Workflow
+- Verification means Gradle sync and app launch only.
+- Verification must NOT rely on APK or AAB output.
+
+------
+
+### 1.2 OPTIMIZE Phase
+
+Doctor is NOT mandatory.
+
+Run doctor only if:
+
+- build or sync errors appear
+- environment mismatch is suspected
+- user explicitly requests environment checking
+
+------
+
+### 1.3 PACK Phase
+
+Doctor must always be executed and must pass before packaging.
+
+------
+
+## 2. Knowledge Base Workflow (Error-Driven Only)
 
 KB location:
 
 - kb/problems/*.md
 
-When any error happens (doctor / validate / build / runtime), follow the steps below.
+KB workflow is triggered only when an actual error occurs.
 
 ### 2.1 Search KB First
 
-```bash
 rg -n "<key error snippet>" kb/problems
-```
 
 ### 2.2 If Found
 
-1. Apply the Fix steps exactly.
-2. Improve Prevention section if applicable.
+1. Apply the fix exactly.
+2. Improve Prevention if applicable.
 
 ### 2.3 If Not Found
 
 Create a new KB entry:
 
-```powershell
 powershell -ExecutionPolicy Bypass -File tools/kb/new_kb_entry.ps1 -Slug "<short_slug>"
-```
 
-Fill the entry with these sections:
+Fill sections:
 
 1. Symptom
 2. Error Log
 3. Root Cause
-4. Fix (exact commands and file paths)
+4. Fix
 5. Prevention
 6. References (optional)
 
-If preventable, update doctor / validator / templates to catch it earlier.
-
 ### 2.4 KB Commit Rule
 
-If a new KB entry is created:
+KB entries may only be committed during PACK phase.
 
-- Commit KB entry and the related code fix together in the same commit.
+------
 
----
+## 3. Repository Hard Constraints (Always Enforced)
 
-## 3. Repository Hard Constraints
-
-These rules must never be violated.
-
-### 3.1 Authoritative Documents
-
-Always read and comply with:
+Always comply with:
 
 - docs/GAME_GENERATION_STANDARD.md
 - docs/ENVIRONMENT_BASELINE.md
 
-### 3.2 Non-ASCII Prohibition
-
-Never introduce Chinese or any non-ASCII characters in:
+Never introduce non-ASCII characters in:
 
 - code
 - resources
 - filenames
 - Gradle / JSON / XML
 
-### 3.3 No Comments
+Never add comments to any code.
 
-Never add comments to any code (all languages).
+### 3.1 Package Identity Lock (NEW)
 
-### 3.4 Launcher Activity Lock
+The application package identity is immutable by default.
 
-Never change the launcher activity:
+The following items MUST NOT be changed during INIT or OPTIMIZE phases:
 
-- com.android.boot.MainActivity
+- namespace in app/build.gradle
+- applicationId in app/build.gradle
+- package attribute in AndroidManifest.xml
+- Java package paths under app/src/main/java
+- Launcher activity fully qualified name:
+  - com.android.boot.MainActivity
 
-### 3.5 Manifest Label and Icon Policy
+Package identity may be changed ONLY if the user explicitly requests
+a package rename with clear intent.
 
-AndroidManifest.xml must always use:
+------
 
-- android:label="@string/app_name"
-- android:icon="@mipmap/app_icon"
+## 4. LFS Pointer Handling (Hard Gate)
 
-### 3.6 Color Resource Naming
+(unchanged from v1.6)
 
-Color resource names:
+------
 
-1. Must not conflict with android.jar.
-2. Must use custom prefixes only.
+## 5. Icon Generation Policy (INIT Required, No Default Bitmap)
 
-### 3.7 Project Layout Lock
+(unchanged from v1.6)
 
-Each game must stay under:
+------
 
-- games/<game_id>/
+## 6. BGM Library Policy (Local First, Then Online)
 
-Each game must be an independent Android Studio project and must contain:
+(unchanged from v1.6)
 
-1. settings.gradle or settings.gradle.kts
-2. app/ module
-3. gradlew and gradlew.bat
-4. gradle/wrapper/gradle-wrapper.properties
+------
 
-Never create:
+## 7. Phase-Specific Workflow Constraints
 
-- games/games/<id>
-- projects under docs/ or registry/
+### 7.1 INIT Phase (HARD GATE)
 
-### 3.8 Immutable Files
+Before executing any action, Cursor MUST output a one-line execution plan:
 
-Never move, rename, or delete:
+PHASE=INIT; WILL_RUN=[doctor, sync_fixes, lfs_cleanup, icon_generation]
 
-- docs/GAME_GENERATION_STANDARD.md
-- docs/ENVIRONMENT_BASELINE.md
-- registry/produced_games.json
+The plan MUST NOT contain:
 
----
+- validate
+- build
+- assemble
+- bundle
+- apk
+- zip
 
-## 4. Workflow Constraints
+Allowed:
 
-### 4.1 No New Games Unless Requested
+- Fix Gradle sync issues
+- Fix missing or incorrect wrapper files
+- Fix manifest or resource errors blocking run
+- Minimal code fixes required for app startup
+- LFS pointer auto-remediation
+- Icon generation
 
-Do not create new games unless explicitly requested.
+Forbidden (ABSOLUTE):
 
-### 4.2 Preserve Core Loop When Refining
+- Running tools/validate.ps1
+- Running tools/build_apk.ps1
+- Running ./gradlew build
+- Running ./gradlew assemble*
+- Running ./gradlew bundle*
+- Generating APK or AAB
+- Producing any zip or artifact
+- Updating registry
+- Git commit
+- Online BGM download
+- Changing applicationId / namespace / Java package paths
 
-When modifying an existing game:
+INIT completion criteria:
 
-1. Keep its core gameplay loop unchanged.
-2. Only improve:
-   - gameplay feel
-   - UI and UX
-   - performance
-   - stability
-   - visuals
+- Android Studio sync succeeds
+- App can be launched without immediate crash
+- No LFS pointer files remain
+- app_icon resolves correctly
 
-### 4.3 Buildability After Changes
+------
 
-After any meaningful change:
+### 7.2 OPTIMIZE Phase Allowed Actions
 
-- The project must remain buildable on the baseline environment.
+(unchanged from v1.6)
 
-### 4.4 Conflicts With Standards
+------
 
-If a request conflicts with standards:
+### 7.3 PACK Phase Allowed Actions
 
-1. Choose the standard-compliant solution.
-2. Explain briefly what was constrained and why.
+(unchanged from v1.6)
 
----
+------
 
-## 5. Baseline Enforcement
+## 8. Registry and Git Rules
 
-Toolchain must match docs/ENVIRONMENT_BASELINE.md exactly:
+(unchanged from v1.6)
 
-1. AGP version (plugins DSL)
-2. Gradle wrapper version
-3. compileSdk
-4. targetSdk
-5. minSdk
-6. Required Android SDK packages
+------
 
-If mismatch is detected:
+## 9. Role Definition
 
-1. Fix immediately.
-2. Do not proceed to validation or build.
+(unchanged from v1.6)
 
----
+------
 
-## 6. Validation and Build Requirements
+## 10. Versioning Policy
 
-### 6.1 Project Validation
-
-If tools/validate.ps1 exists, always run:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File tools/validate.ps1 -Project games/<game_id>
-```
-
-If validation fails:
-
-1. Fix issues.
-2. Re-run until it passes.
-
-### 6.2 Final APK Deliverable
-
-If tools/build_apk.ps1 exists, always run:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File tools/build_apk.ps1 -Project games/<game_id> -Variant debug
-```
-
-Build must produce:
-
-1. A FINAL_APK output line.
-2. An APK located under:
-
-- artifacts/apk/<game_id>/
-
-If build fails:
-
-1. Follow KB workflow.
-2. Do not update registry or commit.
-
----
-
-## 7. Registry and Git Rules
-
-### 7.1 Registry Update
-
-When a new game is finalized, append an entry to:
-
-- registry/produced_games.json
-
-Required fields:
-
-1. id
-2. name
-3. tags
-4. core_loop (must be unique)
-5. created_at (YYYY-MM-DD)
-
-### 7.2 Git Commit
-
-Commit after validation and APK build are successful:
-
-```bash
-git add
-git commit -m "Add <game_id>"
-```
-
-Never:
-
-1. Commit without registry update.
-2. Commit if validation or build failed.
-
----
-
-## 8. Role Definition
-
-You are:
-
-1. An optimizer and refiner.
-2. A pipeline executor.
-3. A stabilizer.
-
-You are not:
-
-1. A free-form game generator.
-2. A rule negotiator.
-3. A structure rewriter.
-
-Prefer:
-
-- polishing gameplay
-- improving visuals
-- fixing stability
-- keeping structure consistent
-
-Never bypass or weaken any rules above.
-
----
-
-## 9. Versioning Policy
-
-This document is versioned.
-
-All changes must:
-
-1. Update the version number.
-2. Be committed to the repository.
-3. Remain consistent with pipeline tools and standards.
-
-Current version: v1.0
+Current version: v1.8

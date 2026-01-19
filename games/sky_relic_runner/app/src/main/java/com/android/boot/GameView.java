@@ -107,6 +107,11 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
   private Paint glowPaint;
   private LinearGradient bgGradient;
   private float bgShift;
+  private final float[] starX = new float[60];
+  private final float[] starY = new float[60];
+  private final float[] starS = new float[60];
+  private final float[] hillA = new float[9];
+  private final float[] hillB = new float[9];
 
   private final float[] cloudX = new float[8];
   private final float[] cloudY = new float[8];
@@ -254,6 +259,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
     }
     initPlatforms();
     initClouds();
+    initBackdrop();
     notifyHud();
   }
 
@@ -265,22 +271,44 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
     }
   }
 
+  private void initBackdrop() {
+    for (int i = 0; i < starX.length; i++) {
+      starX[i] = random.nextFloat() * viewWidth;
+      starY[i] = random.nextFloat() * viewHeight * 0.62f;
+      starS[i] = dp(1) + random.nextFloat() * dp(2.2f);
+    }
+    for (int i = 0; i < hillA.length; i++) {
+      hillA[i] = random.nextFloat() * viewWidth;
+      hillB[i] = 0.25f + random.nextFloat() * 0.55f;
+    }
+  }
+
   private void initPlatforms() {
-    float startX = -dp(80);
     float y = groundY - dp(10);
-    for (int i = 0; i < platforms.length; i++) {
+    float startX = -dp(120);
+
+    Platform start = platforms[0];
+    start.active = true;
+    start.h = dp(26);
+    start.y = y;
+    start.x = -dp(180);
+    float needed = player.x + player.width * 0.6f;
+    start.w = Math.max(viewWidth * 0.72f, needed - start.x + dp(24));
+
+    float x = start.x + start.w + dp(50);
+    for (int i = 1; i < platforms.length; i++) {
       Platform p = platforms[i];
       p.active = true;
-      p.w = dp(140) + random.nextFloat() * dp(80);
+      p.w = dp(140) + random.nextFloat() * dp(90);
       p.h = dp(24);
-      p.x = startX;
-      p.y = y;
-      startX += p.w + dp(40);
+      p.x = x;
       if (i % 3 == 0) {
-        y = groundY - dp(20) - random.nextFloat() * dp(80);
+        y = groundY - dp(20) - random.nextFloat() * dp(90);
       }
+      p.y = y;
+      x += p.w + dp(40) + random.nextFloat() * dp(30);
     }
-    spawnCursor = startX + dp(60);
+    spawnCursor = x + dp(60);
   }
 
   @Override
@@ -352,9 +380,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
         updateMenu(dt);
         return;
       }
-      speed = 320f + distance * 0.02f;
-      if (speed > 780f) {
-        speed = 780f;
+      speed = 260f + distance * 0.015f;
+      if (speed > 640f) {
+        speed = 640f;
       }
       dashCooldown = Math.max(0f, dashCooldown - dt);
       if (player.dashTime > 0f) {
@@ -528,13 +556,22 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
         cloudY[i] = dp(20) + random.nextFloat() * viewHeight * 0.4f;
       }
     }
+    float starMove = speed * dt * 0.06f;
+    for (int i = 0; i < starX.length; i++) {
+      starX[i] -= starMove;
+      if (starX[i] < -dp(10)) {
+        starX[i] = viewWidth + random.nextFloat() * dp(120);
+        starY[i] = random.nextFloat() * viewHeight * 0.62f;
+        starS[i] = dp(1) + random.nextFloat() * dp(2.2f);
+      }
+    }
   }
 
   private void checkSpawns() {
     while (spawnCursor < viewWidth + dp(300)) {
-      float segment = dp(120) + random.nextFloat() * dp(140);
-      float platformWidth = dp(140) + random.nextFloat() * dp(140);
-      float platformHeight = groundY - dp(20) - random.nextFloat() * dp(130);
+      float segment = dp(90) + random.nextFloat() * dp(110);
+      float platformWidth = dp(170) + random.nextFloat() * dp(120);
+      float platformHeight = groundY - dp(30) - random.nextFloat() * dp(110);
       Platform p = getPlatform();
       if (p != null) {
         p.active = true;
@@ -546,17 +583,17 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
       if (random.nextFloat() < hazardChance()) {
         spawnHazard(spawnCursor + platformWidth * 0.45f, p != null ? p.y - dp(12) : groundY - dp(16));
       }
-      if (random.nextFloat() < 0.7f) {
-        spawnItem(spawnCursor + platformWidth * 0.6f, (p != null ? p.y : groundY) - dp(36));
+      if (random.nextFloat() < 0.82f) {
+        spawnItem(spawnCursor + platformWidth * 0.6f, (p != null ? p.y : groundY) - dp(32));
       }
       spawnCursor += platformWidth + segment;
     }
   }
 
   private float hazardChance() {
-    float c = 0.3f + distance * 0.0009f;
-    if (c > 0.85f) {
-      c = 0.85f;
+    float c = 0.16f + distance * 0.0006f;
+    if (c > 0.65f) {
+      c = 0.65f;
     }
     return c;
   }
@@ -757,11 +794,32 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
     paint.setShader(bgGradient);
     canvas.drawRect(0, 0, viewWidth, viewHeight, paint);
     paint.setShader(null);
+    paint.setColor(Color.WHITE);
+    for (int i = 0; i < starX.length; i++) {
+      float tw = 120f + (float) Math.sin((bgShift + i * 13f) * 0.03f) * 55f;
+      paint.setAlpha((int) tw);
+      canvas.drawCircle(starX[i], starY[i], starS[i], paint);
+    }
+    paint.setAlpha(255);
+
+    float h1 = groundY * 0.72f;
+    paint.setColor(getColor(R.color.cst_panel_edge));
+    for (int i = 0; i < hillA.length; i++) {
+      float x = hillA[i] - (bgShift * (0.22f + hillB[i] * 0.18f)) % (viewWidth + dp(240));
+      float w = dp(160) + hillB[i] * dp(220);
+      float topY = h1 - hillB[i] * dp(110);
+      RectF hill = new RectF(x, topY, x + w, groundY + dp(80));
+      paint.setAlpha(85);
+      canvas.drawRoundRect(hill, dp(46), dp(46), paint);
+    }
+    paint.setAlpha(255);
+
     paint.setColor(getColor(R.color.cst_bg_bottom));
     canvas.drawRect(0, groundY, viewWidth, viewHeight, paint);
+
     paint.setColor(Color.WHITE);
     for (int i = 0; i < cloudX.length; i++) {
-      float alpha = 120 + i * 8;
+      float alpha = 105 + i * 8;
       paint.setAlpha((int) alpha);
       canvas.drawRoundRect(new RectF(cloudX[i], cloudY[i], cloudX[i] + cloudW[i], cloudY[i] + dp(20)), dp(10), dp(10), paint);
     }
@@ -773,13 +831,27 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
       if (!p.active) {
         continue;
       }
-      paint.setColor(getColor(R.color.cst_panel));
       RectF rect = new RectF(p.x, p.y, p.x + p.w, p.y + p.h);
-      canvas.drawRoundRect(rect, dp(6), dp(6), paint);
-      paint.setColor(getColor(R.color.cst_panel_edge));
-      canvas.drawRoundRect(rect, dp(6), dp(6), paint);
+      int edge = getColor(R.color.cst_panel_edge);
+      int fill = getColor(R.color.cst_panel);
+      paint.setColor(edge);
+      canvas.drawRoundRect(rect, dp(7), dp(7), paint);
+
+      RectF inner = new RectF(rect.left + dp(2), rect.top + dp(2), rect.right - dp(2), rect.bottom - dp(2));
+      paint.setColor(fill);
+      canvas.drawRoundRect(inner, dp(6), dp(6), paint);
+
+      paint.setColor(getColor(R.color.cst_text_accent));
+      paint.setAlpha(70);
+      canvas.drawRect(inner.left + dp(8), inner.top + dp(5), inner.right - dp(10), inner.top + dp(7), paint);
+      paint.setAlpha(255);
+
       paint.setColor(getColor(R.color.cst_text_secondary));
-      canvas.drawRect(p.x + dp(6), p.y + dp(4), p.x + p.w - dp(6), p.y + dp(8), paint);
+      paint.setAlpha(30);
+      for (float lx = inner.left + dp(10); lx < inner.right - dp(12); lx += dp(18)) {
+        canvas.drawRect(lx, inner.top + dp(10), lx + dp(8), inner.bottom - dp(6), paint);
+      }
+      paint.setAlpha(255);
     }
   }
 
@@ -830,15 +902,31 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
     float frame = player.runTime % 1f;
     boolean alt = frame > 0.5f;
     float legOffset = alt ? dp(4) : -dp(4);
-    paint.setColor(Color.WHITE);
     RectF body = new RectF(player.x - player.width * 0.5f, player.y, player.x + player.width * 0.5f, player.y + player.height);
+    paint.setColor(getColor(R.color.cst_panel_edge));
+    canvas.drawRoundRect(new RectF(body.left - dp(2), body.top - dp(2), body.right + dp(2), body.bottom + dp(2)), dp(12), dp(12), paint);
+
     paint.setColor(getColor(R.color.cst_text_primary));
     canvas.drawRoundRect(body, dp(10), dp(10), paint);
+
     paint.setColor(getColor(R.color.cst_text_accent));
-    canvas.drawCircle(player.x, player.y - dp(6), dp(10), paint);
+    canvas.drawCircle(player.x, player.y - dp(7), dp(11), paint);
+    paint.setAlpha(90);
+    canvas.drawCircle(player.x, player.y - dp(7), dp(17), paint);
+    paint.setAlpha(255);
+
+    paint.setColor(getColor(R.color.cst_bg_bottom));
+    canvas.drawCircle(player.x - dp(4), player.y - dp(8), dp(2.1f), paint);
+    canvas.drawCircle(player.x + dp(4), player.y - dp(8), dp(2.1f), paint);
+
     paint.setColor(getColor(R.color.cst_text_secondary));
-    canvas.drawRect(player.x - dp(8), player.y + player.height - dp(10) + legOffset, player.x - dp(2), player.y + player.height + legOffset, paint);
-    canvas.drawRect(player.x + dp(2), player.y + player.height - dp(10) - legOffset, player.x + dp(8), player.y + player.height - legOffset, paint);
+    canvas.drawRect(player.x - dp(9), player.y + player.height - dp(10) + legOffset, player.x - dp(2), player.y + player.height + legOffset, paint);
+    canvas.drawRect(player.x + dp(2), player.y + player.height - dp(10) - legOffset, player.x + dp(9), player.y + player.height - legOffset, paint);
+
+    paint.setColor(getColor(R.color.cst_text_accent));
+    paint.setAlpha(120);
+    canvas.drawRect(body.left + dp(6), body.top + dp(18), body.right - dp(6), body.top + dp(22), paint);
+    paint.setAlpha(255);
     if (player.invulnerable) {
       glowPaint.setColor(getColor(R.color.cst_text_accent));
       glowPaint.setAlpha(140);
