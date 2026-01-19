@@ -1,0 +1,8 @@
+<resources>
+    <style name="Theme.MosaicStudio" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/cst_accent</item>
+        <item name="colorPrimaryVariant">@color/cst_accent</item>
+        <item name="colorOnPrimary">@color/cst_text_dark</item>
+        <item name="android:statusBarColor">@color/cst_accent</item>
+    </style>
+</resources>

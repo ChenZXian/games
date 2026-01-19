@@ -1,0 +1,12 @@
+<resources>
+    <color name="cst_bg_light">#F4F5F7</color>
+    <color name="cst_bg_dark">#1E1F24</color>
+    <color name="cst_panel_light">#FFFFFF</color>
+    <color name="cst_panel_dark">#2A2B31</color>
+    <color name="cst_text_light">#101216</color>
+    <color name="cst_text_dark">#F5F6F8</color>
+    <color name="cst_accent">#4B8CF5</color>
+    <color name="cst_grid">#CED3DB</color>
+    <color name="cst_grid_dark">#3B3E46</color>
+    <color name="cst_icon_bg">#D9E2FF</color>
+</resources>
