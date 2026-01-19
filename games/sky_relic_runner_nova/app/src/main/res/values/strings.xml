@@ -1,0 +1,16 @@
+<resources>
+  <string name="app_name">Sky Relic Runner Nova</string>
+  <string name="btn_start">Start</string>
+  <string name="btn_restart">Restart</string>
+  <string name="btn_resume">Resume</string>
+  <string name="btn_menu">Menu</string>
+  <string name="btn_mute">Mute</string>
+  <string name="btn_jump">Jump</string>
+  <string name="btn_dash">Dash</string>
+  <string name="btn_pause">Pause</string>
+  <string name="hud_distance">Distance</string>
+  <string name="hud_score">Score</string>
+  <string name="hud_energy">Energy</string>
+  <string name="title_paused">Paused</string>
+  <string name="title_game_over">Run Complete</string>
+</resources>
