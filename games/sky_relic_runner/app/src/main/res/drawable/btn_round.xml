@@ -1,0 +1,17 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+  <item android:state_pressed="true">
+    <shape android:shape="rectangle">
+      <gradient android:startColor="@color/cst_ui_button_pressed" android:endColor="@color/cst_ui_button" android:angle="90" />
+      <corners android:radius="22dp" />
+      <stroke android:width="2dp" android:color="@color/cst_panel_edge" />
+    </shape>
+  </item>
+  <item>
+    <shape android:shape="rectangle">
+      <gradient android:startColor="@color/cst_ui_button" android:endColor="@color/cst_ui_button_pressed" android:angle="270" />
+      <stroke android:width="2dp" android:color="@color/cst_panel_edge" />
+      <corners android:radius="22dp" />
+      <padding android:left="4dp" android:top="3dp" android:right="4dp" android:bottom="3dp" />
+    </shape>
+  </item>
+</selector>

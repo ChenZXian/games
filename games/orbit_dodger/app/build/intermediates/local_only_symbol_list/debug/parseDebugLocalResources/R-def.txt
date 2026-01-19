@@ -1,0 +1,36 @@
+R_DEF: Internal format may change without notice
+local
+color cst_bg_main
+color cst_button_bg
+color cst_hud_panel
+color cst_menu_panel
+color cst_obstacle
+color cst_particle
+color cst_player
+color cst_star
+color cst_text_primary
+id btn_pause
+id btn_restart
+id btn_resume
+id btn_start
+id game_over_layout
+id game_view
+id hud_layout
+id menu_layout
+id pause_layout
+id root
+id text_energy
+id text_final_score
+id text_game_over
+id text_lives
+id text_paused
+id text_score
+id text_title
+layout activity_main
+mipmap app_icon
+string app_name
+string btn_pause
+string btn_restart
+string btn_resume
+string btn_start
+style Theme.OrbitDodger

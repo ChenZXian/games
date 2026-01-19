@@ -1,0 +1,2 @@
+games/**/app_icon.png filter=lfs diff=lfs merge=lfs -text
+games/**/gradle-wrapper.jar filter=lfs diff=lfs merge=lfs -text
