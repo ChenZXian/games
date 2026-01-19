@@ -1,0 +1,22 @@
+<resources>
+    <color name="cst_bg_start">#05091F</color>
+    <color name="cst_bg_end">#1C2B4A</color>
+    <color name="cst_panel">#2B3656</color>
+    <color name="cst_panel_edge">#3F5678</color>
+    <color name="cst_text_primary">#E6F4FF</color>
+    <color name="cst_text_secondary">#9FB5D6</color>
+    <color name="cst_btn">#2D9CDB</color>
+    <color name="cst_btn_press">#1B6FA5</color>
+    <color name="cst_btn_alt">#8E44AD</color>
+    <color name="cst_btn_alt_press">#5E2A74</color>
+    <color name="cst_overlay">#8809142E</color>
+    <color name="cst_orb_shard">#7BE7FF</color>
+    <color name="cst_orb_core">#FFE66D</color>
+    <color name="cst_orb_rune">#FF8BD8</color>
+    <color name="cst_player">#B3F4FF</color>
+    <color name="cst_hazard">#FF5D6C</color>
+    <color name="cst_platform">#3A4F7A</color>
+    <color name="cst_app_icon_bg">#0B1129</color>
+    <color name="cst_icon_fore">#54F6FF</color>
+    <color name="cst_icon_core">#FFD76A</color>
+</resources>
