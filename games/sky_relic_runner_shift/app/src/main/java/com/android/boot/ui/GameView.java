@@ -139,6 +139,11 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
 
     private void setState(GameState state) {
         engine.setState(state);
+        if (state == GameState.PLAYING) {
+            soundManager.startBgm();
+        } else {
+            soundManager.stopBgm();
+        }
         if (listener != null) {
             listener.onStateChanged(state);
         }

@@ -1,4 +1,0 @@
-#Mon Jan 19 15:37:06 CST 2026
-base.0=D\:\\Cursor\\games\\games\\sky_relic_runner\\app\\build\\intermediates\\dex\\debugAndroidTest\\mergeProjectDexDebugAndroidTest\\0\\classes.dex
-path.0=0/classes.dex
-renamed.0=classes.dex

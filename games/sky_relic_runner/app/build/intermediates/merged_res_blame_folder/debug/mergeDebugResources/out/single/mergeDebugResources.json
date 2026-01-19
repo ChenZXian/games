@@ -1,43 +1,31 @@
 [
     {
-        "merged": "C:\\Users\\23119\\.gradle\\daemon\\8.14.3\\com.android.boot.app-debug-31:\\mipmap-hdpi_app_icon.png.flat",
-        "source": "C:\\Users\\23119\\.gradle\\daemon\\8.14.3\\com.android.boot.app-main-33:\\mipmap-hdpi\\app_icon.png"
+        "merged": "com.android.boot.app-debug-31:/mipmap-mdpi_app_icon.png.flat",
+        "source": "com.android.boot.app-main-33:/mipmap-mdpi/app_icon.png"
     },
     {
-        "merged": "C:\\Users\\23119\\.gradle\\daemon\\8.14.3\\com.android.boot.app-debug-31:\\mipmap-xxxhdpi_app_icon.png.flat",
-        "source": "C:\\Users\\23119\\.gradle\\daemon\\8.14.3\\com.android.boot.app-main-33:\\mipmap-xxxhdpi\\app_icon.png"
+        "merged": "com.android.boot.app-debug-31:/mipmap-xhdpi_app_icon.png.flat",
+        "source": "com.android.boot.app-main-33:/mipmap-xhdpi/app_icon.png"
     },
     {
-        "merged": "C:\\Users\\23119\\.gradle\\daemon\\8.14.3\\com.android.boot.app-debug-31:\\mipmap-mdpi_app_icon.png.flat",
-        "source": "C:\\Users\\23119\\.gradle\\daemon\\8.14.3\\com.android.boot.app-main-33:\\mipmap-mdpi\\app_icon.png"
+        "merged": "com.android.boot.app-debug-31:/mipmap-hdpi_app_icon.png.flat",
+        "source": "com.android.boot.app-main-33:/mipmap-hdpi/app_icon.png"
     },
     {
-        "merged": "C:\\Users\\23119\\.gradle\\daemon\\8.14.3\\com.android.boot.app-debug-31:\\drawable_panel_round.xml.flat",
-        "source": "C:\\Users\\23119\\.gradle\\daemon\\8.14.3\\com.android.boot.app-main-33:\\drawable\\panel_round.xml"
-    },
-    {
-        "merged": "C:\\Users\\23119\\.gradle\\daemon\\8.14.3\\com.android.boot.app-debug-31:\\drawable_btn_round.xml.flat",
-        "source": "C:\\Users\\23119\\.gradle\\daemon\\8.14.3\\com.android.boot.app-main-33:\\drawable\\btn_round.xml"
-    },
-    {
-        "merged": "C:\\Users\\23119\\.gradle\\daemon\\8.14.3\\com.android.boot.app-debug-31:\\mipmap-xhdpi_app_icon.png.flat",
-        "source": "C:\\Users\\23119\\.gradle\\daemon\\8.14.3\\com.android.boot.app-main-33:\\mipmap-xhdpi\\app_icon.png"
-    },
-    {
-        "merged": "C:\\Users\\23119\\.gradle\\daemon\\8.14.3\\com.android.boot.app-debug-31:\\layout_activity_main.xml.flat",
-        "source": "C:\\Users\\23119\\.gradle\\daemon\\8.14.3\\com.android.boot.app-main-33:\\layout\\activity_main.xml"
+        "merged": "com.android.boot.app-debug-31:/mipmap-xxhdpi_app_icon.png.flat",
+        "source": "com.android.boot.app-main-33:/mipmap-xxhdpi/app_icon.png"
     },
     {
         "merged": "com.android.boot.app-debug-31:/drawable_panel_round.xml.flat",
         "source": "com.android.boot.app-main-33:/drawable/panel_round.xml"
     },
     {
-        "merged": "com.android.boot.app-debug-31:/drawable_btn_round.xml.flat",
-        "source": "com.android.boot.app-main-33:/drawable/btn_round.xml"
+        "merged": "com.android.boot.app-debug-31:/mipmap-xxxhdpi_app_icon.png.flat",
+        "source": "com.android.boot.app-main-33:/mipmap-xxxhdpi/app_icon.png"
     },
     {
-        "merged": "C:\\Users\\23119\\.gradle\\daemon\\8.14.3\\com.android.boot.app-debug-31:\\mipmap-xxhdpi_app_icon.png.flat",
-        "source": "C:\\Users\\23119\\.gradle\\daemon\\8.14.3\\com.android.boot.app-main-33:\\mipmap-xxhdpi\\app_icon.png"
+        "merged": "com.android.boot.app-debug-31:/drawable_btn_round.xml.flat",
+        "source": "com.android.boot.app-main-33:/drawable/btn_round.xml"
     },
     {
         "merged": "com.android.boot.app-debug-31:/layout_activity_main.xml.flat",
