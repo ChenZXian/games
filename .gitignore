@@ -1,0 +1,24 @@
+/.gradle/
+/build/
+artifacts/
+
+# Android/Gradle
+*.apk
+*.ap_
+*.aab
+*.aar
+*.iml
+local.properties
+captures/
+**/build/
+**/.gradle/
+**/navigation.json
+**/output.json
+
+# IDE
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+

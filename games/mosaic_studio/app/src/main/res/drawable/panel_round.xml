@@ -1,0 +1,6 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+  <gradient android:startColor="@color/cst_panel" android:endColor="@color/cst_ui_button_pressed" android:angle="270" />
+  <stroke android:width="2dp" android:color="@color/cst_panel_edge" />
+  <corners android:radius="18dp" />
+  <padding android:left="10dp" android:top="8dp" android:right="10dp" android:bottom="8dp" />
+</shape>
