@@ -4,65 +4,117 @@
     {
       "id": "airplane_shooter",
       "name": "Airplane Shooter",
-      "tags": ["shooter", "arcade"],
+      "tags": [
+        "shooter",
+        "arcade"
+      ],
       "core_loop": "move dodge shoot waves",
       "created_at": "2026-01-18"
     },
     {
       "id": "camp_conquest",
       "name": "Camp Conquest",
-      "tags": ["rts", "capture"],
+      "tags": [
+        "rts",
+        "capture"
+      ],
       "core_loop": "spawn units capture camps",
       "created_at": "2026-01-18"
     },
     {
       "id": "gold_miner",
       "name": "Gold Miner",
-      "tags": ["arcade", "hook"],
+      "tags": [
+        "arcade",
+        "hook"
+      ],
       "core_loop": "aim hook pull loot",
       "created_at": "2026-01-18"
     },
     {
       "id": "orbit_dodger",
       "name": "Orbit Dodger",
-      "tags": ["arcade", "dodge", "collector"],
+      "tags": [
+        "arcade",
+        "dodge",
+        "collector"
+      ],
       "core_loop": "drag to dodge hazards collect stars",
       "created_at": "2026-01-18"
     },
     {
       "id": "sky_relic_runner",
       "name": "Sky Relic Runner",
-      "tags": ["runner", "platformer", "endless", "dash"],
+      "tags": [
+        "runner",
+        "platformer",
+        "endless",
+        "dash"
+      ],
       "core_loop": "auto-run jump dash collect relics avoid hazards",
       "created_at": "2026-01-18"
     },
     {
       "id": "sky_relic_runner_shift",
       "name": "Sky Relic Runner Shift",
-      "tags": ["runner", "platformer", "endless", "dash", "phase"],
+      "tags": [
+        "runner",
+        "platformer",
+        "endless",
+        "dash",
+        "phase"
+      ],
       "core_loop": "auto-run jump charge dash burst to phase across platforms collect shards cores runes avoid collapsing lanes",
       "created_at": "2026-01-18"
     },
     {
       "id": "sky_relic_runner_eclipse",
       "name": "Sky Relic Runner Eclipse",
-      "tags": ["runner", "platformer", "endless", "dash", "magnet"],
+      "tags": [
+        "runner",
+        "platformer",
+        "endless",
+        "dash",
+        "magnet"
+      ],
       "core_loop": "auto-run jump dash through shifting platforms trigger rune magnet to pull relics while avoiding moving hazards",
       "created_at": "2026-01-18"
     },
     {
       "id": "sky_relic_runner_nova",
       "name": "Sky Relic Runner Nova",
-      "tags": ["runner", "platformer", "endless", "dash", "rune"],
+      "tags": [
+        "runner",
+        "platformer",
+        "endless",
+        "dash",
+        "rune"
+      ],
       "core_loop": "auto-run through staggered platforms time jump hold and energy dash to survive collapsing ledges while collecting shards cores and rune double-score bursts",
       "created_at": "2026-01-18"
     },
     {
       "id": "mosaic_studio",
       "name": "Mosaic Studio",
-      "tags": ["design", "puzzle", "creativity"],
+      "tags": [
+        "design",
+        "puzzle",
+        "creativity"
+      ],
       "core_loop": "design puzzle: recreate target mosaic on grid with tools (brush line fill mirror) and score by accuracy with optional constraints",
       "created_at": "2026-01-18"
+    },
+    {
+      "id": "neon_barricade_survival",
+      "name": "Neon Barricade Survival",
+      "tags": [
+        "survival",
+        "action",
+        "tower",
+        "shooter"
+      ],
+      "core_loop": "move deploy barricades link electric fences funnel hordes shoot survive",
+      "created_at": "2026-01-19"
     }
   ]
 }
