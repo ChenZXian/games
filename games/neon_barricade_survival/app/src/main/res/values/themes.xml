@@ -1,0 +1,12 @@
+<resources>
+    <style name="Theme.NeonBarricade" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/cst_accent</item>
+        <item name="colorPrimaryVariant">@color/cst_accent</item>
+        <item name="colorOnPrimary">@color/cst_bg_main</item>
+        <item name="colorSecondary">@color/cst_energy</item>
+        <item name="colorSecondaryVariant">@color/cst_energy</item>
+        <item name="colorOnSecondary">@color/cst_bg_main</item>
+        <item name="android:statusBarColor">@color/cst_bg_main</item>
+        <item name="android:navigationBarColor">@color/cst_bg_main</item>
+    </style>
+</resources>
