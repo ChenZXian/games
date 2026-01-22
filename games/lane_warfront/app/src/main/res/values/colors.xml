@@ -1,0 +1,21 @@
+<resources>
+  <color name="cst_bg_main">#0F111A</color>
+  <color name="cst_lane">#1F2A36</color>
+  <color name="cst_panel_bg">#1B2430</color>
+  <color name="cst_panel_stroke">#3C556B</color>
+  <color name="cst_button_primary_start">#2E7D32</color>
+  <color name="cst_button_primary_end">#1B5E20</color>
+  <color name="cst_button_secondary_start">#455A64</color>
+  <color name="cst_button_secondary_end">#263238</color>
+  <color name="cst_text_primary">#E6F0FF</color>
+  <color name="cst_text_secondary">#A7B8CC</color>
+  <color name="cst_energy">#FFC857</color>
+  <color name="cst_unit_player">#4CAF50</color>
+  <color name="cst_unit_enemy">#EF5350</color>
+  <color name="cst_base_player">#2E7D32</color>
+  <color name="cst_base_enemy">#B71C1C</color>
+  <color name="cst_hp_player">#66BB6A</color>
+  <color name="cst_hp_enemy">#EF5350</color>
+  <color name="cst_overlay">#AA0B1118</color>
+  <color name="cst_icon_bg">#15202B</color>
+</resources>

@@ -1,0 +1,12 @@
+<resources>
+  <dimen name="cst_space_xs">4dp</dimen>
+  <dimen name="cst_space_sm">8dp</dimen>
+  <dimen name="cst_space_md">12dp</dimen>
+  <dimen name="cst_space_lg">16dp</dimen>
+  <dimen name="cst_space_xl">24dp</dimen>
+  <dimen name="cst_radius_sm">6dp</dimen>
+  <dimen name="cst_radius_md">12dp</dimen>
+  <dimen name="cst_stroke_sm">1dp</dimen>
+  <dimen name="cst_button_height">44dp</dimen>
+  <dimen name="cst_hud_height">64dp</dimen>
+</resources>
