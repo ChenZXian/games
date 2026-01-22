@@ -1,18 +1,18 @@
 # GAME GENERATION STANDARD
 
-Version: 1.3
-Last updated: 2026-01-22
+Version: 1.2  
+Last updated: 2026-01-18
 
-------
+---
 
 ## 0. Purpose
 
 This document defines the mandatory and highest-priority generation standard for all games in this repository.
 
-Any game generated manually, by AI (including Codex), or by automated pipelines must strictly comply with this specification.
+Any game generated manually, by AI (including Codex), or by automated pipelines must strictly comply with this specification.  
 No individual request, instruction, or convenience may override or weaken these rules.
 
-------
+---
 
 ## 1. Scope
 
@@ -21,9 +21,9 @@ This standard applies to:
 - All newly generated game projects
 - All existing games stored in this repository
 - All future refactors, optimizations, and iterations
-- All automated generation workflows (Codex, Cursor, scripts, CI)
+- All automated generation workflows (Codex, scripts, CI)
 
-------
+---
 
 ## 2. Base Technical Requirements (Mandatory)
 
@@ -36,7 +36,7 @@ This standard applies to:
 - Build system: Android Studio official Gradle build
 - Project type: Single module (`app`)
 
-------
+---
 
 ## 3. Launcher Entry Requirement (Mandatory)
 
@@ -55,7 +55,7 @@ Rules:
 - Path must be:
   app/src/main/java/com/android/boot/MainActivity.java
 
-------
+---
 
 ## 4. Global Code and Resource Constraints (Highest Priority)
 
@@ -65,18 +65,12 @@ The following must contain no Chinese characters and no comments of any kind:
 
 - All Java source files
 - All XML files
-- All Gradle files
 - All resource file names
 - All string resource values
 
-No comments means:
-
-- No // or /* */ in any code or Gradle
-- No XML comments
-
 This rule applies regardless of generation method.
 
-------
+---
 
 ### 4.2 Color Resource Naming Rules
 
@@ -105,7 +99,7 @@ colorPrimary
 material_*
 ```
 
-------
+---
 
 ### 4.3 Application Label and Icon Definition
 
@@ -121,7 +115,7 @@ Rules:
 - Hardcoded strings are forbidden
 - Alternative icon definitions are forbidden
 
-------
+---
 
 ## 5. Package Name and Single-Game Project Structure
 
@@ -133,7 +127,7 @@ Rules:
 com.android.boot
 ```
 
-------
+---
 
 ### 5.2 Recommended Structure (Per Game)
 
@@ -157,40 +151,11 @@ app/
 
 Extensions are allowed, but the launcher entry and core logic flow must remain intact.
 
-------
+---
 
-## 6. UI Skin System (Mandatory)
+## 6. UI and Gameplay Minimum Requirements
 
-Each game MUST use exactly one predefined UI skin.
-
-Allowed skin ids:
-
-- skin_dark_arcade
-- skin_cartoon_light
-- skin_neon_future
-- skin_post_apocalypse
-- skin_military_tech
-
-Rules:
-
-- Exactly one skin id must be selected per game
-- Mixing skins is forbidden
-- UI must be XML-only and token-driven
-- No external assets or fonts are allowed
-
-Required UI infrastructure:
-
-- res/values/colors.xml (cst_ tokens only)
-- res/values/dimens.xml
-- res/drawable/ui_panel.xml
-- res/drawable/ui_button_primary.xml
-- res/drawable/ui_button_secondary.xml
-
-------
-
-## 7. UI and Gameplay Minimum Requirements
-
-### 7.1 UI
+### 6.1 UI
 
 Each game must include:
 
@@ -199,9 +164,9 @@ Each game must include:
 - HUD elements (score, life, energy, pause)
 - A game-over or result screen
 
-------
+---
 
-### 7.2 Controls
+### 6.2 Controls
 
 At least one mobile-friendly control scheme must be implemented:
 
@@ -209,9 +174,9 @@ At least one mobile-friendly control scheme must be implemented:
 - Touch / gesture control
 - Multi-touch interaction
 
-------
+---
 
-### 7.3 Game States
+### 6.3 Game States
 
 Each game must implement at least the following states:
 
@@ -222,11 +187,11 @@ PAUSED
 GAME_OVER
 ```
 
-------
+---
 
-## 8. String and Asset Requirements
+## 7. String and Asset Requirements
 
-### 8.1 Strings
+### 7.1 Strings
 
 strings.xml must contain at least:
 
@@ -239,42 +204,34 @@ btn_resume
 
 All values must be in English.
 
-------
+---
 
-### 8.2 Application Icon (Two-Stage Policy)
+### 7.2 Application Icon
 
-Stage A (generation-safe):
-
-- @mipmap/app_icon must exist using XML-only resources
-- Adaptive icon via mipmap-anydpi-v26/app_icon.xml
-- Foreground via drawable/app_icon_fg.xml
-- Background color via cst_ token
-
-Stage B (packaging):
-
-- Bitmap icons may be added only during packaging
+- @mipmap/app_icon must exist
+- File name: app_icon.png
 - Required densities: mdpi, hdpi, xhdpi, xxhdpi, xxxhdpi
 
-------
+---
 
-## 9. Build and Runtime Requirements
+## 8. Build and Runtime Requirements
 
 - Project must open and run in Android Studio without modification
 - APK must be buildable via standard Gradle tasks
 - Screen orientation may be fixed (landscape recommended)
 
-------
+---
 
-## 10. Zip Delivery Requirements
+## 9. Zip Delivery Requirements
 
 Each game must be deliverable as a zip archive:
 
 - Zip must contain a complete Android Studio project
 - build/, .gradle/, and cache files must be excluded
 
-------
+---
 
-## 11. Repository Structure (Monorepo)
+## 10. Repository Structure (Monorepo)
 
 This repository is a monorepo containing multiple independent game projects.
 
@@ -292,9 +249,9 @@ Rules for <game_id>:
 
 Each directory under games/ must be a complete Android Studio project.
 
-------
+---
 
-## 12. Non-Duplication Policy
+## 11. Non-Duplication Policy
 
 Before generating a new game, the generator must read:
 
@@ -302,11 +259,20 @@ Before generating a new game, the generator must read:
 registry/produced_games.json
 ```
 
-If similarity is detected, the generator must automatically change mechanics to ensure uniqueness.
+A new game is considered a duplicate if its core gameplay loop is substantially similar to an existing entry.
 
-------
+Similarity is determined by:
 
-## 13. Registry Update Requirement
+- Player perspective
+- Control scheme
+- Primary objective
+- Core feedback loop
+
+If similarity is detected, the generator must automatically change genre or mechanics to ensure uniqueness.
+
+---
+
+## 12. Registry Update Requirement
 
 After generating a new game, the generator must append an entry to:
 
@@ -321,28 +287,38 @@ Each entry must include:
 - tags
 - core_loop
 - created_at (YYYY-MM-DD)
-- ui_skin
 
-------
+A game is incomplete until it is registered.
 
-## 14. Codex Automation Rules
+---
 
-Codex must:
+## 13. Codex Automation Rules
 
-- Translate user input to English internally
-- Choose a unique game_id
-- Generate project
-- Validate rules
-- Update registry
+When using Codex:
 
-Codex must NOT ask the user to restate constraints.
+- User input may be in Chinese or English
+- Codex must translate user input into clear English internally
+- Codex must autonomously choose a unique game_id
+- Codex must execute the full workflow:
+  - Generate project
+  - Validate rules
+  - Update registry
+  - Commit and push
 
-------
+Codex must not ask the user to restate constraints already defined in this document.
 
-## 15. Standard User Input (Minimal)
+---
 
-Users may request new games using minimal descriptions.
+## 14. Standard User Input (Minimal)
 
-------
+Users may request new games using minimal descriptions, for example:
+
+```
+Generate a new game: ninja parkour, fast-paced, non-shooting
+```
+
+All missing details must be inferred while remaining compliant.
+
+---
 
 End of document.

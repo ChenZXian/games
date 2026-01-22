@@ -329,7 +329,7 @@ Allowed actions:
 - Replace hardcoded UI styling values with cst_ tokens
 - Create or refine additional XML-only drawables if needed:
   - ui_badge.xml, ui_card.xml, ui_meter.xml, ui_icon_button.xml
-  (must be shape/gradient/vector and follow the selected skin)
+    (must be shape/gradient/vector and follow the selected skin)
 - Add small code-driven effects that do not require assets:
   - screen shake
   - particles drawn via Canvas
