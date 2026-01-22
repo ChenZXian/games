@@ -1,0 +1,21 @@
+<resources>
+  <string name="app_name">Lane Warfront</string>
+  <string name="btn_start">Start</string>
+  <string name="btn_restart">Restart</string>
+  <string name="btn_resume">Resume</string>
+  <string name="btn_menu">Menu</string>
+  <string name="btn_mute">Mute</string>
+  <string name="btn_how_to_play">How To Play</string>
+  <string name="btn_pause">Pause</string>
+  <string name="label_energy">Energy</string>
+  <string name="unit_infantry">Infantry</string>
+  <string name="unit_ranger">Ranger</string>
+  <string name="unit_tank">Tank</string>
+  <string name="victory_text">Victory</string>
+  <string name="defeat_text">Defeat</string>
+  <string name="how_to_play_text">Spend energy to spawn units and destroy the enemy base.</string>
+  <string name="energy_value">Energy %d</string>
+  <string name="energy_value_initial">Energy 0</string>
+  <string name="base_player_label">Your Base</string>
+  <string name="base_enemy_label">Enemy Base</string>
+</resources>
