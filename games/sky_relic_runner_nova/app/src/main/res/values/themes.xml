@@ -1,8 +1,0 @@
-<resources>
-  <style name="Theme.SkyRelicRunnerNova" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-    <item name="colorPrimary">@color/cst_ui_button</item>
-    <item name="colorPrimaryVariant">@color/cst_ui_button_pressed</item>
-    <item name="colorOnPrimary">@color/cst_text_primary</item>
-    <item name="android:statusBarColor">@color/cst_bg_top</item>
-  </style>
-</resources>

@@ -1,9 +1,0 @@
-<resources>
-    <color name="cst_bg_main">#081018</color>
-    <color name="cst_ui_panel">#121C26</color>
-    <color name="cst_text_primary">#E6F4FF</color>
-    <color name="cst_accent">#39FFB4</color>
-    <color name="cst_warning">#FF4B7D</color>
-    <color name="cst_energy">#6EE0FF</color>
-    <color name="cst_app_icon_bg">#0F1722</color>
-</resources>

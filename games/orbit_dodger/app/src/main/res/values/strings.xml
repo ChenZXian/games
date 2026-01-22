@@ -1,7 +1,0 @@
-<resources>
-    <string name="app_name">Orbit Dodger</string>
-    <string name="btn_start">Start</string>
-    <string name="btn_restart">Restart</string>
-    <string name="btn_resume">Resume</string>
-    <string name="btn_pause">Pause</string>
-</resources>

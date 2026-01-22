@@ -1,9 +1,0 @@
-<resources>
-    <style name="Theme.SkyRelicRunner" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/cst_panel</item>
-        <item name="colorPrimaryVariant">@color/cst_panel_light</item>
-        <item name="colorSecondary">@color/cst_accent</item>
-        <item name="android:statusBarColor">@color/cst_bg_main</item>
-        <item name="android:navigationBarColor">@color/cst_bg_main</item>
-    </style>
-</resources>

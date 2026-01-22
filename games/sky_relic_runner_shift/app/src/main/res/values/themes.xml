@@ -1,6 +1,0 @@
-<resources>
-    <style name="Theme.SkyRelicRunnerShift" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="android:statusBarColor">@color/cst_bg_start</item>
-        <item name="android:navigationBarColor">@color/cst_bg_start</item>
-    </style>
-</resources>

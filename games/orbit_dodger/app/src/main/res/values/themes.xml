@@ -1,6 +1,0 @@
-<resources>
-    <style name="Theme.OrbitDodger" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="android:statusBarColor">@color/cst_bg_main</item>
-        <item name="android:navigationBarColor">@color/cst_bg_main</item>
-    </style>
-</resources>
