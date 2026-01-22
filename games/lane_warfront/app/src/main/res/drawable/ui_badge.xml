@@ -1,0 +1,16 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+  <item>
+    <shape android:shape="rectangle">
+      <solid android:color="@color/cst_shadow" />
+      <corners android:radius="@dimen/cst_radius_sm" />
+    </shape>
+  </item>
+  <item android:bottom="1dp" android:right="1dp">
+    <shape android:shape="rectangle">
+      <gradient android:startColor="@color/cst_energy" android:endColor="@color/cst_energy_glow" android:angle="90" />
+      <stroke android:width="@dimen/cst_stroke_sm" android:color="@color/cst_energy_glow" />
+      <corners android:radius="@dimen/cst_radius_sm" />
+    </shape>
+  </item>
+</layer-list>
+

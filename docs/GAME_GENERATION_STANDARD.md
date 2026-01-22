@@ -1,7 +1,7 @@
 # GAME GENERATION STANDARD
 
-Version: 1.3
-Last updated: 2026-01-22
+Version: 1.6  
+Last updated: 2026-01-23
 
 ------
 
@@ -9,7 +9,7 @@ Last updated: 2026-01-22
 
 This document defines the mandatory and highest-priority generation standard for all games in this repository.
 
-Any game generated manually, by AI (including Codex), or by automated pipelines must strictly comply with this specification.
+Any game generated manually, by AI (including Codex), or by automated pipelines must strictly comply with this specification.  
 No individual request, instruction, or convenience may override or weaken these rules.
 
 ------
@@ -159,11 +159,11 @@ Extensions are allowed, but the launcher entry and core logic flow must remain i
 
 ------
 
-## 6. UI Skin System (Mandatory)
+## 6. UI Kit System (Mandatory, Industrial)
 
-Each game MUST use exactly one predefined UI skin.
+Each game MUST use exactly one predefined UI skin AND MUST comply with the UI Kit contract.
 
-Allowed skin ids:
+### 6.1 Allowed Skin Ids
 
 - skin_dark_arcade
 - skin_cartoon_light
@@ -175,13 +175,42 @@ Rules:
 
 - Exactly one skin id must be selected per game
 - Mixing skins is forbidden
-- UI must be XML-only and token-driven
-- No external assets or fonts are allowed
 
-Required UI infrastructure:
+### 6.2 UI Kit Contract (Authoritative)
+
+The authoritative UI Kit contract is:
+
+- docs/UI_KIT_FACTORY_SPEC_v1_0.md
+
+All projects MUST implement the required tokens, styles, and drawable file set defined in that document.
+
+If this standard conflicts with UI_KIT_FACTORY_SPEC_v1_0.md, the stricter rule applies.
+
+### 6.3 UI Implementation Rules
+
+- UI must be XML-only and token-driven
+- External assets are forbidden:
+  - No bitmap images (png/jpg/jpeg/webp/gif/bmp/ico)
+  - No fonts (ttf/otf)
+  - No downloaded UI kits
+- Java code MUST NOT hardcode UI colors or dimensions for styling
+- Layout XML SHOULD NOT inline literal color values
+- UI is allowed to look commercial only by:
+  - token tuning (colors/dimens)
+  - XML drawables (shape/gradient/layer-list/vector)
+  - consistent hierarchy and spacing
+
+### 6.4 Required UI Infrastructure (Must Exist in Every Project)
+
+At minimum, each project MUST contain:
 
 - res/values/colors.xml (cst_ tokens only)
 - res/values/dimens.xml
+- res/values/styles.xml
+- res/values/themes.xml
+
+And the required drawables specified by the UI Kit contract, including:
+
 - res/drawable/ui_panel.xml
 - res/drawable/ui_button_primary.xml
 - res/drawable/ui_button_secondary.xml
@@ -323,6 +352,8 @@ Each entry must include:
 - created_at (YYYY-MM-DD)
 - ui_skin
 
+A game is incomplete until it is registered.
+
 ------
 
 ## 14. Codex Automation Rules
@@ -339,9 +370,60 @@ Codex must NOT ask the user to restate constraints.
 
 ------
 
-## 15. Standard User Input (Minimal)
+## 15. Industrial Hard NO List (Mandatory)
 
-Users may request new games using minimal descriptions.
+The following are forbidden because they break industrial-scale generation:
+
+- Per-game custom bitmap art sourcing as a required step
+- Adding any bitmap assets during generation or optimization
+- Adding any font files
+- Downloading or copying third-party UI kits
+- Creating new UI systems per game instead of using the UI Kit contract
+- Hardcoding UI styling values in Java (colors, radii, strokes, paddings)
+- Mixing multiple skins in one project
+- Using Git LFS pointer files anywhere in the repository
+- Introducing binary audio assets unless explicitly requested in a packaging-only workflow
+
+------
+
+## 16. Binary and Git LFS Prohibition (Repository Safety)
+
+### 16.1 LFS Pointer Ban
+
+A file is considered a Git LFS pointer if its first line equals:
+
+```
+version https://git-lfs.github.com/spec/v1
+```
+
+Git LFS pointer files are forbidden anywhere in this repository.
+
+### 16.2 Binary Asset Ban (Default)
+
+Do NOT include binary assets in generated projects:
+
+- png / jpg / jpeg / webp / gif / bmp / ico
+- ogg / mp3 / wav / m4a / aac
+- ttf / otf
+- so / bin / apk / aab / zip
+
+Exception:
+
+- gradle/wrapper/gradle-wrapper.jar is allowed ONLY if required by the baseline.
+
+If a build workflow requires gradle-wrapper.jar, it MUST be stored as a normal Git object, not via Git LFS.
+
+------
+
+## 17. Standard User Input (Minimal)
+
+Users may request new games using minimal descriptions, for example:
+
+```
+Generate a new game: lane battle, pure unit spawning, classic push lanes
+```
+
+All missing details must be inferred while remaining compliant.
 
 ------
 

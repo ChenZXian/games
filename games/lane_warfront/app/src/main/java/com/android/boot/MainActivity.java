@@ -28,12 +28,13 @@ public class MainActivity extends AppCompatActivity {
     }
   };
   private GameView.State lastState = GameView.State.MENU;
-  private boolean muted = false;
+  private BgmPlayer bgm;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+    bgm = new BgmPlayer();
     gameView = findViewById(R.id.game_view);
     menuPanel = findViewById(R.id.panel_menu);
     pausePanel = findViewById(R.id.panel_pause);
@@ -87,8 +88,8 @@ public class MainActivity extends AppCompatActivity {
     });
 
     View.OnClickListener muteListener = v -> {
-      muted = !muted;
-      float alpha = muted ? 0.5f : 1f;
+      bgm.setMuted(!bgm.isMuted());
+      float alpha = bgm.isMuted() ? 0.5f : 1f;
       muteButton.setAlpha(alpha);
       muteButtonPause.setAlpha(alpha);
     };
@@ -146,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
   @Override
   protected void onResume() {
     super.onResume();
+    bgm.start(this);
     gameView.onResumeView();
     handler.post(hudRunner);
   }
@@ -155,5 +157,6 @@ public class MainActivity extends AppCompatActivity {
     super.onPause();
     gameView.onPauseView();
     handler.removeCallbacks(hudRunner);
+    bgm.stop();
   }
 }

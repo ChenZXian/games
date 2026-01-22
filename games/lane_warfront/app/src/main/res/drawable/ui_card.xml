@@ -2,14 +2,15 @@
   <item>
     <shape android:shape="rectangle">
       <solid android:color="@color/cst_shadow" />
-      <corners android:radius="@dimen/cst_radius_md" />
+      <corners android:radius="@dimen/cst_radius_lg" />
     </shape>
   </item>
   <item android:bottom="2dp" android:right="2dp">
     <shape android:shape="rectangle">
       <gradient android:startColor="@color/cst_panel_bg" android:endColor="@color/cst_panel_bg_light" android:angle="135" />
-      <stroke android:width="@dimen/cst_stroke_md" android:color="@color/cst_panel_stroke" />
-      <corners android:radius="@dimen/cst_radius_md" />
+      <stroke android:width="@dimen/cst_stroke_md" android:color="@color/cst_panel_stroke_light" />
+      <corners android:radius="@dimen/cst_radius_lg" />
     </shape>
   </item>
 </layer-list>
+

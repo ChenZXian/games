@@ -4,9 +4,20 @@
   <dimen name="cst_space_md">12dp</dimen>
   <dimen name="cst_space_lg">16dp</dimen>
   <dimen name="cst_space_xl">24dp</dimen>
+  <dimen name="cst_space_xxl">32dp</dimen>
+  <dimen name="cst_radius_xs">4dp</dimen>
   <dimen name="cst_radius_sm">6dp</dimen>
   <dimen name="cst_radius_md">12dp</dimen>
+  <dimen name="cst_radius_lg">16dp</dimen>
   <dimen name="cst_stroke_sm">1dp</dimen>
+  <dimen name="cst_stroke_md">2dp</dimen>
   <dimen name="cst_button_height">44dp</dimen>
+  <dimen name="cst_button_height_sm">36dp</dimen>
   <dimen name="cst_hud_height">64dp</dimen>
+  <dimen name="cst_text_size_title">28sp</dimen>
+  <dimen name="cst_text_size_large">20sp</dimen>
+  <dimen name="cst_text_size_normal">16sp</dimen>
+  <dimen name="cst_text_size_small">14sp</dimen>
+  <dimen name="cst_elevation_sm">2dp</dimen>
+  <dimen name="cst_elevation_md">4dp</dimen>
 </resources>

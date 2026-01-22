@@ -1,6 +1,6 @@
-# CURSOR_RULES v1.9
+# CURSOR_RULES v2.0
 
-- Version: v1.9
+- Version: v2.0
 - Scope: Cursor rules for refining and finalizing Android Java mini-games in this monorepo
 - Status: Stable
 
@@ -180,9 +180,9 @@ The following items MUST NOT be changed during INIT or OPTIMIZE phases:
 Package identity may be changed ONLY if the user explicitly requests
 a package rename with clear intent.
 
-### 3.2 UI Skin Lock (NEW HARD RULE)
+### 3.2 UI Kit Lock (HARD RULE)
 
-All projects MUST use exactly one UI skin as defined in docs/GAME_GENERATION_STANDARD.md.
+All projects MUST use exactly one ui_skin as defined in docs/GAME_GENERATION_STANDARD.md.
 
 During INIT and OPTIMIZE, Cursor MUST NOT:
 
@@ -193,15 +193,46 @@ During INIT and OPTIMIZE, Cursor MUST NOT:
 - add or modify .gitattributes or any Git config files
 - mix multiple skins or invent a new skin not listed in the standard
 
-Cursor MAY improve UI ONLY by:
+Cursor MAY improve UI ONLY by working inside the UI Kit system:
 
 - editing token resources in res/values (colors/dimens/styles/themes)
-- editing XML-only drawables in res/drawable (shape/gradient/vector)
-- adjusting layouts for spacing/hierarchy while keeping one-skin consistency
-- refactoring UI code to reference tokens instead of hardcoded values
+- editing XML-only drawables in res/drawable (shape/gradient/layer-list/vector)
+- editing layouts to improve spacing/hierarchy while keeping one-skin consistency
+- refactoring UI code to reference tokens/styles instead of hardcoded values
 
-Hard rule:
+Hard rules:
 - Java code must not hardcode UI colors for styling. Use cst_ tokens.
+- Layouts must prefer styles (TextAppearance, Widget styles) over inline attributes.
+
+UI Kit minimal file set is mandatory per project:
+
+Values:
+- res/values/colors.xml
+- res/values/dimens.xml
+- res/values/styles.xml
+- res/values/themes.xml
+
+Drawables:
+- res/drawable/ui_panel.xml
+- res/drawable/ui_panel_header.xml
+- res/drawable/ui_card.xml
+- res/drawable/ui_divider.xml
+- res/drawable/ui_button_primary.xml
+- res/drawable/ui_button_secondary.xml
+- res/drawable/ui_button_icon.xml
+- res/drawable/ui_chip.xml
+- res/drawable/ui_meter_track.xml
+- res/drawable/ui_meter_fill.xml
+- res/drawable/ui_toast.xml
+- res/drawable/ui_dialog.xml
+
+Icons (vector xml):
+- res/drawable/ic_play.xml
+- res/drawable/ic_pause.xml
+- res/drawable/ic_restart.xml
+- res/drawable/ic_sound_on.xml
+- res/drawable/ic_sound_off.xml
+- res/drawable/ic_help.xml
 
 ------
 
@@ -258,7 +289,7 @@ Online download policy:
 
 Before executing any action, Cursor MUST output a one-line execution plan:
 
-PHASE=INIT; WILL_RUN=[doctor, sync_fixes, lfs_cleanup, icon_generation, minimal_ui_token_check]
+PHASE=INIT; WILL_RUN=[doctor, sync_fixes, lfs_cleanup, icon_generation, ui_kit_minimum_check]
 
 The plan MUST NOT contain:
 
@@ -277,10 +308,10 @@ Allowed:
 - Minimal code fixes required for app startup
 - LFS pointer auto-remediation
 - Icon generation (XML-only)
-- Minimal UI token enforcement:
+- UI kit minimum check and minimal remediation:
   - ensure cst_ colors exist
-  - ensure required ui_*.xml drawables exist
-  - ensure UI references do not crash
+  - ensure required UI Kit files exist
+  - ensure layouts reference UI Kit drawables/styles and do not crash
 
 Forbidden (ABSOLUTE):
 
@@ -303,12 +334,7 @@ INIT completion criteria:
 - App can be launched without immediate crash
 - No LFS pointer files remain
 - app_icon resolves correctly (XML-only)
-- UI Skin infrastructure exists and compiles:
-  - res/values/colors.xml with cst_ tokens
-  - res/values/dimens.xml
-  - res/drawable/ui_panel.xml
-  - res/drawable/ui_button_primary.xml
-  - res/drawable/ui_button_secondary.xml
+- UI Kit infrastructure exists and compiles (minimal file set present)
 
 ------
 
@@ -321,20 +347,24 @@ Allowed actions:
 
 - Refactor game loop to reduce allocations and stabilize delta-time
 - Improve input handling and responsiveness
-- Improve UI/UX using the existing UI skin system only:
+- Improve UI/UX strictly inside the UI Kit system:
   - adjust spacing, alignment, hierarchy
-  - improve HUD readability
-  - add polished states (menu/pause/gameover) using panels/buttons
-  - add simple visual depth via gradients, borders, shadows (XML-only)
-- Replace hardcoded UI styling values with cst_ tokens
-- Create or refine additional XML-only drawables if needed:
-  - ui_badge.xml, ui_card.xml, ui_meter.xml, ui_icon_button.xml
-    (must be shape/gradient/vector and follow the selected skin)
+  - enforce TextAppearance usage for all text
+  - enforce Widget styles for buttons/panels
+  - improve HUD readability using ui_meter_track/ui_meter_fill
+  - improve menu/pause/gameover structure using ui_dialog/ui_panel_header
+  - improve discoverability using icon buttons (ic_play/ic_pause/etc)
+- Replace hardcoded UI styling values with cst_ tokens and style references
+- Create additional XML-only UI drawables if needed, but they must:
+  - be shape/gradient/layer-list/vector only
+  - follow the selected ui_skin
+  - not replace or remove the required minimal set
 - Add small code-driven effects that do not require assets:
   - screen shake
   - particles drawn via Canvas
   - float text
   - simple hit flashes
+  - button press scale feedback
 
 Forbidden actions:
 
@@ -346,7 +376,8 @@ Forbidden actions:
 OPTIMIZE completion criteria (target):
 
 - UI looks like a commercial mobile game UI kit while remaining text-only
-- All screens use the same skin consistently
+- All screens use the same ui_skin consistently
+- Text uses TextAppearance styles, buttons use Widget styles
 - No hardcoded UI colors remain in Java for styling
 
 ------
@@ -368,6 +399,7 @@ Allowed actions in PACK (only when user requested PACK):
 UI rules in PACK:
 
 - Verify exactly one ui_skin is used consistently
+- Verify UI Kit minimal file set exists
 - Verify no forbidden binaries exist unless explicitly allowed by the packaging request
 - Verify app_icon resolves correctly and matches manifest constraints
 
@@ -390,4 +422,4 @@ UI rules in PACK:
 
 ## 10. Versioning Policy
 
-Current version: v1.9
+Current version: v2.0

@@ -1,4 +1,12 @@
 {
-  "version": 1,
-  "entries": []
+  "bgm": [
+    {
+      "id": "war_cf6929d7",
+      "file": "war_cf6929d7.wav",
+      "tags": ["war"],
+      "loop": true,
+      "duration_sec": 30,
+      "used_by": []
+    }
+  ]
 }

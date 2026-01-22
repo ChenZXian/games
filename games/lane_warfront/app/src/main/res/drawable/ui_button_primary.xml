@@ -1,5 +1,36 @@
-<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
-  <gradient android:startColor="@color/cst_button_primary_start" android:endColor="@color/cst_button_primary_end" android:angle="90" />
-  <stroke android:width="@dimen/cst_stroke_sm" android:color="@color/cst_panel_stroke" />
-  <corners android:radius="@dimen/cst_radius_md" />
-</shape>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+  <item android:state_pressed="true">
+    <layer-list>
+      <item>
+        <shape android:shape="rectangle">
+          <solid android:color="@color/cst_shadow" />
+          <corners android:radius="@dimen/cst_radius_md" />
+        </shape>
+      </item>
+      <item android:bottom="2dp" android:right="2dp">
+        <shape android:shape="rectangle">
+          <gradient android:startColor="@color/cst_button_primary_end" android:endColor="@color/cst_button_primary_start" android:angle="90" />
+          <stroke android:width="@dimen/cst_stroke_md" android:color="@color/cst_button_primary_glow" />
+          <corners android:radius="@dimen/cst_radius_md" />
+        </shape>
+      </item>
+    </layer-list>
+  </item>
+  <item>
+    <layer-list>
+      <item>
+        <shape android:shape="rectangle">
+          <solid android:color="@color/cst_shadow" />
+          <corners android:radius="@dimen/cst_radius_md" />
+        </shape>
+      </item>
+      <item android:bottom="3dp" android:right="3dp">
+        <shape android:shape="rectangle">
+          <gradient android:startColor="@color/cst_button_primary_start" android:endColor="@color/cst_button_primary_end" android:angle="90" />
+          <stroke android:width="@dimen/cst_stroke_md" android:color="@color/cst_button_primary_glow" />
+          <corners android:radius="@dimen/cst_radius_md" />
+        </shape>
+      </item>
+    </layer-list>
+  </item>
+</selector>
