@@ -11,6 +11,9 @@
   <string name="unit_infantry">Infantry</string>
   <string name="unit_ranger">Ranger</string>
   <string name="unit_tank">Tank</string>
+  <string name="unit_infantry_price">15</string>
+  <string name="unit_ranger_price">25</string>
+  <string name="unit_tank_price">45</string>
   <string name="victory_text">Victory</string>
   <string name="defeat_text">Defeat</string>
   <string name="how_to_play_text">Spend energy to spawn units and destroy the enemy base.</string>

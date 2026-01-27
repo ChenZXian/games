@@ -102,6 +102,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
   private float shakeAmp;
   private float dashCooldown;
   private boolean jumpHeld;
+  private boolean jumpPressed;
+  private boolean wasJumpHeld;
 
   private Paint paint;
   private Paint glowPaint;
@@ -189,6 +191,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
   }
 
   public void setJumpHeld(boolean held) {
+    jumpPressed = held && !wasJumpHeld;
+    wasJumpHeld = held;
     jumpHeld = held;
   }
 
@@ -234,6 +238,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
     shakeTime = 0f;
     shakeAmp = 0f;
     jumpHeld = false;
+    jumpPressed = false;
+    wasJumpHeld = false;
     player.width = dp(34);
     player.height = dp(54);
     player.x = viewWidth * 0.25f;
@@ -425,22 +431,33 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
 
   private void updatePlayer(float dt) {
     float gravity = dp(1400);
-    float jumpBoost = dp(2400);
-    if (jumpHeld && player.onGround) {
-      player.vy = -dp(640);
+    // Single jump only when on ground, no continuous boost when holding
+    if (jumpPressed && player.onGround) {
+      player.vy = -dp(480); // Reduced initial jump velocity
       player.onGround = false;
     }
-    if (jumpHeld && !player.onGround && player.vy < 0f) {
-      player.vy -= jumpBoost * dt;
-    }
+    // Apply gravity
     player.vy += gravity * dt;
+    // Limit max fall velocity
+    float maxVy = dp(1200);
+    if (player.vy > maxVy) {
+      player.vy = maxVy;
+    }
+    // Update position
     player.y += player.vy * dt;
+    // Limit max height to prevent going off screen
+    float minY = dp(20); // Minimum distance from screen top
+    if (player.y < minY) {
+      player.y = minY;
+      player.vy = 0f; // Stop rising when reaching top
+    }
     player.runTime += dt * 10f;
     player.x = viewWidth * 0.25f;
     if (player.dashTime > 0f) {
       emitDashTrail(dt);
     }
     resolvePlatformCollision();
+    jumpPressed = false;
   }
 
   private void resolvePlatformCollision() {
@@ -899,38 +916,156 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
   }
 
   private void drawPlayer(Canvas canvas) {
+    float centerX = player.x;
+    float centerY = player.y + player.height * 0.5f;
+    boolean isJumping = !player.onGround;
     float frame = player.runTime % 1f;
-    boolean alt = frame > 0.5f;
-    float legOffset = alt ? dp(4) : -dp(4);
-    RectF body = new RectF(player.x - player.width * 0.5f, player.y, player.x + player.width * 0.5f, player.y + player.height);
+    
+    // Calculate animation offsets
+    float legSwing = 0f;
+    float armSwing = 0f;
+    float bodyLean = 0f;
+    float headBob = 0f;
+    
+    if (isJumping) {
+      // Jumping pose: arms up, legs slightly bent
+      armSwing = -dp(12);
+      legSwing = dp(6);
+      bodyLean = dp(2);
+    } else {
+      // Running animation
+      float cycle = (float) Math.sin(frame * 2f * (float) Math.PI);
+      legSwing = cycle * dp(8);
+      armSwing = -cycle * dp(10);
+      headBob = cycle * dp(1.5f);
+    }
+    
+    // Head position
+    float headY = player.y + dp(8) + headBob;
+    float headRadius = dp(10);
+    
+    // Body (torso)
+    float torsoTop = headY + headRadius + dp(2);
+    float torsoBottom = player.y + player.height - dp(18);
+    float torsoWidth = dp(16);
+    float torsoLeft = centerX - torsoWidth * 0.5f;
+    float torsoRight = centerX + torsoWidth * 0.5f;
+    
+    // Draw shadow first
+    paint.setColor(Color.BLACK);
+    paint.setAlpha(40);
+    canvas.drawOval(new RectF(centerX - dp(12), player.y + player.height + dp(2), 
+                              centerX + dp(12), player.y + player.height + dp(6)), paint);
+    paint.setAlpha(255);
+    
+    // Draw body with 3D shading
+    RectF torso = new RectF(torsoLeft, torsoTop, torsoRight, torsoBottom);
+    
+    // Body outline
     paint.setColor(getColor(R.color.cst_panel_edge));
-    canvas.drawRoundRect(new RectF(body.left - dp(2), body.top - dp(2), body.right + dp(2), body.bottom + dp(2)), dp(12), dp(12), paint);
-
+    paint.setStrokeWidth(dp(1.5f));
+    paint.setStyle(Paint.Style.STROKE);
+    canvas.drawRoundRect(torso, dp(6), dp(6), paint);
+    
+    // Body fill with gradient effect (simulated with lighter/darker areas)
+    paint.setStyle(Paint.Style.FILL);
     paint.setColor(getColor(R.color.cst_text_primary));
-    canvas.drawRoundRect(body, dp(10), dp(10), paint);
-
-    paint.setColor(getColor(R.color.cst_text_accent));
-    canvas.drawCircle(player.x, player.y - dp(7), dp(11), paint);
-    paint.setAlpha(90);
-    canvas.drawCircle(player.x, player.y - dp(7), dp(17), paint);
-    paint.setAlpha(255);
-
-    paint.setColor(getColor(R.color.cst_bg_bottom));
-    canvas.drawCircle(player.x - dp(4), player.y - dp(8), dp(2.1f), paint);
-    canvas.drawCircle(player.x + dp(4), player.y - dp(8), dp(2.1f), paint);
-
+    canvas.drawRoundRect(torso, dp(6), dp(6), paint);
+    
+    // 3D shading - left side darker
     paint.setColor(getColor(R.color.cst_text_secondary));
-    canvas.drawRect(player.x - dp(9), player.y + player.height - dp(10) + legOffset, player.x - dp(2), player.y + player.height + legOffset, paint);
-    canvas.drawRect(player.x + dp(2), player.y + player.height - dp(10) - legOffset, player.x + dp(9), player.y + player.height - legOffset, paint);
-
-    paint.setColor(getColor(R.color.cst_text_accent));
-    paint.setAlpha(120);
-    canvas.drawRect(body.left + dp(6), body.top + dp(18), body.right - dp(6), body.top + dp(22), paint);
+    paint.setAlpha(80);
+    canvas.drawRect(torsoLeft, torsoTop, torsoLeft + dp(4), torsoBottom, paint);
     paint.setAlpha(255);
+    
+    // Head with 3D effect
+    paint.setColor(getColor(R.color.cst_text_primary));
+    canvas.drawCircle(centerX, headY, headRadius, paint);
+    
+    // Head highlight
+    paint.setColor(Color.WHITE);
+    paint.setAlpha(60);
+    canvas.drawCircle(centerX - dp(2), headY - dp(3), dp(4), paint);
+    paint.setAlpha(255);
+    
+    // Eyes
+    paint.setColor(getColor(R.color.cst_bg_bottom));
+    canvas.drawCircle(centerX - dp(3), headY - dp(1), dp(2), paint);
+    canvas.drawCircle(centerX + dp(3), headY - dp(1), dp(2), paint);
+    
+    // Eye highlights
+    paint.setColor(Color.WHITE);
+    canvas.drawCircle(centerX - dp(3.5f), headY - dp(1.5f), dp(0.8f), paint);
+    canvas.drawCircle(centerX + dp(2.5f), headY - dp(1.5f), dp(0.8f), paint);
+    
+    // Arms
+    float armWidth = dp(5);
+    float armLength = dp(14);
+    float shoulderY = torsoTop + dp(4);
+    
+    // Left arm
+    float leftArmAngle = armSwing;
+    float leftArmX = torsoLeft - dp(2);
+    RectF leftArm = new RectF(leftArmX - armWidth * 0.5f, shoulderY + leftArmAngle,
+                               leftArmX + armWidth * 0.5f, shoulderY + armLength + leftArmAngle);
+    paint.setColor(getColor(R.color.cst_text_primary));
+    canvas.drawRoundRect(leftArm, dp(2.5f), dp(2.5f), paint);
+    
+    // Right arm
+    float rightArmAngle = -armSwing;
+    float rightArmX = torsoRight + dp(2);
+    RectF rightArm = new RectF(rightArmX - armWidth * 0.5f, shoulderY + rightArmAngle,
+                                rightArmX + armWidth * 0.5f, shoulderY + armLength + rightArmAngle);
+    canvas.drawRoundRect(rightArm, dp(2.5f), dp(2.5f), paint);
+    
+    // Hands
+    paint.setColor(getColor(R.color.cst_text_secondary));
+    canvas.drawCircle(leftArmX, shoulderY + armLength + leftArmAngle, dp(3), paint);
+    canvas.drawCircle(rightArmX, shoulderY + armLength + rightArmAngle, dp(3), paint);
+    
+    // Legs
+    float legWidth = dp(6);
+    float legLength = dp(16);
+    float hipY = torsoBottom;
+    
+    // Left leg
+    float leftLegX = centerX - dp(4) + bodyLean;
+    float leftLegOffset = isJumping ? dp(4) : legSwing;
+    RectF leftLeg = new RectF(leftLegX - legWidth * 0.5f, hipY,
+                              leftLegX + legWidth * 0.5f, hipY + legLength + leftLegOffset);
+    paint.setColor(getColor(R.color.cst_text_primary));
+    canvas.drawRoundRect(leftLeg, dp(3), dp(3), paint);
+    
+    // Right leg
+    float rightLegX = centerX + dp(4) + bodyLean;
+    float rightLegOffset = isJumping ? -dp(2) : -legSwing;
+    RectF rightLeg = new RectF(rightLegX - legWidth * 0.5f, hipY,
+                               rightLegX + legWidth * 0.5f, hipY + legLength + rightLegOffset);
+    canvas.drawRoundRect(rightLeg, dp(3), dp(3), paint);
+    
+    // Feet
+    paint.setColor(getColor(R.color.cst_text_secondary));
+    float footSize = dp(7);
+    canvas.drawRoundRect(new RectF(leftLegX - footSize * 0.5f, hipY + legLength + leftLegOffset,
+                                   leftLegX + footSize * 0.5f, hipY + legLength + leftLegOffset + dp(3)),
+                         dp(1.5f), dp(1.5f), paint);
+    canvas.drawRoundRect(new RectF(rightLegX - footSize * 0.5f, hipY + legLength + rightLegOffset,
+                                    rightLegX + footSize * 0.5f, hipY + legLength + rightLegOffset + dp(3)),
+                          dp(1.5f), dp(1.5f), paint);
+    
+    // Chest detail (accent color)
+    paint.setColor(getColor(R.color.cst_text_accent));
+    paint.setAlpha(100);
+    canvas.drawRect(torsoLeft + dp(4), torsoTop + dp(6), torsoRight - dp(4), torsoTop + dp(10), paint);
+    paint.setAlpha(255);
+    
+    // Invulnerable glow effect
     if (player.invulnerable) {
       glowPaint.setColor(getColor(R.color.cst_text_accent));
       glowPaint.setAlpha(140);
-      canvas.drawRoundRect(body, dp(12), dp(12), glowPaint);
+      RectF glowRect = new RectF(centerX - dp(20), player.y - dp(5),
+                                  centerX + dp(20), player.y + player.height + dp(5));
+      canvas.drawRoundRect(glowRect, dp(15), dp(15), glowPaint);
     }
   }
 

@@ -1,241 +1,197 @@
-- - - - You are operating inside a Git monorepo that contains multiple Android game projects.
+- - - - - You are operating inside a Git monorepo that contains multiple Android game projects.
 
-        Authoritative files (must read first, do not skip):
-        - docs/GAME_GENERATION_STANDARD.md
-        - registry/produced_games.json
-        - docs/ENVIRONMENT_BASELINE.md
+          Authoritative files (must read first, do not skip):
+          - docs/GAME_GENERATION_STANDARD.md
+          - docs/ENVIRONMENT_BASELINE.md
+          - docs/UI_KIT_FACTORY_SPEC_v1_0.md
+          - registry/produced_games.json
 
-        Scope for this run (IMPORTANT):
-        - You ONLY generate the initial game project under games/<new_game_id>/.
-        - Do NOT run any scripts (no doctor/validate/build_apk), do NOT build APK.
-        - Do NOT git commit or git push.
-        - Do NOT create KB entries.
-        - If you detect a likely issue, fix it directly in the generated files.
+          SCOPE (HARD):
+          - You ONLY generate the initial game project under games/<new_game_id>/.
+          - Do NOT run any scripts (no doctor/validate/build_apk).
+          - Do NOT run Gradle tasks (no assemble/build/bundle).
+          - Do NOT build APK/AAB.
+          - Do NOT create any zip artifacts.
+          - Do NOT git commit or git push.
+          - Do NOT create KB entries.
 
-        Repo root and path safety (hard requirements):
-        1) Locate the true repo root as the directory that contains ALL of:
-           - docs/
-           - registry/
-           - games/
-           - tools/
-          2) If not already at repo root, cd to repo root before any file writes.
-          3) Never create nested paths like games/games/<id>.
-          4) Never write projects under docs/ or registry/.
-          5) The new project must be created exactly at: games/<new_game_id>/.
-          6) Must not overwrite any existing directory under games/.
+          Repo root and path safety (HARD):
+          1) Locate the true repo root as the directory that contains ALL of:
+             - docs/
+             - registry/
+             - games/
+             - tools/
+            2) If not already at repo root, cd to repo root before any file writes.
+            3) Create exactly one new project directory at: games/<new_game_id>/.
+            4) <new_game_id> must be globally unique, lowercase snake_case.
+            5) Must NOT overwrite any existing directory under games/.
+            6) Never create nested paths like games/games/<id>.
+            7) Never write projects under docs/ or registry/.
+            8) The ONLY allowed write outside games/<new_game_id>/ is appending ONE entry to registry/produced_games.json.
 
-        Mandatory generation rules:
-        1) Treat all rules in docs/GAME_GENERATION_STANDARD.md as HARD constraints.
-        2) Enforce toolchain baseline from docs/ENVIRONMENT_BASELINE.md in generated files:
-           - Gradle wrapper version
-           - Android Gradle Plugin (AGP) version
-           - compileSdk / targetSdk / minSdk
-           - any other baseline constraints listed there
-          3) Read registry/produced_games.json and ensure the new game's core gameplay loop is NOT a duplicate.
-           - If similarity is detected, automatically change mechanics to be clearly distinct.
+          Mandatory generation rules (HARD):
+          1) Treat all rules in docs/GAME_GENERATION_STANDARD.md as HARD constraints.
+          2) Enforce toolchain baseline from docs/ENVIRONMENT_BASELINE.md in generated files:
+             - Gradle wrapper version (gradle-wrapper.properties)
+             - Android Gradle Plugin (AGP) version
+             - compileSdk / targetSdk / minSdk
+             - any other baseline constraints listed there
+            3) Read registry/produced_games.json and ensure the new game's core gameplay loop is NOT a duplicate.
+             - If similarity is detected, automatically change mechanics to be clearly distinct.
+            4) Do not ask the user to restate constraints that are already defined in authoritative docs.
 
-        --------------------------------------------------
-        UI KIT SYSTEM (HARD REQUIREMENT)
-        --------------------------------------------------
+          No-Chinese / No-Comments rule (HARD):
+          - No non-ASCII characters anywhere in the project.
+          - No comments anywhere:
+            - No // or /* */ in Java or Gradle
+            - No XML comments
+          - All strings must be English ASCII.
 
-        1) The generated project MUST use exactly ONE predefined UI skin id.
-        2) Allowed skin ids are defined in docs/GAME_GENERATION_STANDARD.md.
-        3) Codex MUST:
-           - Select one skin id.
-           - Apply it consistently across all UI elements.
-          4) UI appearance MUST resemble a commercial mobile game UI kit.
-          5) UI implementation MUST be entirely text-based:
-           - XML drawables (shape / gradient / layer-list / vector)
-           - XML colors, dimens, and styles
-           - Java code referencing tokens and styles only
-          6) External assets are FORBIDDEN:
-           - No bitmap images
-           - No fonts
-           - No downloaded UI kits
-           - No online fetching
+          Project identity rules (HARD):
+          - Root package MUST be: com.android.boot
+          - Entry Activity MUST be: com.android.boot.MainActivity
+          - It MUST be the ONLY launcher activity.
+          - AndroidManifest.xml MUST use:
+            - android:label="@string/app_name"
+            - android:icon="@mipmap/app_icon"
 
-        Token rules:
-        - All UI colors must be defined as cst_ tokens in res/values/colors.xml.
-        - Spacing, radii, strokes, and component metrics must be defined in res/values/dimens.xml.
-        - Typography and widget styling must be defined in res/values/styles.xml.
-        - Java code MUST NOT hardcode UI colors or dimensions for styling.
+          Binary + LFS rules (HARD):
+          1) Never output Git LFS pointer files anywhere.
+             A file is an LFS pointer if its first line equals:
+             version https://git-lfs.github.com/spec/v1
+          2) Do NOT add or modify:
+             - .gitattributes
+             - .lfsconfig
+             - any Git configuration files
+            3) Do NOT include any binary assets in the generated project:
+               png / jpg / jpeg / webp / gif / bmp / ico
+               ogg / mp3 / wav / m4a / aac
+               ttf / otf
+               so / bin
+               apk / aab / zip
+            4) gradle/wrapper/gradle-wrapper.jar:
+             - Include it ONLY if the baseline requires it.
+             - It MUST be a real jar file (not an LFS pointer).
+             - If you cannot provide a real jar while respecting the binary ban, then omit the jar and ensure the wrapper properties match the baseline; do NOT create an LFS pointer as a placeholder.
+            5) Do NOT create app/src/main/res/raw.
 
-        UI Kit required resources to generate (minimum set):
-        Values:
-        - res/values/colors.xml (cst_ tokens only)
-        - res/values/dimens.xml (spacing, radius, stroke, elevation-like offsets)
-        - res/values/styles.xml (TextAppearance and Widget styles)
-        - res/values/themes.xml (theme referencing the kit styles)
+          App icon policy (HARD, generation-safe):
+          - Implement @mipmap/app_icon using XML-only resources:
+            - res/mipmap-anydpi-v26/app_icon.xml
+            - res/drawable/app_icon_fg.xml
+            - background color must be a cst_ token in res/values/colors.xml
+          - Do NOT add bitmap mipmap icons.
 
-        Drawables (XML only):
-        - res/drawable/ui_panel.xml
-        - res/drawable/ui_panel_header.xml
-        - res/drawable/ui_card.xml
-        - res/drawable/ui_divider.xml
-        - res/drawable/ui_button_primary.xml
-        - res/drawable/ui_button_secondary.xml
-        - res/drawable/ui_button_icon.xml
-        - res/drawable/ui_chip.xml
-        - res/drawable/ui_meter_track.xml
-        - res/drawable/ui_meter_fill.xml
-        - res/drawable/ui_toast.xml
-        - res/drawable/ui_dialog.xml
+          UI KIT SYSTEM (HARD, industrial):
+          1) The generated project MUST use exactly ONE predefined UI skin id:
+             - skin_dark_arcade
+             - skin_cartoon_light
+             - skin_neon_future
+             - skin_post_apocalypse
+             - skin_military_tech
+            2) Select one skin id and apply it consistently across all UI elements.
+            3) UI MUST comply with docs/UI_KIT_FACTORY_SPEC_v1_0.md (authoritative contract):
+             - required cst_ color tokens exist
+             - required dimens tokens exist
+             - required styles exist
+             - required drawable file set exists
+             - required vector icon set exists
+            4) UI implementation MUST be entirely text-based:
+             - XML drawables (shape / gradient / layer-list / vector)
+             - XML colors, dimens, styles, themes
+             - Java code referencing tokens/styles only (no hardcoded styling)
+            5) External assets are forbidden:
+             - No bitmap images
+             - No fonts
+             - No downloaded UI kits
+             - No online fetching
 
-        Vector icons (XML only):
-        - res/drawable/ic_play.xml
-        - res/drawable/ic_pause.xml
-        - res/drawable/ic_restart.xml
-        - res/drawable/ic_sound_on.xml
-        - res/drawable/ic_sound_off.xml
-        - res/drawable/ic_help.xml
+          UI file requirements (must generate at minimum):
+          Values:
+          - res/values/colors.xml
+          - res/values/dimens.xml
+          - res/values/styles.xml
+          - res/values/themes.xml
+            Drawables (XML only):
+          - res/drawable/ui_panel.xml
+          - res/drawable/ui_panel_header.xml
+          - res/drawable/ui_card.xml
+          - res/drawable/ui_divider.xml
+          - res/drawable/ui_button_primary.xml
+          - res/drawable/ui_button_secondary.xml
+          - res/drawable/ui_button_icon.xml
+          - res/drawable/ui_chip.xml
+          - res/drawable/ui_meter_track.xml
+          - res/drawable/ui_meter_fill.xml
+          - res/drawable/ui_toast.xml
+          - res/drawable/ui_dialog.xml
+            Vector icons (XML only):
+          - res/drawable/ic_play.xml
+          - res/drawable/ic_pause.xml
+          - res/drawable/ic_restart.xml
+          - res/drawable/ic_sound_on.xml
+          - res/drawable/ic_sound_off.xml
+          - res/drawable/ic_help.xml
 
-        Layout usage rules:
-        - activity_main.xml and all overlays must use the UI Kit drawables and styles.
-        - Do not use inline hardcoded colors in layouts.
-        - Prefer Material-less custom styling via the UI Kit tokens and drawables.
+          Layout + screens (HARD):
+          - Must include res/layout/activity_main.xml.
+          - Must implement the required game states:
+            MENU, PLAYING, PAUSED, GAME_OVER
+          - All overlays and panels must use UI Kit drawables and styles.
+          - Avoid inline literal colors in layouts; use tokens/styles.
+          - UI must look like a commercial mobile UI baseline without external assets.
 
-        --------------------------------------------------
-        LFS AND BINARY ASSET CONSTRAINTS (HARD)
-        --------------------------------------------------
+          Implementation baseline (HARD):
+          - Rendering: SurfaceView with a dedicated game loop thread.
+          - Use delta-time with clamping.
+          - Keep allocations low inside the loop.
+          - Pause/resume must stop updates correctly and handle lifecycle onPause/onResume.
+          - Audio: no assets; use ToneGenerator only if necessary.
 
-        1) Never output Git LFS pointer files anywhere in the repo.
-           A file is an LFS pointer if its first line equals:
-           version https://git-lfs.github.com/spec/v1
-        2) Do NOT add or modify:
-           - .gitattributes
-           - .lfsconfig
-           - any Git configuration files
-          3) Do NOT include any binary assets:
-             png / jpg / jpeg / webp / gif / bmp / ico
-             ogg / mp3 / wav / m4a / aac
-             ttf / otf
-             so / bin
-             apk / aab / zip
-          4) Exception:
-           - gradle/wrapper/gradle-wrapper.jar is allowed ONLY if required by baseline.
-          5) Do NOT create app/src/main/res/raw.
-          6) Ensure all generated files are text-based:
-             Java / XML / Gradle / properties / json / md
+          Required strings (HARD):
+          - res/values/strings.xml must include at least:
+            app_name
+            btn_start
+            btn_restart
+            btn_resume
+            btn_menu
+            btn_mute
+            btn_how_to_play
+            All values must be English ASCII.
 
-        --------------------------------------------------
-        APP ICON (TEXT-ONLY ADAPTATION)
-        --------------------------------------------------
+          Gradle/project output requirements (HARD):
+          - Java only. Kotlin is forbidden.
+          - Must include Gradle wrapper scripts:
+            - gradlew
+            - gradlew.bat
+            - gradle/wrapper/gradle-wrapper.properties
+            - gradle/wrapper/gradle-wrapper.jar only if required and must NOT be LFS pointer
+          - Must include:
+            - settings.gradle (Groovy)
+            - root build.gradle (per baseline)
+            - app module with manifest + Java sources
 
-        AndroidManifest.xml MUST use:
-        - android:icon="@mipmap/app_icon"
-        - android:label="@string/app_name"
+          Suggested package structure (recommended):
+          - com.android.boot (MainActivity)
+          - com.android.boot.ui (GameView, overlays)
+          - com.android.boot.core (engine/state/timer/util)
+          - com.android.boot.entity
+          - com.android.boot.fx
+          - com.android.boot.audio
 
-        Icon implementation MUST be XML-only:
-        - mipmap-anydpi-v26/app_icon.xml (adaptive icon)
-        - drawable/app_icon_fg.xml (vector or shape XML)
-        - a background color resource referenced by the adaptive icon
+          Registry update (HARD):
+          - Append exactly ONE new entry to registry/produced_games.json.
+          - Do NOT modify or remove existing entries.
+          - Ensure JSON remains valid.
+          - Entry must include:
+            id
+            name
+            tags
+            core_loop
+            created_at (YYYY-MM-DD)
+            ui_skin (selected skin id)
 
-        No bitmap icons are allowed in this step.
-
-        --------------------------------------------------
-        NO-CHINESE / NO-COMMENTS RULE
-        --------------------------------------------------
-
-        - No Chinese characters anywhere in the project.
-        - All strings must be English ASCII only.
-        - No comments anywhere:
-          - No // or /* */ in Java or Gradle
-          - No XML comments
-
-        --------------------------------------------------
-        COLOR RESOURCE RULE
-        --------------------------------------------------
-
-        - All custom colors MUST use prefix "cst_".
-        - Names MUST NOT conflict with android.jar.
-        - Forbidden examples:
-          white, black, red, colorPrimary, material_*
-
-        --------------------------------------------------
-        PROJECT OUTPUT REQUIREMENTS
-        --------------------------------------------------
-
-        - Java only. Kotlin is forbidden.
-        - Root package MUST be: com.android.boot
-        - Entry Activity MUST be:
-          com.android.boot.MainActivity
-        - It MUST be the ONLY launcher activity.
-        - Must include:
-          - gradlew / gradlew.bat
-          - gradle/wrapper/gradle-wrapper.properties
-          - wrapper jar ONLY if required
-        - Must include:
-          - settings.gradle (Groovy)
-          - app module with manifest + Java sources
-        - AndroidManifest.xml MUST use:
-          android:label="@string/app_name"
-          android:icon="@mipmap/app_icon"
-
-        Required resources:
-        - res/layout/activity_main.xml
-        - res/values/strings.xml containing at least:
-          app_name
-          btn_start
-          btn_restart
-          btn_resume
-          btn_menu
-          btn_mute
-          btn_how_to_play
-        - res/values/colors.xml
-        - res/values/dimens.xml
-        - res/values/styles.xml
-        - res/values/themes.xml
-
-        --------------------------------------------------
-        SUGGESTED PACKAGE STRUCTURE
-        --------------------------------------------------
-
-        com.android.boot
-        com.android.boot.ui
-        com.android.boot.core
-        com.android.boot.entity
-        com.android.boot.fx
-        com.android.boot.audio
-
-        --------------------------------------------------
-        IMPLEMENTATION BASELINE
-        --------------------------------------------------
-
-        - Rendering: SurfaceView with a dedicated game loop thread
-        - Use delta-time with clamping
-        - Pause/resume must stop updates correctly
-        - Handle lifecycle onPause/onResume
-        - Keep allocations low inside the loop
-        - No binary assets
-        - Audio must use ToneGenerator only if required
-
-        --------------------------------------------------
-        REGISTRY UPDATE
-        --------------------------------------------------
-
-        - Append exactly ONE new entry to registry/produced_games.json
-        - Do NOT modify or remove existing entries
-        - Ensure JSON remains valid
-        - Entry MUST include:
-          id
-          name
-          tags
-          core_loop
-          created_at (YYYY-MM-DD)
-          ui_skin (selected skin id)
-
-        --------------------------------------------------
-        GAME ID SELECTION
-        --------------------------------------------------
-
-        - Decide a unique new_game_id in lowercase snake_case
-        - Create project at games/<new_game_id>/
-        - Do NOT overwrite any existing directory
-
-        --------------------------------------------------
-        DELIVERABLE
-        --------------------------------------------------
-
-        - Output the complete generated project under games/<new_game_id>/
-        - Output the updated registry/produced_games.json
-        - Do NOT include explanations unless explicitly asked
+          Deliverable (HARD):
+          - Output the complete generated project under games/<new_game_id>/.
+          - Output the updated registry/produced_games.json with exactly one appended entry.
+          - Do NOT include explanations unless explicitly asked.

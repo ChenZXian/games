@@ -82,12 +82,13 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
   private Paint paintMuzzleFlash;
   private Paint paintPriceBg;
   private Paint paintPriceText;
-  private Paint paintBulletPlayer;
-  private Paint paintBulletEnemy;
-  private Paint paintBulletTrail;
-  private Paint paintMuzzleFlash;
-  private Paint paintPriceBg;
-  private Paint paintPriceText;
+  private Paint paintInfantryBody;
+  private Paint paintInfantryArmor;
+  private Paint paintRangerBody;
+  private Paint paintRangerArmor;
+  private Paint paintTankBody;
+  private Paint paintTankTurret;
+  private Paint paintTankTrack;
 
   public GameView(Context context, AttributeSet attrs) {
     super(context, attrs);
@@ -182,6 +183,27 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
     paintPriceText.setTextSize(18f);
     paintPriceText.setTextAlign(Paint.Align.CENTER);
     paintPriceText.setFakeBoldText(true);
+    paintInfantryBody = new Paint(Paint.ANTI_ALIAS_FLAG);
+    paintInfantryBody.setColor(getContext().getColor(R.color.cst_infantry_body));
+    paintInfantryBody.setStyle(Paint.Style.FILL);
+    paintInfantryArmor = new Paint(Paint.ANTI_ALIAS_FLAG);
+    paintInfantryArmor.setColor(getContext().getColor(R.color.cst_infantry_armor));
+    paintInfantryArmor.setStyle(Paint.Style.FILL);
+    paintRangerBody = new Paint(Paint.ANTI_ALIAS_FLAG);
+    paintRangerBody.setColor(getContext().getColor(R.color.cst_ranger_body));
+    paintRangerBody.setStyle(Paint.Style.FILL);
+    paintRangerArmor = new Paint(Paint.ANTI_ALIAS_FLAG);
+    paintRangerArmor.setColor(getContext().getColor(R.color.cst_ranger_armor));
+    paintRangerArmor.setStyle(Paint.Style.FILL);
+    paintTankBody = new Paint(Paint.ANTI_ALIAS_FLAG);
+    paintTankBody.setColor(getContext().getColor(R.color.cst_tank_body));
+    paintTankBody.setStyle(Paint.Style.FILL);
+    paintTankTurret = new Paint(Paint.ANTI_ALIAS_FLAG);
+    paintTankTurret.setColor(getContext().getColor(R.color.cst_tank_turret));
+    paintTankTurret.setStyle(Paint.Style.FILL);
+    paintTankTrack = new Paint(Paint.ANTI_ALIAS_FLAG);
+    paintTankTrack.setColor(getContext().getColor(R.color.cst_tank_track));
+    paintTankTrack.setStyle(Paint.Style.FILL);
   }
 
   @Override
@@ -248,7 +270,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
       }
       enemySpawnTimer = interval;
     }
-    updateProjectiles(dt);
     updateUnits(playerUnits, enemyUnits, true, dt);
     updateUnits(enemyUnits, playerUnits, false, dt);
     updateProjectiles(dt);
@@ -270,16 +291,33 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
       }
       proj.x += proj.vx * dt;
       proj.y += proj.vy * dt;
+      if (proj.targetUnit != null && proj.targetUnit.hp > 0f) {
+        proj.targetX = proj.targetUnit.x;
+        proj.targetY = proj.targetUnit.y;
+      }
       float dx = proj.targetX - proj.x;
       float dy = proj.targetY - proj.y;
       float dist = (float) Math.sqrt(dx * dx + dy * dy);
-      if (dist < 10f) {
+      if (dist < 12f) {
+        if (proj.targetUnit != null && proj.targetUnit.hp > 0f) {
+          proj.targetUnit.hp -= proj.damage;
+        } else if (proj.targetBase) {
+          if (proj.playerSide) {
+            enemyBaseHp -= proj.damage;
+          } else {
+            playerBaseHp -= proj.damage;
+          }
+        }
         projectiles.remove(i);
         i -= 1;
         continue;
       }
       i -= 1;
     }
+  }
+
+  public int getUnitCost(int type) {
+    return (int) getCost(type, true);
   }
 
   private void updateUnits(ArrayList<Unit> owners, ArrayList<Unit> opponents, boolean playerSide, float dt) {
@@ -354,6 +392,70 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
     return nearest;
   }
 
+  private void createProjectile(Unit shooter, Unit target, boolean playerSide) {
+    Projectile proj = new Projectile();
+    proj.x = shooter.x;
+    proj.y = laneY;
+    float dx = target.x - shooter.x;
+    float dy = target.y - shooter.y;
+    float dist = (float) Math.sqrt(dx * dx + dy * dy);
+    proj.vx = (dx / dist) * 600f;
+    proj.vy = (dy / dist) * 600f;
+    proj.damage = shooter.damage;
+    proj.playerSide = playerSide;
+    proj.targetUnit = target;
+    proj.targetX = target.x;
+    proj.targetY = target.y;
+    proj.life = 2f;
+    proj.lifetime = 2f;
+    shooter.targetUnit = target;
+    projectiles.add(proj);
+  }
+
+  private void createBaseProjectile(Unit shooter, float baseX, boolean playerSide) {
+    Projectile proj = new Projectile();
+    proj.x = shooter.x;
+    proj.y = laneY;
+    float dx = baseX - shooter.x;
+    float dy = 0f;
+    float dist = Math.abs(dx);
+    if (dist < 1f) {
+      dist = 1f;
+    }
+    proj.vx = (dx / dist) * 600f;
+    proj.vy = 0f;
+    proj.damage = shooter.damage;
+    proj.playerSide = playerSide;
+    proj.targetBase = true;
+    proj.targetBaseX = baseX;
+    proj.targetX = baseX;
+    proj.targetY = laneY;
+    proj.life = 2f;
+    proj.lifetime = 2f;
+    projectiles.add(proj);
+  }
+
+  private void drawProjectiles(Canvas canvas) {
+    int count = projectiles.size();
+    for (int i = 0; i < count; i += 1) {
+      Projectile proj = projectiles.get(i);
+      Paint bulletPaint = proj.playerSide ? paintBulletPlayer : paintBulletEnemy;
+      float bulletSize = 6f;
+      RadialGradient bulletGradient = new RadialGradient(proj.x, proj.y, bulletSize * 2f,
+          bulletPaint.getColor(), bulletPaint.getColor() & 0x00FFFFFF, Shader.TileMode.CLAMP);
+      Paint gradientBullet = new Paint(bulletPaint);
+      gradientBullet.setShader(bulletGradient);
+      canvas.drawCircle(proj.x, proj.y, bulletSize * 2f, gradientBullet);
+      canvas.drawCircle(proj.x, proj.y, bulletSize, bulletPaint);
+      if (proj.lifetime > 0f && proj.lifetime < 0.1f) {
+        float trailAlpha = (proj.lifetime / 0.1f) * 0.5f;
+        Paint trailPaint = new Paint(paintBulletTrail);
+        trailPaint.setAlpha((int) (trailAlpha * 255));
+        canvas.drawCircle(proj.x, proj.y, bulletSize * 2.5f, trailPaint);
+      }
+    }
+  }
+
   private void drawFrame() {
     SurfaceHolder holder = getHolder();
     Canvas canvas = holder.lockCanvas();
@@ -387,14 +489,37 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
   }
 
   private void drawBackground(Canvas canvas) {
+    // sky gradient
     canvas.drawRect(0f, 0f, width, height, paintBgGradient);
-    float gridSize = 40f;
-    for (float x = 0f; x < width; x += gridSize) {
-      canvas.drawLine(x, 0f, x, height, paintLaneGrid);
-    }
-    for (float y = 0f; y < height; y += gridSize) {
-      canvas.drawLine(0f, y, width, y, paintLaneGrid);
-    }
+    // distant mountains
+    Paint mountainPaintFar = new Paint(Paint.ANTI_ALIAS_FLAG);
+    mountainPaintFar.setColor(getContext().getColor(R.color.cst_bg_gradient_end));
+    mountainPaintFar.setAlpha(180);
+    Paint mountainPaintNear = new Paint(Paint.ANTI_ALIAS_FLAG);
+    mountainPaintNear.setColor(getContext().getColor(R.color.cst_lane));
+    mountainPaintNear.setAlpha(200);
+    float horizonY = height * 0.45f;
+    Path farRange = new Path();
+    farRange.moveTo(0f, horizonY);
+    farRange.lineTo(width * 0.15f, horizonY - height * 0.12f);
+    farRange.lineTo(width * 0.35f, horizonY - height * 0.06f);
+    farRange.lineTo(width * 0.55f, horizonY - height * 0.13f);
+    farRange.lineTo(width * 0.8f, horizonY - height * 0.08f);
+    farRange.lineTo(width, horizonY - height * 0.14f);
+    farRange.lineTo(width, horizonY + height * 0.1f);
+    farRange.lineTo(0f, horizonY + height * 0.1f);
+    farRange.close();
+    canvas.drawPath(farRange, mountainPaintFar);
+    Path nearRange = new Path();
+    nearRange.moveTo(0f, horizonY + height * 0.02f);
+    nearRange.lineTo(width * 0.2f, horizonY - height * 0.06f);
+    nearRange.lineTo(width * 0.45f, horizonY);
+    nearRange.lineTo(width * 0.7f, horizonY - height * 0.05f);
+    nearRange.lineTo(width, horizonY + height * 0.02f);
+    nearRange.lineTo(width, horizonY + height * 0.18f);
+    nearRange.lineTo(0f, horizonY + height * 0.18f);
+    nearRange.close();
+    canvas.drawPath(nearRange, mountainPaintNear);
   }
 
   private void drawLane(Canvas canvas, float top, float bottom) {
@@ -418,22 +543,37 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
     Paint baseGlow = playerSide ? paintPlayerBaseGlow : paintEnemyBaseGlow;
     Paint baseLight = playerSide ? paintPlayerBaseLight : paintEnemyBaseLight;
     float shadowOffset = 6f;
-    canvas.drawRoundRect(left + shadowOffset, top + shadowOffset, right + shadowOffset, bottom + shadowOffset, 8f, 8f, baseShadow);
-    canvas.drawRoundRect(left, top, right, bottom, 8f, 8f, basePaint);
-    float lightWidth = baseWidth * 0.15f;
-    float lightHeight = (bottom - top) * 0.2f;
-    canvas.drawRoundRect(left + baseWidth * 0.1f, top + baseHeight * 0.1f,
-        left + baseWidth * 0.1f + lightWidth, top + baseHeight * 0.1f + lightHeight, 4f, 4f, baseLight);
-    canvas.drawRoundRect(right - baseWidth * 0.1f - lightWidth, top + baseHeight * 0.1f,
-        right - baseWidth * 0.1f, top + baseHeight * 0.1f + lightHeight, 4f, 4f, baseLight);
-    canvas.drawRoundRect(left, top, right, bottom, 8f, 8f, baseGlow);
-    float towerTop = top - baseHeight * 0.15f;
-    float towerWidth = baseWidth * 0.3f;
+    // main keep
+    canvas.drawRoundRect(left + shadowOffset, bottom - baseHeight * 0.8f + shadowOffset,
+        right + shadowOffset, bottom + shadowOffset, 10f, 10f, baseShadow);
+    canvas.drawRoundRect(left, bottom - baseHeight * 0.8f, right, bottom, 10f, 10f, basePaint);
+    // battlements
+    float merlonWidth = baseWidth / 6f;
+    float merlonHeight = baseHeight * 0.18f;
+    for (int i = 0; i < 6; i += 1) {
+      float mx = left + merlonWidth * i;
+      canvas.drawRect(mx + 2f, bottom - baseHeight * 0.8f - merlonHeight + 2f,
+          mx + merlonWidth - 2f, bottom - baseHeight * 0.8f + 2f, basePaint);
+    }
+    // inner glow frame
+    canvas.drawRoundRect(left, bottom - baseHeight * 0.8f, right, bottom, 10f, 10f, baseGlow);
+    // banner tower
+    float towerHeight = baseHeight * 0.9f;
+    float towerWidth = baseWidth * 0.24f;
     float towerLeft = centerX - towerWidth * 0.5f;
     float towerRight = centerX + towerWidth * 0.5f;
-    canvas.drawRoundRect(towerLeft + shadowOffset, towerTop + shadowOffset, towerRight + shadowOffset, top + shadowOffset, 6f, 6f, baseShadow);
-    canvas.drawRoundRect(towerLeft, towerTop, towerRight, top, 6f, 6f, basePaint);
-    canvas.drawRoundRect(towerLeft, towerTop, towerRight, top, 6f, 6f, baseGlow);
+    float towerTop = bottom - towerHeight;
+    canvas.drawRoundRect(towerLeft + shadowOffset, towerTop + shadowOffset, towerRight + shadowOffset,
+        bottom - baseHeight * 0.25f + shadowOffset, 8f, 8f, baseShadow);
+    canvas.drawRoundRect(towerLeft, towerTop, towerRight, bottom - baseHeight * 0.25f, 8f, 8f, basePaint);
+    canvas.drawRoundRect(towerLeft, towerTop, towerRight, bottom - baseHeight * 0.25f, 8f, 8f, baseGlow);
+    // energy core window
+    float coreWidth = towerWidth * 0.6f;
+    float coreHeight = towerHeight * 0.28f;
+    float coreLeft = centerX - coreWidth * 0.5f;
+    float coreTop = bottom - baseHeight * 0.55f;
+    canvas.drawRoundRect(coreLeft, coreTop, coreLeft + coreWidth, coreTop + coreHeight,
+        6f, 6f, baseLight);
   }
 
   private void drawUnit(Canvas canvas, Unit unit, boolean playerSide) {
@@ -448,69 +588,143 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
     float shadowOffset = 3f;
     canvas.drawCircle(x + shadowOffset, y + shadowOffset, radius, unitShadow);
     if (unit.type == UNIT_TANK) {
-      drawTankUnit(canvas, x, y, radius, unitPaint, unitGlow);
+
+      drawTankUnit(canvas, x, y, radius, unit, unitPaint, unitGlow, playerSide);
     } else if (unit.type == UNIT_RANGER) {
-      drawRangerUnit(canvas, x, y, radius, unitPaint, unitGlow);
+      drawRangerUnit(canvas, x, y, radius, unit, unitPaint, unitGlow, playerSide);
     } else {
-      drawInfantryUnit(canvas, x, y, radius, unitPaint, unitGlow);
+      drawInfantryUnit(canvas, x, y, radius, unit, unitPaint, unitGlow, playerSide);
+    }
+    if (unit.attackAnim > 0f && unit.targetUnit != null) {
+      drawMuzzleFlash(canvas, x, y, unit.targetUnit.x, unit.targetUnit.y, unit.attackAnim, radius, playerSide);
     }
     float hpRatio = unit.hp / unit.maxHp;
     float hpBarWidth = radius * 2.2f;
     float hpBarHeight = 4f;
     float hpBarX = x - hpBarWidth * 0.5f;
-    float hpBarY = y - radius - 8f;
+    float hpBarY = y - radius - 10f;
     canvas.drawRoundRect(hpBarX, hpBarY, hpBarX + hpBarWidth, hpBarY + hpBarHeight, 2f, 2f, paintHpBarBg);
     if (hpRatio > 0f) {
       canvas.drawRoundRect(hpBarX, hpBarY, hpBarX + hpBarWidth * hpRatio, hpBarY + hpBarHeight, 2f, 2f, hpPaint);
       canvas.drawRoundRect(hpBarX, hpBarY, hpBarX + hpBarWidth * hpRatio, hpBarY + hpBarHeight, 2f, 2f, paintHpBarGlow);
     }
+    if (playerSide) {
+      float spawnTime = elapsedTime - unit.spawnTime;
+      if (spawnTime < 1.5f && spawnTime >= 0f) {
+        float cost = getCost(unit.type, true);
+        float alpha = 1f - (spawnTime / 1.5f);
+        Paint pricePaint = new Paint(paintPriceText);
+        pricePaint.setAlpha((int) (alpha * 255));
+        Paint bgPaint = new Paint(paintPriceBg);
+        bgPaint.setAlpha((int) (alpha * 200));
+        drawPriceTag(canvas, x, y - radius - 20f, (int) cost, pricePaint, bgPaint);
+      }
+    }
   }
 
-  private void drawInfantryUnit(Canvas canvas, float x, float y, float radius, Paint paint, Paint glow) {
-    RadialGradient gradient = new RadialGradient(x, y - radius * 0.3f, radius * 1.2f,
-        paint.getColor(), paint.getColor() & 0x80FFFFFF, Shader.TileMode.CLAMP);
-    Paint gradientPaint = new Paint(paint);
-    gradientPaint.setShader(gradient);
-    canvas.drawCircle(x, y, radius, gradientPaint);
-    canvas.drawCircle(x, y, radius, glow);
-    float headRadius = radius * 0.4f;
-    canvas.drawCircle(x, y - radius * 0.5f, headRadius, paint);
+  private void drawMuzzleFlash(Canvas canvas, float x, float y, float targetX, float targetY, float anim, float radius, boolean playerSide) {
+    float flashSize = 8f + anim * 12f;
+    float angle = (float) Math.atan2(targetY - y, targetX - x);
+    float flashX = x + (float) Math.cos(angle) * (radius + 5f);
+    float flashY = y + (float) Math.sin(angle) * (radius + 5f);
+    Paint flashPaint = new Paint(paintMuzzleFlash);
+    flashPaint.setAlpha((int) (anim * 255));
+    canvas.drawCircle(flashX, flashY, flashSize, flashPaint);
+    canvas.drawCircle(flashX, flashY, flashSize * 0.6f, paintMuzzleFlash);
   }
 
-  private void drawRangerUnit(Canvas canvas, float x, float y, float radius, Paint paint, Paint glow) {
-    RadialGradient gradient = new RadialGradient(x, y - radius * 0.3f, radius * 1.2f,
-        paint.getColor(), paint.getColor() & 0x80FFFFFF, Shader.TileMode.CLAMP);
-    Paint gradientPaint = new Paint(paint);
-    gradientPaint.setShader(gradient);
-    canvas.drawCircle(x, y, radius, gradientPaint);
-    canvas.drawCircle(x, y, radius, glow);
+  private void drawPriceTag(Canvas canvas, float x, float y, int cost, Paint textPaint, Paint bgPaint) {
+    String priceText = "$" + cost;
+    float textWidth = textPaint.measureText(priceText);
+    float padding = 6f;
+    float tagWidth = textWidth + padding * 2f;
+    float tagHeight = 18f;
+    canvas.drawRoundRect(x - tagWidth * 0.5f, y - tagHeight * 0.5f,
+        x + tagWidth * 0.5f, y + tagHeight * 0.5f, 4f, 4f, bgPaint);
+    canvas.drawText(priceText, x, y + 6f, textPaint);
+  }
+
+  private void drawInfantryUnit(Canvas canvas, float x, float y, float radius, Unit unit, Paint paint, Paint glow, boolean playerSide) {
+    float bodyY = y + radius * 0.1f;
+    float bodyHeight = radius * 1.4f;
+    float bodyWidth = radius * 0.8f;
+    canvas.drawRoundRect(x - bodyWidth * 0.5f, bodyY - bodyHeight * 0.5f,
+        x + bodyWidth * 0.5f, bodyY + bodyHeight * 0.5f, 4f, 4f, paintInfantryBody);
+    canvas.drawRoundRect(x - bodyWidth * 0.5f + 2f, bodyY - bodyHeight * 0.5f + 2f,
+        x + bodyWidth * 0.5f - 2f, bodyY - bodyHeight * 0.3f, 2f, 2f, paintInfantryArmor);
     float headRadius = radius * 0.35f;
-    canvas.drawCircle(x, y - radius * 0.5f, headRadius, paint);
+    canvas.drawCircle(x, y - radius * 0.6f, headRadius, paintInfantryArmor);
+    float legWidth = radius * 0.15f;
+    canvas.drawRect(x - bodyWidth * 0.3f, bodyY + bodyHeight * 0.3f,
+        x - bodyWidth * 0.3f + legWidth, bodyY + bodyHeight * 0.6f, paintInfantryBody);
+    canvas.drawRect(x + bodyWidth * 0.3f - legWidth, bodyY + bodyHeight * 0.3f,
+        x + bodyWidth * 0.3f, bodyY + bodyHeight * 0.6f, paintInfantryBody);
+    float armOffset = unit.attackAnim > 0f ? unit.attackAnim * radius * 0.3f : 0f;
+    float armY = bodyY - bodyHeight * 0.1f;
+    canvas.drawRect(x - bodyWidth * 0.5f - armOffset, armY - legWidth * 0.5f,
+        x - bodyWidth * 0.3f - armOffset, armY + legWidth * 0.5f, paintInfantryBody);
+    canvas.drawRect(x + bodyWidth * 0.3f + armOffset, armY - legWidth * 0.5f,
+        x + bodyWidth * 0.5f + armOffset, armY + legWidth * 0.5f, paintInfantryBody);
+    canvas.drawRoundRect(x - bodyWidth * 0.5f, bodyY - bodyHeight * 0.5f,
+        x + bodyWidth * 0.5f, bodyY + bodyHeight * 0.5f, 4f, 4f, glow);
+  }
+
+  private void drawRangerUnit(Canvas canvas, float x, float y, float radius, Unit unit, Paint paint, Paint glow, boolean playerSide) {
+    float bodyY = y + radius * 0.1f;
+    float bodyHeight = radius * 1.3f;
+    float bodyWidth = radius * 0.75f;
+    canvas.drawRoundRect(x - bodyWidth * 0.5f, bodyY - bodyHeight * 0.5f,
+        x + bodyWidth * 0.5f, bodyY + bodyHeight * 0.5f, 4f, 4f, paintRangerBody);
+    canvas.drawRoundRect(x - bodyWidth * 0.5f + 2f, bodyY - bodyHeight * 0.5f + 2f,
+        x + bodyWidth * 0.5f - 2f, bodyY - bodyHeight * 0.3f, 2f, 2f, paintRangerArmor);
+    float headRadius = radius * 0.32f;
+    canvas.drawCircle(x, y - radius * 0.6f, headRadius, paintRangerArmor);
+    float legWidth = radius * 0.14f;
+    canvas.drawRect(x - bodyWidth * 0.3f, bodyY + bodyHeight * 0.3f,
+        x - bodyWidth * 0.3f + legWidth, bodyY + bodyHeight * 0.6f, paintRangerBody);
+    canvas.drawRect(x + bodyWidth * 0.3f - legWidth, bodyY + bodyHeight * 0.3f,
+        x + bodyWidth * 0.3f, bodyY + bodyHeight * 0.6f, paintRangerBody);
+    float bowAngle = unit.attackAnim > 0f ? unit.attackAnim * 0.5f : 0f;
     Path bowPath = new Path();
-    bowPath.moveTo(x - radius * 0.6f, y);
-    bowPath.quadTo(x, y - radius * 0.8f, x + radius * 0.6f, y);
+    float bowX1 = x - radius * 0.5f;
+    float bowY1 = y;
+    float bowX2 = x + radius * 0.5f;
+    float bowY2 = y;
+    float bowCenterY = y - radius * 0.7f - bowAngle * radius * 0.3f;
+    bowPath.moveTo(bowX1, bowY1);
+    bowPath.quadTo(x, bowCenterY, bowX2, bowY2);
     Paint bowPaint = new Paint(glow);
-    bowPaint.setStrokeWidth(2f);
+    bowPaint.setStrokeWidth(3f);
     bowPaint.setStyle(Paint.Style.STROKE);
     canvas.drawPath(bowPath, bowPaint);
+    canvas.drawRoundRect(x - bodyWidth * 0.5f, bodyY - bodyHeight * 0.5f,
+        x + bodyWidth * 0.5f, bodyY + bodyHeight * 0.5f, 4f, 4f, glow);
   }
 
-  private void drawTankUnit(Canvas canvas, float x, float y, float radius, Paint paint, Paint glow) {
-    RadialGradient gradient = new RadialGradient(x, y, radius * 1.3f,
-        paint.getColor(), paint.getColor() & 0x90FFFFFF, Shader.TileMode.CLAMP);
-    Paint gradientPaint = new Paint(paint);
-    gradientPaint.setShader(gradient);
-    float bodyWidth = radius * 1.6f;
-    float bodyHeight = radius * 1.2f;
+  private void drawTankUnit(Canvas canvas, float x, float y, float radius, Unit unit, Paint paint, Paint glow, boolean playerSide) {
+    float bodyWidth = radius * 1.8f;
+    float bodyHeight = radius * 1.1f;
     canvas.drawRoundRect(x - bodyWidth * 0.5f, y - bodyHeight * 0.5f,
-        x + bodyWidth * 0.5f, y + bodyHeight * 0.5f, radius * 0.3f, radius * 0.3f, gradientPaint);
+        x + bodyWidth * 0.5f, y + bodyHeight * 0.5f, radius * 0.25f, radius * 0.25f, paintTankBody);
+    float trackHeight = radius * 0.25f;
+    canvas.drawRoundRect(x - bodyWidth * 0.5f, y + bodyHeight * 0.3f,
+        x + bodyWidth * 0.5f, y + bodyHeight * 0.3f + trackHeight, radius * 0.15f, radius * 0.15f, paintTankTrack);
+    canvas.drawRoundRect(x - bodyWidth * 0.5f, y - bodyHeight * 0.3f - trackHeight,
+        x + bodyWidth * 0.5f, y - bodyHeight * 0.3f, radius * 0.15f, radius * 0.15f, paintTankTrack);
+    float turretRadius = radius * 0.65f;
+    float turretY = y - radius * 0.15f;
+    canvas.drawCircle(x, turretY, turretRadius, paintTankTurret);
+    float barrelAngle = unit.attackAnim > 0f ? unit.attackAnim * 0.2f : 0f;
+    float barrelLength = radius * 1.0f;
+    float barrelX = x + (float) Math.cos(barrelAngle) * barrelLength;
+    float barrelY = turretY + (float) Math.sin(barrelAngle) * barrelLength;
+    Paint barrelPaint = new Paint(paintTankTrack);
+    barrelPaint.setStrokeWidth(5f);
+    barrelPaint.setStyle(Paint.Style.STROKE);
+    canvas.drawLine(x, turretY, barrelX, barrelY, barrelPaint);
     canvas.drawRoundRect(x - bodyWidth * 0.5f, y - bodyHeight * 0.5f,
-        x + bodyWidth * 0.5f, y + bodyHeight * 0.5f, radius * 0.3f, radius * 0.3f, glow);
-    float turretRadius = radius * 0.7f;
-    canvas.drawCircle(x, y - radius * 0.2f, turretRadius, gradientPaint);
-    canvas.drawCircle(x, y - radius * 0.2f, turretRadius, glow);
-    float barrelLength = radius * 0.8f;
-    canvas.drawRect(x, y - radius * 0.2f - 2f, x + barrelLength, y - radius * 0.2f + 2f, paint);
+        x + bodyWidth * 0.5f, y + bodyHeight * 0.5f, radius * 0.25f, radius * 0.25f, glow);
+    canvas.drawCircle(x, turretY, turretRadius, glow);
   }
 
   private void resetGame() {
@@ -620,6 +834,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
     unit.cooldown = 0f;
     unit.maxHp = getHp(type, playerSide);
     unit.hp = unit.maxHp;
+    unit.attackAnim = 0f;
+    unit.spawnTime = elapsedTime;
+    unit.y = laneY;
     if (playerSide) {
       unit.x = playerBaseX + baseWidth * 0.5f + unit.radius;
     } else {
@@ -751,6 +968,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
     int type;
     boolean player;
     float x;
+    float y;
     float hp;
     float maxHp;
     float speed;
@@ -759,5 +977,24 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
     float cooldown;
     float cooldownTime;
     float radius;
+    float attackAnim;
+    float spawnTime;
+    Unit targetUnit;
+  }
+
+  private static class Projectile {
+    float x;
+    float y;
+    float vx;
+    float vy;
+    float damage;
+    boolean playerSide;
+    Unit targetUnit;
+    boolean targetBase;
+    float targetBaseX;
+    float targetX;
+    float targetY;
+    float lifetime;
+    float life;
   }
 }

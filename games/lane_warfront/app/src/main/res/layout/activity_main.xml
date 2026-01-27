@@ -93,8 +93,11 @@
       android:layout_weight="1"
       android:layout_marginEnd="@dimen/cst_space_xs"
       android:background="@drawable/ui_button_primary"
-      android:text="@string/unit_infantry"
-      android:textColor="@color/cst_text_primary" />
+      android:drawableTop="@drawable/ic_unit_infantry"
+      android:drawablePadding="@dimen/cst_space_xs"
+      android:text="@string/unit_infantry_price"
+      android:textColor="@color/cst_text_primary"
+      android:textSize="14sp" />
     <Button
       android:id="@+id/btn_spawn_ranger"
       android:layout_width="0dp"
@@ -102,16 +105,22 @@
       android:layout_weight="1"
       android:layout_marginEnd="@dimen/cst_space_xs"
       android:background="@drawable/ui_button_primary"
-      android:text="@string/unit_ranger"
-      android:textColor="@color/cst_text_primary" />
+      android:drawableTop="@drawable/ic_unit_ranger"
+      android:drawablePadding="@dimen/cst_space_xs"
+      android:text="@string/unit_ranger_price"
+      android:textColor="@color/cst_text_primary"
+      android:textSize="14sp" />
     <Button
       android:id="@+id/btn_spawn_tank"
       android:layout_width="0dp"
       android:layout_height="@dimen/cst_button_height"
       android:layout_weight="1"
       android:background="@drawable/ui_button_primary"
-      android:text="@string/unit_tank"
-      android:textColor="@color/cst_text_primary" />
+      android:drawableTop="@drawable/ic_unit_tank"
+      android:drawablePadding="@dimen/cst_space_xs"
+      android:text="@string/unit_tank_price"
+      android:textColor="@color/cst_text_primary"
+      android:textSize="14sp" />
   </LinearLayout>
 
   <FrameLayout
