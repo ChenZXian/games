@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <style name="Theme.Game" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <item name="colorPrimary">@color/cst_accent</item>
+    <item name="colorPrimaryVariant">@color/cst_accent_2</item>
+    <item name="colorSecondary">@color/cst_success</item>
+    <item name="android:windowBackground">@color/cst_bg_main</item>
+    <item name="android:textColorPrimary">@color/cst_text_primary</item>
+    <item name="android:textColorSecondary">@color/cst_text_secondary</item>
+  </style>
+</resources>
