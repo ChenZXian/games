@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <style name="TextAppearance.Game.Title" parent="TextAppearance.MaterialComponents.Headline4">
+    <item name="android:textColor">@color/cst_text_primary</item>
+    <item name="android:textSize">@dimen/cst_text_xxl</item>
+  </style>
+
+  <style name="TextAppearance.Game.Subtitle" parent="TextAppearance.MaterialComponents.Subtitle1">
+    <item name="android:textColor">@color/cst_text_secondary</item>
+    <item name="android:textSize">@dimen/cst_text_l</item>
+  </style>
+
+  <style name="TextAppearance.Game.Body" parent="TextAppearance.MaterialComponents.Body1">
+    <item name="android:textColor">@color/cst_text_primary</item>
+    <item name="android:textSize">@dimen/cst_text_m</item>
+  </style>
+
+  <style name="TextAppearance.Game.Caption" parent="TextAppearance.MaterialComponents.Caption">
+    <item name="android:textColor">@color/cst_text_muted</item>
+    <item name="android:textSize">@dimen/cst_text_s</item>
+  </style>
+
+  <style name="TextAppearance.Game.HudValue" parent="TextAppearance.MaterialComponents.Subtitle2">
+    <item name="android:textColor">@color/cst_text_primary</item>
+    <item name="android:textSize">@dimen/cst_text_l</item>
+  </style>
+
+  <style name="TextAppearance.Game.HudLabel" parent="TextAppearance.MaterialComponents.Overline">
+    <item name="android:textColor">@color/cst_text_secondary</item>
+    <item name="android:textSize">@dimen/cst_text_xs</item>
+  </style>
+
+  <style name="Widget.Game.Button.Primary" parent="Widget.MaterialComponents.Button">
+    <item name="android:textColor">@color/cst_text_on_primary</item>
+    <item name="android:background">@drawable/ui_button_primary</item>
+    <item name="android:textSize">@dimen/cst_text_m</item>
+    <item name="android:paddingLeft">@dimen/cst_pad_16</item>
+    <item name="android:paddingRight">@dimen/cst_pad_16</item>
+  </style>
+
+  <style name="Widget.Game.Button.Secondary" parent="Widget.MaterialComponents.Button">
+    <item name="android:textColor">@color/cst_text_on_secondary</item>
+    <item name="android:background">@drawable/ui_button_secondary</item>
+    <item name="android:textSize">@dimen/cst_text_m</item>
+    <item name="android:paddingLeft">@dimen/cst_pad_16</item>
+    <item name="android:paddingRight">@dimen/cst_pad_16</item>
+  </style>
+
+  <style name="Widget.Game.Button.Icon" parent="Widget.MaterialComponents.Button">
+    <item name="android:background">@drawable/ui_button_icon</item>
+    <item name="android:tint">@color/cst_text_on_secondary</item>
+  </style>
+
+  <style name="Widget.Game.Panel" parent="Widget.MaterialComponents.CardView">
+    <item name="android:background">@drawable/ui_panel</item>
+  </style>
+
+  <style name="Widget.Game.Card" parent="Widget.MaterialComponents.CardView">
+    <item name="android:background">@drawable/ui_card</item>
+  </style>
+
+  <style name="Widget.Game.Chip" parent="Widget.MaterialComponents.Button">
+    <item name="android:background">@drawable/ui_chip</item>
+    <item name="android:textColor">@color/cst_text_secondary</item>
+  </style>
+
+  <style name="Widget.Game.Badge" parent="Widget.MaterialComponents.Button">
+    <item name="android:background">@drawable/ui_badge</item>
+    <item name="android:textColor">@color/cst_text_on_secondary</item>
+  </style>
+
+  <style name="Widget.Game.Meter" parent="Widget.MaterialComponents.LinearProgressIndicator">
+    <item name="android:background">@drawable/ui_meter_track</item>
+  </style>
+</resources>

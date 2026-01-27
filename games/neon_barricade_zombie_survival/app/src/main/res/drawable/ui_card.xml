@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+  <solid android:color="@color/cst_card_bg" />
+  <stroke android:width="@dimen/cst_stroke_hair" android:color="@color/cst_panel_stroke" />
+  <corners android:radius="@dimen/cst_radius_m" />
+</shape>
