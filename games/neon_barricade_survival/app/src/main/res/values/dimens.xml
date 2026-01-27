@@ -1,0 +1,17 @@
+<resources>
+    <dimen name="cst_pad_xs">6dp</dimen>
+    <dimen name="cst_pad_s">10dp</dimen>
+    <dimen name="cst_pad_m">14dp</dimen>
+    <dimen name="cst_pad_l">20dp</dimen>
+    <dimen name="cst_pad_xl">28dp</dimen>
+    <dimen name="cst_radius_s">8dp</dimen>
+    <dimen name="cst_radius_m">14dp</dimen>
+    <dimen name="cst_radius_l">22dp</dimen>
+    <dimen name="cst_panel_border">2dp</dimen>
+    <dimen name="cst_text_title">20sp</dimen>
+    <dimen name="cst_text_body">14sp</dimen>
+    <dimen name="cst_hud_bar_height">10dp</dimen>
+    <dimen name="cst_button_height">48dp</dimen>
+    <dimen name="cst_icon_button">44dp</dimen>
+    <dimen name="cst_overlay_width">280dp</dimen>
+</resources>

@@ -1,0 +1,2 @@
+rootProject.name = "NeonBarricadeSurvival"
+include ":app"

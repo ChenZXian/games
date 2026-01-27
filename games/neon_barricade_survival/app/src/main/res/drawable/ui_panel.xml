@@ -1,0 +1,5 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <solid android:color="@color/cst_panel" />
+    <stroke android:width="@dimen/cst_panel_border" android:color="@color/cst_outline" />
+    <corners android:radius="@dimen/cst_radius_l" />
+</shape>

@@ -1,0 +1,15 @@
+<resources>
+    <color name="cst_bg">#0B0B16</color>
+    <color name="cst_bg_alt">#101028</color>
+    <color name="cst_panel">#151532</color>
+    <color name="cst_panel_alt">#1A1A3D</color>
+    <color name="cst_outline">#303060</color>
+    <color name="cst_accent">#25F5FF</color>
+    <color name="cst_accent_alt">#B260FF</color>
+    <color name="cst_text_primary">#E8F7FF</color>
+    <color name="cst_text_secondary">#9FB0D4</color>
+    <color name="cst_hp">#FF4F7A</color>
+    <color name="cst_energy">#25FFB2</color>
+    <color name="cst_warning">#FFC857</color>
+    <color name="cst_shadow">#55000000</color>
+</resources>
