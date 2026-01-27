@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+  <gradient android:startColor="@color/cst_btn_secondary_bg_start" android:endColor="@color/cst_btn_secondary_bg_end" android:angle="0" />
+  <stroke android:width="@dimen/cst_stroke_s" android:color="@color/cst_btn_secondary_stroke" />
+  <corners android:radius="@dimen/cst_radius_l" />
+</shape>

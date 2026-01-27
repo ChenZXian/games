@@ -127,6 +127,19 @@
       "core_loop": "generate energy spawn units push lane and destroy the enemy base",
       "created_at": "2026-01-22",
       "ui_skin": "skin_military_tech"
+    },
+    {
+      "id": "neon_barricade_zombie_survival",
+      "name": "Neon Barricade: Zombie Survival",
+      "tags": [
+        "survival",
+        "action",
+        "arena",
+        "shooter"
+      ],
+      "core_loop": "dual-stick arena shooter survive waves collect drops choose upgrades",
+      "created_at": "2026-01-27",
+      "ui_skin": "skin_neon_future"
     }
   ]
 }
