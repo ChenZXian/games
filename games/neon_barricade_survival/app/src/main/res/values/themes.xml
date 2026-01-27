@@ -1,0 +1,7 @@
+<resources>
+    <style name="Theme.NeonBarricade" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/cst_bg</item>
+        <item name="android:colorBackground">@color/cst_bg</item>
+        <item name="android:textColor">@color/cst_text_primary</item>
+    </style>
+</resources>

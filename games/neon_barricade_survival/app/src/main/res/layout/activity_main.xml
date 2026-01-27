@@ -1,0 +1,284 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cst_bg">
+
+    <com.android.boot.ui.GameView
+        android:id="@+id/game_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <FrameLayout
+        android:id="@+id/hud_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/cst_pad_m">
+
+        <LinearLayout
+            android:id="@+id/hud_panel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:background="@drawable/ui_panel"
+            android:orientation="vertical"
+            android:padding="@dimen/cst_pad_m">
+
+            <TextView
+                android:id="@+id/hud_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textAppearance="@style/Text.Title" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/cst_pad_s" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/cst_hud_bar_height"
+                android:background="@drawable/ui_meter_track">
+
+                <View
+                    android:id="@+id/hp_fill"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/cst_hp" />
+            </FrameLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/cst_pad_xs" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/cst_hud_bar_height"
+                android:background="@drawable/ui_meter_track">
+
+                <View
+                    android:id="@+id/energy_fill"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/cst_energy" />
+            </FrameLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/cst_pad_s" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/time_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAppearance="@style/Text.Body"
+                    android:text="00:00" />
+
+                <TextView
+                    android:id="@+id/kills_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/Text.Body"
+                    android:text="0" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/pause_button"
+            android:layout_width="@dimen/cst_icon_button"
+            android:layout_height="@dimen/cst_icon_button"
+            android:layout_gravity="top|end"
+            android:background="@drawable/ui_button_icon"
+            android:contentDescription="@string/btn_resume"
+            android:src="@drawable/ic_pause" />
+
+        <Button
+            android:id="@+id/skill_button"
+            android:layout_width="140dp"
+            android:layout_height="@dimen/cst_button_height"
+            android:layout_gravity="bottom|end"
+            android:background="@drawable/ui_button_primary"
+            android:padding="@dimen/cst_pad_s"
+            android:text="@string/label_skill"
+            android:textColor="@color/cst_text_primary" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/menu_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/cst_shadow"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="@dimen/cst_overlay_width"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/ui_dialog"
+            android:orientation="vertical"
+            android:padding="@dimen/cst_pad_l">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textAppearance="@style/Text.Title" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/cst_pad_m" />
+
+            <Button
+                android:id="@+id/start_button"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/cst_button_height"
+                android:background="@drawable/ui_button_primary"
+                android:text="@string/btn_start"
+                android:textColor="@color/cst_text_primary" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/pause_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/cst_shadow"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="@dimen/cst_overlay_width"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/ui_dialog"
+            android:orientation="vertical"
+            android:padding="@dimen/cst_pad_l">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_resume"
+                android:textAppearance="@style/Text.Title" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/cst_pad_m" />
+
+            <Button
+                android:id="@+id/resume_button"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/cst_button_height"
+                android:background="@drawable/ui_button_primary"
+                android:text="@string/btn_resume"
+                android:textColor="@color/cst_text_primary" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/upgrade_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/cst_shadow"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="@dimen/cst_overlay_width"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/ui_dialog"
+            android:orientation="vertical"
+            android:padding="@dimen/cst_pad_l">
+
+            <TextView
+                android:id="@+id/upgrade_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_upgrade"
+                android:textAppearance="@style/Text.Title" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/cst_pad_m" />
+
+            <Button
+                android:id="@+id/upgrade_button_1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/cst_button_height"
+                android:background="@drawable/ui_button_secondary"
+                android:textColor="@color/cst_text_primary" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/cst_pad_s" />
+
+            <Button
+                android:id="@+id/upgrade_button_2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/cst_button_height"
+                android:background="@drawable/ui_button_secondary"
+                android:textColor="@color/cst_text_primary" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/cst_pad_s" />
+
+            <Button
+                android:id="@+id/upgrade_button_3"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/cst_button_height"
+                android:background="@drawable/ui_button_secondary"
+                android:textColor="@color/cst_text_primary" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/game_over_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/cst_shadow"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="@dimen/cst_overlay_width"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/ui_dialog"
+            android:orientation="vertical"
+            android:padding="@dimen/cst_pad_l">
+
+            <TextView
+                android:id="@+id/game_over_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_game_over"
+                android:textAppearance="@style/Text.Title" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/cst_pad_m" />
+
+            <TextView
+                android:id="@+id/game_over_stats"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Text.Body" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/cst_pad_m" />
+
+            <Button
+                android:id="@+id/restart_button"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/cst_button_height"
+                android:background="@drawable/ui_button_primary"
+                android:text="@string/btn_restart"
+                android:textColor="@color/cst_text_primary" />
+        </LinearLayout>
+    </FrameLayout>
+</FrameLayout>

@@ -1,0 +1,29 @@
+<resources>
+    <style name="Text.Title">
+        <item name="android:textColor">@color/cst_text_primary</item>
+        <item name="android:textSize">@dimen/cst_text_title</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="Text.Body">
+        <item name="android:textColor">@color/cst_text_secondary</item>
+        <item name="android:textSize">@dimen/cst_text_body</item>
+    </style>
+    <style name="Widget.Panel">
+        <item name="android:background">@drawable/ui_panel</item>
+        <item name="android:padding">@dimen/cst_pad_l</item>
+    </style>
+    <style name="Widget.Button.Primary">
+        <item name="android:background">@drawable/ui_button_primary</item>
+        <item name="android:textColor">@color/cst_text_primary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="Widget.Button.Secondary">
+        <item name="android:background">@drawable/ui_button_secondary</item>
+        <item name="android:textColor">@color/cst_text_primary</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="Widget.Button.Icon">
+        <item name="android:background">@drawable/ui_button_icon</item>
+    </style>
+</resources>

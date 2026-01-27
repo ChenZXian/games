@@ -1,0 +1,10 @@
+[
+  {
+    "id": "neon_barricade_survival",
+    "name": "Neon Barricade: Zombie Survival",
+    "tags": ["arena", "survival", "shooter", "neon"],
+    "core_loop": "Move with a virtual joystick, auto-fire at incoming enemies, collect drops, and choose upgrades every 45 seconds while surviving escalating waves.",
+    "created_at": "2025-09-27",
+    "ui_skin": "skin_neon_future"
+  }
+]
