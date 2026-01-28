@@ -140,6 +140,18 @@
       "core_loop": "dual-stick arena shooter survive waves collect drops choose upgrades",
       "created_at": "2026-01-27",
       "ui_skin": "skin_neon_future"
+    },
+    {
+      "id": "switchyard_courier",
+      "name": "Switchyard Courier",
+      "tags": [
+        "rail",
+        "routing",
+        "action"
+      ],
+      "core_loop": "toggle rail switches route auto-moving cart pick parcels deliver to matching depots beat timer",
+      "created_at": "2026-01-28",
+      "ui_skin": "skin_neon_future"
     }
   ]
 }
