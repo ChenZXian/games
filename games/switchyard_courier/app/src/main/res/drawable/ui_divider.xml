@@ -1,4 +1,0 @@
-<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
-  <size android:height="@dimen/cst_stroke_s" />
-  <solid android:color="@color/cst_divider" />
-</shape>
