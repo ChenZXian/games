@@ -8,16 +8,18 @@ public class Bullet {
   public float radius;
   public float damage;
   public int pierce;
+  public int color;
   public boolean active;
 
-  public void spawn(float x, float y, float vx, float vy, float damage, int pierce) {
+  public void spawn(float x, float y, float vx, float vy, float damage, int pierce, int color, float radius) {
     this.x = x;
     this.y = y;
     this.vx = vx;
     this.vy = vy;
     this.damage = damage;
     this.pierce = pierce;
-    radius = 6f;
+    this.color = color;
+    this.radius = radius;
     active = true;
   }
 

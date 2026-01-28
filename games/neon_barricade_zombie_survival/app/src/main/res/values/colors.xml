@@ -34,4 +34,16 @@
 
   <color name="cst_meter_track">#2A2A3D</color>
   <color name="cst_meter_fill">#20FFB2</color>
+  <color name="cst_player_body">#00F5FF</color>
+  <color name="cst_player_head">#7CFFFF</color>
+  <color name="cst_zombie_body">#FF3D5A</color>
+  <color name="cst_zombie_head">#8A0000</color>
+  <color name="cst_zombie_arm">#6A0000</color>
+  <color name="cst_zombie_elite_glow">#FF3DFF</color>
+  <color name="cst_bg_grid">#1A1A2E</color>
+  <color name="cst_weapon_pistol">#FFD700</color>
+  <color name="cst_weapon_shotgun">#FF6B35</color>
+  <color name="cst_weapon_smg">#00F5FF</color>
+  <color name="cst_weapon_rifle">#20FFB2</color>
+  <color name="cst_weapon_launcher">#FF3DFF</color>
 </resources>

@@ -134,8 +134,125 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Shock" />
+
+        <Space
+            android:layout_width="@dimen/cst_pad_8"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:id="@+id/btn_aim_assist"
+            style="@style/Widget.Game.Button.Secondary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aim Assist: ON" />
       </LinearLayout>
     </LinearLayout>
+  </LinearLayout>
+
+  <!-- Right-side action cluster: shoot joystick rendered in GameEngine (bottom, level with left joystick) -->
+
+  <LinearLayout
+      android:id="@+id/bottom_items_container"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="bottom|center_horizontal"
+      android:orientation="horizontal"
+      android:gravity="center"
+      android:padding="@dimen/cst_pad_12"
+      android:paddingBottom="200dp"
+      android:background="@drawable/ui_panel">
+
+    <!-- Wall item icon -->
+    <FrameLayout
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="@dimen/cst_pad_8">
+
+      <ImageButton
+          android:id="@+id/btn_place_wall"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:background="@drawable/ui_button_secondary"
+          android:src="@drawable/ic_wall"
+          android:contentDescription="Place Wall"
+          android:scaleType="fitCenter"
+          android:padding="12dp" />
+
+      <TextView
+          android:id="@+id/wall_count"
+          android:layout_width="20dp"
+          android:layout_height="20dp"
+          android:layout_gravity="top|end"
+          android:layout_marginTop="2dp"
+          android:layout_marginEnd="2dp"
+          android:background="@drawable/ui_badge"
+          android:gravity="center"
+          android:text="3"
+          android:textColor="#FFFFFF"
+          android:textSize="11sp"
+          android:textStyle="bold" />
+    </FrameLayout>
+
+    <!-- Mine item icon -->
+    <FrameLayout
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="@dimen/cst_pad_8">
+
+      <ImageButton
+          android:id="@+id/btn_place_mine"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:background="@drawable/ui_button_secondary"
+          android:src="@drawable/ic_mine"
+          android:contentDescription="Place Mine"
+          android:scaleType="fitCenter"
+          android:padding="12dp" />
+
+      <TextView
+          android:id="@+id/mine_count"
+          android:layout_width="20dp"
+          android:layout_height="20dp"
+          android:layout_gravity="top|end"
+          android:layout_marginTop="2dp"
+          android:layout_marginEnd="2dp"
+          android:background="@drawable/ui_badge"
+          android:gravity="center"
+          android:text="3"
+          android:textColor="#FFFFFF"
+          android:textSize="11sp"
+          android:textStyle="bold" />
+    </FrameLayout>
+
+    <!-- Weapon switch icon -->
+    <FrameLayout
+        android:layout_width="56dp"
+        android:layout_height="56dp">
+
+      <ImageButton
+          android:id="@+id/btn_weapon"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:background="@drawable/ui_button_secondary"
+          android:src="@drawable/ic_weapon"
+          android:contentDescription="Switch Weapon"
+          android:scaleType="fitCenter"
+          android:padding="12dp" />
+
+      <TextView
+          android:id="@+id/weapon_count"
+          android:layout_width="20dp"
+          android:layout_height="20dp"
+          android:layout_gravity="top|end"
+          android:layout_marginTop="2dp"
+          android:layout_marginEnd="2dp"
+          android:background="@drawable/ui_badge"
+          android:gravity="center"
+          android:text="2"
+          android:textColor="#FFFFFF"
+          android:textSize="11sp"
+          android:textStyle="bold" />
+    </FrameLayout>
   </LinearLayout>
 
   <LinearLayout

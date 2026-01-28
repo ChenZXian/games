@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+  <!-- 墙壁主体 -->
+  <path
+      android:fillColor="#4A5568"
+      android:pathData="M3,5h18v14h-18z"/>
+  <!-- 顶部高光 -->
+  <path
+      android:fillColor="#5A6578"
+      android:pathData="M3,5h18v3h-18z"/>
+  <!-- 底部阴影 -->
+  <path
+      android:fillColor="#3A4558"
+      android:pathData="M3,19h18v2h-18z"/>
+  <!-- 砖块分割线 -->
+  <path
+      android:strokeColor="#2A3548"
+      android:strokeWidth="0.8"
+      android:pathData="M8,5v14M13,5v14M18,5v14"/>
+  <path
+      android:strokeColor="#2A3548"
+      android:strokeWidth="0.8"
+      android:pathData="M3,9h18M3,13h18M3,17h18"/>
+</vector>
+
