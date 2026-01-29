@@ -1,0 +1,28 @@
+<resources>
+  <dimen name="cst_radius_xs">4dp</dimen>
+  <dimen name="cst_radius_s">6dp</dimen>
+  <dimen name="cst_radius_m">10dp</dimen>
+  <dimen name="cst_radius_l">14dp</dimen>
+  <dimen name="cst_radius_xl">18dp</dimen>
+  <dimen name="cst_stroke_hair">1dp</dimen>
+  <dimen name="cst_stroke_s">2dp</dimen>
+  <dimen name="cst_stroke_m">3dp</dimen>
+  <dimen name="cst_pad_2">2dp</dimen>
+  <dimen name="cst_pad_4">4dp</dimen>
+  <dimen name="cst_pad_6">6dp</dimen>
+  <dimen name="cst_pad_8">8dp</dimen>
+  <dimen name="cst_pad_10">10dp</dimen>
+  <dimen name="cst_pad_12">12dp</dimen>
+  <dimen name="cst_pad_16">16dp</dimen>
+  <dimen name="cst_pad_20">20dp</dimen>
+  <dimen name="cst_pad_24">24dp</dimen>
+  <dimen name="cst_text_xs">10sp</dimen>
+  <dimen name="cst_text_s">12sp</dimen>
+  <dimen name="cst_text_m">14sp</dimen>
+  <dimen name="cst_text_l">16sp</dimen>
+  <dimen name="cst_text_xl">18sp</dimen>
+  <dimen name="cst_text_xxl">22sp</dimen>
+  <dimen name="cst_hud_height">48dp</dimen>
+  <dimen name="cst_hud_badge_min_w">64dp</dimen>
+  <dimen name="cst_hud_icon_size">24dp</dimen>
+</resources>

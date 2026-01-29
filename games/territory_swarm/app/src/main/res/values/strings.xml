@@ -1,0 +1,21 @@
+<resources>
+  <string name="app_name">Territory Swarm</string>
+  <string name="btn_start">Start</string>
+  <string name="btn_restart">Restart</string>
+  <string name="btn_resume">Resume</string>
+  <string name="btn_menu">Menu</string>
+  <string name="btn_mute">Mute</string>
+  <string name="btn_how_to_play">How To Play</string>
+  <string name="btn_skirmish">Skirmish</string>
+  <string name="btn_campaign">Campaign</string>
+  <string name="btn_pause">Pause</string>
+  <string name="label_owned">Owned</string>
+  <string name="label_total">Total</string>
+  <string name="label_time">Time</string>
+  <string name="label_speed">Speed</string>
+  <string name="label_send">Send</string>
+  <string name="label_level">Level</string>
+  <string name="label_victory">Victory</string>
+  <string name="label_defeat">Defeat</string>
+  <string name="label_mode">Mode</string>
+</resources>

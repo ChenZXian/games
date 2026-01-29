@@ -152,6 +152,19 @@
       "core_loop": "toggle rail switches route auto-moving cart pick parcels deliver to matching depots beat timer",
       "created_at": "2026-01-28",
       "ui_skin": "skin_neon_future"
+    },
+    {
+      "id": "territory_swarm",
+      "name": "Territory Swarm",
+      "tags": [
+        "strategy",
+        "territory",
+        "conquest",
+        "swarm"
+      ],
+      "core_loop": "tap to route swarms between nodes, growth pulses, capture via unit attrition, flip control to expand",
+      "created_at": "2026-01-29",
+      "ui_skin": "skin_neon_future"
     }
   ]
 }
