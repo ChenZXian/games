@@ -1,0 +1,8 @@
+<resources>
+  <style name="Theme.Game" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <item name="android:windowBackground">@color/cst_bg_main</item>
+    <item name="android:colorBackground">@color/cst_bg_main</item>
+    <item name="android:textColor">@color/cst_text_primary</item>
+    <item name="android:statusBarColor">@color/cst_bg_main</item>
+  </style>
+</resources>
