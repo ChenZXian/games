@@ -1,0 +1,20 @@
+<resources>
+  <string name="app_name">Overtime Street Fighter</string>
+  <string name="btn_start">Start</string>
+  <string name="btn_restart">Restart</string>
+  <string name="btn_resume">Resume</string>
+  <string name="btn_menu">Menu</string>
+  <string name="btn_mute">Mute</string>
+  <string name="btn_how_to_play">How To Play</string>
+  <string name="hud_score">Score</string>
+  <string name="hud_hp">HP</string>
+  <string name="hud_energy">Energy</string>
+  <string name="hud_combo">Combo</string>
+  <string name="title_menu">Overtime Street Fighter</string>
+  <string name="title_paused">Paused</string>
+  <string name="title_game_over">Game Over</string>
+  <string name="label_stage">Stage</string>
+  <string name="label_wave">Wave</string>
+  <string name="label_controls">Controls</string>
+  <string name="text_controls">Move, jump, light, heavy, kick, guard, dash, special</string>
+</resources>
