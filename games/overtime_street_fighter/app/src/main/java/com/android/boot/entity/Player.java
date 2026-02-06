@@ -21,6 +21,14 @@ public class Player extends BaseEntity {
   public float dashTimer;
   public float dashCooldown;
   public float energyGainMultiplier = 1f;
+  public float walkCycle = 0f;
+  public float idleBob = 0f;
+  public float shootCooldown;
+  public float lightCooldown;
+  public float heavyCooldown;
+  public float kickCooldown;
+  public float dashCooldownRemaining;
+  public float specialCooldown;
 
   public Player(float x, float y, float w, float h) {
     super(x, y, w, h, 100f);
@@ -34,8 +42,24 @@ public class Player extends BaseEntity {
     if (dashCooldown > 0f) {
       dashCooldown -= dt;
     }
+    dashCooldownRemaining = dashCooldown;
     if (dashTimer > 0f) {
       dashTimer -= dt;
+    }
+    if (shootCooldown > 0f) {
+      shootCooldown -= dt;
+    }
+    if (lightCooldown > 0f) {
+      lightCooldown -= dt;
+    }
+    if (heavyCooldown > 0f) {
+      heavyCooldown -= dt;
+    }
+    if (kickCooldown > 0f) {
+      kickCooldown -= dt;
+    }
+    if (specialCooldown > 0f) {
+      specialCooldown -= dt;
     }
     if (comboTimer > 0f) {
       comboTimer -= dt;
@@ -61,11 +85,20 @@ public class Player extends BaseEntity {
     if (input.left) {
       vx = -speed;
       facing = -1;
+      if (attackTimer <= 0f) {
+        walkCycle += dt * 8f;
+      }
     } else if (input.right) {
       vx = speed;
       facing = 1;
+      if (attackTimer <= 0f) {
+        walkCycle += dt * 8f;
+      }
     } else {
       vx = 0f;
+      if (attackTimer <= 0f) {
+        idleBob += dt * 3f;
+      }
     }
 
     if (input.jump && onGround(groundY)) {
@@ -75,6 +108,10 @@ public class Player extends BaseEntity {
     if (input.dash && dashCooldown <= 0f) {
       dashTimer = 0.2f;
       dashCooldown = 0.6f;
+    }
+
+    if (shootCooldown > 0f) {
+      shootCooldown -= dt;
     }
 
     handleAttacks(input);
@@ -100,29 +137,34 @@ public class Player extends BaseEntity {
     if (attackTimer > 0f) {
       return;
     }
-    if (input.special && energy >= energyMax) {
+    if (input.special && energy >= energyMax && specialCooldown <= 0f) {
       startAttack(AttackType.SPECIAL, 0.5f, 28f, 180f);
       energy = 0f;
       comboStep = 0;
+      specialCooldown = 3f;
       return;
     }
-    if (input.kick) {
+    if (input.kick && kickCooldown <= 0f) {
       startAttack(AttackType.KICK, 0.35f, 16f, 120f);
       comboStep = 0;
+      kickCooldown = 0.6f;
       return;
     }
-    if (input.heavy && comboStep == 2) {
+    if (input.heavy && heavyCooldown <= 0f) {
       startAttack(AttackType.HEAVY, 0.45f, 22f, 140f);
       comboStep = 0;
+      heavyCooldown = 0.8f;
       return;
     }
-    if (input.light) {
+    if (input.light && lightCooldown <= 0f) {
       if (comboStep == 0) {
         comboStep = 1;
         startAttack(AttackType.LIGHT, 0.25f, 12f, 90f);
+        lightCooldown = 0.3f;
       } else if (comboStep == 1) {
         comboStep = 2;
         startAttack(AttackType.LIGHT, 0.25f, 12f, 90f);
+        lightCooldown = 0.3f;
       }
     }
   }
@@ -133,6 +175,39 @@ public class Player extends BaseEntity {
     attackTimer = duration;
     attackDamage = damage;
     attackRange = range;
+    walkCycle = 0f;
+    idleBob = 0f;
+  }
+
+  public float getAttackProgress() {
+    if (attackTimer <= 0f) {
+      return 0f;
+    }
+    return 1f - (attackTimer / attackDuration);
+  }
+
+  public boolean isInAttackWindup() {
+    if (attackTimer <= 0f) {
+      return false;
+    }
+    float progress = getAttackProgress();
+    return progress < 0.3f;
+  }
+
+  public boolean isInAttackActive() {
+    if (attackTimer <= 0f) {
+      return false;
+    }
+    float progress = getAttackProgress();
+    return progress >= 0.3f && progress < 0.7f;
+  }
+
+  public boolean isInAttackRecovery() {
+    if (attackTimer <= 0f) {
+      return false;
+    }
+    float progress = getAttackProgress();
+    return progress >= 0.7f;
   }
 
   public RectF getAttackRect(RectF out) {

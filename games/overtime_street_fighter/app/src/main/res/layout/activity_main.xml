@@ -103,28 +103,37 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="bottom|start"
-    android:orientation="horizontal"
-    android:padding="@dimen/cst_pad_12">
-    <Button
-      android:id="@+id/btn_left"
-      style="@style/Widget.Game.Button.Secondary"
-      android:layout_width="@dimen/cst_control_button"
-      android:layout_height="@dimen/cst_control_button"
-      android:text="L" />
-    <Button
-      android:id="@+id/btn_right"
-      style="@style/Widget.Game.Button.Secondary"
-      android:layout_width="@dimen/cst_control_button"
-      android:layout_height="@dimen/cst_control_button"
-      android:layout_marginStart="@dimen/cst_pad_8"
-      android:text="R" />
+    android:orientation="vertical"
+    android:padding="@dimen/cst_pad_16">
     <Button
       android:id="@+id/btn_jump"
       style="@style/Widget.Game.Button.Secondary"
-      android:layout_width="@dimen/cst_control_button"
-      android:layout_height="@dimen/cst_control_button"
-      android:layout_marginStart="@dimen/cst_pad_8"
-      android:text="J" />
+      android:layout_width="64dp"
+      android:layout_height="64dp"
+      android:layout_gravity="center_horizontal"
+      android:text="@string/btn_jump_label"
+      android:textSize="16sp" />
+    <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="@dimen/cst_pad_8"
+      android:orientation="horizontal">
+      <Button
+        android:id="@+id/btn_left"
+        style="@style/Widget.Game.Button.Secondary"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:text="@string/btn_left_label"
+        android:textSize="16sp" />
+      <Button
+        android:id="@+id/btn_right"
+        style="@style/Widget.Game.Button.Secondary"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="@dimen/cst_pad_8"
+        android:text="@string/btn_right_label"
+        android:textSize="16sp" />
+    </LinearLayout>
   </LinearLayout>
 
   <LinearLayout
@@ -132,49 +141,73 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="bottom|end"
-    android:orientation="horizontal"
-    android:padding="@dimen/cst_pad_12">
-    <Button
-      android:id="@+id/btn_light"
-      style="@style/Widget.Game.Button.Primary"
-      android:layout_width="@dimen/cst_control_button"
-      android:layout_height="@dimen/cst_control_button"
-      android:text="L" />
-    <Button
-      android:id="@+id/btn_heavy"
-      style="@style/Widget.Game.Button.Primary"
-      android:layout_width="@dimen/cst_control_button"
-      android:layout_height="@dimen/cst_control_button"
-      android:layout_marginStart="@dimen/cst_pad_8"
-      android:text="H" />
-    <Button
-      android:id="@+id/btn_kick"
-      style="@style/Widget.Game.Button.Primary"
-      android:layout_width="@dimen/cst_control_button"
-      android:layout_height="@dimen/cst_control_button"
-      android:layout_marginStart="@dimen/cst_pad_8"
-      android:text="K" />
-    <Button
-      android:id="@+id/btn_guard"
-      style="@style/Widget.Game.Button.Secondary"
-      android:layout_width="@dimen/cst_control_button"
-      android:layout_height="@dimen/cst_control_button"
-      android:layout_marginStart="@dimen/cst_pad_8"
-      android:text="G" />
-    <Button
-      android:id="@+id/btn_dash"
-      style="@style/Widget.Game.Button.Secondary"
-      android:layout_width="@dimen/cst_control_button"
-      android:layout_height="@dimen/cst_control_button"
-      android:layout_marginStart="@dimen/cst_pad_8"
-      android:text="D" />
-    <Button
-      android:id="@+id/btn_special"
-      style="@style/Widget.Game.Button.Primary"
-      android:layout_width="@dimen/cst_control_button"
-      android:layout_height="@dimen/cst_control_button"
-      android:layout_marginStart="@dimen/cst_pad_8"
-      android:text="S" />
+    android:orientation="vertical"
+    android:padding="@dimen/cst_pad_16">
+    <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal">
+      <Button
+        android:id="@+id/btn_light"
+        style="@style/Widget.Game.Button.Primary"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:text="L"
+        android:textSize="16sp" />
+      <Button
+        android:id="@+id/btn_heavy"
+        style="@style/Widget.Game.Button.Primary"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="@dimen/cst_pad_6"
+        android:text="H"
+        android:textSize="16sp" />
+      <Button
+        android:id="@+id/btn_kick"
+        style="@style/Widget.Game.Button.Primary"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="@dimen/cst_pad_6"
+        android:text="K"
+        android:textSize="16sp" />
+    </LinearLayout>
+    <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="@dimen/cst_pad_6"
+      android:orientation="horizontal">
+      <Button
+        android:id="@+id/btn_guard"
+        style="@style/Widget.Game.Button.Secondary"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:text="G"
+        android:textSize="14sp" />
+      <Button
+        android:id="@+id/btn_dash"
+        style="@style/Widget.Game.Button.Secondary"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="@dimen/cst_pad_6"
+        android:text="D"
+        android:textSize="14sp" />
+      <Button
+        android:id="@+id/btn_shoot"
+        style="@style/Widget.Game.Button.Primary"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="@dimen/cst_pad_6"
+        android:text="S"
+        android:textSize="14sp" />
+      <Button
+        android:id="@+id/btn_special"
+        style="@style/Widget.Game.Button.Primary"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="@dimen/cst_pad_6"
+        android:text="   "
+        android:textSize="20sp" />
+    </LinearLayout>
   </LinearLayout>
 
   <LinearLayout

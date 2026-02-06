@@ -17,4 +17,13 @@
   <string name="label_wave">Wave</string>
   <string name="label_controls">Controls</string>
   <string name="text_controls">Move, jump, light, heavy, kick, guard, dash, special</string>
+  <string name="btn_left_label">Left</string>
+  <string name="btn_right_label">Right</string>
+  <string name="btn_jump_label">Jump</string>
+  <string name="btn_light_label">Light</string>
+  <string name="btn_heavy_label">Heavy</string>
+  <string name="btn_kick_label">Kick</string>
+  <string name="btn_guard_label">Guard</string>
+  <string name="btn_dash_label">Dash</string>
+  <string name="btn_special_label">Special</string>
 </resources>

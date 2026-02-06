@@ -58,7 +58,7 @@
     <item name="android:paddingRight">@dimen/cst_pad_8</item>
     <item name="android:textColor">@color/cst_text_on_secondary</item>
   </style>
-  <style name="Widget.Game.Meter" parent="Widget.MaterialComponents.ProgressIndicator.Linear">
+  <style name="Widget.Game.Meter" parent="Widget.MaterialComponents.LinearProgressIndicator">
     <item name="trackColor">@color/cst_meter_track</item>
     <item name="indicatorColor">@color/cst_meter_fill</item>
   </style>

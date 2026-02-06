@@ -10,6 +10,7 @@ public class GameInput {
   public boolean guard;
   public boolean dash;
   public boolean special;
+  public boolean shoot;
 
   public void resetActions() {
     light = false;
@@ -17,5 +18,6 @@ public class GameInput {
     kick = false;
     dash = false;
     special = false;
+    shoot = false;
   }
 }

@@ -3,10 +3,14 @@
     {
       "id": "war_cf6929d7",
       "file": "war_cf6929d7.wav",
-      "tags": ["war"],
+      "tags": [
+        "war"
+      ],
       "loop": true,
       "duration_sec": 30,
-      "used_by": []
+      "used_by": [
+        "overtime_street_fighter"
+      ]
     }
   ]
 }
