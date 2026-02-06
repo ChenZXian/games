@@ -1,0 +1,22 @@
+<resources>
+  <string name="app_name">Precision Bomber</string>
+  <string name="btn_start">Start</string>
+  <string name="btn_restart">Restart</string>
+  <string name="btn_resume">Resume</string>
+  <string name="btn_menu">Menu</string>
+  <string name="btn_mute">Mute</string>
+  <string name="btn_how_to_play">How To Play</string>
+  <string name="label_stage">Stage</string>
+  <string name="label_score">Score</string>
+  <string name="label_time">Time</string>
+  <string name="label_bombs">Bombs</string>
+  <string name="label_speed">Speed</string>
+  <string name="label_shield">Shield</string>
+  <string name="title_game">Precision Bomber</string>
+  <string name="title_paused">Paused</string>
+  <string name="title_game_over">Game Over</string>
+  <string name="title_stage_clear">Stage Clear</string>
+  <string name="hint_how_to_play">Move on the grid, place directional bombs, clear enemies, reveal and reach the exit.</string>
+  <string name="btn_bomb">Bomb</string>
+  <string name="btn_remote">Remote</string>
+</resources>

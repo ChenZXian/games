@@ -179,6 +179,19 @@
       "core_loop": "move fight combo clear waves defeat boss",
       "created_at": "2026-02-06",
       "ui_skin": "skin_dark_arcade"
+    },
+    {
+      "id": "precision_bomber",
+      "name": "Precision Bomber",
+      "tags": [
+        "arcade",
+        "strategy",
+        "grid",
+        "bomber"
+      ],
+      "core_loop": "move place directional bombs chain detonate clear enemies find exit",
+      "created_at": "2026-02-06",
+      "ui_skin": "skin_neon_future"
     }
   ]
 }
