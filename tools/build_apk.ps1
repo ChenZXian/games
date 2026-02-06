@@ -113,6 +113,11 @@ $apkPath = $null
 if ($Variant -eq "release") {
   $candidate = Join-Path $projResolved "app\build\outputs\apk\release\app-release.apk"
   if (Test-Path $candidate) { $apkPath = $candidate }
+  # Also check for unsigned APK
+  if ($null -eq $apkPath) {
+    $candidate = Join-Path $projResolved "app\build\outputs\apk\release\app-release-unsigned.apk"
+    if (Test-Path $candidate) { $apkPath = $candidate }
+  }
 } else {
   $candidate = Join-Path $projResolved "app\build\outputs\apk\debug\app-debug.apk"
   if (Test-Path $candidate) { $apkPath = $candidate }

@@ -11,6 +11,7 @@ import com.android.boot.ui.GameView;
 
 public class MainActivity extends Activity {
   private GameView gameView;
+  private View hudPanel;
   private FrameLayout menuPanel;
   private FrameLayout modePanel;
   private FrameLayout pausePanel;
@@ -18,15 +19,18 @@ public class MainActivity extends Activity {
   private TextView ownedValue;
   private TextView totalValue;
   private TextView timeValue;
+  private TextView goldValue;
   private TextView gameOverTitle;
   private Button btnSpeed;
   private Button btnSend;
+  private Button btnForm;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     gameView = findViewById(R.id.game_view);
+    hudPanel = findViewById(R.id.hud_panel);
     menuPanel = findViewById(R.id.menu_panel);
     modePanel = findViewById(R.id.mode_panel);
     pausePanel = findViewById(R.id.pause_panel);
@@ -34,9 +38,44 @@ public class MainActivity extends Activity {
     ownedValue = findViewById(R.id.owned_value);
     totalValue = findViewById(R.id.total_value);
     timeValue = findViewById(R.id.time_value);
+    goldValue = findViewById(R.id.gold_value);
     gameOverTitle = findViewById(R.id.game_over_title);
     btnSpeed = findViewById(R.id.btn_speed);
     btnSend = findViewById(R.id.btn_send);
+    btnForm = findViewById(R.id.btn_form);
+
+    // SurfaceView(GameView) has independent Surface layer, on some devices upper UI is visible but not clickable.
+    // Force all panels to front and make panels clickable (to consume background clicks, buttons still receive events normally).
+    if (hudPanel != null) {
+      hudPanel.bringToFront();
+    }
+    if (menuPanel != null) {
+      menuPanel.bringToFront();
+      menuPanel.setClickable(true);
+      menuPanel.setFocusable(true);
+    }
+    if (modePanel != null) {
+      modePanel.bringToFront();
+      modePanel.setClickable(true);
+      modePanel.setFocusable(true);
+    }
+    if (pausePanel != null) {
+      pausePanel.bringToFront();
+      pausePanel.setClickable(true);
+      pausePanel.setFocusable(true);
+    }
+    if (gameOverPanel != null) {
+      gameOverPanel.bringToFront();
+      gameOverPanel.setClickable(true);
+      gameOverPanel.setFocusable(true);
+    }
+
+    // On very few devices/emulators, SurfaceView may still block upper control touches.
+    // To ensure menu is always clickable, temporarily hide GameView when menu/mode panel is shown,
+    // restore display after entering game.
+    if (gameView != null && menuPanel != null && menuPanel.getVisibility() == View.VISIBLE) {
+      gameView.setVisibility(View.GONE);
+    }
 
     Button btnMenuPlay = findViewById(R.id.btn_menu_play);
     Button btnMenuMode = findViewById(R.id.btn_menu_mode);
@@ -51,6 +90,7 @@ public class MainActivity extends Activity {
 
     btnMenuPlay.setOnClickListener(view -> {
       showPanel(menuPanel, false);
+      if (gameView != null) gameView.setVisibility(View.VISIBLE);
       gameView.startSkirmish();
     });
     btnMenuMode.setOnClickListener(view -> {
@@ -59,10 +99,12 @@ public class MainActivity extends Activity {
     });
     btnModeSkirmish.setOnClickListener(view -> {
       showPanel(modePanel, false);
+      if (gameView != null) gameView.setVisibility(View.VISIBLE);
       gameView.startSkirmish();
     });
     btnModeCampaign.setOnClickListener(view -> {
       showPanel(modePanel, false);
+      if (gameView != null) gameView.setVisibility(View.VISIBLE);
       gameView.startCampaign();
     });
     btnModeBack.setOnClickListener(view -> {
@@ -103,10 +145,16 @@ public class MainActivity extends Activity {
       btnSend.setText(percent + "%");
     });
 
-    gameView.setHudListener((owned, total, timeText) -> {
+    btnForm.setOnClickListener(view -> {
+      String label = gameView.toggleFormation();
+      btnForm.setText(label);
+    });
+
+    gameView.setHudListener((owned, total, timeText, gold) -> {
       ownedValue.setText(String.valueOf(owned));
       totalValue.setText(String.valueOf(total));
       timeValue.setText(timeText);
+      goldValue.setText(String.valueOf(gold));
     });
 
     gameView.setGameStateListener(state -> {
@@ -122,6 +170,13 @@ public class MainActivity extends Activity {
 
   private void showPanel(View panel, boolean show) {
     panel.setVisibility(show ? View.VISIBLE : View.GONE);
+    if (show) {
+      panel.bringToFront();
+      // Ensure menu/mode panel is not blocked by SurfaceView touches when shown
+      if ((panel == menuPanel || panel == modePanel) && gameView != null) {
+        gameView.setVisibility(View.GONE);
+      }
+    }
   }
 
   @Override

@@ -1,4 +1,14 @@
 <resources>
+  <style name="TextAppearance">
+    <item name="android:textColor">@color/cst_text_primary</item>
+    <item name="android:textSize">@dimen/cst_text_m</item>
+  </style>
+
+  <style name="TextAppearance.Game">
+    <item name="android:textColor">@color/cst_text_primary</item>
+    <item name="android:textSize">@dimen/cst_text_m</item>
+  </style>
+
   <style name="TextAppearance.Game.Title">
     <item name="android:textSize">@dimen/cst_text_xxl</item>
     <item name="android:textColor">@color/cst_text_primary</item>
@@ -25,6 +35,14 @@
   <style name="TextAppearance.Game.HudLabel">
     <item name="android:textSize">@dimen/cst_text_s</item>
     <item name="android:textColor">@color/cst_text_secondary</item>
+  </style>
+
+  <style name="Widget">
+    <item name="android:background">@drawable/ui_panel</item>
+  </style>
+
+  <style name="Widget.Game">
+    <item name="android:background">@drawable/ui_panel</item>
   </style>
 
   <style name="Widget.Game.Button.Primary" parent="@style/Widget.MaterialComponents.Button">

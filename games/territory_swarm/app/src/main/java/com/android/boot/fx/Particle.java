@@ -1,6 +1,6 @@
 package com.android.boot.fx;
 
-import com.android.boot.entity.Node;
+import com.android.boot.entity.Prefecture;
 
 public class Particle {
   public float x;
@@ -10,19 +10,23 @@ public class Particle {
   public float duration;
   public float travel;
   public float radius;
-  public int units;
+  public int shield;
+  public int sword;
+  public int archer;
   public int owner;
-  public Node target;
+  public Prefecture target;
 
   private Particle() {
   }
 
-  public static Particle create(float startX, float startY, Node target, int units, int owner) {
+  public static Particle create(float startX, float startY, Prefecture target, int shield, int sword, int archer, int owner) {
     Particle particle = new Particle();
     particle.x = startX;
     particle.y = startY;
     particle.target = target;
-    particle.units = units;
+    particle.shield = shield;
+    particle.sword = sword;
+    particle.archer = archer;
     particle.owner = owner;
     float dx = target.x - startX;
     float dy = target.y - startY;

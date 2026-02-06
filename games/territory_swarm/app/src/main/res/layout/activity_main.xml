@@ -78,6 +78,25 @@
           android:text="0:00"
           android:textAppearance="@style/TextAppearance.Game.HudValue" />
       </LinearLayout>
+
+      <View android:layout_width="@dimen/cst_pad_12" android:layout_height="0dp" />
+
+      <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Gold"
+          android:textAppearance="@style/TextAppearance.Game.HudLabel" />
+        <TextView
+          android:id="@+id/gold_value"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="500"
+          android:textAppearance="@style/TextAppearance.Game.HudValue" />
+      </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -122,6 +141,27 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:text="50%"
+          android:textAllCaps="false"
+          style="@style/Widget.Game.Button.Secondary" />
+      </LinearLayout>
+
+      <View android:layout_width="@dimen/cst_pad_8" android:layout_height="0dp" />
+
+      <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/label_form"
+          android:textAppearance="@style/TextAppearance.Game.Caption" />
+        <Button
+          android:id="@+id/btn_form"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="S35 W45 A20"
           android:textAllCaps="false"
           style="@style/Widget.Game.Button.Secondary" />
       </LinearLayout>

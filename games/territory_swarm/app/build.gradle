@@ -6,11 +6,20 @@ android {
   compileSdk 34
 
   defaultConfig {
-    applicationId "com.android.boot"
+    applicationId "com.android.boot.territory_swarm"
     minSdk 24
     targetSdk 34
     versionCode 1
     versionName "1.0"
+  }
+
+  signingConfigs {
+    release {
+      storeFile file("release.keystore")
+      storePassword "android"
+      keyAlias "androiddebugkey"
+      keyPassword "android"
+    }
   }
 
   buildTypes {
@@ -19,6 +28,7 @@ android {
     }
     release {
       minifyEnabled false
+      signingConfig signingConfigs.release
     }
   }
 

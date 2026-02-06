@@ -155,14 +155,15 @@
     },
     {
       "id": "territory_swarm",
-      "name": "Territory Swarm",
+      "name": "Japan Prefecture War",
       "tags": [
         "strategy",
         "territory",
         "conquest",
-        "swarm"
+        "japan",
+        "geography"
       ],
-      "core_loop": "tap to route swarms between nodes, growth pulses, capture via unit attrition, flip control to expand",
+      "core_loop": "tap to route units between Japanese prefectures and cities, growth pulses, capture via unit attrition, conquer all prefectures to win",
       "created_at": "2026-01-29",
       "ui_skin": "skin_neon_future"
     }

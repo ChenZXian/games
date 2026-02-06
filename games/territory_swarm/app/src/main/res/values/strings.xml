@@ -1,5 +1,5 @@
 <resources>
-  <string name="app_name">Territory Swarm</string>
+  <string name="app_name">Japan Prefecture War</string>
   <string name="btn_start">Start</string>
   <string name="btn_restart">Restart</string>
   <string name="btn_resume">Resume</string>
@@ -14,6 +14,7 @@
   <string name="label_time">Time</string>
   <string name="label_speed">Speed</string>
   <string name="label_send">Send</string>
+  <string name="label_form">Form</string>
   <string name="label_level">Level</string>
   <string name="label_victory">Victory</string>
   <string name="label_defeat">Defeat</string>
