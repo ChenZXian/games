@@ -165,6 +165,19 @@
       "core_loop": "tap to route swarms between nodes, growth pulses, capture via unit attrition, flip control to expand",
       "created_at": "2026-01-29",
       "ui_skin": "skin_neon_future"
+    },
+    {
+      "id": "overtime_street_fighter",
+      "name": "Overtime Street Fighter",
+      "tags": [
+        "fighting",
+        "arcade",
+        "beat-em-up",
+        "office"
+      ],
+      "core_loop": "move fight combo clear waves defeat boss",
+      "created_at": "2026-02-06",
+      "ui_skin": "skin_dark_arcade"
     }
   ]
 }
