@@ -1,0 +1,25 @@
+<resources>
+  <string name="app_name">Castle Keep Defender</string>
+  <string name="btn_start">Start</string>
+  <string name="btn_restart">Restart</string>
+  <string name="btn_resume">Resume</string>
+  <string name="btn_menu">Menu</string>
+  <string name="btn_mute">Mute</string>
+  <string name="btn_how_to_play">How To Play</string>
+  <string name="title_game">Castle Keep Defender</string>
+  <string name="title_paused">Paused</string>
+  <string name="title_game_over">Castle Fallen</string>
+  <string name="title_upgrade">Choose Upgrade</string>
+  <string name="label_wave">Wave</string>
+  <string name="label_score">Score</string>
+  <string name="label_gold">Gold</string>
+  <string name="label_hp">Keep HP</string>
+  <string name="label_energy">Energy</string>
+  <string name="btn_oil">Oil</string>
+  <string name="btn_freeze">Freeze</string>
+  <string name="btn_push">Push</string>
+  <string name="hint_how_to_play">Drag from the castle to aim, then release to fire. Defeat lane waves and pick upgrades between waves.</string>
+  <string name="upgrade_offense">Forge Weapons</string>
+  <string name="upgrade_defense">Reinforce Walls</string>
+  <string name="upgrade_utility">Arcane Training</string>
+</resources>
