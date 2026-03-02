@@ -1,0 +1,31 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/hud_overlay"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:orientation="vertical"
+  android:visibility="gone">
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/cst_hud_height"
+    android:background="@drawable/ui_panel"
+    android:padding="@dimen/cst_pad_8"
+    android:orientation="horizontal">
+    <TextView android:id="@+id/txt_lives" style="@style/Widget.Game.Badge" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:textAppearance="@style/TextAppearance.Game.HudValue" />
+    <TextView android:id="@+id/txt_gold" style="@style/Widget.Game.Badge" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:textAppearance="@style/TextAppearance.Game.HudValue" />
+    <TextView android:id="@+id/txt_wave" style="@style/Widget.Game.Badge" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:textAppearance="@style/TextAppearance.Game.HudValue" />
+    <ImageButton android:id="@+id/btn_pause" android:layout_width="40dp" android:layout_height="40dp" android:background="@drawable/ui_button_icon" android:src="@drawable/ic_pause" android:contentDescription="pause" />
+  </LinearLayout>
+  <ProgressBar
+    android:id="@+id/mana_bar"
+    style="?android:attr/progressBarStyleHorizontal"
+    android:layout_width="match_parent"
+    android:layout_height="12dp"
+    android:progressDrawable="@drawable/ui_meter_fill"
+    android:background="@drawable/ui_meter_track"
+    android:max="100" />
+  <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:padding="@dimen/cst_pad_8">
+    <Button android:id="@+id/btn_meteor" style="@style/Widget.Game.Button.Secondary" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/skill_meteor" />
+    <Button android:id="@+id/btn_freeze" style="@style/Widget.Game.Button.Secondary" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/skill_freeze" />
+    <Button android:id="@+id/btn_reinforce" style="@style/Widget.Game.Button.Secondary" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/skill_reinforce" />
+  </LinearLayout>
+</LinearLayout>

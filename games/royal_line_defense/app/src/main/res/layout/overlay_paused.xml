@@ -1,0 +1,14 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/paused_overlay"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:gravity="center"
+  android:visibility="gone"
+  android:background="@color/cst_shadow"
+  android:orientation="vertical">
+  <LinearLayout android:layout_width="300dp" android:layout_height="wrap_content" android:orientation="vertical" android:background="@drawable/ui_dialog" android:padding="@dimen/cst_pad_16">
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/label_pause" android:textAppearance="@style/TextAppearance.Game.Title" />
+    <Button android:id="@+id/btn_resume" style="@style/Widget.Game.Button.Primary" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/btn_resume" />
+    <Button android:id="@+id/btn_menu" style="@style/Widget.Game.Button.Secondary" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/btn_menu" />
+  </LinearLayout>
+</LinearLayout>
