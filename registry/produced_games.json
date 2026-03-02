@@ -206,6 +206,19 @@
       "core_loop": "drag aim from central keep and release shots to stop north east west lane waves, cast oil freeze push skills, buy one of three upgrades between waves",
       "created_at": "2026-02-25",
       "ui_skin": "skin_dark_arcade"
+    },
+    {
+      "id": "royal_line_defense",
+      "name": "Royal Line Defense",
+      "tags": [
+        "tower_defense",
+        "strategy",
+        "hero",
+        "waves"
+      ],
+      "core_loop": "build and upgrade five tower classes along polyline paths, command a movable hero, cast mana skills, and survive scripted multi-level enemy waves ending in phase bosses",
+      "created_at": "2026-03-02",
+      "ui_skin": "skin_cartoon_light"
     }
   ]
 }

@@ -1,0 +1,17 @@
+<resources>
+  <string name="app_name">Royal Line Defense</string>
+  <string name="btn_start">Start</string>
+  <string name="btn_restart">Restart</string>
+  <string name="btn_resume">Resume</string>
+  <string name="btn_menu">Menu</string>
+  <string name="btn_mute">Mute</string>
+  <string name="btn_how_to_play">How To Play</string>
+  <string name="btn_levels">Levels</string>
+  <string name="label_pause">Paused</string>
+  <string name="label_game_over">Game Over</string>
+  <string name="label_victory">Victory</string>
+  <string name="level_select_title">Choose A Battlefield</string>
+  <string name="skill_meteor">Meteor</string>
+  <string name="skill_freeze">Freeze</string>
+  <string name="skill_reinforce">Reinforce</string>
+</resources>
