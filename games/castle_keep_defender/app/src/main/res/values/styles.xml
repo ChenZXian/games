@@ -1,4 +1,10 @@
 <resources>
+  <style name="TextAppearance">
+    <item name="android:textColor">@color/cst_text_primary</item>
+  </style>
+  <style name="TextAppearance.Game">
+    <item name="android:textColor">@color/cst_text_primary</item>
+  </style>
   <style name="TextAppearance.Game.Title">
     <item name="android:textSize">@dimen/cst_text_xxl</item>
     <item name="android:textColor">@color/cst_text_primary</item>
@@ -26,6 +32,12 @@
     <item name="android:textColor">@color/cst_text_muted</item>
   </style>
 
+  <style name="Widget">
+    <item name="android:padding">@dimen/cst_pad_8</item>
+  </style>
+  <style name="Widget.Game">
+    <item name="android:padding">@dimen/cst_pad_8</item>
+  </style>
   <style name="Widget.Game.Button.Primary" parent="Widget.MaterialComponents.Button">
     <item name="android:background">@drawable/ui_button_primary</item>
     <item name="android:textColor">@color/cst_text_on_primary</item>

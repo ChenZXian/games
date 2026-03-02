@@ -2,7 +2,9 @@ package com.android.boot;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,17 +26,24 @@ public class MainActivity extends AppCompatActivity implements GameView.Listener
     private TextView txtGameOver;
     private ProgressBar manaBar;
     private int selectedLevel;
+    private BgmPlayer bgmPlayer;
+    private ImageButton btnMute;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setContentView(R.layout.activity_main);
         stateMachine = new StateMachine();
         gameView = findViewById(R.id.game_view);
         gameView.setListener(this);
+        bgmPlayer = new BgmPlayer();
         bindViews();
         bindActions();
         renderState(GameState.MENU);
+        bgmPlayer.start(this);
+        updateMuteButton();
     }
 
     private void bindViews() {
@@ -48,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements GameView.Listener
         txtWave = findViewById(R.id.txt_wave);
         txtGameOver = findViewById(R.id.txt_game_over);
         manaBar = findViewById(R.id.mana_bar);
+        btnMute = findViewById(R.id.btn_mute);
     }
 
     private void bindActions() {
@@ -70,6 +80,12 @@ public class MainActivity extends AppCompatActivity implements GameView.Listener
         findViewById(R.id.btn_meteor).setOnClickListener(v -> gameView.castMeteor());
         findViewById(R.id.btn_freeze).setOnClickListener(v -> gameView.castFreeze());
         findViewById(R.id.btn_reinforce).setOnClickListener(v -> gameView.castReinforce());
+        if (btnMute != null) {
+            btnMute.setOnClickListener(v -> {
+                bgmPlayer.setMuted(!bgmPlayer.isMuted());
+                updateMuteButton();
+            });
+        }
         findViewById(R.id.btn_level_1).setOnClickListener(v -> selectLevel(0));
         findViewById(R.id.btn_level_2).setOnClickListener(v -> selectLevel(1));
         findViewById(R.id.btn_level_3).setOnClickListener(v -> selectLevel(2));
@@ -115,9 +131,16 @@ public class MainActivity extends AppCompatActivity implements GameView.Listener
         });
     }
 
+    private void updateMuteButton() {
+        if (btnMute != null) {
+            btnMute.setImageResource(bgmPlayer.isMuted() ? R.drawable.ic_sound_off : R.drawable.ic_sound_on);
+        }
+    }
+
     @Override
     protected void onPause() {
         super.onPause();
+        bgmPlayer.pause();
         gameView.setPaused(true);
         if (stateMachine.getState() == GameState.PLAYING) {
             renderState(GameState.PAUSED);
@@ -127,5 +150,14 @@ public class MainActivity extends AppCompatActivity implements GameView.Listener
     @Override
     protected void onResume() {
         super.onResume();
+        if (!bgmPlayer.isMuted()) {
+            bgmPlayer.resume();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        bgmPlayer.stop();
     }
 }

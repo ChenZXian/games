@@ -241,4 +241,16 @@
     android:src="@drawable/ic_pause"
     android:contentDescription="@string/btn_resume"
     android:visibility="gone" />
+
+  <ImageButton
+    android:id="@+id/btn_mute"
+    style="@style/Widget.Game.Button.Icon"
+    android:layout_width="@dimen/cst_button_height"
+    android:layout_height="@dimen/cst_button_height"
+    android:layout_gravity="top|right"
+    android:layout_marginTop="@dimen/cst_hud_height"
+    android:layout_marginRight="68dp"
+    android:src="@drawable/ic_sound_on"
+    android:contentDescription="@string/btn_mute"
+    android:visibility="visible" />
 </FrameLayout>

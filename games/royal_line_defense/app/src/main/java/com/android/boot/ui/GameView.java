@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Path;
+import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -30,6 +32,10 @@ public class GameView extends SurfaceView implements Runnable, SurfaceHolder.Cal
     private final Paint text = new Paint();
     private final LevelManager levelManager = new LevelManager();
     private LevelManager.LevelData level;
+    private float scaleX = 1f;
+    private float scaleY = 1f;
+    private static final float GAME_WIDTH = 800f;
+    private static final float GAME_HEIGHT = 480f;
     private final List<Tower> towers = new ArrayList<>();
     private final Enemy[] enemies = new Enemy[200];
     private final Projectile[] projectiles = new Projectile[300];
@@ -49,9 +55,20 @@ public class GameView extends SurfaceView implements Runnable, SurfaceHolder.Cal
     private float meteorCd;
     private float freezeCd;
     private float reinforceCd;
+    private Tower selectedTower;
+    private float heroCooldown;
 
     public GameView(Context context) {
         super(context);
+        init();
+    }
+
+    public GameView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        init();
+    }
+
+    private void init() {
         getHolder().addCallback(this);
         text.setColor(Color.BLACK);
         text.setTextSize(30f);
@@ -91,6 +108,7 @@ public class GameView extends SurfaceView implements Runnable, SurfaceHolder.Cal
         freezeCd = 0f;
         reinforceCd = 0f;
         freezeTimer = 0f;
+        heroCooldown = 0f;
         victory = false;
     }
 
@@ -141,10 +159,53 @@ public class GameView extends SurfaceView implements Runnable, SurfaceHolder.Cal
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            hero.moveTo(event.getX(), event.getY());
+            float x = event.getX() / scaleX;
+            float y = event.getY() / scaleY;
+            Tower clickedTower = findTowerAt(x, y);
+            if (clickedTower != null) {
+                selectedTower = clickedTower;
+                upgradeTower(clickedTower);
+            } else {
+                selectedTower = null;
+                hero.moveTo(x, y);
+            }
             return true;
         }
         return false;
+    }
+
+    private Tower findTowerAt(float x, float y) {
+        float clickRadius = 30f;
+        for (Tower t : towers) {
+            float dx = x - t.x;
+            float dy = y - t.y;
+            float dist = (float) Math.sqrt(dx * dx + dy * dy);
+            if (dist < clickRadius) {
+                return t;
+            }
+        }
+        return null;
+    }
+
+    public void upgradeTower(Tower tower) {
+        if (tower == null) return;
+        int cost = getUpgradeCost(tower);
+        if (gold >= cost && tower.level < 3) {
+            gold -= cost;
+            tower.upgradeBase();
+        } else if (gold >= cost && tower.level == 3) {
+            gold -= cost;
+            tower.chooseBranch(1);
+        }
+    }
+
+    private int getUpgradeCost(Tower tower) {
+        if (tower.level < 3) {
+            return 50 + tower.level * 30;
+        } else if (tower.level == 3) {
+            return 100;
+        }
+        return 0;
     }
 
     @Override
@@ -165,6 +226,7 @@ public class GameView extends SurfaceView implements Runnable, SurfaceHolder.Cal
     }
 
     private void update(float dt) {
+        if (level == null) return;
         mana = Math.min(100, mana + (int) (8f * dt));
         meteorCd -= dt;
         freezeCd -= dt;
@@ -172,6 +234,7 @@ public class GameView extends SurfaceView implements Runnable, SurfaceHolder.Cal
         if (freezeTimer > 0f) freezeTimer -= dt;
         spawnEnemies(dt);
         hero.update(dt);
+        updateHeroAttack(dt);
         updateEnemies(dt);
         updateTowers(dt);
         updateProjectiles(dt);
@@ -239,6 +302,29 @@ public class GameView extends SurfaceView implements Runnable, SurfaceHolder.Cal
                 e.active = false;
                 gold += 8;
                 spawnParticle(e.x, e.y, 0f, -22f, 0.4f, 9f);
+            }
+        }
+    }
+
+    private void updateHeroAttack(float dt) {
+        heroCooldown -= dt;
+        if (heroCooldown <= 0f) {
+            Enemy target = nearestEnemy(hero.x, hero.y, 200f);
+            if (target != null) {
+                Projectile p = obtainProjectile();
+                if (p != null) {
+                    float dx = target.x - hero.x;
+                    float dy = target.y - hero.y;
+                    float d = (float) Math.sqrt(dx * dx + dy * dy);
+                    p.active = true;
+                    p.x = hero.x;
+                    p.y = hero.y;
+                    p.vx = dx / d * 300f;
+                    p.vy = dy / d * 300f;
+                    p.damage = 25f;
+                    p.ttl = 1.5f;
+                }
+                heroCooldown = 0.8f;
             }
         }
     }
@@ -376,6 +462,12 @@ public class GameView extends SurfaceView implements Runnable, SurfaceHolder.Cal
     }
 
     private void render(Canvas c, float alpha) {
+        if (level == null) {
+            c.drawColor(Color.rgb(202, 235, 255));
+            return;
+        }
+        c.save();
+        c.scale(scaleX, scaleY);
         c.drawColor(Color.rgb(202, 235, 255));
         paint.setColor(Color.rgb(186, 225, 140));
         for (int i = 0; i < level.path.size() - 1; i++) {
@@ -385,12 +477,63 @@ public class GameView extends SurfaceView implements Runnable, SurfaceHolder.Cal
             c.drawLine(a[0], a[1], b[0], b[1], paint);
         }
         for (Tower t : towers) {
-            if (t.type == Tower.Type.ARROW) paint.setColor(Color.rgb(70, 120, 220));
-            if (t.type == Tower.Type.CANNON) paint.setColor(Color.rgb(130, 130, 130));
-            if (t.type == Tower.Type.MAGE) paint.setColor(Color.rgb(130, 70, 220));
-            if (t.type == Tower.Type.BARRACKS) paint.setColor(Color.rgb(160, 110, 70));
-            if (t.type == Tower.Type.SUPPORT_TOTEM) paint.setColor(Color.rgb(70, 170, 110));
-            c.drawCircle(t.x, t.y, 16f + t.level, paint);
+            float radius = 16f + t.level;
+            paint.setStyle(Paint.Style.FILL);
+            
+            if (t.type == Tower.Type.ARROW) {
+                paint.setColor(Color.rgb(70, 120, 220));
+                c.drawCircle(t.x, t.y, radius, paint);
+                paint.setColor(Color.rgb(200, 220, 255));
+                paint.setStyle(Paint.Style.FILL);
+                float arrowSize = radius * 0.5f;
+                Path arrowPath = new Path();
+                arrowPath.moveTo(t.x, t.y - radius * 0.4f);
+                arrowPath.lineTo(t.x - arrowSize, t.y + radius * 0.3f);
+                arrowPath.lineTo(t.x, t.y + radius * 0.1f);
+                arrowPath.lineTo(t.x + arrowSize, t.y + radius * 0.3f);
+                arrowPath.close();
+                c.drawPath(arrowPath, paint);
+            } else if (t.type == Tower.Type.CANNON) {
+                paint.setColor(Color.rgb(80, 80, 80));
+                c.drawRect(t.x - radius, t.y - radius, t.x + radius, t.y + radius, paint);
+                paint.setColor(Color.rgb(100, 100, 100));
+                c.drawCircle(t.x, t.y, radius * 0.7f, paint);
+            } else if (t.type == Tower.Type.MAGE) {
+                paint.setColor(Color.rgb(130, 70, 220));
+                float[] hexPoints = new float[14];
+                for (int i = 0; i < 6; i++) {
+                    float angle = (float) (i * Math.PI / 3);
+                    hexPoints[i * 2] = t.x + (float) Math.cos(angle) * radius;
+                    hexPoints[i * 2 + 1] = t.y + (float) Math.sin(angle) * radius;
+                }
+                hexPoints[12] = hexPoints[0];
+                hexPoints[13] = hexPoints[1];
+                c.drawLines(hexPoints, paint);
+                paint.setColor(Color.rgb(180, 120, 255));
+                c.drawCircle(t.x, t.y, radius * 0.5f, paint);
+            } else if (t.type == Tower.Type.BARRACKS) {
+                paint.setColor(Color.rgb(160, 110, 70));
+                c.drawRect(t.x - radius * 0.8f, t.y - radius, t.x + radius * 0.8f, t.y + radius, paint);
+                paint.setColor(Color.rgb(140, 90, 50));
+                c.drawRect(t.x - radius * 0.4f, t.y - radius * 0.3f, t.x + radius * 0.4f, t.y + radius * 0.3f, paint);
+            } else if (t.type == Tower.Type.SUPPORT_TOTEM) {
+                paint.setColor(Color.rgb(70, 170, 110));
+                c.drawRect(t.x - radius * 0.4f, t.y - radius, t.x + radius * 0.4f, t.y + radius, paint);
+                paint.setColor(Color.rgb(100, 200, 140));
+                c.drawCircle(t.x, t.y - radius * 0.5f, radius * 0.3f, paint);
+            }
+            
+            if (t == selectedTower) {
+                paint.setStyle(Paint.Style.STROKE);
+                paint.setStrokeWidth(3f);
+                paint.setColor(Color.rgb(255, 255, 0));
+                c.drawCircle(t.x, t.y, radius + 5f, paint);
+                paint.setStyle(Paint.Style.FILL);
+                paint.setColor(Color.rgb(255, 255, 255));
+                String levelText = "Lv" + t.level;
+                float textX = t.x - text.measureText(levelText) / 2f;
+                c.drawText(levelText, textX, t.y - radius - 10f, text);
+            }
         }
         for (Enemy e : enemies) {
             if (!e.active) continue;
@@ -402,15 +545,40 @@ public class GameView extends SurfaceView implements Runnable, SurfaceHolder.Cal
             else if (e.type == Enemy.Type.HEALER) paint.setColor(Color.rgb(120, 230, 150));
             else if (e.type == Enemy.Type.BOSS) paint.setColor(Color.rgb(220, 70, 70));
             else paint.setColor(Color.rgb(220, 130, 100));
-            c.drawCircle(rx, ry, e.type == Enemy.Type.BOSS ? 20f : 12f, paint);
+            float radius = e.type == Enemy.Type.BOSS ? 20f : 12f;
+            c.drawCircle(rx, ry, radius, paint);
+            float barY = ry - radius - 8f;
+            float barW = radius * 2f;
+            float barH = 4f;
+            paint.setColor(Color.rgb(40, 40, 40));
+            c.drawRect(rx - barW / 2f, barY, rx + barW / 2f, barY + barH, paint);
+            float hpRatio = e.hp / e.maxHp;
+            paint.setColor(Color.rgb(220, 70, 70));
+            c.drawRect(rx - barW / 2f, barY, rx - barW / 2f + barW * hpRatio, barY + barH, paint);
         }
         paint.setColor(Color.rgb(30, 40, 70));
         c.drawCircle(hero.x, hero.y, 11f, paint);
-        paint.setColor(Color.rgb(255, 255, 120));
-        for (Projectile p : projectiles) if (p.active) c.drawCircle(p.x, p.y, 4f, paint);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(2f);
+        paint.setColor(Color.rgb(100, 100, 100));
+        c.drawCircle(hero.x, hero.y, 11f + 3f, paint);
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(Color.rgb(255, 200, 50));
+        c.drawCircle(hero.x, hero.y, 8f, paint);
+        for (Projectile p : projectiles) {
+            if (p.active) {
+                if (p.damage == 25f) {
+                    paint.setColor(Color.rgb(255, 100, 50));
+                } else {
+                    paint.setColor(Color.rgb(255, 255, 120));
+                }
+                c.drawCircle(p.x, p.y, 4f, paint);
+            }
+        }
         paint.setColor(Color.rgb(255, 255, 255));
         for (Particle p : particles) if (p.active) c.drawCircle(p.x, p.y, p.size, paint);
-        c.drawText(level.name, 20f, getHeight() - 20f, text);
+        c.drawText(level.name, 20f, GAME_HEIGHT - 20f, text);
+        c.restore();
     }
 
     @Override
@@ -422,6 +590,8 @@ public class GameView extends SurfaceView implements Runnable, SurfaceHolder.Cal
 
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+        scaleX = width / GAME_WIDTH;
+        scaleY = height / GAME_HEIGHT;
     }
 
     @Override

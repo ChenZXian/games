@@ -1,31 +1,40 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
   android:id="@+id/hud_overlay"
   android:layout_width="match_parent"
-  android:layout_height="wrap_content"
-  android:orientation="vertical"
+  android:layout_height="match_parent"
   android:visibility="gone">
   <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="@dimen/cst_hud_height"
+    android:layout_height="wrap_content"
+    android:layout_gravity="top"
     android:background="@drawable/ui_panel"
-    android:padding="@dimen/cst_pad_8"
+    android:padding="@dimen/cst_pad_6"
     android:orientation="horizontal">
-    <TextView android:id="@+id/txt_lives" style="@style/Widget.Game.Badge" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:textAppearance="@style/TextAppearance.Game.HudValue" />
-    <TextView android:id="@+id/txt_gold" style="@style/Widget.Game.Badge" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:textAppearance="@style/TextAppearance.Game.HudValue" />
-    <TextView android:id="@+id/txt_wave" style="@style/Widget.Game.Badge" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:textAppearance="@style/TextAppearance.Game.HudValue" />
-    <ImageButton android:id="@+id/btn_pause" android:layout_width="40dp" android:layout_height="40dp" android:background="@drawable/ui_button_icon" android:src="@drawable/ic_pause" android:contentDescription="pause" />
+    <TextView android:id="@+id/txt_lives" style="@style/Widget.Game.Badge" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:textAppearance="@style/TextAppearance.Game.HudValue" android:minHeight="32dp" android:gravity="center" />
+    <TextView android:id="@+id/txt_gold" style="@style/Widget.Game.Badge" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:textAppearance="@style/TextAppearance.Game.HudValue" android:minHeight="32dp" android:gravity="center" />
+    <TextView android:id="@+id/txt_wave" style="@style/Widget.Game.Badge" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:textAppearance="@style/TextAppearance.Game.HudValue" android:minHeight="32dp" android:gravity="center" />
+    <ImageButton android:id="@+id/btn_mute" android:layout_width="32dp" android:layout_height="32dp" android:layout_marginStart="@dimen/cst_pad_8" android:background="@drawable/ui_button_icon" android:src="@drawable/ic_sound_on" android:contentDescription="mute" />
+    <ImageButton android:id="@+id/btn_pause" android:layout_width="32dp" android:layout_height="32dp" android:layout_marginStart="@dimen/cst_pad_8" android:background="@drawable/ui_button_icon" android:src="@drawable/ic_pause" android:contentDescription="pause" />
   </LinearLayout>
   <ProgressBar
     android:id="@+id/mana_bar"
     style="?android:attr/progressBarStyleHorizontal"
     android:layout_width="match_parent"
-    android:layout_height="12dp"
+    android:layout_height="8dp"
+    android:layout_gravity="top"
+    android:layout_marginTop="48dp"
     android:progressDrawable="@drawable/ui_meter_fill"
     android:background="@drawable/ui_meter_track"
     android:max="100" />
-  <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:padding="@dimen/cst_pad_8">
-    <Button android:id="@+id/btn_meteor" style="@style/Widget.Game.Button.Secondary" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/skill_meteor" />
-    <Button android:id="@+id/btn_freeze" style="@style/Widget.Game.Button.Secondary" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/skill_freeze" />
-    <Button android:id="@+id/btn_reinforce" style="@style/Widget.Game.Button.Secondary" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/skill_reinforce" />
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:orientation="horizontal"
+    android:padding="@dimen/cst_pad_8"
+    android:background="@drawable/ui_panel">
+    <Button android:id="@+id/btn_meteor" style="@style/Widget.Game.Button.Secondary" android:layout_width="0dp" android:layout_height="48dp" android:layout_weight="1" android:layout_marginEnd="@dimen/cst_pad_6" android:text="@string/skill_meteor" android:textSize="@dimen/cst_text_m" android:minHeight="48dp" />
+    <Button android:id="@+id/btn_freeze" style="@style/Widget.Game.Button.Secondary" android:layout_width="0dp" android:layout_height="48dp" android:layout_weight="1" android:layout_marginEnd="@dimen/cst_pad_6" android:text="@string/skill_freeze" android:textSize="@dimen/cst_text_m" android:minHeight="48dp" />
+    <Button android:id="@+id/btn_reinforce" style="@style/Widget.Game.Button.Secondary" android:layout_width="0dp" android:layout_height="48dp" android:layout_weight="1" android:text="@string/skill_reinforce" android:textSize="@dimen/cst_text_m" android:minHeight="48dp" />
   </LinearLayout>
-</LinearLayout>
+</FrameLayout>

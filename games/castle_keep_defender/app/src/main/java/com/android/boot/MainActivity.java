@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
   private LinearLayout upgradePanel;
   private LinearLayout skillRow;
   private ImageButton btnPause;
+  private ImageButton btnMute;
   private TextView hudWave;
   private TextView hudScore;
   private TextView hudGold;
@@ -29,11 +30,13 @@ public class MainActivity extends AppCompatActivity {
   private Button btnUpgradeA;
   private Button btnUpgradeB;
   private Button btnUpgradeC;
+  private BgmPlayer bgmPlayer;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+    bgmPlayer = new BgmPlayer();
     bindViews();
     bindButtons();
     gameView.setListener(new GameView.Listener() {
@@ -66,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
       }
     });
     renderState(GameState.MENU);
+    bgmPlayer.start(this);
   }
 
   private void bindViews() {
@@ -76,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
     upgradePanel = findViewById(R.id.upgrade_panel);
     skillRow = findViewById(R.id.skill_row);
     btnPause = findViewById(R.id.btn_pause);
+    btnMute = findViewById(R.id.btn_mute);
     hudWave = findViewById(R.id.hud_wave);
     hudScore = findViewById(R.id.hud_score);
     hudGold = findViewById(R.id.hud_gold);
@@ -86,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
     btnUpgradeA = findViewById(R.id.btn_upgrade_a);
     btnUpgradeB = findViewById(R.id.btn_upgrade_b);
     btnUpgradeC = findViewById(R.id.btn_upgrade_c);
+    updateMuteButton();
   }
 
   private void bindButtons() {
@@ -103,6 +109,12 @@ public class MainActivity extends AppCompatActivity {
     btnUpgradeA.setOnClickListener(v -> gameView.getEngine().chooseUpgrade(0));
     btnUpgradeB.setOnClickListener(v -> gameView.getEngine().chooseUpgrade(1));
     btnUpgradeC.setOnClickListener(v -> gameView.getEngine().chooseUpgrade(2));
+    if (btnMute != null) {
+      btnMute.setOnClickListener(v -> {
+        bgmPlayer.setMuted(!bgmPlayer.isMuted());
+        updateMuteButton();
+      });
+    }
   }
 
   private void renderState(GameState state) {
@@ -123,15 +135,35 @@ public class MainActivity extends AppCompatActivity {
     }
   }
 
+  private void updateMuteButton() {
+    if (btnMute != null) {
+      btnMute.setImageResource(bgmPlayer.isMuted() ? R.drawable.ic_sound_off : R.drawable.ic_sound_on);
+    }
+  }
+
   @Override
   protected void onPause() {
     super.onPause();
     gameView.pauseLoop();
+    if (bgmPlayer != null) {
+      bgmPlayer.pause();
+    }
   }
 
   @Override
   protected void onResume() {
     super.onResume();
     gameView.resumeLoop();
+    if (bgmPlayer != null && !bgmPlayer.isMuted()) {
+      bgmPlayer.resume();
+    }
+  }
+
+  @Override
+  protected void onDestroy() {
+    super.onDestroy();
+    if (bgmPlayer != null) {
+      bgmPlayer.stop();
+    }
   }
 }
