@@ -3,6 +3,7 @@ package com.android.boot.core;
 import com.android.boot.entity.Bomb;
 import com.android.boot.entity.ChaserEnemy;
 import com.android.boot.entity.Enemy;
+import com.android.boot.entity.Entity;
 import com.android.boot.entity.Player;
 import com.android.boot.entity.Pickup;
 import com.android.boot.entity.SpawnerEnemy;
@@ -494,9 +495,17 @@ public class GameEngine {
     bomb.exploded = true;
     chainCounter = Math.max(chainCounter, chainDepth);
     applyExplosionTile(bomb.x, bomb.y, chainDepth);
-    int nx = bomb.x + bomb.direction.dx;
-    int ny = bomb.y + bomb.direction.dy;
-    if (grid.inBounds(nx, ny) && !grid.isBlockingExplosion(nx, ny)) {
+    // Extend the explosion several tiles along bomb facing direction
+    int maxRange = 3;
+    for (int step = 1; step <= maxRange; step++) {
+      int nx = bomb.x + bomb.direction.dx * step;
+      int ny = bomb.y + bomb.direction.dy * step;
+      if (!grid.inBounds(nx, ny)) {
+        break;
+      }
+      if (grid.isBlockingExplosion(nx, ny)) {
+        break;
+      }
       applyExplosionTile(nx, ny, chainDepth);
     }
   }
@@ -551,13 +560,13 @@ public class GameEngine {
         player.maxBombs += 1;
         break;
       case SPEED_PLUS:
-        player.speed = Math.min(2.0f, player.speed + 0.1f);
+        player.speed = Math.min(2.5f, player.speed + 0.15f);
         break;
       case FUSE_MINUS:
-        player.bombFuse = Math.max(0.7f, player.bombFuse - 0.1f);
+        player.bombFuse = Math.max(0.5f, player.bombFuse - 0.2f);
         break;
       case SHIELD:
-        player.shield = 1;
+        player.shield = Math.min(2, player.shield + 1);
         break;
       case REMOTE:
         player.remoteDetonator = true;
