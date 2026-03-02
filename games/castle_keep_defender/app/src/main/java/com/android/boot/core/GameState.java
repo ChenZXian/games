@@ -1,7 +1,8 @@
 package com.android.boot.core;
 
 public enum GameState {
-  MENU,
+  LEVEL_SELECT,
+  DECK_SELECT,
   PLAYING,
   PAUSED,
   GAME_OVER
