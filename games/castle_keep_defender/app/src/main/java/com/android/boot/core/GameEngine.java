@@ -39,7 +39,7 @@ public class GameEngine {
   private final float[] oilT = new float[6];
   private final HudData hud = new HudData();
   private final UpgradeChoice upgradeChoice = new UpgradeChoice();
-  private GameState state = GameState.MENU;
+  private GameState state = GameState.LEVEL_SELECT;
   private boolean upgradeVisible;
   private int activeOil;
   private int wave;
@@ -94,7 +94,7 @@ public class GameEngine {
     upgradeVisible = false;
     clearEntities();
     configureLanes();
-    state = GameState.MENU;
+    state = GameState.LEVEL_SELECT;
     hud.wave = 0;
   }
 
@@ -102,6 +102,10 @@ public class GameEngine {
     resetRun();
     state = GameState.PLAYING;
     nextWave();
+  }
+
+  public void openDeckSelect() {
+    state = GameState.DECK_SELECT;
   }
 
   public void pause() {
@@ -117,7 +121,7 @@ public class GameEngine {
   }
 
   public void goToMenu() {
-    state = GameState.MENU;
+    state = GameState.LEVEL_SELECT;
     upgradeVisible = false;
     clearEntities();
   }
