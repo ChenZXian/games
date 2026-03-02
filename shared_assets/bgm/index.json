@@ -12,5 +12,16 @@
         "overtime_street_fighter"
       ]
     }
+  ],
+  "entries": [
+    {
+      "file": "default_3aad06a6.wav",
+      "tag": "default",
+      "generated": true,
+      "seed": "3aad06a6",
+      "seconds": 16,
+      "sample_rate": 44100,
+      "retrieved_at": "2026-02-06"
+    }
   ]
 }

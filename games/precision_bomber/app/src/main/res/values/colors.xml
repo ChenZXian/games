@@ -28,9 +28,10 @@
   <color name="cst_meter_track">#2A2A3D</color>
   <color name="cst_meter_fill">#20FFB2</color>
   <color name="cst_icon_bg">#0E0E17</color>
-  <color name="cst_tile_floor">#101022</color>
-  <color name="cst_tile_solid">#2A2A3D</color>
-  <color name="cst_tile_soft">#1E1E2F</color>
+  <!-- Board tiles: strong contrast between floor / solid wall / soft block -->
+  <color name="cst_tile_floor">#010310</color>
+  <color name="cst_tile_solid">#111827</color>
+  <color name="cst_tile_soft">#1F2937</color>
   <color name="cst_tile_exit">#20FFB2</color>
   <color name="cst_player">#00F5FF</color>
   <color name="cst_enemy">#FF3D5A</color>

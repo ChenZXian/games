@@ -150,16 +150,15 @@
     android:layout_gravity="bottom"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:paddingLeft="@dimen/cst_pad_16"
-    android:paddingRight="@dimen/cst_pad_16"
     android:paddingBottom="@dimen/cst_pad_16"
     android:paddingTop="@dimen/cst_pad_8">
 
     <LinearLayout
       android:id="@+id/dpad"
-      android:layout_width="0dp"
+      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_weight="1"
+      android:layout_gravity="bottom|left"
+      android:layout_marginLeft="@dimen/cst_pad_16"
       android:gravity="center"
       android:orientation="vertical">
       <Button
@@ -181,7 +180,7 @@
           android:text="L"
           android:textAppearance="@style/TextAppearance.Game.Body" />
         <View
-          android:layout_width="@dimen/cst_pad_12"
+          android:layout_width="@dimen/cst_pad_8"
           android:layout_height="@dimen/cst_control_size" />
         <Button
           android:id="@+id/btn_right"
@@ -200,15 +199,22 @@
         android:textAppearance="@style/TextAppearance.Game.Body" />
     </LinearLayout>
 
+    <View
+      android:layout_width="0dp"
+      android:layout_height="1dp"
+      android:layout_weight="1" />
+
     <LinearLayout
       android:id="@+id/actions"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:layout_gravity="bottom|right"
+      android:layout_marginRight="@dimen/cst_pad_16"
       android:gravity="center"
       android:orientation="vertical">
       <Button
         android:id="@+id/btn_bomb"
-        android:layout_width="140dp"
+        android:layout_width="132dp"
         android:layout_height="@dimen/cst_control_size"
         android:background="@drawable/ui_button_primary"
         android:text="@string/btn_bomb"
@@ -218,7 +224,7 @@
         android:layout_height="@dimen/cst_pad_8" />
       <Button
         android:id="@+id/btn_remote"
-        android:layout_width="140dp"
+        android:layout_width="132dp"
         android:layout_height="@dimen/cst_control_size"
         android:background="@drawable/ui_button_secondary"
         android:text="@string/btn_remote"

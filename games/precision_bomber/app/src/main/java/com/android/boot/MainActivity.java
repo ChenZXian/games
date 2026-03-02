@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -31,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements GameView.GameUiLi
   private TextView hudSpeed;
   private TextView hudShield;
   private Button btnRemote;
+  private BgmPlayer bgmPlayer = new BgmPlayer();
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements GameView.GameUiLi
     Button btnGameOverMenu = findViewById(R.id.btn_game_over_menu);
     Button btnNextStage = findViewById(R.id.btn_next_stage);
     Button btnStageMenu = findViewById(R.id.btn_stage_menu);
-    ImageButton btnPause = findViewById(R.id.btn_pause);
+    android.widget.ImageButton btnPause = findViewById(R.id.btn_pause);
     Button btnBomb = findViewById(R.id.btn_bomb);
 
     btnStart.setOnClickListener(v -> {
@@ -121,6 +121,8 @@ public class MainActivity extends AppCompatActivity implements GameView.GameUiLi
     setupDpad();
 
     updateUiForState(GameState.MENU);
+
+    bgmPlayer.start(this);
   }
 
   private void setupDpad() {
@@ -157,6 +159,7 @@ public class MainActivity extends AppCompatActivity implements GameView.GameUiLi
     super.onPause();
     gameView.pauseGame();
     updateUiForState(gameView.getEngine().getState());
+    bgmPlayer.setMuted(true);
   }
 
   @Override
@@ -165,6 +168,13 @@ public class MainActivity extends AppCompatActivity implements GameView.GameUiLi
     if (gameView.getEngine().getState() == GameState.PAUSED) {
       updateUiForState(GameState.PAUSED);
     }
+    bgmPlayer.setMuted(false);
+  }
+
+  @Override
+  protected void onDestroy() {
+    super.onDestroy();
+    bgmPlayer.stop();
   }
 
   @Override
