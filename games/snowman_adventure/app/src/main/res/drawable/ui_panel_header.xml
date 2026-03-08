@@ -1,0 +1,1 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android"><solid android:color="@color/cst_panel_header_bg"/><corners android:topLeftRadius="@dimen/cst_radius_l" android:topRightRadius="@dimen/cst_radius_l"/></shape>

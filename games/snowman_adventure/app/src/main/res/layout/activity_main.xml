@@ -1,0 +1,217 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cst_bg_main">
+
+    <com.android.boot.ui.GameView
+        android:id="@+id/game_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:id="@+id/hud_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:background="@drawable/ui_panel_header"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/cst_pad_8">
+
+        <TextView
+            android:id="@+id/txt_stage"
+            style="@style/Widget.Game.Badge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Stage 1" />
+
+        <TextView
+            android:id="@+id/txt_combo"
+            style="@style/Widget.Game.Badge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/cst_pad_8"
+            android:text="Combo 0" />
+
+        <ImageButton
+            android:id="@+id/btn_pause"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="@dimen/cst_pad_8"
+            android:background="@drawable/ui_button_icon"
+            android:src="@drawable/ic_pause" />
+
+        <ImageButton
+            android:id="@+id/btn_mute"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="@dimen/cst_pad_8"
+            android:background="@drawable/ui_button_icon"
+            android:src="@drawable/ic_sound_on" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/controls_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:gravity="space_between"
+        android:orientation="horizontal"
+        android:padding="@dimen/cst_pad_12">
+
+        <Button
+            android:id="@+id/btn_left"
+            style="@style/Widget.Game.Button.Secondary"
+            android:layout_width="110dp"
+            android:layout_height="54dp"
+            android:text="LEFT" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_jump"
+                style="@style/Widget.Game.Button.Primary"
+                android:layout_width="110dp"
+                android:layout_height="54dp"
+                android:text="JUMP" />
+
+            <Button
+                android:id="@+id/btn_spray"
+                style="@style/Widget.Game.Button.Primary"
+                android:layout_width="110dp"
+                android:layout_height="54dp"
+                android:layout_marginStart="@dimen/cst_pad_8"
+                android:text="SPRAY" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/menu_overlay"
+        style="@style/Widget.Game.Panel"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/TextAppearance.Game.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_menu" />
+
+        <Button
+            android:id="@+id/btn_start"
+            style="@style/Widget.Game.Button.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/cst_pad_12"
+            android:text="@string/btn_start" />
+
+        <Button
+            android:id="@+id/btn_how_to_play"
+            style="@style/Widget.Game.Button.Secondary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/cst_pad_8"
+            android:text="@string/btn_how_to_play" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/level_overlay"
+        style="@style/Widget.Game.Panel"
+        android:layout_width="420dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            style="@style/TextAppearance.Game.Subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_levels" />
+
+        <GridLayout
+            android:id="@+id/level_grid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="5"
+            android:paddingTop="@dimen/cst_pad_8" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/pause_overlay"
+        style="@style/Widget.Game.Panel"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            style="@style/TextAppearance.Game.Subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_pause" />
+
+        <Button
+            android:id="@+id/btn_resume"
+            style="@style/Widget.Game.Button.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/cst_pad_12"
+            android:text="@string/btn_resume" />
+
+        <Button
+            android:id="@+id/btn_restart"
+            style="@style/Widget.Game.Button.Secondary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/cst_pad_8"
+            android:text="@string/btn_restart" />
+
+        <Button
+            android:id="@+id/btn_menu"
+            style="@style/Widget.Game.Button.Secondary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/cst_pad_8"
+            android:text="@string/btn_menu" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/result_overlay"
+        style="@style/Widget.Game.Panel"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            style="@style/TextAppearance.Game.Subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_result" />
+
+        <TextView
+            android:id="@+id/txt_stars"
+            style="@style/TextAppearance.Game.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/cst_pad_8"
+            android:text="Stars 0" />
+
+        <Button
+            android:id="@+id/btn_next"
+            style="@style/Widget.Game.Button.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/cst_pad_12"
+            android:text="Next" />
+    </LinearLayout>
+
+</FrameLayout>
