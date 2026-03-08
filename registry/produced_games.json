@@ -219,6 +219,20 @@
       "core_loop": "build and upgrade five tower classes along polyline paths, command a movable hero, cast mana skills, and survive scripted multi-level enemy waves ending in phase bosses",
       "created_at": "2026-03-02",
       "ui_skin": "skin_cartoon_light"
+    },
+    {
+      "id": "garden_siege",
+      "name": "Garden Siege",
+      "tags": [
+        "lane_defense",
+        "grid",
+        "plants",
+        "waves",
+        "variant_b_engine_render_input_ui_model_audio"
+      ],
+      "core_loop": "collect sun place plant cards on 5x9 lanes block and damage incoming enemies before they reach the base",
+      "created_at": "2026-03-04",
+      "ui_skin": "skin_neon_future"
     }
   ]
 }

@@ -1,0 +1,32 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cst_bg_main">
+
+    <com.android.boot.ui.GameView
+        android:id="@+id/gameView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:id="@+id/menuPanel"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="@drawable/ui_dialog">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:textAppearance="@style/TextAppearance.Game.Title" />
+
+        <Button android:id="@+id/btnPlay" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/btn_play" style="@style/Widget.Game.Button.Primary"/>
+        <Button android:id="@+id/btnHow" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/btn_how_to_play" style="@style/Widget.Game.Button.Secondary"/>
+        <Button android:id="@+id/btnSettings" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/btn_settings" style="@style/Widget.Game.Button.Secondary"/>
+    </LinearLayout>
+
+</FrameLayout>
