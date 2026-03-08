@@ -233,6 +233,20 @@
       "core_loop": "collect sun place plant cards on 5x9 lanes block and damage incoming enemies before they reach the base",
       "created_at": "2026-03-04",
       "ui_skin": "skin_neon_future"
+    },
+    {
+      "id": "siege_flock_tactics",
+      "name": "Siege Flock Tactics",
+      "tags": [
+        "strategy",
+        "slingshot",
+        "siege",
+        "physics_puzzle",
+        "variant_b_engine_render_input_ui_model_audio"
+      ],
+      "core_loop": "drag slingshot to launch tactical bird units tap to trigger in-flight skills break mixed-material fortresses exploit stage devices and chain collapses eliminate marked cores and earn three-star clears",
+      "created_at": "2026-03-08",
+      "ui_skin": "skin_dark_arcade"
     }
   ]
 }

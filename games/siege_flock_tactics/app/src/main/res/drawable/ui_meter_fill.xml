@@ -1,0 +1,1 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android"><gradient android:startColor="@color/cst_accent" android:endColor="@color/cst_meter_fill" android:angle="0"/><corners android:radius="@dimen/cst_radius_xl"/></shape>
