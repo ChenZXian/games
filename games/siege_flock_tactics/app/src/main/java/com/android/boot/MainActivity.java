@@ -1,0 +1,41 @@
+package com.android.boot;
+
+import android.os.Bundle;
+import android.widget.Button;
+import androidx.appcompat.app.AppCompatActivity;
+import com.android.boot.ui.GameView;
+
+public class MainActivity extends AppCompatActivity {
+    private GameView gameView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        gameView = findViewById(R.id.game_view);
+        Button startButton = findViewById(R.id.btn_start);
+        Button resumeButton = findViewById(R.id.btn_resume);
+        Button restartButton = findViewById(R.id.btn_restart);
+        Button menuButton = findViewById(R.id.btn_menu);
+        Button muteButton = findViewById(R.id.btn_mute);
+        Button helpButton = findViewById(R.id.btn_help);
+        startButton.setOnClickListener(v -> gameView.startCampaign());
+        resumeButton.setOnClickListener(v -> gameView.resumeGame());
+        restartButton.setOnClickListener(v -> gameView.restartLevel());
+        menuButton.setOnClickListener(v -> gameView.backToMenu());
+        muteButton.setOnClickListener(v -> gameView.toggleMute());
+        helpButton.setOnClickListener(v -> gameView.toggleHelp());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        gameView.onHostResume();
+    }
+
+    @Override
+    protected void onPause() {
+        gameView.onHostPause();
+        super.onPause();
+    }
+}
