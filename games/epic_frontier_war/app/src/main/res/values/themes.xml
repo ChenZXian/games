@@ -1,0 +1,9 @@
+<resources>
+    <style name="Theme.EpicFrontierWar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowBackground">@color/cst_bg</item>
+        <item name="android:colorBackground">@color/cst_bg</item>
+        <item name="colorPrimary">@color/cst_accent</item>
+        <item name="colorSecondary">@color/cst_accent_alt</item>
+        <item name="android:textColor">@color/cst_text_primary</item>
+    </style>
+</resources>

@@ -1,0 +1,2 @@
+rootProject.name = "Epic Frontier War"
+include ":app"
