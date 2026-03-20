@@ -1,0 +1,27 @@
+<resources>
+    <color name="cst_bg">#081119</color>
+    <color name="cst_bg_alt">#102133</color>
+    <color name="cst_panel">#132536</color>
+    <color name="cst_panel_alt">#1A3046</color>
+    <color name="cst_outline">#365777</color>
+    <color name="cst_accent">#FF9F1C</color>
+    <color name="cst_accent_alt">#2EC4B6</color>
+    <color name="cst_text_primary">#F5F7FA</color>
+    <color name="cst_text_secondary">#B8C6D8</color>
+    <color name="cst_warning">#FF4D6D</color>
+    <color name="cst_danger">#A8273F</color>
+    <color name="cst_success">#8BE28B</color>
+    <color name="cst_shadow">#7A000000</color>
+    <color name="cst_board_lane">#143149</color>
+    <color name="cst_board_tile">#1B3D59</color>
+    <color name="cst_board_tile_alt">#204766</color>
+    <color name="cst_enemy_light">#B7F171</color>
+    <color name="cst_enemy_medium">#FFD166</color>
+    <color name="cst_enemy_heavy">#FF6B6B</color>
+    <color name="cst_ball_normal">#F8F4E3</color>
+    <color name="cst_ball_bomb">#FF8C42</color>
+    <color name="cst_ball_giant">#6C9EFF</color>
+    <color name="cst_meter_bg">#0F1C29</color>
+    <color name="cst_glow">#66FF9F1C</color>
+    <color name="cst_icon_bg">#163246</color>
+</resources>

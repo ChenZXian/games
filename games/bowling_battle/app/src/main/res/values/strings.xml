@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">BowlingBattle</string>
+    <string name="btn_start">Start</string>
+    <string name="btn_restart">Restart</string>
+    <string name="btn_resume">Resume</string>
+    <string name="btn_menu">Menu</string>
+    <string name="btn_mute">Mute</string>
+    <string name="btn_unmute">Unmute</string>
+    <string name="btn_how_to_play">How To Play</string>
+    <string name="label_level">Level</string>
+    <string name="label_locked">Locked</string>
+    <string name="label_score">Score</string>
+    <string name="label_combo">Combo</string>
+    <string name="label_wave">Wave</string>
+    <string name="label_life">Life</string>
+    <string name="label_stars">Stars</string>
+    <string name="label_tap_row">Tap a lane to drop the current ball.</string>
+    <string name="label_state_menu">Menu</string>
+    <string name="label_state_pause">Paused</string>
+    <string name="label_state_over">Game Over</string>
+    <string name="label_state_clear">Level Clear</string>
+    <string name="label_next">Next</string>
+    <string name="label_how_to_play_body">Watch the 5x9 board, wait for the conveyor, tap a row, bounce shots, and survive every wave.</string>
+    <string name="label_ball_normal">Normal</string>
+    <string name="label_ball_bomb">Bomb</string>
+    <string name="label_ball_giant">Giant</string>
+</resources>
