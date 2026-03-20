@@ -1,0 +1,26 @@
+<resources>
+    <color name="cst_bg">#081016</color>
+    <color name="cst_bg_alt">#101B25</color>
+    <color name="cst_panel">#16222F</color>
+    <color name="cst_panel_alt">#1C2E40</color>
+    <color name="cst_outline">#2D465E</color>
+    <color name="cst_accent">#C8912E</color>
+    <color name="cst_accent_alt">#4D8BFF</color>
+    <color name="cst_text_primary">#F4F1E8</color>
+    <color name="cst_text_secondary">#B8C4D6</color>
+    <color name="cst_warning">#FF9B42</color>
+    <color name="cst_danger">#AB2B2B</color>
+    <color name="cst_success">#7FD17B</color>
+    <color name="cst_shadow">#7A000000</color>
+    <color name="cst_meter_bg">#0C151E</color>
+    <color name="cst_icon_bg">#142231</color>
+    <color name="cst_flame">#FF6E38</color>
+    <color name="cst_storm">#56A6FF</color>
+    <color name="cst_vital">#6AE0A5</color>
+    <color name="cst_team_ally_primary">#647CA0</color>
+    <color name="cst_team_ally_trim">#D6B35D</color>
+    <color name="cst_team_ally_glow">#39506D</color>
+    <color name="cst_team_enemy_primary">#6B3D54</color>
+    <color name="cst_team_enemy_trim">#F06767</color>
+    <color name="cst_team_enemy_glow">#331C29</color>
+</resources>

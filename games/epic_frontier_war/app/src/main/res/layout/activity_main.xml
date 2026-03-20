@@ -1,0 +1,710 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cst_bg">
+
+    <com.android.boot.ui.GameView
+        android:id="@+id/game_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:id="@+id/playing_hud"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ui_panel"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/cst_pad_m">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Castle"
+                    android:textAppearance="@style/TextAppearance.Game.HudLabel" />
+
+                <TextView
+                    android:id="@+id/player_hp_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1900 / 1900"
+                    android:textAppearance="@style/TextAppearance.Game.HudValue" />
+
+                <ProgressBar
+                    android:id="@+id/player_hp_bar"
+                    style="@style/Widget.Game.Progress"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/cst_meter_height"
+                    android:max="100"
+                    android:progress="100"
+                    android:progressDrawable="@drawable/ui_meter_fill" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/cst_pad_m"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fortress"
+                    android:textAppearance="@style/TextAppearance.Game.HudLabel" />
+
+                <TextView
+                    android:id="@+id/enemy_hp_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2100 / 2100"
+                    android:textAppearance="@style/TextAppearance.Game.HudValue" />
+
+                <ProgressBar
+                    android:id="@+id/enemy_hp_bar"
+                    style="@style/Widget.Game.Progress"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/cst_meter_height"
+                    android:max="100"
+                    android:progress="100"
+                    android:progressDrawable="@drawable/ui_meter_fill" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_pause"
+                style="@style/Widget.Game.Button.IconText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/cst_pad_m"
+                android:drawableStart="@drawable/ic_pause"
+                android:text="Pause" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="bottom"
+            android:orientation="vertical"
+            android:padding="@dimen/cst_pad_m">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ui_toast"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/cst_pad_s">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Energy"
+                    android:textAppearance="@style/TextAppearance.Game.HudLabel" />
+
+                <TextView
+                    android:id="@+id/energy_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/cst_pad_s"
+                    android:text="70 / 140"
+                    android:textAppearance="@style/TextAppearance.Game.HudValue" />
+
+                <ProgressBar
+                    android:id="@+id/energy_bar"
+                    style="@style/Widget.Game.Progress"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/cst_meter_height"
+                    android:layout_marginStart="@dimen/cst_pad_s"
+                    android:layout_weight="1"
+                    android:max="100"
+                    android:progress="50"
+                    android:progressDrawable="@drawable/ui_meter_fill" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/cst_pad_m"
+                    android:text="Favor"
+                    android:textAppearance="@style/TextAppearance.Game.HudLabel" />
+
+                <TextView
+                    android:id="@+id/favor_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/cst_pad_s"
+                    android:text="Flame Favor"
+                    android:textAppearance="@style/TextAppearance.Game.HudValue" />
+
+                <TextView
+                    android:id="@+id/favor_meter_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/cst_pad_s"
+                    android:background="@drawable/ui_badge"
+                    android:paddingStart="@dimen/cst_pad_s"
+                    android:paddingTop="@dimen/cst_pad_xs"
+                    android:paddingEnd="@dimen/cst_pad_s"
+                    android:paddingBottom="@dimen/cst_pad_xs"
+                    android:text="32%"
+                    android:textAppearance="@style/TextAppearance.Game.Caption" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_s"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/ui_panel"
+                    android:orientation="vertical"
+                    android:padding="@dimen/cst_pad_s">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Summon Legion"
+                        android:textAppearance="@style/TextAppearance.Game.HudValue" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/cst_pad_s"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btn_summon_militia"
+                            style="@style/Widget.Game.Button.Secondary"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/cst_pad_s"
+                            android:layout_weight="1"
+                            android:text="Militia 16" />
+
+                        <Button
+                            android:id="@+id/btn_summon_archer"
+                            style="@style/Widget.Game.Button.Secondary"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/cst_pad_s"
+                            android:layout_weight="1"
+                            android:text="Archer 24" />
+
+                        <Button
+                            android:id="@+id/btn_summon_knight"
+                            style="@style/Widget.Game.Button.Secondary"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/cst_pad_s"
+                            android:layout_weight="1"
+                            android:text="Knight 42" />
+
+                        <Button
+                            android:id="@+id/btn_summon_priest"
+                            style="@style/Widget.Game.Button.Secondary"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/cst_pad_s"
+                            android:layout_weight="1"
+                            android:text="Priest 38" />
+
+                        <Button
+                            android:id="@+id/btn_summon_titan"
+                            style="@style/Widget.Game.Button.Primary"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Titan 84" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/cst_pad_s"
+                    android:layout_weight="1"
+                    android:background="@drawable/ui_panel"
+                    android:orientation="vertical"
+                    android:padding="@dimen/cst_pad_s">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rune Favor"
+                        android:textAppearance="@style/TextAppearance.Game.HudValue" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/cst_pad_s"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btn_favor_flame"
+                            style="@style/Widget.Game.Button.Primary"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/cst_pad_s"
+                            android:layout_weight="1"
+                            android:text="Flame" />
+
+                        <Button
+                            android:id="@+id/btn_favor_storm"
+                            style="@style/Widget.Game.Button.Secondary"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/cst_pad_s"
+                            android:layout_weight="1"
+                            android:text="Storm" />
+
+                        <Button
+                            android:id="@+id/btn_favor_vital"
+                            style="@style/Widget.Game.Button.Secondary"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Vital" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/cst_pad_s"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Phase"
+                            android:textAppearance="@style/TextAppearance.Game.HudLabel" />
+
+                        <TextView
+                            android:id="@+id/phase_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/cst_pad_s"
+                            android:background="@drawable/ui_chip"
+                            android:paddingStart="@dimen/cst_pad_s"
+                            android:paddingTop="@dimen/cst_pad_xs"
+                            android:paddingEnd="@dimen/cst_pad_s"
+                            android:paddingBottom="@dimen/cst_pad_xs"
+                            android:text="Swarm Vanguard"
+                            android:textAppearance="@style/TextAppearance.Game.Caption" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/cst_pad_m"
+                            android:text="Status"
+                            android:textAppearance="@style/TextAppearance.Game.HudLabel" />
+
+                        <TextView
+                            android:id="@+id/status_value"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/cst_pad_s"
+                            android:layout_weight="1"
+                            android:text="Prepare the vanguard"
+                            android:textAppearance="@style/TextAppearance.Game.Caption" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_s"
+                android:background="@drawable/ui_panel"
+                android:orientation="horizontal"
+                android:padding="@dimen/cst_pad_s">
+
+                <Button
+                    android:id="@+id/btn_spell_fire"
+                    style="@style/Widget.Game.Button.Primary"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/cst_pad_s"
+                    android:layout_weight="1"
+                    android:text="Fire Rain" />
+
+                <TextView
+                    android:id="@+id/fire_cooldown_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="Ready"
+                    android:textAppearance="@style/TextAppearance.Game.Caption" />
+
+                <Button
+                    android:id="@+id/btn_spell_chain"
+                    style="@style/Widget.Game.Button.Secondary"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/cst_pad_m"
+                    android:layout_marginEnd="@dimen/cst_pad_s"
+                    android:layout_weight="1"
+                    android:text="Chain Bolt" />
+
+                <TextView
+                    android:id="@+id/chain_cooldown_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="Ready"
+                    android:textAppearance="@style/TextAppearance.Game.Caption" />
+
+                <Button
+                    android:id="@+id/btn_spell_blessing"
+                    style="@style/Widget.Game.Button.Secondary"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/cst_pad_m"
+                    android:layout_marginEnd="@dimen/cst_pad_s"
+                    android:layout_weight="1"
+                    android:text="Blessing Wave" />
+
+                <TextView
+                    android:id="@+id/blessing_cooldown_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="Ready"
+                    android:textAppearance="@style/TextAppearance.Game.Caption" />
+
+                <Button
+                    android:id="@+id/btn_hero_ability"
+                    style="@style/Widget.Game.Button.Danger"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/cst_pad_m"
+                    android:layout_marginEnd="@dimen/cst_pad_s"
+                    android:layout_weight="1"
+                    android:text="War Champion" />
+
+                <TextView
+                    android:id="@+id/hero_cooldown_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="Ready"
+                    android:textAppearance="@style/TextAppearance.Game.Caption" />
+
+                <ImageButton
+                    android:id="@+id/btn_pause_toggle"
+                    style="@style/Widget.Game.IconButton"
+                    android:layout_width="@dimen/cst_icon_button"
+                    android:layout_height="@dimen/cst_icon_button"
+                    android:contentDescription="Pause"
+                    android:padding="@dimen/cst_pad_s"
+                    android:src="@drawable/ic_pause" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/menu_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:foregroundGravity="center">
+
+        <LinearLayout
+            android:layout_width="@dimen/cst_overlay_width"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/ui_dialog"
+            android:orientation="vertical"
+            android:padding="@dimen/cst_pad_l">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ui_panel_header"
+                android:gravity="center"
+                android:padding="@dimen/cst_pad_m"
+                android:text="Epic Frontier War"
+                android:textAppearance="@style/TextAppearance.Game.Title" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_l"
+                android:text="Command the War Champion and shift rune blessings to break the siege."
+                android:textAppearance="@style/TextAppearance.Game.Body" />
+
+            <Button
+                android:id="@+id/btn_start"
+                style="@style/Widget.Game.Button.Primary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_l"
+                android:text="@string/btn_start" />
+
+            <Button
+                android:id="@+id/btn_how_to_play"
+                style="@style/Widget.Game.Button.Secondary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_s"
+                android:text="@string/btn_how_to_play" />
+
+            <ImageButton
+                android:id="@+id/btn_menu_mute"
+                style="@style/Widget.Game.IconButton"
+                android:layout_width="@dimen/cst_icon_button"
+                android:layout_height="@dimen/cst_icon_button"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/cst_pad_s"
+                android:contentDescription="Mute"
+                android:padding="@dimen/cst_pad_s"
+                android:src="@drawable/ic_sound_on" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/pause_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="@dimen/cst_overlay_width"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/ui_dialog"
+            android:orientation="vertical"
+            android:padding="@dimen/cst_pad_l">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ui_panel_header"
+                android:gravity="center"
+                android:padding="@dimen/cst_pad_m"
+                android:text="Battle Paused"
+                android:textAppearance="@style/TextAppearance.Game.Subtitle" />
+
+            <Button
+                android:id="@+id/btn_resume"
+                style="@style/Widget.Game.Button.Primary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_l"
+                android:text="@string/btn_resume" />
+
+            <Button
+                android:id="@+id/btn_pause_restart"
+                style="@style/Widget.Game.Button.Secondary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_s"
+                android:text="@string/btn_restart" />
+
+            <Button
+                android:id="@+id/btn_pause_menu"
+                style="@style/Widget.Game.Button.Secondary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_s"
+                android:text="@string/btn_menu" />
+
+            <ImageButton
+                android:id="@+id/btn_pause_mute"
+                style="@style/Widget.Game.IconButton"
+                android:layout_width="@dimen/cst_icon_button"
+                android:layout_height="@dimen/cst_icon_button"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/cst_pad_s"
+                android:contentDescription="Mute"
+                android:padding="@dimen/cst_pad_s"
+                android:src="@drawable/ic_sound_on" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/game_over_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="@dimen/cst_overlay_width"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/ui_dialog"
+            android:orientation="vertical"
+            android:padding="@dimen/cst_pad_l">
+
+            <TextView
+                android:id="@+id/game_over_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ui_panel_header"
+                android:gravity="center"
+                android:padding="@dimen/cst_pad_m"
+                android:text="Victory"
+                android:textAppearance="@style/TextAppearance.Game.Subtitle" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_l"
+                android:background="@drawable/ui_card"
+                android:orientation="vertical"
+                android:padding="@dimen/cst_pad_m">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Units Summoned"
+                    android:textAppearance="@style/TextAppearance.Game.HudLabel" />
+
+                <TextView
+                    android:id="@+id/summary_units"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textAppearance="@style/TextAppearance.Game.HudValue" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/cst_pad_s"
+                    android:layout_marginBottom="@dimen/cst_pad_s"
+                    android:background="@drawable/ui_divider" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enemies Defeated"
+                    android:textAppearance="@style/TextAppearance.Game.HudLabel" />
+
+                <TextView
+                    android:id="@+id/summary_kills"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textAppearance="@style/TextAppearance.Game.HudValue" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/cst_pad_s"
+                    android:layout_marginBottom="@dimen/cst_pad_s"
+                    android:background="@drawable/ui_divider" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Spells Cast"
+                    android:textAppearance="@style/TextAppearance.Game.HudLabel" />
+
+                <TextView
+                    android:id="@+id/summary_spells"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textAppearance="@style/TextAppearance.Game.HudValue" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/cst_pad_s"
+                    android:layout_marginBottom="@dimen/cst_pad_s"
+                    android:background="@drawable/ui_divider" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fortress Damage"
+                    android:textAppearance="@style/TextAppearance.Game.HudLabel" />
+
+                <TextView
+                    android:id="@+id/summary_damage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textAppearance="@style/TextAppearance.Game.HudValue" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_over_restart"
+                style="@style/Widget.Game.Button.Primary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_l"
+                android:text="@string/btn_restart" />
+
+            <Button
+                android:id="@+id/btn_over_menu"
+                style="@style/Widget.Game.Button.Secondary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_s"
+                android:text="@string/btn_menu" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/how_to_play_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="@dimen/cst_overlay_width"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/ui_dialog"
+            android:orientation="vertical"
+            android:padding="@dimen/cst_pad_l">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ui_panel_header"
+                android:gravity="center"
+                android:padding="@dimen/cst_pad_m"
+                android:text="How To Play"
+                android:textAppearance="@style/TextAppearance.Game.Subtitle" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_l"
+                android:text="Summon Militia, Archers, Knights, Priests, and Titans with energy. Shift Flame, Storm, and Vital Favor to empower fresh reinforcements, the War Champion, and every spell. Time Fire Rain for clusters, Chain Bolt for ranged pressure, Blessing Wave for sustain, and the hero surge for phase swings. Victory comes when the enemy fortress falls. Defeat comes if your castle breaks."
+                android:textAppearance="@style/TextAppearance.Game.Body" />
+
+            <Button
+                android:id="@+id/btn_help_start"
+                style="@style/Widget.Game.Button.Primary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_l"
+                android:text="@string/btn_start" />
+
+            <Button
+                android:id="@+id/btn_help_close"
+                style="@style/Widget.Game.Button.Secondary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_s"
+                android:text="Close" />
+        </LinearLayout>
+    </FrameLayout>
+</FrameLayout>
