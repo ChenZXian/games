@@ -1,0 +1,59 @@
+plugins {
+  id "com.android.application"
+}
+
+def keystorePath = System.getenv("MAGNET_KEYSTORE_PATH") ?: project.findProperty("MAGNET_KEYSTORE_PATH")
+def keystorePassword = System.getenv("MAGNET_KEYSTORE_PASSWORD") ?: project.findProperty("MAGNET_KEYSTORE_PASSWORD")
+def keyAliasValue = System.getenv("MAGNET_KEY_ALIAS") ?: project.findProperty("MAGNET_KEY_ALIAS")
+def keyPasswordValue = System.getenv("MAGNET_KEY_PASSWORD") ?: project.findProperty("MAGNET_KEY_PASSWORD")
+
+android {
+  namespace "com.android.boot"
+  compileSdk 34
+
+  defaultConfig {
+    applicationId "com.android.boot"
+    minSdk 24
+    targetSdk 34
+    versionCode ((project.findProperty("MAGNET_VERSION_CODE") ?: "1") as String).toInteger()
+    versionName (project.findProperty("MAGNET_VERSION_NAME") ?: "1.0") as String
+  }
+
+  signingConfigs {
+    release {
+      if (keystorePath) {
+        storeFile file(keystorePath)
+        storePassword keystorePassword
+        keyAlias keyAliasValue
+        keyPassword keyPasswordValue
+      }
+    }
+  }
+
+  buildTypes {
+    debug {
+      debuggable true
+      minifyEnabled false
+      shrinkResources false
+    }
+    release {
+      minifyEnabled true
+      shrinkResources true
+      proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+      if (keystorePath) {
+        signingConfig signingConfigs.release
+      }
+    }
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_17
+    targetCompatibility JavaVersion.VERSION_17
+  }
+}
+
+dependencies {
+  implementation "androidx.appcompat:appcompat:1.6.1"
+  implementation "androidx.core:core:1.12.0"
+  implementation "com.google.android.material:material:1.11.0"
+}

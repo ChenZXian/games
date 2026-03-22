@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="@dimen/cst_hud_icon_size" android:height="@dimen/cst_hud_icon_size" android:viewportWidth="24" android:viewportHeight="24">
+  <path android:fillColor="@color/cst_text_primary" android:pathData="M12,5 A7,7 0 1,0 19,12 H16.5 A4.5,4.5 0 1,1 12,7.5 V11 L7,6 L12,1 V5 Z" />
+</vector>
