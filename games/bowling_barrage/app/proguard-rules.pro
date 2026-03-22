@@ -1,0 +1,5 @@
+-keep class com.android.boot.MainActivity { *; }
+-keep class com.android.boot.ui.GameView { *; }
+-keepclassmembers class com.android.boot.engine.GameEngine$Enemy { *; }
+-keepclassmembers class com.android.boot.engine.GameEngine$Ball { *; }
+-keepclassmembers class com.android.boot.engine.GameEngine$Fx { *; }
