@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Bowling Barrage</string>
+    <string name="btn_start">Start</string>
+    <string name="btn_restart">Restart</string>
+    <string name="btn_resume">Resume</string>
+    <string name="btn_menu">Menu</string>
+    <string name="btn_mute">Mute</string>
+    <string name="btn_how_to_play">How To Play</string>
+    <string name="btn_next_level">Next Level</string>
+    <string name="btn_close">Close</string>
+    <string name="hud_score">Score</string>
+    <string name="hud_integrity">Base</string>
+    <string name="hud_wave">Wave</string>
+    <string name="hud_queue">Queue</string>
+    <string name="hud_level">Level</string>
+    <string name="menu_tagline">Conveyor-fed bowling defense with ricochet chaos.</string>
+    <string name="menu_body">Scout rollers, bomb balls, and giant crushers hold the left gate against escalating five-lane waves.</string>
+    <string name="help_body">Tap the glowing conveyor ball to arm it. Tap one of five lanes to launch. Normal balls ricochet diagonally after a hit and bounce off the top and bottom walls. Bomb balls burst in a 3 by 3 zone. Giant balls crush a full row segment. Stop scouts, bruisers, and tanks before they reach the left boundary.</string>
+    <string name="label_how_to_play">How To Play</string>
+    <string name="label_paused">Paused</string>
+    <string name="label_game_over">Game Over</string>
+    <string name="label_level_clear">Level Clear</string>
+    <string name="label_select_level">Select Level</string>
+    <string name="label_ready">Ready Ball</string>
+    <string name="label_tap_to_arm">Tap conveyor to arm</string>
+    <string name="label_choose_lane">Tap a lane to launch</string>
+    <string name="label_loading">Loading next ball</string>
+</resources>

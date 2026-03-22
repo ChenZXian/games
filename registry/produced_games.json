@@ -277,6 +277,21 @@
       "core_loop": "Regenerate energy, summon fantasy units into a side-view warfront, switch Rune Favor blessings to reshape hero and spell behavior, time battlefield spells, and destroy the enemy fortress.",
       "created_at": "2026-03-20",
       "ui_skin": "skin_dark_arcade"
+    },
+    {
+      "id": "bowling_barrage",
+      "name": "Bowling Barrage",
+      "tags": [
+        "bowling",
+        "lane_defense",
+        "ricochet",
+        "grid",
+        "arcade",
+        "variant_b_engine_render_input_ui_model_audio"
+      ],
+      "core_loop": "Select conveyor-fed bowling balls, launch into one of five lanes, ricochet through advancing enemies, survive escalating waves.",
+      "created_at": "2026-03-22",
+      "ui_skin": "skin_cartoon_light"
     }
   ]
 }
