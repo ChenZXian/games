@@ -292,6 +292,23 @@
       "core_loop": "Select conveyor-fed bowling balls, launch into one of five lanes, ricochet through advancing enemies, survive escalating waves.",
       "created_at": "2026-03-22",
       "ui_skin": "skin_cartoon_light"
+    },
+    {
+      "id": "epic_campaign_war",
+      "name": "Epic Campaign War",
+      "tags": [
+        "lane_push",
+        "strategy",
+        "fantasy_war",
+        "single_hero",
+        "chapter_map",
+        "royal_oath",
+        "android_java",
+        "variant_a_core_ui_entity_fx_audio"
+      ],
+      "core_loop": "Advance through a mandatory chapter map, enter side-view siege battles, regenerate energy to summon fantasy units, switch Royal Oaths to reshape hero and spell behavior, and destroy enemy strongholds to unlock the next chapter.",
+      "created_at": "2026-03-22",
+      "ui_skin": "skin_dark_arcade"
     }
   ]
 }

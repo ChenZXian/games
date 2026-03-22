@@ -1,0 +1,10 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/cst_panel_bg" />
+            <corners android:radius="@dimen/cst_radius_l" />
+            <stroke android:width="@dimen/cst_stroke_s" android:color="@color/cst_panel_stroke" />
+            <padding android:left="@dimen/cst_pad_16" android:top="@dimen/cst_pad_16" android:right="@dimen/cst_pad_16" android:bottom="@dimen/cst_pad_16" />
+        </shape>
+    </item>
+</layer-list>
