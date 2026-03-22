@@ -1,0 +1,2 @@
+rootProject.name = 'EpicCampaignWar'
+include ':app'
