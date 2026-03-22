@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="@dimen/cst_hud_icon_size" android:height="@dimen/cst_hud_icon_size" android:viewportWidth="24" android:viewportHeight="24">
+  <path android:fillColor="@color/cst_text_primary" android:pathData="M12,2 A10,10 0 1,0 12,22 A10,10 0 1,0 12,2 Z M11,16 H13 V18 H11 Z M9.8,8.4 C10.1,6.9 11.4,6 12.9,6 C14.8,6 16,7.2 16,8.8 C16,10 15.4,10.8 14.2,11.6 C13.1,12.3 12.8,12.8 12.8,14 H11 C11,12.2 11.6,11.4 13,10.4 C13.8,9.9 14.1,9.4 14.1,8.8 C14.1,7.9 13.5,7.4 12.7,7.4 C11.8,7.4 11.1,8 10.9,9 Z" />
+</vector>

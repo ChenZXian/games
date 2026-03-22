@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+  <item>
+    <shape android:shape="rectangle">
+      <gradient android:angle="270" android:endColor="@color/cst_bg_alt" android:startColor="@color/cst_panel_bg" />
+      <stroke android:width="@dimen/cst_stroke_m" android:color="@color/cst_accent" />
+      <corners android:radius="@dimen/cst_radius_xl" />
+    </shape>
+  </item>
+  <item android:left="@dimen/cst_dialog_inset" android:top="@dimen/cst_dialog_inset" android:right="@dimen/cst_dialog_inset" android:bottom="@dimen/cst_dialog_inset">
+    <shape android:shape="rectangle">
+      <stroke android:width="@dimen/cst_stroke_hair" android:color="@color/cst_panel_stroke" />
+      <corners android:radius="@dimen/cst_radius_l" />
+    </shape>
+  </item>
+</layer-list>

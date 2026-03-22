@@ -261,6 +261,21 @@
       "core_loop": "move and jump across platform stages spray enemies through multi-step snow buildup convert to snowballs kick at close range to trigger chain clears unlock portal and earn three-star clear",
       "created_at": "2026-03-08",
       "ui_skin": "skin_cartoon_light"
+    },
+    {
+      "id": "magnet_scrapper",
+      "name": "Magnet Scrapper",
+      "tags": [
+        "arcade",
+        "survival",
+        "magnet",
+        "touch",
+        "neon",
+        "variant_a_core_ui_entity_fx_audio"
+      ],
+      "core_loop": "Drag a salvage drone around a single-screen arena, attract scrap in pull mode, convert collected scrap into push-burst attacks, survive escalating enemy waves.",
+      "created_at": "2026-03-20",
+      "ui_skin": "skin_neon_future"
     }
   ]
 }
