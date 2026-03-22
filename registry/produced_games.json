@@ -261,6 +261,20 @@
       "core_loop": "move and jump across platform stages spray enemies through multi-step snow buildup convert to snowballs kick at close range to trigger chain clears unlock portal and earn three-star clear",
       "created_at": "2026-03-08",
       "ui_skin": "skin_cartoon_light"
+    },
+    {
+      "id": "bowling_battle",
+      "name": "BowlingBattle",
+      "tags": [
+        "strategy",
+        "grid",
+        "bowling",
+        "waves",
+        "variant_b_engine_render_input_ui_model_audio"
+      ],
+      "core_loop": "observe 5x9 board wait for conveyor choose row drop bowling ball trigger bounce or blast clears survive left-pushing waves and clear the level",
+      "created_at": "2026-03-22",
+      "ui_skin": "skin_dark_arcade"
     }
   ]
 }
