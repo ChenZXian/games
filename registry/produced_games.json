@@ -263,17 +263,19 @@
       "ui_skin": "skin_cartoon_light"
     },
     {
-      "id": "bowling_battle",
-      "name": "BowlingBattle",
+      "id": "epic_frontier_war",
+      "name": "Epic Frontier War",
       "tags": [
+        "lane_push",
         "strategy",
-        "grid",
-        "bowling",
-        "waves",
-        "variant_b_engine_render_input_ui_model_audio"
+        "fantasy_war",
+        "hero_support",
+        "rune_favor",
+        "android_java",
+        "variant_a_core_ui_entity_fx_audio"
       ],
-      "core_loop": "observe 5x9 board wait for conveyor choose row drop bowling ball trigger bounce or blast clears survive left-pushing waves and clear the level",
-      "created_at": "2026-03-22",
+      "core_loop": "Regenerate energy, summon fantasy units into a side-view warfront, switch Rune Favor blessings to reshape hero and spell behavior, time battlefield spells, and destroy the enemy fortress.",
+      "created_at": "2026-03-20",
       "ui_skin": "skin_dark_arcade"
     }
   ]
