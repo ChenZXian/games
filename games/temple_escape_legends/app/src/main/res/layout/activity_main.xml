@@ -1,0 +1,107 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cst_bg_main">
+
+    <com.android.boot.ui.GameView
+        android:id="@+id/gameView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:id="@+id/hudRoot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/cst_pad_8"
+        android:background="@drawable/ui_panel"
+        android:gravity="center_vertical">
+        <TextView android:text="S" style="@style/TextAppearance.Game.HudLabel" />
+        <TextView android:id="@+id/hudScore" style="@style/TextAppearance.Game.HudValue" android:layout_marginEnd="@dimen/cst_pad_8" android:text="0" />
+        <TextView android:text="C" style="@style/TextAppearance.Game.HudLabel" />
+        <TextView android:id="@+id/hudCoins" style="@style/TextAppearance.Game.HudValue" android:layout_marginEnd="@dimen/cst_pad_8" android:text="0" />
+        <TextView android:text="L" style="@style/TextAppearance.Game.HudLabel" />
+        <TextView android:id="@+id/hudLife" style="@style/TextAppearance.Game.HudValue" android:layout_marginEnd="@dimen/cst_pad_8" android:text="3" />
+        <TextView android:text="P" style="@style/TextAppearance.Game.HudLabel" />
+        <TextView android:id="@+id/hudPressure" style="@style/TextAppearance.Game.HudValue" android:layout_marginEnd="@dimen/cst_pad_8" android:text="0%" />
+        <TextView android:id="@+id/hudSpeed" style="@style/TextAppearance.Game.HudValue" android:layout_marginEnd="@dimen/cst_pad_8" android:text="T1" />
+        <TextView android:id="@+id/hudDistance" style="@style/TextAppearance.Game.HudValue" android:layout_marginEnd="@dimen/cst_pad_8" android:text="0m" />
+        <TextView android:id="@+id/hudShield" style="@style/TextAppearance.Game.HudValue" android:text="Off" />
+        <TextView android:id="@+id/hudMagnet" style="@style/TextAppearance.Game.HudValue" android:text="Off" />
+        <TextView android:id="@+id/hudSlow" style="@style/TextAppearance.Game.HudValue" android:text="Off" />
+        <TextView android:id="@+id/hudRevive" style="@style/TextAppearance.Game.HudValue" android:text="No" />
+        <Button android:id="@+id/btnPause" android:text="||" style="@style/Widget.Game.Button.Icon" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:padding="@dimen/cst_pad_12"
+        android:background="@drawable/ui_panel"
+        android:orientation="horizontal"
+        android:weightSum="4">
+        <Button android:id="@+id/btnLeft" android:layout_width="0dp" android:layout_height="56dp" android:layout_weight="1" android:text="Left" style="@style/Widget.Game.Button.Secondary" />
+        <Button android:id="@+id/btnRight" android:layout_width="0dp" android:layout_height="56dp" android:layout_weight="1" android:text="Right" style="@style/Widget.Game.Button.Secondary" />
+        <Button android:id="@+id/btnUp" android:layout_width="0dp" android:layout_height="56dp" android:layout_weight="1" android:text="Up" style="@style/Widget.Game.Button.Primary" />
+        <Button android:id="@+id/btnDown" android:layout_width="0dp" android:layout_height="56dp" android:layout_weight="1" android:text="Down" style="@style/Widget.Game.Button.Primary" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/overlayRoot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout android:id="@+id/menuOverlay" android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:orientation="vertical" android:background="@drawable/ui_dialog">
+            <TextView android:text="@string/app_name" style="@style/TextAppearance.Game.Title" />
+            <Button android:id="@+id/btnStart" android:text="@string/btn_start" style="@style/Widget.Game.Button.Primary" />
+            <Button android:id="@+id/btnHowToPlay" android:text="@string/btn_how_to_play" style="@style/Widget.Game.Button.Secondary" />
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/modeOverlay" android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:orientation="vertical" android:visibility="gone" android:background="@drawable/ui_dialog">
+            <TextView android:text="@string/title_mode_select" style="@style/TextAppearance.Game.Title" />
+            <Button android:id="@+id/btnEndless" android:text="@string/btn_endless" style="@style/Widget.Game.Button.Primary" />
+            <Button android:id="@+id/btnStageMode" android:text="@string/btn_stage_mode" style="@style/Widget.Game.Button.Secondary" />
+            <Button android:id="@+id/btnUpgrades" android:text="@string/btn_upgrades" style="@style/Widget.Game.Button.Secondary" />
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/stageOverlay" android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:orientation="vertical" android:visibility="gone" android:background="@drawable/ui_dialog">
+            <TextView android:text="@string/title_stage_select" style="@style/TextAppearance.Game.Title" />
+            <LinearLayout android:id="@+id/stageList" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical" />
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/upgradeOverlay" android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:orientation="vertical" android:visibility="gone" android:background="@drawable/ui_dialog">
+            <TextView android:text="@string/title_upgrades" style="@style/TextAppearance.Game.Title" />
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/pauseOverlay" android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:orientation="vertical" android:visibility="gone" android:background="@drawable/ui_dialog">
+            <TextView android:text="@string/title_pause" style="@style/TextAppearance.Game.Title" />
+            <Button android:id="@+id/btnResume" android:text="@string/btn_resume" style="@style/Widget.Game.Button.Primary" />
+            <Button android:id="@+id/btnMenu" android:text="@string/btn_menu" style="@style/Widget.Game.Button.Secondary" />
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/gameOverOverlay" android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:orientation="vertical" android:visibility="gone" android:background="@drawable/ui_dialog">
+            <TextView android:text="@string/title_game_over" style="@style/TextAppearance.Game.Title" />
+            <Button android:id="@+id/btnRestart" android:text="@string/btn_restart" style="@style/Widget.Game.Button.Primary" />
+            <Button android:id="@+id/btnMenu2" android:text="@string/btn_menu" style="@style/Widget.Game.Button.Secondary" />
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/stageClearOverlay" android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:orientation="vertical" android:visibility="gone" android:background="@drawable/ui_dialog">
+            <TextView android:text="@string/title_stage_clear" style="@style/TextAppearance.Game.Title" />
+            <Button android:id="@+id/btnNextStage" android:text="@string/btn_next_stage" style="@style/Widget.Game.Button.Primary" />
+            <Button android:id="@+id/btnMenu3" android:text="@string/btn_menu" style="@style/Widget.Game.Button.Secondary" />
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/reviveOverlay" android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:orientation="vertical" android:visibility="gone" android:background="@drawable/ui_dialog">
+            <TextView android:text="@string/label_revive" style="@style/TextAppearance.Game.Title" />
+            <Button android:id="@+id/btnRevive" android:text="@string/btn_revive" style="@style/Widget.Game.Button.Primary" />
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/howOverlay" android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:orientation="vertical" android:visibility="gone" android:background="@drawable/ui_dialog">
+            <TextView android:id="@+id/howText" style="@style/TextAppearance.Game.Body" android:layout_width="280dp" android:layout_height="wrap_content" />
+            <Button android:id="@+id/btnCloseHow" android:text="@string/btn_menu" style="@style/Widget.Game.Button.Secondary" />
+        </LinearLayout>
+
+    </FrameLayout>
+
+</FrameLayout>

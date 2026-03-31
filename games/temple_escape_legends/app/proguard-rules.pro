@@ -1,0 +1,2 @@
+-keep class com.android.boot.MainActivity { *; }
+-keep class com.android.boot.ui.GameView { *; }
