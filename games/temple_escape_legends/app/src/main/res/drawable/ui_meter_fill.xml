@@ -1,0 +1,9 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@android:id/background" android:drawable="@drawable/ui_meter_track" />
+    <item android:id="@android:id/progress">
+        <shape>
+            <solid android:color="@color/cst_meter_fill" />
+            <corners android:radius="@dimen/cst_radius_xl" />
+        </shape>
+    </item>
+</layer-list>
