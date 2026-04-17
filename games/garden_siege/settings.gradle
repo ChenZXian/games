@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = 'GardenSiege'
-include ':app'
+rootProject.name = "GardenSiege"
+include ":app"

@@ -151,7 +151,7 @@
               android:layout_height="match_parent"
               android:background="@drawable/ui_meter_fill"
               android:scaleX="0"
-              android:transformPivotX="0" />
+              android:transformPivotX="0dp" />
         </FrameLayout>
       </LinearLayout>
 

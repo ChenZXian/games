@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = 'SiegeFlockTactics'
-include ':app'
+rootProject.name = "SiegeFlockTactics"
+include ":app"

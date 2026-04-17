@@ -3,8 +3,11 @@ package com.android.boot.ui;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
+import android.graphics.Shader;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import com.android.boot.audio.ToneHelper;
@@ -34,6 +37,14 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     private GameLoopThread loop;
     private OverlayCallback overlayCallback;
     private HudBinder hudBinder;
+    private long lastHudSyncMs;
+    private long lastRenderNs;
+    private float renderTimeSec;
+    private float hitFlashTimer;
+    private float lastInvulnTimer;
+    private float touchStartX;
+    private float touchStartY;
+    private boolean touchHandled;
 
     public GameView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -60,23 +71,29 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public void restartRun() {
         world.start(world.getSession().mode, world.getSession().stage);
         world.setState(GameState.PLAYING);
-        if (overlayCallback != null) overlayCallback.onState(GameState.PLAYING);
+        dispatchOverlayState(GameState.PLAYING);
     }
 
     public void resumeRun() {
         world.setState(GameState.PLAYING);
-        if (overlayCallback != null) overlayCallback.onState(GameState.PLAYING);
+        dispatchOverlayState(GameState.PLAYING);
     }
 
     public void acceptRevive() {
         world.applyRevive();
-        if (overlayCallback != null) overlayCallback.onState(world.getState());
+        dispatchOverlayState(world.getState());
     }
 
     public void onControlLeft() { input.leftPressed = true; }
     public void onControlRight() { input.rightPressed = true; }
     public void onControlUp() { input.upPressed = true; }
     public void onControlDown() { input.downPressed = true; }
+
+    public void pauseRun() {
+        if (world.getState() != GameState.PLAYING) return;
+        world.setState(GameState.PAUSED);
+        dispatchOverlayState(GameState.PAUSED);
+    }
 
     public int getCurrentStage() {
         return world.getSession().stage;
@@ -99,12 +116,48 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     public void onHostPause() {
         world.setState(GameState.PAUSED);
-        if (overlayCallback != null) overlayCallback.onState(GameState.PAUSED);
+        dispatchOverlayState(GameState.PAUSED);
         stopLoop();
     }
 
     public void onHostResume() {
         startLoop();
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (world.getState() != GameState.PLAYING) return false;
+        switch (event.getActionMasked()) {
+            case MotionEvent.ACTION_DOWN:
+                touchStartX = event.getX();
+                touchStartY = event.getY();
+                touchHandled = false;
+                return true;
+            case MotionEvent.ACTION_MOVE:
+                if (touchHandled) return true;
+                float dx = event.getX() - touchStartX;
+                float dy = event.getY() - touchStartY;
+                float threshold = Math.max(36f, Math.min(getWidth(), getHeight()) * 0.06f);
+                if (Math.abs(dx) >= threshold || Math.abs(dy) >= threshold) {
+                    if (Math.abs(dx) > Math.abs(dy)) {
+                        if (dx > 0f) onControlRight();
+                        else onControlLeft();
+                    } else {
+                        if (dy < 0f) onControlUp();
+                        else onControlDown();
+                    }
+                    touchHandled = true;
+                }
+                return true;
+            case MotionEvent.ACTION_UP:
+                if (!touchHandled) {
+                    onControlUp();
+                }
+                touchHandled = false;
+                return true;
+            default:
+                return super.onTouchEvent(event);
+        }
     }
 
     private void startLoop() {
@@ -125,16 +178,19 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void render(Canvas c) {
+        float frameDt = updateRenderClock();
         int w = c.getWidth();
         int h = c.getHeight();
         projector.setViewport(w, h);
         c.drawColor(Color.rgb(7, 7, 12));
         drawWorld(c, w, h);
         drawEntities(c);
+        updateHitFlash(frameDt);
+        drawHitFlash(c);
         syncHud();
         GameState state = world.getState();
-        if ((state == GameState.GAME_OVER || state == GameState.STAGE_CLEAR || state == GameState.REVIVE_PROMPT) && overlayCallback != null) {
-            overlayCallback.onState(state);
+        if (state == GameState.GAME_OVER || state == GameState.STAGE_CLEAR || state == GameState.REVIVE_PROMPT) {
+            dispatchOverlayState(state);
         }
     }
 
@@ -167,8 +223,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
             float x = projector.laneX(o.lane, o.z);
             float y = projector.yFromDepth(o.z);
             float s = projector.depthToScale(o.z);
-            paint.setColor(Color.rgb(255, 61, 90));
-            c.drawRect(x - 20f * s, y - 28f * s, x + 20f * s, y + 24f * s, paint);
+            drawObstacle(c, o, x, y, s);
         }
         for (Pickup p : world.getPickups()) {
             if (!p.active) continue;
@@ -185,9 +240,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         }
         float rx = projector.laneX(r.currentLane, 6f);
         float ry = getHeight() * 0.78f - r.y * 12f;
-        paint.setColor(Color.rgb(247, 247, 255));
-        float halfH = r.sliding ? 18f : 34f;
-        c.drawRect(rx - 18f, ry - halfH, rx + 18f, ry + 24f, paint);
+        drawRunner(c, r, rx, ry);
         RunSession s = world.getSession();
         float shadowSize = 80f + s.bossPressure * 180f;
         paint.setColor(Color.argb(90, 0, 0, 0));
@@ -223,8 +276,121 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         }
     }
 
+    private void drawObstacle(Canvas c, Obstacle o, float x, float y, float s) {
+        float pulse = 1f + 0.04f * (float) Math.sin(renderTimeSec * 5.5f + o.lane * 0.8f + o.z * 0.09f);
+        float hw = 22f * s * pulse;
+        float hh = 28f * s * pulse;
+        int topColor = Color.rgb(255, 92, 120);
+        int bottomColor = Color.rgb(154, 20, 64);
+        if (o.type == Obstacle.ROLLING) {
+            topColor = Color.rgb(255, 174, 61);
+            bottomColor = Color.rgb(186, 104, 0);
+        } else if (o.type == Obstacle.OVERHEAD || o.type == Obstacle.SLIDE_CHAIN) {
+            topColor = Color.rgb(114, 109, 255);
+            bottomColor = Color.rgb(69, 61, 176);
+        } else if (o.type == Obstacle.GAP || o.type == Obstacle.NARROW) {
+            topColor = Color.rgb(255, 73, 150);
+            bottomColor = Color.rgb(174, 21, 95);
+        } else if (o.type == Obstacle.FINISH) {
+            topColor = Color.rgb(0, 245, 255);
+            bottomColor = Color.rgb(18, 118, 176);
+            hw = 26f * s;
+            hh = 40f * s;
+        }
+
+        paint.setShader(new LinearGradient(x, y - hh, x, y + hh, topColor, bottomColor, Shader.TileMode.CLAMP));
+        c.drawRoundRect(x - hw, y - hh, x + hw, y + hh, 8f * s, 8f * s, paint);
+        paint.setShader(null);
+
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(Math.max(1.5f, 2f * s));
+        paint.setColor(Color.argb(210, 255, 255, 255));
+        c.drawRoundRect(x - hw, y - hh, x + hw, y + hh, 8f * s, 8f * s, paint);
+        paint.setStyle(Paint.Style.FILL);
+
+        if (o.type == Obstacle.ROLLING) {
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setStrokeWidth(Math.max(1f, 2f * s));
+            paint.setColor(Color.argb(210, 255, 226, 163));
+            c.drawCircle(x, y, 12f * s, paint);
+            c.drawCircle(x, y, 6f * s, paint);
+            paint.setStyle(Paint.Style.FILL);
+        }
+    }
+
+    private void drawRunner(Canvas c, Runner r, float rx, float ry) {
+        float halfH = r.sliding ? 18f : 34f;
+        float halfW = r.sliding ? 24f : 18f;
+        int bodyTop = Color.rgb(244, 248, 255);
+        int bodyBottom = Color.rgb(106, 132, 210);
+        if (r.invulnTimer > 0f) {
+            bodyTop = Color.rgb(255, 255, 190);
+            bodyBottom = Color.rgb(255, 174, 61);
+        }
+        paint.setShader(new LinearGradient(rx, ry - halfH, rx, ry + 24f, bodyTop, bodyBottom, Shader.TileMode.CLAMP));
+        c.drawRoundRect(rx - halfW, ry - halfH, rx + halfW, ry + 24f, 10f, 10f, paint);
+        paint.setShader(null);
+
+        paint.setColor(Color.argb(215, 0, 245, 255));
+        c.drawRoundRect(rx - 10f, ry - halfH - 10f, rx + 10f, ry - halfH + 2f, 6f, 6f, paint);
+
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(2f);
+        paint.setColor(Color.argb(210, 255, 255, 255));
+        c.drawRoundRect(rx - halfW, ry - halfH, rx + halfW, ry + 24f, 10f, 10f, paint);
+        paint.setStyle(Paint.Style.FILL);
+    }
+
     private void syncHud() {
         if (hudBinder == null) return;
-        hudBinder.bind(world.getSession(), world.getRunner());
+        long now = System.currentTimeMillis();
+        if (now - lastHudSyncMs < 80L) return;
+        lastHudSyncMs = now;
+        RunSession session = world.getSession();
+        Runner runner = world.getRunner();
+        post(() -> hudBinder.bind(session, runner));
+    }
+
+    private float updateRenderClock() {
+        long now = System.nanoTime();
+        if (lastRenderNs == 0L) {
+            lastRenderNs = now;
+            return 0.016f;
+        }
+        float dt = (now - lastRenderNs) / 1000000000f;
+        lastRenderNs = now;
+        if (dt < 0.001f) dt = 0.001f;
+        if (dt > 0.05f) dt = 0.05f;
+        renderTimeSec += dt;
+        return dt;
+    }
+
+    private void updateHitFlash(float dt) {
+        Runner runner = world.getRunner();
+        if (runner.invulnTimer > lastInvulnTimer + 0.25f) {
+            hitFlashTimer = 0.14f;
+        }
+        lastInvulnTimer = runner.invulnTimer;
+        if (hitFlashTimer > 0f) {
+            hitFlashTimer -= dt;
+            if (hitFlashTimer < 0f) hitFlashTimer = 0f;
+        }
+    }
+
+    private void drawHitFlash(Canvas c) {
+        if (hitFlashTimer <= 0f) return;
+        float t = hitFlashTimer / 0.14f;
+        int alpha = Math.min(145, Math.max(0, (int) (145f * t)));
+        paint.setColor(Color.argb(alpha, 255, 255, 255));
+        c.drawRect(0f, 0f, getWidth(), getHeight(), paint);
+    }
+
+    private void dispatchOverlayState(GameState state) {
+        if (overlayCallback == null) return;
+        post(() -> {
+            if (overlayCallback != null) {
+                overlayCallback.onState(state);
+            }
+        });
     }
 }

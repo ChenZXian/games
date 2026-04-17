@@ -55,7 +55,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:gravity="space_between"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="@dimen/cst_pad_12">
 
@@ -65,6 +65,19 @@
             android:layout_width="110dp"
             android:layout_height="54dp"
             android:text="LEFT" />
+
+        <Button
+            android:id="@+id/btn_right"
+            style="@style/Widget.Game.Button.Secondary"
+            android:layout_width="110dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="@dimen/cst_pad_8"
+            android:text="RIGHT" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -85,6 +98,14 @@
                 android:layout_height="54dp"
                 android:layout_marginStart="@dimen/cst_pad_8"
                 android:text="SPRAY" />
+
+            <Button
+                android:id="@+id/btn_kick"
+                style="@style/Widget.Game.Button.Primary"
+                android:layout_width="110dp"
+                android:layout_height="54dp"
+                android:layout_marginStart="@dimen/cst_pad_8"
+                android:text="KICK" />
         </LinearLayout>
     </LinearLayout>
 

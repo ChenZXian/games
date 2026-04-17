@@ -233,6 +233,25 @@ public class Unit {
         float baseX = x + recoil * -10f * direction;
         float baseY = y + pulse;
         paint.setAlpha((int) (255 * alpha));
+
+        // Unit HP bar (drawn before the body so it's always visible).
+        if (maxHp > 0f) {
+            float ratio = Math.max(0f, Math.min(1f, hp / maxHp));
+            float barW = size * 0.72f;
+            float barH = Math.max(3f, size * 0.06f);
+            float barLeft = baseX - barW * 0.5f;
+            float barTop = baseY - size * 1.05f - barH * 0.1f;
+
+            paint.setStyle(Paint.Style.FILL);
+            paint.setAlpha((int) (170 * alpha));
+            paint.setColor(bodyColor);
+            canvas.drawRoundRect(barLeft, barTop, barLeft + barW, barTop + barH, barH * 0.5f, barH * 0.5f, paint);
+
+            paint.setColor(accentColor);
+            float fillW = barW * ratio;
+            canvas.drawRoundRect(barLeft, barTop, barLeft + fillW, barTop + barH, barH * 0.5f, barH * 0.5f, paint);
+        }
+
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(glowColor);
         canvas.drawOval(baseX - size * 0.55f, baseY - size * 1.05f, baseX + size * 0.55f, baseY + size * 0.95f, paint);

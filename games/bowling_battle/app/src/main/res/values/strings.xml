@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">BowlingBattle</string>
-    <string name="btn_start">Start</string>
-    <string name="btn_restart">Restart</string>
-    <string name="btn_resume">Resume</string>
-    <string name="btn_menu">Menu</string>
-    <string name="btn_mute">Mute</string>
-    <string name="btn_how_to_play">How To Play</string>
+    <string name="app_name">Bowling Battle</string>
+    <string name="how_to_play">How to Play\n\n- LEFT/RIGHT: adjust aim\n- ROLL: throw the ball\n- RESET: reset all pins\n\nGoal:\nKnock down all pins with as few throws as possible. Build combos for a higher score.</string>
+    <string name="start_title">Bowling Battle</string>
+    <string name="start_subtitle">Tap Start to begin.</string>
+    <string name="start_game">START GAME</string>
+    <string name="dialog_title_help">How to Play</string>
+    <string name="dialog_ok">OK</string>
 </resources>

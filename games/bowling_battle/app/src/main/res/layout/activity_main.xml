@@ -1,235 +1,112 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/cst_bg_main">
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/cst_bg_main">
 
-    <com.android.boot.ui.GameView
-        android:id="@+id/game_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+	<com.android.boot.ui.GameView
+		android:id="@+id/game_view"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent" />
 
-    <LinearLayout
-        android:id="@+id/top_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top"
-        android:background="@drawable/ui_panel_header"
-        android:gravity="center_vertical"
-        android:minHeight="@dimen/cst_hud_height"
-        android:orientation="horizontal"
-        android:paddingStart="@dimen/cst_pad_12"
-        android:paddingTop="@dimen/cst_pad_8"
-        android:paddingEnd="@dimen/cst_pad_12"
-        android:paddingBottom="@dimen/cst_pad_8">
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_gravity="bottom"
+		android:gravity="center_vertical"
+		android:orientation="horizontal"
+		android:padding="@dimen/cst_pad_12">
 
-        <TextView
-            android:id="@+id/txt_level"
-            style="@style/Widget.Game.Badge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Level 1" />
+		<Button
+			android:id="@+id/btn_left"
+			style="@style/Widget.Game.Button.Secondary"
+			android:layout_width="110dp"
+			android:layout_height="54dp"
+			android:text="LEFT" />
 
-        <TextView
-            android:id="@+id/txt_wave"
-            style="@style/Widget.Game.Chip"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/cst_pad_8"
-            android:text="Wave 1" />
+		<Button
+			android:id="@+id/btn_right"
+			style="@style/Widget.Game.Button.Secondary"
+			android:layout_width="110dp"
+			android:layout_height="54dp"
+			android:layout_marginStart="@dimen/cst_pad_8"
+			android:text="RIGHT" />
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="1" />
+		<View
+			android:layout_width="0dp"
+			android:layout_height="1dp"
+			android:layout_weight="1" />
 
-        <ImageButton
-            android:id="@+id/btn_mute"
-            style="@style/Widget.Game.Button.Icon"
-            android:layout_width="@dimen/cst_hud_icon_size"
-            android:layout_height="@dimen/cst_hud_icon_size"
-            android:contentDescription="@string/btn_mute"
-            android:src="@drawable/ic_sound_on" />
+		<Button
+			android:id="@+id/btn_roll"
+			style="@style/Widget.Game.Button.Primary"
+			android:layout_width="110dp"
+			android:layout_height="54dp"
+			android:text="ROLL" />
 
-        <ImageButton
-            android:id="@+id/btn_pause"
-            style="@style/Widget.Game.Button.Icon"
-            android:layout_width="@dimen/cst_hud_icon_size"
-            android:layout_height="@dimen/cst_hud_icon_size"
-            android:layout_marginStart="@dimen/cst_pad_8"
-            android:contentDescription="@string/btn_resume"
-            android:src="@drawable/ic_pause" />
-    </LinearLayout>
+		<Button
+			android:id="@+id/btn_reset"
+			style="@style/Widget.Game.Button.Primary"
+			android:layout_width="110dp"
+			android:layout_height="54dp"
+			android:layout_marginStart="@dimen/cst_pad_8"
+			android:text="RESET" />
+	</LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/menu_overlay"
-        style="@style/Widget.Game.Panel"
-        android:layout_width="360dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="vertical">
+	<LinearLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="top|end"
+		android:orientation="horizontal"
+		android:padding="@dimen/cst_pad_12">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="BowlingBattle"
-            android:textAppearance="@style/TextAppearance.Game.Title" />
+		<ImageButton
+			android:id="@+id/btn_help"
+			android:layout_width="44dp"
+			android:layout_height="44dp"
+			android:background="@android:color/transparent"
+			android:contentDescription="Help"
+			android:src="@drawable/ic_help" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/cst_pad_8"
-            android:text="Drop the right ball into the right lane. Bounce, blast, and roll through five conveyor trials."
-            android:textAppearance="@style/TextAppearance.Game.Body" />
+		<ImageButton
+			android:id="@+id/btn_mute"
+			android:layout_width="44dp"
+			android:layout_height="44dp"
+			android:layout_marginStart="@dimen/cst_pad_6"
+			android:background="@android:color/transparent"
+			android:contentDescription="Mute"
+			android:src="@drawable/ic_sound_on" />
+	</LinearLayout>
 
-        <Button
-            android:id="@+id/btn_start"
-            style="@style/Widget.Game.Button.Primary"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/cst_pad_16"
-            android:text="@string/btn_start" />
+	<LinearLayout
+		android:id="@+id/start_overlay"
+		android:layout_width="360dp"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center"
+		android:background="@color/cst_panel_bg"
+		android:orientation="vertical"
+		android:padding="@dimen/cst_pad_16">
 
-        <Button
-            android:id="@+id/btn_how_to_play"
-            style="@style/Widget.Game.Button.Secondary"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/cst_pad_8"
-            android:text="@string/btn_how_to_play" />
-    </LinearLayout>
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/start_title"
+			android:textColor="@color/cst_text_primary"
+			android:textSize="@dimen/cst_text_l" />
 
-    <LinearLayout
-        android:id="@+id/level_overlay"
-        style="@style/Widget.Game.Panel"
-        android:layout_width="430dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="vertical"
-        android:visibility="gone">
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="@dimen/cst_pad_8"
+			android:text="@string/start_subtitle"
+			android:textColor="@color/cst_text_secondary"
+			android:textSize="@dimen/cst_text_m" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Level Select"
-            android:textAppearance="@style/TextAppearance.Game.Subtitle" />
-
-        <GridLayout
-            android:id="@+id/level_grid"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:columnCount="5"
-            android:layout_marginTop="@dimen/cst_pad_12" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/help_overlay"
-        style="@style/Widget.Game.Panel"
-        android:layout_width="400dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="How To Play"
-            android:textAppearance="@style/TextAppearance.Game.Subtitle" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/cst_pad_8"
-            android:text="Watch the 5x9 board, wait for the conveyor, then tap a row to drop the current ball. Normal balls bounce between rows after each hit. Bomb balls clear a 3x3 area. Giant balls flatten one full row. Survive every wave before the left edge takes all your life."
-            android:textAppearance="@style/TextAppearance.Game.Body" />
-
-        <Button
-            android:id="@+id/btn_help_close"
-            style="@style/Widget.Game.Button.Primary"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/cst_pad_12"
-            android:text="@string/btn_menu" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/pause_overlay"
-        style="@style/Widget.Game.Panel"
-        android:layout_width="320dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Paused"
-            android:textAppearance="@style/TextAppearance.Game.Subtitle" />
-
-        <Button
-            android:id="@+id/btn_resume"
-            style="@style/Widget.Game.Button.Primary"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/cst_pad_12"
-            android:text="@string/btn_resume" />
-
-        <Button
-            android:id="@+id/btn_restart"
-            style="@style/Widget.Game.Button.Secondary"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/cst_pad_8"
-            android:text="@string/btn_restart" />
-
-        <Button
-            android:id="@+id/btn_menu"
-            style="@style/Widget.Game.Button.Secondary"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/cst_pad_8"
-            android:text="@string/btn_menu" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/result_overlay"
-        style="@style/Widget.Game.Panel"
-        android:layout_width="360dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <TextView
-            android:id="@+id/txt_result_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Result"
-            android:textAppearance="@style/TextAppearance.Game.Subtitle" />
-
-        <TextView
-            android:id="@+id/txt_result_score"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/cst_pad_8"
-            android:text="Score 0"
-            android:textAppearance="@style/TextAppearance.Game.HudValue" />
-
-        <TextView
-            android:id="@+id/txt_result_stars"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/cst_pad_8"
-            android:text="Stars 0"
-            android:textAppearance="@style/TextAppearance.Game.Title" />
-
-        <Button
-            android:id="@+id/btn_next"
-            style="@style/Widget.Game.Button.Primary"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/cst_pad_12"
-            android:text="Next" />
-    </LinearLayout>
+		<Button
+			android:id="@+id/btn_start_game"
+			style="@style/Widget.Game.Button.Primary"
+			android:layout_width="match_parent"
+			android:layout_height="54dp"
+			android:layout_marginTop="@dimen/cst_pad_12"
+			android:text="@string/start_game" />
+	</LinearLayout>
 </FrameLayout>

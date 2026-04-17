@@ -70,17 +70,29 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
             long now = System.nanoTime();
             float dt = (now - lastTime) / 1000000000f;
             lastTime = now;
-            engine.update(dt, getWidth(), getHeight());
-            Canvas canvas = null;
+            if (dt > 0.1f) {
+                dt = 0.016f;
+            }
+            int w = getWidth();
+            int h = getHeight();
+            if (w > 0 && h > 0) {
+                engine.update(dt, w, h);
+                Canvas canvas = null;
+                try {
+                    canvas = getHolder().lockCanvas();
+                    if (canvas != null) {
+                        renderer.draw(canvas, engine, w, h);
+                    }
+                } finally {
+                    if (canvas != null) {
+                        getHolder().unlockCanvasAndPost(canvas);
+                    }
+                }
+            }
             try {
-                canvas = getHolder().lockCanvas();
-                if (canvas != null) {
-                    renderer.draw(canvas, engine, getWidth(), getHeight());
-                }
-            } finally {
-                if (canvas != null) {
-                    getHolder().unlockCanvasAndPost(canvas);
-                }
+                Thread.sleep(16);
+            } catch (InterruptedException ignored) {
+                Thread.currentThread().interrupt();
             }
         }
     }
@@ -147,5 +159,17 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
         engine.showHelp = !engine.showHelp;
         engine.toast = engine.showHelp ? "Drag to aim, release to fire, tap to skill" : "";
         engine.toastTime = engine.showHelp ? 2.5f : 0f;
+    }
+
+    public boolean checkLevelWon() {
+        if (engine.levelWon && engine.state == GameDefs.GAME_OVER) {
+            engine.levelWon = false;
+            return true;
+        }
+        return false;
+    }
+
+    public void proceedToNextLevel() {
+        engine.nextLevel();
     }
 }

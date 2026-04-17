@@ -17,7 +17,7 @@
         android:gravity="center_vertical"
         android:minHeight="@dimen/cst_hud_height"
         android:orientation="vertical"
-        android:padding="@dimen/cst_pad_8"
+        android:padding="@dimen/cst_pad_4"
         android:visibility="gone">
 
         <LinearLayout
@@ -66,7 +66,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/cst_pad_6"
+            android:layout_marginTop="@dimen/cst_pad_2"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -87,8 +87,8 @@
                     android:id="@+id/meter_energy"
                     style="@style/Widget.Game.Meter"
                     android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:layout_marginTop="@dimen/cst_pad_4"
+                    android:layout_height="6dp"
+                    android:layout_marginTop="@dimen/cst_pad_2"
                     android:max="100"
                     android:progress="0" />
             </LinearLayout>
@@ -111,8 +111,8 @@
                     android:id="@+id/meter_oath"
                     style="@style/Widget.Game.Meter"
                     android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:layout_marginTop="@dimen/cst_pad_4"
+                    android:layout_height="6dp"
+                    android:layout_marginTop="@dimen/cst_pad_2"
                     android:max="100"
                     android:progress="0" />
             </LinearLayout>
@@ -130,7 +130,7 @@
             android:id="@+id/txt_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/cst_pad_4"
+            android:layout_marginTop="@dimen/cst_pad_2"
             android:text="Frontline holds"
             android:textAppearance="@style/TextAppearance.Game.Caption" />
     </LinearLayout>
@@ -140,15 +140,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="@drawable/ui_panel"
-        android:fillViewport="true"
+        android:background="@drawable/ui_panel_translucent"
+        android:fillViewport="false"
         android:visibility="gone">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="@dimen/cst_pad_8">
+            android:padding="@dimen/cst_pad_2">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -164,7 +164,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/cst_pad_6"
+                android:layout_marginTop="@dimen/cst_pad_2"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -176,7 +176,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/cst_pad_6"
+                android:layout_marginTop="@dimen/cst_pad_2"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -188,7 +188,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/cst_pad_6"
+                android:layout_marginTop="@dimen/cst_pad_2"
                 android:gravity="center"
                 android:orientation="horizontal">
 

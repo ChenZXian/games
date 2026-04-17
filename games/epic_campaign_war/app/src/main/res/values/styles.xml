@@ -1,4 +1,6 @@
 <resources>
+    <style name="Widget" />
+    <style name="Widget.Game" />
     <style name="TextAppearance.Game.Title" parent="TextAppearance.MaterialComponents.Headline5">
         <item name="android:textColor">@color/cst_text_primary</item>
         <item name="android:textSize">@dimen/cst_text_xl</item>
@@ -13,11 +15,11 @@
     </style>
     <style name="TextAppearance.Game.Caption" parent="TextAppearance.MaterialComponents.Caption">
         <item name="android:textColor">@color/cst_text_muted</item>
-        <item name="android:textSize">@dimen/cst_text_s</item>
+        <item name="android:textSize">@dimen/cst_text_xs</item>
     </style>
     <style name="TextAppearance.Game.HudValue" parent="TextAppearance.MaterialComponents.Subtitle1">
         <item name="android:textColor">@color/cst_text_primary</item>
-        <item name="android:textSize">@dimen/cst_text_m</item>
+        <item name="android:textSize">@dimen/cst_text_xs</item>
     </style>
     <style name="TextAppearance.Game.HudLabel" parent="TextAppearance.MaterialComponents.Caption">
         <item name="android:textColor">@color/cst_text_muted</item>
@@ -26,29 +28,31 @@
     <style name="Widget.Game.Button.Primary" parent="Widget.MaterialComponents.Button">
         <item name="android:background">@drawable/ui_button_primary</item>
         <item name="android:textColor">@color/cst_text_on_primary</item>
-        <item name="android:textSize">@dimen/cst_text_m</item>
-        <item name="android:paddingTop">@dimen/cst_pad_10</item>
-        <item name="android:paddingBottom">@dimen/cst_pad_10</item>
+        <item name="android:textSize">@dimen/cst_text_xs</item>
+        <item name="android:paddingTop">@dimen/cst_pad_2</item>
+        <item name="android:paddingBottom">@dimen/cst_pad_2</item>
         <item name="android:insetTop">0dp</item>
         <item name="android:insetBottom">0dp</item>
     </style>
     <style name="Widget.Game.Button.Secondary" parent="Widget.MaterialComponents.Button">
         <item name="android:background">@drawable/ui_button_secondary</item>
         <item name="android:textColor">@color/cst_text_on_secondary</item>
-        <item name="android:textSize">@dimen/cst_text_m</item>
-        <item name="android:paddingTop">@dimen/cst_pad_10</item>
-        <item name="android:paddingBottom">@dimen/cst_pad_10</item>
+        <item name="android:textSize">@dimen/cst_text_xs</item>
+        <item name="android:paddingTop">@dimen/cst_pad_2</item>
+        <item name="android:paddingBottom">@dimen/cst_pad_2</item>
         <item name="android:insetTop">0dp</item>
         <item name="android:insetBottom">0dp</item>
     </style>
     <style name="Widget.Game.Button.Danger" parent="Widget.MaterialComponents.Button">
         <item name="android:background">@drawable/ui_button_danger</item>
         <item name="android:textColor">@color/cst_text_primary</item>
-        <item name="android:textSize">@dimen/cst_text_m</item>
+        <item name="android:textSize">@dimen/cst_text_xs</item>
+        <item name="android:paddingTop">@dimen/cst_pad_2</item>
+        <item name="android:paddingBottom">@dimen/cst_pad_2</item>
         <item name="android:insetTop">0dp</item>
         <item name="android:insetBottom">0dp</item>
     </style>
-    <style name="Widget.Game.Button.Icon" parent="Widget.MaterialComponents.ImageButton">
+    <style name="Widget.Game.Button.Icon" parent="Widget.AppCompat.ImageButton">
         <item name="android:background">@drawable/ui_button_icon</item>
         <item name="android:tint">@color/cst_text_primary</item>
         <item name="android:padding">@dimen/cst_pad_8</item>
@@ -65,25 +69,27 @@
     <style name="Widget.Game.Chip">
         <item name="android:background">@drawable/ui_chip</item>
         <item name="android:textColor">@color/cst_text_secondary</item>
+        <item name="android:textSize">@dimen/cst_text_xs</item>
         <item name="android:paddingStart">@dimen/cst_pad_10</item>
-        <item name="android:paddingTop">@dimen/cst_pad_4</item>
+        <item name="android:paddingTop">@dimen/cst_pad_2</item>
         <item name="android:paddingEnd">@dimen/cst_pad_10</item>
-        <item name="android:paddingBottom">@dimen/cst_pad_4</item>
+        <item name="android:paddingBottom">@dimen/cst_pad_2</item>
         <item name="android:minWidth">@dimen/cst_hud_badge_min_w</item>
     </style>
     <style name="Widget.Game.Badge">
         <item name="android:background">@drawable/ui_badge</item>
         <item name="android:textColor">@color/cst_text_primary</item>
+        <item name="android:textSize">@dimen/cst_text_xs</item>
         <item name="android:paddingStart">@dimen/cst_pad_10</item>
-        <item name="android:paddingTop">@dimen/cst_pad_4</item>
+        <item name="android:paddingTop">@dimen/cst_pad_2</item>
         <item name="android:paddingEnd">@dimen/cst_pad_10</item>
-        <item name="android:paddingBottom">@dimen/cst_pad_4</item>
+        <item name="android:paddingBottom">@dimen/cst_pad_2</item>
         <item name="android:minWidth">@dimen/cst_hud_badge_min_w</item>
     </style>
     <style name="Widget.Game.Meter" parent="@android:style/Widget.ProgressBar.Horizontal">
         <item name="android:progressDrawable">@drawable/ui_meter_fill</item>
-        <item name="android:minHeight">10dp</item>
-        <item name="android:maxHeight">10dp</item>
+        <item name="android:minHeight">6dp</item>
+        <item name="android:maxHeight">6dp</item>
         <item name="android:background">@drawable/ui_meter_track</item>
     </style>
 </resources>

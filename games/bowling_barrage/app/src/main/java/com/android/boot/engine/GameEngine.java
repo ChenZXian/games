@@ -24,12 +24,12 @@ public final class GameEngine {
     private static final String PREFS = "bowling_barrage_prefs";
     private static final String KEY_UNLOCKED = "unlocked_levels";
     private static final String KEY_STARS_PREFIX = "stars_";
-    private static final float BOARD_TOP_RATIO = 0.24f;
+    private static final float BOARD_TOP_RATIO = 0.32f;
     private static final float BOARD_BOTTOM_RATIO = 0.92f;
     private static final float BOARD_LEFT_RATIO = 0.08f;
     private static final float BOARD_RIGHT_RATIO = 0.92f;
-    private static final float CONVEYOR_TOP_RATIO = 0.08f;
-    private static final float CONVEYOR_BOTTOM_RATIO = 0.19f;
+    private static final float CONVEYOR_TOP_RATIO = 0.20f;
+    private static final float CONVEYOR_BOTTOM_RATIO = 0.29f;
     private static final float BALL_SPEED = 6.5f;
     private static final float BOUNCE_VERTICAL_SPEED = 1.38f;
     private static final float GIANT_SPEED = 8.8f;
@@ -65,8 +65,8 @@ public final class GameEngine {
 
     public GameEngine(Context context) {
         preferences = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
-        unlockedLevels = Math.max(1, preferences.getInt(KEY_UNLOCKED, 1));
         levels = createLevels();
+        unlockedLevels = levels.length;
         refillQueue();
         updateSnapshot();
     }
@@ -299,7 +299,7 @@ public final class GameEngine {
             if (audio != null) {
                 audio.playArm();
             }
-            createPopupFx(0.18f, 0.2f, 1.6f, 0);
+            createPopupFx(0.18f, 0.2f, 0, 0);
         }
     }
 
@@ -318,7 +318,8 @@ public final class GameEngine {
             audio.playLaunch();
         }
         ballArmed = false;
-        conveyorReady = false;
+        // Allow immediate arming of the next ball; keep visuals responsive.
+        conveyorReady = true;
         conveyorCooldown = 0f;
         currentBall = nextBalls[0];
         nextBalls[0] = nextBalls[1];

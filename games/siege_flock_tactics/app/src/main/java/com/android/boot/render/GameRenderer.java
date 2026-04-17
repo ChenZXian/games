@@ -33,6 +33,9 @@ public class GameRenderer {
 
     public void draw(Canvas c, GameEngine e, int w, int h) {
         c.drawColor(bg);
+        if (e.state == GameDefs.MENU) {
+            return;
+        }
         drawMechanics(c, e);
         drawBlocks(c, e);
         drawBird(c, e);
@@ -61,17 +64,34 @@ public class GameRenderer {
             if (b.hp <= 0f) {
                 continue;
             }
-            int color = b.material == GameDefs.MAT_WOOD ? wood : b.material == GameDefs.MAT_STONE ? stone : b.material == GameDefs.MAT_GLASS ? glass : metal;
-            paint.setColor(color);
-            c.drawRect(b.x, b.y, b.x + b.w, b.y + b.h, paint);
             if (b.target) {
-                paint.setStyle(Paint.Style.STROKE);
-                paint.setStrokeWidth(4f);
-                paint.setColor(accent);
-                c.drawRect(b.x - 2f, b.y - 2f, b.x + b.w + 2f, b.y + b.h + 2f, paint);
-                paint.setStyle(Paint.Style.FILL);
+                drawPig(c, b);
+            } else {
+                int color = b.material == GameDefs.MAT_WOOD ? wood : b.material == GameDefs.MAT_STONE ? stone : b.material == GameDefs.MAT_GLASS ? glass : metal;
+                paint.setColor(color);
+                c.drawRect(b.x, b.y, b.x + b.w, b.y + b.h, paint);
             }
         }
+    }
+
+    private void drawPig(Canvas c, GameEngine.Block b) {
+        float cx = b.x + b.w * 0.5f;
+        float cy = b.y + b.h * 0.5f;
+        float radius = Math.min(b.w, b.h) * 0.4f;
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(0xFFFF6B6B);
+        c.drawCircle(cx, cy, radius, paint);
+        paint.setColor(0xFFFF8E8E);
+        c.drawCircle(cx, cy, radius * 0.85f, paint);
+        paint.setColor(0xFF000000);
+        float eyeSize = radius * 0.15f;
+        c.drawCircle(cx - radius * 0.3f, cy - radius * 0.2f, eyeSize, paint);
+        c.drawCircle(cx + radius * 0.3f, cy - radius * 0.2f, eyeSize, paint);
+        paint.setColor(0xFF000000);
+        float noseSize = radius * 0.2f;
+        c.drawCircle(cx, cy + radius * 0.15f, noseSize, paint);
+        paint.setColor(0xFFFF6B6B);
+        c.drawCircle(cx, cy + radius * 0.15f, noseSize * 0.6f, paint);
     }
 
     private void drawBird(Canvas c, GameEngine e) {
@@ -86,14 +106,16 @@ public class GameRenderer {
             c.drawCircle(e.bird.x, e.bird.y, 18f, paint);
             if (e.bird.shield > 0f) {
                 paint.setStyle(Paint.Style.STROKE);
-                paint.setStrokeWidth(4f);
-                paint.setColor(0x886EF6FF);
-                c.drawCircle(e.bird.x, e.bird.y, 28f, paint);
+                paint.setStrokeWidth(6f);
+                paint.setColor(0xAA6EF6FF);
+                c.drawCircle(e.bird.x, e.bird.y, 32f, paint);
+                paint.setColor(0x666EF6FF);
+                c.drawCircle(e.bird.x, e.bird.y, 38f, paint);
                 paint.setStyle(Paint.Style.FILL);
             }
         } else {
             paint.setColor(accent);
-            c.drawCircle(220f, 430f, 18f, paint);
+            c.drawCircle(e.bird.x, e.bird.y, 18f, paint);
         }
     }
 
@@ -120,7 +142,12 @@ public class GameRenderer {
     private void drawHud(Canvas c, GameEngine e, int w) {
         text.setTextSize(36f);
         c.drawText("Level: " + GameDefs.LEVEL_NAMES[e.levelIndex], 24f, 48f, text);
-        c.drawText("Birds: " + e.birdsLeft, 24f, 90f, text);
+        paint.setColor(0xFF4FC3F7);
+        text.setColor(0xFF4FC3F7);
+        text.setTextSize(42f);
+        c.drawText("Birds Left: " + e.birdsLeft, 24f, 100f, text);
+        text.setColor(textPrimary);
+        text.setTextSize(36f);
         c.drawText("Score: " + e.score, w - 260f, 48f, text);
         c.drawText("Unit: " + unitName(e.currentUnit), w - 260f, 90f, text);
         if (e.toastTime > 0f) {
@@ -131,10 +158,7 @@ public class GameRenderer {
     }
 
     private void drawState(Canvas c, GameEngine e, int w, int h) {
-        if (e.state == GameDefs.MENU) {
-            text.setTextSize(58f);
-            c.drawText("Siege Flock Tactics", w * 0.3f, h * 0.28f, text);
-        } else if (e.state == GameDefs.PAUSED) {
+        if (e.state == GameDefs.PAUSED) {
             text.setTextSize(56f);
             c.drawText("Paused", w * 0.45f, h * 0.45f, text);
         } else if (e.state == GameDefs.GAME_OVER) {

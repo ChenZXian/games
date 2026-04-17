@@ -1,6 +1,7 @@
 <resources>
   <color name="cst_bg_main">#09111F</color>
   <color name="cst_bg_alt">#111D35</color>
+  <color name="cst_bg_panel">#14203B</color>
   <color name="cst_panel_bg">#14203B</color>
   <color name="cst_panel_stroke">#34507E</color>
   <color name="cst_panel_header_bg">#1B2B51</color>

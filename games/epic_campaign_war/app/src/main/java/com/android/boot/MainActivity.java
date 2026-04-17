@@ -1,7 +1,9 @@
 package com.android.boot;
 
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements BattleManager.Bat
     private GameView gameView;
     private BattleManager battleManager;
     private CampaignProgress campaignProgress;
+    private BgmPlayer bgmPlayer;
     private TonePlayer tonePlayer;
     private OverlayController overlayController;
     private CampaignMapController campaignMapController;
@@ -44,12 +47,16 @@ public class MainActivity extends AppCompatActivity implements BattleManager.Bat
         setContentView(R.layout.activity_main);
         campaignProgress = new CampaignProgress(this);
         selectedChapter = campaignProgress.getSelectedChapter();
+        bgmPlayer = new BgmPlayer();
         tonePlayer = new TonePlayer();
         tonePlayer.setMuted(campaignProgress.isMuted());
+        bgmPlayer.setMuted(campaignProgress.isMuted());
         bindUi();
         updateMuteButtons();
         overlayController.showState(metaState);
         overlayController.showHelp(false);
+        // Start background music immediately (menu + gameplay).
+        bgmPlayer.start(this);
     }
 
     private void bindUi() {
@@ -64,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements BattleManager.Bat
         View helpOverlay = findViewById(R.id.help_overlay);
         View hudRoot = findViewById(R.id.hud_root);
         View actionRoot = findViewById(R.id.action_root);
+        applyResponsiveOverlayHeights(hudRoot, actionRoot);
         overlayController = new OverlayController(menuOverlay, campaignOverlay, prepOverlay, pauseOverlay, resultOverlay, helpOverlay, hudRoot, actionRoot);
 
         prepTitle = findViewById(R.id.txt_prep_title);
@@ -127,6 +135,37 @@ public class MainActivity extends AppCompatActivity implements BattleManager.Bat
         findViewById(R.id.btn_hero_skill).setOnClickListener(v -> perform(battleManager.triggerHeroSkill()));
     }
 
+    private void applyResponsiveOverlayHeights(View hudRoot, View actionRoot) {
+        if (hudRoot == null || actionRoot == null) {
+            return;
+        }
+
+        // Make overlay sizes proportional to screen height so smaller phones don't get overly covered.
+        // Keep a strong lower bound so information stays visible on phones.
+        DisplayMetrics dm = getResources().getDisplayMetrics();
+        int screenH = dm.heightPixels;
+        int maxHudPx = (int) (screenH * 0.11f);      // 11% of screen height
+        int maxActionPx = (int) (screenH * 0.28f);   // 28% of screen height
+
+        // Also cap by the current design pixel sizes, so larger screens don't get overly reduced.
+        int designHudPx = getResources().getDimensionPixelSize(R.dimen.cst_hud_height);
+        int designActionPx = getResources().getDimensionPixelSize(R.dimen.cst_action_panel_height);
+
+        // Never shrink too aggressively; bottom is a ScrollView so it can scroll.
+        int minActionPx = (int) (designActionPx * 0.90f);
+
+        int finalActionPx = Math.min(designActionPx, maxActionPx);
+        finalActionPx = Math.max(finalActionPx, minActionPx);
+
+        // Do not force hudRoot height; it can clip ProgressBars on some phones.
+        ViewGroup.LayoutParams actionLp = actionRoot.getLayoutParams();
+        if (actionLp != null) {
+            actionLp.height = finalActionPx;
+            actionRoot.setLayoutParams(actionLp);
+            actionRoot.requestLayout();
+        }
+    }
+
     private void perform(boolean success) {
         if (success) {
             tonePlayer.playTap();
@@ -184,6 +223,9 @@ public class MainActivity extends AppCompatActivity implements BattleManager.Bat
         boolean muted = !campaignProgress.isMuted();
         campaignProgress.setMuted(muted);
         tonePlayer.setMuted(muted);
+        if (bgmPlayer != null) {
+            bgmPlayer.setMuted(muted);
+        }
         updateMuteButtons();
     }
 
@@ -228,17 +270,26 @@ public class MainActivity extends AppCompatActivity implements BattleManager.Bat
     protected void onPause() {
         super.onPause();
         gameView.onPauseView();
+        if (bgmPlayer != null) {
+            bgmPlayer.pause();
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         gameView.onResumeView();
+        if (bgmPlayer != null) {
+            bgmPlayer.resume();
+        }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         tonePlayer.release();
+        if (bgmPlayer != null) {
+            bgmPlayer.stop();
+        }
     }
 }

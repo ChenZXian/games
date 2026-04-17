@@ -29,6 +29,7 @@ public final class MainActivity extends AppCompatActivity implements GameView.Ui
     private TextView txtResultTitle;
     private TextView txtResultBody;
     private ImageButton btnMute;
+    private BgmPlayer bgmPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,8 @@ public final class MainActivity extends AppCompatActivity implements GameView.Ui
         txtResultTitle = findViewById(R.id.txt_result_title);
         txtResultBody = findViewById(R.id.txt_result_body);
         btnMute = findViewById(R.id.btn_mute);
+        bgmPlayer = new BgmPlayer();
+        bgmPlayer.start(this);
         gameView.setUiCallbacks(this);
         bindButtons();
         populateLevelButtons();
@@ -99,6 +102,7 @@ public final class MainActivity extends AppCompatActivity implements GameView.Ui
         });
         bindClick(btnMute, v -> {
             gameView.getEngine().toggleMuted();
+            bgmPlayer.setMuted(gameView.getEngine().isMuted());
             syncMute();
         });
     }
@@ -130,7 +134,7 @@ public final class MainActivity extends AppCompatActivity implements GameView.Ui
             button.setEnabled(unlocked);
             final int levelIndex = i;
             bindClick(button, v -> {
-                engine.startMenuLevel(levelIndex);
+                engine.startLevel(levelIndex);
                 populateLevelButtons();
                 onSnapshot(engine.getSnapshot());
             });
@@ -159,9 +163,6 @@ public final class MainActivity extends AppCompatActivity implements GameView.Ui
             if (!GameEngine.STATE_MENU.equals(snapshot.state)) {
                 helpOverlay.setVisibility(View.GONE);
             }
-            if (GameEngine.STATE_MENU.equals(snapshot.state)) {
-                populateLevelButtons();
-            }
         });
     }
 
@@ -169,17 +170,26 @@ public final class MainActivity extends AppCompatActivity implements GameView.Ui
     protected void onResume() {
         super.onResume();
         gameView.onResumeView();
+        if (bgmPlayer != null) {
+            bgmPlayer.resume();
+        }
     }
 
     @Override
     protected void onPause() {
         gameView.onPauseView();
+        if (bgmPlayer != null) {
+            bgmPlayer.pause();
+        }
         super.onPause();
     }
 
     @Override
     protected void onDestroy() {
         gameView.release();
+        if (bgmPlayer != null) {
+            bgmPlayer.stop();
+        }
         super.onDestroy();
     }
 }

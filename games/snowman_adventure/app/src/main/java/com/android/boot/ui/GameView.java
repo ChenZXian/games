@@ -36,13 +36,20 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         touchState.leftHeld = hold;
     }
 
+    public void holdRight(boolean hold) {
+        touchState.rightHeld = hold;
+    }
+
     public void pressJump() {
         touchState.jumpPressed = true;
     }
 
     public void holdSpray(boolean hold) {
         touchState.sprayHeld = hold;
-        touchState.kickPressed = hold;
+    }
+
+    public void pressKick() {
+        touchState.kickPressed = true;
     }
 
     public void resumeGameLoop() {

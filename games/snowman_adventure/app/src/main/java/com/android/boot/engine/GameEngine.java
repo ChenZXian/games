@@ -27,6 +27,31 @@ public class GameEngine {
         public boolean active;
     }
 
+    public static class Platform {
+        public float x;
+        public float y;
+        public float width;
+        public float height;
+    }
+
+    public static class AttackWave {
+        public float x;
+        public float y;
+        public float radius;
+        public float maxRadius;
+        public boolean active;
+    }
+
+    public static class SprayEffect {
+        public float startX;
+        public float startY;
+        public float endX;
+        public float endY;
+        public float progress;
+        public float lifetime;
+        public boolean active;
+    }
+
     public static class Level {
         public final String name;
         public final boolean iceFloor;
@@ -51,12 +76,16 @@ public class GameEngine {
 
     private final List<Enemy> enemies = new ArrayList<>();
     private final List<Snowball> snowballs = new ArrayList<>();
+    private final List<Platform> platforms = new ArrayList<>();
+    private final List<AttackWave> attackWaves = new ArrayList<>();
+    private final List<SprayEffect> sprayEffects = new ArrayList<>();
     private final Level[] levels;
     private final ToneFx toneFx;
     private float playerX;
     private float playerY;
     private float playerVx;
     private float playerVy;
+    private int playerFacing = 1;
     private int state = GameDefs.STATE_MENU;
     private int levelIndex;
     private int unlockedLevel = 1;
@@ -100,6 +129,13 @@ public class GameEngine {
         playerVy = 0f;
         enemies.clear();
         snowballs.clear();
+        platforms.clear();
+        attackWaves.clear();
+        sprayEffects.clear();
+        addPlatform(200f, 280f, 120f, 16f);
+        addPlatform(400f, 240f, 100f, 16f);
+        addPlatform(600f, 200f, 120f, 16f);
+        addPlatform(800f, 280f, 100f, 16f);
         spawnEnemy(GameDefs.ENEMY_WALKER, 500f, 360f);
         spawnEnemy(GameDefs.ENEMY_HOPPER, 620f, 360f);
         spawnEnemy(GameDefs.ENEMY_FLYER, 760f, 280f);
@@ -108,6 +144,15 @@ public class GameEngine {
             spawnEnemy(GameDefs.ENEMY_MINI_BOSS, 980f, 320f);
         }
         state = GameDefs.STATE_PLAYING;
+    }
+
+    private void addPlatform(float x, float y, float width, float height) {
+        Platform p = new Platform();
+        p.x = x;
+        p.y = y;
+        p.width = width;
+        p.height = height;
+        platforms.add(p);
     }
 
     private void spawnEnemy(int type, float x, float y) {
@@ -127,21 +172,30 @@ public class GameEngine {
         float clamped = Math.max(0f, Math.min(0.033f, dt));
         time += clamped;
         bobTimer += clamped * 4f;
-        float target = input.leftHeld ? -170f : 0f;
+        float target = 0f;
+        if (input.leftHeld) {
+            target = -170f;
+            playerFacing = -1;
+        } else if (input.rightHeld) {
+            target = 170f;
+            playerFacing = 1;
+        }
         float accel = levels[levelIndex].iceFloor ? 360f : 660f;
         if (playerVx < target) {
             playerVx = Math.min(target, playerVx + accel * clamped);
         } else {
             playerVx = Math.max(target, playerVx - accel * clamped);
         }
-        if (input.jumpPressed && playerY >= 360f) {
+        boolean onGround = checkOnGround(playerX, playerY);
+        if (input.jumpPressed && onGround) {
             playerVy = -330f;
         }
         playerVy += 720f * clamped;
         playerX += playerVx * clamped;
         playerY += playerVy * clamped;
-        if (playerY > 360f) {
-            playerY = 360f;
+        float groundY = getGroundY(playerX, playerY);
+        if (playerY > groundY) {
+            playerY = groundY;
             playerVy = 0f;
         }
         if (levels[levelIndex].windFan) {
@@ -152,9 +206,11 @@ public class GameEngine {
         }
         if (input.sprayHeld) {
             toneFx.playSpray();
+            boolean hasTarget = false;
             for (int i = 0; i < enemies.size(); i++) {
                 Enemy enemy = enemies.get(i);
                 if (enemy.alive && !enemy.snowball && Math.abs(enemy.x - playerX) < 120f) {
+                    hasTarget = true;
                     enemy.snowStage += enemy.type == GameDefs.ENEMY_SHIELD ? 1 : 2;
                     if (enemy.snowStage >= 6) {
                         enemy.snowball = true;
@@ -165,7 +221,41 @@ public class GameEngine {
                         sb.active = true;
                         snowballs.add(sb);
                     }
+                    if (sprayEffects.size() < 3) {
+                        SprayEffect effect = new SprayEffect();
+                        effect.startX = playerX + 16f;
+                        effect.startY = playerY - 30f;
+                        effect.endX = enemy.x + 14f;
+                        effect.endY = enemy.y - 20f;
+                        effect.progress = 0f;
+                        effect.lifetime = 0.3f;
+                        effect.active = true;
+                        sprayEffects.add(effect);
+                    }
                 }
+            }
+            if (!hasTarget && sprayEffects.size() < 2) {
+                SprayEffect effect = new SprayEffect();
+                effect.startX = playerX + 16f;
+                effect.startY = playerY - 30f;
+                float sprayDistance = 120f;
+                effect.endX = effect.startX + playerFacing * sprayDistance;
+                effect.endY = effect.startY;
+                effect.progress = 0f;
+                effect.lifetime = 0.25f;
+                effect.active = true;
+                sprayEffects.add(effect);
+            }
+        }
+        for (int i = sprayEffects.size() - 1; i >= 0; i--) {
+            SprayEffect effect = sprayEffects.get(i);
+            if (!effect.active) {
+                sprayEffects.remove(i);
+                continue;
+            }
+            effect.progress += clamped;
+            if (effect.progress >= effect.lifetime) {
+                effect.active = false;
             }
         }
         for (int i = 0; i < enemies.size(); i++) {
@@ -175,7 +265,9 @@ public class GameEngine {
             }
             if (!enemy.snowball) {
                 enemy.x += enemy.vx * clamped;
-                if (enemy.type == GameDefs.ENEMY_HOPPER && enemy.y >= 360f) {
+                float enemyGroundY = getEnemyGroundY(enemy.x, enemy.y);
+                boolean enemyOnGround = Math.abs(enemy.y - enemyGroundY) < 5f;
+                if (enemy.type == GameDefs.ENEMY_HOPPER && enemyOnGround) {
                     enemy.vy = -230f;
                 }
                 if (enemy.type == GameDefs.ENEMY_FLYER) {
@@ -183,8 +275,9 @@ public class GameEngine {
                 } else {
                     enemy.vy += 720f * clamped;
                     enemy.y += enemy.vy * clamped;
-                    if (enemy.y > 360f) {
-                        enemy.y = 360f;
+                    enemyGroundY = getEnemyGroundY(enemy.x, enemy.y);
+                    if (enemy.y > enemyGroundY) {
+                        enemy.y = enemyGroundY;
                         enemy.vy = 0f;
                     }
                 }
@@ -194,21 +287,24 @@ public class GameEngine {
                 }
             }
         }
+        boolean kicked = false;
         for (int i = 0; i < snowballs.size(); i++) {
             Snowball sb = snowballs.get(i);
             if (!sb.active) {
                 continue;
             }
-            if (input.kickPressed && Math.abs(sb.x - playerX) < 70f && Math.abs(sb.y - playerY) < 60f) {
+            if (input.kickPressed && !kicked && Math.abs(sb.x - playerX) < 70f && Math.abs(sb.y - playerY) < 60f) {
                 sb.vx = 420f;
                 sb.vy = -120f;
                 toneFx.playKick();
+                kicked = true;
             }
             sb.vy += 640f * clamped;
             sb.x += sb.vx * clamped;
             sb.y += sb.vy * clamped;
-            if (sb.y > 360f) {
-                sb.y = 360f;
+            float sbGroundY = getGroundY(sb.x, sb.y);
+            if (sb.y > sbGroundY) {
+                sb.y = sbGroundY;
                 sb.vy = -Math.abs(sb.vy) * 0.35f;
             }
             for (int j = 0; j < enemies.size(); j++) {
@@ -217,6 +313,48 @@ public class GameEngine {
                     enemy.alive = false;
                     combo++;
                 }
+            }
+        }
+        if (input.kickPressed && !kicked) {
+            AttackWave wave = new AttackWave();
+            wave.x = playerX;
+            wave.y = playerY;
+            wave.radius = 0f;
+            wave.maxRadius = 100f;
+            wave.active = true;
+            attackWaves.add(wave);
+            for (int i = 0; i < enemies.size(); i++) {
+                Enemy enemy = enemies.get(i);
+                if (enemy.alive && !enemy.snowball) {
+                    float dx = enemy.x - playerX;
+                    float dy = enemy.y - playerY;
+                    float dist = (float) Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 80f) {
+                        enemy.snowStage += 3;
+                        if (enemy.snowStage >= 6) {
+                            enemy.snowball = true;
+                            Snowball sb = new Snowball();
+                            sb.x = enemy.x;
+                            sb.y = enemy.y;
+                            sb.vx = 0f;
+                            sb.active = true;
+                            snowballs.add(sb);
+                        }
+                        toneFx.playKick();
+                        break;
+                    }
+                }
+            }
+        }
+        for (int i = attackWaves.size() - 1; i >= 0; i--) {
+            AttackWave wave = attackWaves.get(i);
+            if (!wave.active) {
+                attackWaves.remove(i);
+                continue;
+            }
+            wave.radius += 200f * clamped;
+            if (wave.radius >= wave.maxRadius) {
+                wave.active = false;
             }
         }
         int aliveCount = 0;
@@ -284,5 +422,42 @@ public class GameEngine {
 
     public String getLevelTitle() {
         return levels[levelIndex].name;
+    }
+
+    public List<Platform> getPlatforms() {
+        return platforms;
+    }
+
+    public List<AttackWave> getAttackWaves() {
+        return attackWaves;
+    }
+
+    public List<SprayEffect> getSprayEffects() {
+        return sprayEffects;
+    }
+
+    private boolean checkOnGround(float x, float y) {
+        float groundY = getGroundY(x, y);
+        return Math.abs(y - groundY) < 5f;
+    }
+
+    private float getGroundY(float x, float y) {
+        float groundY = 360f;
+        for (Platform p : platforms) {
+            if (x >= p.x && x <= p.x + p.width && y <= p.y + p.height + 32f && y >= p.y - 10f) {
+                groundY = Math.min(groundY, p.y);
+            }
+        }
+        return groundY;
+    }
+
+    private float getEnemyGroundY(float x, float y) {
+        float groundY = 360f;
+        for (Platform p : platforms) {
+            if (x >= p.x && x <= p.x + p.width && y <= p.y + p.height + 28f && y >= p.y - 10f) {
+                groundY = Math.min(groundY, p.y);
+            }
+        }
+        return groundY;
     }
 }

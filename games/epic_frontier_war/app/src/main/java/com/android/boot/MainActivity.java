@@ -1,86 +1,45 @@
 package com.android.boot;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.boot.core.GameState;
-import com.android.boot.ui.GameHudController;
 import com.android.boot.ui.GameView;
-import com.android.boot.ui.OverlayController;
 
-public class MainActivity extends AppCompatActivity implements OverlayController.Listener {
-    private GameView gameView;
-    private GameHudController hudController;
-    private OverlayController overlayController;
+public class MainActivity extends AppCompatActivity {
+	private GameView gameView;
+	private boolean muted = false;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        gameView = findViewById(R.id.game_view);
-        hudController = new GameHudController(this, findViewById(android.R.id.content), gameView);
-        overlayController = new OverlayController(this, findViewById(android.R.id.content), this);
-        gameView.setHudController(hudController);
-        gameView.setOverlayController(overlayController);
-        hudController.bind();
-        overlayController.bind();
-        overlayController.showState(GameState.MENU, null, false);
-    }
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		gameView = findViewById(R.id.game_view);
+		View startOverlay = findViewById(R.id.start_overlay);
+		Button btnStart = findViewById(R.id.btn_start);
+		ImageButton btnHelp = findViewById(R.id.btn_help);
+		ImageButton btnMute = findViewById(R.id.btn_mute);
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (gameView != null) {
-            gameView.onActivityResume();
-        }
-    }
+		btnStart.setOnClickListener(v -> {
+			startOverlay.setVisibility(View.GONE);
+			gameView.startBattle();
+		});
+		btnHelp.setOnClickListener(v -> showHelp());
+		btnMute.setOnClickListener(v -> {
+			muted = !muted;
+			btnMute.setImageResource(muted ? R.drawable.ic_sound_off : R.drawable.ic_sound_on);
+		});
+	}
 
-    @Override
-    protected void onPause() {
-        if (gameView != null) {
-            gameView.onActivityPause();
-        }
-        super.onPause();
-    }
-
-    @Override
-    protected void onDestroy() {
-        if (gameView != null) {
-            gameView.release();
-        }
-        super.onDestroy();
-    }
-
-    @Override
-    public void onStartBattle() {
-        gameView.startNewMatch();
-    }
-
-    @Override
-    public void onResumeBattle() {
-        gameView.resumeMatch();
-    }
-
-    @Override
-    public void onRestartBattle() {
-        gameView.startNewMatch();
-    }
-
-    @Override
-    public void onReturnToMenu() {
-        gameView.returnToMenu();
-    }
-
-    @Override
-    public void onToggleMute() {
-        gameView.toggleMute();
-        overlayController.refreshMute(gameView.isMuted());
-    }
-
-    @Override
-    public void onShowHelp(boolean show) {
-        overlayController.showHelp(show);
-        gameView.setPaused(show || gameView.getCurrentState() == GameState.PAUSED);
-    }
+	private void showHelp() {
+		new AlertDialog.Builder(this)
+			.setTitle(getString(R.string.btn_help))
+			.setMessage(getString(R.string.how_to_play))
+			.setPositiveButton(getString(R.string.btn_ok), null)
+			.show();
+	}
 }

@@ -115,6 +115,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
     private float gridTop;
     private float tile;
     private float laneH;
+    private float previewX = -1f;
+    private float previewY = -1f;
 
     public GameView(Context c, AttributeSet a) {
         super(c, a);
@@ -146,7 +148,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
         for (int i = 0; i < cardCd.length; i++) cardCd[i] = 0f;
         selectedCard = -1;
         shovel = false;
-        sun = 50;
+        sun = 100;
+        previewX = -1f;
+        previewY = -1f;
         hearts = 5;
         spawnT = 0f;
         skySunT = 2f;
@@ -155,6 +159,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
         waveT = 0f;
         bigWave = false;
         levelStart = System.currentTimeMillis();
+        tile = getResources().getDisplayMetrics().density * 44f;
+        laneH = tile;
+        gridLeft = getWidth() * 0.1f;
+        gridTop = getHeight() * 0.14f;
     }
 
     @Override
@@ -165,7 +173,12 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
     }
 
     @Override
-    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {}
+    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+        tile = getResources().getDisplayMetrics().density * 44f;
+        laneH = tile;
+        gridLeft = width * 0.1f;
+        gridTop = height * 0.14f;
+    }
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
@@ -195,6 +208,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
     }
 
     private void update(float dt) {
+        if (tile <= 0f) return;
         levelTime += dt;
         waveT += dt;
         updateWaves(dt);
@@ -238,7 +252,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
                 plant.fireCd -= dt;
                 if (plant.fireCd <= 0f && hasEnemyAhead(plant.row, plant.col)) {
                     plant.fireCd = plant.type == PlantType.POD_SHOOTER ? 1.4f : 1.8f;
-                    spawnProjectile(plant.row, gridLeft + (plant.col + 0.5f) * tile, gridTop + (plant.row + 0.5f) * laneH, plant.type == PlantType.POD_SHOOTER ? 260f : 240f, plant.type == PlantType.POD_SHOOTER ? 20f : 16f, plant.type == PlantType.FROST_MINT);
+                    spawnProjectile(plant.row, gridLeft + (plant.col + 0.5f) * tile, gridTop + (plant.row + 0.5f) * laneH, plant.type == PlantType.POD_SHOOTER ? 260f : 240f, plant.type == PlantType.POD_SHOOTER ? 20f : 24f, plant.type == PlantType.FROST_MINT);
                 }
             }
         }
@@ -331,12 +345,12 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
         spawnT -= dt;
         if (spawnT <= 0f) {
             spawnEnemyForLevel();
-            float interval = Math.max(1.8f, 3.6f - levelIndex * 0.25f - wave * 0.15f);
-            spawnT = interval * (0.8f + random.nextFloat() * 0.4f);
+            float interval = Math.max(2.5f, 4.5f - levelIndex * 0.2f - wave * 0.1f);
+            spawnT = interval * (0.9f + random.nextFloat() * 0.3f);
         }
         if (waveT > dur - 4f && !bigWave && wave == total - 1) {
             bigWave = true;
-            for (int i = 0; i < 4 + levelIndex; i++) spawnEnemy(EnemyType.SHAMBLER, random.nextInt(5));
+            for (int i = 0; i < 2 + levelIndex / 2; i++) spawnEnemy(EnemyType.SHAMBLER, random.nextInt(5));
         }
         if (waveT > dur) {
             wave++;
@@ -360,10 +374,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
         e.row = lane;
         e.x = gridLeft + tile * 9.25f;
         e.biteCd = 0.9f;
-        if (t == EnemyType.SHAMBLER) { e.hp = 120f; e.speed = 18f; }
-        if (t == EnemyType.RUNNER) { e.hp = 70f; e.speed = 32f; laneRunnerWarning(lane); }
-        if (t == EnemyType.HELM_BRUISER) { e.hp = 160f; e.armor = 90f; e.speed = 16f; }
-        if (t == EnemyType.SHIELD_CARRIER) { e.hp = 140f; e.speed = 14f; }
+        if (t == EnemyType.SHAMBLER) { e.hp = 80f; e.speed = 18f; }
+        if (t == EnemyType.RUNNER) { e.hp = 50f; e.speed = 32f; laneRunnerWarning(lane); }
+        if (t == EnemyType.HELM_BRUISER) { e.hp = 110f; e.armor = 60f; e.speed = 16f; }
+        if (t == EnemyType.SHIELD_CARRIER) { e.hp = 95f; e.speed = 14f; }
         enemies.add(e);
     }
 
@@ -463,9 +477,15 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        if (ev.getAction() != MotionEvent.ACTION_DOWN) return true;
+        if (state != State.PLAYING) return true;
+        if (tile <= 0f) return true;
         float x = ev.getX();
         float y = ev.getY();
+        if (ev.getAction() == MotionEvent.ACTION_MOVE) {
+            updatePreview(x, y);
+            return true;
+        }
+        if (ev.getAction() != MotionEvent.ACTION_DOWN) return true;
         for (SunOrb s : suns) if (s.active && Math.hypot(x - s.x, y - s.y) < tile * 0.25f) {
             s.collect = true;
             s.tx = gridLeft + 30f;
@@ -491,10 +511,12 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
         int row = (int)((y - gridTop) / laneH);
         if (row < 0 || row >= 5 || col < 0 || col >= 9) return true;
         if (shovel) {
-            plants.removeIf(pl -> pl.row == row && pl.col == col);
+            if (state == State.PLAYING) {
+                plants.removeIf(pl -> pl.row == row && pl.col == col);
+            }
             return true;
         }
-        if (selectedCard >= 0 && findPlant(row, col) == null) {
+        if (selectedCard >= 0 && selectedCard < PlantType.values().length && findPlant(row, col) == null) {
             PlantType t = PlantType.values()[selectedCard];
             int cost = cost(t);
             if (sun >= cost && cardCd[selectedCard] <= 0f) {
@@ -503,14 +525,28 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
                 pl.row = row;
                 pl.col = col;
                 pl.hp = hp(t);
+                pl.fireCd = 0f;
                 pl.sunCd = 7f;
                 pl.fuse = 1f;
+                pl.hitFlash = 0f;
                 plants.add(pl);
                 sun -= cost;
                 cardCd[selectedCard] = cd(t);
             }
         }
         return true;
+    }
+
+    private void updatePreview(float x, float y) {
+        int col = (int)((x - gridLeft) / tile);
+        int row = (int)((y - gridTop) / laneH);
+        if (row >= 0 && row < 5 && col >= 0 && col < 9) {
+            previewX = gridLeft + (col + 0.5f) * tile;
+            previewY = gridTop + (row + 0.5f) * laneH;
+        } else {
+            previewX = -1f;
+            previewY = -1f;
+        }
     }
 
     private Plant findPlant(int r, int c) {
@@ -546,16 +582,23 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
         Canvas c = holder.lockCanvas();
         if (c == null) return;
         c.drawColor(0xFF07070C);
-        tile = getResources().getDisplayMetrics().density * 44f;
-        laneH = tile;
-        gridLeft = getWidth() * 0.1f;
-        gridTop = getHeight() * 0.14f;
+        if (state == State.MENU) {
+            holder.unlockCanvasAndPost(c);
+            return;
+        }
+        if (tile <= 0f) {
+            tile = getResources().getDisplayMetrics().density * 44f;
+            laneH = tile;
+            gridLeft = getWidth() * 0.1f;
+            gridTop = getHeight() * 0.14f;
+        }
         float sx = (random.nextFloat() - 0.5f) * 16f * shake;
         float sy = (random.nextFloat() - 0.5f) * 16f * shake;
         c.save();
         c.translate(sx, sy);
         drawGrid(c);
         drawEntities(c);
+        drawPreview(c);
         drawHud(c);
         drawCards(c);
         c.restore();
@@ -590,28 +633,178 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
         for (Plant pl : plants) {
             float cx = gridLeft + (pl.col + 0.5f) * tile;
             float cy = gridTop + (pl.row + 0.5f) * laneH;
-            p.setColor(pl.hitFlash > 0f ? 0xFFFFFFFF : 0xFF5CDD75);
-            if (pl.type == PlantType.POD_SHOOTER) p.setColor(0xFF6BE0A2);
-            if (pl.type == PlantType.THORN_BLOCK) p.setColor(0xFF888844);
-            if (pl.type == PlantType.FROST_MINT) p.setColor(0xFF66CCFF);
-            if (pl.type == PlantType.BURST_BLOOM) p.setColor(0xFFFFAA55);
-            c.drawRoundRect(new RectF(cx - tile * 0.3f, cy - tile * 0.3f, cx + tile * 0.3f, cy + tile * 0.3f), 10f, 10f, p);
+            float maxHp = hp(pl.type);
+            float hpRatio = pl.hp / maxHp;
+            
+            if (pl.type == PlantType.SUNBUD) {
+                p.setColor(pl.hitFlash > 0f ? 0xFFFFFFFF : 0xFFFFD94A);
+                c.drawCircle(cx, cy - tile * 0.15f, tile * 0.28f, p);
+                p.setColor(pl.hitFlash > 0f ? 0xFFFFFFFF : 0xFFFFAA00);
+                c.drawCircle(cx, cy - tile * 0.15f, tile * 0.18f, p);
+                p.setColor(pl.hitFlash > 0f ? 0xFFFFFFFF : 0xFFFFEE66);
+                for (int i = 0; i < 8; i++) {
+                    float angle = (float)(i * Math.PI / 4);
+                    float px = cx + (float)Math.cos(angle) * tile * 0.22f;
+                    float py = cy - tile * 0.15f + (float)Math.sin(angle) * tile * 0.22f;
+                    c.drawCircle(px, py, tile * 0.04f, p);
+                }
+            } else if (pl.type == PlantType.POD_SHOOTER) {
+                p.setColor(pl.hitFlash > 0f ? 0xFFFFFFFF : 0xFF4ACF7A);
+                float bodyR = tile * 0.2f;
+                c.drawCircle(cx, cy, bodyR, p);
+                p.setColor(pl.hitFlash > 0f ? 0xFFFFFFFF : 0xFF6BE0A2);
+                c.drawRect(cx - bodyR * 0.3f, cy - bodyR * 0.8f, cx + bodyR * 0.3f, cy - bodyR * 0.2f, p);
+                p.setColor(pl.hitFlash > 0f ? 0xFFFFFFFF : 0xFF2A8F5A);
+                c.drawCircle(cx + tile * 0.18f, cy - tile * 0.1f, tile * 0.1f, p);
+            } else if (pl.type == PlantType.THORN_BLOCK) {
+                p.setColor(pl.hitFlash > 0f ? 0xFFFFFFFF : 0xFF888844);
+                float size = tile * 0.3f;
+                c.drawRect(cx - size, cy - size * 0.5f, cx + size, cy + size * 0.5f, p);
+                p.setColor(pl.hitFlash > 0f ? 0xFFFFFFFF : 0xFFAA9966);
+                for (int i = 0; i < 4; i++) {
+                    float angle = (float)(i * Math.PI / 2);
+                    float px = cx + (float)Math.cos(angle) * size * 0.75f;
+                    float py = cy + (float)Math.sin(angle) * size * 0.75f;
+                    float th = tile * 0.06f;
+                    c.drawRect(px - th, py - th, px + th, py + th, p);
+                }
+            } else if (pl.type == PlantType.FROST_MINT) {
+                p.setColor(pl.hitFlash > 0f ? 0xFFFFFFFF : 0xFF66CCFF);
+                float centerR = tile * 0.22f;
+                c.drawCircle(cx, cy, centerR, p);
+                p.setColor(pl.hitFlash > 0f ? 0xFFFFFFFF : 0xFFAAEEFF);
+                for (int i = 0; i < 6; i++) {
+                    float angle = (float)(i * Math.PI / 3);
+                    float px = cx + (float)Math.cos(angle) * tile * 0.18f;
+                    float py = cy + (float)Math.sin(angle) * tile * 0.18f;
+                    float r = tile * 0.07f;
+                    c.drawCircle(px, py, r, p);
+                    float innerR = r * 0.5f;
+                    p.setColor(pl.hitFlash > 0f ? 0xFFFFFFFF : 0xFF88DDFF);
+                    c.drawCircle(px, py, innerR, p);
+                    p.setColor(pl.hitFlash > 0f ? 0xFFFFFFFF : 0xFFAAEEFF);
+                }
+            } else if (pl.type == PlantType.BURST_BLOOM) {
+                p.setColor(pl.hitFlash > 0f ? 0xFFFFFFFF : 0xFFFFAA55);
+                float centerR = tile * 0.24f;
+                c.drawCircle(cx, cy, centerR, p);
+                p.setColor(pl.hitFlash > 0f ? 0xFFFFFFFF : 0xFFFF7744);
+                for (int i = 0; i < 8; i++) {
+                    float angle = (float)(i * Math.PI / 4);
+                    float px = cx + (float)Math.cos(angle) * tile * 0.2f;
+                    float py = cy + (float)Math.sin(angle) * tile * 0.2f;
+                    float r = tile * 0.08f;
+                    c.drawCircle(px, py, r, p);
+                }
+                p.setColor(pl.hitFlash > 0f ? 0xFFFFFFFF : 0xFFFFCC88);
+                c.drawCircle(cx, cy, tile * 0.12f, p);
+            }
+            
+            float barW = tile * 0.5f;
+            float barH = tile * 0.08f;
+            float barX = cx - barW * 0.5f;
+            float barY = cy - tile * 0.4f;
+            p.setColor(0xFF000000);
+            c.drawRect(barX - 1f, barY - 1f, barX + barW + 1f, barY + barH + 1f, p);
+            p.setColor(0xFF333333);
+            c.drawRect(barX, barY, barX + barW, barY + barH, p);
+            p.setColor(hpRatio > 0.5f ? 0xFF00FF00 : (hpRatio > 0.25f ? 0xFFFFFF00 : 0xFFFF0000));
+            c.drawRect(barX, barY, barX + barW * hpRatio, barY + barH, p);
         }
+        
         for (Enemy e : enemies) {
             float cy = gridTop + (e.row + 0.5f) * laneH;
-            p.setColor(e.flash > 0f ? 0xFFFFFFFF : 0xFFAA6644);
-            if (e.type == EnemyType.RUNNER) p.setColor(0xFFFF6655);
-            if (e.type == EnemyType.HELM_BRUISER) p.setColor(0xFF888899);
-            if (e.type == EnemyType.SHIELD_CARRIER) p.setColor(0xFF5577AA);
-            c.drawCircle(e.x, cy, tile * 0.27f, p);
+            float maxHp = e.type == EnemyType.SHAMBLER ? 80f : (e.type == EnemyType.RUNNER ? 50f : (e.type == EnemyType.HELM_BRUISER ? 110f : 95f));
+            float hpRatio = Math.max(0f, e.hp / maxHp);
+            
+            int bodyColor = e.flash > 0f ? 0xFFFFFFFF : 0xFF6B8E4A;
+            int headColor = e.flash > 0f ? 0xFFFFFFFF : 0xFF8B6B4A;
+            if (e.type == EnemyType.RUNNER) {
+                bodyColor = e.flash > 0f ? 0xFFFFFFFF : 0xFFFF6655;
+                headColor = e.flash > 0f ? 0xFFFFFFFF : 0xFFFF8866;
+            } else if (e.type == EnemyType.HELM_BRUISER) {
+                bodyColor = e.flash > 0f ? 0xFFFFFFFF : 0xFF888899;
+                headColor = e.flash > 0f ? 0xFFFFFFFF : 0xFFAAAAAA;
+            } else if (e.type == EnemyType.SHIELD_CARRIER) {
+                bodyColor = e.flash > 0f ? 0xFFFFFFFF : 0xFF5577AA;
+                headColor = e.flash > 0f ? 0xFFFFFFFF : 0xFF7799CC;
+            }
+            
+            p.setColor(bodyColor);
+            float bodyW = tile * 0.36f;
+            float bodyH = tile * 0.32f;
+            float bodyTop = cy - bodyH * 0.25f;
+            float bodyBottom = cy + bodyH * 0.75f;
+            c.drawRect(e.x - bodyW * 0.5f, bodyTop, e.x + bodyW * 0.5f, bodyBottom, p);
+            
+            p.setColor(headColor);
+            float headR = tile * 0.19f;
+            float headY = cy - tile * 0.18f;
+            c.drawCircle(e.x, headY, headR, p);
+            
+            int eyeColor = e.flash > 0f ? 0xFFFFFFFF : 0xFF000000;
+            p.setColor(eyeColor);
+            float eyeR = tile * 0.04f;
+            c.drawCircle(e.x - tile * 0.06f, headY - tile * 0.03f, eyeR, p);
+            c.drawCircle(e.x + tile * 0.06f, headY - tile * 0.03f, eyeR, p);
+            
+            if (e.type == EnemyType.HELM_BRUISER) {
+                p.setColor(e.flash > 0f ? 0xFFFFFFFF : 0xFFCCCCCC);
+                c.drawRect(e.x - tile * 0.13f, headY - tile * 0.12f, e.x + tile * 0.13f, headY + tile * 0.05f, p);
+                p.setColor(e.flash > 0f ? 0xFFFFFFFF : 0xFFAAAAAA);
+                c.drawRect(e.x - tile * 0.1f, headY - tile * 0.15f, e.x + tile * 0.1f, headY - tile * 0.12f, p);
+            }
+            
+            if (e.type == EnemyType.SHIELD_CARRIER && e.armor > 0f) {
+                p.setColor(0xFF88CCFF);
+                p.setStyle(Paint.Style.STROKE);
+                p.setStrokeWidth(4f);
+                c.drawRect(e.x - bodyW * 0.5f - 3f, bodyTop - 3f, e.x + bodyW * 0.5f + 3f, bodyBottom + 3f, p);
+                p.setStyle(Paint.Style.FILL);
+            }
+            
+            if (e.slowT > 0f) {
+                p.setColor(0x8866CCFF);
+                p.setStyle(Paint.Style.STROKE);
+                p.setStrokeWidth(2f);
+                c.drawCircle(e.x, cy, headR + tile * 0.05f, p);
+                p.setStyle(Paint.Style.FILL);
+            }
+            
+            float barW = tile * 0.5f;
+            float barH = tile * 0.06f;
+            float barX = e.x - barW * 0.5f;
+            float barY = cy - tile * 0.45f;
+            p.setColor(0xFF000000);
+            c.drawRect(barX - 1f, barY - 1f, barX + barW + 1f, barY + barH + 1f, p);
+            p.setColor(0xFF333333);
+            c.drawRect(barX, barY, barX + barW, barY + barH, p);
+            p.setColor(hpRatio > 0.5f ? 0xFFFF0000 : (hpRatio > 0.25f ? 0xFFFF6600 : 0xFFFFAA00));
+            c.drawRect(barX, barY, barX + barW * hpRatio, barY + barH, p);
         }
         for (Projectile pr : projectiles) if (pr.active) {
             p.setColor(pr.frost ? 0xFF66D9FF : 0xFFC5F76D);
             c.drawCircle(pr.x, pr.y, tile * 0.08f, p);
         }
         for (SunOrb s : suns) if (s.active) {
+            float sunR = tile * 0.25f;
+            float pulse = 1f + (float)Math.sin(levelTime * 8f + s.x * 0.1f) * 0.15f;
+            float currentR = sunR * pulse;
+            
+            p.setColor(0x88FFFF00);
+            c.drawCircle(s.x, s.y, currentR * 1.4f, p);
+            p.setColor(0xAAFFFF66);
+            c.drawCircle(s.x, s.y, currentR * 1.2f, p);
             p.setColor(0xFFFFD94A);
-            c.drawCircle(s.x, s.y, tile * 0.18f, p);
+            c.drawCircle(s.x, s.y, currentR, p);
+            p.setColor(0xFFFFEE88);
+            c.drawCircle(s.x, s.y, currentR * 0.6f, p);
+            
+            p.setStyle(Paint.Style.STROKE);
+            p.setStrokeWidth(3f);
+            p.setColor(0xFFFFAA00);
+            c.drawCircle(s.x, s.y, currentR, p);
+            p.setStyle(Paint.Style.FILL);
         }
         for (Particle pa : particles) if (pa.active) {
             p.setColor(pa.color);
@@ -619,12 +812,34 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
         }
     }
 
+    private void drawPreview(Canvas c) {
+        if (previewX < 0f || previewY < 0f || selectedCard < 0 || selectedCard >= PlantType.values().length) return;
+        if (state != State.PLAYING) return;
+        PlantType t = PlantType.values()[selectedCard];
+        int cost = cost(t);
+        int row = (int)((previewY - gridTop) / laneH);
+        int col = (int)((previewX - gridLeft) / tile);
+        boolean canPlace = sun >= cost && cardCd[selectedCard] <= 0f && findPlant(row, col) == null;
+        p.setStyle(Paint.Style.STROKE);
+        p.setStrokeWidth(3f);
+        p.setColor(canPlace ? 0x8800FF00 : 0x88FF0000);
+        float size = tile * 0.4f;
+        c.drawRect(previewX - size, previewY - size, previewX + size, previewY + size, p);
+        p.setStyle(Paint.Style.FILL);
+    }
+
     private void drawHud(Canvas c) {
-        p.setColor(0xFFCCDD33);
-        p.setTextSize(tile * 0.33f);
-        c.drawText("Sun " + sun, gridLeft, gridTop - 18f, p);
+        p.setColor(0xFFFFD94A);
+        p.setTextSize(tile * 0.35f);
+        p.setFakeBoldText(true);
+        c.drawText("Sun: " + sun, gridLeft, gridTop - 12f, p);
         p.setColor(0xFFFF6677);
-        c.drawText("Base " + hearts, gridLeft + tile * 6f, gridTop - 18f, p);
+        c.drawText("Base: " + hearts, gridLeft + tile * 5.5f, gridTop - 12f, p);
+        p.setColor(0xFFAAEEFF);
+        p.setTextAlign(Paint.Align.RIGHT);
+        c.drawText("Level " + levelIndex, getWidth() - gridLeft, gridTop - 12f, p);
+        p.setTextAlign(Paint.Align.LEFT);
+        p.setFakeBoldText(false);
         p.setColor(0xFF2C314A);
         c.drawRoundRect(new RectF(gridLeft + tile * 2.3f, gridTop - 32f, gridLeft + tile * 5.8f, gridTop - 18f), 8f, 8f, p);
         p.setColor(0xFF20FFB2);
@@ -647,10 +862,23 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
             boolean disabled = sun < cost || cardCd[i] > 0f;
             p.setColor(disabled ? 0xFF333344 : (selectedCard == i ? 0xFF00F2FF : 0xFF1E2440));
             c.drawRoundRect(new RectF(l, top, r, b), 12f, 12f, p);
-            p.setColor(0xFFFFFFFF);
-            p.setTextSize(tile * 0.24f);
-            c.drawText(PlantType.values()[i].name().replace('_', ' '), l + 8f, top + tile * 0.35f, p);
+            if (selectedCard == i) {
+                p.setStyle(Paint.Style.STROKE);
+                p.setStrokeWidth(3f);
+                p.setColor(0xFF00F2FF);
+                c.drawRoundRect(new RectF(l + 2f, top + 2f, r - 2f, b - 2f), 10f, 10f, p);
+                p.setStyle(Paint.Style.FILL);
+            }
+            p.setColor(disabled ? 0xFF888888 : 0xFFFFFFFF);
+            p.setTextSize(tile * 0.22f);
+            String name = PlantType.values()[i].name().replace('_', ' ');
+            if (name.length() > 12) name = name.substring(0, 12);
+            c.drawText(name, l + 8f, top + tile * 0.35f, p);
+            p.setColor(disabled ? 0xFF666666 : 0xFFFFD94A);
+            p.setTextSize(tile * 0.28f);
+            p.setFakeBoldText(true);
             c.drawText(String.valueOf(cost), l + 8f, top + tile * 0.7f, p);
+            p.setFakeBoldText(false);
             if (cardCd[i] > 0f) {
                 p.setStyle(Paint.Style.STROKE);
                 p.setStrokeWidth(5f);

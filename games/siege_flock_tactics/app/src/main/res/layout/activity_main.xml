@@ -9,41 +9,79 @@
         android:layout_height="match_parent" />
 
     <LinearLayout
+        android:id="@+id/menuPanel"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="@drawable/ui_dialog">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:textAppearance="@style/TextAppearance.Game.Title" />
+
+        <Button
+            android:id="@+id/btn_play"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_play"
+            style="@style/Widget.Game.Button.Primary" />
+
+        <Button
+            android:id="@+id/btn_how_to_play"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_how_to_play"
+            style="@style/Widget.Game.Button.Secondary" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/gameHud"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="top"
         android:background="@drawable/ui_panel_header"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="@dimen/cst_pad_8">
-
-        <Button
-            android:id="@+id/btn_start"
-            style="@style/Widget.Game.Button.Primary"
-            android:text="@string/btn_start" />
+        android:padding="@dimen/cst_pad_8"
+        android:visibility="gone">
 
         <Button
             android:id="@+id/btn_resume"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             style="@style/Widget.Game.Button.Secondary"
             android:text="@string/btn_resume" />
 
         <Button
             android:id="@+id/btn_restart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             style="@style/Widget.Game.Button.Secondary"
             android:text="@string/btn_restart" />
 
         <Button
             android:id="@+id/btn_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             style="@style/Widget.Game.Button.Secondary"
             android:text="@string/btn_menu" />
 
         <Button
             android:id="@+id/btn_mute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             style="@style/Widget.Game.Button.Icon"
             android:text="@string/btn_mute" />
 
         <Button
             android:id="@+id/btn_help"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             style="@style/Widget.Game.Button.Icon"
             android:text="@string/btn_how_to_play" />
     </LinearLayout>

@@ -29,6 +29,7 @@ public class GameEngine {
     public float popupY;
     public float popupTime;
     public int currentUnit = GameDefs.RAM_BIRD;
+    public boolean levelWon;
 
     public GameEngine() {
         for (int i = 0; i < blocks.length; i++) {
@@ -112,22 +113,24 @@ public class GameEngine {
         float dx = touchState.nowX - sx;
         float dy = touchState.nowY - sy;
         float pull = (float) Math.sqrt(dx * dx + dy * dy);
-        float maxPull = width * 0.18f;
+        float maxPull = 240f;
         if (pull > maxPull) {
             dx = dx / pull * maxPull;
             dy = dy / pull * maxPull;
         }
-        float vx = -dx * 3.6f;
-        float vy = -dy * 3.6f;
+        float vx = -dx * 5.5f;
+        float vy = -dy * 5.5f;
         trajectoryCount = trajectoryX.length;
         float px = sx;
         float py = sy;
+        float dt = 0.016f;
+        float gravity = height * 1.45f;
         for (int i = 0; i < trajectoryCount; i++) {
             trajectoryX[i] = px;
             trajectoryY[i] = py;
-            px += vx * 0.06f;
-            py += vy * 0.06f;
-            vy += height * 0.0009f;
+            px += vx * dt;
+            py += vy * dt;
+            vy += gravity * dt;
         }
     }
 
@@ -142,8 +145,8 @@ public class GameEngine {
         }
         bird.x = sx;
         bird.y = sy;
-        bird.vx = -dx * 3.8f;
-        bird.vy = -dy * 3.8f;
+        bird.vx = -dx * 5.5f;
+        bird.vy = -dy * 5.5f;
         bird.active = true;
         bird.skillUsed = false;
         bird.kind = currentUnit;
@@ -155,19 +158,29 @@ public class GameEngine {
         bird.skillUsed = true;
         if (bird.kind == GameDefs.RAM_BIRD) {
             bird.vx *= 1.5f;
+            toast = "Ram Boost!";
+            toastTime = 1f;
         } else if (bird.kind == GameDefs.SPLIT_BIRD) {
             explosion = 0.5f;
             damageRadius(bird.x, bird.y, 90f, 20f);
+            toast = "Split Attack!";
+            toastTime = 1f;
         } else if (bird.kind == GameDefs.BOMB_BIRD) {
             explosion = 1f;
             flash = 1f;
             damageRadius(bird.x, bird.y, 140f, 60f);
+            toast = "Bomb Explosion!";
+            toastTime = 1f;
         } else if (bird.kind == GameDefs.DRILL_BIRD) {
             bird.pierce = 5;
             bird.vx *= 1.2f;
             bird.vy *= 1.2f;
+            toast = "Drill Mode!";
+            toastTime = 1f;
         } else {
-            bird.shield = 1.2f;
+            bird.shield = 2.5f;
+            toast = "Shield Activated!";
+            toastTime = 1f;
         }
     }
 
@@ -202,9 +215,14 @@ public class GameEngine {
                 if (bird.kind == GameDefs.DRILL_BIRD && bird.pierce > 0) {
                     bird.pierce--;
                     impact *= 1.4f;
+                    bird.vx *= 0.85f;
+                    bird.vy *= 0.85f;
+                } else if (b.target) {
+                    bird.vx *= 0.15f;
+                    bird.vy *= 0.15f;
                 } else {
-                    bird.vx *= -0.38f;
-                    bird.vy *= -0.32f;
+                    bird.vx *= -0.25f;
+                    bird.vy *= -0.20f;
                 }
                 b.hp -= impact;
                 flash = 0.7f;
@@ -225,6 +243,26 @@ public class GameEngine {
         }
         if (bird.shield > 0f) {
             bird.shield -= dt;
+            if (bird.shield > 0f && bird.kind == GameDefs.SHIELD_BIRD) {
+                for (int i = 0; i < blockCount; i++) {
+                    Block b = blocks[i];
+                    if (b.hp <= 0f) {
+                        continue;
+                    }
+                    float cx = b.x + b.w * 0.5f;
+                    float cy = b.y + b.h * 0.5f;
+                    float dx = cx - bird.x;
+                    float dy = cy - bird.y;
+                    float dist2 = dx * dx + dy * dy;
+                    if (dist2 < 50f * 50f) {
+                        float impact = 15f * dt;
+                        b.hp -= impact;
+                        if (b.hp <= 0f) {
+                            score += 100;
+                        }
+                    }
+                }
+            }
         }
         if (bird.x < -80 || bird.x > width + 80 || bird.y > height + 120) {
             bird.active = false;
@@ -263,6 +301,7 @@ public class GameEngine {
             toast = "Level clear";
             toastTime = 1.5f;
             unlocked = Math.max(unlocked, levelIndex + 2);
+            levelWon = true;
             state = GameDefs.GAME_OVER;
             return;
         }
@@ -270,6 +309,7 @@ public class GameEngine {
             stars = 0;
             toast = "Out of birds";
             toastTime = 1.5f;
+            levelWon = false;
             state = GameDefs.GAME_OVER;
         }
     }
@@ -285,11 +325,12 @@ public class GameEngine {
     }
 
     private void resetLevel(int idx) {
-        birdsLeft = 7;
+        birdsLeft = Math.max(3, 8 - idx);
         score = 0;
         stars = 0;
         bird.active = false;
         currentUnit = 0;
+        levelWon = false;
         if (idx == 0) {
             fillWoodenOutpost();
         } else if (idx == 1) {
@@ -366,7 +407,9 @@ public class GameEngine {
         b.weakCore = weakCore;
         b.barrel = barrel;
         b.shielded = shielded;
-        b.hp = mat == GameDefs.MAT_WOOD ? 45f : mat == GameDefs.MAT_GLASS ? 28f : mat == GameDefs.MAT_STONE ? 80f : 130f;
+        float baseHp = mat == GameDefs.MAT_WOOD ? 45f : mat == GameDefs.MAT_GLASS ? 28f : mat == GameDefs.MAT_STONE ? 80f : 130f;
+        float difficultyMultiplier = 1f + levelIndex * 0.25f;
+        b.hp = baseHp * difficultyMultiplier;
     }
 
     private void addMechanic(int kind, float x, float y, float w, float h, float power) {

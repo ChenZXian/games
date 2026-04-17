@@ -22,7 +22,8 @@
     <dimen name="cst_text_l">19sp</dimen>
     <dimen name="cst_text_xl">25sp</dimen>
     <dimen name="cst_text_xxl">34sp</dimen>
-    <dimen name="cst_hud_height">56dp</dimen>
+    <dimen name="cst_hud_height">36dp</dimen>
     <dimen name="cst_hud_badge_min_w">68dp</dimen>
-    <dimen name="cst_hud_icon_size">44dp</dimen>
+    <dimen name="cst_hud_icon_size">36dp</dimen>
+    <dimen name="cst_action_panel_height">130dp</dimen>
 </resources>

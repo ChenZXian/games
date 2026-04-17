@@ -46,10 +46,10 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btnUpgrades).setOnClickListener(v -> overlays.showUpgrade());
         findViewById(R.id.btnResume).setOnClickListener(v -> gameView.resumeRun());
         findViewById(R.id.btnRestart).setOnClickListener(v -> gameView.restartRun());
-        findViewById(R.id.btnMenu).setOnClickListener(v -> overlays.showState(GameState.MENU));
-        findViewById(R.id.btnMenu2).setOnClickListener(v -> overlays.showState(GameState.MENU));
-        findViewById(R.id.btnMenu3).setOnClickListener(v -> overlays.showState(GameState.MENU));
-        findViewById(R.id.btnPause).setOnClickListener(v -> overlays.showState(GameState.PAUSED));
+        findViewById(R.id.btnMenu).setOnClickListener(v -> goToMenu());
+        findViewById(R.id.btnMenu2).setOnClickListener(v -> goToMenu());
+        findViewById(R.id.btnMenu3).setOnClickListener(v -> goToMenu());
+        findViewById(R.id.btnPause).setOnClickListener(v -> gameView.pauseRun());
         findViewById(R.id.btnNextStage).setOnClickListener(v -> startRun(GameMode.STAGE, Math.min(6, gameView.getCurrentStage() + 1)));
         findViewById(R.id.btnRevive).setOnClickListener(v -> gameView.acceptRevive());
 
@@ -71,6 +71,11 @@ public class MainActivity extends AppCompatActivity {
     private void startRun(GameMode mode, int stage) {
         gameView.startRun(mode, stage);
         overlays.showState(GameState.PLAYING);
+    }
+
+    private void goToMenu() {
+        gameView.onHostPause();
+        overlays.showState(GameState.MENU);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.android.boot;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +14,7 @@ public class MainActivity extends AppCompatActivity implements GameView.GameEven
   private GameHudController hudController;
   private ImageButton muteButton;
   private ImageButton helpButton;
+  private BgmPlayer bgmPlayer;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,9 @@ public class MainActivity extends AppCompatActivity implements GameView.GameEven
     ImageButton pauseButton = findViewById(R.id.btn_pause);
     muteButton = findViewById(R.id.btn_mute);
     helpButton = findViewById(R.id.btn_help);
+
+    bgmPlayer = new BgmPlayer();
+    bgmPlayer.start(this);
 
     startButton.setOnClickListener(v -> {
       gameView.startRun();
@@ -63,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements GameView.GameEven
     muteButton.setOnClickListener(v -> {
       boolean soundOn = gameView.toggleSound();
       hudController.setMuteState(soundOn);
+      bgmPlayer.setMuted(!soundOn);
     });
     helpButton.setOnClickListener(v -> hudController.toggleHowToPanel());
 
@@ -81,18 +87,21 @@ public class MainActivity extends AppCompatActivity implements GameView.GameEven
     if (gameView.getCurrentState() == GameState.PLAYING) {
       syncState(GameState.PAUSED);
     }
+    if (bgmPlayer != null) bgmPlayer.pause();
   }
 
   @Override
   protected void onResume() {
     super.onResume();
     gameView.handleHostResume();
+    if (bgmPlayer != null) bgmPlayer.resume();
   }
 
   @Override
   protected void onDestroy() {
     super.onDestroy();
     gameView.shutdown();
+    if (bgmPlayer != null) bgmPlayer.stop();
   }
 
   @Override

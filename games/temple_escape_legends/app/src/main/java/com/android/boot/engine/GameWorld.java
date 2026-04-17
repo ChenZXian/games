@@ -169,12 +169,23 @@ public class GameWorld {
         for (Pickup p : pickups) {
             if (!p.active) continue;
             p.z -= speed * dt;
-            if (session.magnetTimer > 0f && p.type == Pickup.COIN && p.z < 26f && Math.abs(p.lane - runner.currentLane) <= 1) p.lane = runner.currentLane;
-            if (p.z < 2f) {
-                if (p.lane == runner.currentLane) collectPickup(p.type);
+            if (session.magnetTimer > 0f && p.type == Pickup.COIN && p.z < 30f && Math.abs(p.lane - runner.currentLane) <= 1) {
+                p.lane = runner.currentLane;
+            }
+            if (canCollectPickup(p)) {
+                collectPickup(p.type);
+                p.active = false;
+            } else if (p.z < 1f) {
                 p.active = false;
             }
         }
+    }
+
+    private boolean canCollectPickup(Pickup p) {
+        float collectZ = p.type == Pickup.COIN ? 5.5f : 4f;
+        if (p.z > collectZ) return false;
+        if (p.lane == runner.currentLane || p.lane == runner.targetLane) return true;
+        return session.magnetTimer > 0f && p.type == Pickup.COIN && Math.abs(p.lane - runner.currentLane) <= 1;
     }
 
     private void resolveObstacleHit(int type) {

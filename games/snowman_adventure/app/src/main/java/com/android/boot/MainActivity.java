@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView txtStage;
     private TextView txtCombo;
     private TextView txtStars;
+    private BgmPlayer bgmPlayer;
     private final Runnable hudTask = new Runnable() {
         @Override
         public void run() {
@@ -51,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
         txtStage = findViewById(R.id.txt_stage);
         txtCombo = findViewById(R.id.txt_combo);
         txtStars = findViewById(R.id.txt_stars);
+        bgmPlayer = new BgmPlayer();
+        bgmPlayer.start(this);
         setupButtons();
         buildLevelButtons();
         setUiState(GameDefs.STATE_MENU);
@@ -65,8 +68,10 @@ public class MainActivity extends AppCompatActivity {
         Button btnMenu = findViewById(R.id.btn_menu);
         Button btnNext = findViewById(R.id.btn_next);
         Button btnLeft = findViewById(R.id.btn_left);
+        Button btnRight = findViewById(R.id.btn_right);
         Button btnJump = findViewById(R.id.btn_jump);
         Button btnSpray = findViewById(R.id.btn_spray);
+        Button btnKick = findViewById(R.id.btn_kick);
         ImageButton btnPause = findViewById(R.id.btn_pause);
         ImageButton btnMute = findViewById(R.id.btn_mute);
 
@@ -76,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         });
         btnHow.setOnClickListener(v -> {
             tapAnim(v);
-            txtCombo.setText("Spray to build snow then kick to chain");
+            showHowToPlay();
         });
         btnResume.setOnClickListener(v -> {
             tapAnim(v);
@@ -106,14 +111,19 @@ public class MainActivity extends AppCompatActivity {
         });
         btnMute.setOnClickListener(v -> {
             tapAnim(v);
-            boolean muted = !gameView.getToneFx().isMuted();
-            gameView.getToneFx().setMuted(muted);
+            boolean muted = !bgmPlayer.isMuted();
+            bgmPlayer.setMuted(muted);
             btnMute.setImageResource(muted ? R.drawable.ic_sound_off : R.drawable.ic_sound_on);
         });
 
         btnLeft.setOnTouchListener((v, e) -> {
             tapAnim(v);
             gameView.holdLeft(e.getAction() != MotionEvent.ACTION_UP && e.getAction() != MotionEvent.ACTION_CANCEL);
+            return false;
+        });
+        btnRight.setOnTouchListener((v, e) -> {
+            tapAnim(v);
+            gameView.holdRight(e.getAction() != MotionEvent.ACTION_UP && e.getAction() != MotionEvent.ACTION_CANCEL);
             return false;
         });
         btnJump.setOnClickListener(v -> {
@@ -124,6 +134,10 @@ public class MainActivity extends AppCompatActivity {
             tapAnim(v);
             gameView.holdSpray(e.getAction() != MotionEvent.ACTION_UP && e.getAction() != MotionEvent.ACTION_CANCEL);
             return false;
+        });
+        btnKick.setOnClickListener(v -> {
+            tapAnim(v);
+            gameView.pressKick();
         });
     }
 
@@ -154,6 +168,35 @@ public class MainActivity extends AppCompatActivity {
         view.animate().scaleX(0.94f).scaleY(0.94f).setDuration(55).withEndAction(() -> view.animate().scaleX(1f).scaleY(1f).setDuration(55).start()).start();
     }
 
+    private void showHowToPlay() {
+        String message = "【游戏玩法】\n\n" +
+                "控制雪人消灭所有敌人！\n\n" +
+                "【基本操作】\n" +
+                "• LEFT/RIGHT: 左右移动\n" +
+                "• JUMP: 跳跃（可在平台上停留）\n" +
+                "• SPRAY: 喷雪攻击敌人\n" +
+                "• KICK: 踢雪球或直接攻击\n\n" +
+                "【战斗技巧】\n" +
+                "1. 按住SPRAY向敌人喷雪，累积雪层\n" +
+                "2. 敌人被完全覆盖后变成雪球\n" +
+                "3. 点击KICK踢雪球，击中其他敌人可形成连击\n" +
+                "4. 也可以直接KICK攻击附近敌人\n\n" +
+                "【游戏目标】\n" +
+                "消灭所有敌人即可通关！\n" +
+                "连击数越多，通关评价越高！\n\n" +
+                "【特殊元素】\n" +
+                "• 平台：可以跳跃到平台上\n" +
+                "• 冰面：移动更滑\n" +
+                "• 弹簧垫：可以跳得更高\n" +
+                "• 风扇：会被吹动\n" +
+                "• 冰锥陷阱：可以消灭敌人";
+        new androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle("游戏说明")
+                .setMessage(message)
+                .setPositiveButton("知道了", null)
+                .show();
+    }
+
     private void showResult() {
         txtStars.setText("Stars " + gameView.getEngine().getStars());
         txtStars.setScaleX(0.7f);
@@ -176,12 +219,26 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         gameView.resumeGameLoop();
+        if (bgmPlayer != null) {
+            bgmPlayer.resume();
+        }
     }
 
     @Override
     protected void onPause() {
         gameView.getEngine().setState(GameDefs.STATE_PAUSED);
         gameView.pauseGameLoop();
+        if (bgmPlayer != null) {
+            bgmPlayer.pause();
+        }
         super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (bgmPlayer != null) {
+            bgmPlayer.stop();
+        }
+        super.onDestroy();
     }
 }

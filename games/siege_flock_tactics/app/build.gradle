@@ -1,48 +1,25 @@
 plugins {
-    id 'com.android.application'
-}
-
-def envOr = { key, fallback ->
-    def value = System.getenv(key)
-    return value != null && value.trim().length() > 0 ? value : fallback
+    id "com.android.application"
 }
 
 android {
-    namespace 'com.android.boot'
+    namespace "com.android.boot"
     compileSdk 34
 
     defaultConfig {
-        applicationId 'com.android.boot.siegeflocktactics'
+        applicationId "com.android.boot"
         minSdk 24
         targetSdk 34
         versionCode 1
-        versionName '1.0.0'
-    }
-
-    signingConfigs {
-        release {
-            def storeFilePath = envOr('SFT_RELEASE_STORE_FILE', '')
-            if (storeFilePath.length() > 0) {
-                storeFile file(storeFilePath)
-            }
-            storePassword envOr('SFT_RELEASE_STORE_PASSWORD', '')
-            keyAlias envOr('SFT_RELEASE_KEY_ALIAS', '')
-            keyPassword envOr('SFT_RELEASE_KEY_PASSWORD', '')
-        }
+        versionName "1.0"
     }
 
     buildTypes {
         debug {
-            debuggable true
             minifyEnabled false
-            shrinkResources false
         }
         release {
-            debuggable false
-            minifyEnabled true
-            shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
+            minifyEnabled false
         }
     }
 
@@ -53,7 +30,6 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.7.1'
-    implementation 'androidx.core:core:1.16.0'
-    implementation 'com.google.android.material:material:1.11.0'
+    implementation "androidx.appcompat:appcompat:1.6.1"
+    implementation "com.google.android.material:material:1.11.0"
 }

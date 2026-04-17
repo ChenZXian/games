@@ -3,159 +3,87 @@ package com.android.boot.ui;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import com.android.boot.audio.ToneFx;
-import com.android.boot.engine.GameEngine;
 import com.android.boot.input.TouchState;
-import com.android.boot.model.GameSnapshot;
-import com.android.boot.render.GameRenderer;
+import com.android.boot.engine.GameEngine;
 
-public final class GameView extends SurfaceView implements SurfaceHolder.Callback, Runnable {
-    public interface UiCallbacks {
-        void onSnapshot(GameSnapshot snapshot);
-    }
+public class GameView extends SurfaceView implements SurfaceHolder.Callback, Runnable {
+	private Thread loopThread;
+	private volatile boolean running;
+	private long lastNs;
 
-    private final SurfaceHolder surfaceHolder;
-    private final TouchState touchState = new TouchState();
-    private final ToneFx toneFx;
-    private final GameEngine engine;
-    private final GameRenderer renderer;
-    private Thread loopThread;
-    private boolean running;
-    private boolean surfaceReady;
-    private long lastFrameNs;
-    private long lastUiPushNs;
-    private UiCallbacks callbacks;
+	private final TouchState touchState = new TouchState();
+	private final GameEngine engine = new GameEngine();
 
-    public GameView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        surfaceHolder = getHolder();
-        surfaceHolder.addCallback(this);
-        toneFx = new ToneFx();
-        engine = new GameEngine(context);
-        engine.setAudio(toneFx);
-        renderer = new GameRenderer(context);
-        setFocusable(true);
-    }
+	public GameView(Context context, AttributeSet attrs) {
+		super(context, attrs);
+		getHolder().addCallback(this);
+		setZOrderOnTop(false);
+	}
 
-    public void setUiCallbacks(UiCallbacks callbacks) {
-        this.callbacks = callbacks;
-        pushSnapshot();
-    }
+	public GameEngine getEngine() {
+		return engine;
+	}
 
-    public GameEngine getEngine() {
-        return engine;
-    }
+	public void holdLeft(boolean hold) { touchState.leftHeld = hold; }
+	public void holdRight(boolean hold) { touchState.rightHeld = hold; }
+	public void pressRoll() { touchState.rollPressed = true; }
+	public void pressReset() { touchState.resetPressed = true; }
 
-    public void onResumeView() {
-        startLoop();
-    }
+	@Override
+	public void surfaceCreated(SurfaceHolder holder) {
+		start();
+	}
 
-    public void onPauseView() {
-        stopLoop();
-        engine.pause();
-        pushSnapshot();
-    }
+	@Override
+	public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+		engine.onResize(width, height);
+	}
 
-    public void release() {
-        stopLoop();
-        toneFx.release();
-    }
+	@Override
+	public void surfaceDestroyed(SurfaceHolder holder) {
+		stop();
+	}
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            touchState.setTap(event.getX(), event.getY());
-            return true;
-        }
-        return super.onTouchEvent(event);
-    }
+	public void start() {
+		if (running) return;
+		running = true;
+		lastNs = System.nanoTime();
+		loopThread = new Thread(this, "GameLoop");
+		loopThread.start();
+	}
 
-    @Override
-    public void surfaceCreated(SurfaceHolder holder) {
-        surfaceReady = true;
-        startLoop();
-    }
+	public void stop() {
+		running = false;
+		if (loopThread != null) {
+			try { loopThread.join(); } catch (InterruptedException ignored) {}
+			loopThread = null;
+		}
+	}
 
-    @Override
-    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-        surfaceReady = true;
-    }
+	@Override
+	public void run() {
+		while (running) {
+			long now = System.nanoTime();
+			float dt = Math.min(0.05f, (now - lastNs) / 1_000_000_000f);
+			lastNs = now;
 
-    @Override
-    public void surfaceDestroyed(SurfaceHolder holder) {
-        surfaceReady = false;
-        stopLoop();
-    }
+			engine.update(dt, touchState);
+			touchState.clearInstant();
 
-    @Override
-    public void run() {
-        lastFrameNs = System.nanoTime();
-        while (running) {
-            long now = System.nanoTime();
-            float dt = (now - lastFrameNs) / 1000000000f;
-            lastFrameNs = now;
-            consumeInput();
-            engine.update(dt);
-            drawFrame();
-            if (now - lastUiPushNs > 70000000L) {
-                lastUiPushNs = now;
-                post(this::pushSnapshot);
-            }
-        }
-    }
-
-    private void consumeInput() {
-        if (touchState.consumeTap()) {
-            engine.onRowTapped(touchState.getY(), getWidth(), getHeight());
-        }
-    }
-
-    private void drawFrame() {
-        if (!surfaceReady) {
-            return;
-        }
-        Canvas canvas = surfaceHolder.lockCanvas();
-        if (canvas == null) {
-            return;
-        }
-        try {
-            renderer.render(canvas, engine, getWidth(), getHeight());
-        } finally {
-            surfaceHolder.unlockCanvasAndPost(canvas);
-        }
-    }
-
-    private void startLoop() {
-        if (running || !surfaceReady) {
-            return;
-        }
-        if (GameEngine.STATE_PAUSED.equals(engine.getSnapshot().state)) {
-            engine.resume();
-        }
-        running = true;
-        loopThread = new Thread(this, "BowlingBattleLoop");
-        loopThread.start();
-    }
-
-    private void stopLoop() {
-        running = false;
-        if (loopThread != null) {
-            try {
-                loopThread.join();
-            } catch (InterruptedException ignored) {
-                Thread.currentThread().interrupt();
-            }
-            loopThread = null;
-        }
-    }
-
-    private void pushSnapshot() {
-        if (callbacks != null) {
-            callbacks.onSnapshot(engine.getSnapshot());
-        }
-    }
+			Canvas canvas = null;
+			try {
+				canvas = getHolder().lockCanvas();
+				if (canvas != null) {
+					engine.render(canvas);
+				}
+			} finally {
+				if (canvas != null) {
+					getHolder().unlockCanvasAndPost(canvas);
+				}
+			}
+		}
+	}
 }

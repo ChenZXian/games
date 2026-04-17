@@ -16,12 +16,18 @@ public class MainActivity extends AppCompatActivity {
     private GameView gameView;
     private LinearLayout menuPanel;
     private ProgressStore progressStore;
+    private BgmPlayer bgmPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN, android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().addFlags(android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setContentView(R.layout.activity_main);
         progressStore = new ProgressStore(this);
+        bgmPlayer = new BgmPlayer();
+        bgmPlayer.setMuted(progressStore.isMuted());
+        bgmPlayer.start(this);
         gameView = findViewById(R.id.gameView);
         menuPanel = findViewById(R.id.menuPanel);
         Button btnPlay = findViewById(R.id.btnPlay);
@@ -58,7 +64,9 @@ public class MainActivity extends AppCompatActivity {
                 .setTitle(getString(R.string.btn_settings))
                 .setItems(items, (d, which) -> {
                     if (which == 0) {
-                        progressStore.setMuted(!progressStore.isMuted());
+                        boolean newMuted = !progressStore.isMuted();
+                        progressStore.setMuted(newMuted);
+                        bgmPlayer.setMuted(newMuted);
                     } else {
                         progressStore.setFpsEnabled(!progressStore.isFpsEnabled());
                     }
@@ -70,6 +78,11 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout layout = new LinearLayout(this);
         layout.setOrientation(LinearLayout.VERTICAL);
         int unlocked = progressStore.getUnlockedLevels();
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.title_levels))
+                .setView(layout)
+                .setNegativeButton(getString(R.string.btn_menu), null)
+                .create();
         for (int i = 1; i <= 6; i++) {
             Button b = new Button(this);
             long best = progressStore.getBestMillis(i);
@@ -78,15 +91,12 @@ public class MainActivity extends AppCompatActivity {
             b.setEnabled(i <= unlocked);
             int index = i;
             b.setOnClickListener(v -> {
+                dialog.dismiss();
                 hideMenuAndStart(index);
             });
             layout.addView(b);
         }
-        new AlertDialog.Builder(this)
-                .setTitle(getString(R.string.title_levels))
-                .setView(layout)
-                .setNegativeButton(getString(R.string.btn_menu), null)
-                .show();
+        dialog.show();
     }
 
     public void onLevelVictory(int level, long elapsedMillis) {
@@ -119,11 +129,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         gameView.pauseGame();
+        bgmPlayer.pause();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         gameView.resumeGame();
+        bgmPlayer.resume();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        bgmPlayer.stop();
     }
 }

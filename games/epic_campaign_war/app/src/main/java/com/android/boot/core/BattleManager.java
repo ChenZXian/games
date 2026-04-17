@@ -619,21 +619,22 @@ public class BattleManager {
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(Color.argb(255, 9, 17, 31));
         canvas.drawRect(0f, 0f, width, height, paint);
-        rect.set(0f, height * 0.52f, width, height);
+        // Ground strip starts a bit lower to leave more vertical space for battle in the middle
+        rect.set(0f, height * 0.56f, width, height);
         paint.setColor(Color.argb(255, 24, 20, 28));
         canvas.drawRect(rect, paint);
         paint.setColor(Color.argb(255, 42, 54, 70));
         for (int i = 0; i < width; i += 120) {
-            canvas.drawRect(i, height * 0.69f, i + 60f, height * 0.71f, paint);
+            canvas.drawRect(i, height * 0.77f, i + 60f, height * 0.79f, paint);
         }
         paint.setColor(Color.argb(255, 28, 40, 61));
         path.reset();
-        path.moveTo(0f, height * 0.52f);
-        path.lineTo(width * 0.15f, height * 0.33f);
-        path.lineTo(width * 0.34f, height * 0.49f);
-        path.lineTo(width * 0.52f, height * 0.27f);
-        path.lineTo(width * 0.72f, height * 0.5f);
-        path.lineTo(width, height * 0.34f);
+        path.moveTo(0f, height * 0.56f);
+        path.lineTo(width * 0.15f, height * 0.37f);
+        path.lineTo(width * 0.34f, height * 0.53f);
+        path.lineTo(width * 0.52f, height * 0.31f);
+        path.lineTo(width * 0.72f, height * 0.54f);
+        path.lineTo(width, height * 0.38f);
         path.lineTo(width, 0f);
         path.lineTo(0f, 0f);
         path.close();
@@ -697,7 +698,8 @@ public class BattleManager {
     }
 
     private float battleLaneY() {
-        return height * 0.72f;
+        // Raise the battle lane to avoid being covered by bottom action panel
+        return height * 0.58f;
     }
 
     public ChapterData getCurrentChapter() {

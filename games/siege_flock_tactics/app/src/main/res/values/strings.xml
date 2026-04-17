@@ -1,9 +1,16 @@
 <resources>
     <string name="app_name">Siege Flock Tactics</string>
+    <string name="btn_play">Play</string>
     <string name="btn_start">Start</string>
     <string name="btn_restart">Restart</string>
     <string name="btn_resume">Resume</string>
     <string name="btn_menu">Menu</string>
     <string name="btn_mute">Mute</string>
-    <string name="btn_how_to_play">Help</string>
+    <string name="btn_how_to_play">How To Play</string>
+    <string name="how_to_play_title">How To Play</string>
+    <string name="how_to_play_text">Drag the slingshot to aim and release to launch birds. Tap during flight to activate special skills. Break through fortresses by targeting weak points. Destroy marked cores to complete levels. Earn three stars for perfect clears!</string>
+    <string name="level_complete_title">Level Complete!</string>
+    <string name="level_complete_message">All pigs defeated! Ready for next level?</string>
+    <string name="next_level">Next Level</string>
+    <string name="back_to_menu">Back to Menu</string>
 </resources>

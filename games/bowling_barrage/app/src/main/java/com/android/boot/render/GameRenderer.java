@@ -18,11 +18,11 @@ import com.android.boot.model.EnemyType;
 
 public final class GameRenderer {
     private static final float BOARD_LEFT_RATIO = 0.08f;
-    private static final float BOARD_TOP_RATIO = 0.24f;
+    private static final float BOARD_TOP_RATIO = 0.32f;
     private static final float BOARD_RIGHT_RATIO = 0.92f;
     private static final float BOARD_BOTTOM_RATIO = 0.92f;
-    private static final float CONVEYOR_TOP_RATIO = 0.08f;
-    private static final float CONVEYOR_BOTTOM_RATIO = 0.19f;
+    private static final float CONVEYOR_TOP_RATIO = 0.20f;
+    private static final float CONVEYOR_BOTTOM_RATIO = 0.29f;
     private final Paint bgPaint = new Paint();
     private final Paint boardPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint gridPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
