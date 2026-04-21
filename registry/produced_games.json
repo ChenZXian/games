@@ -345,6 +345,22 @@
       "ui_skin": "skin_neon_future"
     },
     {
+      "id": "bloom_orchard",
+      "name": "Bloom Orchard",
+      "tags": [
+        "farm",
+        "casual",
+        "crop",
+        "harvest",
+        "achievement",
+        "management",
+        "orders",
+        "collection",
+        "weather",
+        "session",
+        "variant_a_core_ui_entity_fx_audio"
+      ],
+      "core_loop": "Plant crops on a timed orchard grid, optimize watering and fertilizer for beauty-rated harvests, store produce, fulfill rotating orders, expand land, unlock species, and complete achievements in short sessions.",
       "id": "pasture_parade_deluxe",
       "name": "Pasture Parade Deluxe",
       "tags": [
