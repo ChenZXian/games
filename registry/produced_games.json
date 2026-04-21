@@ -343,6 +343,22 @@
       "core_loop": "advance right through lock gates chain 3-hit melee combos and one burst skill to clear enemy waves defeat a two-pattern boss then pick one persistent boon before replay",
       "created_at": "2026-04-17",
       "ui_skin": "skin_neon_future"
+    },
+    {
+      "id": "clockwork_courier",
+      "name": "Clockwork Courier",
+      "tags": [
+        "action",
+        "puzzle",
+        "top_down",
+        "delivery",
+        "hazard",
+        "neon",
+        "variant_a_core_ui_entity_fx_audio"
+      ],
+      "core_loop": "read hazard rhythms steer a courier with virtual joystick and timed dash collect badges and key unlock exits reach delivery gate before timer for star ratings",
+      "created_at": "2026-04-21",
+      "ui_skin": "skin_neon_future"
     }
   ]
 }
