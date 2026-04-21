@@ -1,0 +1,6 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <solid android:color="@color/cst_bg_alt" />
+    <stroke android:width="@dimen/cst_stroke_hair" android:color="@color/cst_chip_stroke" />
+    <corners android:radius="@dimen/cst_radius_xl" />
+    <padding android:left="@dimen/cst_pad_8" android:top="@dimen/cst_pad_4" android:right="@dimen/cst_pad_8" android:bottom="@dimen/cst_pad_4" />
+</shape>

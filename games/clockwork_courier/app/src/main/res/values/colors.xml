@@ -1,0 +1,30 @@
+<resources>
+    <color name="cst_bg_main">#06060D</color>
+    <color name="cst_bg_alt">#101022</color>
+    <color name="cst_panel_bg">#101022</color>
+    <color name="cst_panel_stroke">#31314F</color>
+    <color name="cst_panel_header_bg">#171732</color>
+    <color name="cst_card_bg">#0C0C1B</color>
+    <color name="cst_divider">#31314F</color>
+    <color name="cst_shadow">#88000000</color>
+    <color name="cst_text_primary">#F5F5FF</color>
+    <color name="cst_text_secondary">#C6C6FF</color>
+    <color name="cst_text_muted">#8C8CCC</color>
+    <color name="cst_text_on_primary">#06060D</color>
+    <color name="cst_text_on_secondary">#F5F5FF</color>
+    <color name="cst_accent">#00F0FF</color>
+    <color name="cst_accent_2">#FF47FF</color>
+    <color name="cst_danger">#FF4063</color>
+    <color name="cst_success">#22FFB0</color>
+    <color name="cst_warning">#FFC94A</color>
+    <color name="cst_btn_primary_bg_start">#00F0FF</color>
+    <color name="cst_btn_primary_bg_end">#FF47FF</color>
+    <color name="cst_btn_primary_stroke">#95FFFF</color>
+    <color name="cst_btn_secondary_bg_start">#2B2B49</color>
+    <color name="cst_btn_secondary_bg_end">#171732</color>
+    <color name="cst_btn_secondary_stroke">#4A4A76</color>
+    <color name="cst_chip_bg">#171732</color>
+    <color name="cst_chip_stroke">#31314F</color>
+    <color name="cst_meter_track">#31314F</color>
+    <color name="cst_meter_fill">#22FFB0</color>
+</resources>
