@@ -2,6 +2,7 @@ package com.android.boot;
 
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -32,7 +33,12 @@ public class MainActivity extends AppCompatActivity {
         TextView coins = findViewById(R.id.tv_coins);
         TextView level = findViewById(R.id.tv_level);
         TextView timer = findViewById(R.id.tv_timer);
-        UiOverlayController overlay = new UiOverlayController(coins, level, timer);
+        TextView toolHint = findViewById(R.id.tv_tool_hint);
+        FrameLayout menuOverlay = findViewById(R.id.menu_overlay);
+        FrameLayout pauseOverlay = findViewById(R.id.pause_overlay);
+        FrameLayout resultOverlay = findViewById(R.id.result_overlay);
+        TextView resultBody = findViewById(R.id.tv_result_body);
+        UiOverlayController overlay = new UiOverlayController(coins, level, timer, menuOverlay, pauseOverlay, resultOverlay, resultBody);
         gameView.bind(session, overlay);
 
         SoundController sound = new SoundController();
@@ -48,19 +54,29 @@ public class MainActivity extends AppCompatActivity {
         Button btnWater = findViewById(R.id.btn_water);
         Button btnFertilizer = findViewById(R.id.btn_fertilizer);
         ImageButton btnPause = findViewById(R.id.btn_pause);
+        Button btnStartOverlay = findViewById(R.id.btn_start_overlay);
+        Button btnHelpOverlay = findViewById(R.id.btn_help_overlay);
+        Button btnResumeOverlay = findViewById(R.id.btn_resume_overlay);
+        Button btnRestartOverlay = findViewById(R.id.btn_restart_overlay);
+        Button btnMenuOverlay = findViewById(R.id.btn_menu_overlay);
+        Button btnResultRestart = findViewById(R.id.btn_result_restart);
+        Button btnResultMenu = findViewById(R.id.btn_result_menu);
 
         btnSeed.setOnClickListener(v -> {
             gameView.setTool(0);
+            toolHint.setText(R.string.hint_tool_seed);
             sound.click();
             menu.showHowToPlay();
         });
         btnWater.setOnClickListener(v -> {
             gameView.setTool(1);
+            toolHint.setText(R.string.hint_tool_water);
             sound.click();
             tasks.show(session);
         });
         btnFertilizer.setOnClickListener(v -> {
             gameView.setTool(2);
+            toolHint.setText(R.string.hint_tool_fertilizer);
             sound.click();
             orders.show(session);
             storage.show(session);
@@ -72,6 +88,38 @@ public class MainActivity extends AppCompatActivity {
             sound.click();
             session.state = session.state == GameState.PAUSED ? GameState.PLAYING : GameState.PAUSED;
         });
+        btnStartOverlay.setOnClickListener(v -> {
+            sound.click();
+            session.start();
+        });
+        btnHelpOverlay.setOnClickListener(v -> {
+            sound.click();
+            menu.showHowToPlay();
+        });
+        btnResumeOverlay.setOnClickListener(v -> {
+            sound.click();
+            session.state = GameState.PLAYING;
+        });
+        btnRestartOverlay.setOnClickListener(v -> {
+            sound.click();
+            session.start();
+        });
+        btnMenuOverlay.setOnClickListener(v -> {
+            sound.click();
+            session.state = GameState.MENU;
+        });
+        btnResultRestart.setOnClickListener(v -> {
+            sound.click();
+            session.start();
+        });
+        btnResultMenu.setOnClickListener(v -> {
+            sound.click();
+            session.state = GameState.MENU;
+        });
+        menuOverlay.setOnClickListener(v -> { });
+        pauseOverlay.setOnClickListener(v -> { });
+        resultOverlay.setOnClickListener(v -> { });
+        toolHint.setText(R.string.hint_tool_seed);
     }
 
     @Override

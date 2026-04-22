@@ -1,0 +1,46 @@
+{
+  "pack_id": "kenney_ui_pack",
+  "title": "Kenney UI Pack 2.0",
+  "source_url": "https://kenney.nl/assets/ui-pack",
+  "download_url": "https://kenney.nl/media/pages/assets/ui-pack/af874291da-1718203990/kenney_ui-pack.zip",
+  "license": "CC0-1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "asset_types": [
+    "png",
+    "svg",
+    "ttf",
+    "wav"
+  ],
+  "style_tags": [
+    "clean",
+    "rounded",
+    "cartoon_friendly",
+    "multicolor"
+  ],
+  "recommended_ui_skin": "skin_cartoon_light",
+  "default_assignment_preset": "canonical_cartoon_light",
+  "assignment_presets": [
+    "canonical_cartoon_light",
+    "canonical_cartoon_light_green",
+    "canonical_cartoon_light_yellow",
+    "canonical_cartoon_light_red"
+  ],
+  "selected_assets": [
+    "drawable/button_primary_blue_gloss.png",
+    "drawable/button_primary_green_gloss.png",
+    "drawable/button_primary_yellow_gloss.png",
+    "drawable/button_primary_red_gloss.png",
+    "drawable/button_secondary_grey_gloss.png",
+    "drawable/button_icon_round_blue_gloss.png",
+    "drawable/button_icon_round_green_gloss.png",
+    "drawable/button_icon_round_yellow_gloss.png",
+    "drawable/button_icon_round_red_gloss.png",
+    "drawable/icon_outline_circle_blue.png",
+    "font/kenney_future.ttf",
+    "font/kenney_future_narrow.ttf"
+  ],
+  "notes": "First shared UI pack staged for repository UI workflow validation. Curated blue, green, yellow, and red button assets are available through named assignment presets.",
+  "validated_with": [
+    "bloom_orchard"
+  ]
+}

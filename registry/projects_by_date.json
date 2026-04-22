@@ -1,0 +1,245 @@
+{
+    "version":  1,
+    "generated_at_utc":  "2026-04-22T09:58:32Z",
+    "grouping":  "created_at_month",
+    "path_policy":  "active projects remain direct children under games/\u003cgame_id\u003e",
+    "months":  [
+                   {
+                       "month":  "2026-04",
+                       "total":  5,
+                       "games":  [
+                                     {
+                                         "id":  "bloom_orchard",
+                                         "name":  "Bloom Orchard",
+                                         "created_at":  "2026-04-21",
+                                         "path":  "games/bloom_orchard",
+                                         "ui_skin":  "skin_cartoon_light"
+                                     },
+                                     {
+                                         "id":  "pasture_parade_deluxe",
+                                         "name":  "Pasture Parade Deluxe",
+                                         "created_at":  "2026-04-21",
+                                         "path":  "games/pasture_parade_deluxe",
+                                         "ui_skin":  "skin_cartoon_light"
+                                     },
+                                     {
+                                         "id":  "clockwork_courier",
+                                         "name":  "Clockwork Courier",
+                                         "created_at":  "2026-04-21",
+                                         "path":  "games/clockwork_courier",
+                                         "ui_skin":  "skin_neon_future"
+                                     },
+                                     {
+                                         "id":  "ashen_strike_trial",
+                                         "name":  "Ashen Strike Trial",
+                                         "created_at":  "2026-04-17",
+                                         "path":  "games/ashen_strike_trial",
+                                         "ui_skin":  "skin_neon_future"
+                                     },
+                                     {
+                                         "id":  "relic_blade_trials",
+                                         "name":  "Relic Blade Trials",
+                                         "created_at":  "2026-04-21",
+                                         "path":  "games/relic_blade_trials",
+                                         "ui_skin":  "skin_dark_arcade"
+                                     }
+                                 ]
+                   },
+                   {
+                       "month":  "2026-03",
+                       "total":  8,
+                       "games":  [
+                                     {
+                                         "id":  "bowling_barrage",
+                                         "name":  "Bowling Barrage",
+                                         "created_at":  "2026-03-22",
+                                         "path":  "games/bowling_barrage",
+                                         "ui_skin":  "skin_cartoon_light"
+                                     },
+                                     {
+                                         "id":  "epic_frontier_war",
+                                         "name":  "Epic Frontier War",
+                                         "created_at":  "2026-03-20",
+                                         "path":  "games/epic_frontier_war",
+                                         "ui_skin":  "skin_dark_arcade"
+                                     },
+                                     {
+                                         "id":  "temple_escape_legends",
+                                         "name":  "Temple Escape Legends",
+                                         "created_at":  "2026-03-30",
+                                         "path":  "games/temple_escape_legends",
+                                         "ui_skin":  "skin_neon_future"
+                                     },
+                                     {
+                                         "id":  "epic_campaign_war",
+                                         "name":  "Epic Campaign War",
+                                         "created_at":  "2026-03-22",
+                                         "path":  "games/epic_campaign_war",
+                                         "ui_skin":  "skin_dark_arcade"
+                                     },
+                                     {
+                                         "id":  "garden_siege",
+                                         "name":  "Garden Siege",
+                                         "created_at":  "2026-03-04",
+                                         "path":  "games/garden_siege",
+                                         "ui_skin":  "skin_neon_future"
+                                     },
+                                     {
+                                         "id":  "royal_line_defense",
+                                         "name":  "Royal Line Defense",
+                                         "created_at":  "2026-03-02",
+                                         "path":  "games/royal_line_defense",
+                                         "ui_skin":  "skin_cartoon_light"
+                                     },
+                                     {
+                                         "id":  "snowman_adventure",
+                                         "name":  "SnowmanAdventure",
+                                         "created_at":  "2026-03-08",
+                                         "path":  "games/snowman_adventure",
+                                         "ui_skin":  "skin_cartoon_light"
+                                     },
+                                     {
+                                         "id":  "siege_flock_tactics",
+                                         "name":  "Siege Flock Tactics",
+                                         "created_at":  "2026-03-08",
+                                         "path":  "games/siege_flock_tactics",
+                                         "ui_skin":  "skin_dark_arcade"
+                                     }
+                                 ]
+                   },
+                   {
+                       "month":  "2026-02",
+                       "total":  3,
+                       "games":  [
+                                     {
+                                         "id":  "castle_keep_defender",
+                                         "name":  "Castle Keep Defender",
+                                         "created_at":  "2026-02-25",
+                                         "path":  "games/castle_keep_defender",
+                                         "ui_skin":  "skin_dark_arcade"
+                                     },
+                                     {
+                                         "id":  "precision_bomber",
+                                         "name":  "Precision Bomber",
+                                         "created_at":  "2026-02-06",
+                                         "path":  "games/precision_bomber",
+                                         "ui_skin":  "skin_neon_future"
+                                     },
+                                     {
+                                         "id":  "overtime_street_fighter",
+                                         "name":  "Overtime Street Fighter",
+                                         "created_at":  "2026-02-06",
+                                         "path":  "games/overtime_street_fighter",
+                                         "ui_skin":  "skin_dark_arcade"
+                                     }
+                                 ]
+                   },
+                   {
+                       "month":  "2026-01",
+                       "total":  14,
+                       "games":  [
+                                     {
+                                         "id":  "neon_barricade_survival",
+                                         "name":  "Neon Barricade Survival",
+                                         "created_at":  "2026-01-19",
+                                         "path":  "games/neon_barricade_survival",
+                                         "ui_skin":  ""
+                                     },
+                                     {
+                                         "id":  "mosaic_studio",
+                                         "name":  "Mosaic Studio",
+                                         "created_at":  "2026-01-18",
+                                         "path":  "games/mosaic_studio",
+                                         "ui_skin":  ""
+                                     },
+                                     {
+                                         "id":  "sky_relic_runner_nova",
+                                         "name":  "Sky Relic Runner Nova",
+                                         "created_at":  "2026-01-18",
+                                         "path":  "games/sky_relic_runner_nova",
+                                         "ui_skin":  ""
+                                     },
+                                     {
+                                         "id":  "lane_warfront",
+                                         "name":  "Lane Warfront",
+                                         "created_at":  "2026-01-22",
+                                         "path":  "games/lane_warfront",
+                                         "ui_skin":  "skin_military_tech"
+                                     },
+                                     {
+                                         "id":  "territory_swarm",
+                                         "name":  "Japan Prefecture War",
+                                         "created_at":  "2026-01-29",
+                                         "path":  "games/territory_swarm",
+                                         "ui_skin":  "skin_neon_future"
+                                     },
+                                     {
+                                         "id":  "switchyard_courier",
+                                         "name":  "Switchyard Courier",
+                                         "created_at":  "2026-01-28",
+                                         "path":  "games/switchyard_courier",
+                                         "ui_skin":  "skin_neon_future"
+                                     },
+                                     {
+                                         "id":  "neon_barricade_zombie_survival",
+                                         "name":  "Neon Barricade: Zombie Survival",
+                                         "created_at":  "2026-01-27",
+                                         "path":  "games/neon_barricade_zombie_survival",
+                                         "ui_skin":  "skin_neon_future"
+                                     },
+                                     {
+                                         "id":  "gold_miner",
+                                         "name":  "Gold Miner",
+                                         "created_at":  "2026-01-18",
+                                         "path":  "games/gold_miner",
+                                         "ui_skin":  ""
+                                     },
+                                     {
+                                         "id":  "camp_conquest",
+                                         "name":  "Camp Conquest",
+                                         "created_at":  "2026-01-18",
+                                         "path":  "games/camp_conquest",
+                                         "ui_skin":  ""
+                                     },
+                                     {
+                                         "id":  "airplane_shooter",
+                                         "name":  "Airplane Shooter",
+                                         "created_at":  "2026-01-18",
+                                         "path":  "games/airplane_shooter",
+                                         "ui_skin":  ""
+                                     },
+                                     {
+                                         "id":  "orbit_dodger",
+                                         "name":  "Orbit Dodger",
+                                         "created_at":  "2026-01-18",
+                                         "path":  "games/orbit_dodger",
+                                         "ui_skin":  ""
+                                     },
+                                     {
+                                         "id":  "sky_relic_runner_eclipse",
+                                         "name":  "Sky Relic Runner Eclipse",
+                                         "created_at":  "2026-01-18",
+                                         "path":  "games/sky_relic_runner_eclipse",
+                                         "ui_skin":  ""
+                                     },
+                                     {
+                                         "id":  "sky_relic_runner_shift",
+                                         "name":  "Sky Relic Runner Shift",
+                                         "created_at":  "2026-01-18",
+                                         "path":  "games/sky_relic_runner_shift",
+                                         "ui_skin":  ""
+                                     },
+                                     {
+                                         "id":  "sky_relic_runner",
+                                         "name":  "Sky Relic Runner",
+                                         "created_at":  "2026-01-18",
+                                         "path":  "games/sky_relic_runner",
+                                         "ui_skin":  ""
+                                     }
+                                 ]
+                   }
+               ],
+    "unknown_created_at":  [
+
+                           ]
+}

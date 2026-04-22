@@ -1,15 +1,16 @@
 # UI Kit Factory Spec
 
-Version: 1.0
-Last updated: 2026-01-23
+Version: 1.1
+Last updated: 2026-04-22
 
-This document defines the mandatory UI Kit system for industrial-scale Android Java mini-game generation.
+This document defines the mandatory UI foundation and skin contract for Android Java mini-game generation in this repository.
 
-All UI must be XML-only and token-driven:
-- No bitmap images
-- No fonts
-- No downloaded UI kits
-- No hardcoded styling values in Java
+UI in this repository should be token-led and structure-first:
+- gameplay rendering should stay in `GameView` or `SurfaceView`
+- HUD and non-real-time screens should prefer Android View or XML layers
+- binary UI assets and fonts are allowed through the repository UI workflow
+- licensed open-source UI resources are allowed when provenance is tracked
+- hardcoded styling values in Java are still forbidden
 
 ## 1. Token Contract
 
@@ -97,7 +98,7 @@ HUD sizing
 
 ## 2. Required UI Kit Files
 
-All projects MUST include the following XML-only files.
+All projects MUST include the following foundation files.
 
 ### 2.1 Values
 
@@ -106,39 +107,42 @@ All projects MUST include the following XML-only files.
 - res/values/styles.xml
 - res/values/themes.xml
 
-### 2.2 Drawables (Shape / Gradient / Layer-List / Vector only)
+### 2.2 Drawable Resources
+
+The logical resources below must exist.
+Implementations may be XML, PNG, WEBP, or 9-patch unless a vector icon is explicitly preferred.
 
 Foundations
-- res/drawable/ui_panel.xml
-- res/drawable/ui_panel_header.xml
-- res/drawable/ui_card.xml
-- res/drawable/ui_divider.xml
+- res/drawable/ui_panel.*
+- res/drawable/ui_panel_header.*
+- res/drawable/ui_card.*
+- res/drawable/ui_divider.*
 
 Buttons
-- res/drawable/ui_button_primary.xml
-- res/drawable/ui_button_secondary.xml
-- res/drawable/ui_button_danger.xml
-- res/drawable/ui_button_icon.xml
+- res/drawable/ui_button_primary.*
+- res/drawable/ui_button_secondary.*
+- res/drawable/ui_button_danger.*
+- res/drawable/ui_button_icon.*
 
 Badges and chips
-- res/drawable/ui_badge.xml
-- res/drawable/ui_chip.xml
+- res/drawable/ui_badge.*
+- res/drawable/ui_chip.*
 
 Meters
-- res/drawable/ui_meter_track.xml
-- res/drawable/ui_meter_fill.xml
+- res/drawable/ui_meter_track.*
+- res/drawable/ui_meter_fill.*
 
 Overlays
-- res/drawable/ui_toast.xml
-- res/drawable/ui_dialog.xml
+- res/drawable/ui_toast.*
+- res/drawable/ui_dialog.*
 
-Icons (Vector XML)
-- res/drawable/ic_play.xml
-- res/drawable/ic_pause.xml
-- res/drawable/ic_restart.xml
-- res/drawable/ic_sound_on.xml
-- res/drawable/ic_sound_off.xml
-- res/drawable/ic_help.xml
+Icons
+- res/drawable/ic_play.*
+- res/drawable/ic_pause.*
+- res/drawable/ic_restart.*
+- res/drawable/ic_sound_on.*
+- res/drawable/ic_sound_off.*
+- res/drawable/ic_help.*
 
 ## 3. Style Contract
 
@@ -168,10 +172,25 @@ Define Widget styles in `res/values/styles.xml`:
 
 Layouts MUST reference these styles instead of inline styling.
 
+Widget styles MUST continue to exist even when binary UI assets or imported fonts are used.
+
+### 3.3 Asset Provenance
+
+Reusable third-party UI resources should be staged under `shared_assets/ui/<pack_id>/`.
+
+Each imported pack should include:
+
+- `manifest.json`
+- `LICENSE` or equivalent license file
+- source URL or origin metadata
+
+Project-local copies may be derived from those shared assets as needed.
+
 ## 4. Skins
 
 Each project MUST select exactly one skin id.
-Skins only change token values, not the file list.
+Skins define the primary UI direction.
+A project may pair one skin with one compatible asset pack, but it must still have exactly one primary `ui_skin`.
 
 ### 4.1 skin_dark_arcade
 

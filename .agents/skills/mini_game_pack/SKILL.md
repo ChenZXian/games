@@ -1,6 +1,6 @@
 ---
-name: 打包
-description: Package or prepare release output for an Android Java mini-game in this repository. Use this skill only when packaging, build output, APK, AAB, zip, export, release preparation, validator, doctor, or build workflow is explicitly requested. Do not use this skill for initial project generation or routine optimization work.
+name: 打包发布
+description: 为本仓库 Android Java 小游戏进行打包或发布准备。仅在明确需要 APK、AAB、zip、导出、release preparation、validator、doctor 或 build workflow 时使用。不要用于初始项目生成或常规优化。
 ---
 
 Use this skill only when packaging or release preparation is explicitly requested.

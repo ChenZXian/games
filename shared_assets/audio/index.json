@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "audio": [
+    {
+      "id": "bgm_play_default_3aad06a6",
+      "legacy_id": "default_3aad06a6",
+      "file": "bgm/bgm_play_default_3aad06a6.wav",
+      "type": "bgm",
+      "role": "play",
+      "tags": [
+        "default"
+      ],
+      "style": "default",
+      "loop": true,
+      "duration_sec": 16,
+      "used_by": [],
+      "source": "legacy_bgm_library",
+      "retrieved_at": "2026-02-06",
+      "license": "",
+      "license_url": "",
+      "generated": true,
+      "format": "wav",
+      "migrated_from": "shared_assets/bgm/files/default_3aad06a6.wav"
+    },
+    {
+      "id": "bgm_play_war_cf6929d7",
+      "legacy_id": "war_cf6929d7",
+      "file": "bgm/bgm_play_war_cf6929d7.wav",
+      "type": "bgm",
+      "role": "play",
+      "tags": [
+        "war"
+      ],
+      "style": "war",
+      "loop": true,
+      "duration_sec": 30,
+      "used_by": [
+        "overtime_street_fighter"
+      ],
+      "source": "legacy_bgm_library",
+      "retrieved_at": "2026-04-22",
+      "license": "",
+      "license_url": "",
+      "generated": false,
+      "format": "wav",
+      "migrated_from": "shared_assets/bgm/files/war_cf6929d7.wav"
+    }
+  ]
+}

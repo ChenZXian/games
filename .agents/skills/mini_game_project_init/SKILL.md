@@ -1,6 +1,6 @@
 ---
-name: 初始化
-description: Initialize a brand new Android Java mini-game project inside this monorepo. Use this skill only for initial project generation. Do not use this skill for optimization or packaging workflows. Read the repository standards first, create exactly one new game project under games/<new_game_id>, and append exactly one registry entry.
+name: 新建项目
+description: 在本单仓库中初始化一个全新的 Android Java 小游戏项目。只用于初始生成，不用于优化或打包。先读仓库标准，在 games/<new_game_id> 下创建一个新项目，追加一条 registry 记录，并刷新日期索引。
 ---
 
 Use this skill only for initializing a brand new Android Java mini-game project inside the monorepo.
@@ -23,7 +23,6 @@ Scope rules:
 - Do not build APK or AAB unless explicitly requested outside this skill.
 - Do not create zip artifacts unless explicitly requested outside this skill.
 - Do not git commit or git push.
-- Do not create KB entries.
 
 Repo root and path safety rules:
 1. Locate the true repo root as the directory that contains all of:
@@ -37,7 +36,7 @@ Repo root and path safety rules:
 5. Do not overwrite any existing directory under games/.
 6. Never create nested paths like games/games/<id>.
 7. Never write projects under docs/ or registry/.
-8. The only allowed write outside games/<new_game_id>/ is appending one entry to registry/produced_games.json.
+8. The only allowed write outside games/<new_game_id>/ is appending one entry to registry/produced_games.json and refreshing registry/projects_by_date.json.
 
 Mandatory generation rules:
 1. Treat all rules in docs/GAME_GENERATION_STANDARD.md as hard constraints.

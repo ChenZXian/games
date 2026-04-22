@@ -70,6 +70,13 @@ function Add-FilesByFilter([System.Collections.Generic.List[string]]$out, $path,
   }
 }
 
+function Test-AnyPathExists($base, $relativePaths){
+  foreach ($rel in $relativePaths) {
+    if (Test-Path (Join-Path $base $rel)) { return $true }
+  }
+  return $false
+}
+
 function Validate-Project($projDir, [ref]$fails, [ref]$warns){
   Write-Host ""
   Write-Host "=== Validate: $projDir ==="
@@ -110,6 +117,22 @@ function Validate-Project($projDir, [ref]$fails, [ref]$warns){
   # 3) GAME_GENERATION_STANDARD presence (repo-level)
   $std = Join-Path $root "docs\GAME_GENERATION_STANDARD.md"
   if (!(Test-Path $std)) { $fails.Value++; Write-Fail "Missing docs/GAME_GENERATION_STANDARD.md at repo root"; }
+
+  # 3.5) Registry JSON integrity
+  $registryPath = Join-Path $root "registry\produced_games.json"
+  if (!(Test-Path $registryPath)) {
+    $fails.Value++
+    Write-Fail "Missing registry/produced_games.json at repo root"
+  } else {
+    try {
+      $null = Get-Content -LiteralPath $registryPath -Raw | ConvertFrom-Json
+      Write-Ok "Registry JSON is valid"
+    }
+    catch {
+      $fails.Value++
+      Write-Fail "Registry JSON is invalid: registry/produced_games.json"
+    }
+  }
 
   # 4) Enforce launch activity name + icon/label policy
   $requiredLauncher = "com.android.boot.MainActivity"
@@ -179,16 +202,69 @@ function Validate-Project($projDir, [ref]$fails, [ref]$warns){
     Write-Ok "No non-ASCII chars found in authored files"
   }
 
-  # 6) Android resources: mipmap/app_icon must exist (at least one density)
+  # 6) Android resources: app_icon contract
   $resDir = Join-Path $projResolved "app\src\main\res"
   $iconFound = $false
   if (Test-Path $resDir) {
-    $icons = Get-ChildItem -Path $resDir -Recurse -File -Filter "app_icon.*" -ErrorAction SilentlyContinue
-    if ($icons.Count -gt 0) { $iconFound = $true }
+    $adaptiveIcon = Join-Path $resDir "mipmap-anydpi-v26\app_icon.xml"
+    $foregroundPng = Join-Path $resDir "drawable\app_icon_fg.png"
+    $foregroundXml = Join-Path $resDir "drawable\app_icon_fg.xml"
+    $legacyIcons = Get-ChildItem -Path $resDir -Recurse -File -Filter "app_icon.png" -ErrorAction SilentlyContinue |
+      Where-Object { $_.DirectoryName -match 'mipmap' }
+
+    if ((Test-Path $adaptiveIcon) -or ($legacyIcons.Count -gt 0)) {
+      $iconFound = $true
+    }
+
+    if (Test-Path $adaptiveIcon) { Write-Ok "Adaptive app icon resource found" }
+    elseif ($legacyIcons.Count -gt 0) { Write-Warn "Only legacy bitmap app_icon resources found" }
+
+    if ((Test-Path $foregroundPng) -or (Test-Path $foregroundXml)) {
+      Write-Ok "App icon foreground resource found"
+    } elseif (Test-Path $adaptiveIcon) {
+      $warns.Value++
+      Write-Warn "Adaptive app icon exists without app_icon_fg foreground resource"
+    }
+
+    if ($legacyIcons.Count -gt 0) {
+      Write-Ok "Legacy bitmap app_icon resources found"
+    }
   }
   if (!$iconFound) { $fails.Value++; Write-Fail "Missing @mipmap/app_icon resources" } else { Write-Ok "App icon resources found" }
 
-  # 7) Baseline alignment quick checks (compileSdk/minSdk/targetSdk)
+  # 7) UI foundation checks
+  $requiredUiFiles = @(
+    "app\src\main\res\layout\activity_main.xml",
+    "app\src\main\res\values\colors.xml",
+    "app\src\main\res\values\dimens.xml",
+    "app\src\main\res\values\styles.xml",
+    "app\src\main\res\values\themes.xml"
+  )
+  foreach ($rel in $requiredUiFiles) {
+    $full = Join-Path $projResolved $rel
+    if (Test-Path $full) {
+      Write-Ok "UI file found: $rel"
+    } else {
+      $fails.Value++
+      Write-Fail "Missing required UI file: $rel"
+    }
+  }
+
+  $uiLogicalResources = @(
+    @{ Name = "ui_panel"; Paths = @("app\src\main\res\drawable\ui_panel.xml", "app\src\main\res\drawable\ui_panel.png", "app\src\main\res\drawable\ui_panel.webp", "app\src\main\res\drawable\ui_panel.9.png") },
+    @{ Name = "ui_button_primary"; Paths = @("app\src\main\res\drawable\ui_button_primary.xml", "app\src\main\res\drawable\ui_button_primary.png", "app\src\main\res\drawable\ui_button_primary.webp", "app\src\main\res\drawable\ui_button_primary.9.png") },
+    @{ Name = "ui_button_secondary"; Paths = @("app\src\main\res\drawable\ui_button_secondary.xml", "app\src\main\res\drawable\ui_button_secondary.png", "app\src\main\res\drawable\ui_button_secondary.webp", "app\src\main\res\drawable\ui_button_secondary.9.png") }
+  )
+  foreach ($entry in $uiLogicalResources) {
+    if (Test-AnyPathExists $projResolved $entry.Paths) {
+      Write-Ok "UI resource found: $($entry.Name)"
+    } else {
+      $fails.Value++
+      Write-Fail "Missing required logical UI resource: $($entry.Name)"
+    }
+  }
+
+  # 8) Baseline alignment quick checks (compileSdk/minSdk/targetSdk)
   $appGradle = Join-Path $projResolved "app\build.gradle"
   $appGradleKts = Join-Path $projResolved "app\build.gradle.kts"
   $appText = $null

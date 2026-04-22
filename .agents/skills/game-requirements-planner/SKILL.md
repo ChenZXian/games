@@ -1,0 +1,116 @@
+---
+name: 需求策划
+description: 在项目初始化前为本仓库的 Android Java 小游戏做需求策划。适用于根据大方向生成 10 个候选方案，或把已选方案扩展成完整需求文档，覆盖玩法、操作、成长、UI 结构、icon 方向、BGM 和 SFX 方向以及实现提示。不要用于生成代码、优化项目或打包。
+---
+
+Use this skill only for pre-initialization game planning inside this monorepo.
+
+This skill is for requirements planning only.
+It must not initialize projects, optimize projects, package builds, or modify existing game code.
+
+Read these repository rules before producing planning output:
+- AGENTS.md
+- docs/GAME_GENERATION_STANDARD.md
+- docs/UI_KIT_FACTORY_SPEC_v1_0.md
+- docs/REQUIREMENTS_WORKFLOW.md
+- registry/produced_games.json
+
+Planning sequence:
+1. Take a broad game direction from the user.
+2. Generate 10 candidate mini-game concepts.
+3. Let the user select exactly 1 concept.
+4. Expand the selected concept into a complete game requirements document.
+5. Wait for explicit requirements confirmation.
+6. Only after confirmation may another workflow enter project initialization.
+
+Requirements trace storage:
+- Once the selected concept has a target `game_id`, store the planning trace under `artifacts/requirements/<game_id>/`
+- The authoritative files are:
+  - `metadata.json`
+  - `requirements.md`
+- `candidates.md` is optional
+- Use `tools/requirements/create_candidates_trace.ps1` for the candidate stage when a target `game_id` is already known
+- Use `tools/requirements/create_requirements_trace.ps1` after one concept is selected
+- Use `tools/requirements/confirm_trace.ps1` only after the user explicitly confirms the requirements
+- Use status `draft` before confirmation and `confirmed` after the user confirms the requirements
+- The inspect workflow should be able to read this trace later
+
+Hard planning rules:
+- Do not generate project files.
+- Do not update registry/produced_games.json during planning.
+- Do not call initialization, optimization, inspection, or packaging workflows from this skill.
+- Do not skip the 10-candidate step unless the user explicitly provides a locked concept and asks for full requirements only.
+- Do not allow project initialization if full requirements confirmation is still missing.
+- Keep all proposed games consistent with repository constraints:
+  - Android Java mini-game
+  - Root package policy remains com.android.boot at implementation time
+  - Launcher policy remains com.android.boot.MainActivity at implementation time
+  - Exactly one allowed ui_skin must be chosen during implementation planning
+  - Manifest icon target must remain @mipmap/app_icon at implementation time
+- Check registry/produced_games.json before proposing concepts and avoid obvious duplicate core loops.
+
+Candidate concept output format:
+- Produce exactly 10 concepts.
+- Present them as a numbered list.
+- Each concept must include:
+  - Working title
+  - One-sentence pitch
+  - Core loop
+  - Control scheme
+  - Distinctive hook
+  - Monetization or retention potential
+  - Duplicate-risk note against existing registry entries
+- Keep each concept concise but specific enough to compare.
+- Make the 10 concepts meaningfully different from one another.
+
+Concept selection behavior:
+- After presenting 10 concepts, stop and wait for the user's selection.
+- If the user selects multiple concepts, ask them to narrow to one before writing full requirements.
+- If the user asks for refinement, regenerate or revise the concept list before moving on.
+
+Full requirements document format:
+- Title and one-paragraph game positioning
+- Target feel and player fantasy
+- Core gameplay loop
+- Controls and input model
+- Failure conditions and win conditions
+- Progression structure
+- Level structure or run structure
+- Economy, rewards, drops, or upgrade model
+- Screen map:
+  - menu
+  - gameplay HUD
+  - pause
+  - game over
+  - any extra required screens
+- UI direction:
+  - recommended ui_skin
+  - layout tone
+  - HUD priorities
+  - key overlay panels
+- Icon direction:
+  - subject
+  - silhouette
+  - color direction
+  - tone
+- BGM direction:
+  - menu music mood
+  - gameplay loop mood
+  - boss or climax mood if applicable
+- Technical implementation notes:
+  - rendering style
+  - state model
+  - important entities
+  - special systems to plan early
+- Differentiation note against the current registry
+
+Full requirements quality bar:
+- Keep the design implementable as a single Android Studio Java mini-game project.
+- Avoid mechanics that require network services, live ops backends, or large external content pipelines unless the user explicitly asks for them.
+- Prefer gameplay that can fit the repository's existing engineering style and UI contract.
+- Ensure UI, icon, and BGM directions are explicit enough to drive later dedicated workflows.
+
+Completion rule:
+- End by asking for confirmation of the requirements document.
+- State clearly that project initialization should begin only after this confirmation.
+- After confirmation, persist the trace as `confirmed` before any initialization workflow begins.

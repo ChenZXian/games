@@ -188,16 +188,19 @@ If this standard conflicts with UI_KIT_FACTORY_SPEC_v1_0.md, the stricter rule a
 
 ### 6.3 UI Implementation Rules
 
-- UI must be XML-only and token-driven
-- External assets are forbidden:
-  - No bitmap images (png/jpg/jpeg/webp/gif/bmp/ico)
-  - No fonts (ttf/otf)
-  - No downloaded UI kits
+- UI should be structure-first and token-led
+- For this Java repository, the preferred implementation model is:
+  - gameplay rendering in `GameView` or `SurfaceView`
+  - HUD and non-real-time screens in Android View or XML layers
+- Binary UI assets and fonts are allowed when produced, assigned, or imported by the repository UI workflow
+- Open-source UI resource packs are allowed when license and provenance are tracked
+- Reusable external UI resources should enter `shared_assets/ui/` first when possible
 - Java code MUST NOT hardcode UI colors or dimensions for styling
 - Layout XML SHOULD NOT inline literal color values
 - UI is allowed to look commercial only by:
   - token tuning (colors/dimens)
   - XML drawables (shape/gradient/layer-list/vector)
+  - licensed binary UI assets and fonts
   - consistent hierarchy and spacing
 
 ### 6.4 Required UI Infrastructure (Must Exist in Every Project)
@@ -211,9 +214,19 @@ At minimum, each project MUST contain:
 
 And the required drawables specified by the UI Kit contract, including:
 
-- res/drawable/ui_panel.xml
-- res/drawable/ui_button_primary.xml
-- res/drawable/ui_button_secondary.xml
+- res/drawable/ui_panel.*
+- res/drawable/ui_button_primary.*
+- res/drawable/ui_button_secondary.*
+
+The `*` suffix means the logical resource may be implemented as XML, PNG, WEBP, or 9-patch where appropriate.
+
+### 6.5 External UI Asset Policy
+
+- Binary UI assets and fonts are allowed only through the repository UI workflow or explicit user direction
+- Open-source UI assets are allowed only when their license is compatible with project use and the source is recorded
+- Reusable third-party UI resources should be stored under `shared_assets/ui/<pack_id>/`
+- Each imported UI resource pack should keep a `manifest.json` and `LICENSE` or equivalent provenance file
+- Project-local UI copies may be stored under `res/drawable*`, `res/font`, or `assets/ui/` as needed
 
 ------
 
@@ -227,6 +240,8 @@ Each game must include:
 - A game rendering view (SurfaceView or custom View)
 - HUD elements (score, life, energy, pause)
 - A game-over or result screen
+
+For new or updated UI workflow runs, menu, pause, help, reward, and result screens should prefer View or XML overlays instead of full-screen Canvas-only UI.
 
 ------
 
@@ -270,19 +285,49 @@ All values must be in English.
 
 ------
 
-### 8.2 Application Icon (Two-Stage Policy)
+### 8.2 Application Icon Workflow Policy
 
-Stage A (generation-safe):
+Application icon rules:
 
-- @mipmap/app_icon must exist using XML-only resources
-- Adaptive icon via mipmap-anydpi-v26/app_icon.xml
-- Foreground via drawable/app_icon_fg.xml
-- Background color via cst_ token
+- AndroidManifest.xml must continue to reference `@mipmap/app_icon`
+- The icon should be cartoon-styled and clearly associated with the game's theme or core loop
+- The repository icon workflow may generate or update icon assets during initialization, optimization, or packaging when the icon workflow is explicitly requested or required
 
-Stage B (packaging):
+Recommended project icon set:
 
-- Bitmap icons may be added only during packaging
-- Required densities: mdpi, hdpi, xhdpi, xxhdpi, xxxhdpi
+- Adaptive icon via `mipmap-anydpi-v26/app_icon.xml`
+- Foreground asset via `drawable/app_icon_fg.png` or `drawable/app_icon_fg.xml`
+- Legacy fallback bitmap icons via `mipmap-mdpi/app_icon.png`, `mipmap-hdpi/app_icon.png`, `mipmap-xhdpi/app_icon.png`, `mipmap-xxhdpi/app_icon.png`, and `mipmap-xxxhdpi/app_icon.png`
+
+Export requirement:
+
+- When the repository icon workflow runs, it should also export upload-ready icon files under `artifacts/icons/<game_id>/`
+- Export metadata should clearly identify which game the icon belongs to
+
+### 8.3 Audio Workflow Policy
+
+Audio workflow rules:
+
+- Binary audio assets are allowed when produced, assigned, or exported by the repository audio workflow
+- Audio assets should match the game's theme, tone, and core loop
+- The repository audio workflow covers both BGM and SFX
+- Generated or fetched audio should enter the shared library first before project assignment when possible
+
+Recommended shared library layout:
+
+- `shared_assets/audio/index.json`
+- `shared_assets/audio/bgm/`
+- `shared_assets/audio/sfx/`
+
+Recommended project audio path:
+
+- `app/src/main/assets/audio/`
+
+Recommended project naming:
+
+- primary gameplay BGM as `bgm.<ext>`
+- additional BGM tracks as `bgm_<role>.<ext>`
+- sound effects as `sfx_<role>.<ext>`
 
 ------
 
@@ -382,7 +427,7 @@ The following are forbidden because they break industrial-scale generation:
 - Hardcoding UI styling values in Java (colors, radii, strokes, paddings)
 - Mixing multiple skins in one project
 - Using Git LFS pointer files anywhere in the repository
-- Introducing binary audio assets unless explicitly requested in a packaging-only workflow
+- Introducing ad hoc binary audio assets outside the repository audio workflow
 
 ------
 
@@ -410,6 +455,12 @@ Do NOT include binary assets in generated projects:
 Exception:
 
 - gradle/wrapper/gradle-wrapper.jar is allowed ONLY if required by the baseline.
+- Icon files produced by the repository icon workflow are allowed:
+  - project icon resources under `res/drawable`, `res/mipmap-*`, and `res/mipmap-anydpi-v26`
+  - exported upload-ready icon files under `artifacts/icons/<game_id>/`
+- Audio files produced or assigned by the repository audio workflow are allowed:
+  - shared library assets under `shared_assets/audio/`
+  - project audio assets under `app/src/main/assets/audio/`
 
 If a build workflow requires gradle-wrapper.jar, it MUST be stored as a normal Git object, not via Git LFS.
 

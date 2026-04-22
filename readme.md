@@ -1,248 +1,317 @@
-# ✅ 小游戏流水线流程 — v1.0（已验证可运行）
+# Android Java Mini-Game Monorepo
 
-**Version:** `pipeline-v1.0`
-**Status:** ✅ 已完整跑通（doctor → validate → build → APK 导出 → registry → commit）
-**最后验证时间:** 2026-01-18
+This repository is a monorepo for Android Java mini-games.
 
-------
+It contains:
 
-## 一、适用范围
+- multiple independent Android Studio game projects under `games/`
+- shared repository rules and environment baselines under `docs/`
+- active Cursor companion rules under `docs/cursor/`
+- workflow tools under `tools/`
+- shared assets under `shared_assets/`
+- project registry data under `registry/`
+- archived legacy process documents under `archive/`
 
-- Windows + PowerShell
-- Android Studio / Gradle 构建环境
-- 多项目 Monorepo 结构：
+## Repository Purpose
 
-```
-repo-root/
-  docs/
-  registry/
-  games/
-    <game_id>/
-  tools/
-  kb/
-  artifacts/
-```
+This repository is designed to support a consistent mini-game pipeline instead of one-off projects.
 
-------
+The current direction is:
 
-## 二、权威规范文件（Single Source of Truth）
+1. plan game requirements before project generation
+2. generate or update one game project inside `games/<game_id>/`
+3. optimize game quality and polish
+4. handle dedicated resource workflows such as icon, UI, and audio
+5. inspect and package only when explicitly requested
 
-必须存在于 repo root：
+## Authoritative Files
 
-1. `docs/GAME_GENERATION_STANDARD.md`
-   → 游戏结构 / 启动 Activity / 命名规范 / 禁止中文等
-2. `docs/ENVIRONMENT_BASELINE.md`
-   → JDK / Gradle / AGP / SDK 版本基线
-3. `registry/produced_games.json`
-   → 已生成游戏登记表（防止玩法重复）
+Always read and follow these files before making project changes:
 
-------
+- `AGENTS.md`
+- `docs/GAME_GENERATION_STANDARD.md`
+- `docs/ENVIRONMENT_BASELINE.md`
+- `docs/UI_KIT_FACTORY_SPEC_v1_0.md`
+- `docs/PROJECT_ACCEPTANCE_BASELINE.md`
+- `registry/produced_games.json`
 
-## 三、流水线阶段总览
+These files define:
 
-```
-ENV CHECK  ->  PROJECT CHECK  ->  BUILD APK  ->  EXPORT ARTIFACT
-   |               |                |                |
- doctor.ps1    validate.ps1     build_apk.ps1     artifacts/apk/
-```
+- repository rules
+- Android and Gradle baseline
+- UI contract
+- generic project acceptance baseline
+- launcher and package constraints
+- game uniqueness requirements
 
-------
+## Current Workflow
 
-## 四、标准执行顺序（从 0 开始）
+### Repository Menu
 
-### ✅ Step 1：环境校验（必须先通过）
+Current menu structure:
 
-```
-powershell -ExecutionPolicy Bypass -File tools/env/doctor.ps1
-```
+需求阶段
+- `1` 先出 10 个候选方案
+- `2` 为已选方案补完整需求
 
-通过条件：
+开发阶段
+- `3` 新建游戏项目
+- `4` 优化现有项目
+- `5` 生成或更新游戏图标
+- `6` 优化游戏界面
+- `7` 生成或接入游戏音频
 
-```
-Doctor check PASSED.
-Fails: 0, Warnings: 0
-```
+交付阶段
+- `8` 先检查项目状态
+- `9` 打包或发布项目
 
-若失败 → 必须先修环境，不得继续。
+其他
+- `10` 一键执行完整流程
+- `11` 只讨论规则、方案或架构
 
-------
+Menu display convention:
 
-### ✅ Step 2：生成新游戏项目
+- new conversations should start with the menu only
+- later discussion replies should append the menu at the very bottom
+- `$菜单` or `$menu` can be used as a repository-level shortcut to request the current menu only
+- menu numbers should be rendered as plain text labels to avoid Markdown list indentation in the app UI
 
-要求：
+### 1. Requirements Planning
 
-- 必须生成在：`games/<new_game_id>/`
-- 必须包含：
-  - `settings.gradle(.kts)`
-  - `app/` module
-  - gradle wrapper
+Before first-time project initialization, use the planning flow:
 
-并且：
+1. provide a broad game direction
+2. generate 10 candidate mini-game concepts
+3. select exactly 1 concept
+4. generate a full game requirements document
+5. confirm the requirements
+6. enter project initialization only after confirmation
 
-- AGP / Gradle / SDK 必须匹配 ENVIRONMENT_BASELINE
+Current planning skill:
 
-------
+- `.agents/skills/game-requirements-planner/`
+- `docs/REQUIREMENTS_WORKFLOW.md`
+- `tools/requirements/create_candidates_trace.ps1`
+- `tools/requirements/create_requirements_trace.ps1`
+- `tools/requirements/confirm_trace.ps1`
+- `tools/requirements/init_trace.ps1`
 
-### ✅ Step 3：项目规范校验（Validator）
+Planning trace target after concept selection:
 
-```
-powershell -ExecutionPolicy Bypass -File tools/validate.ps1 -Project games/<new_game_id>
-```
+- `artifacts/requirements/<game_id>/`
 
-校验内容包括：
+Planning state flow:
 
-- 路径必须是 `repo/games/<id>/`
-- 启动 Activity 必须符合标准
-- manifest label/icon 必须规范
-- 源码 / 资源 / 配置中无非 ASCII（无中文）
-- icon 资源存在
-- compileSdk / minSdk / targetSdk = 基线值
+- `candidates` -> candidate concepts stored
+- `draft` -> full requirements written but not confirmed yet
+- `confirmed` -> full requirements explicitly confirmed and ready to unblock initialization
 
-通过条件：
+### 2. Project Initialization
 
-```
-Validator PASSED.
-Fails: 0
-```
+Use initialization only after requirements are confirmed.
 
-失败 → 修项目，不得继续。
+Current initialization skill:
 
-------
+- `.agents/skills/mini_game_project_init/`
 
-### ✅ Step 4：构建最终 APK 产物（交付物）
+### 3. Optimization
 
-```
-powershell -ExecutionPolicy Bypass -File tools/build_apk.ps1 -Project games/<new_game_id> -Variant debug
-```
+Use optimization for gameplay feel, UI polish, responsiveness, performance, and bug fixing inside an existing game project.
 
-该脚本会自动：
+Current optimization skill:
 
-1. 再跑一次 doctor（若存在）
-2. 再跑一次 validator（若存在）
-3. 使用项目自身 `gradlew.bat`
-4. 执行：`clean assembleDebug`
-5. 验证 APK 是否存在
-6. 导出到统一目录：
+- `.agents/skills/mini_game_optimize/`
 
-```
-artifacts/apk/<game_id>/<game_id>-debug-YYYYMMDD-HHMM.apk
-```
+### 4. Icon Workflow
 
-并输出：
+Icon generation is now a dedicated workflow.
 
-```
-FINAL_APK=artifacts/apk/<game_id>/xxx.apk
-```
+Default icon direction:
 
-这就是**最终安装包交付物** ✅
+- cartoon style
+- clear visual link to the target game's theme or core loop
 
-------
+Current icon workflow:
 
-### ✅ Step 5：登记 registry（必须）
+- `docs/ICON_WORKFLOW.md`
+- `.agents/skills/mini_game_icon/`
+- `tools/assets/generate_app_icon.ps1`
 
-在 `registry/produced_games.json` 追加：
+Icon outputs:
 
-```
-{
-  "id": "<new_game_id>",
-  "name": "...",
-  "tags": ["..."],
-  "core_loop": "...",
-  "created_at": "YYYY-MM-DD"
-}
-```
+- in-project launcher icon resources under `games/<game_id>/app/src/main/res/`
+- upload-ready exports under `artifacts/icons/<game_id>/`
 
-要求：
+### 5. UI Workflow
 
-- core_loop 不能与已有条目重复
+UI is now a dedicated workflow instead of incidental polish.
 
-------
+Current UI workflow goals:
 
-### ✅ Step 6：Git 提交（必须）
+- define screen structure before implementation
+- keep exactly one `ui_skin`
+- support a hybrid Java game UI model with `GameView` or `SurfaceView` for gameplay and Android View or XML overlays for HUD and screens
+- allow licensed binary UI assets, fonts, and open-source UI resource packs
+- keep reusable external UI resources in the shared library first when possible
 
-```
-git add
-git commit -m "Add <new_game_id>"
-```
+Current UI workflow:
 
-不允许出现：
+- `docs/UI_WORKFLOW.md`
+- `.agents/skills/mini_game_ui/`
+- `tools/assets/assign_ui.ps1`
 
-- 未登记 registry 就提交
-- 构建失败仍提交
+Shared library target:
 
-------
+- `shared_assets/ui/`
 
-## 五、出错处理（KB 强制流程）
+### 6. Audio Workflow
 
-当出现以下任一情况：
+Audio generation and assignment is a dedicated workflow.
 
-- doctor 失败
-- validator 失败
-- gradle build 失败
+Current audio workflow goals:
 
-必须按顺序：
+- support both BGM and SFX
+- keep generated or fetched audio in the shared library first
+- assign project audio from the shared library as needed
+- keep audio direction aligned with the game's theme and feel
 
-### 1. 先搜 KB
+Current audio workflow:
 
-```
-rg -n "<关键报错>" kb/problems
-```
+- `docs/AUDIO_WORKFLOW.md`
+- `.agents/skills/mini_game_audio/`
+- `tools/assets/assign_audio.ps1`
+- `tools/assets/fetch_audio.ps1`
+- `tools/assets/synth_audio.ps1`
 
-### 2. 找到 → 按 Fix 操作 + 更新 Prevention
+Shared library target:
 
-### 3. 找不到 → 新建 KB 条目
+- `shared_assets/audio/`
 
-```
-powershell -ExecutionPolicy Bypass -File tools/kb/new_kb_entry.ps1 -Slug "<short_slug>"
-```
+### 7. Inspect Workflow
 
-并填写：
+Inspect is a dedicated pre-packaging status workflow.
 
-- Symptom
-- Error Log
-- Root Cause
-- Fix
-- Prevention
+Current inspect workflow goals:
 
-目的：**同类问题不允许第二次踩坑**。
+- report whether a project can enter packaging
+- summarize requirements, icon, UI, and audio completion state
+- surface the next most useful action without modifying project files
 
-------
+Current inspect workflow:
 
-## 六、当前流程能力边界（明确不做的事）
+- `docs/INSPECT_WORKFLOW.md`
+- `.agents/skills/mini_game_inspect/`
+- `tools/inspect.ps1`
 
-pipeline-v1.0 明确不包含：
+### 8. Packaging
 
-- ❌ 模板工程生成器
-- ❌ 自动 keystore / release 签名
-- ❌ CI 集成
-- ❌ 自动玩法查重算法（仅 registry 人工描述）
+Packaging is a separate workflow and should run only when explicitly requested.
 
-这些属于 v2+ 版本内容。
+Current packaging skill:
 
-------
+- `.agents/skills/mini_game_pack/`
 
-## ✅ 结论
+### 9. Full Pipeline Mode
 
-- 环境基线 ✔
-- 项目规范校验 ✔
-- 最终 APK 交付 ✔
-- 问题沉淀机制 ✔
+The repository menu now includes a full-pipeline mode.
 
-已经是**真正工程级可持续流水线**了，不是玩具脚本。
+Default behavior:
 
-我们现在正式定义为：
+- requirements planning
+- initialization
+- optimization and resource completion
+- inspection
+- packaging
 
-> 🎯 **Android Mini-Game Pipeline — v1.0 (Baseline Stable)**
+The full-pipeline mode still pauses at concept selection and requirements confirmation unless the user explicitly authorizes automatic decisions.
 
-后续任何改动都可以：
+## Project Acceptance Baseline
 
-- v1.1：性能/日志优化
-- v1.2：模板生成
-- v2.0：全自动游戏工厂
+This repository does not require one fixed game genre.
 
-------
+Any mini-game type is acceptable if it satisfies:
 
-如果你后面想继续推进，我建议下一步优先级是：
+- `docs/PROJECT_ACCEPTANCE_BASELINE.md`
+- `docs/GAME_GENERATION_STANDARD.md`
+- `docs/ENVIRONMENT_BASELINE.md`
+- `docs/UI_KIT_FACTORY_SPEC_v1_0.md`
 
-👉 **v1.1：build_apk 支持 latest.apk + registry 记录产物路径**
-👉 **v2.0：模板化生成器 + 一键出多款游戏**
+## Date Organization
+
+For tool compatibility, active projects still remain under:
+
+- `games/<game_id>/`
+
+Chronological organization is maintained through:
+
+- `registry/projects_by_date.json`
+- `tools/rebuild_projects_by_date.ps1`
+
+This keeps inspection, validation, initialization, and packaging scripts stable while still giving the repository a date-based index.
+
+## Roles
+
+Current role split:
+
+- User: gives direction, selects a concept, confirms requirements, and decides when to package or deliver
+- Codex: supports the full repository workflow end to end
+- Cursor: optional auxiliary role for UI polish, local resource wiring, and focused engineering refinements
+
+## Root Directory Layout
+
+Main root directories:
+
+- `docs/` - active standards and workflow documents
+- `archive/` - legacy or superseded process documents kept for reference
+- `games/` - actual Android Studio mini-game projects
+- `tools/` - repository scripts such as validation, build, env, and asset tools
+- `registry/` - game registry, uniqueness tracking, and chronological project index
+- `shared_assets/` - shared reusable assets and asset libraries
+- `artifacts/` - build outputs and exported deliverables
+
+Main root files:
+
+- `AGENTS.md` - repository interaction and workflow rules
+- `README.md` - repository entry documentation
+- `gradle.properties` - root Gradle baseline settings
+- `.gitignore`
+- `.gitattributes`
+
+## Archive Policy
+
+Legacy process notes and replaced workflows should not stay in the root directory.
+
+Current archive areas:
+
+- `archive/icon_legacy/` - older icon generation flow and source samples
+- `archive/bgm_legacy/` - older BGM workflow notes
+- `archive/cursor_legacy/` - older Cursor rules versions kept for reference
+- `archive/misc/` - uncategorized retired root-level files
+
+Archived documents are kept only for historical reference.
+They should not be treated as the active repository standard.
+
+## Current Repository State
+
+The repository now has:
+
+- a menu-driven workflow entry point in `AGENTS.md`
+- a dedicated requirements planning stage before initialization
+- a dedicated icon workflow with project outputs and export outputs
+- a dedicated UI workflow with a shared UI asset library target
+- a dedicated audio workflow for reusable BGM and SFX assets
+- a dedicated inspect workflow before packaging decisions
+- a generic project acceptance baseline that is not tied to one game genre
+- a chronological index under `registry/projects_by_date.json`
+- a single active Cursor rules document under `docs/cursor/`
+- root-level cleanup of outdated pipeline notes into `archive/`
+
+## Recommended Next Steps
+
+Recommended next improvements:
+
+1. validate the new UI workflow on a real game project
+2. validate the new audio workflow on a real game project
+3. validate the new icon workflow on a real game project
+4. validate the full pipeline mode on a brand new game from planning through packaging
+5. continue reducing root-level clutter and keep process documents under `docs/` or `archive/`

@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "packs": [
+    {
+      "pack_id": "kenney_ui_pack",
+      "title": "Kenney UI Pack 2.0",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://kenney.nl/assets/ui-pack",
+      "asset_types": [
+        "png",
+        "svg",
+        "ttf",
+        "wav"
+      ],
+      "recommended_ui_skin": "skin_cartoon_light",
+      "default_assignment_preset": "canonical_cartoon_light",
+      "assignment_presets": [
+        "canonical_cartoon_light",
+        "canonical_cartoon_light_green",
+        "canonical_cartoon_light_yellow",
+        "canonical_cartoon_light_red"
+      ],
+      "style_tags": [
+        "clean",
+        "rounded",
+        "cartoon_friendly",
+        "multicolor"
+      ],
+      "path": "packs/kenney_ui_pack",
+      "used_by": [
+        "bloom_orchard"
+      ],
+      "validated_with": [
+        "bloom_orchard"
+      ]
+    }
+  ]
+}

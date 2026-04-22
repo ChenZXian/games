@@ -109,45 +109,6 @@ Run doctor only if:
 
 Doctor must always be executed and must pass before packaging.
 
-------
-
-## 2. Knowledge Base Workflow (Error-Driven Only)
-
-KB location:
-
-- kb/problems/*.md
-
-KB workflow is triggered only when an actual error occurs.
-
-### 2.1 Search KB First
-
-rg -n "<key error snippet>" kb/problems
-
-### 2.2 If Found
-
-1. Apply the fix exactly.
-2. Improve Prevention if applicable.
-
-### 2.3 If Not Found
-
-Create a new KB entry:
-powershell -ExecutionPolicy Bypass -File tools/kb/new_kb_entry.ps1 -Slug "<short_slug>"
-
-Fill sections:
-
-1. Symptom
-2. Error Log
-3. Root Cause
-4. Fix
-5. Prevention
-6. References (optional)
-
-### 2.4 KB Commit Rule
-
-KB entries may only be committed during PACK phase.
-
-------
-
 ## 3. Repository Hard Constraints (Always Enforced)
 
 Always comply with:

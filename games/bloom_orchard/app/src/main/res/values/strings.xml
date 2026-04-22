@@ -6,4 +6,19 @@
     <string name="btn_menu">Menu</string>
     <string name="btn_mute">Mute</string>
     <string name="btn_how_to_play">How To Play</string>
+    <string name="btn_seed_tool">Seed</string>
+    <string name="btn_water_tool">Water</string>
+    <string name="btn_fertilizer_tool">Fertilizer</string>
+    <string name="label_coins">Coins</string>
+    <string name="label_progress">Progress</string>
+    <string name="label_timer">Timer</string>
+    <string name="label_pause">Pause</string>
+    <string name="body_menu">Grow the brightest orchard before sunset. Plant fast, keep crops watered, and chase high beauty harvests.</string>
+    <string name="label_paused">Paused</string>
+    <string name="body_paused">Review your orchard, switch tools, or resume the day when ready.</string>
+    <string name="label_day_over">Day Over</string>
+    <string name="body_day_over">Time ran out before the orchard reached full bloom.</string>
+    <string name="hint_tool_seed">Seed selected. Tap an empty plot to plant your best unlocked crop.</string>
+    <string name="hint_tool_water">Water selected. Tap a growing crop to boost its bloom speed.</string>
+    <string name="hint_tool_fertilizer">Fertilizer selected. Tap a growing crop to push extra beauty.</string>
 </resources>

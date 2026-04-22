@@ -109,10 +109,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (event.getAction() != MotionEvent.ACTION_DOWN || session == null) return true;
-        if (session.state != com.android.boot.core.GameState.PLAYING) {
-            session.start();
-            return true;
-        }
+        if (session.state != com.android.boot.core.GameState.PLAYING) return true;
         int cols = 6;
         int rows = 6;
         float w = getWidth() / (float) cols;
