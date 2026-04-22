@@ -1,0 +1,7 @@
+<resources>
+    <style name="Theme.BloomOrchard" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowBackground">@color/cst_bg_main</item>
+        <item name="colorPrimary">@color/cst_accent</item>
+        <item name="colorSecondary">@color/cst_accent_2</item>
+    </style>
+</resources>

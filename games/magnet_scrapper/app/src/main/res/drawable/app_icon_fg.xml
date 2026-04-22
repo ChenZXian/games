@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="@dimen/cst_app_icon_size" android:height="@dimen/cst_app_icon_size" android:viewportWidth="108" android:viewportHeight="108">
+  <path android:fillColor="@color/cst_accent" android:pathData="M54,18 A18,18 0 1,0 54,54 A18,18 0 1,0 54,18 Z" />
+  <path android:fillColor="@color/cst_accent_2" android:pathData="M22,48 H38 V60 H22 Z" />
+  <path android:fillColor="@color/cst_accent_2" android:pathData="M70,48 H86 V60 H70 Z" />
+  <path android:fillColor="@color/cst_text_primary" android:pathData="M52,32 H56 V76 H52 Z" />
+  <path android:fillColor="@color/cst_warning" android:pathData="M36,36 L44,44 L36,52 L28,44 Z" />
+  <path android:fillColor="@color/cst_warning" android:pathData="M72,56 L80,64 L72,72 L64,64 Z" />
+</vector>

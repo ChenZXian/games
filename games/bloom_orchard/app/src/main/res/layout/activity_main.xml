@@ -1,0 +1,92 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cst_bg_main">
+
+    <com.android.boot.ui.GameView
+        android:id="@+id/game_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:id="@+id/top_hud"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:background="@drawable/ui_panel_header"
+        android:orientation="horizontal"
+        android:padding="@dimen/cst_pad_8">
+
+        <TextView
+            android:id="@+id/tv_coins"
+            style="@style/TextAppearance.Game.HudValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Coins 0" />
+
+        <TextView
+            android:id="@+id/tv_level"
+            style="@style/TextAppearance.Game.HudValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Lv 1" />
+
+        <TextView
+            android:id="@+id/tv_timer"
+            style="@style/TextAppearance.Game.HudValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:text="08:00" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@drawable/ui_panel"
+        android:orientation="horizontal"
+        android:padding="@dimen/cst_pad_8">
+
+        <Button
+            android:id="@+id/btn_seed"
+            style="@style/Widget.Game.Button.Secondary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Seed" />
+
+        <Button
+            android:id="@+id/btn_water"
+            style="@style/Widget.Game.Button.Secondary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/cst_pad_6"
+            android:layout_weight="1"
+            android:text="Water" />
+
+        <Button
+            android:id="@+id/btn_fertilizer"
+            style="@style/Widget.Game.Button.Secondary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/cst_pad_6"
+            android:layout_weight="1"
+            android:text="Fertilizer" />
+
+        <ImageButton
+            android:id="@+id/btn_pause"
+            style="@style/Widget.Game.Button.Icon"
+            android:layout_width="@dimen/cst_hud_icon_size"
+            android:layout_height="@dimen/cst_hud_icon_size"
+            android:layout_marginStart="@dimen/cst_pad_6"
+            android:contentDescription="Pause"
+            android:src="@drawable/ic_pause" />
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Magnet Scrapper</string>
+  <string name="btn_start">Start Run</string>
+  <string name="btn_restart">Retry</string>
+  <string name="btn_resume">Resume</string>
+  <string name="btn_menu">Menu</string>
+  <string name="btn_mute">Mute</string>
+  <string name="btn_how_to_play">How to Play</string>
+  <string name="menu_tagline">Neon salvage survival</string>
+  <string name="menu_pitch">Drag the drone, pull metal into charge, switch to push and blast the swarm.</string>
+  <string name="label_mode_pull">PULL</string>
+  <string name="label_mode_push">PUSH</string>
+  <string name="label_special">Shock</string>
+  <string name="label_score">Score</string>
+  <string name="label_health">Hull</string>
+  <string name="label_charge">Charge</string>
+  <string name="label_special_meter">Special</string>
+  <string name="label_wave">Wave</string>
+  <string name="label_best">Best</string>
+  <string name="menu_how_title">Field Manual</string>
+  <string name="menu_how_body">Drag anywhere on the arena to steer. Pull mode attracts scrap and energy. Push mode auto-launches charged scrap bursts. Fill the meter to trigger a polarity shock that repels enemies and drags loose scrap toward the center.</string>
+  <string name="paused_title">Run Paused</string>
+  <string name="game_over_title">Drone Lost</string>
+  <string name="menu_title">Magnet Scrapper</string>
+  <string name="hud_pause">Pause</string>
+  <string name="hud_sound">Sound</string>
+  <string name="hud_help">Help</string>
+</resources>

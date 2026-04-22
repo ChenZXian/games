@@ -1,0 +1,59 @@
+plugins {
+    id 'com.android.application'
+}
+
+def envOr = { key, fallback ->
+    def value = System.getenv(key)
+    return value != null && value.trim().length() > 0 ? value : fallback
+}
+
+android {
+    namespace 'com.android.boot'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId 'com.android.boot'
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName '1.0.0'
+    }
+
+    signingConfigs {
+        release {
+            def storeFilePath = envOr('ASHEN_STRIKE_TRIAL_RELEASE_STORE_FILE', '')
+            if (storeFilePath.length() > 0) {
+                storeFile file(storeFilePath)
+            }
+            storePassword envOr('ASHEN_STRIKE_TRIAL_RELEASE_STORE_PASSWORD', '')
+            keyAlias envOr('ASHEN_STRIKE_TRIAL_RELEASE_KEY_ALIAS', '')
+            keyPassword envOr('ASHEN_STRIKE_TRIAL_RELEASE_KEY_PASSWORD', '')
+        }
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            minifyEnabled false
+            shrinkResources false
+        }
+        release {
+            debuggable false
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.7.1'
+    implementation 'androidx.core:core:1.16.0'
+    implementation 'com.google.android.material:material:1.11.0'
+}

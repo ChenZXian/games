@@ -1,0 +1,5 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="108dp" android:height="108dp" android:viewportWidth="108" android:viewportHeight="108">
+  <path android:fillColor="@color/cst_accent" android:pathData="M54,10 L87,27 L87,66 C87,82 74,95 54,100 C34,95 21,82 21,66 V27 Z" />
+  <path android:fillColor="@color/cst_accent_2" android:pathData="M54,24 L73,34 V60 C73,70 66,79 54,84 C42,79 35,70 35,60 V34 Z" />
+  <path android:fillColor="@color/cst_text_on_secondary" android:pathData="M49,32 H59 V52 H72 L54,79 L36,52 H49 Z" />
+</vector>
