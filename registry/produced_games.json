@@ -343,6 +343,23 @@
       "core_loop": "advance right through lock gates chain 3-hit melee combos and one burst skill to clear enemy waves defeat a two-pattern boss then pick one persistent boon before replay",
       "created_at": "2026-04-17",
       "ui_skin": "skin_neon_future"
+    },
+    {
+      "id": "relic_blade_trials",
+      "name": "Relic Blade Trials",
+      "tags": [
+        "action",
+        "melee",
+        "boss",
+        "loot",
+        "equipment",
+        "stage_clear",
+        "rpg",
+        "variant_b_engine_render_input_ui_model_audio"
+      ],
+      "core_loop": "Choose an unlocked stage, fight through enemy encounters with responsive melee combat, defeat a boss, collect guaranteed Green+ loot, and replay stages to chase boss-exclusive Purple and Gold gear upgrades.",
+      "created_at": "2026-04-21",
+      "ui_skin": "skin_dark_arcade"
     }
   ]
 }
