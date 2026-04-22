@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+APP_HOME=$(cd "${0%/*}" && pwd -P)
+JAR_PATH="$APP_HOME/gradle/wrapper/gradle-wrapper.jar"
+if [ ! -f "$JAR_PATH" ]; then
+  echo "Missing gradle-wrapper.jar"
+  exit 1
+fi
+exec java -classpath "$JAR_PATH" org.gradle.wrapper.GradleWrapperMain "$@"
