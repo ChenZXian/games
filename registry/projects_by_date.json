@@ -1,12 +1,12 @@
 {
     "version":  1,
-    "generated_at_utc":  "2026-04-22T09:58:32Z",
+    "generated_at_utc":  "2026-04-22T14:04:44Z",
     "grouping":  "created_at_month",
     "path_policy":  "active projects remain direct children under games/\u003cgame_id\u003e",
     "months":  [
                    {
                        "month":  "2026-04",
-                       "total":  5,
+                       "total":  6,
                        "games":  [
                                      {
                                          "id":  "bloom_orchard",
@@ -23,11 +23,11 @@
                                          "ui_skin":  "skin_cartoon_light"
                                      },
                                      {
-                                         "id":  "clockwork_courier",
-                                         "name":  "Clockwork Courier",
-                                         "created_at":  "2026-04-21",
-                                         "path":  "games/clockwork_courier",
-                                         "ui_skin":  "skin_neon_future"
+                                         "id":  "island_supply_command",
+                                         "name":  "Island Supply Command",
+                                         "created_at":  "2026-04-22",
+                                         "path":  "games/island_supply_command",
+                                         "ui_skin":  "skin_cartoon_light"
                                      },
                                      {
                                          "id":  "ashen_strike_trial",
@@ -42,6 +42,13 @@
                                          "created_at":  "2026-04-21",
                                          "path":  "games/relic_blade_trials",
                                          "ui_skin":  "skin_dark_arcade"
+                                     },
+                                     {
+                                         "id":  "clockwork_courier",
+                                         "name":  "Clockwork Courier",
+                                         "created_at":  "2026-04-21",
+                                         "path":  "games/clockwork_courier",
+                                         "ui_skin":  "skin_neon_future"
                                      }
                                  ]
                    },

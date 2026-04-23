@@ -1,11 +1,31 @@
 import json
 import shutil
+import zipfile
 from datetime import datetime, timezone
 from pathlib import Path
+import re
+
+
+STYLE_MATCH_IGNORE = {
+    "ui",
+    "kit",
+    "pack",
+    "skin",
+    "default",
+    "generic",
+    "game",
+    "mobile",
+    "clean",
+}
 
 
 def load_json(path: Path):
-    return json.loads(path.read_text(encoding="utf-8"))
+    return json.loads(path.read_text(encoding="utf-8-sig"))
+
+
+def save_json(path: Path, obj):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(obj, ensure_ascii=True, indent=2) + "\n", encoding="utf-8")
 
 
 def load_index(index_path: Path):
@@ -14,9 +34,64 @@ def load_index(index_path: Path):
     return load_json(index_path)
 
 
-def save_json(path: Path, obj):
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(obj, ensure_ascii=True, indent=2) + "\n", encoding="utf-8")
+def normalize_token(value: str) -> str:
+    value = value.lower()
+    value = re.sub(r"[^a-z0-9_]+", "_", value)
+    value = re.sub(r"_+", "_", value).strip("_")
+    return value or "pack"
+
+
+def tokenize_style_text(*values):
+    tokens = []
+    for value in values:
+        if value is None:
+            continue
+        if isinstance(value, (list, tuple, set)):
+            for item in value:
+                tokens.extend(tokenize_style_text(item))
+            continue
+        text = str(value).strip().lower()
+        if not text:
+            continue
+        text = text.replace(",", " ").replace("/", " ").replace("-", " ").replace("_", " ")
+        for part in re.split(r"[^a-z0-9]+", text):
+            part = part.strip()
+            if part:
+                tokens.append(part)
+    return unique_tokens(tokens)
+
+
+def unique_tokens(values):
+    seen = set()
+    result = []
+    for value in values:
+        if isinstance(value, (list, tuple, set)):
+            for nested in unique_tokens(value):
+                if nested not in seen:
+                    seen.add(nested)
+                    result.append(nested)
+            continue
+        token = normalize_token(str(value)).replace("_", " ").strip()
+        for part in token.split():
+            if part and part not in seen:
+                seen.add(part)
+                result.append(part)
+    return result
+
+
+def pack_tokens(pack_entry):
+    tokens = []
+    if isinstance(pack_entry, dict):
+        tokens.extend(tokenize_style_text(pack_entry.get("pack_id", "")))
+        tokens.extend(tokenize_style_text(pack_entry.get("title", "")))
+        tokens.extend(tokenize_style_text(pack_entry.get("recommended_ui_skin", "")))
+        style_tags = pack_entry.get("style_tags", [])
+        if isinstance(style_tags, list):
+            tokens.extend(tokenize_style_text(style_tags))
+        quality_tags = pack_entry.get("quality_tags", [])
+        if isinstance(quality_tags, list):
+            tokens.extend(tokenize_style_text(quality_tags))
+    return {token for token in unique_tokens(tokens) if token not in STYLE_MATCH_IGNORE}
 
 
 def find_pack(index_data, pack_id: str):
@@ -24,6 +99,38 @@ def find_pack(index_data, pack_id: str):
         if isinstance(item, dict) and item.get("pack_id", "") == pack_id:
             return item
     return None
+
+
+def find_best_pack(index_data, style_tags=None, ui_skin: str = "", min_score: int = 0):
+    desired_tokens = set(tokenize_style_text(style_tags, ui_skin))
+    desired_tokens = {token for token in desired_tokens if token not in STYLE_MATCH_IGNORE}
+    packs = [item for item in index_data.get("packs", []) if isinstance(item, dict)]
+    if not packs:
+        return None
+    if not desired_tokens and not ui_skin:
+        return packs[0]
+
+    best_pack = None
+    best_score = None
+    for pack in packs:
+        score = 0
+        tokens = pack_tokens(pack)
+        style_matches = len(desired_tokens.intersection(tokens))
+        if desired_tokens and style_matches <= 0:
+            continue
+        score += style_matches * 3
+        if ui_skin and str(pack.get("recommended_ui_skin", "")) == ui_skin:
+            score += 5
+        if "premium" in pack.get("quality_tags", []):
+            score += 1
+        if best_pack is None or score > best_score:
+            best_pack = pack
+            best_score = score
+    if best_pack is None:
+        return None
+    if best_score is not None and best_score < min_score:
+        return None
+    return best_pack
 
 
 def resolve_pack_dir(library_root: Path, pack_entry, pack_id: str):
@@ -124,9 +231,32 @@ def build_project_record(pack_entry, manifest, preset, game_id: str, ui_skin: st
         "preset_id": preset.get("preset_id", ""),
         "preset_title": preset.get("title", ""),
         "ui_skin": ui_skin,
+        "style_tags": manifest.get("style_tags", []),
         "source_url": manifest.get("source_url", ""),
         "license": manifest.get("license", pack_entry.get("license", "")),
         "license_url": manifest.get("license_url", pack_entry.get("license_url", "")),
         "assigned_at_utc": datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
         "copied_items": copied_items
     }
+
+
+def extract_zip_to_dir(zip_path: Path, target_dir: Path):
+    target_dir.mkdir(parents=True, exist_ok=True)
+    with zipfile.ZipFile(zip_path, "r") as zf:
+        zf.extractall(target_dir)
+
+
+def clear_dir(path: Path):
+    if path.exists():
+        shutil.rmtree(path)
+
+
+def merge_pack_entry(index_data, pack_entry):
+    packs = index_data.setdefault("packs", [])
+    existing = find_pack(index_data, pack_entry.get("pack_id", ""))
+    if existing is None:
+        packs.append(pack_entry)
+        return pack_entry
+    existing.clear()
+    existing.update(pack_entry)
+    return existing

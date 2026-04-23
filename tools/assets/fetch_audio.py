@@ -15,6 +15,8 @@ from audio_utils import (
     load_index,
     normalize_id,
     save_index,
+    tokenize_style_text,
+    unique_tokens,
 )
 
 
@@ -66,6 +68,10 @@ def main() -> int:
     ap.add_argument("--type", required=True)
     ap.add_argument("--role", default="")
     ap.add_argument("--tag", required=True)
+    ap.add_argument("--style-tags", default="")
+    ap.add_argument("--mood", default="")
+    ap.add_argument("--pacing", default="")
+    ap.add_argument("--query-text", default="")
     ap.add_argument("--assign-project", default="")
     ap.add_argument("--library-root", default="shared_assets/audio")
     ap.add_argument("--max-kb", default="1000")
@@ -75,6 +81,9 @@ def main() -> int:
     audio_type = args.type.strip().lower()
     role = (args.role.strip().lower() or ("play" if audio_type == "bgm" else "generic"))
     tag = args.tag.strip().lower()
+    mood = args.mood.strip().lower()
+    pacing = args.pacing.strip().lower()
+    style_tags = tokenize_style_text(args.style_tags)
     assign_project = args.assign_project.strip()
     library_root = Path(args.library_root)
     try:
@@ -89,7 +98,16 @@ def main() -> int:
     index_path = library_root / "index.json"
     data = load_index(index_path)
 
-    query_text = f"{audio_type} {role} {tag}"
+    if args.query_text.strip():
+        query_text = args.query_text.strip()
+    else:
+        query_parts = [audio_type, role, tag, mood, pacing]
+        if audio_type == "bgm":
+            query_parts.extend(["music", "loop"])
+        else:
+            query_parts.extend(["sound", "effect"])
+        query_parts.extend(style_tags)
+        query_text = " ".join(unique_tokens(query_parts))
     try:
       page_url = search_opengameart(query_text)
     except Exception as exc:
@@ -129,13 +147,18 @@ def main() -> int:
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_bytes(data_bytes)
 
+    all_tags = unique_tokens([tag, mood, pacing, style_tags])
+
     entry = {
         "id": entry_id,
         "file": relative_path.replace("\\", "/"),
         "type": audio_type,
         "role": role,
-        "tags": [tag],
+        "tags": all_tags or [tag],
         "style": tag,
+        "style_tags": style_tags,
+        "mood": mood,
+        "pacing": pacing,
         "loop": audio_type == "bgm",
         "duration_sec": 0,
         "used_by": [],
@@ -146,6 +169,7 @@ def main() -> int:
         "generated": False,
         "format": detect_format(file_name),
         "sha256": sha256_bytes(data_bytes),
+        "query_text": query_text,
     }
 
     audio_items = data.setdefault("audio", [])

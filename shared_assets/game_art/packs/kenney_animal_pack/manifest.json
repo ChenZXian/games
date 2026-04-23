@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "pack_id": "kenney_animal_pack",
+  "title": "Kenney Animal Pack",
+  "license": "CC0-1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "source_url": "https://kenney.nl/assets/animal-pack",
+  "download_url": "",
+  "asset_types": [
+    "png",
+    "svg",
+    "txt",
+    "xml"
+  ],
+  "art_roles": [
+    "animal",
+    "character",
+    "npc"
+  ],
+  "recommended_game_types": [
+    "farm",
+    "ranch",
+    "casual",
+    "collection",
+    "kids"
+  ],
+  "style_tags": [
+    "cartoon",
+    "animal",
+    "farm",
+    "ranch",
+    "casual",
+    "cute"
+  ],
+  "quality_tags": [
+    "production",
+    "free",
+    "open",
+    "cc0"
+  ],
+  "assets_path": "assets",
+  "preview_files": [
+    "Preview.png"
+  ],
+  "asset_file_count": 106
+}

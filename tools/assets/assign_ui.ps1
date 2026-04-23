@@ -4,6 +4,8 @@ param(
   [Parameter(Mandatory=$false)][string]$PackId = "",
   [Parameter(Mandatory=$false)][string]$Preset = "",
   [Parameter(Mandatory=$false)][string]$UiSkin = "",
+  [Parameter(Mandatory=$false)][string]$StyleTags = "",
+  [Parameter(Mandatory=$false)][int]$MinScore = 0,
   [Parameter(Mandatory=$false)][string]$LibraryRoot = "shared_assets/ui",
   [switch]$ListPacks,
   [switch]$ListPresets,
@@ -51,13 +53,17 @@ else {
     throw "GameId is required when applying a UI pack"
   }
   if ($PackId -eq "") {
-    throw "PackId is required when applying a UI pack"
+    if ($StyleTags -eq "") {
+      throw "PackId is required when applying a UI pack unless StyleTags is provided for automatic matching"
+    }
   }
   $argsList += @(
     "--project", $Project,
-    "--game-id", $GameId,
-    "--pack-id", $PackId
+    "--game-id", $GameId
   )
+  if ($PackId -ne "") {
+    $argsList += @("--pack-id", $PackId)
+  }
 }
 
 if ($Preset -ne "") {
@@ -65,6 +71,12 @@ if ($Preset -ne "") {
 }
 if ($UiSkin -ne "") {
   $argsList += @("--ui-skin", $UiSkin)
+}
+if ($StyleTags -ne "") {
+  $argsList += @("--style-tags", $StyleTags)
+}
+if ($MinScore -gt 0) {
+  $argsList += @("--min-score", "$MinScore")
 }
 if ($DryRun) {
   $argsList += "--dry-run"

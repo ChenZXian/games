@@ -2,7 +2,7 @@ import argparse
 import sys
 from pathlib import Path
 
-from audio_utils import append_used_by, copy_entry_to_project, load_index, pick_entry, save_index
+from audio_utils import append_used_by, copy_entry_to_project, load_index, pick_entry, save_index, tokenize_style_text
 
 
 def fail(msg: str) -> int:
@@ -18,6 +18,8 @@ def main() -> int:
     ap.add_argument("--role", default="")
     ap.add_argument("--audio-id", default="")
     ap.add_argument("--tag", default="")
+    ap.add_argument("--style-tags", default="")
+    ap.add_argument("--min-score", type=int, default=0)
     ap.add_argument("--library-root", default="shared_assets/audio")
     args = ap.parse_args()
 
@@ -27,6 +29,7 @@ def main() -> int:
     role = args.role.strip().lower()
     audio_id = args.audio_id.strip()
     tag = args.tag.strip().lower()
+    style_tokens = tokenize_style_text(args.style_tags)
     library_root = Path(args.library_root)
 
     if audio_type not in ("bgm", "sfx"):
@@ -37,7 +40,7 @@ def main() -> int:
         return fail(f"Missing audio index: {index_path}")
 
     data = load_index(index_path)
-    entry = pick_entry(data, audio_type, role, audio_id, tag)
+    entry = pick_entry(data, audio_type, role, audio_id, tag, style_tokens=style_tokens, min_score=args.min_score)
     if not entry:
         return fail("No matching audio entry found")
 

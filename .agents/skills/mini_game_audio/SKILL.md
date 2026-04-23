@@ -16,17 +16,31 @@ Hard rules:
 - Store generated or fetched audio in `shared_assets/audio/` first when possible
 - Assign project audio into `games/<game_id>/app/src/main/assets/audio/`
 - Use consistent naming for project-local audio outputs
+- Define a concrete audio brief before assignment:
+  - theme
+  - mood
+  - pacing
+  - bgm roles
+  - sfx roles
+- Resolve audio in this order by default:
+  - style-matched shared library
+  - licensed fetch
+  - repository synthesis fallback
+- Do not silently reuse a style-mismatched legacy track just because the role matches
 - Do not change unrelated gameplay, registry entries, packaging outputs, or git state unless explicitly requested
 
 Workflow:
 1. Identify the target game id and the requested audio scope.
-2. Define the audio direction:
+2. Define the audio brief:
+   - theme
    - mood
    - pacing
    - bgm roles
    - sfx roles
-3. Reuse existing shared library assets when possible.
-4. Generate or fetch new audio only when reuse is not enough.
-5. Store new assets in the shared library.
-6. Assign the needed assets into the target project.
-7. Report which shared assets and project-local files were produced.
+3. Use `tools/assets/ensure_audio_bundle.ps1` as the default orchestration entry point when the task needs actual asset resolution.
+4. Reuse style-matched shared library assets when possible.
+5. Fetch licensed audio when shared assets are not enough.
+6. Synthesize fallback audio when fetch is unavailable or insufficient.
+7. Store every new asset in the shared library first.
+8. Assign the needed assets into the target project.
+9. Report the audio brief, which roles were resolved, and which shared assets and project-local files were produced.

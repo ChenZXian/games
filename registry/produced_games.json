@@ -412,6 +412,22 @@
       "core_loop": "Manage multi-species pens, maintain feed and cleanliness, chain timed collections for combo growth, fulfill rotating delivery board contracts, leverage pen adjacency bonuses, claim achievement rewards, and survive escalating neglect pressure.",
       "created_at": "2026-04-21",
       "ui_skin": "skin_cartoon_light"
+    },
+    {
+      "id": "island_supply_command",
+      "name": "Island Supply Command",
+      "tags": [
+        "strategy",
+        "logistics",
+        "convoy",
+        "naval",
+        "islands",
+        "supply",
+        "variant_a_core_ui_entity_audio"
+      ],
+      "core_loop": "tap linked harbors to open convoy routes, grow stock, surge or upgrade key ports, intercept enemy boats, and capture the enemy flagship through supply pressure",
+      "created_at": "2026-04-22",
+      "ui_skin": "skin_cartoon_light"
     }
   ]
 }

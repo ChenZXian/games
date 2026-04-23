@@ -15,9 +15,10 @@ Hard rules:
 - Do not change launcher activity identity
 - No Chinese
 - No comments
-- No ad hoc binary assets outside the dedicated icon, UI, or audio workflows
+- No ad hoc binary assets outside the dedicated icon, UI, gameplay art, or audio workflows
 - No external UI kits without tracked provenance
 - Use the existing UI foundation and route larger UI asset work through the dedicated UI workflow
+- Use the gameplay art workflow for characters, maps, tilesets, props, effects, and backgrounds when real art assets are needed
 - Do not create APK, AAB, zip, or run packaging steps unless explicitly requested
 - Do not update registry unless explicitly requested in a packaging workflow
 

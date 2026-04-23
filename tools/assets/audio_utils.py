@@ -1,8 +1,23 @@
 import json
-import os
 import re
 import shutil
 from pathlib import Path
+
+STYLE_MATCH_IGNORE = {
+    "audio",
+    "bgm",
+    "sfx",
+    "music",
+    "sound",
+    "effect",
+    "game",
+    "default",
+    "generic",
+    "medium",
+    "slow",
+    "fast",
+    "neutral",
+}
 
 
 def fail(msg: str) -> int:
@@ -14,6 +29,44 @@ def normalize_id(value: str) -> str:
     value = re.sub(r"[^a-z0-9_]+", "_", value)
     value = re.sub(r"_+", "_", value).strip("_")
     return value or "audio"
+
+
+def tokenize_style_text(*values):
+    tokens = []
+    for value in values:
+        if value is None:
+            continue
+        if isinstance(value, (list, tuple, set)):
+            for item in value:
+                tokens.extend(tokenize_style_text(item))
+            continue
+        text = str(value).strip().lower()
+        if not text:
+            continue
+        text = text.replace(",", " ").replace("/", " ").replace("-", " ").replace("_", " ")
+        for part in re.split(r"[^a-z0-9]+", text):
+            part = part.strip()
+            if part:
+                tokens.append(part)
+    return unique_tokens(tokens)
+
+
+def unique_tokens(values):
+    seen = set()
+    result = []
+    for value in values:
+        if isinstance(value, (list, tuple, set)):
+            for nested in unique_tokens(value):
+                if nested not in seen:
+                    seen.add(nested)
+                    result.append(nested)
+            continue
+        token = normalize_id(str(value)).replace("_", " ").strip()
+        for part in token.split():
+            if part and part not in seen:
+                seen.add(part)
+                result.append(part)
+    return result
 
 
 def load_index(index_path: Path):
@@ -32,25 +85,81 @@ def ensure_audio_root(library_root: Path):
     (library_root / "sfx").mkdir(parents=True, exist_ok=True)
 
 
-def pick_entry(data, audio_type: str, role: str, audio_id: str, tag: str):
+def entry_tokens(entry):
+    tokens = []
+    tokens.extend(tokenize_style_text(entry.get("id", "")))
+    tokens.extend(tokenize_style_text(entry.get("role", "")))
+    tokens.extend(tokenize_style_text(entry.get("style", "")))
+    tokens.extend(tokenize_style_text(entry.get("mood", "")))
+    tokens.extend(tokenize_style_text(entry.get("pacing", "")))
+    tokens.extend(tokenize_style_text(entry.get("query_text", "")))
+    tags = entry.get("tags", [])
+    if isinstance(tags, list):
+        tokens.extend(tokenize_style_text(tags))
+    style_tags = entry.get("style_tags", [])
+    if isinstance(style_tags, list):
+        tokens.extend(tokenize_style_text(style_tags))
+    return set(unique_tokens(tokens))
+
+
+def pick_entry(data, audio_type: str, role: str, audio_id: str, tag: str, style_tokens=None, min_score: int = 0):
     items = data.get("audio", [])
     candidates = [it for it in items if isinstance(it, dict) and it.get("type", "") == audio_type]
-    if role:
-      candidates = [it for it in candidates if it.get("role", "") == role]
+
     if audio_id:
         for item in candidates:
             if item.get("id", "") == audio_id:
                 return item
         return None
-    if tag:
-        tagged = []
-        for item in candidates:
-            tags = item.get("tags", [])
-            if isinstance(tags, list) and tag in tags:
-                tagged.append(item)
-        if tagged:
-            return tagged[0]
-    return candidates[0] if candidates else None
+
+    if role:
+        candidates = [it for it in candidates if it.get("role", "") == role]
+        if not candidates:
+            return None
+
+    if not candidates:
+        return None
+
+    desired_tag = normalize_id(tag) if tag else ""
+    desired_tokens = {token for token in tokenize_style_text(style_tokens, desired_tag) if token not in STYLE_MATCH_IGNORE}
+
+    if not desired_tag and not desired_tokens:
+        return candidates[0]
+
+    best_item = None
+    best_score = None
+    for item in candidates:
+        tokens = entry_tokens(item)
+        item_tags = item.get("tags", [])
+        if not isinstance(item_tags, list):
+            item_tags = []
+        item_style_tags = item.get("style_tags", [])
+        if not isinstance(item_style_tags, list):
+            item_style_tags = []
+        normalized_item_tags = set(tokenize_style_text(item_tags, item_style_tags, item.get("style", "")))
+        tag_match = desired_tag in normalized_item_tags if desired_tag else False
+        style_matches = len(desired_tokens.intersection(tokens))
+        if desired_tokens and style_matches <= 0 and not tag_match:
+            continue
+
+        score = 0
+        if role and item.get("role", "") == role:
+            score += 3
+        if tag_match:
+            score += 8
+        score += style_matches * 3
+        if item.get("style", "") == "default" and desired_tokens and not tag_match and style_matches <= 1:
+            score -= 4
+
+        if best_item is None or score > best_score:
+            best_item = item
+            best_score = score
+
+    if best_item is None:
+        return None
+    if best_score is not None and best_score < min_score:
+        return None
+    return best_item
 
 
 def project_target_name(entry):

@@ -1,7 +1,7 @@
 # Inspect Workflow
 
-Version: 1.0
-Last updated: 2026-04-22
+Version: 1.1
+Last updated: 2026-04-23
 
 This document defines the repository inspection workflow for Android Java mini-games.
 
@@ -24,6 +24,7 @@ The inspect workflow may check:
 - requirements trace presence
 - icon track status
 - UI track status
+- gameplay art track status
 - audio track status
 - existing APK export history
 
@@ -60,7 +61,7 @@ The inspect workflow should report resource-track status using the labels below.
 - `confirmed`
 - `untracked`
 
-### 4.2 Icon, UI, Audio
+### 4.2 Icon, UI, Gameplay Art, Audio
 
 - `complete`
 - `placeholder_only`
@@ -91,6 +92,7 @@ The inspect workflow should report two top-level conclusions.
 - `CAN_ENTER_PACK=true`
 - icon status is `complete`
 - UI status is not `deferred`
+- gameplay art status is not `deferred`
 - audio status is not `deferred`
 
 `DELIVERY_READY` is stricter than `CAN_ENTER_PACK`.
@@ -109,6 +111,7 @@ Every inspect run should report:
 - `REQUIREMENTS_STATUS`
 - `ICON_STATUS`
 - `UI_STATUS`
+- `GAME_ART_STATUS`
 - `AUDIO_STATUS`
 - `NEXT_STEP`
 

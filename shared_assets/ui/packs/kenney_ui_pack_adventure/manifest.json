@@ -1,0 +1,38 @@
+{
+  "pack_id": "kenney_ui_pack_adventure",
+  "title": "Kenney UI Pack Adventure",
+  "source_url": "https://kenney.nl/assets/ui-pack-adventure",
+  "download_url": "https://kenney.nl/media/pages/assets/ui-pack-adventure/a9a6ec7d59-1723597274/kenney_ui-pack-adventure.zip",
+  "license": "CC0-1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "asset_types": [
+    "png",
+    "svg"
+  ],
+  "style_tags": [
+    "fantasy",
+    "adventure",
+    "rpg",
+    "wood",
+    "quest"
+  ],
+  "quality_tags": [
+    "production",
+    "fantasy",
+    "mobile_game"
+  ],
+  "recommended_ui_skin": "skin_cartoon_light",
+  "default_assignment_preset": "canonical_adventure_brown",
+  "assignment_presets": [
+    "canonical_adventure_brown"
+  ],
+  "selected_assets": [
+    "drawable/button_primary_brown_adventure.png",
+    "drawable/button_secondary_grey_adventure.png",
+    "drawable/button_icon_red_adventure.png",
+    "drawable/panel_brown_adventure.png",
+    "drawable/panel_brown_dark_adventure.png"
+  ],
+  "notes": "Curated brown fantasy buttons and framed panels for adventure, quest, and dungeon-style game projects.",
+  "validated_with": []
+}

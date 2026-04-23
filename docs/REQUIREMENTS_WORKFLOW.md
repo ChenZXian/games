@@ -1,7 +1,7 @@
 # Requirements Workflow
 
-Version: 1.1
-Last updated: 2026-04-22
+Version: 1.3
+Last updated: 2026-04-23
 
 This document defines the repository requirements workflow for Android Java mini-games.
 
@@ -60,6 +60,7 @@ Meaning:
 
 - `candidates`: candidate list stored, but no final requirements document yet
 - `draft`: requirements document exists, but the user has not confirmed it yet
+- `draft` also means the full requirements must be shown to the user and must remain blocked on explicit confirmation
 - `confirmed`: requirements document exists and is confirmed for initialization
 
 If no trace exists, inspection should report `untracked`.
@@ -95,6 +96,7 @@ Expected result:
 - `requirements.md` exists
 - `metadata.json` exists
 - `status=draft`
+- the full requirements draft is shown to the user for review before initialization
 
 ### 5.3 Confirmation
 
@@ -102,14 +104,35 @@ Use this stage only after the user explicitly confirms the requirements.
 
 Recommended command:
 
-- `powershell -ExecutionPolicy Bypass -File tools/requirements/confirm_trace.ps1 -GameId <game_id>`
+- `powershell -ExecutionPolicy Bypass -File tools/requirements/confirm_trace.ps1 -GameId <game_id> -ExplicitUserConfirmation`
 
 Expected result:
 
 - `requirements.md` already exists
+- existing `metadata.json` already exists with `status=draft`
 - `selected_concept` is present
 - `ui_skin` is present
 - `status=confirmed`
+
+### 5.4 Menu Item 10 Orchestration
+
+When the repository flow uses menu item `10`, the sequence must remain:
+
+1. broad direction input
+2. 10 candidate concepts
+3. one selected concept
+4. full requirements draft
+5. explicit requirements confirmation
+6. initialization only after confirmation
+
+Additional menu item `10` rules:
+
+- candidate generation and requirements drafting must happen in separate replies
+- after candidate generation, stop and wait for exactly one concept selection
+- after requirements drafting, show the full draft to the user and stop for explicit confirmation
+- do not initialize a project in the same reply as the full requirements draft
+- if the user requests revisions, update the draft and keep status `draft`
+- only after explicit confirmation may the trace move to `confirmed`
 
 ## 6. Metadata Contract
 
@@ -149,6 +172,7 @@ Recommended `files` fields:
 - economy or rewards
 - screen map
 - UI direction
+- gameplay art direction
 - icon direction
 - audio direction
 - technical implementation notes
@@ -174,6 +198,7 @@ Primary entry points:
 - `tools/requirements/create_candidates_trace.ps1`
 - `tools/requirements/create_requirements_trace.ps1`
 - `tools/requirements/confirm_trace.ps1`
+- `tools/requirements/assert_confirmed_trace.ps1`
 
 Low-level compatibility helper:
 
@@ -186,10 +211,12 @@ Low-level compatibility helper:
 Do not mark a requirements trace as `confirmed` unless all of the following are true:
 
 - `requirements.md` exists
+- `metadata.json` already exists with `status=draft`
 - exactly one selected concept has been chosen
 - `selected_concept` is stored in `metadata.json`
 - one allowed `ui_skin` has been chosen
 - the user explicitly confirmed the requirements
+- `tools/requirements/confirm_trace.ps1` is called with `-ExplicitUserConfirmation`
 
 Initialization should not begin before this state exists.
 

@@ -5,6 +5,8 @@ param(
   [Parameter(Mandatory=$false)][string]$Role = "",
   [Parameter(Mandatory=$false)][string]$AudioId = "",
   [Parameter(Mandatory=$false)][string]$Tag = "",
+  [Parameter(Mandatory=$false)][string]$StyleTags = "",
+  [Parameter(Mandatory=$false)][int]$MinScore = 0,
   [Parameter(Mandatory=$false)][string]$LibraryRoot = "shared_assets/audio"
 )
 
@@ -42,6 +44,12 @@ if ($AudioId -ne "") {
 }
 if ($Tag -ne "") {
   $argsList += @("--tag", $Tag)
+}
+if ($StyleTags -ne "") {
+  $argsList += @("--style-tags", $StyleTags)
+}
+if ($MinScore -gt 0) {
+  $argsList += @("--min-score", "$MinScore")
 }
 
 & python @argsList

@@ -3,6 +3,9 @@ param(
   [Parameter(Mandatory=$true)][string]$Type,
   [Parameter(Mandatory=$false)][string]$Role = "",
   [Parameter(Mandatory=$false)][string]$Tag = "default",
+  [Parameter(Mandatory=$false)][string]$StyleTags = "",
+  [Parameter(Mandatory=$false)][string]$Mood = "",
+  [Parameter(Mandatory=$false)][string]$Pacing = "",
   [Parameter(Mandatory=$false)][string]$LibraryRoot = "shared_assets/audio",
   [Parameter(Mandatory=$false)][int]$Seconds = 16,
   [Parameter(Mandatory=$false)][int]$SampleRate = 44100,
@@ -35,6 +38,15 @@ $argsList = @(
 
 if ($Role -ne "") {
   $argsList += @("--role", $Role)
+}
+if ($StyleTags -ne "") {
+  $argsList += @("--style-tags", $StyleTags)
+}
+if ($Mood -ne "") {
+  $argsList += @("--mood", $Mood)
+}
+if ($Pacing -ne "") {
+  $argsList += @("--pacing", $Pacing)
 }
 if ($AssignProject -ne "") {
   $argsList += @("--assign-project", $AssignProject)

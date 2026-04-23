@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "pack_id": "kenney_roguelike_rpg_pack",
+  "title": "Kenney Roguelike RPG Pack",
+  "license": "CC0-1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "source_url": "https://kenney.nl/assets/roguelike-rpg-pack",
+  "download_url": "",
+  "asset_types": [
+    "png",
+    "tmx",
+    "txt"
+  ],
+  "art_roles": [
+    "tileset",
+    "terrain",
+    "building",
+    "prop",
+    "item",
+    "character",
+    "enemy"
+  ],
+  "recommended_game_types": [
+    "rpg",
+    "roguelike",
+    "dungeon",
+    "top",
+    "down",
+    "adventure"
+  ],
+  "style_tags": [
+    "pixel",
+    "rpg",
+    "roguelike",
+    "town",
+    "dungeon",
+    "fantasy",
+    "top",
+    "down"
+  ],
+  "quality_tags": [
+    "production",
+    "free",
+    "open",
+    "cc0"
+  ],
+  "assets_path": "assets",
+  "preview_files": [
+    "Preview.png",
+    "Sample1.png",
+    "Sample2.png"
+  ],
+  "asset_file_count": 9
+}

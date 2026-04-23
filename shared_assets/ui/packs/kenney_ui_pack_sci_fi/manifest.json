@@ -1,0 +1,39 @@
+{
+  "pack_id": "kenney_ui_pack_sci_fi",
+  "title": "Kenney UI Pack Sci-Fi",
+  "source_url": "https://kenney.nl/assets/ui-pack-sci-fi",
+  "download_url": "https://kenney.nl/media/pages/assets/ui-pack-sci-fi/d83f166279-1724181109/kenney_ui-pack-space-expansion.zip",
+  "license": "CC0-1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "asset_types": [
+    "png",
+    "ttf"
+  ],
+  "style_tags": [
+    "sci_fi",
+    "space",
+    "future",
+    "tech",
+    "glass"
+  ],
+  "quality_tags": [
+    "production",
+    "sci_fi",
+    "mobile_game"
+  ],
+  "recommended_ui_skin": "skin_neon_future",
+  "default_assignment_preset": "canonical_sci_fi_blue",
+  "assignment_presets": [
+    "canonical_sci_fi_blue"
+  ],
+  "selected_assets": [
+    "drawable/button_primary_sci_fi.png",
+    "drawable/button_secondary_sci_fi.png",
+    "drawable/button_icon_sci_fi.png",
+    "drawable/panel_glass_sci_fi.png",
+    "drawable/panel_rectangle_sci_fi.png",
+    "font/kenney_future_narrow.ttf"
+  ],
+  "notes": "Curated futuristic button, glass panel, and techno font assets for space, cyber, and neon gameplay projects.",
+  "validated_with": []
+}

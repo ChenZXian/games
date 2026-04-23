@@ -1,6 +1,6 @@
 # Audio Workflow
 
-Version: 1.0
+Version: 1.1
 Last updated: 2026-04-22
 
 This document defines the current repository audio workflow for Android Java mini-games in this monorepo.
@@ -18,13 +18,18 @@ The audio workflow exists to:
 
 Every audio workflow run should define:
 
-- game tone
-- gameplay rhythm
+- theme
+- overall mood
+- pacing
 - menu mood
-- battle or tension level
-- reward or failure feedback style
+- gameplay mood
+- climax mood if needed
+- required BGM roles
+- required SFX roles
 
 Audio should match the target game's theme, pacing, and interaction feel.
+
+The audio brief is mandatory before asset assignment.
 
 ## 3. Scope
 
@@ -88,9 +93,17 @@ Recommended names:
 
 Audio may come from:
 
-- shared local library reuse
-- repository synthesis tools
+- style-matched shared local library reuse
 - online fetch workflows when allowed by policy and licensing rules
+- repository synthesis tools as a fallback when shared and fetched assets are not enough
+
+Default resolution order:
+
+1. search the shared library for a style-matched asset
+2. fetch a licensed online asset when no shared match exists
+3. synthesize a fallback asset when fetch is unavailable or insufficient
+
+Do not silently reuse a legacy asset if it only matches by role and not by style.
 
 ## 7. Metadata
 
@@ -102,6 +115,9 @@ Every shared library entry should include:
 - `role`
 - `tags`
 - `style`
+- `style_tags`
+- `mood`
+- `pacing`
 - `loop`
 - `duration_sec`
 - `used_by`
@@ -116,6 +132,7 @@ Every shared library entry should include:
 
 Current active tool entry points:
 
+- `tools/assets/ensure_audio_bundle.ps1`
 - `tools/assets/assign_audio.ps1`
 - `tools/assets/fetch_audio.ps1`
 - `tools/assets/synth_audio.ps1`

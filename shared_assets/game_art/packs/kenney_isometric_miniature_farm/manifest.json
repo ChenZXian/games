@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "pack_id": "kenney_isometric_miniature_farm",
+  "title": "Kenney Isometric Miniature Farm",
+  "license": "CC0-1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "source_url": "https://kenney.nl/assets/isometric-miniature-farm",
+  "download_url": "",
+  "asset_types": [
+    "png",
+    "txt"
+  ],
+  "art_roles": [
+    "terrain",
+    "building",
+    "prop",
+    "item",
+    "tileset",
+    "background"
+  ],
+  "recommended_game_types": [
+    "farm",
+    "management",
+    "isometric",
+    "casual"
+  ],
+  "style_tags": [
+    "isometric",
+    "farm",
+    "cartoon",
+    "crops",
+    "building",
+    "casual"
+  ],
+  "quality_tags": [
+    "production",
+    "free",
+    "open",
+    "cc0"
+  ],
+  "assets_path": "assets",
+  "preview_files": [
+    "Preview.png",
+    "Sample.png"
+  ],
+  "asset_file_count": 460
+}

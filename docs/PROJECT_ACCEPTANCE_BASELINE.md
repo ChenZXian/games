@@ -1,7 +1,7 @@
 # Project Acceptance Baseline
 
-Version: 1.0
-Last updated: 2026-04-22
+Version: 1.1
+Last updated: 2026-04-23
 
 This document defines the generic structure and acceptance baseline for any Android Java mini-game in this repository.
 
@@ -59,6 +59,8 @@ A project is not considered visually complete if it relies only on bare placehol
 For a delivery-ready result, the project should have:
 
 - a coherent UI direction using the repository UI workflow
+- gameplay visuals that are not limited to bare placeholder circles or rectangles when a delivery-ready target is requested
+- a tracked gameplay art strategy using the repository gameplay art workflow when external or reusable character, map, prop, item, effect, or background assets are used
 - a non-placeholder launcher icon using the repository icon workflow
 - a defined audio direction, covering BGM and SFX when the game type needs them
 - visual and interaction quality above plain prototype level

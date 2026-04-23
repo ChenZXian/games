@@ -265,6 +265,8 @@ Recommended UI Skin: $UiSkin
 ## Confirmation
 
 Status: Draft
+Initialization Gate: Blocked Until Explicit User Confirmation
+Reviewer Action: Confirm The Requirements Or Request Revisions
 
 "@
 }
@@ -330,7 +332,22 @@ function Update-RequirementsTrace {
     Write-Utf8File $candidatesPath $candidateContent
   }
 
-  if ($Stage -eq "requirements" -and ((-not (Test-Path $requirementsPath)) -or $Force)) {
+  if ($Status -eq "confirmed") {
+    if (-not [string]::IsNullOrWhiteSpace($RequirementsMarkdown) -or -not [string]::IsNullOrWhiteSpace($RequirementsMarkdownPath)) {
+      throw "Do not supply requirements markdown while confirming. Confirm the existing draft requirements instead."
+    }
+    if ($null -eq $existing) {
+      throw "Cannot confirm requirements trace without existing metadata.json."
+    }
+    if ([string]$existing.current_stage -ne "requirements") {
+      throw "Cannot confirm requirements trace unless current_stage is requirements."
+    }
+    if ([string]$existing.status -ne "draft" -and [string]$existing.status -ne "confirmed") {
+      throw "Cannot confirm requirements trace unless the existing status is draft."
+    }
+  }
+
+  if ($Stage -eq "requirements" -and $Status -ne "confirmed" -and ((-not (Test-Path $requirementsPath)) -or $Force)) {
     $requirementsContent = Resolve-MarkdownContent $RequirementsMarkdown $RequirementsMarkdownPath (New-RequirementsTemplate $GameId $resolvedTitle $resolvedDirection $resolvedUiSkin $resolvedSelectedConcept) "RequirementsMarkdown"
     Write-Utf8File $requirementsPath $requirementsContent
   }

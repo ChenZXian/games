@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "pack_id": "kenney_top_down_shooter",
+  "title": "Kenney Top-down Shooter",
+  "license": "CC0-1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "source_url": "https://kenney.nl/assets/top-down-shooter",
+  "download_url": "",
+  "asset_types": [
+    "png",
+    "svg",
+    "txt",
+    "xml"
+  ],
+  "art_roles": [
+    "character",
+    "enemy",
+    "zombie",
+    "prop",
+    "item",
+    "projectile",
+    "tileset"
+  ],
+  "recommended_game_types": [
+    "top",
+    "down",
+    "shooter",
+    "survival",
+    "arena",
+    "zombie"
+  ],
+  "style_tags": [
+    "top",
+    "down",
+    "shooter",
+    "zombie",
+    "modern",
+    "action"
+  ],
+  "quality_tags": [
+    "production",
+    "free",
+    "open",
+    "cc0"
+  ],
+  "assets_path": "assets",
+  "preview_files": [
+    "Preview.png",
+    "Sample.png"
+  ],
+  "asset_file_count": 591
+}

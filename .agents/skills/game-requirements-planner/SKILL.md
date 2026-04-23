@@ -1,6 +1,6 @@
 ---
 name: 需求策划
-description: 在项目初始化前为本仓库的 Android Java 小游戏做需求策划。适用于根据大方向生成 10 个候选方案，或把已选方案扩展成完整需求文档，覆盖玩法、操作、成长、UI 结构、icon 方向、BGM 和 SFX 方向以及实现提示。不要用于生成代码、优化项目或打包。
+description: 在项目初始化前为本仓库的 Android Java 小游戏做需求策划。适用于根据大方向生成 10 个候选方案，或把已选方案扩展成完整需求文档，覆盖玩法、操作、成长、UI 结构、玩法美术、icon 方向、BGM 和 SFX 方向以及实现提示。不要用于生成代码、优化项目或打包。
 ---
 
 Use this skill only for pre-initialization game planning inside this monorepo.
@@ -23,6 +23,15 @@ Planning sequence:
 5. Wait for explicit requirements confirmation.
 6. Only after confirmation may another workflow enter project initialization.
 
+Menu item 10 orchestration rules:
+- In menu item `10`, candidate generation and full requirements drafting must happen in separate replies.
+- After candidate generation, stop and wait for exactly one concept selection.
+- After full requirements drafting, show the full draft to the user and ask only for explicit confirmation or revisions.
+- Do not initialize any project in the same reply as the full requirements draft.
+- When a target `game_id` is known, persist the full requirements trace as status `draft` before asking for confirmation.
+- If the user requests revisions, revise the requirements draft and keep status `draft`.
+- Only after explicit confirmation may another workflow call `tools/requirements/confirm_trace.ps1`.
+
 Requirements trace storage:
 - Once the selected concept has a target `game_id`, store the planning trace under `artifacts/requirements/<game_id>/`
 - The authoritative files are:
@@ -31,7 +40,7 @@ Requirements trace storage:
 - `candidates.md` is optional
 - Use `tools/requirements/create_candidates_trace.ps1` for the candidate stage when a target `game_id` is already known
 - Use `tools/requirements/create_requirements_trace.ps1` after one concept is selected
-- Use `tools/requirements/confirm_trace.ps1` only after the user explicitly confirms the requirements
+- Use `tools/requirements/confirm_trace.ps1 -ExplicitUserConfirmation` only after the user explicitly confirms the requirements
 - Use status `draft` before confirmation and `confirmed` after the user confirms the requirements
 - The inspect workflow should be able to read this trace later
 
@@ -88,6 +97,12 @@ Full requirements document format:
   - layout tone
   - HUD priorities
   - key overlay panels
+- Gameplay art direction:
+  - required art roles
+  - camera perspective
+  - suggested shared pack family or source tier
+  - visual readability constraints
+  - fallback rule if no suitable pack exists
 - Icon direction:
   - subject
   - silhouette
@@ -108,7 +123,7 @@ Full requirements quality bar:
 - Keep the design implementable as a single Android Studio Java mini-game project.
 - Avoid mechanics that require network services, live ops backends, or large external content pipelines unless the user explicitly asks for them.
 - Prefer gameplay that can fit the repository's existing engineering style and UI contract.
-- Ensure UI, icon, and BGM directions are explicit enough to drive later dedicated workflows.
+- Ensure UI, gameplay art, icon, and BGM directions are explicit enough to drive later dedicated workflows.
 
 Completion rule:
 - End by asking for confirmation of the requirements document.

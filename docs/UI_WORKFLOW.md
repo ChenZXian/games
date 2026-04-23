@@ -1,6 +1,6 @@
 # UI Workflow
 
-Version: 1.0
+Version: 1.1
 Last updated: 2026-04-22
 
 This document defines the repository UI workflow for Android Java mini-games.
@@ -44,7 +44,10 @@ Every UI workflow run should define:
 - HUD metrics
 - state map
 - chosen `ui_skin`
+- style tags
 - asset strategy
+
+The UI brief is mandatory before pack selection or implementation.
 
 ## 4. Allowed UI Assets
 
@@ -104,6 +107,7 @@ Recommended shared library index fields:
 - `default_assignment_preset`
 - `asset_types`
 - `style_tags`
+- `quality_tags`
 - `used_by`
 
 Recommended assignment preset fields:
@@ -137,6 +141,8 @@ When a shared UI pack is applied, the project should keep a record at:
 Current assignment tool entry point:
 
 - `tools/assets/assign_ui.ps1`
+- `tools/assets/ensure_ui_pack.ps1`
+- `tools/assets/import_ui_pack.ps1`
 
 Discovery examples:
 
@@ -149,9 +155,14 @@ Discovery examples:
 2. Define the UI structure and state map.
 3. Choose one `ui_skin`.
 4. Decide whether token-only resources are enough or whether binary assets are required.
-5. Reuse or import shared UI resources under `shared_assets/ui/` when possible.
-6. Assign project-local resources and implement layouts or overlays.
-7. Validate required UI foundation files and resource naming.
+5. Resolve assets in this order:
+   - style-matched shared UI pack
+   - imported licensed open-source UI pack
+   - project-local custom refinement
+6. Do not silently fall back to generic shape-only placeholder UI for production-grade or delivery-ready requests.
+7. Reuse or import shared UI resources under `shared_assets/ui/` when possible.
+8. Assign project-local resources and implement layouts or overlays.
+9. Validate required UI foundation files and resource naming.
 
 ## 8. Validation Goals
 

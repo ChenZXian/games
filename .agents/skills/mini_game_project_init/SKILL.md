@@ -14,10 +14,14 @@ Authoritative files must be read first and must not be skipped:
 - docs/GAME_GENERATION_STANDARD.md
 - docs/ENVIRONMENT_BASELINE.md
 - docs/UI_KIT_FACTORY_SPEC_v1_0.md
+- docs/REQUIREMENTS_WORKFLOW.md
 - registry/produced_games.json
 
 Scope rules:
 - Generate only the initial game project under games/<new_game_id>.
+- Require a confirmed requirements trace before first-time project generation.
+- If `artifacts/requirements/<new_game_id>/metadata.json` is missing, still `draft`, still `candidates`, or otherwise unconfirmed, stop and route back to requirements confirmation instead of generating project files.
+- Prefer validating the requirements gate with `tools/requirements/assert_confirmed_trace.ps1 -GameId <new_game_id>` before any writes.
 - Do not run doctor, validate, or build packaging workflows unless explicitly requested outside this skill.
 - Do not run Gradle build tasks unless explicitly requested outside this skill.
 - Do not build APK or AAB unless explicitly requested outside this skill.
@@ -99,6 +103,7 @@ UI Kit system rules:
    - XML themes
    - Java code referencing tokens and styles
 5. Do not use external UI kits or downloaded UI resources unless explicitly allowed by the repository rules.
+6. Do not use external gameplay art assets unless they are routed through the repository gameplay art workflow and stored with license provenance.
 
 Minimum required UI files:
 Values:
@@ -195,7 +200,7 @@ B. Controlled project structure variation:
 
 C. Static resource isolation:
 1. Follow repository rules for binary and text resources
-2. Achieve visual differentiation primarily through UI tokens and repository-approved assets
+2. Achieve visual differentiation through UI tokens and repository-approved icon, UI, gameplay art, and audio assets
 3. Keep all UI within the repository UI contract
 
 D. Packaging-stage preparedness:
@@ -214,7 +219,8 @@ E. Non-duplication enforcement:
 3. Update tags and core_loop to reflect the final distinct design
 
 Execution requirements:
-1. Choose a globally unique <new_game_id> using lowercase snake_case
-2. Create games/<new_game_id>/ with a complete Android Studio project matching the baseline and standards
-3. Append exactly one entry to registry/produced_games.json
-4. Output only the generated project files and the updated registry file unless the user explicitly asks for explanation
+1. Verify that the requirements trace for <new_game_id> is already confirmed
+2. Choose a globally unique <new_game_id> using lowercase snake_case
+3. Create games/<new_game_id>/ with a complete Android Studio project matching the baseline and standards
+4. Append exactly one entry to registry/produced_games.json
+5. Output only the generated project files and the updated registry file unless the user explicitly asks for explanation

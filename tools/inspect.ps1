@@ -110,6 +110,7 @@ $registryReady = $true
 $requirementsStatus = "untracked"
 $iconStatus = "deferred"
 $uiStatus = "deferred"
+$gameArtStatus = "deferred"
 $audioStatus = "deferred"
 
 Write-Section "Inspect Target"
@@ -305,6 +306,44 @@ if (Test-Path $uiRecordPath) {
   $warnCount++
 }
 
+$gameArtRecordPath = Join-Path $projResolved "app\src\main\assets\game_art\game_art_assignment.json"
+$projectGameArtDir = Join-Path $projResolved "app\src\main\assets\game_art"
+$projectGameArtFiles = @()
+if (Test-Path $projectGameArtDir) {
+  $projectGameArtFiles = Get-ChildItem -Path $projectGameArtDir -Recurse -File -ErrorAction SilentlyContinue |
+    Where-Object { $_.Name -ne "game_art_assignment.json" }
+}
+$gameArtLibraryMatches = @()
+$gameArtIndexPath = Join-Path $root "shared_assets\game_art\index.json"
+if (Test-Path $gameArtIndexPath) {
+  try {
+    $gameArtIndex = Get-Content -LiteralPath $gameArtIndexPath -Raw | ConvertFrom-Json
+    if ($null -ne $gameArtIndex.packs) {
+      $gameArtLibraryMatches = $gameArtIndex.packs | Where-Object {
+        $usedBy = $_.used_by
+        ($usedBy -is [System.Array] -and ($usedBy -contains $gameId))
+      }
+    }
+  }
+  catch {
+    Write-Warn "Game art index JSON is invalid: shared_assets/game_art/index.json"
+    $warnCount++
+  }
+}
+if ((Test-Path $gameArtRecordPath) -and $gameArtLibraryMatches.Count -gt 0) {
+  $gameArtStatus = "complete"
+  Write-Ok "Game art status: complete ($($projectGameArtFiles.Count) project file(s), $($gameArtLibraryMatches.Count) shared library match(es))"
+  $passCount++
+} elseif ((Test-Path $gameArtRecordPath) -or $projectGameArtFiles.Count -gt 0) {
+  $gameArtStatus = "placeholder_only"
+  Write-Warn "Game art status: placeholder_only (project art exists, shared library linkage is incomplete)"
+  $warnCount++
+} else {
+  $gameArtStatus = "deferred"
+  Write-Warn "Game art status: deferred"
+  $warnCount++
+}
+
 $projectAudioDir = Join-Path $projResolved "app\src\main\assets\audio"
 $projectAudioFiles = @()
 if (Test-Path $projectAudioDir) {
@@ -356,7 +395,7 @@ if ($apkFiles.Count -gt 0) {
 }
 
 $canEnterPack = $doctorReady -and $validatorReady -and $registryReady
-$deliveryReady = $canEnterPack -and ($requirementsStatus -eq "confirmed") -and ($iconStatus -eq "complete") -and ($uiStatus -ne "deferred") -and ($audioStatus -ne "deferred")
+$deliveryReady = $canEnterPack -and ($requirementsStatus -eq "confirmed") -and ($iconStatus -eq "complete") -and ($uiStatus -ne "deferred") -and ($gameArtStatus -ne "deferred") -and ($audioStatus -ne "deferred")
 
 $nextStep = ""
 if (-not $doctorReady) {
@@ -373,6 +412,8 @@ if (-not $doctorReady) {
   $nextStep = "Confirm the requirements trace before treating the project as delivery-ready"
 } elseif ($iconStatus -eq "deferred" -or $iconStatus -eq "placeholder_only") {
   $nextStep = "Run the icon workflow to export upload-ready icon assets"
+} elseif ($gameArtStatus -eq "deferred") {
+  $nextStep = "Run the gameplay art workflow to assign tracked character, map, prop, effect, or background assets"
 } elseif ($audioStatus -eq "deferred") {
   $nextStep = "Run the audio workflow to assign at least one tracked BGM or SFX set"
 } elseif (-not $deliveryReady) {
@@ -388,6 +429,7 @@ Write-Host "DELIVERY_READY=$($deliveryReady.ToString().ToLower())"
 Write-Host "REQUIREMENTS_STATUS=$(Get-StatusValue $requirementsStatus)"
 Write-Host "ICON_STATUS=$(Get-StatusValue $iconStatus)"
 Write-Host "UI_STATUS=$(Get-StatusValue $uiStatus)"
+Write-Host "GAME_ART_STATUS=$(Get-StatusValue $gameArtStatus)"
 Write-Host "AUDIO_STATUS=$(Get-StatusValue $audioStatus)"
 Write-Host "NEXT_STEP=$nextStep"
 

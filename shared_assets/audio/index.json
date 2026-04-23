@@ -11,6 +11,12 @@
         "default"
       ],
       "style": "default",
+      "style_tags": [
+        "default",
+        "generic"
+      ],
+      "mood": "neutral",
+      "pacing": "medium",
       "loop": true,
       "duration_sec": 16,
       "used_by": [],
@@ -32,6 +38,14 @@
         "war"
       ],
       "style": "war",
+      "style_tags": [
+        "war",
+        "combat",
+        "military",
+        "action"
+      ],
+      "mood": "intense",
+      "pacing": "fast",
       "loop": true,
       "duration_sec": 30,
       "used_by": [
@@ -44,6 +58,64 @@
       "generated": false,
       "format": "wav",
       "migrated_from": "shared_assets/bgm/files/war_cf6929d7.wav"
+    },
+    {
+      "id": "sfx_warning_convoy_9e43e764",
+      "file": "sfx/sfx_warning_convoy_9e43e764.wav",
+      "type": "sfx",
+      "role": "warning",
+      "tags": [
+        "convoy"
+      ],
+      "style": "convoy",
+      "style_tags": [
+        "convoy",
+        "logistics",
+        "strategy",
+        "island"
+      ],
+      "mood": "focused",
+      "pacing": "medium",
+      "loop": false,
+      "duration_sec": 0.32,
+      "used_by": [
+        "island_supply_command"
+      ],
+      "source": "synth_audio",
+      "retrieved_at": "2026-04-22",
+      "license": "",
+      "license_url": "",
+      "generated": true,
+      "format": "wav"
+    },
+    {
+      "id": "bgm_play_convoy_2b7a6784",
+      "file": "bgm/bgm_play_convoy_2b7a6784.wav",
+      "type": "bgm",
+      "role": "play",
+      "tags": [
+        "convoy"
+      ],
+      "style": "convoy",
+      "style_tags": [
+        "convoy",
+        "logistics",
+        "strategy",
+        "island"
+      ],
+      "mood": "focused",
+      "pacing": "medium",
+      "loop": true,
+      "duration_sec": 24.0,
+      "used_by": [
+        "island_supply_command"
+      ],
+      "source": "synth_audio",
+      "retrieved_at": "2026-04-22",
+      "license": "",
+      "license_url": "",
+      "generated": true,
+      "format": "wav"
     }
   ]
 }

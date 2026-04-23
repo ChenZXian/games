@@ -1,7 +1,7 @@
 # GAME GENERATION STANDARD
 
-Version: 1.6  
-Last updated: 2026-01-23
+Version: 1.7  
+Last updated: 2026-04-23
 
 ------
 
@@ -329,6 +329,33 @@ Recommended project naming:
 - additional BGM tracks as `bgm_<role>.<ext>`
 - sound effects as `sfx_<role>.<ext>`
 
+### 8.4 Gameplay Art Workflow Policy
+
+Gameplay art workflow rules:
+
+- Binary gameplay art assets are allowed only when imported, produced, assigned, or exported by the repository gameplay art workflow
+- Gameplay art assets must match the game's theme, camera perspective, readability needs, and core loop
+- The repository gameplay art workflow covers characters, enemies, NPCs, animals, tilesets, terrain, buildings, props, items, projectiles, pickups, effects, and gameplay backgrounds
+- Imported gameplay art must have clear license and provenance metadata
+- Prefer CC0 or public-domain equivalent sources for reusable shared packs
+- Generated, fetched, or imported gameplay art should enter the shared library first before project assignment when possible
+
+Recommended shared library layout:
+
+- `shared_assets/game_art/index.json`
+- `shared_assets/game_art/packs/<pack_id>/manifest.json`
+- `shared_assets/game_art/packs/<pack_id>/LICENSE`
+- `shared_assets/game_art/packs/<pack_id>/NOTICE`
+- `shared_assets/game_art/packs/<pack_id>/assets/`
+
+Recommended project gameplay art path:
+
+- `app/src/main/assets/game_art/`
+
+Recommended project tracking file:
+
+- `app/src/main/assets/game_art/game_art_assignment.json`
+
 ------
 
 ## 9. Build and Runtime Requirements
@@ -419,8 +446,8 @@ Codex must NOT ask the user to restate constraints.
 
 The following are forbidden because they break industrial-scale generation:
 
-- Per-game custom bitmap art sourcing as a required step
-- Adding any bitmap assets during generation or optimization
+- Per-game custom bitmap art sourcing outside the repository gameplay art workflow as a required step
+- Adding bitmap assets during generation or optimization outside the dedicated icon, UI, audio, or gameplay art workflows
 - Adding any font files
 - Downloading or copying third-party UI kits
 - Creating new UI systems per game instead of using the UI Kit contract
@@ -428,6 +455,7 @@ The following are forbidden because they break industrial-scale generation:
 - Mixing multiple skins in one project
 - Using Git LFS pointer files anywhere in the repository
 - Introducing ad hoc binary audio assets outside the repository audio workflow
+- Introducing ad hoc gameplay art assets outside the repository gameplay art workflow
 
 ------
 
@@ -461,6 +489,9 @@ Exception:
 - Audio files produced or assigned by the repository audio workflow are allowed:
   - shared library assets under `shared_assets/audio/`
   - project audio assets under `app/src/main/assets/audio/`
+- Gameplay art files produced or assigned by the repository gameplay art workflow are allowed:
+  - shared library assets under `shared_assets/game_art/`
+  - project gameplay art assets under `app/src/main/assets/game_art/`
 
 If a build workflow requires gradle-wrapper.jar, it MUST be stored as a normal Git object, not via Git LFS.
 

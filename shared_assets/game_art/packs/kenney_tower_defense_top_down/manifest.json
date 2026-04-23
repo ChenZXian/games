@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "pack_id": "kenney_tower_defense_top_down",
+  "title": "Kenney Tower Defense Top-Down",
+  "license": "CC0-1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "source_url": "https://kenney.nl/assets/tower-defense-top-down",
+  "download_url": "",
+  "asset_types": [
+    "png",
+    "svg",
+    "txt"
+  ],
+  "art_roles": [
+    "tower",
+    "enemy",
+    "tileset",
+    "terrain",
+    "projectile",
+    "building"
+  ],
+  "recommended_game_types": [
+    "tower",
+    "defense",
+    "strategy",
+    "lane",
+    "top",
+    "down"
+  ],
+  "style_tags": [
+    "top",
+    "down",
+    "tower",
+    "defense",
+    "strategy",
+    "cartoon",
+    "terrain"
+  ],
+  "quality_tags": [
+    "production",
+    "free",
+    "open",
+    "cc0"
+  ],
+  "assets_path": "assets",
+  "preview_files": [
+    "Preview.png",
+    "Sample.png"
+  ],
+  "asset_file_count": 605
+}

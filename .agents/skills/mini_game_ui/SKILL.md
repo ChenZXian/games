@@ -21,6 +21,19 @@ Hard rules:
 - Prefer Android View or XML overlays for menu, help, pause, reward, and result screens
 - Reusable external UI resources should be stored under `shared_assets/ui/` first when possible
 - Imported open-source UI assets must keep license and provenance metadata
+- Do not use UI packs as character, map, prop, item, projectile, effect, or background packs; route those through the gameplay art workflow
+- Define a concrete UI brief before implementation:
+  - screen list
+  - state map
+  - HUD priorities
+  - chosen `ui_skin`
+  - style tags
+  - asset strategy
+- Resolve UI assets in this order by default:
+  - style-matched shared UI pack
+  - imported licensed open-source UI pack
+  - project-local custom refinement
+- Do not silently fall back to generic shape-only placeholder UI for production-grade or delivery-ready requests
 - Do not package, update registry, or change git state unless explicitly requested
 
 Workflow:
@@ -30,16 +43,19 @@ Workflow:
    - state map
    - HUD metrics
    - chosen `ui_skin`
+   - style tags
    - asset strategy
-3. Reuse or import UI assets from `shared_assets/ui/` when needed.
-4. Use `tools/assets/assign_ui.ps1 -ListPacks` and `-ListPresets` to inspect reusable shared packs when needed.
-5. When applying a shared UI pack to a project, prefer `tools/assets/assign_ui.ps1`.
-6. Assign project-local resources.
-7. Implement or refine layouts, overlays, and style wiring.
-8. Verify the required UI foundation files and logical resource names still exist.
+3. Use `tools/assets/ensure_ui_pack.ps1` as the default orchestration entry point when the task needs actual pack selection or assignment.
+4. Reuse or import UI assets from `shared_assets/ui/` when needed.
+5. Use `tools/assets/assign_ui.ps1 -ListPacks` and `-ListPresets` to inspect reusable shared packs when needed.
+6. Use `tools/assets/import_ui_pack.ps1` when a licensed structured UI pack should be added to the shared library.
+7. Assign project-local resources.
+8. Implement or refine layouts, overlays, and style wiring.
+9. Verify the required UI foundation files and logical resource names still exist.
 
 Report:
 - chosen `ui_skin`
 - screens covered
+- style tags
 - shared UI assets used or imported
 - project-local resource paths changed

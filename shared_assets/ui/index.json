@@ -27,13 +27,140 @@
         "cartoon_friendly",
         "multicolor"
       ],
+      "quality_tags": [
+        "production",
+        "mobile_game",
+        "casual"
+      ],
       "path": "packs/kenney_ui_pack",
       "used_by": [
-        "bloom_orchard"
+        "bloom_orchard",
+        "island_supply_command"
       ],
       "validated_with": [
         "bloom_orchard"
       ]
+    },
+    {
+      "pack_id": "kenney_pixel_ui_pack",
+      "title": "Kenney Pixel UI Pack",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://kenney.nl/assets/pixel-ui-pack",
+      "asset_types": [
+        "png"
+      ],
+      "recommended_ui_skin": "skin_dark_arcade",
+      "default_assignment_preset": "canonical_pixel_green",
+      "assignment_presets": [
+        "canonical_pixel_green"
+      ],
+      "style_tags": [
+        "pixel",
+        "retro",
+        "arcade",
+        "adventure"
+      ],
+      "quality_tags": [
+        "production",
+        "retro",
+        "pixel_art"
+      ],
+      "path": "packs/kenney_pixel_ui_pack",
+      "used_by": [],
+      "validated_with": []
+    },
+    {
+      "pack_id": "kenney_ui_pack_sci_fi",
+      "title": "Kenney UI Pack Sci-Fi",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://kenney.nl/assets/ui-pack-sci-fi",
+      "asset_types": [
+        "png",
+        "ttf"
+      ],
+      "recommended_ui_skin": "skin_neon_future",
+      "default_assignment_preset": "canonical_sci_fi_blue",
+      "assignment_presets": [
+        "canonical_sci_fi_blue"
+      ],
+      "style_tags": [
+        "sci_fi",
+        "space",
+        "future",
+        "tech",
+        "glass"
+      ],
+      "quality_tags": [
+        "production",
+        "sci_fi",
+        "mobile_game"
+      ],
+      "path": "packs/kenney_ui_pack_sci_fi",
+      "used_by": [],
+      "validated_with": []
+    },
+    {
+      "pack_id": "kenney_ui_pack_adventure",
+      "title": "Kenney UI Pack Adventure",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://kenney.nl/assets/ui-pack-adventure",
+      "asset_types": [
+        "png",
+        "svg"
+      ],
+      "recommended_ui_skin": "skin_cartoon_light",
+      "default_assignment_preset": "canonical_adventure_brown",
+      "assignment_presets": [
+        "canonical_adventure_brown"
+      ],
+      "style_tags": [
+        "fantasy",
+        "adventure",
+        "rpg",
+        "wood",
+        "quest"
+      ],
+      "quality_tags": [
+        "production",
+        "fantasy",
+        "mobile_game"
+      ],
+      "path": "packs/kenney_ui_pack_adventure",
+      "used_by": [],
+      "validated_with": []
+    },
+    {
+      "pack_id": "kenney_ui_pack_rpg_expansion",
+      "title": "Kenney UI Pack RPG Expansion",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://kenney.nl/assets/ui-pack-rpg-expansion",
+      "asset_types": [
+        "png"
+      ],
+      "recommended_ui_skin": "skin_cartoon_light",
+      "default_assignment_preset": "canonical_rpg_blue",
+      "assignment_presets": [
+        "canonical_rpg_blue"
+      ],
+      "style_tags": [
+        "rpg",
+        "fantasy",
+        "upgrade",
+        "loadout",
+        "blue"
+      ],
+      "quality_tags": [
+        "production",
+        "rpg",
+        "mobile_game"
+      ],
+      "path": "packs/kenney_ui_pack_rpg_expansion",
+      "used_by": [],
+      "validated_with": []
     }
   ]
 }

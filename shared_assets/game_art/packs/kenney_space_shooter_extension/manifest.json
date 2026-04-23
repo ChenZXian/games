@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "pack_id": "kenney_space_shooter_extension",
+  "title": "Kenney Space Shooter Extension",
+  "license": "CC0-1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "source_url": "https://kenney.nl/assets/space-shooter-extension",
+  "download_url": "",
+  "asset_types": [
+    "png",
+    "svg",
+    "txt",
+    "xml"
+  ],
+  "art_roles": [
+    "ship",
+    "enemy",
+    "projectile",
+    "pickup",
+    "effect",
+    "background"
+  ],
+  "recommended_game_types": [
+    "space",
+    "shooter",
+    "shmup",
+    "arcade"
+  ],
+  "style_tags": [
+    "space",
+    "shooter",
+    "ship",
+    "laser",
+    "arcade",
+    "sci",
+    "fi"
+  ],
+  "quality_tags": [
+    "production",
+    "free",
+    "open",
+    "cc0"
+  ],
+  "assets_path": "assets",
+  "preview_files": [
+    "Preview.png",
+    "Sample.png"
+  ],
+  "asset_file_count": 565
+}

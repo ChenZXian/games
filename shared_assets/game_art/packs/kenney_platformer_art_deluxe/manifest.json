@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "pack_id": "kenney_platformer_art_deluxe",
+  "title": "Kenney Platformer Art Deluxe",
+  "license": "CC0-1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "source_url": "https://kenney.nl/assets/platformer-art-deluxe",
+  "download_url": "",
+  "asset_types": [
+    "json",
+    "png",
+    "svg",
+    "txt",
+    "xml"
+  ],
+  "art_roles": [
+    "tileset",
+    "terrain",
+    "enemy",
+    "item",
+    "pickup",
+    "background",
+    "effect"
+  ],
+  "recommended_game_types": [
+    "platformer",
+    "runner",
+    "side",
+    "scroller",
+    "adventure"
+  ],
+  "style_tags": [
+    "cartoon",
+    "platformer",
+    "tiles",
+    "terrain",
+    "background",
+    "adventure"
+  ],
+  "quality_tags": [
+    "production",
+    "free",
+    "open",
+    "cc0"
+  ],
+  "assets_path": "assets",
+  "preview_files": [
+    "preview.png",
+    "sample.png",
+    "preview.png",
+    "sample.png",
+    "preview.png",
+    "sample.png",
+    "preview.png",
+    "sample.png",
+    "preview.png",
+    "sample.png",
+    "preview.png",
+    "sample.png",
+    "preview.png",
+    "sample.png",
+    "preview.png",
+    "sample.png"
+  ],
+  "asset_file_count": 1002
+}

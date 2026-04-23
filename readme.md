@@ -21,7 +21,7 @@ The current direction is:
 1. plan game requirements before project generation
 2. generate or update one game project inside `games/<game_id>/`
 3. optimize game quality and polish
-4. handle dedicated resource workflows such as icon, UI, and audio
+4. handle dedicated resource workflows such as icon, UI, gameplay art, and audio
 5. inspect and package only when explicitly requested
 
 ## Authoritative Files
@@ -50,24 +50,30 @@ These files define:
 
 Current menu structure:
 
+```text
+--------------------------------
+菜单
+
 需求阶段
-- `1` 先出 10 个候选方案
-- `2` 为已选方案补完整需求
+1｜先出 10 个候选方案
+2｜为已选方案补完整需求
 
 开发阶段
-- `3` 新建游戏项目
-- `4` 优化现有项目
-- `5` 生成或更新游戏图标
-- `6` 优化游戏界面
-- `7` 生成或接入游戏音频
+3｜新建游戏项目
+4｜优化现有项目
+5｜生成或更新游戏图标
+6｜优化游戏界面与美术素材
+7｜生成或接入游戏音频
 
 交付阶段
-- `8` 先检查项目状态
-- `9` 打包或发布项目
+8｜先检查项目状态
+9｜打包或发布项目
 
 其他
-- `10` 一键执行完整流程
-- `11` 只讨论规则、方案或架构
+10｜一键执行完整流程
+11｜只讨论规则、方案或架构
+--------------------------------
+```
 
 Menu display convention:
 
@@ -75,6 +81,10 @@ Menu display convention:
 - later discussion replies should append the menu at the very bottom
 - `$菜单` or `$menu` can be used as a repository-level shortcut to request the current menu only
 - menu numbers should be rendered as plain text labels to avoid Markdown list indentation in the app UI
+- the full menu should be rendered inside one fenced `text` code block
+- the menu block should contain one horizontal separator above and one below
+- stable plain-text numeric menu codes such as `1｜` through `11｜` should be used inside the rendered menu block
+- menu guidance should stay minimal and ask only for missing required input
 
 ### 1. Requirements Planning
 
@@ -103,7 +113,7 @@ Planning trace target after concept selection:
 Planning state flow:
 
 - `candidates` -> candidate concepts stored
-- `draft` -> full requirements written but not confirmed yet
+- `draft` -> full requirements written, shown to the user for review, and not confirmed yet
 - `confirmed` -> full requirements explicitly confirmed and ready to unblock initialization
 
 ### 2. Project Initialization
@@ -153,18 +163,49 @@ Current UI workflow goals:
 - support a hybrid Java game UI model with `GameView` or `SurfaceView` for gameplay and Android View or XML overlays for HUD and screens
 - allow licensed binary UI assets, fonts, and open-source UI resource packs
 - keep reusable external UI resources in the shared library first when possible
+- require a concrete UI brief before pack selection or implementation
+- resolve in this order: style-matched shared UI pack -> imported licensed open-source UI pack -> project-local custom refinement
+- avoid silently shipping shape-only placeholder UI for production-grade requests
 
 Current UI workflow:
 
 - `docs/UI_WORKFLOW.md`
 - `.agents/skills/mini_game_ui/`
+- `tools/assets/ensure_ui_pack.ps1`
+- `tools/assets/import_ui_pack.ps1`
 - `tools/assets/assign_ui.ps1`
 
 Shared library target:
 
 - `shared_assets/ui/`
 
-### 6. Audio Workflow
+### 6. Game Art Workflow
+
+Gameplay art is now a dedicated workflow instead of being treated as UI or ad hoc Canvas placeholders.
+
+Current gameplay art workflow goals:
+
+- separate characters, enemies, animals, maps, tilesets, props, items, projectiles, effects, and backgrounds from UI packs
+- use only free and license-clear sources by default
+- prefer CC0 or public-domain equivalent packs
+- keep reusable external gameplay art resources in the shared library first when possible
+- require a concrete art brief before pack selection or implementation
+- resolve in this order: style-matched shared game art pack -> imported official free and license-clear pack -> project-local prototype drawing only when placeholders are acceptable
+- avoid silently shipping circle-only or rectangle-only gameplay placeholders for production-grade requests
+
+Current gameplay art workflow:
+
+- `docs/GAME_ART_WORKFLOW.md`
+- `.agents/skills/mini_game_art/`
+- `tools/assets/ensure_game_art_pack.ps1`
+- `tools/assets/import_game_art_pack.ps1`
+- `tools/assets/assign_game_art.ps1`
+
+Shared library target:
+
+- `shared_assets/game_art/`
+
+### 7. Audio Workflow
 
 Audio generation and assignment is a dedicated workflow.
 
@@ -174,11 +215,15 @@ Current audio workflow goals:
 - keep generated or fetched audio in the shared library first
 - assign project audio from the shared library as needed
 - keep audio direction aligned with the game's theme and feel
+- require an explicit audio brief before assignment
+- resolve in this order: style-matched shared library -> licensed fetch -> synthesis fallback
+- avoid silently reusing style-mismatched legacy tracks
 
 Current audio workflow:
 
 - `docs/AUDIO_WORKFLOW.md`
 - `.agents/skills/mini_game_audio/`
+- `tools/assets/ensure_audio_bundle.ps1`
 - `tools/assets/assign_audio.ps1`
 - `tools/assets/fetch_audio.ps1`
 - `tools/assets/synth_audio.ps1`
@@ -187,14 +232,14 @@ Shared library target:
 
 - `shared_assets/audio/`
 
-### 7. Inspect Workflow
+### 8. Inspect Workflow
 
 Inspect is a dedicated pre-packaging status workflow.
 
 Current inspect workflow goals:
 
 - report whether a project can enter packaging
-- summarize requirements, icon, UI, and audio completion state
+- summarize requirements, icon, UI, gameplay art, and audio completion state
 - surface the next most useful action without modifying project files
 
 Current inspect workflow:
@@ -203,7 +248,7 @@ Current inspect workflow:
 - `.agents/skills/mini_game_inspect/`
 - `tools/inspect.ps1`
 
-### 8. Packaging
+### 9. Packaging
 
 Packaging is a separate workflow and should run only when explicitly requested.
 
@@ -211,7 +256,7 @@ Current packaging skill:
 
 - `.agents/skills/mini_game_pack/`
 
-### 9. Full Pipeline Mode
+### 10. Full Pipeline Mode
 
 The repository menu now includes a full-pipeline mode.
 
@@ -219,11 +264,21 @@ Default behavior:
 
 - requirements planning
 - initialization
-- optimization and resource completion
+- optimization and resource completion, including icon, UI, gameplay art, and audio
 - inspection
 - packaging
 
-The full-pipeline mode still pauses at concept selection and requirements confirmation unless the user explicitly authorizes automatic decisions.
+Expected interaction behavior:
+
+- if the user provides a direction together with menu item `10`, generate 10 candidate concepts immediately and stop for concept selection
+- after the user selects one candidate, generate the full requirements draft immediately, show it to the user, and stop for explicit confirmation
+- when a target `game_id` is known, store that draft requirements trace under `artifacts/requirements/<game_id>/` before continuing
+- do not enter initialization or downstream workflows in the same reply as the full requirements draft
+- after the user explicitly confirms the requirements, continue the downstream generation flow automatically
+- if the user asks for revisions, revise the requirements draft and keep it in `draft`
+- ask only for missing direction input when menu item `10` does not include enough idea information
+- do not ask meta permission questions in the standard full-pipeline flow
+- only use auto-decision behavior when the user explicitly authorizes Codex to decide on concept selection or requirements confirmation
 
 ## Project Acceptance Baseline
 
@@ -299,6 +354,7 @@ The repository now has:
 - a dedicated requirements planning stage before initialization
 - a dedicated icon workflow with project outputs and export outputs
 - a dedicated UI workflow with a shared UI asset library target
+- a dedicated gameplay art workflow with a shared free and license-clear asset library target
 - a dedicated audio workflow for reusable BGM and SFX assets
 - a dedicated inspect workflow before packaging decisions
 - a generic project acceptance baseline that is not tied to one game genre
@@ -310,8 +366,8 @@ The repository now has:
 
 Recommended next improvements:
 
-1. validate the new UI workflow on a real game project
-2. validate the new audio workflow on a real game project
-3. validate the new icon workflow on a real game project
-4. validate the full pipeline mode on a brand new game from planning through packaging
-5. continue reducing root-level clutter and keep process documents under `docs/` or `archive/`
+1. validate the new gameplay art workflow on a real game project
+2. validate the new UI workflow on a real game project
+3. validate the new audio workflow on a real game project
+4. validate the new icon workflow on a real game project
+5. validate the full pipeline mode on a brand new game from planning through packaging
