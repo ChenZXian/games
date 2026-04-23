@@ -24,6 +24,98 @@ def copy_tree(src: Path, dst: Path):
     return count
 
 
+def create_entity_template(entity_key: str, role: str, camera_perspective: str):
+    side_view = "side" in camera_perspective or "platformer" in camera_perspective or "runner" in camera_perspective
+    if side_view:
+        facing_rule = "flip_horizontal_by_velocity_x_or_target_x"
+        default_facing = "right"
+        movement_rule = "advance animation frame by distance traveled and switch to idle when speed is near zero"
+    else:
+        facing_rule = "rotate_or_select_direction_frame_by_velocity_or_attack_vector"
+        default_facing = "right"
+        movement_rule = "advance move animation by speed and align front side to velocity or target"
+    states = ["idle", "move"]
+    if role in ("character", "enemy", "tower"):
+        states.extend(["attack", "hit", "death"])
+    if role in ("projectile",):
+        states = ["fly", "hit"]
+    if role in ("pickup", "item"):
+        states = ["idle", "collect"]
+    return {
+        "entity_key": entity_key,
+        "role": role,
+        "asset_keys": [],
+        "default_facing": default_facing,
+        "facing_rule": facing_rule,
+        "anchor": {
+            "x": 0.5,
+            "y": 0.9
+        },
+        "hitbox": {
+            "x": 0.25,
+            "y": 0.2,
+            "w": 0.5,
+            "h": 0.7
+        },
+        "render_size": {
+            "w": 1.0,
+            "h": 1.0,
+            "unit": "entity"
+        },
+        "z_order": "by_y_then_role",
+        "states": states,
+        "animation_rule": "use frame animation for locomotion and action states; never rely on one static bitmap for primary moving or attacking entities",
+        "movement_rule": movement_rule
+    }
+
+
+def create_runtime_map(game_id: str, theme: str, game_type: str, art_roles: str):
+    roles = [item.strip() for item in art_roles.replace(",", " ").split() if item.strip()]
+    camera_perspective = "side_view" if any(item in game_type.lower() for item in ("platformer", "runner", "side")) else ""
+    entities = []
+    if "character" in roles or "player" in roles:
+        entities.append(create_entity_template("player", "character", camera_perspective))
+    if "enemy" in roles or "zombie" in roles:
+        entities.append(create_entity_template("enemy", "enemy", camera_perspective))
+    if "tower" in roles:
+        entities.append(create_entity_template("tower", "tower", camera_perspective))
+    if "projectile" in roles:
+        entities.append(create_entity_template("projectile", "projectile", camera_perspective))
+    if "pickup" in roles or "item" in roles:
+        entities.append(create_entity_template("pickup", "pickup", camera_perspective))
+    return {
+        "version": 1,
+        "game_id": game_id,
+        "status": "draft",
+        "camera_perspective": camera_perspective,
+        "default_coordinate_space": "normalized_screen",
+        "theme": theme,
+        "game_type": game_type,
+        "animation_quality_target": "advanced_sprite_animation",
+        "minimum_primary_entity_states": [
+            "idle",
+            "move",
+            "attack",
+            "hit",
+            "death"
+        ],
+        "entities": entities,
+        "required_runtime_checks": [
+            "primary moving entities have idle and move states",
+            "attacking entities have attack or fire states",
+            "damageable entities have hit or damage feedback states",
+            "removed entities have death destroy or equivalent effects",
+            "directional entities define default_facing and facing_rule",
+            "movement direction matches face weapon or front side",
+            "projectiles and weapons rotate or choose frames toward travel or target direction",
+            "anchors and hitboxes match gameplay contact points",
+            "humanoid run or walk uses alternating leg frames when source art provides them",
+            "attack uses windup contact and recovery timing or equivalent pose changes",
+        ],
+        "suggested_roles": roles,
+    }
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--project", default="")
@@ -104,6 +196,9 @@ def main() -> int:
                 "art_roles": manifest.get("art_roles", []),
                 "recommended_game_types": manifest.get("recommended_game_types", []),
                 "style_tags": manifest.get("style_tags", []),
+                "quality_tags": manifest.get("quality_tags", pack_entry.get("quality_tags", [])),
+                "animation_capabilities": manifest.get("animation_capabilities", pack_entry.get("animation_capabilities", [])),
+                "animation_states": manifest.get("animation_states", pack_entry.get("animation_states", [])),
                 "project_pack_path": f"app/src/main/assets/game_art/{pack_id}",
                 "copied_file_count": pack_count,
             })
@@ -116,6 +211,9 @@ def main() -> int:
             "copied_file_count": copied_count,
         }
         save_json(target_root / "game_art_assignment.json", record)
+        runtime_map_path = target_root / "runtime_art_map.json"
+        if not runtime_map_path.exists():
+            save_json(runtime_map_path, create_runtime_map(args.game_id, args.theme, args.game_type, args.art_roles))
         save_json(index_path, index_data)
     else:
         for pack_id, pack_entry, pack_dir, manifest in resolved:
@@ -127,6 +225,8 @@ def main() -> int:
     print(f"GAME_ART_SELECTED_PACK={','.join(requested_pack_ids)}")
     print(f"GAME_ART_ASSIGNED_FILES={copied_count}")
     print(f"GAME_ART_DRY_RUN={str(args.dry_run).lower()}")
+    if not args.dry_run and args.project:
+        print("GAME_ART_RUNTIME_MAP=app/src/main/assets/game_art/runtime_art_map.json")
     return 0
 
 

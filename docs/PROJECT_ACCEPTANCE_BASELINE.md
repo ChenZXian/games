@@ -1,6 +1,6 @@
 # Project Acceptance Baseline
 
-Version: 1.1
+Version: 1.3
 Last updated: 2026-04-23
 
 This document defines the generic structure and acceptance baseline for any Android Java mini-game in this repository.
@@ -52,7 +52,31 @@ At minimum, the project should define:
 - pause or interruption handling when the game type needs it
 - a result, failure, or game-over state
 
-## 5. Presentation Baseline
+The first playable implementation must preserve the confirmed requirements instead of replacing them with a simpler unrelated loop.
+
+For a menu item `10` or delivery-ready flow, the implementation should include the required core mechanics from the confirmed requirements trace, or stop and report the missing mechanics before APK export.
+
+## 5. Gameplay Diversity And Content Scale Baseline
+
+Every new delivery-ready game should satisfy the gameplay diversity contract defined in `docs/GAMEPLAY_DIVERSITY_WORKFLOW.md`.
+
+The implementation should not be a thin reskin of another generated project. It should differ by meaningful gameplay dimensions such as:
+
+- genre sub-archetype
+- camera or playfield perspective
+- control model
+- primary player decision
+- map or playfield structure
+- entity roster
+- progression or upgrade structure
+- failure pressure
+- asset family and animation behavior
+
+For delivery-ready output, the project should implement the confirmed content budgets instead of collapsing them into a tiny map, one enemy type, one unit type, or one repeated interaction.
+
+Tower defense is a common failure case, but the rule is generic. A new runner, shooter, puzzle, farming, action, or survival game must also define and preserve its own map, entity, mechanic, and asset-variety budgets.
+
+## 6. Presentation Baseline
 
 A project is not considered visually complete if it relies only on bare placeholder presentation.
 
@@ -60,12 +84,17 @@ For a delivery-ready result, the project should have:
 
 - a coherent UI direction using the repository UI workflow
 - gameplay visuals that are not limited to bare placeholder circles or rectangles when a delivery-ready target is requested
+- UI that is more than UI Kit-only token scaffolding when a delivery-ready target is requested
 - a tracked gameplay art strategy using the repository gameplay art workflow when external or reusable character, map, prop, item, effect, or background assets are used
+- a runtime gameplay art map for delivery-ready projects, including facing rules, anchors, hitboxes, z-order, and visual states for primary moving or attacking entities
+- gameplay art animation that is more than one static bitmap moving smoothly across the screen when the entity has directional or action meaning
+- primary humanoid, animal, zombie, soldier, or creature entities should visibly alternate run or walk poses when moving
+- attack-capable primary entities should show windup, action, and recovery or an equivalent pose progression when source frames exist
 - a non-placeholder launcher icon using the repository icon workflow
 - a defined audio direction, covering BGM and SFX when the game type needs them
 - visual and interaction quality above plain prototype level
 
-## 6. Requirements And Inspection Baseline
+## 7. Requirements And Inspection Baseline
 
 Before first-time initialization, the project should go through:
 
@@ -78,6 +107,7 @@ Before packaging or release preparation, the project should be inspectable throu
 The expected readiness ladder is:
 
 - requirements trace is present
+- gameplay diversity contract is present and passed for delivery-ready output
 - inspect can report `CAN_ENTER_PACK=true`
-- resource tracks are no longer deferred for the intended release target
+- resource tracks are complete, not deferred or placeholder-only, for the intended release target
 - packaging is run only when explicitly requested

@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Empire Wall Guard</string>
+    <string name="title_main">Empire Wall Guard</string>
+    <string name="subtitle_main">Hold the frontier gate with towers, soldiers, oil, and repairs.</string>
+    <string name="btn_start">Start Defense</string>
+    <string name="btn_restart">Restart</string>
+    <string name="btn_resume">Resume</string>
+    <string name="btn_menu">Menu</string>
+    <string name="btn_mute">Sound On</string>
+    <string name="btn_how_to_play">How To Play</string>
+    <string name="btn_pause">Pause</string>
+    <string name="btn_archer">Archer</string>
+    <string name="btn_barracks">Barracks</string>
+    <string name="btn_stone">Stone</string>
+    <string name="btn_oil">Cauldron</string>
+    <string name="btn_beacon">Beacon</string>
+    <string name="btn_fire_oil">Fire Oil</string>
+    <string name="btn_repair">Repair</string>
+    <string name="btn_next_wave">Next Wave</string>
+    <string name="hud_gate">Gate 100</string>
+    <string name="hud_supplies">Supplies 150</string>
+    <string name="hud_wave">Wave 0/9</string>
+    <string name="hud_status">Plan Defense</string>
+    <string name="result_title">Result</string>
+    <string name="help_text">Tap a wall platform to build the selected defense. Tap a defense to upgrade it. Barracks create shield soldiers that face and block incoming raiders. Siege carts stop at range and attack the gate. Use Fire Oil when enemies stack near the wall and Repair before the gate breaks.</string>
+</resources>

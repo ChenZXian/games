@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "game_id": "empire_wall_guard",
+  "pack_id": "kenney_ui_pack_adventure",
+  "pack_title": "Kenney UI Pack Adventure",
+  "preset_id": "canonical_adventure_brown",
+  "preset_title": "Canonical Adventure Brown",
+  "ui_skin": "skin_military_tech",
+  "style_tags": [
+    "fantasy",
+    "adventure",
+    "rpg",
+    "wood",
+    "quest"
+  ],
+  "source_url": "https://kenney.nl/assets/ui-pack-adventure",
+  "license": "CC0-1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "assigned_at_utc": "2026-04-23T06:41:47Z",
+  "copied_items": [
+    {
+      "type": "drawable",
+      "logical_name": "ui_button_primary",
+      "source": "drawable/button_primary_brown_adventure.png",
+      "target": "app/src/main/res/drawable/ui_button_primary.png"
+    },
+    {
+      "type": "drawable",
+      "logical_name": "ui_button_secondary",
+      "source": "drawable/button_secondary_grey_adventure.png",
+      "target": "app/src/main/res/drawable/ui_button_secondary.png"
+    },
+    {
+      "type": "drawable",
+      "logical_name": "ui_button_icon",
+      "source": "drawable/button_icon_red_adventure.png",
+      "target": "app/src/main/res/drawable/ui_button_icon.png"
+    },
+    {
+      "type": "drawable",
+      "logical_name": "ui_panel",
+      "source": "drawable/panel_brown_adventure.png",
+      "target": "app/src/main/res/drawable/ui_panel.png"
+    },
+    {
+      "type": "drawable",
+      "logical_name": "ui_card",
+      "source": "drawable/panel_brown_dark_adventure.png",
+      "target": "app/src/main/res/drawable/ui_card.png"
+    }
+  ]
+}

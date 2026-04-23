@@ -3,7 +3,7 @@ name: 打包发布
 description: 为本仓库 Android Java 小游戏进行打包或发布准备。仅在明确需要 APK、AAB、zip、导出、release preparation、validator、doctor 或 build workflow 时使用。不要用于初始项目生成或常规优化。
 ---
 
-Use this skill only when packaging or release preparation is explicitly requested.
+Use this skill only when packaging or release preparation is directly requested, or when menu item `10` reaches its final APK export stage after requirements confirmation, initialization, resource completion, and inspection.
 
   Read first:
   - docs/GAME_GENERATION_STANDARD.md
@@ -18,6 +18,12 @@ Use this skill only when packaging or release preparation is explicitly requeste
   4. Export only the requested artifact type
   5. Update registry only if requested and allowed by repository policy
   6. Do not commit or push unless explicitly requested
+
+  Menu item 10 rule:
+  - Treat APK export as the final stage of the complete menu item `10` pipeline
+  - Do not use packaging as a shortcut around requirements confirmation, initialization, resource completion, or inspection
+  - Export an APK only when `CAN_ENTER_PACK=true`
+  - Stop and report the blocker if inspection, validation, doctor, or Gradle build prerequisites fail
 
   Hard rules:
   - No Chinese

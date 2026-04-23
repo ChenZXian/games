@@ -33,9 +33,35 @@
   ],
   "quality_tags": [
     "production",
+    "animated",
+    "character_pose_set",
     "free",
     "open",
     "cc0"
+  ],
+  "animation_capabilities": [
+    "side_view",
+    "humanoid",
+    "separate_pose_png",
+    "walk_two_frame",
+    "action_pose",
+    "hurt_pose",
+    "jump_pose",
+    "climb_pose",
+    "swim_pose",
+    "horizontal_flip"
+  ],
+  "animation_states": [
+    "idle",
+    "walk",
+    "action",
+    "hurt",
+    "jump",
+    "climb",
+    "swim",
+    "cheer",
+    "duck",
+    "slide"
   ],
   "assets_path": "assets",
   "preview_files": [

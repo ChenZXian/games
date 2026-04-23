@@ -108,9 +108,12 @@ $doctorReady = $true
 $validatorReady = $true
 $registryReady = $true
 $requirementsStatus = "untracked"
+$gameplayDiversityStatus = "missing"
+$implementationFidelityStatus = "untracked"
 $iconStatus = "deferred"
 $uiStatus = "deferred"
 $gameArtStatus = "deferred"
+$gameArtRuntimeStatus = "missing"
 $audioStatus = "deferred"
 
 Write-Section "Inspect Target"
@@ -218,6 +221,7 @@ $requirementsDir = Join-Path $root "artifacts\requirements\$gameId"
 $requirementsMetadataPath = Join-Path $requirementsDir "metadata.json"
 $requirementsMarkdownPath = Join-Path $requirementsDir "requirements.md"
 $requirementsCandidatesPath = Join-Path $requirementsDir "candidates.md"
+$gameplayDiversityPath = Join-Path $requirementsDir "gameplay_diversity.json"
 $requirementsMetadata = $null
 if (Test-Path $requirementsMetadataPath) {
   try {
@@ -247,6 +251,65 @@ else {
   $requirementsStatus = "untracked"
   Write-Warn "No requirements trace found under artifacts/requirements/$gameId/"
   $warnCount++
+}
+
+if (Test-Path $gameplayDiversityPath) {
+  try {
+    $gameplayDiversity = Get-Content -LiteralPath $gameplayDiversityPath -Raw | ConvertFrom-Json
+    $gameplayDiversityStatus = [string]$gameplayDiversity.status
+    if ([string]::IsNullOrWhiteSpace($gameplayDiversityStatus)) {
+      $gameplayDiversityStatus = "invalid"
+      Write-Warn "Gameplay diversity contract status is missing: artifacts/requirements/$gameId/gameplay_diversity.json"
+      $warnCount++
+    } elseif ($gameplayDiversityStatus -eq "passed") {
+      Write-Ok "Gameplay diversity: passed"
+      $passCount++
+    } else {
+      Write-Warn "Gameplay diversity: $gameplayDiversityStatus"
+      $warnCount++
+    }
+  }
+  catch {
+    $gameplayDiversityStatus = "invalid"
+    Write-Warn "Gameplay diversity contract JSON is invalid: artifacts/requirements/$gameId/gameplay_diversity.json"
+    $warnCount++
+  }
+} else {
+  $gameplayDiversityStatus = "missing"
+  Write-Warn "Gameplay diversity contract is missing: artifacts/requirements/$gameId/gameplay_diversity.json"
+  $warnCount++
+}
+
+$implementationReviewPath = Join-Path $requirementsDir "implementation_review.json"
+if ($requirementsStatus -eq "confirmed") {
+  if (Test-Path $implementationReviewPath) {
+    try {
+      $implementationReview = Get-Content -LiteralPath $implementationReviewPath -Raw | ConvertFrom-Json
+      $implementationFidelityStatus = [string]$implementationReview.status
+      if ($implementationFidelityStatus -eq "passed") {
+        Write-Ok "Implementation fidelity: passed"
+        $passCount++
+      } elseif ([string]::IsNullOrWhiteSpace($implementationFidelityStatus)) {
+        $implementationFidelityStatus = "unreviewed"
+        Write-Warn "Implementation fidelity: unreviewed"
+        $warnCount++
+      } else {
+        Write-Warn "Implementation fidelity: $implementationFidelityStatus"
+        $warnCount++
+      }
+    }
+    catch {
+      $implementationFidelityStatus = "invalid"
+      Write-Warn "Implementation review JSON is invalid: artifacts/requirements/$gameId/implementation_review.json"
+      $warnCount++
+    }
+  } else {
+    $implementationFidelityStatus = "unreviewed"
+    Write-Warn "Implementation fidelity: unreviewed (missing artifacts/requirements/$gameId/implementation_review.json)"
+    $warnCount++
+  }
+} else {
+  $implementationFidelityStatus = "not_ready"
 }
 
 Write-Section "Resource Tracks"
@@ -292,10 +355,45 @@ foreach ($rel in $requiredUiFiles) {
     break
   }
 }
+$uiRecord = $null
+$uiLibraryMatches = @()
 if (Test-Path $uiRecordPath) {
+  try {
+    $uiRecord = Get-Content -LiteralPath $uiRecordPath -Raw | ConvertFrom-Json
+  }
+  catch {
+    Write-Warn "UI assignment JSON is invalid: app/src/main/assets/ui/ui_pack_assignment.json"
+    $warnCount++
+  }
+}
+$uiIndexPath = Join-Path $root "shared_assets\ui\index.json"
+if (Test-Path $uiIndexPath) {
+  try {
+    $uiIndex = Get-Content -LiteralPath $uiIndexPath -Raw | ConvertFrom-Json
+    if ($null -ne $uiIndex.packs) {
+      $uiLibraryMatches = @($uiIndex.packs | Where-Object {
+        $usedBy = $_.used_by
+        ($usedBy -eq $gameId) -or ($usedBy -is [System.Array] -and ($usedBy -contains $gameId))
+      })
+    }
+  }
+  catch {
+    Write-Warn "UI index JSON is invalid: shared_assets/ui/index.json"
+    $warnCount++
+  }
+}
+if ($null -ne $uiRecord -and [string]$uiRecord.assignment_type -eq "project_local_xml_ui") {
+  $uiStatus = "placeholder_only"
+  Write-Warn "UI status: placeholder_only (UI Kit XML scaffold is not a shared or imported UI pack assignment)"
+  $warnCount++
+} elseif ($null -ne $uiRecord -and -not [string]::IsNullOrWhiteSpace([string]$uiRecord.pack_id) -and $uiLibraryMatches.Count -gt 0) {
   $uiStatus = "complete"
-  Write-Ok "UI status: complete (tracked by app/src/main/assets/ui/ui_pack_assignment.json)"
+  Write-Ok "UI status: complete (shared UI pack tracked by app/src/main/assets/ui/ui_pack_assignment.json)"
   $passCount++
+} elseif (Test-Path $uiRecordPath) {
+  $uiStatus = "placeholder_only"
+  Write-Warn "UI status: placeholder_only (UI assignment record exists, shared library linkage is incomplete)"
+  $warnCount++
 } elseif ($uiFoundationPresent) {
   $uiStatus = "placeholder_only"
   Write-Warn "UI status: placeholder_only (foundation exists, no UI assignment record found)"
@@ -314,15 +412,58 @@ if (Test-Path $projectGameArtDir) {
     Where-Object { $_.Name -ne "game_art_assignment.json" }
 }
 $gameArtLibraryMatches = @()
+$gameArtRecord = $null
+$gameArtRuntimeMap = $null
+if (Test-Path $gameArtRecordPath) {
+  try {
+    $gameArtRecord = Get-Content -LiteralPath $gameArtRecordPath -Raw | ConvertFrom-Json
+  }
+  catch {
+    Write-Warn "Game art assignment JSON is invalid: app/src/main/assets/game_art/game_art_assignment.json"
+    $warnCount++
+  }
+}
+$gameArtRuntimeMapPath = Join-Path $projResolved "app\src\main\assets\game_art\runtime_art_map.json"
+if (Test-Path $gameArtRuntimeMapPath) {
+  try {
+    $gameArtRuntimeMap = Get-Content -LiteralPath $gameArtRuntimeMapPath -Raw | ConvertFrom-Json
+    $gameArtRuntimeStatus = [string]$gameArtRuntimeMap.status
+    if ([string]::IsNullOrWhiteSpace($gameArtRuntimeStatus)) {
+      $gameArtRuntimeStatus = "invalid"
+    }
+  }
+  catch {
+    $gameArtRuntimeStatus = "invalid"
+    Write-Warn "Game art runtime map JSON is invalid: app/src/main/assets/game_art/runtime_art_map.json"
+    $warnCount++
+  }
+}
+$gameArtRuntimeMapReady = $false
+if ($null -ne $gameArtRuntimeMap) {
+  $runtimeEntities = @($gameArtRuntimeMap.entities)
+  if (($gameArtRuntimeStatus -eq "integrated" -or $gameArtRuntimeStatus -eq "passed" -or $gameArtRuntimeStatus -eq "complete") -and $runtimeEntities.Count -gt 0) {
+    $gameArtRuntimeMapReady = $true
+  }
+}
+$gameArtRuntimeUsesAssets = $false
+$javaSourceDir = Join-Path $projResolved "app\src\main\java"
+if (Test-Path $javaSourceDir) {
+  $runtimeHit = Get-ChildItem -Path $javaSourceDir -Recurse -File -Filter "*.java" -ErrorAction SilentlyContinue |
+    Select-String -Pattern "game_art/","BitmapFactory","AssetManager" -SimpleMatch -ErrorAction SilentlyContinue |
+    Select-Object -First 1
+  if ($null -ne $runtimeHit) {
+    $gameArtRuntimeUsesAssets = $true
+  }
+}
 $gameArtIndexPath = Join-Path $root "shared_assets\game_art\index.json"
 if (Test-Path $gameArtIndexPath) {
   try {
     $gameArtIndex = Get-Content -LiteralPath $gameArtIndexPath -Raw | ConvertFrom-Json
     if ($null -ne $gameArtIndex.packs) {
-      $gameArtLibraryMatches = $gameArtIndex.packs | Where-Object {
+      $gameArtLibraryMatches = @($gameArtIndex.packs | Where-Object {
         $usedBy = $_.used_by
-        ($usedBy -is [System.Array] -and ($usedBy -contains $gameId))
-      }
+        ($usedBy -eq $gameId) -or ($usedBy -is [System.Array] -and ($usedBy -contains $gameId))
+      })
     }
   }
   catch {
@@ -330,10 +471,22 @@ if (Test-Path $gameArtIndexPath) {
     $warnCount++
   }
 }
-if ((Test-Path $gameArtRecordPath) -and $gameArtLibraryMatches.Count -gt 0) {
+if ($null -ne $gameArtRecord -and [string]$gameArtRecord.assignment_type -eq "project_local_canvas_art") {
+  $gameArtStatus = "placeholder_only"
+  Write-Warn "Game art status: placeholder_only (local Canvas art is not a shared gameplay art assignment)"
+  $warnCount++
+} elseif ((Test-Path $gameArtRecordPath) -and $gameArtLibraryMatches.Count -gt 0 -and $gameArtRuntimeUsesAssets -and $gameArtRuntimeMapReady) {
   $gameArtStatus = "complete"
   Write-Ok "Game art status: complete ($($projectGameArtFiles.Count) project file(s), $($gameArtLibraryMatches.Count) shared library match(es))"
   $passCount++
+} elseif ((Test-Path $gameArtRecordPath) -and $gameArtLibraryMatches.Count -gt 0 -and $gameArtRuntimeUsesAssets -and -not $gameArtRuntimeMapReady) {
+  $gameArtStatus = "placeholder_only"
+  Write-Warn "Game art status: placeholder_only (runtime art map is not integrated)"
+  $warnCount++
+} elseif ((Test-Path $gameArtRecordPath) -and $gameArtLibraryMatches.Count -gt 0) {
+  $gameArtStatus = "placeholder_only"
+  Write-Warn "Game art status: placeholder_only (shared art is assigned but runtime usage was not detected)"
+  $warnCount++
 } elseif ((Test-Path $gameArtRecordPath) -or $projectGameArtFiles.Count -gt 0) {
   $gameArtStatus = "placeholder_only"
   Write-Warn "Game art status: placeholder_only (project art exists, shared library linkage is incomplete)"
@@ -355,10 +508,10 @@ if (Test-Path $audioIndexPath) {
   try {
     $audioIndex = Get-Content -LiteralPath $audioIndexPath -Raw | ConvertFrom-Json
     if ($null -ne $audioIndex.audio) {
-      $audioLibraryMatches = $audioIndex.audio | Where-Object {
+      $audioLibraryMatches = @($audioIndex.audio | Where-Object {
         $usedBy = $_.used_by
-        ($usedBy -is [System.Array] -and ($usedBy -contains $gameId))
-      }
+        ($usedBy -eq $gameId) -or ($usedBy -is [System.Array] -and ($usedBy -contains $gameId))
+      })
     }
   }
   catch {
@@ -395,7 +548,7 @@ if ($apkFiles.Count -gt 0) {
 }
 
 $canEnterPack = $doctorReady -and $validatorReady -and $registryReady
-$deliveryReady = $canEnterPack -and ($requirementsStatus -eq "confirmed") -and ($iconStatus -eq "complete") -and ($uiStatus -ne "deferred") -and ($gameArtStatus -ne "deferred") -and ($audioStatus -ne "deferred")
+$deliveryReady = $canEnterPack -and ($requirementsStatus -eq "confirmed") -and ($gameplayDiversityStatus -eq "passed") -and ($implementationFidelityStatus -eq "passed") -and ($iconStatus -eq "complete") -and ($uiStatus -eq "complete") -and ($gameArtStatus -eq "complete") -and ($audioStatus -eq "complete")
 
 $nextStep = ""
 if (-not $doctorReady) {
@@ -410,10 +563,16 @@ if (-not $doctorReady) {
   $nextStep = "Expand the selected concept into a full requirements document"
 } elseif ($requirementsStatus -eq "draft") {
   $nextStep = "Confirm the requirements trace before treating the project as delivery-ready"
+} elseif ($gameplayDiversityStatus -ne "passed") {
+  $nextStep = "Complete the gameplay diversity and content budget contract before release delivery"
+} elseif ($implementationFidelityStatus -ne "passed") {
+  $nextStep = "Review and repair implementation fidelity against the confirmed requirements before release delivery"
 } elseif ($iconStatus -eq "deferred" -or $iconStatus -eq "placeholder_only") {
   $nextStep = "Run the icon workflow to export upload-ready icon assets"
 } elseif ($gameArtStatus -eq "deferred") {
   $nextStep = "Run the gameplay art workflow to assign tracked character, map, prop, effect, or background assets"
+} elseif ($gameArtStatus -eq "placeholder_only") {
+  $nextStep = "Complete gameplay art runtime mapping and animation or facing integration before release delivery"
 } elseif ($audioStatus -eq "deferred") {
   $nextStep = "Run the audio workflow to assign at least one tracked BGM or SFX set"
 } elseif (-not $deliveryReady) {
@@ -427,9 +586,12 @@ Write-Host "Passes: $passCount, Warnings: $warnCount, Fails: $failCount"
 Write-Host "CAN_ENTER_PACK=$($canEnterPack.ToString().ToLower())"
 Write-Host "DELIVERY_READY=$($deliveryReady.ToString().ToLower())"
 Write-Host "REQUIREMENTS_STATUS=$(Get-StatusValue $requirementsStatus)"
+Write-Host "GAMEPLAY_DIVERSITY_STATUS=$(Get-StatusValue $gameplayDiversityStatus)"
+Write-Host "IMPLEMENTATION_FIDELITY_STATUS=$(Get-StatusValue $implementationFidelityStatus)"
 Write-Host "ICON_STATUS=$(Get-StatusValue $iconStatus)"
 Write-Host "UI_STATUS=$(Get-StatusValue $uiStatus)"
 Write-Host "GAME_ART_STATUS=$(Get-StatusValue $gameArtStatus)"
+Write-Host "GAME_ART_RUNTIME_STATUS=$(Get-StatusValue $gameArtRuntimeStatus)"
 Write-Host "AUDIO_STATUS=$(Get-StatusValue $audioStatus)"
 Write-Host "NEXT_STEP=$nextStep"
 

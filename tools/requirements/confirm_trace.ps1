@@ -26,6 +26,7 @@ Set-Location $root
 $traceDir = Join-Path $root "artifacts\requirements\$GameId"
 $metadataPath = Join-Path $traceDir "metadata.json"
 $requirementsPath = Join-Path $traceDir "requirements.md"
+$gameplayDiversityPath = Join-Path $traceDir "gameplay_diversity.json"
 $existing = Read-TraceMetadata $metadataPath
 
 if ($null -eq $existing) {
@@ -42,6 +43,12 @@ if ([string]$existing.current_stage -ne "requirements") {
 
 if ([string]$existing.status -ne "draft") {
   throw "Cannot confirm requirements trace unless current status is draft."
+}
+
+$checkerPath = Join-Path $PSScriptRoot "check_gameplay_diversity.py"
+python $checkerPath --path $gameplayDiversityPath --strict
+if ($LASTEXITCODE -ne 0) {
+  throw "Cannot confirm requirements trace until gameplay_diversity.json passes strict validation."
 }
 
 Update-RequirementsTrace `

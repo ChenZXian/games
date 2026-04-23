@@ -1,0 +1,119 @@
+{
+  "version": 1,
+  "purpose": "Reusable animation capability catalog for gameplay art pack selection and runtime integration.",
+  "preferred_license_tier": [
+    "CC0-1.0",
+    "public-domain-equivalent"
+  ],
+  "packs": [
+    {
+      "pack_id": "kenney_platformer_characters",
+      "animation_tier": "pose_set",
+      "camera_perspective": "side_view",
+      "default_facing": "right",
+      "recommended_roles": [
+        "player",
+        "npc",
+        "enemy",
+        "zombie"
+      ],
+      "states": [
+        "idle",
+        "walk",
+        "action",
+        "hurt",
+        "jump",
+        "climb",
+        "swim",
+        "duck",
+        "slide"
+      ],
+      "integration_notes": [
+        "Use walk1 and walk2 as alternating leg frames for movement.",
+        "Use action1 and action2 as attack windup and action poses.",
+        "Flip horizontally when velocity or target direction changes."
+      ]
+    },
+    {
+      "pack_id": "kenney_platformer_art_deluxe",
+      "animation_tier": "frame_animation",
+      "camera_perspective": "side_view",
+      "default_facing": "right",
+      "recommended_roles": [
+        "player",
+        "enemy",
+        "creature",
+        "pickup",
+        "effect"
+      ],
+      "states": [
+        "stand",
+        "walk",
+        "jump",
+        "hurt",
+        "fly",
+        "bite",
+        "hit",
+        "dead"
+      ],
+      "integration_notes": [
+        "Use p1_walk, p2_walk, or p3_walk PNG frame folders for advanced locomotion.",
+        "Use enemy fly, bite, hit, and dead poses when available.",
+        "Drive walk frames by traveled distance to avoid foot sliding."
+      ]
+    },
+    {
+      "pack_id": "kenney_top_down_shooter",
+      "animation_tier": "directional_static",
+      "camera_perspective": "top_down",
+      "default_facing": "right",
+      "recommended_roles": [
+        "player",
+        "enemy",
+        "zombie",
+        "projectile"
+      ],
+      "states": [
+        "stand",
+        "hold",
+        "gun",
+        "machine",
+        "reload"
+      ],
+      "integration_notes": [
+        "Rotate characters toward movement or attack direction.",
+        "Use hold, gun, machine, and reload poses for combat state changes.",
+        "Do not use this pack alone when true leg-run animation is required."
+      ]
+    },
+    {
+      "pack_id": "kenney_tower_defense_top_down",
+      "animation_tier": "directional_static",
+      "camera_perspective": "top_down",
+      "default_facing": "up",
+      "recommended_roles": [
+        "tower",
+        "projectile",
+        "building",
+        "effect"
+      ],
+      "states": [
+        "idle",
+        "fire",
+        "hit"
+      ],
+      "integration_notes": [
+        "Rotate turrets or projectiles toward target vectors.",
+        "Use impact sprites or effects for hit feedback.",
+        "Use with a character animation pack when humanoid motion is required."
+      ]
+    }
+  ],
+  "runtime_rules": [
+    "A primary humanoid or creature should not slide as one static bitmap when moving.",
+    "Running or walking should use alternating leg or body frames when source frames exist.",
+    "Attack should use windup and action pose changes at minimum.",
+    "Top-down assets must rotate or select direction frames to match velocity or attack vector.",
+    "Side-view assets must flip or select left/right frames to match horizontal movement."
+  ]
+}

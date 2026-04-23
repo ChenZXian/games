@@ -34,12 +34,40 @@
       ],
       "quality_tags": [
         "production",
+        "animated",
+        "character_pose_set",
         "free",
         "open",
         "cc0"
       ],
+      "animation_capabilities": [
+        "side_view",
+        "humanoid",
+        "separate_pose_png",
+        "walk_two_frame",
+        "action_pose",
+        "hurt_pose",
+        "jump_pose",
+        "climb_pose",
+        "swim_pose",
+        "horizontal_flip"
+      ],
+      "animation_states": [
+        "idle",
+        "walk",
+        "action",
+        "hurt",
+        "jump",
+        "climb",
+        "swim",
+        "cheer",
+        "duck",
+        "slide"
+      ],
       "path": "packs/kenney_platformer_characters",
-      "used_by": [],
+      "used_by": [
+        "test_runner"
+      ],
       "validated_with": []
     },
     {
@@ -81,9 +109,34 @@
       ],
       "quality_tags": [
         "production",
+        "animated",
+        "spritesheet",
         "free",
         "open",
         "cc0"
+      ],
+      "animation_capabilities": [
+        "side_view",
+        "humanoid_walk_strip",
+        "enemy_walk",
+        "enemy_fly",
+        "enemy_bite",
+        "enemy_hit",
+        "enemy_dead",
+        "json_frame_metadata",
+        "xml_spritesheet_metadata",
+        "horizontal_flip"
+      ],
+      "animation_states": [
+        "stand",
+        "walk",
+        "jump",
+        "hurt",
+        "duck",
+        "fly",
+        "bite",
+        "hit",
+        "dead"
       ],
       "path": "packs/kenney_platformer_art_deluxe",
       "used_by": [],
@@ -134,7 +187,9 @@
         "cc0"
       ],
       "path": "packs/kenney_roguelike_rpg_pack",
-      "used_by": [],
+      "used_by": [
+        "empire_wall_guard"
+      ],
       "validated_with": []
     },
     {
@@ -220,12 +275,32 @@
       ],
       "quality_tags": [
         "production",
+        "directional_pose_set",
         "free",
         "open",
         "cc0"
       ],
+      "animation_capabilities": [
+        "top_down",
+        "weapon_pose",
+        "hold_pose",
+        "gun_pose",
+        "machine_pose",
+        "reload_pose",
+        "rotate_to_target",
+        "directional_runtime_rotation"
+      ],
+      "animation_states": [
+        "stand",
+        "hold",
+        "gun",
+        "machine",
+        "reload"
+      ],
       "path": "packs/kenney_top_down_shooter",
-      "used_by": [],
+      "used_by": [
+        "minecart_bastion"
+      ],
       "validated_with": []
     },
     {
@@ -266,12 +341,28 @@
       ],
       "quality_tags": [
         "production",
+        "rotatable_static",
         "free",
         "open",
         "cc0"
       ],
+      "animation_capabilities": [
+        "top_down",
+        "turret_rotation",
+        "projectile_rotation",
+        "impact_effect",
+        "static_building"
+      ],
+      "animation_states": [
+        "idle",
+        "fire",
+        "hit"
+      ],
       "path": "packs/kenney_tower_defense_top_down",
-      "used_by": [],
+      "used_by": [
+        "minecart_bastion",
+        "empire_wall_guard"
+      ],
       "validated_with": []
     },
     {

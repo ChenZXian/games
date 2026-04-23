@@ -129,7 +129,9 @@
         "mobile_game"
       ],
       "path": "packs/kenney_ui_pack_adventure",
-      "used_by": [],
+      "used_by": [
+        "empire_wall_guard"
+      ],
       "validated_with": []
     },
     {
@@ -160,6 +162,39 @@
       ],
       "path": "packs/kenney_ui_pack_rpg_expansion",
       "used_by": [],
+      "validated_with": []
+    },
+    {
+      "pack_id": "kenney_ui_pack_rusted_control",
+      "title": "Kenney Rusted Control UI Pack",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://kenney.nl/assets/ui-pack-adventure",
+      "asset_types": [
+        "png"
+      ],
+      "recommended_ui_skin": "skin_post_apocalypse",
+      "default_assignment_preset": "canonical_rusted_control",
+      "assignment_presets": [
+        "canonical_rusted_control"
+      ],
+      "style_tags": [
+        "post_apocalypse",
+        "rust",
+        "mine",
+        "control",
+        "brown",
+        "hazard"
+      ],
+      "quality_tags": [
+        "production",
+        "mobile_game",
+        "industrial"
+      ],
+      "path": "packs/kenney_ui_pack_rusted_control",
+      "used_by": [
+        "minecart_bastion"
+      ],
       "validated_with": []
     }
   ]

@@ -83,7 +83,7 @@ def pack_tokens(pack_entry):
     if isinstance(pack_entry, dict):
         for key in ("pack_id", "title", "license", "source_url"):
             tokens.extend(tokenize_text(pack_entry.get(key, "")))
-        for key in ("style_tags", "art_roles", "recommended_game_types", "quality_tags"):
+        for key in ("style_tags", "art_roles", "recommended_game_types", "quality_tags", "animation_capabilities", "animation_states"):
             value = pack_entry.get(key, [])
             if isinstance(value, list):
                 tokens.extend(tokenize_text(value))
@@ -118,12 +118,16 @@ def find_best_pack(index_data, style_tags=None, art_roles=None, game_type: str =
         pack_role_tokens = set(tokenize_text(pack.get("art_roles", [])))
         pack_game_type_tokens = set(tokenize_text(pack.get("recommended_game_types", [])))
         pack_style_tokens = set(tokenize_text(pack.get("style_tags", [])))
+        pack_animation_tokens = set(tokenize_text(pack.get("animation_capabilities", []), pack.get("animation_states", [])))
         role_match_count = len(role_tokens.intersection(pack_role_tokens))
         game_type_match_count = len(game_type_tokens.intersection(pack_game_type_tokens))
         style_match_count = len(style_tokens.intersection(pack_style_tokens))
-        score = match_count + role_match_count * 4 + game_type_match_count * 6 + style_match_count * 5
+        animation_match_count = len(desired_tokens.intersection(pack_animation_tokens))
+        score = match_count + role_match_count * 4 + game_type_match_count * 6 + style_match_count * 5 + animation_match_count * 8
         if "production" in pack.get("quality_tags", []):
             score += 1
+        if "animated" in pack.get("quality_tags", []):
+            score += 4
         if best_pack is None or score > best_score:
             best_pack = pack
             best_score = score

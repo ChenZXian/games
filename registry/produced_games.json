@@ -428,6 +428,38 @@
       "core_loop": "tap linked harbors to open convoy routes, grow stock, surge or upgrade key ports, intercept enemy boats, and capture the enemy flagship through supply pressure",
       "created_at": "2026-04-22",
       "ui_skin": "skin_cartoon_light"
+    },
+    {
+      "id": "minecart_bastion",
+      "name": "Minecart Bastion",
+      "tags": [
+        "tower_defense",
+        "strategy",
+        "rail",
+        "minecart",
+        "moving_towers",
+        "junction",
+        "waves"
+      ],
+      "core_loop": "build armed minecart towers on depot rails switch junction routes to patrol lanes intercept cave monster waves earn ore upgrade carts and defend the reactor",
+      "created_at": "2026-04-23",
+      "ui_skin": "skin_post_apocalypse"
+    },
+    {
+      "id": "empire_wall_guard",
+      "name": "Empire Wall Guard",
+      "tags": [
+        "tower_defense",
+        "strategy",
+        "ancient_empire",
+        "wall_defense",
+        "barracks",
+        "siege",
+        "waves"
+      ],
+      "core_loop": "build archer towers shield barracks stone throwers oil cauldrons and beacons spend supplies to block lanes repair the gate burn stacked enemies and survive ancient siege waves",
+      "created_at": "2026-04-23",
+      "ui_skin": "skin_military_tech"
     }
   ]
 }

@@ -34,6 +34,9 @@ Hard rules:
   - imported licensed open-source UI pack
   - project-local custom refinement
 - Do not silently fall back to generic shape-only placeholder UI for production-grade or delivery-ready requests
+- UI Kit is a required foundation, not enough final quality for menu item `10` or delivery-ready output
+- Treat `project_local_xml_ui` as placeholder-only unless the user explicitly asks for prototype quality
+- Production-grade UI must use a style-matched shared UI pack, imported license-clear UI pack, or equivalent custom asset layer with tracked provenance
 - Do not package, update registry, or change git state unless explicitly requested
 
 Workflow:

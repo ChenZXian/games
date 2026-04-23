@@ -1,18 +1,18 @@
 {
     "version":  1,
-    "generated_at_utc":  "2026-04-22T14:04:44Z",
+    "generated_at_utc":  "2026-04-23T06:40:26Z",
     "grouping":  "created_at_month",
     "path_policy":  "active projects remain direct children under games/\u003cgame_id\u003e",
     "months":  [
                    {
                        "month":  "2026-04",
-                       "total":  6,
+                       "total":  8,
                        "games":  [
                                      {
-                                         "id":  "bloom_orchard",
-                                         "name":  "Bloom Orchard",
-                                         "created_at":  "2026-04-21",
-                                         "path":  "games/bloom_orchard",
+                                         "id":  "island_supply_command",
+                                         "name":  "Island Supply Command",
+                                         "created_at":  "2026-04-22",
+                                         "path":  "games/island_supply_command",
                                          "ui_skin":  "skin_cartoon_light"
                                      },
                                      {
@@ -23,11 +23,25 @@
                                          "ui_skin":  "skin_cartoon_light"
                                      },
                                      {
-                                         "id":  "island_supply_command",
-                                         "name":  "Island Supply Command",
-                                         "created_at":  "2026-04-22",
-                                         "path":  "games/island_supply_command",
-                                         "ui_skin":  "skin_cartoon_light"
+                                         "id":  "empire_wall_guard",
+                                         "name":  "Empire Wall Guard",
+                                         "created_at":  "2026-04-23",
+                                         "path":  "games/empire_wall_guard",
+                                         "ui_skin":  "skin_military_tech"
+                                     },
+                                     {
+                                         "id":  "minecart_bastion",
+                                         "name":  "Minecart Bastion",
+                                         "created_at":  "2026-04-23",
+                                         "path":  "games/minecart_bastion",
+                                         "ui_skin":  "skin_post_apocalypse"
+                                     },
+                                     {
+                                         "id":  "relic_blade_trials",
+                                         "name":  "Relic Blade Trials",
+                                         "created_at":  "2026-04-21",
+                                         "path":  "games/relic_blade_trials",
+                                         "ui_skin":  "skin_dark_arcade"
                                      },
                                      {
                                          "id":  "ashen_strike_trial",
@@ -37,11 +51,11 @@
                                          "ui_skin":  "skin_neon_future"
                                      },
                                      {
-                                         "id":  "relic_blade_trials",
-                                         "name":  "Relic Blade Trials",
+                                         "id":  "bloom_orchard",
+                                         "name":  "Bloom Orchard",
                                          "created_at":  "2026-04-21",
-                                         "path":  "games/relic_blade_trials",
-                                         "ui_skin":  "skin_dark_arcade"
+                                         "path":  "games/bloom_orchard",
+                                         "ui_skin":  "skin_cartoon_light"
                                      },
                                      {
                                          "id":  "clockwork_courier",

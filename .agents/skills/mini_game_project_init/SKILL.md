@@ -15,6 +15,7 @@ Authoritative files must be read first and must not be skipped:
 - docs/ENVIRONMENT_BASELINE.md
 - docs/UI_KIT_FACTORY_SPEC_v1_0.md
 - docs/REQUIREMENTS_WORKFLOW.md
+- docs/GAMEPLAY_DIVERSITY_WORKFLOW.md
 - registry/produced_games.json
 
 Scope rules:
@@ -22,6 +23,9 @@ Scope rules:
 - Require a confirmed requirements trace before first-time project generation.
 - If `artifacts/requirements/<new_game_id>/metadata.json` is missing, still `draft`, still `candidates`, or otherwise unconfirmed, stop and route back to requirements confirmation instead of generating project files.
 - Prefer validating the requirements gate with `tools/requirements/assert_confirmed_trace.ps1 -GameId <new_game_id>` before any writes.
+- Treat `artifacts/requirements/<new_game_id>/gameplay_diversity.json` as a required generation contract.
+- If the gameplay diversity contract is missing, invalid, still draft, or not specific enough to pass `tools/requirements/check_gameplay_diversity.ps1 -GameId <new_game_id> -Strict`, stop and route back to requirements planning.
+- Do not simplify the project into a generic map, one-unit roster, or repeated template when the contract asks for broader content.
 - Do not run doctor, validate, or build packaging workflows unless explicitly requested outside this skill.
 - Do not run Gradle build tasks unless explicitly requested outside this skill.
 - Do not build APK or AAB unless explicitly requested outside this skill.
@@ -95,15 +99,17 @@ UI Kit system rules:
 1. The generated project must use exactly one predefined UI skin id from the repository standard.
 2. Select one skin id and apply it consistently across all UI elements.
 3. UI must comply with docs/UI_KIT_FACTORY_SPEC_v1_0.md.
-4. Prefer text-based UI implementation:
+4. UI Kit is the required foundation and may be enough only for prototype-grade initialization.
+5. Prefer text-based UI implementation for the structural scaffold:
    - XML drawables
    - XML colors
    - XML dimens
    - XML styles
    - XML themes
    - Java code referencing tokens and styles
-5. Do not use external UI kits or downloaded UI resources unless explicitly allowed by the repository rules.
-6. Do not use external gameplay art assets unless they are routed through the repository gameplay art workflow and stored with license provenance.
+6. Do not treat UI Kit-only XML scaffolding as delivery-ready UI for menu item `10`.
+7. Do not use external UI kits or downloaded UI resources unless routed through the repository UI workflow and stored with license provenance.
+8. Do not use external gameplay art assets unless they are routed through the repository gameplay art workflow and stored with license provenance.
 
 Minimum required UI files:
 Values:
@@ -202,6 +208,7 @@ C. Static resource isolation:
 1. Follow repository rules for binary and text resources
 2. Achieve visual differentiation through UI tokens and repository-approved icon, UI, gameplay art, and audio assets
 3. Keep all UI within the repository UI contract
+4. For menu item `10`, continue into UI, gameplay art, icon, and audio completion after initialization instead of shipping the initialization scaffold
 
 D. Packaging-stage preparedness:
 1. Do not include keystore files
@@ -211,16 +218,21 @@ D. Packaging-stage preparedness:
 
 E. Non-duplication enforcement:
 1. Read registry/produced_games.json and compare the new core_loop against existing entries
-2. If similar, change the genre or mechanics until clearly distinct by:
+2. Read the confirmed gameplay diversity contract and preserve its genre sub-archetype, map budget, entity budget, mechanic budget, and asset variety budget
+3. If similar, change the genre or mechanics until clearly distinct by:
    - perspective
    - control scheme
    - primary objective
    - feedback loop
-3. Update tags and core_loop to reflect the final distinct design
+   - map or playfield structure
+   - entity roster
+   - progression model
+4. Update tags and core_loop to reflect the final distinct design
 
 Execution requirements:
 1. Verify that the requirements trace for <new_game_id> is already confirmed
-2. Choose a globally unique <new_game_id> using lowercase snake_case
-3. Create games/<new_game_id>/ with a complete Android Studio project matching the baseline and standards
-4. Append exactly one entry to registry/produced_games.json
-5. Output only the generated project files and the updated registry file unless the user explicitly asks for explanation
+2. Verify that the gameplay diversity contract for <new_game_id> has status `passed`
+3. Choose a globally unique <new_game_id> using lowercase snake_case
+4. Create games/<new_game_id>/ with a complete Android Studio project matching the baseline and standards
+5. Append exactly one entry to registry/produced_games.json
+6. Output only the generated project files and the updated registry file unless the user explicitly asks for explanation

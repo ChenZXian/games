@@ -1,0 +1,185 @@
+{
+  "version": 1,
+  "game_id": "empire_wall_guard",
+  "status": "integrated",
+  "camera_perspective": "top_down_slight_angled_board",
+  "default_coordinate_space": "normalized_screen",
+  "theme": "ancient empire wall defense medieval tower defense",
+  "game_type": "top down tower defense strategy",
+  "runtime_code": "app/src/main/java/com/android/boot/ui/GameView.java",
+  "entities": [
+    {
+      "entity_key": "archer_tower",
+      "role": "tower",
+      "asset_keys": [
+        "game_art/kenney_tower_defense_top_down/assets/PNG/Default size/towerDefense_tile249.png"
+      ],
+      "default_facing": "right",
+      "facing_rule": "turret_angle_tracks_current_target_vector",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.58
+      },
+      "hitbox": {
+        "x": 0.25,
+        "y": 0.25,
+        "w": 0.5,
+        "h": 0.5
+      },
+      "render_size": {
+        "w": 0.105,
+        "h": 0.105,
+        "unit": "screen_height"
+      },
+      "z_order": "slot_y",
+      "states": [
+        "idle",
+        "fire",
+        "upgrade"
+      ],
+      "animation_rule": "cooldown flash and aim angle pulse when firing",
+      "movement_rule": "static defense with firing pose rotation"
+    },
+    {
+      "entity_key": "shield_soldier",
+      "role": "character",
+      "asset_keys": [
+        "game_art/kenney_roguelike_rpg_pack/assets/Spritesheet/roguelikeSheet_transparent.png#tile_52_16"
+      ],
+      "default_facing": "right",
+      "facing_rule": "face target enemy during block or face rally direction while moving",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      },
+      "hitbox": {
+        "x": 0.30,
+        "y": 0.20,
+        "w": 0.40,
+        "h": 0.68
+      },
+      "render_size": {
+        "w": 0.075,
+        "h": 0.075,
+        "unit": "screen_height"
+      },
+      "z_order": "by_y_then_soldier",
+      "states": [
+        "idle",
+        "move",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "animation_rule": "stride bob during rally movement, shield swing on block, hit ring when damaged",
+      "movement_rule": "vertical lane rally uses target lane interpolation and visible facing mark"
+    },
+    {
+      "entity_key": "raider_scout_brute_warlord",
+      "role": "enemy",
+      "asset_keys": [
+        "game_art/kenney_roguelike_rpg_pack/assets/Spritesheet/roguelikeSheet_transparent.png#tile_51_17",
+        "game_art/kenney_roguelike_rpg_pack/assets/Spritesheet/roguelikeSheet_transparent.png#tile_52_17",
+        "game_art/kenney_roguelike_rpg_pack/assets/Spritesheet/roguelikeSheet_transparent.png#tile_51_16",
+        "game_art/kenney_roguelike_rpg_pack/assets/Spritesheet/roguelikeSheet_transparent.png#tile_52_16"
+      ],
+      "default_facing": "left",
+      "facing_rule": "face movement direction, shield blocker, or gate attack target",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      },
+      "hitbox": {
+        "x": 0.25,
+        "y": 0.20,
+        "w": 0.50,
+        "h": 0.68
+      },
+      "render_size": {
+        "w": "enemy.radius * 2.4",
+        "h": "enemy.radius * 2.4",
+        "unit": "screen_height"
+      },
+      "z_order": "by_y_then_enemy",
+      "states": [
+        "move",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "animation_rule": "speed-scaled stride bob, attack pulse, hit shake, burn ring, death burst",
+      "movement_rule": "lane path from right to gate with face side flipped by facing field"
+    },
+    {
+      "entity_key": "siege_cart",
+      "role": "enemy",
+      "asset_keys": [
+        "game_art/kenney_tower_defense_top_down/assets/PNG/Default size/towerDefense_tile268.png"
+      ],
+      "default_facing": "left",
+      "facing_rule": "rotate body and cannon toward gate vector",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.65
+      },
+      "hitbox": {
+        "x": 0.18,
+        "y": 0.24,
+        "w": 0.64,
+        "h": 0.52
+      },
+      "render_size": {
+        "w": "enemy.radius * 3.24",
+        "h": "enemy.radius * 3.24",
+        "unit": "screen_height"
+      },
+      "z_order": "by_y_then_siege",
+      "states": [
+        "move",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "animation_rule": "slow advance, attack recoil effect, hit shake, death burst",
+      "movement_rule": "stops at siege range and fires rotating stones toward the gate"
+    },
+    {
+      "entity_key": "projectile_and_impact",
+      "role": "projectile",
+      "asset_keys": [
+        "game_art/kenney_tower_defense_top_down/assets/PNG/Default size/towerDefense_tile251.png"
+      ],
+      "default_facing": "right",
+      "facing_rule": "rotate by atan2 travel vector every frame",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "hitbox": {
+        "x": 0.35,
+        "y": 0.35,
+        "w": 0.30,
+        "h": 0.30
+      },
+      "render_size": {
+        "w": 0.045,
+        "h": 0.045,
+        "unit": "screen_height"
+      },
+      "z_order": "above_units",
+      "states": [
+        "fly",
+        "hit"
+      ],
+      "animation_rule": "arrow sprite or stone trail rotates toward travel angle; impact ring expands on hit",
+      "movement_rule": "moves along current target vector and recalculates target position for living enemies"
+    }
+  ],
+  "required_runtime_checks": [
+    "primary moving entities define move attack hit and death states",
+    "facing field is updated from velocity target or gate vector",
+    "draw calls flip sprites or rotate projectiles from facing and angle",
+    "movement animation uses stride bob attack pulse hit shake and death effects",
+    "runtime loads assigned assets through AssetManager and BitmapFactory"
+  ]
+}

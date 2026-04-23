@@ -14,6 +14,7 @@ Set-Location $root
 $traceDir = Join-Path $root "artifacts\requirements\$GameId"
 $metadataPath = Join-Path $traceDir "metadata.json"
 $requirementsPath = Join-Path $traceDir "requirements.md"
+$gameplayDiversityPath = Join-Path $traceDir "gameplay_diversity.json"
 $metadata = Read-TraceMetadata $metadataPath
 
 if ($null -eq $metadata) {
@@ -40,8 +41,15 @@ if ([string]::IsNullOrWhiteSpace([string]$metadata.ui_skin)) {
   throw "Requirements trace is missing ui_skin."
 }
 
+$checkerPath = Join-Path $PSScriptRoot "check_gameplay_diversity.py"
+python $checkerPath --path $gameplayDiversityPath --strict
+if ($LASTEXITCODE -ne 0) {
+  throw "Gameplay diversity contract is not passed for $GameId."
+}
+
 Write-Host "REQUIREMENTS_TRACE_OK=true"
 Write-Host "REQUIREMENTS_TRACE_DIR=$traceDir"
 Write-Host "REQUIREMENTS_METADATA=$metadataPath"
 Write-Host "REQUIREMENTS_MARKDOWN=$requirementsPath"
 Write-Host "REQUIREMENTS_STATUS=$([string]$metadata.status)"
+Write-Host "GAMEPLAY_DIVERSITY_STATUS=passed"

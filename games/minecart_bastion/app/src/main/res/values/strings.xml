@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Minecart Bastion</string>
+    <string name="btn_start">Start</string>
+    <string name="btn_restart">Restart</string>
+    <string name="btn_resume">Resume</string>
+    <string name="btn_menu">Menu</string>
+    <string name="btn_mute">Sound</string>
+    <string name="btn_how_to_play">Help</string>
+    <string name="btn_pause">Pause</string>
+    <string name="btn_stage_select">Stage Select</string>
+    <string name="btn_next_wave">Next Wave</string>
+    <string name="btn_gatling">Gatling</string>
+    <string name="btn_frost">Frost</string>
+    <string name="btn_tesla">Tesla</string>
+    <string name="btn_drill">Drill</string>
+    <string name="btn_rockfall">Rockfall</string>
+    <string name="btn_repair">Repair</string>
+    <string name="title_main">Minecart Bastion</string>
+    <string name="subtitle_main">Switch rails and defend the reactor.</string>
+    <string name="hud_reactor">Reactor 100</string>
+    <string name="hud_ore">Ore 160</string>
+    <string name="hud_wave">Wave 0/8</string>
+    <string name="hud_route_mid">Route Mid</string>
+    <string name="help_text">Pick a cart type, tap a depot on the left rails, then start waves. Tap the junction to redirect carts. Tap carts to upgrade them. Stop monsters before they reach the reactor.</string>
+    <string name="result_title">Result</string>
+</resources>

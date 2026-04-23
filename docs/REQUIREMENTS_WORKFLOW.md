@@ -1,6 +1,6 @@
 # Requirements Workflow
 
-Version: 1.3
+Version: 1.6
 Last updated: 2026-04-23
 
 This document defines the repository requirements workflow for Android Java mini-games.
@@ -20,6 +20,7 @@ The requirements workflow covers:
 
 - selected concept capture
 - full game requirements writing
+- gameplay diversity and content budget capture
 - requirements confirmation state
 - requirements trace storage
 
@@ -40,6 +41,7 @@ Authoritative files:
 
 - `artifacts/requirements/<game_id>/metadata.json`
 - `artifacts/requirements/<game_id>/requirements.md`
+- `artifacts/requirements/<game_id>/gameplay_diversity.json`
 
 Supporting file:
 
@@ -96,6 +98,7 @@ Expected result:
 - `requirements.md` exists
 - `metadata.json` exists
 - `status=draft`
+- `gameplay_diversity.json` exists and is specific enough to guide implementation
 - the full requirements draft is shown to the user for review before initialization
 
 ### 5.3 Confirmation
@@ -124,6 +127,9 @@ When the repository flow uses menu item `10`, the sequence must remain:
 4. full requirements draft
 5. explicit requirements confirmation
 6. initialization only after confirmation
+7. optimization and resource completion
+8. inspection
+9. APK export through the packaging workflow
 
 Additional menu item `10` rules:
 
@@ -133,6 +139,9 @@ Additional menu item `10` rules:
 - do not initialize a project in the same reply as the full requirements draft
 - if the user requests revisions, update the draft and keep status `draft`
 - only after explicit confirmation may the trace move to `confirmed`
+- menu item `10` is the complete flow from confirmed requirements to APK output; APK export is the final stage, not a shortcut around earlier stages
+- if inspection or packaging prerequisites fail, stop before APK export and report the blocker
+- menu item `10` must not proceed with a generic or repeated gameplay template when the gameplay diversity contract is missing or not passed
 
 ## 6. Metadata Contract
 
@@ -157,6 +166,7 @@ Recommended `files` fields:
 - `metadata_json`
 - `requirements_md`
 - `candidates_md`
+- `gameplay_diversity_json`
 
 ## 7. Markdown Contract
 
@@ -177,6 +187,36 @@ Recommended `files` fields:
 - audio direction
 - technical implementation notes
 - differentiation note
+- gameplay diversity and content budget
+
+The gameplay art direction should be implementation-ready, not only a style note.
+For moving, attacking, damageable, collectible, or animated objects, requirements should specify:
+
+- role
+- camera perspective
+- default facing
+- expected facing behavior
+- minimum visual states
+- movement animation expectation
+- animation quality tier
+- hit or damage feedback expectation
+- anchor and hitbox assumptions when relevant
+
+The gameplay diversity and content budget should define:
+
+- genre family and concrete sub-archetype
+- camera or playfield perspective
+- control model
+- core loop signature
+- differentiation axes against existing registry entries
+- forbidden template reuse
+- map or playfield content budget
+- entity roster budget
+- mechanic variety budget
+- gameplay asset variety budget
+
+The machine-readable form of this section should be stored in `gameplay_diversity.json`.
+See `docs/GAMEPLAY_DIVERSITY_WORKFLOW.md` for the required contract.
 
 `candidates.md` should capture:
 
@@ -185,6 +225,8 @@ Recommended `files` fields:
 - pitch
 - core loop
 - controls
+- genre family and sub-archetype
+- content-scale note
 - hook
 - retention or monetization note
 - duplicate-risk note
@@ -226,6 +268,7 @@ The inspect workflow should read:
 
 - `artifacts/requirements/<game_id>/metadata.json`
 - `artifacts/requirements/<game_id>/requirements.md`
+- `artifacts/requirements/<game_id>/gameplay_diversity.json`
 
 Expected inspect output:
 
@@ -233,3 +276,4 @@ Expected inspect output:
 - `REQUIREMENTS_STATUS=draft` when requirements markdown exists without confirmed metadata
 - `REQUIREMENTS_STATUS=candidates` when only candidate trace exists
 - `REQUIREMENTS_STATUS=untracked` when no trace exists
+- `GAMEPLAY_DIVERSITY_STATUS=passed` only when the gameplay diversity contract exists, is valid, and is ready for downstream implementation checks

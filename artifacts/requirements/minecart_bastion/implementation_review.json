@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "game_id": "minecart_bastion",
+  "status": "passed",
+  "reviewed_at": "2026-04-23",
+  "requirements_trace": "artifacts/requirements/minecart_bastion/requirements.md",
+  "implemented_core_mechanics": [
+    "reactor defense loss condition",
+    "ore economy",
+    "wave progression",
+    "three-lane route switching",
+    "moving weapon carts",
+    "four cart classes",
+    "cart upgrades",
+    "enemy variants",
+    "boss wave enemy",
+    "rockfall support skill",
+    "repair support skill",
+    "HUD metrics",
+    "menu help pause and result states",
+    "tracked UI pack assignment",
+    "tracked gameplay art pack assignment",
+    "tracked BGM and SFX assignment"
+  ],
+  "evidence": [
+    "games/minecart_bastion/app/src/main/java/com/android/boot/ui/GameView.java",
+    "games/minecart_bastion/app/src/main/assets/ui/ui_pack_assignment.json",
+    "games/minecart_bastion/app/src/main/assets/game_art/game_art_assignment.json",
+    "games/minecart_bastion/app/src/main/assets/audio/audio_assignment.json"
+  ],
+  "remaining_quality_notes": [
+    "Further tuning can add deeper rail branching, enemy preview telegraphs, and richer cart animation.",
+    "The current pass verifies the first playable implementation is not a generic substitute for the confirmed concept."
+  ]
+}

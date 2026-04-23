@@ -22,7 +22,7 @@ The current direction is:
 2. generate or update one game project inside `games/<game_id>/`
 3. optimize game quality and polish
 4. handle dedicated resource workflows such as icon, UI, gameplay art, and audio
-5. inspect and package only when explicitly requested
+5. inspect and package only when explicitly requested, or export APK as the final stage of menu item `10`
 
 ## Authoritative Files
 
@@ -33,6 +33,7 @@ Always read and follow these files before making project changes:
 - `docs/ENVIRONMENT_BASELINE.md`
 - `docs/UI_KIT_FACTORY_SPEC_v1_0.md`
 - `docs/PROJECT_ACCEPTANCE_BASELINE.md`
+- `docs/GAMEPLAY_DIVERSITY_WORKFLOW.md`
 - `registry/produced_games.json`
 
 These files define:
@@ -41,6 +42,7 @@ These files define:
 - Android and Gradle baseline
 - UI contract
 - generic project acceptance baseline
+- gameplay diversity and content-scale baseline
 - launcher and package constraints
 - game uniqueness requirements
 
@@ -70,7 +72,7 @@ Current menu structure:
 9｜打包或发布项目
 
 其他
-10｜一键执行完整流程
+10｜一键执行完整流程并导出 APK
 11｜只讨论规则、方案或架构
 --------------------------------
 ```
@@ -115,6 +117,19 @@ Planning state flow:
 - `candidates` -> candidate concepts stored
 - `draft` -> full requirements written, shown to the user for review, and not confirmed yet
 - `confirmed` -> full requirements explicitly confirmed and ready to unblock initialization
+
+Machine-readable planning contract:
+
+- `artifacts/requirements/<game_id>/gameplay_diversity.json`
+
+This contract defines:
+
+- genre family and sub-archetype
+- control model and core loop signature
+- map or playfield content budget
+- entity and mechanic budgets
+- asset variety budget
+- forbidden template reuse
 
 ### 2. Project Initialization
 
@@ -165,6 +180,8 @@ Current UI workflow goals:
 - keep reusable external UI resources in the shared library first when possible
 - require a concrete UI brief before pack selection or implementation
 - resolve in this order: style-matched shared UI pack -> imported licensed open-source UI pack -> project-local custom refinement
+- treat UI Kit as the required foundation, not final visual quality for menu item `10` or delivery-ready output
+- treat `project_local_xml_ui` as placeholder-only for production-grade requests
 - avoid silently shipping shape-only placeholder UI for production-grade requests
 
 Current UI workflow:
@@ -191,7 +208,13 @@ Current gameplay art workflow goals:
 - keep reusable external gameplay art resources in the shared library first when possible
 - require a concrete art brief before pack selection or implementation
 - resolve in this order: style-matched shared game art pack -> imported official free and license-clear pack -> project-local prototype drawing only when placeholders are acceptable
+- require assigned gameplay art to be used by the running game for delivery-ready output
+- require `runtime_art_map.json` for delivery-ready output
+- require entity facing and animation rules instead of one static bitmap moving across the screen
+- require primary characters to use walk or run frame animation and attack pose changes when the game calls for it
+- allow the sprite pipeline to generate normalized whole-strip animations from approved license-clear seed frames when no suitable animated pack exists
 - avoid silently shipping circle-only or rectangle-only gameplay placeholders for production-grade requests
+- follow the gameplay diversity contract so different games do not collapse into the same tiny map, same roster, and same asset layout
 
 Current gameplay art workflow:
 
@@ -204,6 +227,7 @@ Current gameplay art workflow:
 Shared library target:
 
 - `shared_assets/game_art/`
+- `shared_assets/game_art/animation_catalog.json`
 
 ### 7. Audio Workflow
 
@@ -239,7 +263,7 @@ Inspect is a dedicated pre-packaging status workflow.
 Current inspect workflow goals:
 
 - report whether a project can enter packaging
-- summarize requirements, icon, UI, gameplay art, and audio completion state
+- summarize requirements, gameplay diversity, icon, UI, gameplay art, and audio completion state
 - surface the next most useful action without modifying project files
 
 Current inspect workflow:
@@ -250,7 +274,7 @@ Current inspect workflow:
 
 ### 9. Packaging
 
-Packaging is a separate workflow and should run only when explicitly requested.
+Packaging is a separate workflow. It should run only when directly requested through packaging, or when menu item `10` reaches the final APK export stage after requirements confirmation, initialization, resource completion, and inspection.
 
 Current packaging skill:
 
@@ -266,7 +290,7 @@ Default behavior:
 - initialization
 - optimization and resource completion, including icon, UI, gameplay art, and audio
 - inspection
-- packaging
+- APK export through the packaging workflow
 
 Expected interaction behavior:
 
@@ -275,6 +299,9 @@ Expected interaction behavior:
 - when a target `game_id` is known, store that draft requirements trace under `artifacts/requirements/<game_id>/` before continuing
 - do not enter initialization or downstream workflows in the same reply as the full requirements draft
 - after the user explicitly confirms the requirements, continue the downstream generation flow automatically
+- menu item `10` is the complete flow from requirements confirmation to APK output
+- after initialization and resource completion, run inspection and export an APK only when `CAN_ENTER_PACK=true`
+- if inspection or packaging prerequisites fail, stop and report the blocker instead of claiming completion
 - if the user asks for revisions, revise the requirements draft and keep it in `draft`
 - ask only for missing direction input when menu item `10` does not include enough idea information
 - do not ask meta permission questions in the standard full-pipeline flow
@@ -371,3 +398,4 @@ Recommended next improvements:
 3. validate the new audio workflow on a real game project
 4. validate the new icon workflow on a real game project
 5. validate the full pipeline mode on a brand new game from planning through packaging
+6. validate the gameplay diversity contract on multiple genres, not only tower defense

@@ -271,6 +271,60 @@ Reviewer Action: Confirm The Requirements Or Request Revisions
 "@
 }
 
+function New-GameplayDiversityTemplate([string]$GameId, [string]$Direction, [string]$SelectedConcept, [string]$UiSkin) {
+  $contract = [ordered]@{
+    version = 1
+    game_id = $GameId
+    status = "draft"
+    direction = $Direction
+    selected_concept = $SelectedConcept
+    genre_family = ""
+    genre_archetype = ""
+    camera_perspective = ""
+    control_model = ""
+    core_loop_signature = ""
+    differentiation_axes = @()
+    forbidden_template_reuse = @()
+    map_content_budget = [ordered]@{
+      play_area_model = ""
+      route_or_region_count = ""
+      interactive_regions = ""
+      terrain_types = @()
+      decorative_prop_count = ""
+      functional_map_elements = @()
+      landmarks = @()
+      camera_or_scroll_model = ""
+    }
+    entity_content_budget = [ordered]@{
+      player_unit_types = @()
+      enemy_types = @()
+      neutral_or_resource_entities = @()
+      boss_or_elite_types = @()
+      projectile_or_effect_types = @()
+      item_or_powerup_types = @()
+    }
+    mechanic_content_budget = [ordered]@{
+      primary_player_actions = @()
+      secondary_player_actions = @()
+      upgrade_paths = @()
+      wave_or_level_variants = @()
+      special_rules = @()
+      risk_reward_systems = @()
+      failure_pressure_variants = @()
+    }
+    asset_variety_budget = [ordered]@{
+      primary_game_art_packs = @()
+      secondary_game_art_packs = @()
+      ui_pack = $UiSkin
+      animation_tier = ""
+      required_animation_states = @()
+      minimum_distinct_sprite_families = ""
+      asset_reuse_note = ""
+    }
+  }
+  return (($contract | ConvertTo-Json -Depth 8) + [Environment]::NewLine)
+}
+
 function Update-RequirementsTrace {
   param(
     [Parameter(Mandatory=$true)]
@@ -291,6 +345,8 @@ function Update-RequirementsTrace {
     [string]$CandidatesMarkdownPath = "",
     [string]$RequirementsMarkdown = "",
     [string]$RequirementsMarkdownPath = "",
+    [string]$GameplayDiversityJson = "",
+    [string]$GameplayDiversityJsonPath = "",
 
     [switch]$Force
   )
@@ -311,6 +367,7 @@ function Update-RequirementsTrace {
   $metadataPath = Join-Path $traceDir "metadata.json"
   $candidatesPath = Join-Path $traceDir "candidates.md"
   $requirementsPath = Join-Path $traceDir "requirements.md"
+  $gameplayDiversityPath = Join-Path $traceDir "gameplay_diversity.json"
 
   New-Item -ItemType Directory -Force -Path $traceDir | Out-Null
 
@@ -352,9 +409,26 @@ function Update-RequirementsTrace {
     Write-Utf8File $requirementsPath $requirementsContent
   }
 
+  if ($Stage -eq "requirements" -and $Status -ne "confirmed" -and ((-not (Test-Path $gameplayDiversityPath)) -or $Force)) {
+    $gameplayDiversityContent = Resolve-MarkdownContent $GameplayDiversityJson $GameplayDiversityJsonPath (New-GameplayDiversityTemplate $GameId $resolvedDirection $resolvedSelectedConcept $resolvedUiSkin) "GameplayDiversityJson"
+    Write-Utf8File $gameplayDiversityPath $gameplayDiversityContent
+  }
+
   if ($Status -eq "confirmed") {
     if (!(Test-Path $requirementsPath)) {
       throw "Cannot confirm requirements trace without requirements.md."
+    }
+    if (!(Test-Path $gameplayDiversityPath)) {
+      throw "Cannot confirm requirements trace without gameplay_diversity.json."
+    }
+    try {
+      $gameplayDiversity = Get-Content -LiteralPath $gameplayDiversityPath -Raw | ConvertFrom-Json
+    }
+    catch {
+      throw "Cannot confirm requirements trace because gameplay_diversity.json is invalid."
+    }
+    if ([string]$gameplayDiversity.status -ne "passed") {
+      throw "Cannot confirm requirements trace until gameplay_diversity.json has status 'passed'. Current status: $([string]$gameplayDiversity.status)"
     }
     if ([string]::IsNullOrWhiteSpace($resolvedSelectedConcept)) {
       throw "Cannot confirm requirements trace without selected_concept."
@@ -376,6 +450,7 @@ function Update-RequirementsTrace {
     metadata_json = "artifacts/requirements/$GameId/metadata.json"
     requirements_md = if (Test-Path $requirementsPath) { "artifacts/requirements/$GameId/requirements.md" } else { "" }
     candidates_md = if (Test-Path $candidatesPath) { "artifacts/requirements/$GameId/candidates.md" } else { "" }
+    gameplay_diversity_json = if (Test-Path $gameplayDiversityPath) { "artifacts/requirements/$GameId/gameplay_diversity.json" } else { "" }
   }
 
   $metadata = [ordered]@{
@@ -401,6 +476,7 @@ function Update-RequirementsTrace {
   Write-Host "REQUIREMENTS_METADATA=$metadataPath"
   if (Test-Path $candidatesPath) { Write-Host "REQUIREMENTS_CANDIDATES=$candidatesPath" }
   if (Test-Path $requirementsPath) { Write-Host "REQUIREMENTS_MARKDOWN=$requirementsPath" }
+  if (Test-Path $gameplayDiversityPath) { Write-Host "REQUIREMENTS_GAMEPLAY_DIVERSITY=$gameplayDiversityPath" }
   if (-not [string]::IsNullOrWhiteSpace($resolvedSelectedConcept)) { Write-Host "REQUIREMENTS_SELECTED_CONCEPT=$resolvedSelectedConcept" }
   if (-not [string]::IsNullOrWhiteSpace($resolvedUiSkin)) { Write-Host "REQUIREMENTS_UI_SKIN=$resolvedUiSkin" }
   Write-Host "REQUIREMENTS_STAGE=$Stage"

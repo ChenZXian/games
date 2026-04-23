@@ -7,6 +7,7 @@ Always read and obey these authoritative files before making changes:
 - docs/ENVIRONMENT_BASELINE.md
 - docs/UI_KIT_FACTORY_SPEC_v1_0.md
 - docs/PROJECT_ACCEPTANCE_BASELINE.md
+- docs/GAMEPLAY_DIVERSITY_WORKFLOW.md
 - registry/produced_games.json
 
 Hard rules:
@@ -23,7 +24,7 @@ Hard rules:
 
 Default workflow policy:
 - Default to discussion, design, and implementation only
-- Do not package, build APK, create zip, or run packaging steps unless explicitly requested
+- Do not package, build APK, create zip, or run packaging steps unless explicitly requested, except when menu item `10` reaches its final APK export stage after requirements confirmation and downstream project completion
 - Treat requirements planning, initialization, optimization, resource completion, inspection, and packaging as separate workflows
 - Use repository-safe behavior by default
 - Do not modify files immediately at the start of a new conversation
@@ -74,7 +75,7 @@ Required start menu format:
 9｜打包或发布项目
 
 其他
-10｜一键执行完整流程
+10｜一键执行完整流程并导出 APK
 11｜只讨论规则、方案或架构
 --------------------------------
 ```
@@ -103,7 +104,9 @@ Behavior rules after menu selection:
 - After the user selects one candidate under menu item 10, immediately generate the full requirements draft in the next reply, show that draft to the user, and stop for explicit requirements confirmation
 - When menu item 10 reaches the full requirements draft stage and a target game_id is known, persist the requirements trace as status `draft`
 - Do not enter initialization, optimization, icon, UI, gameplay art, audio, inspection, or packaging in the same reply as the full requirements draft under menu item 10
-- After the user explicitly confirms the requirements under menu item 10, mark the trace as `confirmed` and automatically continue initialization and the downstream generation flow without requiring another menu selection
+- After the user explicitly confirms the requirements under menu item 10, mark the trace as `confirmed` and automatically continue initialization, optimization, icon completion, UI completion, gameplay art completion, audio completion, inspection, and APK export without requiring another menu selection
+- Menu item 10 is the complete flow from requirements confirmation to APK output, and must end with the packaging workflow exporting an APK when `CAN_ENTER_PACK=true`
+- If inspection or packaging prerequisites fail during menu item 10, stop before APK export, report the blocker, and do not claim the full flow is complete
 - If the user requests revisions instead of confirming, revise the requirements draft and keep the trace status at `draft`
 - In menu item 10, ask only for missing game direction input when the user has not provided enough theme or subject information to generate candidates
 - Do not ask meta permission questions for the standard menu item 10 flow
@@ -114,12 +117,15 @@ Requirements planning policy:
 - Requirements planning must happen before first-time project initialization
 - Menu items 1 and 2 must route through the game-requirements-planner skill when it is available
 - The standard planning sequence is: direction input -> 10 candidate concepts -> user selects 1 concept -> full game requirements -> user confirmation -> initialization
-- The full game requirements must include gameplay loop, controls, progression or level structure, UI structure, UI asset strategy, gameplay art asset strategy, icon direction, audio direction, and implementation notes
+- The full game requirements must include gameplay loop, controls, progression or level structure, UI structure, UI asset strategy, gameplay art asset strategy, gameplay art facing and animation expectations, icon direction, audio direction, and implementation notes
+- The full game requirements must also include a gameplay diversity and content budget contract, persisted as artifacts/requirements/<game_id>/gameplay_diversity.json
 - Once the selected concept has a target game id, store the requirements trace under artifacts/requirements/<game_id>/
 - The authoritative requirements trace should include metadata.json and requirements.md
+- The authoritative requirements trace should also include gameplay_diversity.json
 - Requirements trace status should remain draft until the user confirms it, then move to confirmed
 - Menu item 10 must always surface the full requirements draft for review and explicit confirmation before initialization
 - A draft requirements trace must never trigger initialization until the user explicitly confirms it
+- Do not initialize a new project unless the gameplay diversity contract exists and passes strict validation
 - If requirements confirmation is missing, do not call the initialization workflow
 
 Project structure and acceptance policy:
@@ -141,6 +147,8 @@ Resource workflow policy:
 - UI workflow is a formal track and should define screen structure and HUD first, then implementation and polish
 - UI workflow may use binary UI assets, fonts, and licensed open-source UI resources when provenance is tracked
 - UI workflow should keep reusable external UI resources under shared_assets/ui/ first when possible
+- UI Kit is the required structural foundation, not sufficient final visual quality for menu item `10` or delivery-ready output
+- Treat `project_local_xml_ui` as placeholder-only for production-grade, menu item `10`, or delivery-ready output
 - UI workflow must produce a concrete UI brief with screen list, state map, HUD priorities, chosen ui_skin, style tags, and asset strategy before implementation
 - UI workflow should resolve assets in this order by default: style-matched shared UI pack -> import licensed open-source UI pack into shared_assets/ui/ -> project-local custom refinement
 - UI workflow must not silently fall back to generic shape-only placeholder controls for production-grade or delivery-ready requests
@@ -150,12 +158,24 @@ Resource workflow policy:
 - Gameplay art workflow should keep reusable external gameplay art resources under shared_assets/game_art/ first when possible
 - Gameplay art workflow should resolve assets in this order by default: style-matched shared game art pack -> import official free and license-clear pack into shared_assets/game_art/ -> project-local prototype drawing only when placeholders are explicitly acceptable
 - Gameplay art workflow must not silently fall back to generic circle or rectangle gameplay placeholders for production-grade or delivery-ready requests
+- Treat `project_local_canvas_art` as placeholder-only for production-grade, menu item `10`, or delivery-ready output
+- Assigned gameplay art must be used by the running game, not only copied into project assets
+- Delivery-ready gameplay art must define and implement `app/src/main/assets/game_art/runtime_art_map.json`
+- `runtime_art_map.json` should include entity roles, asset keys, default facing, facing rules, anchors, hitboxes, z-order, states, animation rules, and movement rules
+- A static bitmap that only moves by position interpolation is placeholder-quality when the entity should turn, attack, take damage, die, or otherwise animate
+- Entity facing must match movement, target, or attack direction by selecting directional frames, flipping, or rotating assets
+- Primary humanoid, animal, zombie, soldier, or creature entities should use alternating walk or run poses when moving
+- Attack-capable primary entities should use windup, action, and recovery timing or equivalent pose changes
+- If imported free assets lack required frames, use the sprite pipeline from an approved seed frame instead of inventing unrelated frames
+- Requirements planning and initialization must not silently reuse the same tiny map, same roster, or same loop template across multiple projects; use the gameplay diversity workflow to enforce subtype, content scale, and forbidden template reuse
 - Audio workflow is a formal track and should define the audio direction before generation, selection, or project wiring
 - Audio workflow should cover both BGM and SFX and keep generated assets reusable through the shared audio library
 - Audio workflow must produce a concrete audio brief with theme, mood, pacing, BGM roles, and SFX roles before assignment
 - Audio workflow should resolve assets in this order by default: style-matched shared library -> licensed fetch -> repository synthesis fallback
 - Audio workflow must not silently reuse a style-mismatched legacy track just because the role matches
 - Before inspection or packaging, explicitly determine whether icon, UI, gameplay art, and audio are deferred, placeholder-only, or complete
+- In menu item 10, APK export is mandatory after successful inspection because it is the final stage of that complete flow; do not skip Gradle build or APK export as "not explicitly requested"
+- In menu item 10, do not export APK when the first implementation clearly drops required mechanics from the confirmed requirements; repair the implementation or report the blocker first
 
 Workflow mapping:
 - Candidate concept workflow maps to game-requirements-planner

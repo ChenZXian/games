@@ -60,7 +60,7 @@ $doctor = Join-Path $root "tools\env\doctor.ps1"
 if (Test-Path $doctor) {
   Write-Host ""
   Write-Host "=== Run Doctor ==="
-  & powershell -ExecutionPolicy Bypass -File $doctor
+  & powershell -ExecutionPolicy Bypass -File $doctor -Project $Project
   if ($LASTEXITCODE -ne 0) {
     Write-Fail "Doctor failed. Stop."
     exit 2

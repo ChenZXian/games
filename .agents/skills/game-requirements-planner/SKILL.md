@@ -13,6 +13,7 @@ Read these repository rules before producing planning output:
 - docs/GAME_GENERATION_STANDARD.md
 - docs/UI_KIT_FACTORY_SPEC_v1_0.md
 - docs/REQUIREMENTS_WORKFLOW.md
+- docs/GAMEPLAY_DIVERSITY_WORKFLOW.md
 - registry/produced_games.json
 
 Planning sequence:
@@ -31,15 +32,19 @@ Menu item 10 orchestration rules:
 - When a target `game_id` is known, persist the full requirements trace as status `draft` before asking for confirmation.
 - If the user requests revisions, revise the requirements draft and keep status `draft`.
 - Only after explicit confirmation may another workflow call `tools/requirements/confirm_trace.ps1`.
+- In menu item `10`, confirmed requirements should unlock the downstream complete flow: initialization, optimization, icon, UI, gameplay art, audio, inspection, and final APK export.
+- Menu item `10` must not skip candidate selection or requirements confirmation just because its final stage is APK export.
 
 Requirements trace storage:
 - Once the selected concept has a target `game_id`, store the planning trace under `artifacts/requirements/<game_id>/`
 - The authoritative files are:
   - `metadata.json`
   - `requirements.md`
+  - `gameplay_diversity.json`
 - `candidates.md` is optional
 - Use `tools/requirements/create_candidates_trace.ps1` for the candidate stage when a target `game_id` is already known
 - Use `tools/requirements/create_requirements_trace.ps1` after one concept is selected
+- When creating the full requirements trace, also provide or write a complete gameplay diversity contract with status `passed`
 - Use `tools/requirements/confirm_trace.ps1 -ExplicitUserConfirmation` only after the user explicitly confirms the requirements
 - Use status `draft` before confirmation and `confirmed` after the user confirms the requirements
 - The inspect workflow should be able to read this trace later
@@ -50,6 +55,8 @@ Hard planning rules:
 - Do not call initialization, optimization, inspection, or packaging workflows from this skill.
 - Do not skip the 10-candidate step unless the user explicitly provides a locked concept and asks for full requirements only.
 - Do not allow project initialization if full requirements confirmation is still missing.
+- Do not allow project initialization if the gameplay diversity contract is missing, still draft, or too generic.
+- Do not produce ten candidates that are minor variants of the same layout, roster, or loop.
 - Keep all proposed games consistent with repository constraints:
   - Android Java mini-game
   - Root package policy remains com.android.boot at implementation time
@@ -66,11 +73,14 @@ Candidate concept output format:
   - One-sentence pitch
   - Core loop
   - Control scheme
+  - Genre family and sub-archetype
+  - Content-scale note
   - Distinctive hook
   - Monetization or retention potential
   - Duplicate-risk note against existing registry entries
 - Keep each concept concise but specific enough to compare.
 - Make the 10 concepts meaningfully different from one another.
+- If the user asks for one genre such as tower defense, vary the sub-archetype, route model, player decision, map model, roster, and progression model across the 10 concepts.
 
 Concept selection behavior:
 - After presenting 10 concepts, stop and wait for the user's selection.
@@ -86,6 +96,15 @@ Full requirements document format:
 - Progression structure
 - Level structure or run structure
 - Economy, rewards, drops, or upgrade model
+- Gameplay diversity and content budget:
+  - genre family and concrete sub-archetype
+  - why it is not a reskin of an existing game
+  - map or playfield model
+  - minimum map regions, routes, lanes, zones, rooms, or screens
+  - terrain, obstacle, landmark, and functional map element variety
+  - player, enemy, neutral, item, projectile, and effect roster targets
+  - mechanic variety and progression targets
+  - forbidden template reuse
 - Screen map:
   - menu
   - gameplay HUD
@@ -101,6 +120,10 @@ Full requirements document format:
   - required art roles
   - camera perspective
   - suggested shared pack family or source tier
+  - default facing and facing behavior for moving or attacking entities
+  - minimum visual states and animation expectations
+  - animation quality tier for primary entities
+  - anchor, hitbox, and z-order assumptions for primary entities
   - visual readability constraints
   - fallback rule if no suitable pack exists
 - Icon direction:
@@ -118,6 +141,12 @@ Full requirements document format:
   - important entities
   - special systems to plan early
 - Differentiation note against the current registry
+
+Gameplay diversity contract requirements:
+- Create or update `artifacts/requirements/<game_id>/gameplay_diversity.json` with status `passed` when the full requirements draft is complete enough for review.
+- The JSON contract must include the fields defined by `docs/GAMEPLAY_DIVERSITY_WORKFLOW.md`.
+- The contract must be specific enough for `tools/requirements/check_gameplay_diversity.ps1 -GameId <game_id> -Strict` to pass before confirmation.
+- If it cannot pass, keep the requirements as draft and revise the design instead of initializing the project.
 
 Full requirements quality bar:
 - Keep the design implementable as a single Android Studio Java mini-game project.

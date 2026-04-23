@@ -9,6 +9,7 @@ Read first:
 - AGENTS.md
 - docs/GAME_GENERATION_STANDARD.md
 - docs/GAME_ART_WORKFLOW.md
+- docs/GAMEPLAY_DIVERSITY_WORKFLOW.md
 - registry/produced_games.json
 
 Hard rules:
@@ -20,11 +21,20 @@ Hard rules:
 - Keep license and source provenance in `shared_assets/game_art/`
 - Do not mix gameplay art assets into `shared_assets/ui/`
 - Do not use UI packs as character, map, or prop packs
+- Treat `project_local_canvas_art` as prototype-only unless placeholder quality is explicitly acceptable
+- Production-grade gameplay art must be assigned from shared or imported license-clear packs and used by the running game
+- Production-grade gameplay art must define `app/src/main/assets/game_art/runtime_art_map.json`
+- Do not mark gameplay art complete if entity facing is mismatched with movement, target, or attack direction
+- Do not mark gameplay art complete when primary moving or attacking entities only use one static bitmap with smooth position movement
+- Primary humanoid, animal, zombie, soldier, or creature entities should use alternating walk or run frames when moving
+- Attack-capable primary entities should show windup, action, and recovery or equivalent pose changes
+- If a license-clear pack does not include required frames, use a whole-strip sprite workflow from an approved seed frame instead of independent drifting frames
 - Do not package, update registry, or change git state unless explicitly requested
 
 Workflow:
 1. Identify the target game, theme, camera perspective, and game type.
-2. Define required art roles:
+2. Read the gameplay diversity contract when it exists and preserve its asset variety budget, entity budget, map budget, and animation tier.
+3. Define required art roles:
    - character
    - enemy
    - npc
@@ -38,18 +48,33 @@ Workflow:
    - pickup
    - effect
    - background
-3. Resolve assets in this order:
+4. Resolve assets in this order:
    - style-matched shared game art pack
    - imported official free and license-clear game art pack
    - project-local prototype art only when placeholder quality is acceptable
-4. Use `tools/assets/ensure_game_art_pack.ps1` for matching.
-5. Use `tools/assets/import_game_art_pack.ps1` for importing free license-clear packs.
-6. Use `tools/assets/assign_game_art.ps1` for project assignment.
-7. Record assignment under `app/src/main/assets/game_art/game_art_assignment.json`.
+5. Use `tools/assets/ensure_game_art_pack.ps1` for matching.
+6. Use `tools/assets/import_game_art_pack.ps1` for importing free license-clear packs.
+7. Use `tools/assets/assign_game_art.ps1` for project assignment.
+8. Record assignment under `app/src/main/assets/game_art/game_art_assignment.json`.
+9. Create or update `app/src/main/assets/game_art/runtime_art_map.json`:
+   - entity roles
+   - asset keys
+   - default facing
+   - facing rule
+   - anchor
+   - hitbox
+   - z-order
+   - states
+   - animation rule
+   - movement rule
+   - animation quality tier
+10. Update runtime code so the mapped assets face, animate, and layer correctly.
+11. Set runtime map status to `integrated` only after runtime behavior matches the map.
 
 Report:
 - selected or imported pack
 - license and source URL
 - art roles covered
 - project-local asset path if assigned
+- runtime art map status
 - any remaining missing art roles

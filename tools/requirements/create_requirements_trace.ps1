@@ -14,6 +14,8 @@ param(
 
   [string]$RequirementsMarkdown = "",
   [string]$RequirementsMarkdownPath = "",
+  [string]$GameplayDiversityJson = "",
+  [string]$GameplayDiversityJsonPath = "",
 
   [switch]$Force
 )
@@ -32,4 +34,6 @@ Update-RequirementsTrace `
   -Status "draft" `
   -RequirementsMarkdown $RequirementsMarkdown `
   -RequirementsMarkdownPath $RequirementsMarkdownPath `
+  -GameplayDiversityJson $GameplayDiversityJson `
+  -GameplayDiversityJsonPath $GameplayDiversityJsonPath `
   -Force:$Force

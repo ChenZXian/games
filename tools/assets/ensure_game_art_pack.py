@@ -43,13 +43,17 @@ def choose_pack_bundle(index_data, style_tags, art_roles, game_type, max_packs):
             pack_role_tokens = set(tokenize_text(pack.get("art_roles", [])))
             pack_style_tokens = set(tokenize_text(pack.get("style_tags", [])))
             pack_game_tokens = set(tokenize_text(pack.get("recommended_game_types", [])))
+            pack_animation_tokens = set(tokenize_text(pack.get("animation_capabilities", []), pack.get("animation_states", [])))
             role_matches = len((remaining_roles or role_tokens).intersection(pack_role_tokens))
             style_matches = len(style_tokens.intersection(pack_style_tokens))
             game_matches = len(game_type_tokens.intersection(pack_game_tokens))
+            animation_matches = len((style_tokens.union(role_tokens).union(game_type_tokens)).intersection(pack_animation_tokens))
             broad_matches = len((style_tokens.union(role_tokens).union(game_type_tokens)).intersection(tokens))
             if broad_matches <= 0:
                 continue
-            score = role_matches * 7 + style_matches * 5 + game_matches * 6 + broad_matches
+            score = role_matches * 7 + style_matches * 5 + game_matches * 6 + animation_matches * 9 + broad_matches
+            if "animated" in pack.get("quality_tags", []):
+                score += 5
             if selected and role_tokens and role_matches <= 0 and score < 8:
                 continue
             if score > best_score:

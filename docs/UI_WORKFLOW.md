@@ -1,6 +1,6 @@
 # UI Workflow
 
-Version: 1.1
+Version: 1.2
 Last updated: 2026-04-22
 
 This document defines the repository UI workflow for Android Java mini-games.
@@ -24,6 +24,14 @@ The repository standard is therefore:
 - gameplay rendering in `GameView` or `SurfaceView`
 - HUD, menu, help, pause, reward, and result screens in Android View or XML layers
 - token-driven styling plus licensed binary UI assets when needed
+
+UI Kit is the mandatory foundation, not the final visual ceiling.
+
+- every project must still keep the UI Kit token contract, logical `ui_*` resources, and exactly one `ui_skin`
+- UI Kit-only XML drawables may be used for first prototypes and structural scaffolding
+- `project_local_xml_ui` means placeholder-only for production-grade, delivery-ready, or menu item `10` output
+- delivery-ready UI must apply a style-matched shared UI pack, an imported license-clear UI pack, or an equivalent custom asset layer with provenance
+- inspection should not mark UI as complete when the only evidence is local XML/token scaffolding
 
 ## 3. Scope
 
@@ -154,12 +162,12 @@ Discovery examples:
 1. Identify the target game and the requested UI scope.
 2. Define the UI structure and state map.
 3. Choose one `ui_skin`.
-4. Decide whether token-only resources are enough or whether binary assets are required.
+4. Decide whether token-only resources are enough for the current stage or whether binary assets are required.
 5. Resolve assets in this order:
    - style-matched shared UI pack
    - imported licensed open-source UI pack
    - project-local custom refinement
-6. Do not silently fall back to generic shape-only placeholder UI for production-grade or delivery-ready requests.
+6. Do not silently fall back to generic shape-only placeholder UI for production-grade, menu item `10`, or delivery-ready requests.
 7. Reuse or import shared UI resources under `shared_assets/ui/` when possible.
 8. Assign project-local resources and implement layouts or overlays.
 9. Validate required UI foundation files and resource naming.

@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Crownroad Bastion</string>
+    <string name="title_main">Crownroad Bastion</string>
+    <string name="subtitle_main">Defend a royal crossroads with towers, barracks, hero commands, and spells.</string>
+    <string name="btn_start">Start Stage</string>
+    <string name="btn_restart">Restart</string>
+    <string name="btn_resume">Resume</string>
+    <string name="btn_menu">Menu</string>
+    <string name="btn_mute">Sound On</string>
+    <string name="btn_how_to_play">How To Play</string>
+    <string name="btn_pause">Pause</string>
+    <string name="btn_archer">Archer</string>
+    <string name="btn_barracks">Barracks</string>
+    <string name="btn_cannon">Cannon</string>
+    <string name="btn_mage">Mage</string>
+    <string name="btn_shrine">Shrine</string>
+    <string name="btn_hero">Hero</string>
+    <string name="btn_reinforce">Guard</string>
+    <string name="btn_spell">Meteor</string>
+    <string name="btn_next_wave">Next Wave</string>
+    <string name="hud_lives">Lives 20</string>
+    <string name="hud_gold">Gold 180</string>
+    <string name="hud_wave">Wave 0/10</string>
+    <string name="hud_status">Plan Defense</string>
+    <string name="result_title">Result</string>
+    <string name="help_text">Stage 1 uses a real road network. Enemies enter from the forest and east road, merge at the market, split around the hill, and rejoin near the bastion. Tap build pads to place the selected tower. Tap a tower to upgrade it. Use Hero then tap a road node to move the knight. Guard summons temporary blockers. Meteor hits clustered enemies at merge points. Bats ignore barracks, shamans heal, and rams punish weak gates.</string>
+</resources>

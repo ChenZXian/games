@@ -39,9 +39,34 @@
   ],
   "quality_tags": [
     "production",
+    "animated",
+    "spritesheet",
     "free",
     "open",
     "cc0"
+  ],
+  "animation_capabilities": [
+    "side_view",
+    "humanoid_walk_strip",
+    "enemy_walk",
+    "enemy_fly",
+    "enemy_bite",
+    "enemy_hit",
+    "enemy_dead",
+    "json_frame_metadata",
+    "xml_spritesheet_metadata",
+    "horizontal_flip"
+  ],
+  "animation_states": [
+    "stand",
+    "walk",
+    "jump",
+    "hurt",
+    "duck",
+    "fly",
+    "bite",
+    "hit",
+    "dead"
   ],
   "assets_path": "assets",
   "preview_files": [

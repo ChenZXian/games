@@ -1,0 +1,20 @@
+{
+    "version":  1,
+    "game_id":  "crownroad_bastion",
+    "title":  "Crownroad Bastion",
+    "direction":  "complex kingdom tower defense with forked road maps",
+    "selected_concept":  "Crownroad Bastion - a Kingdom Rush inspired complex road-network tower defense with multiple entrances, merge-split paths, fixed build pads, barracks interception, hero movement, and area skills; not a simple horizontal three-lane map.",
+    "status":  "confirmed",
+    "ui_skin":  "skin_cartoon_light",
+    "current_stage":  "requirements",
+    "created_at_utc":  "2026-04-23T07:24:04Z",
+    "updated_at_utc":  "2026-04-23T07:29:02Z",
+    "selected_at_utc":  "2026-04-23T07:24:04Z",
+    "confirmed_at_utc":  "2026-04-23T07:29:02Z",
+    "files":  {
+                  "metadata_json":  "artifacts/requirements/crownroad_bastion/metadata.json",
+                  "requirements_md":  "artifacts/requirements/crownroad_bastion/requirements.md",
+                  "candidates_md":  "",
+                  "gameplay_diversity_json":  "artifacts/requirements/crownroad_bastion/gameplay_diversity.json"
+              }
+}

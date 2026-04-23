@@ -1,6 +1,6 @@
 # Inspect Workflow
 
-Version: 1.1
+Version: 1.3
 Last updated: 2026-04-23
 
 This document defines the repository inspection workflow for Android Java mini-games.
@@ -22,9 +22,11 @@ The inspect workflow may check:
 - project validation status
 - registry presence
 - requirements trace presence
+- gameplay diversity contract status
 - icon track status
 - UI track status
 - gameplay art track status
+- gameplay art runtime-map status
 - audio track status
 - existing APK export history
 
@@ -61,7 +63,23 @@ The inspect workflow should report resource-track status using the labels below.
 - `confirmed`
 - `untracked`
 
-### 4.2 Icon, UI, Gameplay Art, Audio
+### 4.2 Gameplay Diversity
+
+- `passed`
+- `draft`
+- `needs_revision`
+- `missing`
+- `invalid`
+
+Meaning:
+
+- `passed`: gameplay diversity contract exists and is ready to gate implementation and delivery
+- `draft`: contract exists but should not gate delivery yet
+- `needs_revision`: contract is known to be too generic, too small, or too similar to an existing project
+- `missing`: no gameplay diversity contract was found
+- `invalid`: contract JSON could not be parsed or has no status
+
+### 4.3 Icon, UI, Gameplay Art, Audio
 
 - `complete`
 - `placeholder_only`
@@ -72,6 +90,22 @@ Meaning:
 - `complete`: the workflow track has clear project evidence and expected shared/export evidence
 - `placeholder_only`: the project has some local implementation, but tracking or export evidence is incomplete
 - `deferred`: the workflow track has not been completed for the current project
+
+### 4.4 Gameplay Art Runtime
+
+- `integrated`
+- `draft`
+- `needs_revision`
+- `missing`
+- `invalid`
+
+Meaning:
+
+- `integrated`: runtime mapping exists and is ready for delivery checks
+- `draft`: assets are assigned but runtime facing, animation, anchor, hitbox, and state mapping is not finalized
+- `needs_revision`: runtime mapping exists but has a known mismatch
+- `missing`: no runtime mapping was found
+- `invalid`: runtime mapping JSON could not be parsed or has no status
 
 ## 5. Gating Rules
 
@@ -90,10 +124,14 @@ The inspect workflow should report two top-level conclusions.
 `true` only when all of the following are true:
 
 - `CAN_ENTER_PACK=true`
+- requirements status is `confirmed`
+- gameplay diversity status is `passed`
+- implementation fidelity status is `passed`
 - icon status is `complete`
-- UI status is not `deferred`
-- gameplay art status is not `deferred`
-- audio status is not `deferred`
+- UI status is `complete`
+- gameplay art status is `complete`
+- gameplay art runtime status is `integrated`, `passed`, or `complete`
+- audio status is `complete`
 
 `DELIVERY_READY` is stricter than `CAN_ENTER_PACK`.
 It is meant to describe release completeness, not just technical pack readiness.
@@ -109,9 +147,12 @@ Every inspect run should report:
 - `CAN_ENTER_PACK`
 - `DELIVERY_READY`
 - `REQUIREMENTS_STATUS`
+- `GAMEPLAY_DIVERSITY_STATUS`
+- `IMPLEMENTATION_FIDELITY_STATUS`
 - `ICON_STATUS`
 - `UI_STATUS`
 - `GAME_ART_STATUS`
+- `GAME_ART_RUNTIME_STATUS`
 - `AUDIO_STATUS`
 - `NEXT_STEP`
 
