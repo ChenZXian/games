@@ -1,25 +1,25 @@
 {
     "version":  1,
-    "generated_at_utc":  "2026-04-23T06:40:26Z",
+    "generated_at_utc":  "2026-04-24T07:32:56Z",
     "grouping":  "created_at_month",
     "path_policy":  "active projects remain direct children under games/\u003cgame_id\u003e",
     "months":  [
                    {
                        "month":  "2026-04",
-                       "total":  8,
+                       "total":  10,
                        "games":  [
+                                     {
+                                         "id":  "minecart_bastion",
+                                         "name":  "Minecart Bastion",
+                                         "created_at":  "2026-04-23",
+                                         "path":  "games/minecart_bastion",
+                                         "ui_skin":  "skin_post_apocalypse"
+                                     },
                                      {
                                          "id":  "island_supply_command",
                                          "name":  "Island Supply Command",
                                          "created_at":  "2026-04-22",
                                          "path":  "games/island_supply_command",
-                                         "ui_skin":  "skin_cartoon_light"
-                                     },
-                                     {
-                                         "id":  "pasture_parade_deluxe",
-                                         "name":  "Pasture Parade Deluxe",
-                                         "created_at":  "2026-04-21",
-                                         "path":  "games/pasture_parade_deluxe",
                                          "ui_skin":  "skin_cartoon_light"
                                      },
                                      {
@@ -30,11 +30,18 @@
                                          "ui_skin":  "skin_military_tech"
                                      },
                                      {
-                                         "id":  "minecart_bastion",
-                                         "name":  "Minecart Bastion",
-                                         "created_at":  "2026-04-23",
-                                         "path":  "games/minecart_bastion",
+                                         "id":  "ashen_frontier",
+                                         "name":  "Ashen Frontier",
+                                         "created_at":  "2026-04-24",
+                                         "path":  "games/ashen_frontier",
                                          "ui_skin":  "skin_post_apocalypse"
+                                     },
+                                     {
+                                         "id":  "crownroad_bastion",
+                                         "name":  "Crownroad Bastion",
+                                         "created_at":  "2026-04-23",
+                                         "path":  "games/crownroad_bastion",
+                                         "ui_skin":  "skin_cartoon_light"
                                      },
                                      {
                                          "id":  "relic_blade_trials",
@@ -51,18 +58,25 @@
                                          "ui_skin":  "skin_neon_future"
                                      },
                                      {
-                                         "id":  "bloom_orchard",
-                                         "name":  "Bloom Orchard",
-                                         "created_at":  "2026-04-21",
-                                         "path":  "games/bloom_orchard",
-                                         "ui_skin":  "skin_cartoon_light"
-                                     },
-                                     {
                                          "id":  "clockwork_courier",
                                          "name":  "Clockwork Courier",
                                          "created_at":  "2026-04-21",
                                          "path":  "games/clockwork_courier",
                                          "ui_skin":  "skin_neon_future"
+                                     },
+                                     {
+                                         "id":  "pasture_parade_deluxe",
+                                         "name":  "Pasture Parade Deluxe",
+                                         "created_at":  "2026-04-21",
+                                         "path":  "games/pasture_parade_deluxe",
+                                         "ui_skin":  "skin_cartoon_light"
+                                     },
+                                     {
+                                         "id":  "bloom_orchard",
+                                         "name":  "Bloom Orchard",
+                                         "created_at":  "2026-04-21",
+                                         "path":  "games/bloom_orchard",
+                                         "ui_skin":  "skin_cartoon_light"
                                      }
                                  ]
                    },

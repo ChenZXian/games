@@ -1,6 +1,6 @@
 # Game Art Workflow
 
-Version: 1.3
+Version: 1.4
 Last updated: 2026-04-23
 
 This document defines the repository workflow for reusable gameplay art assets.
@@ -67,6 +67,7 @@ Reusable game art assets should enter the shared library first:
 
 - `shared_assets/game_art/index.json`
 - `shared_assets/game_art/animation_catalog.json`
+- `shared_assets/game_art/source_catalog.json`
 - `shared_assets/game_art/packs/<pack_id>/manifest.json`
 - `shared_assets/game_art/packs/<pack_id>/LICENSE`
 - `shared_assets/game_art/packs/<pack_id>/NOTICE`
@@ -119,10 +120,13 @@ Common art roles:
 Default resolution order:
 
 1. style-matched shared game art pack
-2. official free and license-clear source import into `shared_assets/game_art/`
-3. project-local custom drawing only when the project is still prototype-grade
+2. global source-catalog search across official free and license-clear packs
+3. official free and license-clear source import into `shared_assets/game_art/`
+4. project-local custom drawing only when the project is still prototype-grade
 
 Delivery-ready projects should not silently fall back to shape-only gameplay placeholders.
+
+Selection should apply a reuse penalty when the same pack has already been assigned to multiple projects, so similar prompts do not keep collapsing to the same small subset of packs.
 
 An assignment record is not enough by itself.
 
@@ -228,6 +232,7 @@ Recommended usage:
 
 - list shared packs with `tools/assets/assign_game_art.ps1 -ListPacks`
 - resolve a matching pack with `tools/assets/ensure_game_art_pack.ps1`
+- inspect source-catalog candidates through `GAME_ART_SOURCE_CANDIDATES` output when local packs are weak or overused
 - assign a selected pack to a project with `tools/assets/assign_game_art.ps1`
 - import a license-clear pack with `tools/assets/import_game_art_pack.ps1`
 

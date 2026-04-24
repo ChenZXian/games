@@ -27,6 +27,7 @@ $traceDir = Join-Path $root "artifacts\requirements\$GameId"
 $metadataPath = Join-Path $traceDir "metadata.json"
 $requirementsPath = Join-Path $traceDir "requirements.md"
 $gameplayDiversityPath = Join-Path $traceDir "gameplay_diversity.json"
+$visualIdentityPath = Join-Path $traceDir "visual_identity.json"
 $existing = Read-TraceMetadata $metadataPath
 
 if ($null -eq $existing) {
@@ -49,6 +50,12 @@ $checkerPath = Join-Path $PSScriptRoot "check_gameplay_diversity.py"
 python $checkerPath --path $gameplayDiversityPath --strict
 if ($LASTEXITCODE -ne 0) {
   throw "Cannot confirm requirements trace until gameplay_diversity.json passes strict validation."
+}
+
+$visualCheckerPath = Join-Path $PSScriptRoot "check_visual_identity.py"
+python $visualCheckerPath --path $visualIdentityPath --strict
+if ($LASTEXITCODE -ne 0) {
+  throw "Cannot confirm requirements trace until visual_identity.json passes strict validation."
 }
 
 Update-RequirementsTrace `

@@ -188,7 +188,8 @@
       ],
       "path": "packs/kenney_roguelike_rpg_pack",
       "used_by": [
-        "empire_wall_guard"
+        "empire_wall_guard",
+        "crownroad_bastion"
       ],
       "validated_with": []
     },
@@ -299,7 +300,8 @@
       ],
       "path": "packs/kenney_top_down_shooter",
       "used_by": [
-        "minecart_bastion"
+        "minecart_bastion",
+        "ashen_frontier"
       ],
       "validated_with": []
     },
@@ -361,7 +363,9 @@
       "path": "packs/kenney_tower_defense_top_down",
       "used_by": [
         "minecart_bastion",
-        "empire_wall_guard"
+        "empire_wall_guard",
+        "crownroad_bastion",
+        "ashen_frontier"
       ],
       "validated_with": []
     },
@@ -535,6 +539,243 @@
         "cc0"
       ],
       "path": "packs/kenney_simple_space",
+      "used_by": [],
+      "validated_with": []
+    },
+    {
+      "pack_id": "kenney_new_platformer_pack",
+      "title": "Kenney New Platformer Pack",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://kenney.nl/assets/new-platformer-pack",
+      "asset_types": [
+        "png",
+        "svg",
+        "txt",
+        "xml"
+      ],
+      "art_roles": [
+        "character",
+        "enemy",
+        "tileset",
+        "terrain",
+        "item",
+        "pickup",
+        "effect",
+        "background"
+      ],
+      "recommended_game_types": [
+        "platformer",
+        "runner",
+        "side",
+        "scroller",
+        "action",
+        "adventure"
+      ],
+      "style_tags": [
+        "cartoon",
+        "platformer",
+        "forest",
+        "cave",
+        "character",
+        "terrain"
+      ],
+      "quality_tags": [
+        "production",
+        "animated",
+        "free",
+        "open",
+        "cc0",
+        "spritesheet"
+      ],
+      "path": "packs/kenney_new_platformer_pack",
+      "used_by": [],
+      "validated_with": []
+    },
+    {
+      "pack_id": "kenney_desert_shooter_pack",
+      "title": "Kenney Desert Shooter Pack",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://kenney.nl/assets/desert-shooter-pack",
+      "asset_types": [
+        "png",
+        "txt"
+      ],
+      "art_roles": [
+        "character",
+        "enemy",
+        "prop",
+        "vehicle",
+        "projectile",
+        "tileset",
+        "terrain"
+      ],
+      "recommended_game_types": [
+        "top",
+        "down",
+        "shooter",
+        "survival",
+        "action",
+        "desert"
+      ],
+      "style_tags": [
+        "desert",
+        "top",
+        "down",
+        "shooter",
+        "modern",
+        "squad",
+        "vehicle"
+      ],
+      "quality_tags": [
+        "production",
+        "animated",
+        "free",
+        "open",
+        "cc0"
+      ],
+      "path": "packs/kenney_desert_shooter_pack",
+      "used_by": [
+        "ashen_frontier"
+      ],
+      "validated_with": []
+    },
+    {
+      "pack_id": "kenney_platformer_pack_medieval",
+      "title": "Kenney Platformer Pack Medieval",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://kenney.nl/assets/platformer-pack-medieval",
+      "asset_types": [
+        "png",
+        "svg",
+        "txt",
+        "xml"
+      ],
+      "art_roles": [
+        "tileset",
+        "terrain",
+        "building",
+        "prop",
+        "item",
+        "background"
+      ],
+      "recommended_game_types": [
+        "platformer",
+        "runner",
+        "side",
+        "scroller",
+        "medieval",
+        "adventure"
+      ],
+      "style_tags": [
+        "medieval",
+        "castle",
+        "platformer",
+        "cartoon",
+        "wood",
+        "stone"
+      ],
+      "quality_tags": [
+        "production",
+        "free",
+        "open",
+        "cc0"
+      ],
+      "path": "packs/kenney_platformer_pack_medieval",
+      "used_by": [],
+      "validated_with": []
+    },
+    {
+      "pack_id": "kenney_fish_pack",
+      "title": "Kenney Fish Pack",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://kenney.nl/assets/fish-pack",
+      "asset_types": [
+        "png",
+        "svg",
+        "txt",
+        "xml"
+      ],
+      "art_roles": [
+        "animal",
+        "character",
+        "npc",
+        "enemy",
+        "background"
+      ],
+      "recommended_game_types": [
+        "fishing",
+        "underwater",
+        "collection",
+        "casual",
+        "animal"
+      ],
+      "style_tags": [
+        "fish",
+        "underwater",
+        "ocean",
+        "animal",
+        "cartoon",
+        "cute"
+      ],
+      "quality_tags": [
+        "production",
+        "free",
+        "open",
+        "cc0"
+      ],
+      "path": "packs/kenney_fish_pack",
+      "used_by": [],
+      "validated_with": []
+    },
+    {
+      "pack_id": "kenney_pirate_pack",
+      "title": "Kenney Pirate Pack",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://kenney.nl/assets/pirate-pack",
+      "asset_types": [
+        "png",
+        "svg",
+        "txt",
+        "xml"
+      ],
+      "art_roles": [
+        "character",
+        "enemy",
+        "ship",
+        "terrain",
+        "building",
+        "prop",
+        "item",
+        "background"
+      ],
+      "recommended_game_types": [
+        "pirate",
+        "naval",
+        "adventure",
+        "top",
+        "down",
+        "action"
+      ],
+      "style_tags": [
+        "pirate",
+        "ship",
+        "sea",
+        "island",
+        "cartoon",
+        "adventure"
+      ],
+      "quality_tags": [
+        "production",
+        "free",
+        "open",
+        "cc0"
+      ],
+      "path": "packs/kenney_pirate_pack",
       "used_by": [],
       "validated_with": []
     }

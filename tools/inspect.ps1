@@ -109,6 +109,7 @@ $validatorReady = $true
 $registryReady = $true
 $requirementsStatus = "untracked"
 $gameplayDiversityStatus = "missing"
+$visualIdentityStatus = "missing"
 $implementationFidelityStatus = "untracked"
 $iconStatus = "deferred"
 $uiStatus = "deferred"
@@ -222,6 +223,7 @@ $requirementsMetadataPath = Join-Path $requirementsDir "metadata.json"
 $requirementsMarkdownPath = Join-Path $requirementsDir "requirements.md"
 $requirementsCandidatesPath = Join-Path $requirementsDir "candidates.md"
 $gameplayDiversityPath = Join-Path $requirementsDir "gameplay_diversity.json"
+$visualIdentityPath = Join-Path $requirementsDir "visual_identity.json"
 $requirementsMetadata = $null
 if (Test-Path $requirementsMetadataPath) {
   try {
@@ -277,6 +279,33 @@ if (Test-Path $gameplayDiversityPath) {
 } else {
   $gameplayDiversityStatus = "missing"
   Write-Warn "Gameplay diversity contract is missing: artifacts/requirements/$gameId/gameplay_diversity.json"
+  $warnCount++
+}
+
+if (Test-Path $visualIdentityPath) {
+  try {
+    $visualIdentity = Get-Content -LiteralPath $visualIdentityPath -Raw | ConvertFrom-Json
+    $visualIdentityStatus = [string]$visualIdentity.status
+    if ([string]::IsNullOrWhiteSpace($visualIdentityStatus)) {
+      $visualIdentityStatus = "invalid"
+      Write-Warn "Visual identity contract status is missing: artifacts/requirements/$gameId/visual_identity.json"
+      $warnCount++
+    } elseif ($visualIdentityStatus -eq "passed") {
+      Write-Ok "Visual identity: passed"
+      $passCount++
+    } else {
+      Write-Warn "Visual identity: $visualIdentityStatus"
+      $warnCount++
+    }
+  }
+  catch {
+    $visualIdentityStatus = "invalid"
+    Write-Warn "Visual identity contract JSON is invalid: artifacts/requirements/$gameId/visual_identity.json"
+    $warnCount++
+  }
+} else {
+  $visualIdentityStatus = "missing"
+  Write-Warn "Visual identity contract is missing: artifacts/requirements/$gameId/visual_identity.json"
   $warnCount++
 }
 
@@ -548,7 +577,7 @@ if ($apkFiles.Count -gt 0) {
 }
 
 $canEnterPack = $doctorReady -and $validatorReady -and $registryReady
-$deliveryReady = $canEnterPack -and ($requirementsStatus -eq "confirmed") -and ($gameplayDiversityStatus -eq "passed") -and ($implementationFidelityStatus -eq "passed") -and ($iconStatus -eq "complete") -and ($uiStatus -eq "complete") -and ($gameArtStatus -eq "complete") -and ($audioStatus -eq "complete")
+$deliveryReady = $canEnterPack -and ($requirementsStatus -eq "confirmed") -and ($gameplayDiversityStatus -eq "passed") -and ($visualIdentityStatus -eq "passed") -and ($implementationFidelityStatus -eq "passed") -and ($iconStatus -eq "complete") -and ($uiStatus -eq "complete") -and ($gameArtStatus -eq "complete") -and ($audioStatus -eq "complete")
 
 $nextStep = ""
 if (-not $doctorReady) {
@@ -565,6 +594,8 @@ if (-not $doctorReady) {
   $nextStep = "Confirm the requirements trace before treating the project as delivery-ready"
 } elseif ($gameplayDiversityStatus -ne "passed") {
   $nextStep = "Complete the gameplay diversity and content budget contract before release delivery"
+} elseif ($visualIdentityStatus -ne "passed") {
+  $nextStep = "Complete the visual identity contract before icon and UI release delivery"
 } elseif ($implementationFidelityStatus -ne "passed") {
   $nextStep = "Review and repair implementation fidelity against the confirmed requirements before release delivery"
 } elseif ($iconStatus -eq "deferred" -or $iconStatus -eq "placeholder_only") {
@@ -587,6 +618,7 @@ Write-Host "CAN_ENTER_PACK=$($canEnterPack.ToString().ToLower())"
 Write-Host "DELIVERY_READY=$($deliveryReady.ToString().ToLower())"
 Write-Host "REQUIREMENTS_STATUS=$(Get-StatusValue $requirementsStatus)"
 Write-Host "GAMEPLAY_DIVERSITY_STATUS=$(Get-StatusValue $gameplayDiversityStatus)"
+Write-Host "VISUAL_IDENTITY_STATUS=$(Get-StatusValue $visualIdentityStatus)"
 Write-Host "IMPLEMENTATION_FIDELITY_STATUS=$(Get-StatusValue $implementationFidelityStatus)"
 Write-Host "ICON_STATUS=$(Get-StatusValue $iconStatus)"
 Write-Host "UI_STATUS=$(Get-StatusValue $uiStatus)"

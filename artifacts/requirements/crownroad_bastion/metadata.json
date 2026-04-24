@@ -15,6 +15,7 @@
                   "metadata_json":  "artifacts/requirements/crownroad_bastion/metadata.json",
                   "requirements_md":  "artifacts/requirements/crownroad_bastion/requirements.md",
                   "candidates_md":  "",
-                  "gameplay_diversity_json":  "artifacts/requirements/crownroad_bastion/gameplay_diversity.json"
+                  "gameplay_diversity_json":  "artifacts/requirements/crownroad_bastion/gameplay_diversity.json",
+                  "visual_identity_json":  "artifacts/requirements/crownroad_bastion/visual_identity.json"
               }
 }

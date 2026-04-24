@@ -1,0 +1,314 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "pack_id": "kenney_new_platformer_pack",
+      "title": "Kenney New Platformer Pack",
+      "source_url": "https://www.kenney.nl/assets/new-platformer-pack",
+      "download_page_url": "https://www.kenney.nl/assets/new-platformer-pack",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "art_roles": [
+        "character",
+        "enemy",
+        "tileset",
+        "terrain",
+        "item",
+        "pickup",
+        "effect",
+        "background"
+      ],
+      "recommended_game_types": [
+        "platformer",
+        "runner",
+        "side",
+        "scroller",
+        "action",
+        "adventure"
+      ],
+      "style_tags": [
+        "cartoon",
+        "platformer",
+        "forest",
+        "cave",
+        "character",
+        "terrain"
+      ],
+      "quality_tags": [
+        "production",
+        "animated",
+        "free",
+        "open",
+        "cc0"
+      ]
+    },
+    {
+      "pack_id": "kenney_platformer_pack_medieval",
+      "title": "Kenney Platformer Pack Medieval",
+      "source_url": "https://www.kenney.nl/assets/platformer-pack-medieval",
+      "download_page_url": "https://www.kenney.nl/assets/platformer-pack-medieval",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "art_roles": [
+        "tileset",
+        "terrain",
+        "building",
+        "prop",
+        "item",
+        "background"
+      ],
+      "recommended_game_types": [
+        "platformer",
+        "runner",
+        "side",
+        "scroller",
+        "medieval",
+        "adventure"
+      ],
+      "style_tags": [
+        "medieval",
+        "castle",
+        "platformer",
+        "cartoon",
+        "wood",
+        "stone"
+      ],
+      "quality_tags": [
+        "production",
+        "free",
+        "open",
+        "cc0"
+      ]
+    },
+    {
+      "pack_id": "kenney_desert_shooter_pack",
+      "title": "Kenney Desert Shooter Pack",
+      "source_url": "https://www.kenney.nl/assets/desert-shooter-pack",
+      "download_page_url": "https://www.kenney.nl/assets/desert-shooter-pack",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "art_roles": [
+        "character",
+        "enemy",
+        "prop",
+        "vehicle",
+        "projectile",
+        "tileset",
+        "terrain"
+      ],
+      "recommended_game_types": [
+        "top",
+        "down",
+        "shooter",
+        "survival",
+        "action",
+        "desert"
+      ],
+      "style_tags": [
+        "desert",
+        "top",
+        "down",
+        "shooter",
+        "modern",
+        "squad",
+        "vehicle"
+      ],
+      "quality_tags": [
+        "production",
+        "animated",
+        "free",
+        "open",
+        "cc0"
+      ]
+    },
+    {
+      "pack_id": "kenney_top_down_tanks_redux",
+      "title": "Kenney Top-down Tanks Redux",
+      "source_url": "https://www.kenney.nl/assets/top-down-tanks-redux",
+      "download_page_url": "https://www.kenney.nl/assets/top-down-tanks-redux",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "art_roles": [
+        "vehicle",
+        "enemy",
+        "character",
+        "projectile",
+        "terrain",
+        "prop"
+      ],
+      "recommended_game_types": [
+        "top",
+        "down",
+        "tank",
+        "shooter",
+        "arena",
+        "action"
+      ],
+      "style_tags": [
+        "tank",
+        "top",
+        "down",
+        "combat",
+        "vehicle",
+        "arena"
+      ],
+      "quality_tags": [
+        "production",
+        "free",
+        "open",
+        "cc0"
+      ]
+    },
+    {
+      "pack_id": "kenney_micro_roguelike",
+      "title": "Kenney Micro Roguelike",
+      "source_url": "https://www.kenney.nl/assets/micro-roguelike",
+      "download_page_url": "https://www.kenney.nl/assets/micro-roguelike",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "art_roles": [
+        "tileset",
+        "terrain",
+        "character",
+        "enemy",
+        "item",
+        "background"
+      ],
+      "recommended_game_types": [
+        "roguelike",
+        "rpg",
+        "dungeon",
+        "top",
+        "down",
+        "puzzle"
+      ],
+      "style_tags": [
+        "roguelike",
+        "fantasy",
+        "pixel",
+        "dungeon",
+        "retro"
+      ],
+      "quality_tags": [
+        "production",
+        "free",
+        "open",
+        "cc0"
+      ]
+    },
+    {
+      "pack_id": "kenney_rpg_urban_pack",
+      "title": "Kenney RPG Urban Pack",
+      "source_url": "https://www.kenney.nl/assets/rpg-urban-pack",
+      "download_page_url": "https://www.kenney.nl/assets/rpg-urban-pack",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "art_roles": [
+        "tileset",
+        "terrain",
+        "character",
+        "enemy",
+        "building",
+        "prop",
+        "item"
+      ],
+      "recommended_game_types": [
+        "rpg",
+        "urban",
+        "top",
+        "down",
+        "adventure",
+        "management"
+      ],
+      "style_tags": [
+        "rpg",
+        "urban",
+        "city",
+        "pixel",
+        "character"
+      ],
+      "quality_tags": [
+        "production",
+        "free",
+        "open",
+        "cc0"
+      ]
+    },
+    {
+      "pack_id": "kenney_fish_pack",
+      "title": "Kenney Fish Pack",
+      "source_url": "https://www.kenney.nl/assets/fish-pack",
+      "download_page_url": "https://www.kenney.nl/assets/fish-pack",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "art_roles": [
+        "animal",
+        "character",
+        "npc",
+        "enemy",
+        "background"
+      ],
+      "recommended_game_types": [
+        "fishing",
+        "underwater",
+        "collection",
+        "casual",
+        "animal"
+      ],
+      "style_tags": [
+        "fish",
+        "underwater",
+        "ocean",
+        "animal",
+        "cartoon",
+        "cute"
+      ],
+      "quality_tags": [
+        "production",
+        "free",
+        "open",
+        "cc0"
+      ]
+    },
+    {
+      "pack_id": "kenney_pirate_pack",
+      "title": "Kenney Pirate Pack",
+      "source_url": "https://www.kenney.nl/assets/pirate-pack",
+      "download_page_url": "https://www.kenney.nl/assets/pirate-pack",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "art_roles": [
+        "character",
+        "enemy",
+        "ship",
+        "terrain",
+        "building",
+        "prop",
+        "item",
+        "background"
+      ],
+      "recommended_game_types": [
+        "pirate",
+        "naval",
+        "adventure",
+        "top",
+        "down",
+        "action"
+      ],
+      "style_tags": [
+        "pirate",
+        "ship",
+        "sea",
+        "island",
+        "cartoon",
+        "adventure"
+      ],
+      "quality_tags": [
+        "production",
+        "free",
+        "open",
+        "cc0"
+      ]
+    }
+  ]
+}

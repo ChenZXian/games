@@ -6,6 +6,7 @@ param(
   [string]$Title,
   [string]$SourcePath = "",
   [string]$DownloadUrl = "",
+  [string]$DownloadPageUrl = "",
   [Parameter(Mandatory=$true)]
   [string]$SourceUrl,
   [string]$LibraryRoot = "shared_assets/game_art",
@@ -34,5 +35,6 @@ $argsList = @(
 )
 if ($SourcePath) { $argsList += @("--source-path", $SourcePath) }
 if ($DownloadUrl) { $argsList += @("--download-url", $DownloadUrl) }
+if ($DownloadPageUrl) { $argsList += @("--download-page-url", $DownloadPageUrl) }
 if ($Replace) { $argsList += "--replace" }
 python $script @argsList

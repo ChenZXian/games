@@ -34,6 +34,7 @@ Always read and follow these files before making project changes:
 - `docs/UI_KIT_FACTORY_SPEC_v1_0.md`
 - `docs/PROJECT_ACCEPTANCE_BASELINE.md`
 - `docs/GAMEPLAY_DIVERSITY_WORKFLOW.md`
+- `docs/VISUAL_IDENTITY_WORKFLOW.md`
 - `registry/produced_games.json`
 
 These files define:
@@ -43,6 +44,7 @@ These files define:
 - UI contract
 - generic project acceptance baseline
 - gameplay diversity and content-scale baseline
+- UI and icon visual identity baseline
 - launcher and package constraints
 - game uniqueness requirements
 
@@ -121,6 +123,7 @@ Planning state flow:
 Machine-readable planning contract:
 
 - `artifacts/requirements/<game_id>/gameplay_diversity.json`
+- `artifacts/requirements/<game_id>/visual_identity.json`
 
 This contract defines:
 
@@ -130,6 +133,16 @@ This contract defines:
 - entity and mechanic budgets
 - asset variety budget
 - forbidden template reuse
+
+The visual identity contract defines:
+
+- UI layout archetype
+- HUD composition
+- palette and material language
+- typography direction
+- UI pack strategy
+- icon subject and silhouette
+- forbidden UI and icon reuse
 
 ### 2. Project Initialization
 
@@ -167,6 +180,8 @@ Icon outputs:
 - in-project launcher icon resources under `games/<game_id>/app/src/main/res/`
 - upload-ready exports under `artifacts/icons/<game_id>/`
 
+For delivery-ready output, icon work should follow `visual_identity.json` and avoid reusing another game's subject, silhouette, source object, or exported upload icon.
+
 ### 5. UI Workflow
 
 UI is now a dedicated workflow instead of incidental polish.
@@ -178,11 +193,13 @@ Current UI workflow goals:
 - support a hybrid Java game UI model with `GameView` or `SurfaceView` for gameplay and Android View or XML overlays for HUD and screens
 - allow licensed binary UI assets, fonts, and open-source UI resource packs
 - keep reusable external UI resources in the shared library first when possible
+- search the shared library first, then `shared_assets/ui/source_catalog.json`, instead of repeatedly reusing the same few imported packs
 - require a concrete UI brief before pack selection or implementation
 - resolve in this order: style-matched shared UI pack -> imported licensed open-source UI pack -> project-local custom refinement
 - treat UI Kit as the required foundation, not final visual quality for menu item `10` or delivery-ready output
 - treat `project_local_xml_ui` as placeholder-only for production-grade requests
 - avoid silently shipping shape-only placeholder UI for production-grade requests
+- follow `visual_identity.json` so games do not repeatedly share the same HUD frame, bottom command strip, pack preset, palette, or screen motif
 
 Current UI workflow:
 
@@ -195,6 +212,7 @@ Current UI workflow:
 Shared library target:
 
 - `shared_assets/ui/`
+- `shared_assets/ui/source_catalog.json`
 
 ### 6. Game Art Workflow
 
@@ -206,6 +224,7 @@ Current gameplay art workflow goals:
 - use only free and license-clear sources by default
 - prefer CC0 or public-domain equivalent packs
 - keep reusable external gameplay art resources in the shared library first when possible
+- search the shared library first, then `shared_assets/game_art/source_catalog.json`, instead of repeatedly falling back to the same few imported packs
 - require a concrete art brief before pack selection or implementation
 - resolve in this order: style-matched shared game art pack -> imported official free and license-clear pack -> project-local prototype drawing only when placeholders are acceptable
 - require assigned gameplay art to be used by the running game for delivery-ready output
@@ -228,6 +247,7 @@ Shared library target:
 
 - `shared_assets/game_art/`
 - `shared_assets/game_art/animation_catalog.json`
+- `shared_assets/game_art/source_catalog.json`
 
 ### 7. Audio Workflow
 
@@ -263,7 +283,7 @@ Inspect is a dedicated pre-packaging status workflow.
 Current inspect workflow goals:
 
 - report whether a project can enter packaging
-- summarize requirements, gameplay diversity, icon, UI, gameplay art, and audio completion state
+- summarize requirements, gameplay diversity, visual identity, icon, UI, gameplay art, and audio completion state
 - surface the next most useful action without modifying project files
 
 Current inspect workflow:
@@ -399,3 +419,4 @@ Recommended next improvements:
 4. validate the new icon workflow on a real game project
 5. validate the full pipeline mode on a brand new game from planning through packaging
 6. validate the gameplay diversity contract on multiple genres, not only tower defense
+7. validate the visual identity contract on repeated same-genre projects

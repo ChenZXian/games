@@ -1,6 +1,6 @@
 # Project Acceptance Baseline
 
-Version: 1.3
+Version: 1.4
 Last updated: 2026-04-23
 
 This document defines the generic structure and acceptance baseline for any Android Java mini-game in this repository.
@@ -76,7 +76,26 @@ For delivery-ready output, the project should implement the confirmed content bu
 
 Tower defense is a common failure case, but the rule is generic. A new runner, shooter, puzzle, farming, action, or survival game must also define and preserve its own map, entity, mechanic, and asset-variety budgets.
 
-## 6. Presentation Baseline
+## 6. Visual Identity Baseline
+
+Every new delivery-ready game should satisfy the visual identity contract defined in `docs/VISUAL_IDENTITY_WORKFLOW.md`.
+
+The UI and icon should not be thin visual reuse from another generated project. They should differ by meaningful visual dimensions such as:
+
+- UI layout archetype
+- HUD composition
+- navigation model
+- palette signature
+- material language
+- typography direction
+- screen-specific motifs
+- icon subject
+- icon silhouette
+- icon foreground and background composition
+
+Using the same `ui_skin`, the same top HUD pill layout, the same bottom command strip, or the same icon source object across multiple games is not enough for delivery-ready output unless the visual identity contract explicitly justifies it and changes other major axes.
+
+## 7. Presentation Baseline
 
 A project is not considered visually complete if it relies only on bare placeholder presentation.
 
@@ -94,7 +113,7 @@ For a delivery-ready result, the project should have:
 - a defined audio direction, covering BGM and SFX when the game type needs them
 - visual and interaction quality above plain prototype level
 
-## 7. Requirements And Inspection Baseline
+## 8. Requirements And Inspection Baseline
 
 Before first-time initialization, the project should go through:
 
@@ -108,6 +127,7 @@ The expected readiness ladder is:
 
 - requirements trace is present
 - gameplay diversity contract is present and passed for delivery-ready output
+- visual identity contract is present and passed for delivery-ready output
 - inspect can report `CAN_ENTER_PACK=true`
 - resource tracks are complete, not deferred or placeholder-only, for the intended release target
 - packaging is run only when explicitly requested

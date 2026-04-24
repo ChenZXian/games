@@ -130,7 +130,8 @@
       ],
       "path": "packs/kenney_ui_pack_adventure",
       "used_by": [
-        "empire_wall_guard"
+        "empire_wall_guard",
+        "crownroad_bastion"
       ],
       "validated_with": []
     },
@@ -161,7 +162,9 @@
         "mobile_game"
       ],
       "path": "packs/kenney_ui_pack_rpg_expansion",
-      "used_by": [],
+      "used_by": [
+        "crownroad_bastion"
+      ],
       "validated_with": []
     },
     {
@@ -193,7 +196,8 @@
       ],
       "path": "packs/kenney_ui_pack_rusted_control",
       "used_by": [
-        "minecart_bastion"
+        "minecart_bastion",
+        "ashen_frontier"
       ],
       "validated_with": []
     }

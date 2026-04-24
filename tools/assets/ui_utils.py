@@ -19,6 +19,13 @@ STYLE_MATCH_IGNORE = {
 }
 
 
+def usage_count(pack_entry):
+    used_by = pack_entry.get("used_by", []) if isinstance(pack_entry, dict) else []
+    if not isinstance(used_by, list):
+        return 0
+    return len([item for item in used_by if str(item).strip()])
+
+
 def load_json(path: Path):
     return json.loads(path.read_text(encoding="utf-8-sig"))
 
@@ -32,6 +39,12 @@ def load_index(index_path: Path):
     if not index_path.exists():
         return {"version": 1, "packs": []}
     return load_json(index_path)
+
+
+def load_source_catalog(catalog_path: Path):
+    if not catalog_path.exists():
+        return {"version": 1, "sources": []}
+    return load_json(catalog_path)
 
 
 def normalize_token(value: str) -> str:
@@ -94,6 +107,90 @@ def pack_tokens(pack_entry):
     return {token for token in unique_tokens(tokens) if token not in STYLE_MATCH_IGNORE}
 
 
+def score_pack_entry(pack_entry, desired_tokens, ui_skin: str = ""):
+    tokens = pack_tokens(pack_entry)
+    style_matches = len(desired_tokens.intersection(tokens))
+    if desired_tokens and style_matches <= 0:
+        return None
+    quality_tags = pack_entry.get("quality_tags", [])
+    pack_usage = usage_count(pack_entry)
+    score = style_matches * 3
+    if ui_skin and str(pack_entry.get("recommended_ui_skin", "")) == ui_skin:
+        score += 5
+    if "production" in quality_tags:
+        score += 1
+    score -= min(pack_usage, 4) * 3
+    if pack_usage == 0:
+        score += 2
+    return {
+        "score": score,
+        "usage_count": pack_usage,
+        "pack": pack_entry,
+    }
+
+
+def rank_pack_candidates(index_data, style_tags=None, ui_skin: str = "", min_score: int = 0, limit: int = 10):
+    desired_tokens = set(tokenize_style_text(style_tags, ui_skin))
+    desired_tokens = {token for token in desired_tokens if token not in STYLE_MATCH_IGNORE}
+    packs = [item for item in index_data.get("packs", []) if isinstance(item, dict)]
+    if not packs:
+        return []
+    if not desired_tokens and not ui_skin:
+        return [{"score": 0, "usage_count": usage_count(item), "pack": item} for item in packs[:limit]]
+    candidates = []
+    for pack in packs:
+        scored = score_pack_entry(pack, desired_tokens, ui_skin=ui_skin)
+        if not scored:
+            continue
+        if scored["score"] < min_score:
+            continue
+        candidates.append(scored)
+    candidates.sort(key=lambda item: (-item["score"], item["usage_count"], item["pack"].get("pack_id", "")))
+    if limit and limit > 0:
+        return candidates[:limit]
+    return candidates
+
+
+def source_entry_tokens(source_entry):
+    tokens = []
+    if isinstance(source_entry, dict):
+        for key in ("pack_id", "title", "source_url", "download_page_url"):
+            tokens.extend(tokenize_style_text(source_entry.get(key, "")))
+        for key in ("style_tags", "quality_tags", "supported_ui_skins"):
+            value = source_entry.get(key, [])
+            if isinstance(value, list):
+                tokens.extend(tokenize_style_text(value))
+    return {token for token in unique_tokens(tokens) if token not in STYLE_MATCH_IGNORE}
+
+
+def rank_source_candidates(catalog_data, style_tags=None, ui_skin: str = "", limit: int = 10, exclude_pack_ids=None):
+    exclude_pack_ids = {str(item).strip() for item in (exclude_pack_ids or []) if str(item).strip()}
+    desired_tokens = set(tokenize_style_text(style_tags, ui_skin))
+    desired_tokens = {token for token in desired_tokens if token not in STYLE_MATCH_IGNORE}
+    candidates = []
+    for source in catalog_data.get("sources", []):
+        if not isinstance(source, dict):
+            continue
+        pack_id = str(source.get("pack_id", "")).strip()
+        if pack_id and pack_id in exclude_pack_ids:
+            continue
+        tokens = source_entry_tokens(source)
+        style_matches = len(desired_tokens.intersection(tokens))
+        if desired_tokens and style_matches <= 0:
+            continue
+        score = style_matches * 3
+        if ui_skin and ui_skin in source.get("supported_ui_skins", []):
+            score += 4
+        candidates.append({
+            "score": score,
+            "source": source,
+        })
+    candidates.sort(key=lambda item: (-item["score"], item["source"].get("pack_id", "")))
+    if limit and limit > 0:
+        return candidates[:limit]
+    return candidates
+
+
 def find_pack(index_data, pack_id: str):
     for item in index_data.get("packs", []):
         if isinstance(item, dict) and item.get("pack_id", "") == pack_id:
@@ -102,35 +199,10 @@ def find_pack(index_data, pack_id: str):
 
 
 def find_best_pack(index_data, style_tags=None, ui_skin: str = "", min_score: int = 0):
-    desired_tokens = set(tokenize_style_text(style_tags, ui_skin))
-    desired_tokens = {token for token in desired_tokens if token not in STYLE_MATCH_IGNORE}
-    packs = [item for item in index_data.get("packs", []) if isinstance(item, dict)]
-    if not packs:
+    ranked = rank_pack_candidates(index_data, style_tags=style_tags, ui_skin=ui_skin, min_score=min_score, limit=1)
+    if not ranked:
         return None
-    if not desired_tokens and not ui_skin:
-        return packs[0]
-
-    best_pack = None
-    best_score = None
-    for pack in packs:
-        score = 0
-        tokens = pack_tokens(pack)
-        style_matches = len(desired_tokens.intersection(tokens))
-        if desired_tokens and style_matches <= 0:
-            continue
-        score += style_matches * 3
-        if ui_skin and str(pack.get("recommended_ui_skin", "")) == ui_skin:
-            score += 5
-        if "premium" in pack.get("quality_tags", []):
-            score += 1
-        if best_pack is None or score > best_score:
-            best_pack = pack
-            best_score = score
-    if best_pack is None:
-        return None
-    if best_score is not None and best_score < min_score:
-        return None
-    return best_pack
+    return ranked[0]["pack"]
 
 
 def resolve_pack_dir(library_root: Path, pack_entry, pack_id: str):

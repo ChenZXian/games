@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "pack_id": "kenney_new_platformer_pack",
+  "title": "Kenney New Platformer Pack",
+  "license": "CC0-1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "source_url": "https://kenney.nl/assets/new-platformer-pack",
+  "download_url": "",
+  "asset_types": [
+    "png",
+    "svg",
+    "txt",
+    "xml"
+  ],
+  "art_roles": [
+    "character",
+    "enemy",
+    "tileset",
+    "terrain",
+    "item",
+    "pickup",
+    "effect",
+    "background"
+  ],
+  "recommended_game_types": [
+    "platformer",
+    "runner",
+    "side",
+    "scroller",
+    "action",
+    "adventure"
+  ],
+  "style_tags": [
+    "cartoon",
+    "platformer",
+    "forest",
+    "cave",
+    "character",
+    "terrain"
+  ],
+  "quality_tags": [
+    "production",
+    "animated",
+    "free",
+    "open",
+    "cc0",
+    "spritesheet"
+  ],
+  "assets_path": "assets",
+  "preview_files": [],
+  "asset_file_count": 1321
+}

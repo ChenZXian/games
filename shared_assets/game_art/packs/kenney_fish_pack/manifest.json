@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "pack_id": "kenney_fish_pack",
+  "title": "Kenney Fish Pack",
+  "license": "CC0-1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "source_url": "https://kenney.nl/assets/fish-pack",
+  "download_url": "",
+  "asset_types": [
+    "png",
+    "svg",
+    "txt",
+    "xml"
+  ],
+  "art_roles": [
+    "animal",
+    "character",
+    "npc",
+    "enemy",
+    "background"
+  ],
+  "recommended_game_types": [
+    "fishing",
+    "underwater",
+    "collection",
+    "casual",
+    "animal"
+  ],
+  "style_tags": [
+    "fish",
+    "underwater",
+    "ocean",
+    "animal",
+    "cartoon",
+    "cute"
+  ],
+  "quality_tags": [
+    "production",
+    "free",
+    "open",
+    "cc0"
+  ],
+  "assets_path": "assets",
+  "preview_files": [
+    "Preview.png",
+    "Sample.png"
+  ],
+  "asset_file_count": 385
+}

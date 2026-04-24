@@ -1,10 +1,13 @@
 import argparse
+import re
 import shutil
 import sys
 import tempfile
 import zipfile
 from pathlib import Path
 from urllib.request import Request, urlopen
+
+import requests
 
 from game_art_utils import clear_dir, load_index, merge_pack_entry, save_json, tokenize_text
 
@@ -21,6 +24,21 @@ def download_to_path(url: str, dst: Path):
     request = Request(url, headers={"User-Agent": "Mozilla/5.0"})
     with urlopen(request, timeout=180) as response:
         dst.write_bytes(response.read())
+
+
+def resolve_download_url_from_page(page_url: str):
+    response = requests.get(page_url, timeout=180, headers={"User-Agent": "Mozilla/5.0"})
+    response.raise_for_status()
+    html = response.text
+    matches = re.findall(r"https://kenney\.nl/media/pages/assets/[^\"']+?\.zip", html)
+    if matches:
+        return matches[0]
+    relative_matches = re.findall(r"media/pages/assets/[^\"']+?\.zip", html)
+    if relative_matches:
+        return "https://kenney.nl/" + relative_matches[0].lstrip("/")
+    if not matches and not relative_matches:
+        raise RuntimeError(f"Could not resolve a download zip from source page: {page_url}")
+    return matches[0]
 
 
 def extract_zip_to_dir(zip_path: Path, target_dir: Path):
@@ -76,6 +94,7 @@ def main() -> int:
     ap.add_argument("--title", required=True)
     ap.add_argument("--source-path", default="")
     ap.add_argument("--download-url", default="")
+    ap.add_argument("--download-page-url", default="")
     ap.add_argument("--source-url", required=True)
     ap.add_argument("--library-root", default="shared_assets/game_art")
     ap.add_argument("--license", default="CC0-1.0")
@@ -87,10 +106,11 @@ def main() -> int:
     ap.add_argument("--replace", action="store_true")
     args = ap.parse_args()
 
-    if not args.source_path and not args.download_url:
-        return fail("One of --source-path or --download-url is required")
-    if args.source_path and args.download_url:
-        return fail("Choose either --source-path or --download-url, not both")
+    download_inputs = [item for item in [args.source_path, args.download_url, args.download_page_url] if item]
+    if not download_inputs:
+        return fail("One of --source-path, --download-url, or --download-page-url is required")
+    if len(download_inputs) > 1:
+        return fail("Choose only one of --source-path, --download-url, or --download-page-url")
 
     library_root = Path(args.library_root).resolve()
     pack_id = args.pack_id.strip()
@@ -114,7 +134,10 @@ def main() -> int:
         else:
             temp_dir = Path(tempfile.mkdtemp(prefix="game_art_import_"))
             archive_path = temp_dir / "downloaded_pack.zip"
-            download_to_path(args.download_url, archive_path)
+            download_url = args.download_url
+            if args.download_page_url:
+                download_url = resolve_download_url_from_page(args.download_page_url)
+            download_to_path(download_url, archive_path)
             extract_zip_to_dir(archive_path, temp_dir / "unzipped")
             source_root = temp_dir / "unzipped"
 
@@ -148,6 +171,7 @@ def main() -> int:
             "license_url": args.license_url,
             "source_url": args.source_url,
             "download_url": args.download_url,
+            "download_page_url": args.download_page_url,
             "asset_types": sorted({p.suffix.lower().lstrip(".") for p in assets_dir.rglob("*") if p.is_file()}),
             "art_roles": split_csv(args.art_roles),
             "recommended_game_types": split_csv(args.game_types),
@@ -167,6 +191,8 @@ def main() -> int:
             "license": args.license,
             "license_url": args.license_url,
             "source_url": args.source_url,
+            "download_url": args.download_url,
+            "download_page_url": args.download_page_url,
             "asset_types": manifest["asset_types"],
             "art_roles": manifest["art_roles"],
             "recommended_game_types": manifest["recommended_game_types"],

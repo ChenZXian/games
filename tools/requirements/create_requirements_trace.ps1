@@ -16,6 +16,8 @@ param(
   [string]$RequirementsMarkdownPath = "",
   [string]$GameplayDiversityJson = "",
   [string]$GameplayDiversityJsonPath = "",
+  [string]$VisualIdentityJson = "",
+  [string]$VisualIdentityJsonPath = "",
 
   [switch]$Force
 )
@@ -36,4 +38,6 @@ Update-RequirementsTrace `
   -RequirementsMarkdownPath $RequirementsMarkdownPath `
   -GameplayDiversityJson $GameplayDiversityJson `
   -GameplayDiversityJsonPath $GameplayDiversityJsonPath `
+  -VisualIdentityJson $VisualIdentityJson `
+  -VisualIdentityJsonPath $VisualIdentityJsonPath `
   -Force:$Force

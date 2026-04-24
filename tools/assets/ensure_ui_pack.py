@@ -3,7 +3,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-from ui_utils import find_best_pack, load_index, tokenize_style_text
+from ui_utils import find_best_pack, load_index, load_source_catalog, rank_pack_candidates, rank_source_candidates, tokenize_style_text
 
 
 def key_lines(output: str):
@@ -37,13 +37,18 @@ def main():
     ap.add_argument("--import-source", default="")
     ap.add_argument("--download-url", default="")
     ap.add_argument("--library-root", default="shared_assets/ui")
+    ap.add_argument("--source-catalog", default="shared_assets/ui/source_catalog.json")
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
 
     library_root = Path(args.library_root).resolve()
     index_data = load_index(library_root / "index.json")
+    source_catalog = load_source_catalog(Path(args.source_catalog).resolve())
+    local_index_pack_ids = [str(pack.get("pack_id", "")).strip() for pack in index_data.get("packs", []) if isinstance(pack, dict)]
     style_tags = tokenize_style_text([args.theme, args.style_tags, args.scope])
     pack_id = args.pack_id.strip()
+    local_candidates = rank_pack_candidates(index_data, style_tags=style_tags, ui_skin=args.ui_skin.strip(), min_score=1, limit=6)
+    source_candidates = rank_source_candidates(source_catalog, style_tags=style_tags, ui_skin=args.ui_skin.strip(), limit=6, exclude_pack_ids=local_index_pack_ids)
 
     if not pack_id:
         pack = find_best_pack(index_data, style_tags=style_tags, ui_skin=args.ui_skin.strip(), min_score=1)
@@ -97,11 +102,19 @@ def main():
         print(f"UI_SELECTED_PACK={pack_id}")
         print(f"UI_SELECTED_PRESET={lines.get('UI_ASSIGNED_PRESET', '')}")
         print(f"UI_SELECTED_UI_SKIN={lines.get('UI_ASSIGNED_UI_SKIN', '')}")
+        if local_candidates:
+            print("UI_LOCAL_CANDIDATES=" + ",".join(str(item["pack"].get("pack_id", "")).strip() for item in local_candidates if str(item["pack"].get("pack_id", "")).strip()))
+        if source_candidates:
+            print("UI_SOURCE_CANDIDATES=" + ",".join(str(item["source"].get("pack_id", "")).strip() for item in source_candidates if str(item["source"].get("pack_id", "")).strip()))
         if imported:
             print("UI_IMPORTED_DURING_RESOLUTION=true")
         return
 
     print(f"UI_SELECTED_PACK={pack_id}")
+    if local_candidates:
+        print("UI_LOCAL_CANDIDATES=" + ",".join(str(item["pack"].get("pack_id", "")).strip() for item in local_candidates if str(item["pack"].get("pack_id", "")).strip()))
+    if source_candidates:
+        print("UI_SOURCE_CANDIDATES=" + ",".join(str(item["source"].get("pack_id", "")).strip() for item in source_candidates if str(item["source"].get("pack_id", "")).strip()))
     if imported:
         print("UI_IMPORTED_DURING_RESOLUTION=true")
 

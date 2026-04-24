@@ -1,7 +1,7 @@
 # UI Workflow
 
-Version: 1.2
-Last updated: 2026-04-22
+Version: 1.4
+Last updated: 2026-04-23
 
 This document defines the repository UI workflow for Android Java mini-games.
 
@@ -14,6 +14,7 @@ The UI workflow exists to:
 - support practical, higher-fidelity game UI instead of token-only placeholder UI
 - allow licensed binary UI assets, fonts, and open-source UI resource packs
 - keep reusable external UI resources in a shared library first when possible
+- prevent repeated UI layouts, HUD composition, and pack/preset reuse from becoming the default look
 
 ## 2. Repository UI Model
 
@@ -32,6 +33,7 @@ UI Kit is the mandatory foundation, not the final visual ceiling.
 - `project_local_xml_ui` means placeholder-only for production-grade, delivery-ready, or menu item `10` output
 - delivery-ready UI must apply a style-matched shared UI pack, an imported license-clear UI pack, or an equivalent custom asset layer with provenance
 - inspection should not mark UI as complete when the only evidence is local XML/token scaffolding
+- delivery-ready UI should follow the visual identity contract in `artifacts/requirements/<game_id>/visual_identity.json` when it exists
 
 ## 3. Scope
 
@@ -54,6 +56,7 @@ Every UI workflow run should define:
 - chosen `ui_skin`
 - style tags
 - asset strategy
+- visual identity contract alignment
 
 The UI brief is mandatory before pack selection or implementation.
 
@@ -77,6 +80,7 @@ The UI workflow must not use closed or unknown-license assets unless the user ex
 Reusable external UI resources should be stored under:
 
 - `shared_assets/ui/`
+- `shared_assets/ui/source_catalog.json`
 
 Recommended pack layout:
 
@@ -160,19 +164,45 @@ Discovery examples:
 ## 7. Workflow Steps
 
 1. Identify the target game and the requested UI scope.
-2. Define the UI structure and state map.
-3. Choose one `ui_skin`.
-4. Decide whether token-only resources are enough for the current stage or whether binary assets are required.
-5. Resolve assets in this order:
+2. Read the visual identity contract when it exists.
+3. Define the UI structure, state map, and visual layout archetype.
+4. Choose one `ui_skin`.
+5. Decide whether token-only resources are enough for the current stage or whether binary assets are required.
+6. Resolve assets in this order:
    - style-matched shared UI pack
+   - global source-catalog search for official or license-clear UI sources
    - imported licensed open-source UI pack
    - project-local custom refinement
-6. Do not silently fall back to generic shape-only placeholder UI for production-grade, menu item `10`, or delivery-ready requests.
-7. Reuse or import shared UI resources under `shared_assets/ui/` when possible.
-8. Assign project-local resources and implement layouts or overlays.
-9. Validate required UI foundation files and resource naming.
+7. Do not reuse the same HUD composition, top metric bar, bottom command strip, or pack preset across projects unless the visual identity contract allows it.
+8. Do not silently fall back to generic shape-only placeholder UI for production-grade, menu item `10`, or delivery-ready requests.
+9. Reuse or import shared UI resources under `shared_assets/ui/` when possible.
+10. Assign project-local resources and implement layouts or overlays.
+11. Validate required UI foundation files and resource naming.
 
-## 8. Validation Goals
+## 8. Visual Variety Rules
+
+For production-grade or delivery-ready UI, vary at least these axes against recent projects:
+
+- HUD geometry
+- command location
+- button shape language
+- panel material
+- meter style
+- palette contrast
+- typography direction
+- screen motifs
+
+The following repeated template should not be reused by default:
+
+- top row of rounded metric pills
+- full-width center objective bar
+- bottom row of identical rectangular command buttons
+- same blue-gray button pack
+- same pause button treatment
+
+Pack selection should apply a reuse penalty so one matching pack does not become the default answer for every similar project.
+
+## 9. Validation Goals
 
 The final UI result should satisfy all of the following:
 
@@ -181,3 +211,4 @@ The final UI result should satisfy all of the following:
 - required logical UI resources present
 - gameplay rendering kept separate from non-real-time UI where practical
 - provenance recorded for imported open-source assets
+- visual identity contract preserved when one exists

@@ -9,27 +9,33 @@ Read first:
 - AGENTS.md
 - docs/GAME_GENERATION_STANDARD.md
 - docs/ICON_WORKFLOW.md
+- docs/VISUAL_IDENTITY_WORKFLOW.md
 
 Hard rules:
 - Keep the manifest icon target as `@mipmap/app_icon`
 - Prefer a cartoon style with clear association to the specific game
+- Follow `artifacts/requirements/<game_id>/visual_identity.json` when it exists
+- Do not reuse another game's icon subject, silhouette, source object, background badge, or exported upload icon for delivery-ready output
 - Update project icon resources only inside the requested game project
 - Export upload-ready icon files to `artifacts/icons/<game_id>/`
 - Do not change unrelated gameplay, UI flow, registry entries, packaging outputs, or git state unless explicitly requested
 
 Workflow:
 1. Identify the target game id and project path.
-2. Determine the icon direction:
+2. Read the visual identity contract when it exists.
+3. Determine the icon direction:
    - subject
    - silhouette
    - palette
    - tone
    - game-specific hook
-3. Generate or update project icon assets.
-4. Export upload-ready icon files.
-5. Report the exported location for user pickup.
+   - forbidden icon reuse
+4. Generate or update project icon assets.
+5. Export upload-ready icon files.
+6. Report the exported location for user pickup.
 
 Default output expectation:
 - In-project icon resources under `games/<game_id>/app/src/main/res/`
 - Upload-ready exports under `artifacts/icons/<game_id>/`
 - Clear note of which icon file is the primary upload target
+- Icon metadata should record the subject, silhouette, and visual identity source when available

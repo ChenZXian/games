@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "game_id": "crownroad_bastion",
+  "pack_id": "kenney_ui_pack_rpg_expansion",
+  "pack_title": "Kenney UI Pack RPG Expansion",
+  "preset_id": "canonical_rpg_blue",
+  "preset_title": "Canonical RPG Blue",
+  "ui_skin": "skin_cartoon_light",
+  "style_tags": [
+    "rpg",
+    "fantasy",
+    "upgrade",
+    "loadout",
+    "blue"
+  ],
+  "source_url": "https://kenney.nl/assets/ui-pack-rpg-expansion",
+  "license": "CC0-1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "assigned_at_utc": "2026-04-23T14:30:45Z",
+  "copied_items": [
+    {
+      "type": "drawable",
+      "logical_name": "ui_button_primary",
+      "source": "drawable/button_primary_blue_rpg.png",
+      "target": "app/src/main/res/drawable/ui_button_primary.png"
+    },
+    {
+      "type": "drawable",
+      "logical_name": "ui_button_secondary",
+      "source": "drawable/button_secondary_grey_rpg.png",
+      "target": "app/src/main/res/drawable/ui_button_secondary.png"
+    },
+    {
+      "type": "drawable",
+      "logical_name": "ui_button_icon",
+      "source": "drawable/button_icon_round_blue_rpg.png",
+      "target": "app/src/main/res/drawable/ui_button_icon.png"
+    },
+    {
+      "type": "drawable",
+      "logical_name": "ui_panel",
+      "source": "drawable/panel_blue_rpg.png",
+      "target": "app/src/main/res/drawable/ui_panel.png"
+    },
+    {
+      "type": "drawable",
+      "logical_name": "ui_card",
+      "source": "drawable/panel_inset_blue_rpg.png",
+      "target": "app/src/main/res/drawable/ui_card.png"
+    }
+  ]
+}

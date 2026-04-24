@@ -16,6 +16,7 @@ Authoritative files must be read first and must not be skipped:
 - docs/UI_KIT_FACTORY_SPEC_v1_0.md
 - docs/REQUIREMENTS_WORKFLOW.md
 - docs/GAMEPLAY_DIVERSITY_WORKFLOW.md
+- docs/VISUAL_IDENTITY_WORKFLOW.md
 - registry/produced_games.json
 
 Scope rules:
@@ -25,7 +26,10 @@ Scope rules:
 - Prefer validating the requirements gate with `tools/requirements/assert_confirmed_trace.ps1 -GameId <new_game_id>` before any writes.
 - Treat `artifacts/requirements/<new_game_id>/gameplay_diversity.json` as a required generation contract.
 - If the gameplay diversity contract is missing, invalid, still draft, or not specific enough to pass `tools/requirements/check_gameplay_diversity.ps1 -GameId <new_game_id> -Strict`, stop and route back to requirements planning.
+- Treat `artifacts/requirements/<new_game_id>/visual_identity.json` as a required UI and icon generation contract.
+- If the visual identity contract is missing, invalid, still draft, or not specific enough to pass `tools/requirements/check_visual_identity.ps1 -GameId <new_game_id> -Strict`, stop and route back to requirements planning.
 - Do not simplify the project into a generic map, one-unit roster, or repeated template when the contract asks for broader content.
+- Do not initialize a project with a repeated top HUD pill layout, bottom command strip, or copied icon concept when the visual identity contract requires a different direction.
 - Do not run doctor, validate, or build packaging workflows unless explicitly requested outside this skill.
 - Do not run Gradle build tasks unless explicitly requested outside this skill.
 - Do not build APK or AAB unless explicitly requested outside this skill.
@@ -232,7 +236,8 @@ E. Non-duplication enforcement:
 Execution requirements:
 1. Verify that the requirements trace for <new_game_id> is already confirmed
 2. Verify that the gameplay diversity contract for <new_game_id> has status `passed`
-3. Choose a globally unique <new_game_id> using lowercase snake_case
-4. Create games/<new_game_id>/ with a complete Android Studio project matching the baseline and standards
-5. Append exactly one entry to registry/produced_games.json
-6. Output only the generated project files and the updated registry file unless the user explicitly asks for explanation
+3. Verify that the visual identity contract for <new_game_id> has status `passed`
+4. Choose a globally unique <new_game_id> using lowercase snake_case
+5. Create games/<new_game_id>/ with a complete Android Studio project matching the baseline and standards
+6. Append exactly one entry to registry/produced_games.json
+7. Output only the generated project files and the updated registry file unless the user explicitly asks for explanation

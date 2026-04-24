@@ -460,6 +460,40 @@
       "core_loop": "build archer towers shield barracks stone throwers oil cauldrons and beacons spend supplies to block lanes repair the gate burn stacked enemies and survive ancient siege waves",
       "created_at": "2026-04-23",
       "ui_skin": "skin_military_tech"
+    },
+    {
+      "id": "crownroad_bastion",
+      "name": "Crownroad Bastion",
+      "tags": [
+        "tower_defense",
+        "strategy",
+        "fantasy",
+        "node_graph_map",
+        "hero",
+        "barracks",
+        "spells",
+        "waves"
+      ],
+      "core_loop": "build and upgrade fixed towers around a curved merge split road network move a hero rally barracks cast spells and stop fantasy waves before they reach the bastion",
+      "created_at": "2026-04-23",
+      "ui_skin": "skin_cartoon_light"
+    },
+    {
+      "id": "ashen_frontier",
+      "name": "Ashen Frontier",
+      "tags": [
+        "survival",
+        "top_down",
+        "zombie",
+        "shooter",
+        "large_map",
+        "safehouse",
+        "bike",
+        "variant_a_core_ui_entity_audio"
+      ],
+      "core_loop": "choose a frontier region ride into a large infected zone scavenge resources rescue survivors secure the relay fight zombie packs with switching firearms and extract to upgrade the safehouse",
+      "created_at": "2026-04-24",
+      "ui_skin": "skin_post_apocalypse"
     }
   ]
 }

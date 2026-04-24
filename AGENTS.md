@@ -8,6 +8,7 @@ Always read and obey these authoritative files before making changes:
 - docs/UI_KIT_FACTORY_SPEC_v1_0.md
 - docs/PROJECT_ACCEPTANCE_BASELINE.md
 - docs/GAMEPLAY_DIVERSITY_WORKFLOW.md
+- docs/VISUAL_IDENTITY_WORKFLOW.md
 - registry/produced_games.json
 
 Hard rules:
@@ -33,6 +34,7 @@ Default workflow policy:
 - Allow the icon workflow to generate project icon assets and upload-ready exported icons under artifacts/icons/<game_id>/
 - Allow the UI workflow to use licensed binary UI assets, fonts, and open-source UI resource packs through shared_assets/ui/ when requested
 - Allow the gameplay art workflow to use free, license-clear character, map, tileset, prop, effect, and background assets through shared_assets/game_art/ when requested
+- Default asset selection should search the full shared library first, then the relevant source catalog, and should apply reuse penalties so the same few packs do not dominate similar prompts
 - Keep active game projects as direct children under games/<game_id>/ for tool compatibility
 - Use registry/projects_by_date.json for chronological organization instead of nesting active projects by date under games/
 
@@ -119,13 +121,16 @@ Requirements planning policy:
 - The standard planning sequence is: direction input -> 10 candidate concepts -> user selects 1 concept -> full game requirements -> user confirmation -> initialization
 - The full game requirements must include gameplay loop, controls, progression or level structure, UI structure, UI asset strategy, gameplay art asset strategy, gameplay art facing and animation expectations, icon direction, audio direction, and implementation notes
 - The full game requirements must also include a gameplay diversity and content budget contract, persisted as artifacts/requirements/<game_id>/gameplay_diversity.json
+- The full game requirements must also include a visual identity contract for UI and icon differentiation, persisted as artifacts/requirements/<game_id>/visual_identity.json
 - Once the selected concept has a target game id, store the requirements trace under artifacts/requirements/<game_id>/
 - The authoritative requirements trace should include metadata.json and requirements.md
 - The authoritative requirements trace should also include gameplay_diversity.json
+- The authoritative requirements trace should also include visual_identity.json
 - Requirements trace status should remain draft until the user confirms it, then move to confirmed
 - Menu item 10 must always surface the full requirements draft for review and explicit confirmation before initialization
 - A draft requirements trace must never trigger initialization until the user explicitly confirms it
 - Do not initialize a new project unless the gameplay diversity contract exists and passes strict validation
+- Do not initialize a new project unless the visual identity contract exists and passes strict validation
 - If requirements confirmation is missing, do not call the initialization workflow
 
 Project structure and acceptance policy:
@@ -147,15 +152,18 @@ Resource workflow policy:
 - UI workflow is a formal track and should define screen structure and HUD first, then implementation and polish
 - UI workflow may use binary UI assets, fonts, and licensed open-source UI resources when provenance is tracked
 - UI workflow should keep reusable external UI resources under shared_assets/ui/ first when possible
+- UI workflow should search shared_assets/ui/source_catalog.json when the local shared library is weak or overused
 - UI Kit is the required structural foundation, not sufficient final visual quality for menu item `10` or delivery-ready output
 - Treat `project_local_xml_ui` as placeholder-only for production-grade, menu item `10`, or delivery-ready output
 - UI workflow must produce a concrete UI brief with screen list, state map, HUD priorities, chosen ui_skin, style tags, and asset strategy before implementation
 - UI workflow should resolve assets in this order by default: style-matched shared UI pack -> import licensed open-source UI pack into shared_assets/ui/ -> project-local custom refinement
 - UI workflow must not silently fall back to generic shape-only placeholder controls for production-grade or delivery-ready requests
+- UI workflow must follow the visual identity contract when available and must not repeatedly reuse the same top HUD pill layout, bottom command strip, palette, or pack preset without explicit justification
 - Gameplay art workflow is a formal track and should define gameplay visual roles before asset selection or project wiring
 - Gameplay art workflow covers characters, enemies, animals, maps, tilesets, props, items, projectiles, effects, and gameplay backgrounds
 - Gameplay art workflow may use binary gameplay art assets only when the license and provenance are tracked
 - Gameplay art workflow should keep reusable external gameplay art resources under shared_assets/game_art/ first when possible
+- Gameplay art workflow should search shared_assets/game_art/source_catalog.json when the local shared library is weak or overused
 - Gameplay art workflow should resolve assets in this order by default: style-matched shared game art pack -> import official free and license-clear pack into shared_assets/game_art/ -> project-local prototype drawing only when placeholders are explicitly acceptable
 - Gameplay art workflow must not silently fall back to generic circle or rectangle gameplay placeholders for production-grade or delivery-ready requests
 - Treat `project_local_canvas_art` as placeholder-only for production-grade, menu item `10`, or delivery-ready output
@@ -168,6 +176,7 @@ Resource workflow policy:
 - Attack-capable primary entities should use windup, action, and recovery timing or equivalent pose changes
 - If imported free assets lack required frames, use the sprite pipeline from an approved seed frame instead of inventing unrelated frames
 - Requirements planning and initialization must not silently reuse the same tiny map, same roster, or same loop template across multiple projects; use the gameplay diversity workflow to enforce subtype, content scale, and forbidden template reuse
+- Requirements planning, UI workflow, and icon workflow must not silently reuse the same visual identity across multiple projects; use the visual identity workflow to enforce UI layout, HUD composition, icon subject, icon silhouette, and forbidden visual reuse
 - Audio workflow is a formal track and should define the audio direction before generation, selection, or project wiring
 - Audio workflow should cover both BGM and SFX and keep generated assets reusable through the shared audio library
 - Audio workflow must produce a concrete audio brief with theme, mood, pacing, BGM roles, and SFX roles before assignment

@@ -15,6 +15,7 @@ $traceDir = Join-Path $root "artifacts\requirements\$GameId"
 $metadataPath = Join-Path $traceDir "metadata.json"
 $requirementsPath = Join-Path $traceDir "requirements.md"
 $gameplayDiversityPath = Join-Path $traceDir "gameplay_diversity.json"
+$visualIdentityPath = Join-Path $traceDir "visual_identity.json"
 $metadata = Read-TraceMetadata $metadataPath
 
 if ($null -eq $metadata) {
@@ -47,9 +48,16 @@ if ($LASTEXITCODE -ne 0) {
   throw "Gameplay diversity contract is not passed for $GameId."
 }
 
+$visualCheckerPath = Join-Path $PSScriptRoot "check_visual_identity.py"
+python $visualCheckerPath --path $visualIdentityPath --strict
+if ($LASTEXITCODE -ne 0) {
+  throw "Visual identity contract is not passed for $GameId."
+}
+
 Write-Host "REQUIREMENTS_TRACE_OK=true"
 Write-Host "REQUIREMENTS_TRACE_DIR=$traceDir"
 Write-Host "REQUIREMENTS_METADATA=$metadataPath"
 Write-Host "REQUIREMENTS_MARKDOWN=$requirementsPath"
 Write-Host "REQUIREMENTS_STATUS=$([string]$metadata.status)"
 Write-Host "GAMEPLAY_DIVERSITY_STATUS=passed"
+Write-Host "VISUAL_IDENTITY_STATUS=passed"

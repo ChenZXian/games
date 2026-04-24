@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Crownroad Bastion</string>
     <string name="title_main">Crownroad Bastion</string>
-    <string name="subtitle_main">Defend a royal crossroads with towers, barracks, hero commands, and spells.</string>
+    <string name="subtitle_main">Read the blue war map, lock the road split, and hold the bastion.</string>
     <string name="btn_start">Start Stage</string>
     <string name="btn_restart">Restart</string>
     <string name="btn_resume">Resume</string>
@@ -23,5 +23,18 @@
     <string name="hud_wave">Wave 0/10</string>
     <string name="hud_status">Plan Defense</string>
     <string name="result_title">Result</string>
+    <string name="menu_stage_badge">Crownroad War Map</string>
+    <string name="menu_route_badge">2 Entrances</string>
+    <string name="menu_split_badge">Merge Split Road</string>
+    <string name="menu_hero_badge">Hero Command</string>
+    <string name="menu_node_forest">Forest</string>
+    <string name="menu_node_market">Market</string>
+    <string name="menu_node_hill">Hill Split</string>
+    <string name="menu_node_gate">Bastion</string>
+    <string name="menu_stage_one">Stage 1</string>
+    <string name="menu_stage_two">Stage 2</string>
+    <string name="menu_stage_three">Stage 3</string>
+    <string name="menu_stage_four">Stage 4</string>
+    <string name="menu_stage_five">Stage 5</string>
     <string name="help_text">Stage 1 uses a real road network. Enemies enter from the forest and east road, merge at the market, split around the hill, and rejoin near the bastion. Tap build pads to place the selected tower. Tap a tower to upgrade it. Use Hero then tap a road node to move the knight. Guard summons temporary blockers. Meteor hits clustered enemies at merge points. Bats ignore barracks, shamans heal, and rams punish weak gates.</string>
 </resources>

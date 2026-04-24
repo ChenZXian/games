@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "pack_id": "kenney_platformer_pack_medieval",
+  "title": "Kenney Platformer Pack Medieval",
+  "license": "CC0-1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "source_url": "https://kenney.nl/assets/platformer-pack-medieval",
+  "download_url": "",
+  "asset_types": [
+    "png",
+    "svg",
+    "txt",
+    "xml"
+  ],
+  "art_roles": [
+    "tileset",
+    "terrain",
+    "building",
+    "prop",
+    "item",
+    "background"
+  ],
+  "recommended_game_types": [
+    "platformer",
+    "runner",
+    "side",
+    "scroller",
+    "medieval",
+    "adventure"
+  ],
+  "style_tags": [
+    "medieval",
+    "castle",
+    "platformer",
+    "cartoon",
+    "wood",
+    "stone"
+  ],
+  "quality_tags": [
+    "production",
+    "free",
+    "open",
+    "cc0"
+  ],
+  "assets_path": "assets",
+  "preview_files": [
+    "Preview.png",
+    "Sample.png"
+  ],
+  "asset_file_count": 277
+}

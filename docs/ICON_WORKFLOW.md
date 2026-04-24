@@ -1,7 +1,7 @@
 # Icon Workflow
 
-Version: 1.0
-Last updated: 2026-04-22
+Version: 1.1
+Last updated: 2026-04-23
 
 This document defines the current repository icon workflow for Android Java mini-games in this monorepo.
 
@@ -12,6 +12,7 @@ The icon workflow exists to:
 - generate or update the in-project launcher icon resources used by each game
 - export upload-ready icon files for store or platform submission
 - keep icon generation aligned with the current repository structure
+- prevent multiple games from sharing the same icon subject, silhouette, or source asset
 
 ## 2. Style Direction
 
@@ -33,8 +34,10 @@ Before generating assets, define:
 - palette direction
 - tone
 - any game-specific motif
+- forbidden icon reuse from recent or related projects
 
 This direction may come from the requirements document or from a direct icon workflow request.
+When `artifacts/requirements/<game_id>/visual_identity.json` exists, it should be treated as the preferred icon direction source.
 
 ### 3.2 Project Asset Stage
 
@@ -70,8 +73,21 @@ Recommended exports:
 - `project_path`
 - `generated_at`
 - `primary_export`
+- `icon_subject`
+- `icon_silhouette`
+- `visual_identity_source`
 
-### 3.4 Packaging Stage
+### 3.4 Uniqueness Review
+
+Before marking icon work complete for delivery-ready output, verify that the icon does not reuse:
+
+- another game's foreground subject without meaningful change
+- another game's background badge or frame
+- another game's color pairing and composition
+- another game's exported upload icon
+- a generic subject that does not clearly identify this game
+
+### 3.5 Packaging Stage
 
 Packaging should reuse the existing icon workflow outputs whenever possible.
 

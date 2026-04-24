@@ -1,6 +1,6 @@
 # Requirements Workflow
 
-Version: 1.6
+Version: 1.7
 Last updated: 2026-04-23
 
 This document defines the repository requirements workflow for Android Java mini-games.
@@ -21,6 +21,7 @@ The requirements workflow covers:
 - selected concept capture
 - full game requirements writing
 - gameplay diversity and content budget capture
+- visual identity capture for UI and icon differentiation
 - requirements confirmation state
 - requirements trace storage
 
@@ -42,6 +43,7 @@ Authoritative files:
 - `artifacts/requirements/<game_id>/metadata.json`
 - `artifacts/requirements/<game_id>/requirements.md`
 - `artifacts/requirements/<game_id>/gameplay_diversity.json`
+- `artifacts/requirements/<game_id>/visual_identity.json`
 
 Supporting file:
 
@@ -99,6 +101,7 @@ Expected result:
 - `metadata.json` exists
 - `status=draft`
 - `gameplay_diversity.json` exists and is specific enough to guide implementation
+- `visual_identity.json` exists and is specific enough to guide UI and icon work
 - the full requirements draft is shown to the user for review before initialization
 
 ### 5.3 Confirmation
@@ -142,6 +145,7 @@ Additional menu item `10` rules:
 - menu item `10` is the complete flow from confirmed requirements to APK output; APK export is the final stage, not a shortcut around earlier stages
 - if inspection or packaging prerequisites fail, stop before APK export and report the blocker
 - menu item `10` must not proceed with a generic or repeated gameplay template when the gameplay diversity contract is missing or not passed
+- menu item `10` must not proceed with repeated UI layout, HUD composition, or icon concept when the visual identity contract is missing or not passed
 
 ## 6. Metadata Contract
 
@@ -167,6 +171,7 @@ Recommended `files` fields:
 - `requirements_md`
 - `candidates_md`
 - `gameplay_diversity_json`
+- `visual_identity_json`
 
 ## 7. Markdown Contract
 
@@ -188,6 +193,7 @@ Recommended `files` fields:
 - technical implementation notes
 - differentiation note
 - gameplay diversity and content budget
+- visual identity contract
 
 The gameplay art direction should be implementation-ready, not only a style note.
 For moving, attacking, damageable, collectible, or animated objects, requirements should specify:
@@ -217,6 +223,23 @@ The gameplay diversity and content budget should define:
 
 The machine-readable form of this section should be stored in `gameplay_diversity.json`.
 See `docs/GAMEPLAY_DIVERSITY_WORKFLOW.md` for the required contract.
+
+The visual identity contract should define:
+
+- UI layout archetype
+- HUD composition
+- navigation model
+- palette signature
+- material language
+- typography style
+- UI pack strategy
+- icon subject
+- icon silhouette and composition
+- icon palette and background
+- forbidden visual reuse from existing projects
+
+The machine-readable form of this section should be stored in `visual_identity.json`.
+See `docs/VISUAL_IDENTITY_WORKFLOW.md` for the required contract.
 
 `candidates.md` should capture:
 
@@ -269,6 +292,7 @@ The inspect workflow should read:
 - `artifacts/requirements/<game_id>/metadata.json`
 - `artifacts/requirements/<game_id>/requirements.md`
 - `artifacts/requirements/<game_id>/gameplay_diversity.json`
+- `artifacts/requirements/<game_id>/visual_identity.json`
 
 Expected inspect output:
 
@@ -277,3 +301,4 @@ Expected inspect output:
 - `REQUIREMENTS_STATUS=candidates` when only candidate trace exists
 - `REQUIREMENTS_STATUS=untracked` when no trace exists
 - `GAMEPLAY_DIVERSITY_STATUS=passed` only when the gameplay diversity contract exists, is valid, and is ready for downstream implementation checks
+- `VISUAL_IDENTITY_STATUS=passed` only when the UI and icon visual identity contract exists, is valid, and is ready for downstream UI and icon checks

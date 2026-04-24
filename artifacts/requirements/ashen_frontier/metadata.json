@@ -1,0 +1,21 @@
+{
+    "version":  1,
+    "game_id":  "ashen_frontier",
+    "title":  "Ashen Frontier",
+    "direction":  "Post-apocalypse large-map survival against zombie hordes with a full weapon system and safehouse expansion",
+    "selected_concept":  "Ashen Frontier",
+    "status":  "confirmed",
+    "ui_skin":  "skin_post_apocalypse",
+    "current_stage":  "requirements",
+    "created_at_utc":  "2026-04-23T16:20:08Z",
+    "updated_at_utc":  "2026-04-24T06:31:42Z",
+    "selected_at_utc":  "2026-04-23T16:20:08Z",
+    "confirmed_at_utc":  "2026-04-24T06:31:42Z",
+    "files":  {
+                  "metadata_json":  "artifacts/requirements/ashen_frontier/metadata.json",
+                  "requirements_md":  "artifacts/requirements/ashen_frontier/requirements.md",
+                  "candidates_md":  "",
+                  "gameplay_diversity_json":  "artifacts/requirements/ashen_frontier/gameplay_diversity.json",
+                  "visual_identity_json":  "artifacts/requirements/ashen_frontier/visual_identity.json"
+              }
+}

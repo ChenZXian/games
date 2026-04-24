@@ -325,6 +325,40 @@ function New-GameplayDiversityTemplate([string]$GameId, [string]$Direction, [str
   return (($contract | ConvertTo-Json -Depth 8) + [Environment]::NewLine)
 }
 
+function New-VisualIdentityTemplate([string]$GameId, [string]$Direction, [string]$SelectedConcept, [string]$UiSkin) {
+  $contract = [ordered]@{
+    version = 1
+    game_id = $GameId
+    status = "draft"
+    direction = $Direction
+    selected_concept = $SelectedConcept
+    visual_differentiation_axes = @()
+    forbidden_visual_reuse = @()
+    ui_identity = [ordered]@{
+      layout_archetype = ""
+      hud_composition = ""
+      navigation_model = ""
+      palette_signature = ""
+      material_language = ""
+      typography_style = ""
+      primary_ui_pack = $UiSkin
+      secondary_ui_assets = @()
+      unique_screen_motifs = @()
+      forbidden_ui_elements = @()
+    }
+    icon_identity = [ordered]@{
+      subject = ""
+      silhouette = ""
+      composition = ""
+      palette = ""
+      background = ""
+      game_specific_motif = ""
+      forbidden_icon_reuse = @()
+    }
+  }
+  return (($contract | ConvertTo-Json -Depth 8) + [Environment]::NewLine)
+}
+
 function Update-RequirementsTrace {
   param(
     [Parameter(Mandatory=$true)]
@@ -347,6 +381,8 @@ function Update-RequirementsTrace {
     [string]$RequirementsMarkdownPath = "",
     [string]$GameplayDiversityJson = "",
     [string]$GameplayDiversityJsonPath = "",
+    [string]$VisualIdentityJson = "",
+    [string]$VisualIdentityJsonPath = "",
 
     [switch]$Force
   )
@@ -368,6 +404,7 @@ function Update-RequirementsTrace {
   $candidatesPath = Join-Path $traceDir "candidates.md"
   $requirementsPath = Join-Path $traceDir "requirements.md"
   $gameplayDiversityPath = Join-Path $traceDir "gameplay_diversity.json"
+  $visualIdentityPath = Join-Path $traceDir "visual_identity.json"
 
   New-Item -ItemType Directory -Force -Path $traceDir | Out-Null
 
@@ -414,6 +451,11 @@ function Update-RequirementsTrace {
     Write-Utf8File $gameplayDiversityPath $gameplayDiversityContent
   }
 
+  if ($Stage -eq "requirements" -and $Status -ne "confirmed" -and ((-not (Test-Path $visualIdentityPath)) -or $Force)) {
+    $visualIdentityContent = Resolve-MarkdownContent $VisualIdentityJson $VisualIdentityJsonPath (New-VisualIdentityTemplate $GameId $resolvedDirection $resolvedSelectedConcept $resolvedUiSkin) "VisualIdentityJson"
+    Write-Utf8File $visualIdentityPath $visualIdentityContent
+  }
+
   if ($Status -eq "confirmed") {
     if (!(Test-Path $requirementsPath)) {
       throw "Cannot confirm requirements trace without requirements.md."
@@ -429,6 +471,18 @@ function Update-RequirementsTrace {
     }
     if ([string]$gameplayDiversity.status -ne "passed") {
       throw "Cannot confirm requirements trace until gameplay_diversity.json has status 'passed'. Current status: $([string]$gameplayDiversity.status)"
+    }
+    if (!(Test-Path $visualIdentityPath)) {
+      throw "Cannot confirm requirements trace without visual_identity.json."
+    }
+    try {
+      $visualIdentity = Get-Content -LiteralPath $visualIdentityPath -Raw | ConvertFrom-Json
+    }
+    catch {
+      throw "Cannot confirm requirements trace because visual_identity.json is invalid."
+    }
+    if ([string]$visualIdentity.status -ne "passed") {
+      throw "Cannot confirm requirements trace until visual_identity.json has status 'passed'. Current status: $([string]$visualIdentity.status)"
     }
     if ([string]::IsNullOrWhiteSpace($resolvedSelectedConcept)) {
       throw "Cannot confirm requirements trace without selected_concept."
@@ -451,6 +505,7 @@ function Update-RequirementsTrace {
     requirements_md = if (Test-Path $requirementsPath) { "artifacts/requirements/$GameId/requirements.md" } else { "" }
     candidates_md = if (Test-Path $candidatesPath) { "artifacts/requirements/$GameId/candidates.md" } else { "" }
     gameplay_diversity_json = if (Test-Path $gameplayDiversityPath) { "artifacts/requirements/$GameId/gameplay_diversity.json" } else { "" }
+    visual_identity_json = if (Test-Path $visualIdentityPath) { "artifacts/requirements/$GameId/visual_identity.json" } else { "" }
   }
 
   $metadata = [ordered]@{
@@ -477,6 +532,7 @@ function Update-RequirementsTrace {
   if (Test-Path $candidatesPath) { Write-Host "REQUIREMENTS_CANDIDATES=$candidatesPath" }
   if (Test-Path $requirementsPath) { Write-Host "REQUIREMENTS_MARKDOWN=$requirementsPath" }
   if (Test-Path $gameplayDiversityPath) { Write-Host "REQUIREMENTS_GAMEPLAY_DIVERSITY=$gameplayDiversityPath" }
+  if (Test-Path $visualIdentityPath) { Write-Host "REQUIREMENTS_VISUAL_IDENTITY=$visualIdentityPath" }
   if (-not [string]::IsNullOrWhiteSpace($resolvedSelectedConcept)) { Write-Host "REQUIREMENTS_SELECTED_CONCEPT=$resolvedSelectedConcept" }
   if (-not [string]::IsNullOrWhiteSpace($resolvedUiSkin)) { Write-Host "REQUIREMENTS_UI_SKIN=$resolvedUiSkin" }
   Write-Host "REQUIREMENTS_STAGE=$Stage"

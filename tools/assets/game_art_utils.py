@@ -19,6 +19,13 @@ MATCH_IGNORE = {
 }
 
 
+def usage_count(pack_entry):
+    used_by = pack_entry.get("used_by", []) if isinstance(pack_entry, dict) else []
+    if not isinstance(used_by, list):
+        return 0
+    return len([item for item in used_by if str(item).strip()])
+
+
 def load_json(path: Path):
     return json.loads(path.read_text(encoding="utf-8-sig"))
 
@@ -32,6 +39,12 @@ def load_index(index_path: Path):
     if not index_path.exists():
         return {"version": 1, "packs": []}
     return load_json(index_path)
+
+
+def load_source_catalog(catalog_path: Path):
+    if not catalog_path.exists():
+        return {"version": 1, "sources": []}
+    return load_json(catalog_path)
 
 
 def normalize_token(value: str) -> str:
@@ -90,6 +103,128 @@ def pack_tokens(pack_entry):
     return {token for token in unique_tokens(tokens) if token not in MATCH_IGNORE}
 
 
+def build_match_context(style_tags=None, art_roles=None, game_type: str = "", role_focus=None):
+    style_tokens = {token for token in tokenize_text(style_tags) if token not in MATCH_IGNORE}
+    role_tokens = {token for token in tokenize_text(art_roles) if token not in MATCH_IGNORE}
+    game_type_tokens = {token for token in tokenize_text(game_type) if token not in MATCH_IGNORE}
+    focus_tokens = role_focus if role_focus is not None else role_tokens
+    focus_tokens = {token for token in tokenize_text(focus_tokens) if token not in MATCH_IGNORE}
+    desired_tokens = style_tokens.union(role_tokens).union(game_type_tokens)
+    return {
+        "style_tokens": style_tokens,
+        "role_tokens": role_tokens,
+        "game_type_tokens": game_type_tokens,
+        "focus_tokens": focus_tokens,
+        "desired_tokens": desired_tokens,
+    }
+
+
+def score_pack_entry(pack_entry, context):
+    tokens = pack_tokens(pack_entry)
+    desired_tokens = context["desired_tokens"]
+    if desired_tokens and not desired_tokens.intersection(tokens):
+        return None
+    pack_role_tokens = set(tokenize_text(pack_entry.get("art_roles", [])))
+    pack_style_tokens = set(tokenize_text(pack_entry.get("style_tags", [])))
+    pack_game_tokens = set(tokenize_text(pack_entry.get("recommended_game_types", [])))
+    pack_animation_tokens = set(tokenize_text(pack_entry.get("animation_capabilities", []), pack_entry.get("animation_states", [])))
+    focus_tokens = context["focus_tokens"] or context["role_tokens"]
+    role_matches = len(focus_tokens.intersection(pack_role_tokens))
+    style_matches = len(context["style_tokens"].intersection(pack_style_tokens))
+    game_matches = len(context["game_type_tokens"].intersection(pack_game_tokens))
+    animation_matches = len(desired_tokens.intersection(pack_animation_tokens))
+    broad_matches = len(desired_tokens.intersection(tokens))
+    score = role_matches * 7 + style_matches * 5 + game_matches * 6 + animation_matches * 9 + broad_matches
+    quality_tags = pack_entry.get("quality_tags", [])
+    if "production" in quality_tags:
+        score += 2
+    if "animated" in quality_tags:
+        score += 5
+    pack_usage = usage_count(pack_entry)
+    score -= min(pack_usage, 4) * 4
+    if pack_usage == 0:
+        score += 2
+    if focus_tokens and role_matches <= 0:
+        score -= 3
+    return {
+        "score": score,
+        "usage_count": pack_usage,
+        "role_matches": role_matches,
+        "style_matches": style_matches,
+        "game_matches": game_matches,
+        "animation_matches": animation_matches,
+        "broad_matches": broad_matches,
+        "pack": pack_entry,
+    }
+
+
+def rank_pack_candidates(index_data, style_tags=None, art_roles=None, game_type: str = "", role_focus=None, min_score: int = 0, limit: int = 10, exclude_pack_ids=None):
+    exclude_pack_ids = {str(item).strip() for item in (exclude_pack_ids or []) if str(item).strip()}
+    context = build_match_context(style_tags=style_tags, art_roles=art_roles, game_type=game_type, role_focus=role_focus)
+    candidates = []
+    for pack in index_data.get("packs", []):
+        if not isinstance(pack, dict):
+            continue
+        pack_id = str(pack.get("pack_id", "")).strip()
+        if not pack_id or pack_id in exclude_pack_ids:
+            continue
+        scored = score_pack_entry(pack, context)
+        if not scored:
+            continue
+        if scored["score"] < min_score:
+            continue
+        candidates.append(scored)
+    candidates.sort(key=lambda item: (-item["score"], item["usage_count"], item["pack"].get("pack_id", "")))
+    if limit and limit > 0:
+        return candidates[:limit]
+    return candidates
+
+
+def source_entry_tokens(source_entry):
+    tokens = []
+    if isinstance(source_entry, dict):
+        for key in ("pack_id", "title", "source_url", "download_page_url"):
+            tokens.extend(tokenize_text(source_entry.get(key, "")))
+        for key in ("art_roles", "recommended_game_types", "style_tags", "quality_tags"):
+            value = source_entry.get(key, [])
+            if isinstance(value, list):
+                tokens.extend(tokenize_text(value))
+    return {token for token in unique_tokens(tokens) if token not in MATCH_IGNORE}
+
+
+def rank_source_candidates(catalog_data, style_tags=None, art_roles=None, game_type: str = "", role_focus=None, limit: int = 10, exclude_pack_ids=None):
+    exclude_pack_ids = {str(item).strip() for item in (exclude_pack_ids or []) if str(item).strip()}
+    context = build_match_context(style_tags=style_tags, art_roles=art_roles, game_type=game_type, role_focus=role_focus)
+    candidates = []
+    for source in catalog_data.get("sources", []):
+        if not isinstance(source, dict):
+            continue
+        pack_id = str(source.get("pack_id", "")).strip()
+        if not pack_id or pack_id in exclude_pack_ids:
+            continue
+        tokens = source_entry_tokens(source)
+        desired_tokens = context["desired_tokens"]
+        if desired_tokens and not desired_tokens.intersection(tokens):
+            continue
+        role_matches = len((context["focus_tokens"] or context["role_tokens"]).intersection(set(tokenize_text(source.get("art_roles", [])))))
+        style_matches = len(context["style_tokens"].intersection(set(tokenize_text(source.get("style_tags", [])))))
+        game_matches = len(context["game_type_tokens"].intersection(set(tokenize_text(source.get("recommended_game_types", [])))))
+        broad_matches = len(desired_tokens.intersection(tokens))
+        score = role_matches * 7 + style_matches * 5 + game_matches * 6 + broad_matches + 2
+        candidates.append({
+            "score": score,
+            "source": source,
+            "role_matches": role_matches,
+            "style_matches": style_matches,
+            "game_matches": game_matches,
+            "broad_matches": broad_matches,
+        })
+    candidates.sort(key=lambda item: (-item["score"], item["source"].get("pack_id", "")))
+    if limit and limit > 0:
+        return candidates[:limit]
+    return candidates
+
+
 def find_pack(index_data, pack_id: str):
     for item in index_data.get("packs", []):
         if isinstance(item, dict) and item.get("pack_id", "") == pack_id:
@@ -98,44 +233,10 @@ def find_pack(index_data, pack_id: str):
 
 
 def find_best_pack(index_data, style_tags=None, art_roles=None, game_type: str = "", min_score: int = 0):
-    style_tokens = {token for token in tokenize_text(style_tags) if token not in MATCH_IGNORE}
-    role_tokens = {token for token in tokenize_text(art_roles) if token not in MATCH_IGNORE}
-    game_type_tokens = {token for token in tokenize_text(game_type) if token not in MATCH_IGNORE}
-    desired_tokens = style_tokens.union(role_tokens).union(game_type_tokens)
-    packs = [item for item in index_data.get("packs", []) if isinstance(item, dict)]
-    if not packs:
+    ranked = rank_pack_candidates(index_data, style_tags=style_tags, art_roles=art_roles, game_type=game_type, min_score=min_score, limit=1)
+    if not ranked:
         return None
-    if not desired_tokens:
-        return packs[0]
-
-    best_pack = None
-    best_score = None
-    for pack in packs:
-        tokens = pack_tokens(pack)
-        match_count = len(desired_tokens.intersection(tokens))
-        if match_count <= 0:
-            continue
-        pack_role_tokens = set(tokenize_text(pack.get("art_roles", [])))
-        pack_game_type_tokens = set(tokenize_text(pack.get("recommended_game_types", [])))
-        pack_style_tokens = set(tokenize_text(pack.get("style_tags", [])))
-        pack_animation_tokens = set(tokenize_text(pack.get("animation_capabilities", []), pack.get("animation_states", [])))
-        role_match_count = len(role_tokens.intersection(pack_role_tokens))
-        game_type_match_count = len(game_type_tokens.intersection(pack_game_type_tokens))
-        style_match_count = len(style_tokens.intersection(pack_style_tokens))
-        animation_match_count = len(desired_tokens.intersection(pack_animation_tokens))
-        score = match_count + role_match_count * 4 + game_type_match_count * 6 + style_match_count * 5 + animation_match_count * 8
-        if "production" in pack.get("quality_tags", []):
-            score += 1
-        if "animated" in pack.get("quality_tags", []):
-            score += 4
-        if best_pack is None or score > best_score:
-            best_pack = pack
-            best_score = score
-    if best_pack is None:
-        return None
-    if best_score is not None and best_score < min_score:
-        return None
-    return best_pack
+    return ranked[0]["pack"]
 
 
 def ensure_within(root: Path, target: Path, label: str):

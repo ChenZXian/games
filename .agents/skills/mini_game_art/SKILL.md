@@ -19,6 +19,7 @@ Hard rules:
 - Do not use unclear, personal-use-only, or mixed-license assets
 - Prefer CC0 or public-domain equivalent sources
 - Keep license and source provenance in `shared_assets/game_art/`
+- Search both the shared library and `shared_assets/game_art/source_catalog.json` before deciding the library is too small
 - Do not mix gameplay art assets into `shared_assets/ui/`
 - Do not use UI packs as character, map, or prop packs
 - Treat `project_local_canvas_art` as prototype-only unless placeholder quality is explicitly acceptable
@@ -50,10 +51,11 @@ Workflow:
    - background
 4. Resolve assets in this order:
    - style-matched shared game art pack
+   - source-catalog search across official free and license-clear packs
    - imported official free and license-clear game art pack
    - project-local prototype art only when placeholder quality is acceptable
 5. Use `tools/assets/ensure_game_art_pack.ps1` for matching.
-6. Use `tools/assets/import_game_art_pack.ps1` for importing free license-clear packs.
+6. Use `tools/assets/import_game_art_pack.ps1` for importing free license-clear packs when source-catalog search finds a better match.
 7. Use `tools/assets/assign_game_art.ps1` for project assignment.
 8. Record assignment under `app/src/main/assets/game_art/game_art_assignment.json`.
 9. Create or update `app/src/main/assets/game_art/runtime_art_map.json`:

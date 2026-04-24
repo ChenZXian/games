@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "game_id": "ashen_frontier",
+  "status": "passed",
+  "reviewed_at": "2026-04-24",
+  "requirements_trace": "artifacts/requirements/ashen_frontier/requirements.md",
+  "implemented_core_mechanics": [
+    "12 named frontier regions with escalating threat and world size",
+    "world map deployment and safehouse return flow",
+    "safehouse workshop infirmary and garage upgrades",
+    "macro resources for scrap fuel medicine and survivors",
+    "weapon switching across pistol shotgun SMG rifle and crossbow",
+    "clip ammo reserve ammo reload timing and weapon noise rules",
+    "molotov burn zones and noise lure utility system",
+    "zombie roster with shambler runner crawler bloater armored and howler variants",
+    "rescue survivor escort relay secure and extraction objective loop",
+    "bike mode traversal with fuel pressure and weapon restriction",
+    "menu help HUD pause result world map and safehouse overlays",
+    "tracked UI pack assignment",
+    "tracked gameplay art pack assignment with integrated runtime art map",
+    "tracked icon export artifacts",
+    "tracked BGM and SFX assignment through the shared audio library"
+  ],
+  "animation_and_facing_evidence": [
+    "GameView rotates the player sprite from the aim vector and swaps stand gun machine and reload poses by weapon state",
+    "GameView rotates zombie sprites from velocity and varies tint scale and special behavior by infected type",
+    "GameView draws runtime bike, burn zone, lure pulse, pickup, and hp bar feedback instead of leaving static placeholders",
+    "GameView loads assigned gameplay art assets through AssetManager and BitmapFactory"
+  ],
+  "evidence": [
+    "games/ashen_frontier/app/src/main/java/com/android/boot/ui/GameView.java",
+    "games/ashen_frontier/app/src/main/java/com/android/boot/MainActivity.java",
+    "games/ashen_frontier/app/src/main/assets/ui/ui_pack_assignment.json",
+    "games/ashen_frontier/app/src/main/assets/game_art/game_art_assignment.json",
+    "games/ashen_frontier/app/src/main/assets/game_art/runtime_art_map.json",
+    "games/ashen_frontier/app/src/main/assets/audio",
+    "artifacts/icons/ashen_frontier"
+  ],
+  "known_limitations": [
+    "The first playable scope represents each frontier region as one large mission space instead of the full later plan for multiple subzones per region.",
+    "The broader draft roster for revolver burst rifle flamethrower grenade launcher pipe bomb and flash flare is partially deferred, while the implemented weapon set already preserves the required weapon-switching survival shooter identity."
+  ],
+  "remaining_quality_notes": [
+    "The current implementation preserves the confirmed large-map zombie frontier scavenging loop instead of collapsing into a small arena wave template.",
+    "Future expansion can deepen route variation, landmark diversity, and the late-game weapon roster without replacing the current core."
+  ]
+}

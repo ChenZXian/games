@@ -1,6 +1,6 @@
 # Inspect Workflow
 
-Version: 1.3
+Version: 1.4
 Last updated: 2026-04-23
 
 This document defines the repository inspection workflow for Android Java mini-games.
@@ -23,6 +23,7 @@ The inspect workflow may check:
 - registry presence
 - requirements trace presence
 - gameplay diversity contract status
+- visual identity contract status
 - icon track status
 - UI track status
 - gameplay art track status
@@ -79,7 +80,23 @@ Meaning:
 - `missing`: no gameplay diversity contract was found
 - `invalid`: contract JSON could not be parsed or has no status
 
-### 4.3 Icon, UI, Gameplay Art, Audio
+### 4.3 Visual Identity
+
+- `passed`
+- `draft`
+- `needs_revision`
+- `missing`
+- `invalid`
+
+Meaning:
+
+- `passed`: UI and icon visual identity contract exists and is ready to gate delivery
+- `draft`: contract exists but should not gate delivery yet
+- `needs_revision`: contract is known to be too generic or too close to another project
+- `missing`: no visual identity contract was found
+- `invalid`: contract JSON could not be parsed or has no status
+
+### 4.4 Icon, UI, Gameplay Art, Audio
 
 - `complete`
 - `placeholder_only`
@@ -91,7 +108,7 @@ Meaning:
 - `placeholder_only`: the project has some local implementation, but tracking or export evidence is incomplete
 - `deferred`: the workflow track has not been completed for the current project
 
-### 4.4 Gameplay Art Runtime
+### 4.5 Gameplay Art Runtime
 
 - `integrated`
 - `draft`
@@ -126,6 +143,7 @@ The inspect workflow should report two top-level conclusions.
 - `CAN_ENTER_PACK=true`
 - requirements status is `confirmed`
 - gameplay diversity status is `passed`
+- visual identity status is `passed`
 - implementation fidelity status is `passed`
 - icon status is `complete`
 - UI status is `complete`
@@ -148,6 +166,7 @@ Every inspect run should report:
 - `DELIVERY_READY`
 - `REQUIREMENTS_STATUS`
 - `GAMEPLAY_DIVERSITY_STATUS`
+- `VISUAL_IDENTITY_STATUS`
 - `IMPLEMENTATION_FIDELITY_STATUS`
 - `ICON_STATUS`
 - `UI_STATUS`

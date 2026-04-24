@@ -14,6 +14,7 @@ Read these repository rules before producing planning output:
 - docs/UI_KIT_FACTORY_SPEC_v1_0.md
 - docs/REQUIREMENTS_WORKFLOW.md
 - docs/GAMEPLAY_DIVERSITY_WORKFLOW.md
+- docs/VISUAL_IDENTITY_WORKFLOW.md
 - registry/produced_games.json
 
 Planning sequence:
@@ -41,10 +42,12 @@ Requirements trace storage:
   - `metadata.json`
   - `requirements.md`
   - `gameplay_diversity.json`
+  - `visual_identity.json`
 - `candidates.md` is optional
 - Use `tools/requirements/create_candidates_trace.ps1` for the candidate stage when a target `game_id` is already known
 - Use `tools/requirements/create_requirements_trace.ps1` after one concept is selected
 - When creating the full requirements trace, also provide or write a complete gameplay diversity contract with status `passed`
+- When creating the full requirements trace, also provide or write a complete visual identity contract with status `passed`
 - Use `tools/requirements/confirm_trace.ps1 -ExplicitUserConfirmation` only after the user explicitly confirms the requirements
 - Use status `draft` before confirmation and `confirmed` after the user confirms the requirements
 - The inspect workflow should be able to read this trace later
@@ -56,6 +59,7 @@ Hard planning rules:
 - Do not skip the 10-candidate step unless the user explicitly provides a locked concept and asks for full requirements only.
 - Do not allow project initialization if full requirements confirmation is still missing.
 - Do not allow project initialization if the gameplay diversity contract is missing, still draft, or too generic.
+- Do not allow project initialization if the visual identity contract is missing, still draft, or too generic.
 - Do not produce ten candidates that are minor variants of the same layout, roster, or loop.
 - Keep all proposed games consistent with repository constraints:
   - Android Java mini-game
@@ -105,6 +109,18 @@ Full requirements document format:
   - player, enemy, neutral, item, projectile, and effect roster targets
   - mechanic variety and progression targets
   - forbidden template reuse
+- Visual identity contract:
+  - UI layout archetype
+  - HUD composition
+  - navigation model
+  - palette signature
+  - material language
+  - typography style
+  - UI pack strategy
+  - icon subject
+  - icon silhouette and composition
+  - icon palette and background
+  - forbidden UI and icon reuse
 - Screen map:
   - menu
   - gameplay HUD
@@ -147,6 +163,12 @@ Gameplay diversity contract requirements:
 - The JSON contract must include the fields defined by `docs/GAMEPLAY_DIVERSITY_WORKFLOW.md`.
 - The contract must be specific enough for `tools/requirements/check_gameplay_diversity.ps1 -GameId <game_id> -Strict` to pass before confirmation.
 - If it cannot pass, keep the requirements as draft and revise the design instead of initializing the project.
+
+Visual identity contract requirements:
+- Create or update `artifacts/requirements/<game_id>/visual_identity.json` with status `passed` when the full requirements draft is complete enough for review.
+- The JSON contract must include the fields defined by `docs/VISUAL_IDENTITY_WORKFLOW.md`.
+- The contract must be specific enough for `tools/requirements/check_visual_identity.ps1 -GameId <game_id> -Strict` to pass before confirmation.
+- If it cannot pass, keep the requirements as draft and revise UI or icon direction instead of initializing the project.
 
 Full requirements quality bar:
 - Keep the design implementable as a single Android Studio Java mini-game project.
