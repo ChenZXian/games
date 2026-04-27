@@ -494,6 +494,23 @@
       "core_loop": "choose a frontier region ride into a large infected zone scavenge resources rescue survivors secure the relay fight zombie packs with switching firearms and extract to upgrade the safehouse",
       "created_at": "2026-04-24",
       "ui_skin": "skin_post_apocalypse"
+    },
+    {
+      "id": "crownblock_hunt",
+      "name": "Crownblock Hunt",
+      "tags": [
+        "action",
+        "brawler",
+        "side_scroller",
+        "district_control",
+        "partners",
+        "weapons",
+        "combo",
+        "variant_b_core_ui_entity_audio"
+      ],
+      "core_loop": "select a district block push through long side scrolling streets chain melee and firearms call partner assists capture the sector and return to the safehouse to upgrade weapons recruits and route control",
+      "created_at": "2026-04-26",
+      "ui_skin": "skin_dark_arcade"
     }
   ]
 }

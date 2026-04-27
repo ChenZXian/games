@@ -44,6 +44,70 @@ function Get-RepoRoot([string]$StartPath) {
   throw "Repo root not found from: $StartPath"
 }
 
+function Read-JsonObject([string]$PathValue) {
+  if (-not (Test-Path -LiteralPath $PathValue)) { return $null }
+  try {
+    return (Get-Content -LiteralPath $PathValue -Raw | ConvertFrom-Json)
+  }
+  catch {
+    return $null
+  }
+}
+
+function Join-TextParts([string[]]$Parts) {
+  $filtered = @()
+  foreach ($part in $Parts) {
+    if (-not [string]::IsNullOrWhiteSpace($part)) {
+      $filtered += $part.Trim()
+    }
+  }
+  return ($filtered -join " ").Trim()
+}
+
+function Get-IconDirection([string]$RepoRoot, [string]$GameId, [string]$ExplicitSubject) {
+  $result = [ordered]@{
+    Subject = $ExplicitSubject
+    Silhouette = ""
+    VisualIdentitySource = ""
+    Forbidden = @()
+  }
+  if ([string]::IsNullOrWhiteSpace($GameId)) {
+    return [pscustomobject]$result
+  }
+
+  $visualIdentityPath = Join-Path $RepoRoot ("artifacts\requirements\" + $GameId + "\visual_identity.json")
+  $visualIdentity = Read-JsonObject $visualIdentityPath
+  if ($null -eq $visualIdentity) {
+    return [pscustomobject]$result
+  }
+
+  $iconIdentity = $visualIdentity.icon_identity
+  $iconSubject = ""
+  $iconSilhouette = ""
+  $forbidden = @()
+
+  if ($null -ne $iconIdentity) {
+    if ($null -ne $iconIdentity.subject) { $iconSubject = [string]$iconIdentity.subject }
+    if ($null -ne $iconIdentity.silhouette) { $iconSilhouette = [string]$iconIdentity.silhouette }
+    if ($null -ne $iconIdentity.forbidden_icon_reuse) {
+      $forbidden += @($iconIdentity.forbidden_icon_reuse | ForEach-Object { [string]$_ })
+    }
+  }
+  if ($null -ne $visualIdentity.forbidden_visual_reuse) {
+    $forbidden += @($visualIdentity.forbidden_visual_reuse | ForEach-Object { [string]$_ })
+  }
+
+  if (-not [string]::IsNullOrWhiteSpace($iconSubject)) {
+    $result.Subject = $iconSubject.Trim()
+  } else {
+    $result.Subject = $ExplicitSubject
+  }
+  $result.Silhouette = $iconSilhouette
+  $result.VisualIdentitySource = $visualIdentityPath
+  $result.Forbidden = $forbidden
+  return [pscustomobject]$result
+}
+
 function New-Color([string]$Hex, [int]$Alpha = 255) {
   $value = $Hex.Trim().TrimStart('#')
   if ($value.Length -ne 6) {
@@ -83,16 +147,22 @@ function New-RoundedPath([int]$X, [int]$Y, [int]$Width, [int]$Height, [int]$Radi
   return $path
 }
 
-function Get-Motif([string]$Text) {
+function Get-Motif([string]$Text, [string[]]$Forbidden = @()) {
   $value = $Text.ToLowerInvariant()
+  $forbiddenText = (($Forbidden | ForEach-Object { [string]$_ }) -join " ").ToLowerInvariant()
+  $banCastle = $forbiddenText -match 'castle|tower'
+  $banZombie = $forbiddenText -match 'zombie'
+  $banHelmet = $forbiddenText -match 'helmet|gas-mask|gas mask'
+  $banShield = $forbiddenText -match 'shield|crest'
+  if (($value -match 'fist|knuckle|glove') -and ($value -match 'sign|street|district|warrant|route|block')) { return "fistsign" }
   if ($value -match 'snow|ice|frost') { return "snowman" }
-  if ($value -match 'castle|royal|keep|king') { return "castle" }
+  if ((-not $banCastle) -and $value -match 'castle|royal|keep|king') { return "castle" }
   if ($value -match 'bomb|bomber|blast') { return "bomb" }
   if ($value -match 'garden|plant|farm|orchard|pasture|bloom') { return "leaf" }
-  if ($value -match 'zombie|survival|barricade') { return "zombie" }
+  if ((-not $banZombie) -and $value -match 'zombie|survival|barricade') { return "zombie" }
   if ($value -match 'runner|dash|escape|relic') { return "runner" }
   if ($value -match 'courier|switchyard|rail|delivery|clockwork') { return "courier" }
-  if ($value -match 'war|battle|strike|campaign|territory|siege|frontier') { return "swordshield" }
+  if ((-not $banShield) -and (-not $banHelmet) -and $value -match 'war|battle|strike|campaign|territory|siege|frontier') { return "swordshield" }
   if ($value -match 'plane|air|sky|flight') { return "plane" }
   if ($value -match 'gold|miner|hook') { return "hook" }
   return "shieldstar"
@@ -100,6 +170,11 @@ function Get-Motif([string]$Text) {
 
 function Get-Palette([string]$Motif) {
   switch ($Motif) {
+    "fistsign" {
+      return @{
+        BgStart = "#1B2433"; BgEnd = "#C67B32"; Primary = "#D0B79C"; Secondary = "#E7E0D6"; Accent = "#ED9E3D"; Outline = "#6B5846"; Spot = "#FFD6B4"
+      }
+    }
     "snowman" {
       return @{
         BgStart = "#72D7FF"; BgEnd = "#2F8BFF"; Primary = "#FFFFFF"; Secondary = "#FF8B38"; Accent = "#1D4ED8"; Outline = "#15315C"; Spot = "#FFF1B8"
@@ -188,6 +263,81 @@ function Draw-Snowman([System.Drawing.Graphics]$Graphics, [hashtable]$Palette, [
   $accentBrush.Dispose()
   $secondaryBrush.Dispose()
   $darkBrush.Dispose()
+}
+
+function Draw-FistSign([System.Drawing.Graphics]$Graphics, [hashtable]$Palette, [int]$OffsetX, [int]$OffsetY, [int]$ShadowAlpha) {
+  $alpha = Get-DrawAlpha $ShadowAlpha
+  $outline = New-PenFromHex $Palette.Outline 20 $alpha
+  $outline.LineJoin = [System.Drawing.Drawing2D.LineJoin]::Round
+  $fistBrush = New-Brush $Palette.Primary $alpha
+  $signBrush = New-Brush $Palette.Secondary $alpha
+  $accentBrush = New-Brush $Palette.Accent $alpha
+  $darkBrush = New-Brush $Palette.Outline $alpha
+  $tapeBrush = New-Brush "#EFE6D3" $alpha
+  $signPath = New-RoundedPath (292 + $OffsetX) (384 + $OffsetY) 426 224 34
+
+  $Graphics.FillPath($signBrush, $signPath)
+  $Graphics.DrawPath($outline, $signPath)
+  $Graphics.FillRectangle($darkBrush, 346 + $OffsetX, 566 + $OffsetY, 34, 136)
+  $Graphics.FillRectangle($darkBrush, 626 + $OffsetX, 548 + $OffsetY, 34, 154)
+  $Graphics.FillRectangle($accentBrush, 356 + $OffsetX, 412 + $OffsetY, 288, 28)
+  $Graphics.DrawLine($outline, 374 + $OffsetX, 450 + $OffsetY, 474 + $OffsetX, 516 + $OffsetY)
+  $Graphics.DrawLine($outline, 548 + $OffsetX, 430 + $OffsetY, 486 + $OffsetX, 560 + $OffsetY)
+  $Graphics.DrawLine($outline, 444 + $OffsetX, 522 + $OffsetY, 410 + $OffsetX, 592 + $OffsetY)
+  $Graphics.FillRectangle($tapeBrush, 278 + $OffsetX, 354 + $OffsetY, 88, 30)
+  $Graphics.FillRectangle($tapeBrush, 658 + $OffsetX, 334 + $OffsetY, 76, 30)
+
+  $palmPath = New-RoundedPath (404 + $OffsetX) (270 + $OffsetY) 188 320 48
+  $Graphics.FillPath($fistBrush, $palmPath)
+  $Graphics.DrawPath($outline, $palmPath)
+  foreach ($finger in @(
+    @{ X = 382; Y = 226; W = 52; H = 122 },
+    @{ X = 436; Y = 204; W = 54; H = 132 },
+    @{ X = 492; Y = 218; W = 54; H = 126 },
+    @{ X = 548; Y = 254; W = 50; H = 120 }
+  )) {
+    $fingerPath = New-RoundedPath ($finger.X + $OffsetX) ($finger.Y + $OffsetY) $finger.W $finger.H 16
+    $Graphics.FillPath($fistBrush, $fingerPath)
+    $Graphics.DrawPath($outline, $fingerPath)
+    $fingerPath.Dispose()
+  }
+  $thumbPoints = @(
+    (New-Point (570 + $OffsetX) (434 + $OffsetY)),
+    (New-Point (664 + $OffsetX) (484 + $OffsetY)),
+    (New-Point (700 + $OffsetX) (556 + $OffsetY)),
+    (New-Point (632 + $OffsetX) (574 + $OffsetY)),
+    (New-Point (552 + $OffsetX) (536 + $OffsetY))
+  )
+  $Graphics.FillPolygon($fistBrush, $thumbPoints)
+  $Graphics.DrawPolygon($outline, $thumbPoints)
+  $Graphics.FillRectangle($tapeBrush, 426 + $OffsetX, 466 + $OffsetY, 154, 42)
+  $Graphics.FillRectangle($tapeBrush, 420 + $OffsetX, 544 + $OffsetY, 172, 38)
+  $Graphics.DrawLine($outline, 482 + $OffsetX, 278 + $OffsetY, 482 + $OffsetX, 336 + $OffsetY)
+  $Graphics.DrawLine($outline, 536 + $OffsetX, 288 + $OffsetY, 536 + $OffsetX, 344 + $OffsetY)
+  $Graphics.DrawLine($outline, 588 + $OffsetX, 318 + $OffsetY, 588 + $OffsetX, 372 + $OffsetY)
+
+  $weaponPoints = @(
+    (New-Point (278 + $OffsetX) (712 + $OffsetY)),
+    (New-Point (628 + $OffsetX) (646 + $OffsetY)),
+    (New-Point (668 + $OffsetX) (676 + $OffsetY)),
+    (New-Point (320 + $OffsetX) (742 + $OffsetY))
+  )
+  $Graphics.FillPolygon($darkBrush, $weaponPoints)
+  $Graphics.FillRectangle($darkBrush, 612 + $OffsetX, 632 + $OffsetY, 112, 54)
+  $Graphics.FillRectangle($darkBrush, 260 + $OffsetX, 694 + $OffsetY, 44, 98)
+  $slashPen = New-PenFromHex "#C9605A" 8 $alpha
+  $Graphics.DrawLine($slashPen, 278 + $OffsetX, 756 + $OffsetY, 356 + $OffsetX, 708 + $OffsetY)
+  $Graphics.DrawLine($slashPen, 622 + $OffsetX, 670 + $OffsetY, 688 + $OffsetX, 762 + $OffsetY)
+
+  $signPath.Dispose()
+  $palmPath.Dispose()
+  $outline.Dispose()
+  $fistBrush.Dispose()
+  $signBrush.Dispose()
+  $accentBrush.Dispose()
+  $darkBrush.Dispose()
+  $tapeBrush.Dispose()
+  $slashPen.Dispose()
 }
 
 function Draw-Castle([System.Drawing.Graphics]$Graphics, [hashtable]$Palette, [int]$OffsetX, [int]$OffsetY, [int]$ShadowAlpha) {
@@ -493,6 +643,10 @@ function Draw-MotifBitmap([string]$Motif, [hashtable]$Palette) {
   $graphics.Clear([System.Drawing.Color]::Transparent)
 
   switch ($Motif) {
+    "fistsign" {
+      Draw-FistSign $graphics $Palette 20 22 90
+      Draw-FistSign $graphics $Palette 0 0 0
+    }
     "snowman" {
       Draw-Snowman $graphics $Palette 20 28 90
       Draw-Snowman $graphics $Palette 0 0 0
@@ -600,6 +754,18 @@ function Normalize-Manifest([string]$ManifestPath) {
   [System.IO.File]::WriteAllText($ManifestPath, $text, [System.Text.UTF8Encoding]::new($false))
 }
 
+function Has-ColorResource([string]$ValuesDir, [string]$ColorName) {
+  if (-not (Test-Path -LiteralPath $ValuesDir)) { return $false }
+  $pattern = '<color\s+name="' + [regex]::Escape($ColorName) + '"'
+  foreach ($file in Get-ChildItem -LiteralPath $ValuesDir -Filter "*.xml" -File -ErrorAction SilentlyContinue) {
+    $text = [System.IO.File]::ReadAllText($file.FullName)
+    if ([regex]::IsMatch($text, $pattern, [System.Text.RegularExpressions.RegexOptions]::IgnoreCase)) {
+      return $true
+    }
+  }
+  return $false
+}
+
 if (-not (Test-Path -LiteralPath $Project)) {
   throw "Project path not found: $Project"
 }
@@ -614,11 +780,16 @@ $seedValue = $Seed
 if ([string]::IsNullOrWhiteSpace($seedValue)) {
   $seedValue = $gameIdValue
 }
-$subjectValue = $Subject
-if ([string]::IsNullOrWhiteSpace($subjectValue)) {
-  $subjectValue = $gameIdValue.Replace("_", " ").Replace("-", " ")
+$explicitSubjectValue = $Subject
+if ([string]::IsNullOrWhiteSpace($explicitSubjectValue)) {
+  $explicitSubjectValue = $gameIdValue.Replace("_", " ").Replace("-", " ")
 }
-$motif = Get-Motif "$subjectValue $gameIdValue"
+$iconDirection = Get-IconDirection $repoRoot $gameIdValue $explicitSubjectValue
+$subjectValue = $iconDirection.Subject
+if ([string]::IsNullOrWhiteSpace($subjectValue)) {
+  $subjectValue = $explicitSubjectValue
+}
+$motif = Get-Motif $subjectValue $iconDirection.Forbidden
 $palette = Get-Palette $motif
 
 $exportBase = $ExportRoot
@@ -671,7 +842,9 @@ $colorsXml = @"
   <color name="cst_app_icon_bg">$($palette.BgStart)</color>
 </resources>
 "@
-Write-TextUtf8 (Join-Path $valuesDir "icon_colors.xml") $colorsXml
+if (-not (Has-ColorResource $valuesDir "cst_app_icon_bg")) {
+  Write-TextUtf8 (Join-Path $valuesDir "icon_colors.xml") $colorsXml
+}
 
 $adaptiveXml = @"
 <?xml version="1.0" encoding="utf-8"?>
@@ -685,11 +858,15 @@ Write-TextUtf8 (Join-Path $mipmapAny "app_icon.xml") $adaptiveXml
 $metadata = [ordered]@{
   game_id = $gameIdValue
   subject = $subjectValue
+  icon_subject = $subjectValue
+  icon_silhouette = $iconDirection.Silhouette
   motif = $motif
   style = "cartoon"
   project_path = $projectPath
   generated_at = (Get-Date).ToString("yyyy-MM-ddTHH:mm:ssK")
   primary_export = (Join-Path $exportDir "$gameIdValue-upload-1024.png")
+  visual_identity_source = $iconDirection.VisualIdentitySource
+  seed = $seedValue
 }
 $metadataJson = $metadata | ConvertTo-Json -Depth 4
 Write-TextUtf8 (Join-Path $exportDir "metadata.json") $metadataJson

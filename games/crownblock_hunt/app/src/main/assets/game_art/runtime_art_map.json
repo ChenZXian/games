@@ -1,0 +1,235 @@
+{
+  "version": 1,
+  "game_id": "crownblock_hunt",
+  "status": "integrated",
+  "camera_perspective": "side_scrolling_street_brawler",
+  "default_coordinate_space": "world_x_screen_y",
+  "theme": "old city district street brawler large map partners weapons combo control",
+  "game_type": "side scrolling district action brawler shooter",
+  "runtime_code": "app/src/main/java/com/android/boot/ui/GameView.java",
+  "animation_quality_target": "pose_swap_with_hitstop_and_runtime_flip",
+  "minimum_primary_entity_states": [
+    "idle",
+    "move",
+    "attack",
+    "hit",
+    "jump"
+  ],
+  "entities": [
+    {
+      "entity_key": "crew_lead",
+      "role": "character",
+      "asset_keys": [
+        "game_art/kenney_platformer_characters/assets/PNG/Player/Poses/player_idle.png",
+        "game_art/kenney_platformer_characters/assets/PNG/Player/Poses/player_walk1.png",
+        "game_art/kenney_platformer_characters/assets/PNG/Player/Poses/player_walk2.png",
+        "game_art/kenney_platformer_characters/assets/PNG/Player/Poses/player_action1.png",
+        "game_art/kenney_platformer_characters/assets/PNG/Player/Poses/player_action2.png",
+        "game_art/kenney_platformer_characters/assets/PNG/Player/Poses/player_hurt.png",
+        "game_art/kenney_platformer_characters/assets/PNG/Player/Poses/player_jump.png"
+      ],
+      "default_facing": "right",
+      "facing_rule": "flip sprite horizontally from current movement or attack direction",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.98
+      },
+      "hitbox": {
+        "x": 0.22,
+        "y": 0.14,
+        "w": 0.56,
+        "h": 0.84
+      },
+      "render_size": {
+        "w": "124f",
+        "h": "146f",
+        "unit": "screen_pixels"
+      },
+      "z_order": "player_above_ground",
+      "states": [
+        "idle",
+        "move",
+        "attack",
+        "hit",
+        "jump",
+        "dash"
+      ],
+      "animation_rule": "GameView swaps idle walk action hurt and jump poses, adds dash afterimage and hitstop, and flips the whole sprite to match direction",
+      "movement_rule": "left and right buttons drive horizontal pressure, jump adds short vertical evasion, dash surges forward, and attack lock controls combo timing"
+    },
+    {
+      "entity_key": "partner_support",
+      "role": "character",
+      "asset_keys": [
+        "game_art/kenney_platformer_characters/assets/PNG/Female/Poses/female_idle.png",
+        "game_art/kenney_platformer_characters/assets/PNG/Female/Poses/female_action1.png",
+        "game_art/kenney_platformer_characters/assets/PNG/Adventurer/Poses/adventurer_idle.png",
+        "game_art/kenney_platformer_characters/assets/PNG/Adventurer/Poses/adventurer_action1.png",
+        "game_art/kenney_platformer_characters/assets/PNG/Soldier/Poses/soldier_idle.png",
+        "game_art/kenney_platformer_characters/assets/PNG/Soldier/Poses/soldier_action1.png"
+      ],
+      "default_facing": "right",
+      "facing_rule": "support portraits flip or remain upright based on active slot context and combat assist direction",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.98
+      },
+      "hitbox": {
+        "x": 0.20,
+        "y": 0.14,
+        "w": 0.60,
+        "h": 0.84
+      },
+      "render_size": {
+        "w": "112f",
+        "h": "132f",
+        "unit": "screen_pixels"
+      },
+      "z_order": "ui_portrait_and_assist_callout",
+      "states": [
+        "idle",
+        "assist",
+        "recover"
+      ],
+      "animation_rule": "GameView shows partner portraits in safehouse and board screens and drives assist feedback with spark labels and cooldown text in battle",
+      "movement_rule": "partner assists are cooldown-based triggers rather than full autonomous map movement in the first playable scope"
+    },
+    {
+      "entity_key": "street_enemy_pack",
+      "role": "enemy",
+      "asset_keys": [
+        "game_art/kenney_platformer_characters/assets/PNG/Zombie/Poses/zombie_idle.png",
+        "game_art/kenney_platformer_characters/assets/PNG/Zombie/Poses/zombie_walk1.png",
+        "game_art/kenney_platformer_characters/assets/PNG/Zombie/Poses/zombie_walk2.png",
+        "game_art/kenney_platformer_characters/assets/PNG/Zombie/Poses/zombie_action1.png",
+        "game_art/kenney_platformer_characters/assets/PNG/Zombie/Poses/zombie_hurt.png",
+        "game_art/kenney_platformer_characters/assets/PNG/Soldier/Poses/soldier_idle.png",
+        "game_art/kenney_platformer_characters/assets/PNG/Soldier/Poses/soldier_walk1.png",
+        "game_art/kenney_platformer_characters/assets/PNG/Soldier/Poses/soldier_walk2.png",
+        "game_art/kenney_platformer_characters/assets/PNG/Soldier/Poses/soldier_action1.png",
+        "game_art/kenney_platformer_characters/assets/PNG/Soldier/Poses/soldier_hurt.png"
+      ],
+      "default_facing": "left",
+      "facing_rule": "flip zombie and soldier frames toward player position or current velocity",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.98
+      },
+      "hitbox": {
+        "x": 0.22,
+        "y": 0.16,
+        "w": 0.56,
+        "h": 0.82
+      },
+      "render_size": {
+        "w": "116f_or_144f_for_elites",
+        "h": "146f_or_164f_for_elites",
+        "unit": "screen_pixels"
+      },
+      "z_order": "enemy_above_ground",
+      "states": [
+        "idle",
+        "move",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "animation_rule": "GameView swaps walk frames by movement, uses action frames during contact, hurt frames during stun flash, and elite scale plus hp bars for lieutenants",
+      "movement_rule": "brawlers and rushers advance directly, gunners hold distance and fire projectiles, brutes push slowly, and lieutenants anchor route endings"
+    },
+    {
+      "entity_key": "terrain_background_and_props",
+      "role": "terrain",
+      "asset_keys": [
+        "game_art/kenney_platformer_art_deluxe/assets/Base pack/bg.png",
+        "game_art/kenney_platformer_art_deluxe/assets/Base pack/bg_castle.png",
+        "game_art/kenney_platformer_art_deluxe/assets/Base pack/Tiles/dirtCenter.png",
+        "game_art/kenney_platformer_art_deluxe/assets/Base pack/Tiles/brickWall.png",
+        "game_art/kenney_platformer_art_deluxe/assets/Base pack/Tiles/boxWarning.png",
+        "game_art/kenney_platformer_art_deluxe/assets/Base pack/Items/chain.png",
+        "game_art/kenney_platformer_art_deluxe/assets/Base pack/Items/flagRedHanging.png"
+      ],
+      "default_facing": "right",
+      "facing_rule": "static or repeated tiling with parallax offset from camera movement",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "hitbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "w": 1.0,
+        "h": 1.0
+      },
+      "render_size": {
+        "w": "variable_world_tiles",
+        "h": "variable_world_tiles",
+        "unit": "screen_pixels"
+      },
+      "z_order": "background_then_ground_then_props",
+      "states": [
+        "idle",
+        "secured"
+      ],
+      "animation_rule": "GameView uses parallax backgrounds, repeated ground tiles, hanging flags, chains, and route props across a long scrolling playfield",
+      "movement_rule": "terrain remains static while camera motion and route spawn markers define progression depth"
+    },
+    {
+      "entity_key": "projectiles_pickups_and_feedback",
+      "role": "projectile",
+      "asset_keys": [
+        "game_art/kenney_platformer_art_deluxe/assets/Base pack/Items/coinGold.png",
+        "game_art/kenney_platformer_art_deluxe/assets/Base pack/Items/gemGreen.png",
+        "game_art/kenney_platformer_art_deluxe/assets/Base pack/Items/bomb.png",
+        "runtime_hit_spark_labels",
+        "runtime_bullet_circles",
+        "runtime_exit_gate_stamp"
+      ],
+      "default_facing": "travel_vector",
+      "facing_rule": "projectiles follow horizontal velocity while pickups bob in place and feedback text rises on hit or reward",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "hitbox": {
+        "x": 0.28,
+        "y": 0.28,
+        "w": 0.44,
+        "h": 0.44
+      },
+      "render_size": {
+        "w": "22f_to_44f",
+        "h": "22f_to_44f",
+        "unit": "screen_pixels"
+      },
+      "z_order": "pickup_and_projectile_layer",
+      "states": [
+        "fly",
+        "idle",
+        "collect",
+        "impact"
+      ],
+      "animation_rule": "GameView animates bullets as colored circles, pickups with vertical bob, and hit spark labels with alpha fade and upward drift",
+      "movement_rule": "player and enemy shots use velocity-based travel, while pickups stay near kill positions until collected or vacuumed"
+    }
+  ],
+  "required_runtime_checks": [
+    "primary moving entities have idle and move states",
+    "attacking entities have attack or fire states",
+    "damageable entities have hit feedback and hp changes",
+    "directional side-view entities flip to face movement or attack direction",
+    "humanoid walk uses alternating frames when source art provides them",
+    "attack timing uses windup contact and recovery through attackTimer and attackLock",
+    "projectiles and pickups are integrated into gameplay rather than copied unused"
+  ],
+  "suggested_roles": [
+    "character",
+    "enemy",
+    "terrain",
+    "background",
+    "prop",
+    "projectile",
+    "pickup",
+    "effect"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "game_id": "crownblock_hunt",
+  "pack_id": "kenney_pixel_ui_pack",
+  "pack_title": "Kenney Pixel UI Pack",
+  "preset_id": "canonical_pixel_green",
+  "preset_title": "Canonical Pixel Green",
+  "ui_skin": "skin_dark_arcade",
+  "style_tags": [
+    "pixel",
+    "retro",
+    "arcade",
+    "adventure"
+  ],
+  "source_url": "https://kenney.nl/assets/pixel-ui-pack",
+  "license": "CC0-1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "assigned_at_utc": "2026-04-26T10:38:08Z",
+  "copied_items": [
+    {
+      "type": "drawable",
+      "logical_name": "ui_button_primary",
+      "source": "drawable/button_primary_green_pixel.png",
+      "target": "app/src/main/res/drawable/ui_button_primary.png"
+    },
+    {
+      "type": "drawable",
+      "logical_name": "ui_button_secondary",
+      "source": "drawable/button_secondary_grey_pixel.png",
+      "target": "app/src/main/res/drawable/ui_button_secondary.png"
+    },
+    {
+      "type": "drawable",
+      "logical_name": "ui_button_icon",
+      "source": "drawable/button_icon_yellow_pixel.png",
+      "target": "app/src/main/res/drawable/ui_button_icon.png"
+    },
+    {
+      "type": "drawable",
+      "logical_name": "ui_panel",
+      "source": "drawable/panel_space_pixel.png",
+      "target": "app/src/main/res/drawable/ui_panel.png"
+    },
+    {
+      "type": "drawable",
+      "logical_name": "ui_card",
+      "source": "drawable/panel_space_inlay_pixel.png",
+      "target": "app/src/main/res/drawable/ui_card.png"
+    }
+  ]
+}

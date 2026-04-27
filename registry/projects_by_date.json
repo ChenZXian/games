@@ -1,13 +1,20 @@
 {
     "version":  1,
-    "generated_at_utc":  "2026-04-24T07:32:56Z",
+    "generated_at_utc":  "2026-04-26T10:47:53Z",
     "grouping":  "created_at_month",
     "path_policy":  "active projects remain direct children under games/\u003cgame_id\u003e",
     "months":  [
                    {
                        "month":  "2026-04",
-                       "total":  10,
+                       "total":  11,
                        "games":  [
+                                     {
+                                         "id":  "empire_wall_guard",
+                                         "name":  "Empire Wall Guard",
+                                         "created_at":  "2026-04-23",
+                                         "path":  "games/empire_wall_guard",
+                                         "ui_skin":  "skin_military_tech"
+                                     },
                                      {
                                          "id":  "minecart_bastion",
                                          "name":  "Minecart Bastion",
@@ -16,18 +23,18 @@
                                          "ui_skin":  "skin_post_apocalypse"
                                      },
                                      {
-                                         "id":  "island_supply_command",
-                                         "name":  "Island Supply Command",
-                                         "created_at":  "2026-04-22",
-                                         "path":  "games/island_supply_command",
+                                         "id":  "crownroad_bastion",
+                                         "name":  "Crownroad Bastion",
+                                         "created_at":  "2026-04-23",
+                                         "path":  "games/crownroad_bastion",
                                          "ui_skin":  "skin_cartoon_light"
                                      },
                                      {
-                                         "id":  "empire_wall_guard",
-                                         "name":  "Empire Wall Guard",
-                                         "created_at":  "2026-04-23",
-                                         "path":  "games/empire_wall_guard",
-                                         "ui_skin":  "skin_military_tech"
+                                         "id":  "crownblock_hunt",
+                                         "name":  "Crownblock Hunt",
+                                         "created_at":  "2026-04-26",
+                                         "path":  "games/crownblock_hunt",
+                                         "ui_skin":  "skin_dark_arcade"
                                      },
                                      {
                                          "id":  "ashen_frontier",
@@ -37,10 +44,10 @@
                                          "ui_skin":  "skin_post_apocalypse"
                                      },
                                      {
-                                         "id":  "crownroad_bastion",
-                                         "name":  "Crownroad Bastion",
-                                         "created_at":  "2026-04-23",
-                                         "path":  "games/crownroad_bastion",
+                                         "id":  "island_supply_command",
+                                         "name":  "Island Supply Command",
+                                         "created_at":  "2026-04-22",
+                                         "path":  "games/island_supply_command",
                                          "ui_skin":  "skin_cartoon_light"
                                      },
                                      {

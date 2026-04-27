@@ -1240,7 +1240,8 @@
       "duration_sec": 18.0,
       "used_by": [
         "empire_wall_guard",
-        "crownroad_bastion"
+        "crownroad_bastion",
+        "crownblock_hunt"
       ],
       "source": "synth_audio",
       "retrieved_at": "2026-04-23",
@@ -1285,7 +1286,8 @@
       "duration_sec": 18.0,
       "used_by": [
         "empire_wall_guard",
-        "crownroad_bastion"
+        "crownroad_bastion",
+        "crownblock_hunt"
       ],
       "source": "synth_audio",
       "retrieved_at": "2026-04-23",
@@ -1330,7 +1332,8 @@
       "duration_sec": 18.0,
       "used_by": [
         "empire_wall_guard",
-        "crownroad_bastion"
+        "crownroad_bastion",
+        "crownblock_hunt"
       ],
       "source": "synth_audio",
       "retrieved_at": "2026-04-23",
@@ -1375,7 +1378,8 @@
       "duration_sec": 0.1,
       "used_by": [
         "empire_wall_guard",
-        "crownroad_bastion"
+        "crownroad_bastion",
+        "crownblock_hunt"
       ],
       "source": "synth_audio",
       "retrieved_at": "2026-04-23",
@@ -1554,7 +1558,8 @@
       "duration_sec": 0.42,
       "used_by": [
         "empire_wall_guard",
-        "crownroad_bastion"
+        "crownroad_bastion",
+        "crownblock_hunt"
       ],
       "source": "synth_audio",
       "retrieved_at": "2026-04-23",
@@ -1599,7 +1604,8 @@
       "duration_sec": 0.4,
       "used_by": [
         "empire_wall_guard",
-        "crownroad_bastion"
+        "crownroad_bastion",
+        "crownblock_hunt"
       ],
       "source": "synth_audio",
       "retrieved_at": "2026-04-23",
@@ -2302,6 +2308,158 @@
       ],
       "source": "synth_audio",
       "retrieved_at": "2026-04-24",
+      "license": "",
+      "license_url": "",
+      "generated": true,
+      "format": "wav"
+    },
+    {
+      "id": "sfx_hit_urban_210fb666",
+      "file": "sfx/sfx_hit_urban_210fb666.wav",
+      "type": "sfx",
+      "role": "hit",
+      "tags": [
+        "urban",
+        "gritty",
+        "urgent",
+        "fast",
+        "punchy",
+        "street",
+        "brawler",
+        "arcade",
+        "combat"
+      ],
+      "style": "urban",
+      "style_tags": [
+        "street",
+        "brawler",
+        "urban",
+        "arcade",
+        "combat"
+      ],
+      "mood": "gritty urgent urban",
+      "pacing": "fast punchy",
+      "loop": false,
+      "duration_sec": 0.12,
+      "used_by": [
+        "crownblock_hunt"
+      ],
+      "source": "synth_audio",
+      "retrieved_at": "2026-04-26",
+      "license": "",
+      "license_url": "",
+      "generated": true,
+      "format": "wav"
+    },
+    {
+      "id": "sfx_gunshot_urban_59a25ed8",
+      "file": "sfx/sfx_gunshot_urban_59a25ed8.wav",
+      "type": "sfx",
+      "role": "gunshot",
+      "tags": [
+        "urban",
+        "gritty",
+        "urgent",
+        "fast",
+        "punchy",
+        "street",
+        "brawler",
+        "arcade",
+        "combat"
+      ],
+      "style": "urban",
+      "style_tags": [
+        "street",
+        "brawler",
+        "urban",
+        "arcade",
+        "combat"
+      ],
+      "mood": "gritty urgent urban",
+      "pacing": "fast punchy",
+      "loop": false,
+      "duration_sec": 0.18,
+      "used_by": [
+        "crownblock_hunt"
+      ],
+      "source": "synth_audio",
+      "retrieved_at": "2026-04-26",
+      "license": "",
+      "license_url": "",
+      "generated": true,
+      "format": "wav"
+    },
+    {
+      "id": "sfx_pickup_urban_5dc75695",
+      "file": "sfx/sfx_pickup_urban_5dc75695.wav",
+      "type": "sfx",
+      "role": "pickup",
+      "tags": [
+        "urban",
+        "gritty",
+        "urgent",
+        "fast",
+        "punchy",
+        "street",
+        "brawler",
+        "arcade",
+        "combat"
+      ],
+      "style": "urban",
+      "style_tags": [
+        "street",
+        "brawler",
+        "urban",
+        "arcade",
+        "combat"
+      ],
+      "mood": "gritty urgent urban",
+      "pacing": "fast punchy",
+      "loop": false,
+      "duration_sec": 0.18,
+      "used_by": [
+        "crownblock_hunt"
+      ],
+      "source": "synth_audio",
+      "retrieved_at": "2026-04-26",
+      "license": "",
+      "license_url": "",
+      "generated": true,
+      "format": "wav"
+    },
+    {
+      "id": "sfx_warning_urban_49cf9370",
+      "file": "sfx/sfx_warning_urban_49cf9370.wav",
+      "type": "sfx",
+      "role": "warning",
+      "tags": [
+        "urban",
+        "gritty",
+        "urgent",
+        "fast",
+        "punchy",
+        "street",
+        "brawler",
+        "arcade",
+        "combat"
+      ],
+      "style": "urban",
+      "style_tags": [
+        "street",
+        "brawler",
+        "urban",
+        "arcade",
+        "combat"
+      ],
+      "mood": "gritty urgent urban",
+      "pacing": "fast punchy",
+      "loop": false,
+      "duration_sec": 0.32,
+      "used_by": [
+        "crownblock_hunt"
+      ],
+      "source": "synth_audio",
+      "retrieved_at": "2026-04-26",
       "license": "",
       "license_url": "",
       "generated": true,

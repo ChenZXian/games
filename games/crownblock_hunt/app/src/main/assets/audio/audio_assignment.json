@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "game_id": "crownblock_hunt",
+  "assigned_at_utc": "2026-04-26T10:38:30Z",
+  "tracks": [
+    {
+      "type": "bgm",
+      "role": "menu",
+      "id": "bgm_menu_ancient_2565d7c0",
+      "file": "audio/bgm_menu.wav",
+      "source": "shared_assets/audio"
+    },
+    {
+      "type": "bgm",
+      "role": "gameplay",
+      "id": "bgm_gameplay_ancient_5cb80c5c",
+      "file": "audio/bgm_gameplay.wav",
+      "source": "shared_assets/audio"
+    },
+    {
+      "type": "bgm",
+      "role": "climax",
+      "id": "bgm_climax_ancient_f660158a",
+      "file": "audio/bgm_climax.wav",
+      "source": "shared_assets/audio"
+    },
+    {
+      "type": "sfx",
+      "role": "ui_click",
+      "id": "sfx_ui_click_ancient_096a202a",
+      "file": "audio/sfx_ui_click.wav",
+      "source": "shared_assets/audio"
+    },
+    {
+      "type": "sfx",
+      "role": "hit",
+      "id": "sfx_hit_urban_210fb666",
+      "file": "audio/sfx_hit.wav",
+      "source": "synth_audio"
+    },
+    {
+      "type": "sfx",
+      "role": "gunshot",
+      "id": "sfx_gunshot_urban_59a25ed8",
+      "file": "audio/sfx_gunshot.wav",
+      "source": "synth_audio"
+    },
+    {
+      "type": "sfx",
+      "role": "pickup",
+      "id": "sfx_pickup_urban_5dc75695",
+      "file": "audio/sfx_pickup.wav",
+      "source": "synth_audio"
+    },
+    {
+      "type": "sfx",
+      "role": "warning",
+      "id": "sfx_warning_urban_49cf9370",
+      "file": "audio/sfx_warning.wav",
+      "source": "synth_audio"
+    },
+    {
+      "type": "sfx",
+      "role": "win",
+      "id": "sfx_win_ancient_2d4dd36f",
+      "file": "audio/sfx_win.wav",
+      "source": "shared_assets/audio"
+    },
+    {
+      "type": "sfx",
+      "role": "fail",
+      "id": "sfx_fail_ancient_dfa4a413",
+      "file": "audio/sfx_fail.wav",
+      "source": "shared_assets/audio"
+    }
+  ]
+}

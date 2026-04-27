@@ -67,7 +67,9 @@
         "pixel_art"
       ],
       "path": "packs/kenney_pixel_ui_pack",
-      "used_by": [],
+      "used_by": [
+        "crownblock_hunt"
+      ],
       "validated_with": []
     },
     {
