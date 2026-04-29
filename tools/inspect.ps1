@@ -9,6 +9,8 @@ param(
 
 $ErrorActionPreference = "Stop"
 
+. (Join-Path $PSScriptRoot "lib\playfield_safety.ps1")
+
 function Write-Section($title) { Write-Host ""; Write-Host "=== $title ===" }
 function Write-Ok($msg) { Write-Host "[OK]  $msg" }
 function Write-Warn($msg) { Write-Host "[WARN] $msg" }
@@ -149,6 +151,8 @@ $iconStatus = "deferred"
 $iconUniquenessStatus = "unknown"
 $iconDuplicateRisk = "unknown"
 $uiStatus = "deferred"
+$playfieldSafeAreaStatus = "unknown"
+$uiOcclusionRisk = "unknown"
 $gameArtStatus = "deferred"
 $gameArtRuntimeStatus = "missing"
 $audioStatus = "deferred"
@@ -567,6 +571,23 @@ if ($null -ne $uiRecord -and [string]$uiRecord.assignment_type -eq "project_loca
   $warnCount++
 }
 
+$playfieldSafety = Test-PlayfieldSafety $projResolved
+$playfieldSafeAreaStatus = [string]$playfieldSafety.Status
+$uiOcclusionRisk = [string]$playfieldSafety.Risk
+if ($playfieldSafeAreaStatus -eq "passed") {
+  Write-Ok "Playfield safe area: passed ($($playfieldSafety.Summary))"
+  $passCount++
+} elseif ($playfieldSafeAreaStatus -eq "warning") {
+  Write-Warn "Playfield safe area: warning ($($playfieldSafety.Summary))"
+  $warnCount++
+} elseif ($playfieldSafeAreaStatus -eq "failed") {
+  Write-Warn "Playfield safe area: failed ($($playfieldSafety.Summary))"
+  $warnCount++
+} else {
+  Write-Warn "Playfield safe area: unknown ($($playfieldSafety.Summary))"
+  $warnCount++
+}
+
 $gameArtRecordPath = Join-Path $projResolved "app\src\main\assets\game_art\game_art_assignment.json"
 $projectGameArtDir = Join-Path $projResolved "app\src\main\assets\game_art"
 $projectGameArtFiles = @()
@@ -740,7 +761,7 @@ if ($apkFiles.Count -gt 0) {
 }
 
 $canEnterPack = $doctorReady -and $validatorReady -and $registryReady
-$deliveryReady = $canEnterPack -and ($requirementsStatus -eq "confirmed") -and ($gameplayDiversityStatus -eq "passed") -and ($visualIdentityStatus -eq "passed") -and ($implementationFidelityStatus -eq "passed") -and ($iconStatus -eq "complete") -and ($iconUniquenessStatus -eq "passed") -and ($uiStatus -eq "complete") -and ($gameArtStatus -eq "complete") -and ($audioStatus -eq "complete") -and ($bgmStatus -eq "complete")
+$deliveryReady = $canEnterPack -and ($requirementsStatus -eq "confirmed") -and ($gameplayDiversityStatus -eq "passed") -and ($visualIdentityStatus -eq "passed") -and ($implementationFidelityStatus -eq "passed") -and ($iconStatus -eq "complete") -and ($iconUniquenessStatus -eq "passed") -and ($uiStatus -eq "complete") -and ($playfieldSafeAreaStatus -eq "passed") -and ($gameArtStatus -eq "complete") -and ($audioStatus -eq "complete") -and ($bgmStatus -eq "complete")
 
 $nextStep = ""
 if (-not $doctorReady) {
@@ -765,6 +786,8 @@ if (-not $doctorReady) {
   $nextStep = "Run the icon workflow to export upload-ready icon assets"
 } elseif ($iconUniquenessStatus -ne "passed") {
   $nextStep = "Regenerate a game-specific icon and avoid generic repeated motifs"
+} elseif ($playfieldSafeAreaStatus -ne "passed") {
+  $nextStep = "Reserve gameplay safe area in activity_main.xml before allowing HUD or frame overlays near the playfield"
 } elseif ($gameArtStatus -eq "deferred") {
   $nextStep = "Run the gameplay art workflow to assign tracked character, map, prop, effect, or background assets"
 } elseif ($gameArtStatus -eq "placeholder_only") {
@@ -791,6 +814,8 @@ Write-Host "ICON_STATUS=$(Get-StatusValue $iconStatus)"
 Write-Host "ICON_UNIQUENESS_STATUS=$(Get-StatusValue $iconUniquenessStatus)"
 Write-Host "ICON_DUPLICATE_RISK=$(Get-StatusValue $iconDuplicateRisk)"
 Write-Host "UI_STATUS=$(Get-StatusValue $uiStatus)"
+Write-Host "PLAYFIELD_SAFE_AREA_STATUS=$(Get-StatusValue $playfieldSafeAreaStatus)"
+Write-Host "UI_OCCLUSION_RISK=$(Get-StatusValue $uiOcclusionRisk)"
 Write-Host "GAME_ART_STATUS=$(Get-StatusValue $gameArtStatus)"
 Write-Host "GAME_ART_RUNTIME_STATUS=$(Get-StatusValue $gameArtRuntimeStatus)"
 Write-Host "AUDIO_STATUS=$(Get-StatusValue $audioStatus)"

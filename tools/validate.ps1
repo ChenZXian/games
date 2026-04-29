@@ -14,6 +14,8 @@ param(
 
 $ErrorActionPreference = "Stop"
 
+. (Join-Path $PSScriptRoot "lib\playfield_safety.ps1")
+
 function Write-Ok($m){ Write-Host "[OK]  $m" }
 function Write-Warn($m){ Write-Host "[WARN] $m" }
 function Write-Fail($m){ Write-Host "[FAIL] $m" }
@@ -262,6 +264,20 @@ function Validate-Project($projDir, [ref]$fails, [ref]$warns){
       $fails.Value++
       Write-Fail "Missing required logical UI resource: $($entry.Name)"
     }
+  }
+
+  $playfieldSafety = Test-PlayfieldSafety $projResolved
+  if ($playfieldSafety.Status -eq "failed" -or $playfieldSafety.Status -eq "invalid" -or $playfieldSafety.Status -eq "missing") {
+    $fails.Value++
+    Write-Fail "Playfield safety failed: $($playfieldSafety.Summary)"
+  } elseif ($playfieldSafety.Status -eq "warning") {
+    $warns.Value++
+    Write-Warn "Playfield safety warning: $($playfieldSafety.Summary)"
+  } elseif ($playfieldSafety.Status -eq "passed") {
+    Write-Ok "Playfield safety passed: $($playfieldSafety.Summary)"
+  } else {
+    $warns.Value++
+    Write-Warn "Playfield safety could not be fully verified: $($playfieldSafety.Summary)"
   }
 
   # 8) Baseline alignment quick checks (compileSdk/minSdk/targetSdk)

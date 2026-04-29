@@ -180,6 +180,8 @@ Discovery examples:
    - themed borders, bezels, or rails should stay outside the active playfield when possible
    - if a frame touches the gameplay plane, it may only consume dead space that is explicitly reserved in the UI brief
    - HUD overlays must not cover active board cells, lanes, routes, spawn points, tower pads, combat lanes, or touch-critical action zones
+   - the UI brief must be translated into actual `activity_main.xml` bounds, margins, padding, or equivalent viewport constraints before polish is considered complete
+   - do not ship the anti-pattern `full-screen GameView + edge-anchored HUD stack` unless the gameplay renderer itself reserves the same dead space and inspection can verify that reserve
 8. Do not reuse the same HUD composition, top metric bar, bottom command strip, or pack preset across projects unless the visual identity contract allows it.
 9. Do not silently fall back to generic shape-only placeholder UI for production-grade, menu item `10`, or delivery-ready requests.
 10. Reuse or import shared UI resources under `shared_assets/ui/` when possible.
@@ -219,5 +221,6 @@ The final UI result should satisfy all of the following:
 - gameplay rendering kept separate from non-real-time UI where practical
 - decorative borders, HUD chrome, and thematic frames do not occlude active gameplay space
 - any framed presentation preserves a documented safe area for movement, combat, interaction, and touch-critical regions
+- delivery-ready UI should fail validation when a full-span gameplay view is combined with anchored overlays and no reserved safe area is detectable
 - provenance recorded for imported open-source assets
 - visual identity contract preserved when one exists
