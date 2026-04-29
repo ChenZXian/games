@@ -54,6 +54,94 @@ function Read-JsonObject([string]$PathValue) {
   }
 }
 
+function Normalize-TextId([string]$Value) {
+  if ([string]::IsNullOrWhiteSpace($Value)) { return "" }
+  $normalized = $Value.ToLowerInvariant()
+  $normalized = [regex]::Replace($normalized, '[^a-z0-9]+', ' ')
+  $normalized = [regex]::Replace($normalized, '\s+', ' ').Trim()
+  return $normalized
+}
+
+function Get-TokenSet([string]$Value) {
+  $set = New-Object 'System.Collections.Generic.HashSet[string]'
+  $normalized = Normalize-TextId $Value
+  if ([string]::IsNullOrWhiteSpace($normalized)) { return $set }
+  foreach ($part in $normalized.Split(' ')) {
+    if (-not [string]::IsNullOrWhiteSpace($part)) {
+      [void]$set.Add($part)
+    }
+  }
+  return $set
+}
+
+function Get-OverlapCount($LeftSet, $RightSet) {
+  $count = 0
+  foreach ($item in $LeftSet) {
+    if ($RightSet.Contains($item)) {
+      $count++
+    }
+  }
+  return $count
+}
+
+function Get-IconDuplicateReview([string]$RepoRoot, [string]$GameId, [string]$Subject, [string]$Motif, [string]$Silhouette) {
+  $subjectTokens = Get-TokenSet $Subject
+  $subjectNorm = Normalize-TextId $Subject
+  $silhouetteNorm = Normalize-TextId $Silhouette
+  $risk = "low"
+  $matches = @()
+  $metadataRoot = Join-Path $RepoRoot "artifacts\icons"
+  if (-not (Test-Path -LiteralPath $metadataRoot)) {
+    return [pscustomobject]@{
+      Risk = $risk
+      Matches = @()
+    }
+  }
+
+  $metadataFiles = Get-ChildItem -Path $metadataRoot -Recurse -File -Filter "metadata.json" -ErrorAction SilentlyContinue
+  foreach ($file in $metadataFiles) {
+    $metadata = Read-JsonObject $file.FullName
+    if ($null -eq $metadata) { continue }
+    $otherGameId = [string]$metadata.game_id
+    if ([string]::IsNullOrWhiteSpace($otherGameId) -or $otherGameId -eq $GameId) { continue }
+    $otherSubject = [string]$metadata.icon_subject
+    if ([string]::IsNullOrWhiteSpace($otherSubject)) { $otherSubject = [string]$metadata.subject }
+    $otherMotif = [string]$metadata.motif
+    $otherSilhouette = [string]$metadata.icon_silhouette
+    $otherTokens = Get-TokenSet $otherSubject
+    $subjectOverlap = Get-OverlapCount $subjectTokens $otherTokens
+    $sameSubject = ($subjectNorm -ne "") -and ($subjectNorm -eq (Normalize-TextId $otherSubject))
+    $sameMotif = (-not [string]::IsNullOrWhiteSpace($Motif)) -and ($Motif -eq $otherMotif)
+    $sameSilhouette = ($silhouetteNorm -ne "") -and ($silhouetteNorm -eq (Normalize-TextId $otherSilhouette))
+    $otherRisk = ""
+
+    if ($sameSubject -or ($sameMotif -and $subjectOverlap -ge 2)) {
+      $otherRisk = "high"
+    } elseif ($sameMotif -or $sameSilhouette -or $subjectOverlap -ge 1) {
+      $otherRisk = "medium"
+    }
+
+    if (-not [string]::IsNullOrWhiteSpace($otherRisk)) {
+      $matches += [pscustomobject]@{
+        game_id = $otherGameId
+        risk = $otherRisk
+        motif = $otherMotif
+        icon_subject = $otherSubject
+      }
+      if ($otherRisk -eq "high") {
+        $risk = "high"
+      } elseif ($risk -ne "high") {
+        $risk = "medium"
+      }
+    }
+  }
+
+  return [pscustomobject]@{
+    Risk = $risk
+    Matches = $matches
+  }
+}
+
 function Join-TextParts([string[]]$Parts) {
   $filtered = @()
   foreach ($part in $Parts) {
@@ -925,6 +1013,11 @@ if ([string]::IsNullOrWhiteSpace($subjectValue)) {
   $subjectValue = $explicitSubjectValue
 }
 $motif = Get-Motif $subjectValue $iconDirection.Forbidden
+$duplicateReview = Get-IconDuplicateReview $repoRoot $gameIdValue $subjectValue $motif $iconDirection.Silhouette
+if ($duplicateReview.Risk -eq "high") {
+  $blockedGames = @($duplicateReview.Matches | Where-Object { $_.risk -eq "high" } | Select-Object -ExpandProperty game_id -Unique)
+  throw ("High icon duplicate risk for game '" + $gameIdValue + "' against: " + ($blockedGames -join ", ") + ". Refine the icon subject or visual identity before regenerating.")
+}
 $palette = Get-Palette $motif
 
 $exportBase = $ExportRoot
@@ -1001,6 +1094,11 @@ $metadata = [ordered]@{
   generated_at = (Get-Date).ToString("yyyy-MM-ddTHH:mm:ssK")
   primary_export = (Join-Path $exportDir "$gameIdValue-upload-1024.png")
   visual_identity_source = $iconDirection.VisualIdentitySource
+  icon_duplicate_risk = $duplicateReview.Risk
+  duplicate_review = [ordered]@{
+    risk = $duplicateReview.Risk
+    compared_games = @($duplicateReview.Matches)
+  }
   seed = $seedValue
 }
 $metadataJson = $metadata | ConvertTo-Json -Depth 4

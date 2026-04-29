@@ -16,6 +16,7 @@ Hard rules:
 - Prefer a cartoon style with clear association to the specific game
 - Follow `artifacts/requirements/<game_id>/visual_identity.json` when it exists
 - Do not reuse another game's icon subject, silhouette, source object, background badge, or exported upload icon for delivery-ready output
+- Do not skip duplicate-risk review in low-intelligence, auto, or speed-priority runs
 - Update project icon resources only inside the requested game project
 - Export upload-ready icon files to `artifacts/icons/<game_id>/`
 - Do not change unrelated gameplay, UI flow, registry entries, packaging outputs, or git state unless explicitly requested
@@ -31,11 +32,12 @@ Workflow:
    - game-specific hook
    - forbidden icon reuse
 4. Generate or update project icon assets.
-5. Export upload-ready icon files.
-6. Report the exported location for user pickup.
+5. Review duplicate risk against existing `artifacts/icons/*/metadata.json` and block high-risk duplicates.
+6. Export upload-ready icon files.
+7. Report the exported location for user pickup.
 
 Default output expectation:
 - In-project icon resources under `games/<game_id>/app/src/main/res/`
 - Upload-ready exports under `artifacts/icons/<game_id>/`
 - Clear note of which icon file is the primary upload target
-- Icon metadata should record the subject, silhouette, and visual identity source when available
+- Icon metadata should record the subject, silhouette, visual identity source, and duplicate-risk review when available

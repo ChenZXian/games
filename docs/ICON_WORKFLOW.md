@@ -76,6 +76,8 @@ Recommended exports:
 - `icon_subject`
 - `icon_silhouette`
 - `visual_identity_source`
+- `icon_duplicate_risk`
+- `duplicate_review`
 
 ### 3.4 Uniqueness Review
 
@@ -88,6 +90,17 @@ Before marking icon work complete for delivery-ready output, verify that the ico
 - a generic subject that does not clearly identify this game
 
 Inspection must treat generic fallback motifs as incomplete for delivery-ready output. If icon metadata reports a broad motif such as `shieldstar`, `swordshield`, or `castle` without a game-specific subject, the icon workflow must regenerate a distinct icon before packaging.
+
+The uniqueness review must also run before export, not only during inspection.
+
+Minimum duplicate-risk checks:
+
+- compare the candidate icon subject against existing `artifacts/icons/*/metadata.json`
+- compare motif and silhouette against existing icon metadata
+- treat identical subject or same-motif-plus-same-subject overlap as high risk
+- block export on high duplicate risk instead of silently writing a repeated icon
+
+Low-intelligence, auto, or speed-priority runs may reduce candidate count, but they must not skip icon duplicate review.
 
 ### 3.5 Packaging Stage
 

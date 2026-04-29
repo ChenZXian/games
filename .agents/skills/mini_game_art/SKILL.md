@@ -20,6 +20,7 @@ Hard rules:
 - Prefer CC0 or public-domain equivalent sources
 - Keep license and source provenance in `shared_assets/game_art/`
 - Search both the shared library and `shared_assets/game_art/source_catalog.json` before deciding the library is too small
+- Do not let low-intelligence, auto, or speed-priority runs skip style-match scoring, reuse checks, or source-catalog escalation
 - Do not mix gameplay art assets into `shared_assets/ui/`
 - Do not use UI packs as character, map, or prop packs
 - Treat `project_local_canvas_art` as prototype-only unless placeholder quality is explicitly acceptable

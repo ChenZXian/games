@@ -105,6 +105,22 @@ Default resolution order:
 
 Do not silently reuse a legacy asset if it only matches by role and not by style.
 
+Delivery-ready and menu item `10` runs must satisfy a minimum BGM coverage gate:
+
+- at least one tracked `menu` BGM role
+- at least one tracked `play` BGM role
+- project-local `bgm*` files assigned from the shared library entries above
+
+Low-intelligence, auto, or speed-priority runs may reduce search breadth, but they must not skip BGM coverage or external fetch attempts when the shared library is weak.
+
+When the shared library lacks a strong style match, the workflow must:
+
+1. mark external search as required
+2. attempt licensed fetch
+3. synthesize only as a fallback after fetch is unavailable or insufficient
+
+A run that ends without tracked BGM coverage should be reported as incomplete rather than treated as a successful audio pass.
+
 Delivery-ready inspection must verify BGM separately from general audio. A project is not audio-complete unless it has at least one project-local `bgm*` file and a matching shared-library BGM entry linked to the same game id.
 
 ## 7. Metadata

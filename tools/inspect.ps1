@@ -75,6 +75,36 @@ function Get-StatusValue($value) {
   return $value
 }
 
+function Normalize-TextId($value) {
+  if ([string]::IsNullOrWhiteSpace($value)) { return "" }
+  $normalized = $value.ToLowerInvariant()
+  $normalized = [regex]::Replace($normalized, '[^a-z0-9]+', ' ')
+  $normalized = [regex]::Replace($normalized, '\s+', ' ').Trim()
+  return $normalized
+}
+
+function Get-TokenSet($value) {
+  $set = New-Object 'System.Collections.Generic.HashSet[string]'
+  $normalized = Normalize-TextId $value
+  if ([string]::IsNullOrWhiteSpace($normalized)) { return $set }
+  foreach ($part in $normalized.Split(' ')) {
+    if (-not [string]::IsNullOrWhiteSpace($part)) {
+      [void]$set.Add($part)
+    }
+  }
+  return $set
+}
+
+function Get-OverlapCount($leftSet, $rightSet) {
+  $count = 0
+  foreach ($item in $leftSet) {
+    if ($rightSet.Contains($item)) {
+      $count++
+    }
+  }
+  return $count
+}
+
 $passCount = 0
 $warnCount = 0
 $failCount = 0
@@ -113,11 +143,13 @@ $visualIdentityStatus = "missing"
 $implementationFidelityStatus = "untracked"
 $iconStatus = "deferred"
 $iconUniquenessStatus = "unknown"
+$iconDuplicateRisk = "unknown"
 $uiStatus = "deferred"
 $gameArtStatus = "deferred"
 $gameArtRuntimeStatus = "missing"
 $audioStatus = "deferred"
 $bgmStatus = "missing"
+$bgmCoverage = "missing"
 
 Write-Section "Inspect Target"
 Write-Ok "Repo root: $root"
@@ -385,9 +417,14 @@ if ($iconStatus -eq "complete") {
   $genericIconMotifs = @("shieldstar", "swordshield", "castle")
   $iconMotif = ""
   $iconSubject = ""
+  $iconSilhouette = ""
   if ($null -ne $iconMetadata) {
     $iconMotif = [string]$iconMetadata.motif
     $iconSubject = [string]$iconMetadata.icon_subject
+    $iconSilhouette = [string]$iconMetadata.icon_silhouette
+    if (-not [string]::IsNullOrWhiteSpace([string]$iconMetadata.icon_duplicate_risk)) {
+      $iconDuplicateRisk = [string]$iconMetadata.icon_duplicate_risk
+    }
   }
   if ([string]::IsNullOrWhiteSpace($iconMotif)) {
     $iconUniquenessStatus = "unreviewed"
@@ -402,9 +439,63 @@ if ($iconStatus -eq "complete") {
     Write-Warn "Icon uniqueness: unreviewed (metadata does not declare icon_subject)"
     $warnCount++
   } else {
-    $iconUniquenessStatus = "passed"
-    Write-Ok "Icon uniqueness: passed ($iconMotif)"
-    $passCount++
+    $subjectTokens = Get-TokenSet $iconSubject
+    $subjectNorm = Normalize-TextId $iconSubject
+    $silhouetteNorm = Normalize-TextId $iconSilhouette
+    $metadataRoot = Join-Path $root "artifacts\icons"
+    if ($iconDuplicateRisk -eq "unknown" -and (Test-Path $metadataRoot)) {
+      $metadataFiles = Get-ChildItem -Path $metadataRoot -Recurse -File -Filter "metadata.json" -ErrorAction SilentlyContinue
+      foreach ($file in $metadataFiles) {
+        $other = $null
+        try {
+          $other = Get-Content -LiteralPath $file.FullName -Raw | ConvertFrom-Json
+        }
+        catch {
+          continue
+        }
+        if ($null -eq $other) { continue }
+        $otherGameId = [string]$other.game_id
+        if ([string]::IsNullOrWhiteSpace($otherGameId) -or $otherGameId -eq $gameId) { continue }
+        $otherSubject = [string]$other.icon_subject
+        if ([string]::IsNullOrWhiteSpace($otherSubject)) { $otherSubject = [string]$other.subject }
+        $otherMotif = [string]$other.motif
+        $otherSilhouette = [string]$other.icon_silhouette
+        $otherTokens = Get-TokenSet $otherSubject
+        $subjectOverlap = Get-OverlapCount $subjectTokens $otherTokens
+        $sameSubject = ($subjectNorm -ne "") -and ($subjectNorm -eq (Normalize-TextId $otherSubject))
+        $sameMotif = (-not [string]::IsNullOrWhiteSpace($iconMotif)) -and ($iconMotif -eq $otherMotif)
+        $sameSilhouette = ($silhouetteNorm -ne "") -and ($silhouetteNorm -eq (Normalize-TextId $otherSilhouette))
+        if ($sameSubject -or ($sameMotif -and $subjectOverlap -ge 2)) {
+          $iconDuplicateRisk = "high"
+          break
+        }
+        if ($iconDuplicateRisk -ne "high" -and ($sameMotif -or $sameSilhouette -or $subjectOverlap -ge 1)) {
+          $iconDuplicateRisk = "medium"
+        }
+      }
+      if ($iconDuplicateRisk -eq "unknown") {
+        $iconDuplicateRisk = "low"
+      }
+    } elseif ($iconDuplicateRisk -eq "unknown") {
+      $iconDuplicateRisk = "low"
+    }
+
+    if ($iconDuplicateRisk -eq "high") {
+      $iconUniquenessStatus = "duplicate_risk"
+      Write-Warn "Icon uniqueness: duplicate_risk (high overlap with existing icon metadata)"
+      $warnCount++
+    } else {
+      $iconUniquenessStatus = "passed"
+      Write-Ok "Icon uniqueness: passed ($iconMotif)"
+      $passCount++
+      if ($iconDuplicateRisk -eq "medium") {
+        Write-Warn "Icon duplicate risk: medium"
+        $warnCount++
+      } else {
+        Write-Ok "Icon duplicate risk: low"
+        $passCount++
+      }
+    }
   }
 }
 
@@ -591,14 +682,27 @@ if (Test-Path $audioIndexPath) {
   }
 }
 if ($projectBgmFiles.Count -gt 0 -and $bgmLibraryMatches.Count -gt 0) {
-  $bgmStatus = "complete"
-  Write-Ok "BGM status: complete ($($projectBgmFiles.Count) project BGM file(s), $($bgmLibraryMatches.Count) shared BGM match(es))"
-  $passCount++
+  $bgmRoles = @($bgmLibraryMatches | ForEach-Object { [string]$_.role } | Where-Object { -not [string]::IsNullOrWhiteSpace($_) } | Select-Object -Unique)
+  $hasMenuBgm = $bgmRoles -contains "menu"
+  $hasPlayBgm = $bgmRoles -contains "play"
+  if ($hasMenuBgm -and $hasPlayBgm) {
+    $bgmCoverage = "complete"
+    $bgmStatus = "complete"
+    Write-Ok "BGM status: complete ($($projectBgmFiles.Count) project BGM file(s), roles: $($bgmRoles -join ', '))"
+    $passCount++
+  } else {
+    $bgmCoverage = "partial"
+    $bgmStatus = "placeholder_only"
+    Write-Warn "BGM status: placeholder_only (tracked BGM exists but required menu/play coverage is incomplete)"
+    $warnCount++
+  }
 } elseif ($projectBgmFiles.Count -gt 0) {
+  $bgmCoverage = "partial"
   $bgmStatus = "placeholder_only"
   Write-Warn "BGM status: placeholder_only (project BGM exists, no shared library BGM linkage found)"
   $warnCount++
 } else {
+  $bgmCoverage = "missing"
   $bgmStatus = "missing"
   Write-Warn "BGM status: missing"
   $warnCount++
@@ -681,11 +785,13 @@ Write-Host "VISUAL_IDENTITY_STATUS=$(Get-StatusValue $visualIdentityStatus)"
 Write-Host "IMPLEMENTATION_FIDELITY_STATUS=$(Get-StatusValue $implementationFidelityStatus)"
 Write-Host "ICON_STATUS=$(Get-StatusValue $iconStatus)"
 Write-Host "ICON_UNIQUENESS_STATUS=$(Get-StatusValue $iconUniquenessStatus)"
+Write-Host "ICON_DUPLICATE_RISK=$(Get-StatusValue $iconDuplicateRisk)"
 Write-Host "UI_STATUS=$(Get-StatusValue $uiStatus)"
 Write-Host "GAME_ART_STATUS=$(Get-StatusValue $gameArtStatus)"
 Write-Host "GAME_ART_RUNTIME_STATUS=$(Get-StatusValue $gameArtRuntimeStatus)"
 Write-Host "AUDIO_STATUS=$(Get-StatusValue $audioStatus)"
 Write-Host "BGM_STATUS=$(Get-StatusValue $bgmStatus)"
+Write-Host "BGM_COVERAGE=$(Get-StatusValue $bgmCoverage)"
 Write-Host "NEXT_STEP=$nextStep"
 
 if ($canEnterPack) { exit 0 }

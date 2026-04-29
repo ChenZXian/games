@@ -28,7 +28,7 @@ Workflow:
    - pass or warning or fail counts
    - `CAN_ENTER_PACK`
    - `DELIVERY_READY`
-   - requirements, gameplay diversity, visual identity, implementation fidelity, icon, UI, gameplay art, gameplay art runtime, and audio status
+   - requirements, gameplay diversity, visual identity, implementation fidelity, icon, icon duplicate risk, UI, gameplay art, gameplay art runtime, audio, BGM status, and BGM coverage
    - the next recommended action
 
 Use `-SkipDoctor` or `-SkipValidate` only when the user wants a faster local-only status pass.

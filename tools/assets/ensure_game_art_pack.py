@@ -5,6 +5,8 @@ from pathlib import Path
 
 from game_art_utils import load_index, load_source_catalog, rank_pack_candidates, rank_source_candidates, tokenize_text, usage_count
 
+LOCAL_PACK_SCORE_FLOOR = 8
+
 
 def key_lines(output: str):
     result = {}
@@ -114,6 +116,7 @@ def main():
         limit=6,
         exclude_pack_ids=local_index_pack_ids,
     )
+    source_escalation = "not_needed"
 
     if not pack_ids:
         selected_packs = choose_pack_bundle(
@@ -125,9 +128,16 @@ def main():
         )
         pack_ids = [str(pack.get("pack_id", "")).strip() for pack in selected_packs if str(pack.get("pack_id", "")).strip()]
 
-    if (not pack_ids or all(usage_count(item["pack"]) >= 2 for item in local_candidates[:max(1, len(pack_ids))])) and source_candidates and not args.dry_run:
+    local_selection_weak = (not local_candidates) or all(
+        item["score"] < LOCAL_PACK_SCORE_FLOOR or usage_count(item["pack"]) >= 2
+        for item in local_candidates[:max(1, len(pack_ids) or 1)]
+    )
+
+    if (not pack_ids or local_selection_weak) and source_candidates and not args.dry_run:
+        source_escalation = "required_pending"
         imported = import_source_candidate(source_candidates[0], library_root)
         if imported:
+            source_escalation = "required_done"
             index_data = load_index(library_root / "index.json")
             local_candidates = rank_pack_candidates(
                 index_data,
@@ -136,20 +146,24 @@ def main():
                 game_type=args.game_type,
                 limit=6,
             )
-            if not pack_ids:
-                selected_packs = choose_pack_bundle(
-                    index_data,
-                    style_tags=style_tokens,
-                    art_roles=role_tokens,
-                    game_type=args.game_type,
-                    max_packs=max(1, args.max_packs),
-                )
-                pack_ids = [str(pack.get("pack_id", "")).strip() for pack in selected_packs if str(pack.get("pack_id", "")).strip()]
+            selected_packs = choose_pack_bundle(
+                index_data,
+                style_tags=style_tokens,
+                art_roles=role_tokens,
+                game_type=args.game_type,
+                max_packs=max(1, args.max_packs),
+            )
+            pack_ids = [str(pack.get("pack_id", "")).strip() for pack in selected_packs if str(pack.get("pack_id", "")).strip()]
+        else:
+            source_escalation = "required_failed"
+    elif (not pack_ids or local_selection_weak) and source_candidates and args.dry_run:
+        source_escalation = "required_pending"
 
     if not pack_ids:
         if args.quality_target.strip().lower() in ("production", "complete", "delivery"):
             raise RuntimeError("No suitable shared game art pack found. Import a free, license-clear pack before production-grade art work continues.")
         print("GAME_ART_PLACEHOLDER_ONLY=true")
+        print(f"GAME_ART_SOURCE_ESCALATION={source_escalation}")
         return
 
     if args.project.strip():
@@ -179,6 +193,7 @@ def main():
         if source_candidates:
             print("GAME_ART_SOURCE_CANDIDATES=" + ",".join(str(item["source"].get("pack_id", "")).strip() for item in source_candidates if str(item["source"].get("pack_id", "")).strip()))
         print(f"GAME_ART_ASSIGNED_FILES={lines.get('GAME_ART_ASSIGNED_FILES', '')}")
+        print(f"GAME_ART_SOURCE_ESCALATION={source_escalation}")
         return
 
     print(f"GAME_ART_SELECTED_PACK={','.join(pack_ids)}")
@@ -186,6 +201,7 @@ def main():
         print("GAME_ART_LOCAL_CANDIDATES=" + ",".join(str(item["pack"].get("pack_id", "")).strip() for item in local_candidates if str(item["pack"].get("pack_id", "")).strip()))
     if source_candidates:
         print("GAME_ART_SOURCE_CANDIDATES=" + ",".join(str(item["source"].get("pack_id", "")).strip() for item in source_candidates if str(item["source"].get("pack_id", "")).strip()))
+    print(f"GAME_ART_SOURCE_ESCALATION={source_escalation}")
 
 
 if __name__ == "__main__":

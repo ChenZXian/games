@@ -126,7 +126,16 @@ Default resolution order:
 
 Delivery-ready projects should not silently fall back to shape-only gameplay placeholders.
 
+If the best local pack is weak, overused, or style-mismatched for the requested roles, production-grade flows must escalate to source-catalog or online import instead of forcing a poor local match.
+
 Selection should apply a reuse penalty when the same pack has already been assigned to multiple projects, so similar prompts do not keep collapsing to the same small subset of packs.
+
+Low-intelligence, auto, or speed-priority runs may reduce the number of evaluated candidates, but they must not skip:
+
+- reuse-penalty evaluation
+- style-match scoring
+- source-catalog escalation when local packs are weak
+- license checks for imported packs
 
 An assignment record is not enough by itself.
 
