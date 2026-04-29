@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Petal Isle Farm</string>
+    <string name="btn_start">Start</string>
+    <string name="btn_restart">Restart</string>
+    <string name="btn_resume">Resume</string>
+    <string name="btn_menu">Menu</string>
+    <string name="btn_mute">Mute</string>
+    <string name="btn_how_to_play">How To Play</string>
+    <string name="btn_seed_tool">Plant</string>
+    <string name="btn_water_tool">Water</string>
+    <string name="btn_fertilizer_tool">Care</string>
+    <string name="label_coins">Coins</string>
+    <string name="label_progress">Estate</string>
+    <string name="label_timer">Sunset</string>
+    <string name="label_pause">Pause</string>
+    <string name="label_beauty">Beauty</string>
+    <string name="label_tasks">Garden Tasks</string>
+    <string name="body_menu">Restore a flower island estate before sunset. Plant boutique blooms, care for every bed, and turn the farm into a garden showcase.</string>
+    <string name="label_paused">Paused</string>
+    <string name="body_paused">Review your flower beds, swap care tools, and return when the garden is ready for more attention.</string>
+    <string name="label_day_over">Day Over</string>
+    <string name="body_day_over">The market closed before the estate reached its bloom target. Refresh the beds and try for a brighter showcase.</string>
+    <string name="hint_tool_seed">Plant selected. Tap an empty bed to place a flower or boutique crop from your unlocked collection.</string>
+    <string name="hint_tool_water">Water selected. Tap a growing plant to speed growth and improve bloom quality.</string>
+    <string name="hint_tool_fertilizer">Bloom care selected. Tap a growing plant to add petal shine and raise beauty value.</string>
+</resources>

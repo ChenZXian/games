@@ -1,0 +1,21 @@
+{
+    "version":  1,
+    "game_id":  "petal_isle_farm",
+    "title":  "Petal Isle Farm",
+    "direction":  "QQ Farm inspired decorative flower farm with beautiful plants",
+    "selected_concept":  "Petal Isle Farm",
+    "status":  "confirmed",
+    "ui_skin":  "skin_cartoon_light",
+    "current_stage":  "requirements",
+    "created_at_utc":  "2026-04-29T03:39:45Z",
+    "updated_at_utc":  "2026-04-29T03:49:24Z",
+    "selected_at_utc":  "2026-04-29T03:39:45Z",
+    "confirmed_at_utc":  "2026-04-29T03:49:24Z",
+    "files":  {
+                  "metadata_json":  "artifacts/requirements/petal_isle_farm/metadata.json",
+                  "requirements_md":  "artifacts/requirements/petal_isle_farm/requirements.md",
+                  "candidates_md":  "",
+                  "gameplay_diversity_json":  "artifacts/requirements/petal_isle_farm/gameplay_diversity.json",
+                  "visual_identity_json":  "artifacts/requirements/petal_isle_farm/visual_identity.json"
+              }
+}

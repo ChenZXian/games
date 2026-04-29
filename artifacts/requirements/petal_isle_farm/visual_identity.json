@@ -1,0 +1,78 @@
+{
+  "version": "1.0",
+  "game_id": "petal_isle_farm",
+  "status": "passed",
+  "visual_differentiation_axes": [
+    "left vertical task rail instead of a standard bottom action strip",
+    "top-right floating dew-chip resource badges",
+    "bottom-right contextual bloom wheel for care tools",
+    "floral painted sign motifs with soft ceramic tags",
+    "hero icon built around a flower basket rather than fruit or barn imagery"
+  ],
+  "forbidden_visual_reuse": [
+    "no repeated top pill HUD with bottom command bar",
+    "no neon techno panels",
+    "no military or dark arcade framing",
+    "no orchard crate icon subject",
+    "no generic fruit-only banner motifs"
+  ],
+  "ui_identity": {
+    "layout_archetype": "left task rail plus floating top badges plus contextual bloom wheel",
+    "hud_composition": "beauty score badge, coins chip, petals chip, reputation stars chip, pinned order shortcut, chapter goal card",
+    "navigation_model": "persistent estate view with horizontal zone panning and lightweight overlay panels",
+    "palette_signature": "cream white, leaf green, coral pink, aqua blue, sunflower yellow",
+    "material_language": "painted garden wood, ceramic tags, dew-glass chips, petal cutout panels",
+    "typography_style": "rounded playful display headings with clean soft body labels",
+    "primary_ui_pack": "skin_cartoon_light floral signage variant",
+    "secondary_ui_assets": [
+      "flower badge motifs",
+      "leaf dividers",
+      "petal confetti overlays"
+    ],
+    "playfield_safety": {
+      "reserved_edges": [
+        "left gutter for task rail",
+        "top-right corner for compact resource chips",
+        "bottom-right corner for contextual tool wheel"
+      ],
+      "hud_anchor_zones": [
+        "top-left beauty badge area",
+        "top-right economy chip area",
+        "left-center task rail area",
+        "bottom-right contextual action area"
+      ],
+      "protected_gameplay_zones": [
+        "center plot interaction field",
+        "lower-middle decoration anchor field",
+        "horizontal panning gesture space across the middle band"
+      ],
+      "frame_overlay_policy": "all decorative panels and motifs must sit outside live crop plots and must never cover tap-critical plant or d茅cor anchors"
+    },
+    "unique_screen_motifs": [
+      "arched flower sign headers",
+      "pond ripple cards for event summaries",
+      "greenhouse glass overlay accents for seed shop panels",
+      "festival bunting for milestone celebration screens"
+    ],
+    "forbidden_ui_elements": [
+      "thick ornamental frames over the live farm",
+      "bottom full-width command strip",
+      "plain rectangular military panels",
+      "neon glow chips"
+    ]
+  },
+  "icon_identity": {
+    "subject": "smiling woven flower basket with three hero blossoms",
+    "silhouette": "round basket base topped by a triangular bloom crown",
+    "composition": "centered basket with oversized front blossom and two supporting blossoms rising above leaf ribbons",
+    "palette": "coral pink, butter yellow, mint green, sky blue",
+    "background": "clean sky-blue circular badge with soft cloud glow",
+    "game_specific_motif": "the basket represents harvest plus beauty score in one symbol rather than a generic crop crate",
+    "forbidden_icon_reuse": [
+      "no single fruit icon",
+      "no barn badge icon",
+      "no reused shield or crate silhouette",
+      "no dark background token"
+    ]
+  }
+}

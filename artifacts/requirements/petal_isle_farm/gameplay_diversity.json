@@ -1,0 +1,159 @@
+{
+  "version": "1.0",
+  "game_id": "petal_isle_farm",
+  "status": "passed",
+  "genre_family": "casual management",
+  "genre_archetype": "decorative flower farm",
+  "camera_perspective": "angled top-down estate view",
+  "control_model": "tap, drag-and-drop planting, contextual care buttons, horizontal zone swipe",
+  "core_loop_signature": "plant flowers and boutique crops, perform care actions, harvest beauty-rated blooms, fulfill boutique orders, increase estate beauty, unlock new zones",
+  "differentiation_axes": [
+    "beauty-rated harvest value rather than raw yield only",
+    "persistent decorative estate building as a first-class loop",
+    "visitor boutique orders instead of generic produce shipping only",
+    "five themed island zones with different plot and d茅cor anchor layouts",
+    "flower-centric presentation with ornamental progression"
+  ],
+  "forbidden_template_reuse": [
+    "no reuse of bloom_orchard orchard-only grid structure",
+    "no plain fruit storage and shipment loop as the sole economy driver",
+    "no barn-first ranch identity",
+    "no generic top-pill HUD plus bottom command strip layout",
+    "no minimal one-zone farm prototype"
+  ],
+  "map_content_budget": {
+    "play_area_model": "persistent side-scroll island estate split into themed farming zones",
+    "route_or_region_count": "5 major zones",
+    "interactive_regions": [
+      "starter meadow plots",
+      "pond garden plots",
+      "orchard rise plots",
+      "greenhouse terrace plots",
+      "festival plaza display garden"
+    ],
+    "terrain_types": [
+      "grass plots",
+      "stone paths",
+      "pond edge",
+      "raised terrace beds",
+      "festival paving"
+    ],
+    "decorative_prop_count": "at least 24 distinct decorative prop placements across the estate",
+    "functional_map_elements": [
+      "plantable plots",
+      "decoration anchors",
+      "order board stand",
+      "seed shop stall",
+      "greenhouse bonus pad",
+      "beauty milestone monument"
+    ],
+    "landmarks": [
+      "pond bridge",
+      "flower archway",
+      "glass greenhouse",
+      "festival fountain",
+      "windmill sign"
+    ],
+    "camera_or_scroll_model": "screen-by-screen horizontal panning with anchored overlays"
+  },
+  "entity_content_budget": {
+    "player_unit_types": [
+      "caretaker interaction cursor",
+      "tool actions for watering, fertilizing, and pest clearing"
+    ],
+    "enemy_types": [
+      "leaf pests",
+      "aphid swarms",
+      "mold patches"
+    ],
+    "neutral_or_resource_entities": [
+      "bees",
+      "butterflies",
+      "visitor shoppers",
+      "order board cards"
+    ],
+    "boss_or_elite_types": [
+      "festival inspector event visitor",
+      "rare bloom evaluation guest"
+    ],
+    "projectile_or_effect_types": [
+      "watering splash",
+      "fertilizer sparkle",
+      "pest spray puff",
+      "petal celebration burst"
+    ],
+    "item_or_powerup_types": [
+      "speed fertilizer",
+      "beauty tonic",
+      "pest repel charm",
+      "double order ticket"
+    ]
+  },
+  "mechanic_content_budget": {
+    "primary_player_actions": [
+      "plant",
+      "water",
+      "fertilize",
+      "clear pests",
+      "harvest",
+      "submit orders",
+      "place d茅cor"
+    ],
+    "secondary_player_actions": [
+      "reposition d茅cor",
+      "inspect bloom quality",
+      "pan between zones",
+      "claim milestone rewards"
+    ],
+    "upgrade_paths": [
+      "watering efficiency",
+      "fertilizer capacity",
+      "pest control efficiency",
+      "greenhouse bloom bonus"
+    ],
+    "wave_or_level_variants": [
+      "daily order board refresh",
+      "chapter milestones",
+      "timed festival tasks",
+      "rare visitor appearance windows"
+    ],
+    "special_rules": [
+      "perfect care yields beauty-rated blooms",
+      "decor placement can provide local beauty multipliers",
+      "premium visitors prefer specific color or flower families"
+    ],
+    "risk_reward_systems": [
+      "holding rare blooms for premium orders delays immediate coin gain",
+      "using limited fertilizer on high-value flowers yields larger beauty bonuses"
+    ],
+    "failure_pressure_variants": [
+      "missed timed orders",
+      "wilted bloom score reduction",
+      "festival target not reached before event end"
+    ]
+  },
+  "asset_variety_budget": {
+    "primary_game_art_packs": [
+      "pastel_cartoon_botanical_main"
+    ],
+    "secondary_game_art_packs": [
+      "whimsical_garden_decor_set",
+      "light_pollinator_ambient_set"
+    ],
+    "ui_pack": "floral_cartoon_signage_light",
+    "animation_tier": "medium-plus with premium bloom and visitor highlights",
+    "required_animation_states": [
+      "seed",
+      "sprout",
+      "growth",
+      "bloom",
+      "perfect bloom shimmer",
+      "wilted",
+      "harvest bounce",
+      "watering",
+      "visitor walk"
+    ],
+    "minimum_distinct_sprite_families": "at least 12 crop and flower families plus 8 d茅cor families",
+    "asset_reuse_note": "the project must avoid reusing an orchard-only art family from prior farm content and should preserve a flower-forward ornamental identity"
+  }
+}

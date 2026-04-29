@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "game_id": "petal_isle_farm",
+  "pack_id": "kenney_isometric_miniature_farm",
+  "pack_title": "Kenney Isometric Miniature Farm",
+  "assignment_type": "shared_pack_assignment",
+  "license": "CC0-1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "source_url": "https://kenney.nl/assets/isometric-miniature-farm",
+  "assigned_at_utc": "2026-04-29T00:00:00Z",
+  "art_roles": [
+    "terrain",
+    "prop",
+    "background",
+    "crop_accent"
+  ],
+  "project_assets": [
+    "app/src/main/assets/game_art/kenney_isometric_miniature_farm/dirtFarmland_S.png",
+    "app/src/main/assets/game_art/kenney_isometric_miniature_farm/cornYoungDouble_S.png",
+    "app/src/main/assets/game_art/kenney_isometric_miniature_farm/corn_S.png",
+    "app/src/main/assets/game_art/kenney_isometric_miniature_farm/fenceLow_S.png"
+  ]
+}

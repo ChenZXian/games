@@ -1,13 +1,20 @@
 {
     "version":  1,
-    "generated_at_utc":  "2026-04-28T10:09:10Z",
+    "generated_at_utc":  "2026-04-29T03:56:48Z",
     "grouping":  "created_at_month",
     "path_policy":  "active projects remain direct children under games/\u003cgame_id\u003e",
     "months":  [
                    {
                        "month":  "2026-04",
-                       "total":  12,
+                       "total":  13,
                        "games":  [
+                                     {
+                                         "id":  "ashen_frontier",
+                                         "name":  "Ashen Frontier",
+                                         "created_at":  "2026-04-24",
+                                         "path":  "games/ashen_frontier",
+                                         "ui_skin":  "skin_post_apocalypse"
+                                     },
                                      {
                                          "id":  "crownroad_bastion",
                                          "name":  "Crownroad Bastion",
@@ -23,11 +30,11 @@
                                          "ui_skin":  "skin_military_tech"
                                      },
                                      {
-                                         "id":  "minecart_bastion",
-                                         "name":  "Minecart Bastion",
-                                         "created_at":  "2026-04-23",
-                                         "path":  "games/minecart_bastion",
-                                         "ui_skin":  "skin_post_apocalypse"
+                                         "id":  "petal_isle_farm",
+                                         "name":  "Petal Isle Farm",
+                                         "created_at":  "2026-04-29",
+                                         "path":  "games/petal_isle_farm",
+                                         "ui_skin":  "skin_cartoon_light"
                                      },
                                      {
                                          "id":  "crown_frontier_tactics",
@@ -44,10 +51,10 @@
                                          "ui_skin":  "skin_dark_arcade"
                                      },
                                      {
-                                         "id":  "ashen_frontier",
-                                         "name":  "Ashen Frontier",
-                                         "created_at":  "2026-04-24",
-                                         "path":  "games/ashen_frontier",
+                                         "id":  "minecart_bastion",
+                                         "name":  "Minecart Bastion",
+                                         "created_at":  "2026-04-23",
+                                         "path":  "games/minecart_bastion",
                                          "ui_skin":  "skin_post_apocalypse"
                                      },
                                      {

@@ -159,6 +159,7 @@ function Get-Motif([string]$Text, [string[]]$Forbidden = @()) {
   if ($value -match 'snow|ice|frost') { return "snowman" }
   if ((-not $banCastle) -and $value -match 'castle|royal|keep|king') { return "castle" }
   if ($value -match 'bomb|bomber|blast') { return "bomb" }
+  if ($value -match 'flower basket|blossom basket|basket|blossom crown|hero blossom|petal isle') { return "flowerbasket" }
   if ($value -match 'garden|plant|farm|orchard|pasture|bloom') { return "leaf" }
   if ((-not $banZombie) -and $value -match 'zombie|survival|barricade') { return "zombie" }
   if ($value -match 'runner|dash|escape|relic') { return "runner" }
@@ -194,6 +195,11 @@ function Get-Palette([string]$Motif) {
     "bomb" {
       return @{
         BgStart = "#FFD166"; BgEnd = "#FF5B5B"; Primary = "#2B2B33"; Secondary = "#FFDD55"; Accent = "#FFFFFF"; Outline = "#402118"; Spot = "#FFF3B0"
+      }
+    }
+    "flowerbasket" {
+      return @{
+        BgStart = "#8EDBFF"; BgEnd = "#F7B8D6"; Primary = "#E5B577"; Secondary = "#FF6FA4"; Accent = "#FFE36D"; Outline = "#6A4B39"; Spot = "#EFFFFA"
       }
     }
     "leaf" {
@@ -429,6 +435,84 @@ function Draw-Leaf([System.Drawing.Graphics]$Graphics, [hashtable]$Palette, [int
   $primaryBrush.Dispose()
   $secondaryBrush.Dispose()
   $accentBrush.Dispose()
+}
+
+function Draw-FlowerBasket([System.Drawing.Graphics]$Graphics, [hashtable]$Palette, [int]$OffsetX, [int]$OffsetY, [int]$ShadowAlpha) {
+  $alpha = Get-DrawAlpha $ShadowAlpha
+  $outline = New-PenFromHex $Palette.Outline 24 $alpha
+  $outline.LineJoin = [System.Drawing.Drawing2D.LineJoin]::Round
+  $basketBrush = New-Brush $Palette.Primary $alpha
+  $pinkBrush = New-Brush $Palette.Secondary $alpha
+  $yellowBrush = New-Brush $Palette.Accent $alpha
+  $leafBrush = New-Brush "#8EDB93" $alpha
+  $skyBrush = New-Brush "#DFF8FF" ([Math]::Max(90, [int]($alpha * 0.72)))
+  $smilePen = New-PenFromHex $Palette.Outline 14 $alpha
+  $smilePen.StartCap = [System.Drawing.Drawing2D.LineCap]::Round
+  $smilePen.EndCap = [System.Drawing.Drawing2D.LineCap]::Round
+
+  $Graphics.FillEllipse($skyBrush, 246 + $OffsetX, 228 + $OffsetY, 536, 248)
+  $Graphics.DrawArc($outline, 324 + $OffsetX, 334 + $OffsetY, 376, 332, 194, 152)
+  $basketPath = New-RoundedPath (280 + $OffsetX) (506 + $OffsetY) 464 238 92
+  $Graphics.FillPath($basketBrush, $basketPath)
+  $Graphics.DrawPath($outline, $basketPath)
+
+  foreach ($lineX in @(360, 438, 516, 594, 672)) {
+    $Graphics.DrawLine($smilePen, $lineX + $OffsetX, 540 + $OffsetY, $lineX + $OffsetX, 730 + $OffsetY)
+  }
+  foreach ($lineY in @(566, 618, 670)) {
+    $Graphics.DrawArc($smilePen, 314 + $OffsetX, $lineY + $OffsetY, 396, 96, 10, 160)
+  }
+
+  $Graphics.FillEllipse($leafBrush, 264 + $OffsetX, 422 + $OffsetY, 156, 108)
+  $Graphics.FillEllipse($leafBrush, 612 + $OffsetX, 422 + $OffsetY, 156, 108)
+  $Graphics.DrawEllipse($outline, 264 + $OffsetX, 422 + $OffsetY, 156, 108)
+  $Graphics.DrawEllipse($outline, 612 + $OffsetX, 422 + $OffsetY, 156, 108)
+
+  foreach ($stem in @(
+    @{ X = 432; Top = 382; Bottom = 534 },
+    @{ X = 512; Top = 308; Bottom = 536 },
+    @{ X = 592; Top = 382; Bottom = 534 }
+  )) {
+    $Graphics.DrawLine($outline, $stem.X + $OffsetX, $stem.Top + $OffsetY, $stem.X + $OffsetX, $stem.Bottom + $OffsetY)
+  }
+
+  foreach ($petal in @(
+    @{ X = 392; Y = 318; Brush = "pink"; Size = 134 },
+    @{ X = 446; Y = 220; Brush = "yellow"; Size = 166 },
+    @{ X = 566; Y = 320; Brush = "pink"; Size = 134 }
+  )) {
+    $brush = $pinkBrush
+    if ($petal.Brush -eq "yellow") { $brush = $yellowBrush }
+    $centerX = $petal.X + $OffsetX
+    $centerY = $petal.Y + $OffsetY
+    $size = $petal.Size
+    foreach ($shift in @(
+      @{ DX = 0; DY = -56 },
+      @{ DX = 54; DY = 0 },
+      @{ DX = 0; DY = 56 },
+      @{ DX = -54; DY = 0 },
+      @{ DX = 38; DY = -38 },
+      @{ DX = -38; DY = -38 }
+    )) {
+      $Graphics.FillEllipse($brush, $centerX + $shift.DX - ($size / 2), $centerY + $shift.DY - ($size / 2), $size, $size)
+      $Graphics.DrawEllipse($outline, $centerX + $shift.DX - ($size / 2), $centerY + $shift.DY - ($size / 2), $size, $size)
+    }
+    $Graphics.FillEllipse($skyBrush, $centerX - 42, $centerY - 42, 84, 84)
+    $Graphics.DrawEllipse($outline, $centerX - 42, $centerY - 42, 84, 84)
+  }
+
+  $Graphics.FillEllipse($skyBrush, 412 + $OffsetX, 586 + $OffsetY, 44, 30)
+  $Graphics.FillEllipse($skyBrush, 564 + $OffsetX, 586 + $OffsetY, 44, 30)
+  $Graphics.DrawArc($smilePen, 446 + $OffsetX, 620 + $OffsetY, 132, 62, 10, 160)
+
+  $basketPath.Dispose()
+  $outline.Dispose()
+  $basketBrush.Dispose()
+  $pinkBrush.Dispose()
+  $yellowBrush.Dispose()
+  $leafBrush.Dispose()
+  $skyBrush.Dispose()
+  $smilePen.Dispose()
 }
 
 function Draw-Zombie([System.Drawing.Graphics]$Graphics, [hashtable]$Palette, [int]$OffsetX, [int]$OffsetY, [int]$ShadowAlpha) {
@@ -732,6 +816,10 @@ function Draw-MotifBitmap([string]$Motif, [hashtable]$Palette) {
     "leaf" {
       Draw-Leaf $graphics $Palette 20 26 90
       Draw-Leaf $graphics $Palette 0 0 0
+    }
+    "flowerbasket" {
+      Draw-FlowerBasket $graphics $Palette 20 24 90
+      Draw-FlowerBasket $graphics $Palette 0 0 0
     }
     "zombie" {
       Draw-Zombie $graphics $Palette 20 26 90
