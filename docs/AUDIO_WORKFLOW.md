@@ -105,6 +105,8 @@ Default resolution order:
 
 Do not silently reuse a legacy asset if it only matches by role and not by style.
 
+Delivery-ready inspection must verify BGM separately from general audio. A project is not audio-complete unless it has at least one project-local `bgm*` file and a matching shared-library BGM entry linked to the same game id.
+
 ## 7. Metadata
 
 Every shared library entry should include:

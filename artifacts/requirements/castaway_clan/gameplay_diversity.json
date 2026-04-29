@@ -1,0 +1,171 @@
+{
+  "version": 1,
+  "game_id": "castaway_clan",
+  "status": "passed",
+  "genre_family": "survival management",
+  "genre_archetype": "castaway colony builder with direct exploration and survivor job assignment",
+  "camera_perspective": "top-down island exploration with camp simulation overlays",
+  "control_model": "virtual joystick movement, contextual action button, tap assignment, drag placement building",
+  "core_loop_signature": "explore island sectors, gather survival resources, rescue stranded survivors, assign work roles, expand camp systems, endure night threats, unlock beacon objective",
+  "differentiation_axes": [
+    "persistent single-island colony instead of stage-based combat maps",
+    "survivor labor assignment is the main strategic layer",
+    "day exploration transitions into night camp resolution",
+    "food, water, morale, and safety are balanced together",
+    "chapter progression is driven by colony infrastructure and rescues"
+  ],
+  "forbidden_template_reuse": [
+    "three-lane defense structures and wave-only maps",
+    "pure crop-grid management as the main loop",
+    "harbor-to-harbor route capture gameplay",
+    "zombie extraction shooter safehouse loop",
+    "single-character endless survival without recruitable workers"
+  ],
+  "map_content_budget": {
+    "play_area_model": "one persistent island with a central expandable beach camp and unlockable surrounding regions",
+    "route_or_region_count": "at least 8 named regions connected by shoreline paths, jungle routes, cliff passes, and reef access points",
+    "interactive_regions": "camp core, driftwood beach, freshwater grove, fishing coast, inland jungle, wreck site, cliff pass, beacon summit",
+    "terrain_types": [
+      "sand beach",
+      "shallow reef",
+      "grass grove",
+      "dense jungle",
+      "rock cliff"
+    ],
+    "decorative_prop_count": "at least 20 repeated scenic props across palms, tide pools, wreckage debris, rope markers, and camp clutter",
+    "functional_map_elements": [
+      "fresh water spring",
+      "fishing spot",
+      "animal den",
+      "wreck cache",
+      "herb patch",
+      "build pad",
+      "beacon platform",
+      "rope bridge",
+      "storage drop point",
+      "storm shelter zone"
+    ],
+    "landmarks": [
+      "split hull wreck",
+      "giant leaning palm",
+      "stone arch",
+      "smoke ridge",
+      "beacon hill"
+    ],
+    "camera_or_scroll_model": "player-centered camera with bounded scrolling over a persistent map"
+  },
+  "entity_content_budget": {
+    "player_unit_types": [
+      "leader explorer",
+      "tool-upgraded leader variants by equipment tier"
+    ],
+    "enemy_types": [
+      "wild boar",
+      "reef crab swarm",
+      "venom snake",
+      "night raider monkeys"
+    ],
+    "neutral_or_resource_entities": [
+      "stranded survivors",
+      "fish schools",
+      "berry bushes",
+      "driftwood clusters",
+      "stone piles",
+      "herb patches"
+    ],
+    "boss_or_elite_types": [
+      "storm alpha boar at cliff pass",
+      "final storm event pressure phase"
+    ],
+    "projectile_or_effect_types": [
+      "spear throw",
+      "hammer spark",
+      "chop chips",
+      "rain splash",
+      "warning pulse",
+      "campfire glow"
+    ],
+    "item_or_powerup_types": [
+      "tool blueprints",
+      "medicine bundles",
+      "cargo salvage crates",
+      "morale keepsakes",
+      "rare beacon parts"
+    ]
+  },
+  "mechanic_content_budget": {
+    "primary_player_actions": [
+      "move",
+      "gather",
+      "rescue",
+      "build",
+      "assign jobs",
+      "craft",
+      "fight or repel wildlife"
+    ],
+    "secondary_player_actions": [
+      "fast-forward camp time",
+      "open map objectives",
+      "toggle building placement",
+      "prioritize structure production",
+      "reassign survivors during alerts"
+    ],
+    "upgrade_paths": [
+      "tools",
+      "camp structures",
+      "survivor role efficiency",
+      "storage and transport",
+      "beacon infrastructure"
+    ],
+    "wave_or_level_variants": [
+      "calm supply day",
+      "storm-preparation day",
+      "night animal raid",
+      "injury and morale stress day",
+      "final beacon defense night"
+    ],
+    "special_rules": [
+      "survivors only perform better when assigned to matching roles",
+      "night danger rises if fences, fire, or guards are neglected",
+      "storm forecasts telegraph future camp needs"
+    ],
+    "risk_reward_systems": [
+      "longer expeditions yield rare parts but increase return risk",
+      "rescuing survivors expands output but also raises food and shelter demand",
+      "pushing inland early unlocks stronger upgrades but raises injury chance"
+    ],
+    "failure_pressure_variants": [
+      "hunger pressure",
+      "water shortage",
+      "morale collapse",
+      "injury accumulation",
+      "storm structure damage",
+      "night raid losses"
+    ]
+  },
+  "asset_variety_budget": {
+    "primary_game_art_packs": [
+      "coastal castaway survivors",
+      "tropical island environment",
+      "camp structures and resource nodes"
+    ],
+    "secondary_game_art_packs": [
+      "wildlife hazard set",
+      "storm and weather effects set"
+    ],
+    "ui_pack": "skin_cartoon_light",
+    "animation_tier": "medium for primary humanoids and key wildlife, light for structures and ambient props",
+    "required_animation_states": [
+      "idle",
+      "walk",
+      "gather",
+      "build",
+      "attack or repel",
+      "hurt",
+      "collapse",
+      "storm alert effects"
+    ],
+    "minimum_distinct_sprite_families": "at least 8 distinct gameplay sprite families across leader, survivors, animals, resources, structures, landmarks, pickups, and effects",
+    "asset_reuse_note": "Do not solve the game with one generic farm pack or one zombie survival pack recolor; role coverage must reflect castaway colony work and island ecology."
+  }
+}

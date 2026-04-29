@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "game_id": "bronze_camp_command",
+  "assigned_at_utc": "2026-04-29T07:10:00Z",
+  "assignment_type": "shared_game_art_pack",
+  "brief": {
+    "theme": "bronze age micro base building skirmish",
+    "camera_perspective": "top_down",
+    "game_type": "real_time_strategy",
+    "license_tier": "CC0-1.0",
+    "placeholder_art_acceptable": false
+  },
+  "packs": [
+    {
+      "pack_id": "kenney_top_down_shooter",
+      "pack_title": "Kenney Top-down Shooter",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://kenney.nl/assets/top-down-shooter",
+      "art_roles": [
+        "character",
+        "enemy",
+        "projectile"
+      ],
+      "project_pack_path": "app/src/main/assets/game_art/kenney_top_down_shooter"
+    },
+    {
+      "pack_id": "kenney_tower_defense_top_down",
+      "pack_title": "Kenney Tower Defense Top-Down",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://kenney.nl/assets/tower-defense-top-down",
+      "art_roles": [
+        "terrain",
+        "building",
+        "prop",
+        "effect"
+      ],
+      "project_pack_path": "app/src/main/assets/game_art/kenney_tower_defense_top_down"
+    }
+  ],
+  "roles_covered": [
+    "villager",
+    "scout",
+    "militia",
+    "spearman",
+    "slinger",
+    "shield_guard",
+    "ram_crew",
+    "enemy_raider",
+    "enemy_guard",
+    "camp_buildings",
+    "resource_nodes",
+    "obelisk",
+    "hit_effects",
+    "terrain"
+  ]
+}

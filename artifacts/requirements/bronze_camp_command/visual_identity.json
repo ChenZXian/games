@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "game_id": "bronze_camp_command",
+  "status": "passed",
+  "visual_differentiation_axes": [
+    "field-command tablet HUD instead of top pills and bottom strip",
+    "right-side squad rail with contextual bottom-left radial",
+    "bronze verdigris olive tactical palette within skin_military_tech",
+    "map ink overlays and carved tablet panels",
+    "icon based on command token, barracks marker, spear, and wheat"
+  ],
+  "forbidden_visual_reuse": [
+    "generic castle or shield launcher icon",
+    "wall defense icon silhouette",
+    "neon lane battle palette",
+    "top HUD pill cluster plus bottom command strip",
+    "full decorative frame over active playfield",
+    "same sword or tower foreground used by prior strategy projects"
+  ],
+  "ui_identity": {
+    "layout_archetype": "battlefield command map with top-left resource ledger, right-side squad rail, and bottom-left contextual command radial",
+    "hud_composition": "food wood stone population idle villagers objective strip selected squad count wave warning and compact pause control",
+    "navigation_model": "menu to campaign map to gameplay, with pause overlay and result panel; gameplay commands stay in contextual overlays",
+    "palette_signature": "dark olive base, aged bronze accents, verdigris highlights, wheat-gold resource warnings, pale mint tactical text, stone-gray panels",
+    "material_language": "carved command tablet panels, bronze rivets, map ink lines, low-glow tactical selection marks, restrained military-tech surfaces",
+    "typography_style": "compact uppercase labels, high-readability numeric resource values, short objective text, no ornate fantasy lettering",
+    "primary_ui_pack": "skin_military_tech token foundation with bronze field-command XML refinements",
+    "secondary_ui_assets": [
+      "resource glyphs for food wood and stone",
+      "squad class icons",
+      "radial command wedges",
+      "obelisk objective marker",
+      "wave warning horn marker"
+    ],
+    "playfield_safety": {
+      "reserved_edges": [
+        "top 12 percent for resource ledger and objective strip",
+        "right 15 percent for squad rail",
+        "bottom-left 22 percent by 26 percent for contextual command radial"
+      ],
+      "hud_anchor_zones": [
+        "top-left resources",
+        "top-center objective",
+        "top-right pause and alerts",
+        "right-center squad rail",
+        "bottom-left contextual commands"
+      ],
+      "protected_gameplay_zones": [
+        "central movement field",
+        "resource nodes",
+        "building placement footprints",
+        "enemy approach paths",
+        "neutral obelisk capture circles"
+      ],
+      "frame_overlay_policy": "decorative frames and tablet edges may occupy only reserved HUD dead space and must never cover paths, units, resource nodes, building footprints, or selection gestures"
+    },
+    "unique_screen_motifs": [
+      "animated camp map behind menu",
+      "campaign nodes shown as clay route tablets",
+      "resource ledger styled as carved inventory notches",
+      "radial commands shaped like bronze planning tokens",
+      "result screen shown as a stamped battle report"
+    ],
+    "forbidden_ui_elements": [
+      "bottom-only command bar",
+      "large generic card stack over the playfield",
+      "heavy border over active map",
+      "reused neon arcade HUD",
+      "tower defense slot panel layout"
+    ]
+  },
+  "icon_identity": {
+    "subject": "cartoon bronze commander hand placing a tiny barracks marker beside spear and wheat symbols on a camp map",
+    "silhouette": "round command seal with diagonal spear, small hut block, and visible wheat shape",
+    "composition": "large hand and command marker in foreground, simplified camp grid below, spear crossing behind the marker, wheat tucked as resource cue",
+    "palette": "bronze, dark olive, stone gray, wheat gold, small verdigris highlight",
+    "background": "stylized carved map disk with subtle grid and no generic shield badge",
+    "game_specific_motif": "base-building decision represented by the barracks marker and resource wheat on a tactical map",
+    "forbidden_icon_reuse": [
+      "plain sword icon",
+      "plain shield icon",
+      "castle wall icon",
+      "tower defense turret icon",
+      "generic RTS helmet",
+      "unmodified icon from another generated game"
+    ]
+  }
+}

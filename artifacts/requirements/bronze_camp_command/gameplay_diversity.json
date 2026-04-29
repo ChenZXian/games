@@ -1,0 +1,183 @@
+{
+  "version": 1,
+  "game_id": "bronze_camp_command",
+  "status": "passed",
+  "genre_family": "real_time_strategy",
+  "genre_archetype": "micro_base_building_worker_economy_skirmish",
+  "camera_perspective": "top_down_free_movement_battlefield_with_soft_pan_or_full_map_fit",
+  "control_model": "tap_select_context_commands_drag_box_squad_select_tap_move_tap_attack",
+  "core_loop_signature": "assign villagers to food wood and stone, place production buildings, train counter units, scout fogged regions, survive raids, then destroy the enemy landmark or hold neutral obelisks",
+  "differentiation_axes": [
+    "worker economy with three resources instead of energy-only spawning",
+    "free movement top-down skirmish map instead of fixed lanes",
+    "building placement and production queues before combat commitment",
+    "fog scouting and neutral objective capture as timing pressure",
+    "landmark assault victory with optional obelisk control alternative"
+  ],
+  "forbidden_template_reuse": [
+    "three horizontal lane push layout",
+    "bottom-only unit spawn strip",
+    "fixed wall defense with tower slots",
+    "pure node-number territory spread",
+    "turn-based square grid tactics loop",
+    "one-unit prototype roster"
+  ],
+  "map_content_budget": {
+    "play_area_model": "top-down ancient camp battlefield with player base, enemy base, neutral center, side resources, choke paths, and one flanking route",
+    "route_or_region_count": "minimum seven regions: player camp, enemy camp, two side resource pockets, two neutral obelisks, central choke, and optional flank trail",
+    "interactive_regions": [
+      "player build zone",
+      "enemy landmark zone",
+      "food patch",
+      "wood grove",
+      "stone outcrop",
+      "neutral obelisk west",
+      "neutral obelisk east",
+      "flank trail"
+    ],
+    "terrain_types": [
+      "dry grass camp ground",
+      "stone ridge blockers",
+      "woodland resource edge",
+      "packed road",
+      "shallow ruin plaza"
+    ],
+    "decorative_prop_count": "at least twelve small props distributed across non-interactive dead space",
+    "functional_map_elements": [
+      "resource nodes",
+      "building footprints",
+      "fog reveal zones",
+      "capture circles",
+      "choke blockers",
+      "rally markers",
+      "enemy raid spawn markers"
+    ],
+    "landmarks": [
+      "player Town Hut",
+      "enemy Chief Hall",
+      "two neutral Obelisks",
+      "stone ridge gate"
+    ],
+    "camera_or_scroll_model": "landscape fixed full-map fit for early maps with optional soft pan on larger map three"
+  },
+  "entity_content_budget": {
+    "player_unit_types": [
+      "villager",
+      "scout",
+      "militia",
+      "spearman",
+      "slinger",
+      "shield_guard",
+      "ram_crew"
+    ],
+    "enemy_types": [
+      "raider",
+      "enemy_spearman",
+      "enemy_slinger",
+      "enemy_guard",
+      "enemy_worker"
+    ],
+    "neutral_or_resource_entities": [
+      "food_patch",
+      "wood_grove",
+      "stone_outcrop",
+      "neutral_obelisk",
+      "ruin_marker"
+    ],
+    "boss_or_elite_types": [
+      "chieftain_elite",
+      "final_assault_banner"
+    ],
+    "projectile_or_effect_types": [
+      "sling_stone",
+      "spear_thrust_arc",
+      "ram_impact_dust",
+      "building_smoke",
+      "capture_ring",
+      "selection_ring",
+      "rally_flag"
+    ],
+    "item_or_powerup_types": [
+      "tool_upgrade_token",
+      "shield_upgrade_token",
+      "signal_fire_boost"
+    ]
+  },
+  "mechanic_content_budget": {
+    "primary_player_actions": [
+      "assign villagers to resources",
+      "place buildings",
+      "train units",
+      "box select squads",
+      "issue move and attack orders",
+      "capture obelisks",
+      "attack enemy landmark"
+    ],
+    "secondary_player_actions": [
+      "recall idle villagers",
+      "set rally point",
+      "queue upgrades",
+      "repair buildings",
+      "scout fog zones"
+    ],
+    "upgrade_paths": [
+      "Worker Tools",
+      "Hardened Shields",
+      "Sling Pouches",
+      "Spear Drill",
+      "Reinforced Rams",
+      "Signal Fires"
+    ],
+    "wave_or_level_variants": [
+      "early raider probe",
+      "mixed spearman and slinger raid",
+      "stone-tech guard push",
+      "final assault banner"
+    ],
+    "special_rules": [
+      "population cap from Town Hut tier",
+      "fog hides enemy tech until scouted",
+      "neutral obelisks create alternative hold victory",
+      "rams are strong against buildings but weak without guards"
+    ],
+    "risk_reward_systems": [
+      "fast militia rush sacrifices economy",
+      "delayed stone-tech assault risks enemy final wave",
+      "outer resource pockets improve income but expose villagers",
+      "obelisk capture diverts troops from landmark assault"
+    ],
+    "failure_pressure_variants": [
+      "enemy raids threaten villagers",
+      "enemy tech timer escalates unit quality",
+      "final assault at eight minutes",
+      "landmark destruction defeat"
+    ]
+  },
+  "asset_variety_budget": {
+    "primary_game_art_packs": [
+      "ancient top-down humanoid units",
+      "bronze age camp buildings",
+      "natural resource nodes"
+    ],
+    "secondary_game_art_packs": [
+      "tactical selection rings and rally markers",
+      "dust hit and smoke effects",
+      "ruin and obelisk props"
+    ],
+    "ui_pack": "skin_military_tech with bronze field-command refinements",
+    "animation_tier": "delivery_ready_directional_two_frame_walk_plus_attack_pose_timing_for_primary_units",
+    "required_animation_states": [
+      "idle",
+      "walk",
+      "gather",
+      "attack_windup",
+      "attack_action",
+      "attack_recovery",
+      "hit",
+      "defeat",
+      "build_or_repair"
+    ],
+    "minimum_distinct_sprite_families": "at least six unit families, five building families, three resource families, and four effect families",
+    "asset_reuse_note": "asset selection must avoid reusing lane defense, wall defense, or fantasy side-view unit families as the primary visual identity"
+  }
+}

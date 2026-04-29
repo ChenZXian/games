@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "game_id": "castaway_clan",
+  "status": "passed",
+  "reviewed_at_utc": "2026-04-29T02:43:30Z",
+  "summary": "The implementation preserves the confirmed castaway colony loop with exploration, rescue, survivor role assignment, structure building, weather pressure, and beacon victory gating."
+}

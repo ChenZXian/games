@@ -154,6 +154,7 @@ function Get-Motif([string]$Text, [string[]]$Forbidden = @()) {
   $banZombie = $forbiddenText -match 'zombie'
   $banHelmet = $forbiddenText -match 'helmet|gas-mask|gas mask'
   $banShield = $forbiddenText -match 'shield|crest'
+  if ($value -match 'barracks|camp|command|commander|wheat|resource|map grid|tactical map|town hut|worker|villager') { return "commandcamp" }
   if (($value -match 'fist|knuckle|glove') -and ($value -match 'sign|street|district|warrant|route|block')) { return "fistsign" }
   if ($value -match 'pennant|banner|standard|milestone|tactical-map|tactical map|tile pattern|tile grid') { return "warpennant" }
   if ($value -match 'snow|ice|frost') { return "snowman" }
@@ -174,6 +175,11 @@ function Get-Palette([string]$Motif) {
     "fistsign" {
       return @{
         BgStart = "#1B2433"; BgEnd = "#C67B32"; Primary = "#D0B79C"; Secondary = "#E7E0D6"; Accent = "#ED9E3D"; Outline = "#6B5846"; Spot = "#FFD6B4"
+      }
+    }
+    "commandcamp" {
+      return @{
+        BgStart = "#263326"; BgEnd = "#B7792F"; Primary = "#D9A441"; Secondary = "#EEE2B7"; Accent = "#5EE0BE"; Outline = "#1C2A24"; Spot = "#F7D784"
       }
     }
     "warpennant" {
@@ -344,6 +350,61 @@ function Draw-FistSign([System.Drawing.Graphics]$Graphics, [hashtable]$Palette, 
   $darkBrush.Dispose()
   $tapeBrush.Dispose()
   $slashPen.Dispose()
+}
+
+function Draw-CommandCamp([System.Drawing.Graphics]$Graphics, [hashtable]$Palette, [int]$OffsetX, [int]$OffsetY, [int]$ShadowAlpha) {
+  $alpha = Get-DrawAlpha $ShadowAlpha
+  $outline = New-PenFromHex $Palette.Outline 24 $alpha
+  $outline.LineJoin = [System.Drawing.Drawing2D.LineJoin]::Round
+  $mapBrush = New-Brush $Palette.Secondary $alpha
+  $bronzeBrush = New-Brush $Palette.Primary $alpha
+  $accentBrush = New-Brush $Palette.Accent $alpha
+  $darkBrush = New-Brush $Palette.Outline $alpha
+  $wheatBrush = New-Brush $Palette.Spot $alpha
+  $gridPen = New-PenFromHex "#8E6A38" 8 ([Math]::Max(70, [int]($alpha * 0.55)))
+  $mapPath = New-RoundedPath (220 + $OffsetX) (292 + $OffsetY) 584 430 70
+  $Graphics.FillPath($mapBrush, $mapPath)
+  $Graphics.DrawPath($outline, $mapPath)
+  foreach ($x in @(310, 430, 550, 670)) {
+    $Graphics.DrawLine($gridPen, $x + $OffsetX, 322 + $OffsetY, $x + $OffsetX, 692 + $OffsetY)
+  }
+  foreach ($y in @(382, 482, 582)) {
+    $Graphics.DrawLine($gridPen, 252 + $OffsetX, $y + $OffsetY, 772 + $OffsetX, $y + $OffsetY)
+  }
+  $Graphics.FillRectangle($bronzeBrush, 422 + $OffsetX, 386 + $OffsetY, 186, 164)
+  $Graphics.DrawRectangle($outline, 422 + $OffsetX, 386 + $OffsetY, 186, 164)
+  $Graphics.FillPolygon($darkBrush, @(
+    (New-Point (388 + $OffsetX) (400 + $OffsetY)),
+    (New-Point (514 + $OffsetX) (310 + $OffsetY)),
+    (New-Point (642 + $OffsetX) (400 + $OffsetY))
+  ))
+  $Graphics.DrawPolygon($outline, @(
+    (New-Point (388 + $OffsetX) (400 + $OffsetY)),
+    (New-Point (514 + $OffsetX) (310 + $OffsetY)),
+    (New-Point (642 + $OffsetX) (400 + $OffsetY))
+  ))
+  $Graphics.FillRectangle($accentBrush, 492 + $OffsetX, 468 + $OffsetY, 42, 82)
+  $Graphics.DrawLine($outline, 296 + $OffsetX, 748 + $OffsetY, 734 + $OffsetX, 236 + $OffsetY)
+  $Graphics.FillPolygon($darkBrush, @(
+    (New-Point (724 + $OffsetX) (230 + $OffsetY)),
+    (New-Point (818 + $OffsetX) (206 + $OffsetY)),
+    (New-Point (768 + $OffsetX) (292 + $OffsetY))
+  ))
+  foreach ($i in 0..4) {
+    $baseX = 304 + $OffsetX + $i * 24
+    $Graphics.DrawLine($outline, $baseX, 620 + $OffsetY, $baseX + 66, 750 + $OffsetY)
+    $Graphics.FillEllipse($wheatBrush, $baseX + 42, 610 + $OffsetY + $i * 16, 34, 54)
+  }
+  $Graphics.FillEllipse($accentBrush, 646 + $OffsetX, 556 + $OffsetY, 118, 86)
+  $Graphics.FillRectangle($darkBrush, 674 + $OffsetX, 586 + $OffsetY, 64, 18)
+  $mapPath.Dispose()
+  $outline.Dispose()
+  $mapBrush.Dispose()
+  $bronzeBrush.Dispose()
+  $accentBrush.Dispose()
+  $darkBrush.Dispose()
+  $wheatBrush.Dispose()
+  $gridPen.Dispose()
 }
 
 function Draw-Castle([System.Drawing.Graphics]$Graphics, [hashtable]$Palette, [int]$OffsetX, [int]$OffsetY, [int]$ShadowAlpha) {
@@ -709,6 +770,10 @@ function Draw-MotifBitmap([string]$Motif, [hashtable]$Palette) {
   $graphics.Clear([System.Drawing.Color]::Transparent)
 
   switch ($Motif) {
+    "commandcamp" {
+      Draw-CommandCamp $graphics $Palette 18 22 90
+      Draw-CommandCamp $graphics $Palette 0 0 0
+    }
     "fistsign" {
       Draw-FistSign $graphics $Palette 20 22 90
       Draw-FistSign $graphics $Palette 0 0 0

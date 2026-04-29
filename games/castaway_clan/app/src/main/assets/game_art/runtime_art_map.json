@@ -1,0 +1,257 @@
+{
+  "version": 1,
+  "game_id": "castaway_clan",
+  "status": "integrated",
+  "camera_perspective": "top_down_island_camp",
+  "default_coordinate_space": "world_space_pixels",
+  "theme": "castaway island survival camp rescue beacon",
+  "game_type": "top_down_survival_management",
+  "runtime_code": "app/src/main/java/com/android/boot/ui/GameView.java",
+  "animation_quality_target": "directional_pose_set_with_runtime_swap",
+  "minimum_primary_entity_states": [
+    "idle",
+    "move",
+    "attack",
+    "hit",
+    "death"
+  ],
+  "entities": [
+    {
+      "entity_key": "leader_player",
+      "role": "character",
+      "asset_keys": [
+        "game_art/kenney_top_down_shooter/assets/PNG/Man Blue/manBlue_stand.png",
+        "game_art/kenney_top_down_shooter/assets/PNG/Man Blue/manBlue_hold.png"
+      ],
+      "default_facing": "movement_vector",
+      "facing_rule": "GameRenderer swaps between stand and hold poses and aligns the leader body to travel direction through runtime movement bias.",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      },
+      "hitbox": {
+        "x": 0.28,
+        "y": 0.20,
+        "w": 0.44,
+        "h": 0.58
+      },
+      "render_size": {
+        "w": "52f",
+        "h": "52f",
+        "unit": "screen_pixels"
+      },
+      "z_order": "by_y_then_player",
+      "states": [
+        "idle",
+        "move",
+        "interact",
+        "hit",
+        "collapse"
+      ],
+      "animation_rule": "GameRenderer alternates stand and hold frames by movement rhythm and overlays floating text feedback for gather, rescue, and craft actions.",
+      "movement_rule": "Left control ring drives eight-direction movement while nearby Action input triggers gather, rescue, repel, or build interactions."
+    },
+    {
+      "entity_key": "camp_survivor_workers",
+      "role": "character",
+      "asset_keys": [
+        "game_art/kenney_top_down_shooter/assets/PNG/Man Brown/manBrown_stand.png",
+        "game_art/kenney_top_down_shooter/assets/PNG/Man Brown/manBrown_hold.png"
+      ],
+      "default_facing": "task_orbit_vector",
+      "facing_rule": "Worker positions and body motion follow assigned role targets around the camp, fishing coast, and build pads.",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      },
+      "hitbox": {
+        "x": 0.28,
+        "y": 0.20,
+        "w": 0.44,
+        "h": 0.58
+      },
+      "render_size": {
+        "w": "50f",
+        "h": "50f",
+        "unit": "screen_pixels"
+      },
+      "z_order": "by_y_then_survivor",
+      "states": [
+        "idle",
+        "move",
+        "build",
+        "guard",
+        "heal"
+      ],
+      "animation_rule": "Role markers tint the worker belt area while the renderer swaps stand and hold frames for work cycles and movement.",
+      "movement_rule": "Survivors lerp to role-specific task anchors, patrol arcs, or camp support stations based on current job assignment."
+    },
+    {
+      "entity_key": "island_wildlife",
+      "role": "animal",
+      "asset_keys": [
+        "game_art/kenney_animal_pack/assets/PNG/Round (outline)/pig.png",
+        "game_art/kenney_animal_pack/assets/PNG/Round (outline)/monkey.png",
+        "game_art/kenney_animal_pack/assets/PNG/Round (outline)/snake.png",
+        "game_art/kenney_animal_pack/assets/PNG/Round (outline)/slice08_086.png"
+      ],
+      "default_facing": "travel_vector",
+      "facing_rule": "Wildlife drifts by velocity and threat approach toward the player or camp perimeter.",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.74
+      },
+      "hitbox": {
+        "x": 0.20,
+        "y": 0.20,
+        "w": 0.60,
+        "h": 0.56
+      },
+      "render_size": {
+        "w": "60f",
+        "h": "60f",
+        "unit": "screen_pixels"
+      },
+      "z_order": "by_y_then_wildlife",
+      "states": [
+        "idle",
+        "move",
+        "threaten",
+        "repelled"
+      ],
+      "animation_rule": "Renderer reuses pack sprites with runtime drift, pulse, and threat timing while boar, monkey, snake, and crab move on distinct path loops.",
+      "movement_rule": "Wildlife bounces within region bounds and causes morale pressure until the player uses Action nearby to repel it."
+    },
+    {
+      "entity_key": "camp_structures",
+      "role": "building",
+      "asset_keys": [
+        "game_art/kenney_pirate_pack/assets/PNG/Default size/Effects/fire1.png",
+        "game_art/kenney_pirate_pack/assets/PNG/Default size/Ship parts/pole.png",
+        "game_art/kenney_pirate_pack/assets/PNG/Default size/Ship parts/flag (2).png",
+        "runtime_shelter_canvas_shape",
+        "runtime_fence_shape",
+        "runtime_collector_shape",
+        "runtime_infirmary_shape",
+        "runtime_workshop_shape"
+      ],
+      "default_facing": "up",
+      "facing_rule": "Buildings stay fixed on camp pads and layer vertically by slot position.",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.86
+      },
+      "hitbox": {
+        "x": 0.10,
+        "y": 0.18,
+        "w": 0.80,
+        "h": 0.62
+      },
+      "render_size": {
+        "w": "84f",
+        "h": "84f",
+        "unit": "screen_pixels"
+      },
+      "z_order": "ground_then_structure",
+      "states": [
+        "empty_pad",
+        "built",
+        "beacon_ready"
+      ],
+      "animation_rule": "Fire and beacon use pirate pack overlays while shelter, fence, collector, infirmary, and workshop use runtime shapes tied to structure type and completion.",
+      "movement_rule": "Static camp structures occupy fixed build pads and modify nightly colony resolution."
+    },
+    {
+      "entity_key": "resource_nodes",
+      "role": "item",
+      "asset_keys": [
+        "runtime_driftwood_shape",
+        "runtime_fruit_shape",
+        "runtime_water_pool_shape",
+        "runtime_herb_shape",
+        "runtime_scrap_shape",
+        "runtime_rescue_marker"
+      ],
+      "default_facing": "up",
+      "facing_rule": "Nodes are static pickups or rescue points anchored to their world region.",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.70
+      },
+      "hitbox": {
+        "x": 0.18,
+        "y": 0.18,
+        "w": 0.64,
+        "h": 0.54
+      },
+      "render_size": {
+        "w": "48f",
+        "h": "48f",
+        "unit": "screen_pixels"
+      },
+      "z_order": "above_ground",
+      "states": [
+        "active",
+        "collected",
+        "rescued"
+      ],
+      "animation_rule": "Resource visuals rely on distinct runtime shapes and pulses so driftwood, food, water, herbs, scrap, and castaway rescue markers remain readable at a glance.",
+      "movement_rule": "Nodes remain fixed until collected, then disappear and respawn on the next island day."
+    },
+    {
+      "entity_key": "terrain_and_wreckage",
+      "role": "terrain",
+      "asset_keys": [
+        "game_art/kenney_tiny_town/assets/Tiles/tile_0016.png",
+        "game_art/kenney_tiny_town/assets/Tiles/tile_0007.png",
+        "game_art/kenney_tiny_town/assets/Tiles/tile_0077.png",
+        "game_art/kenney_pirate_pack/assets/PNG/Default size/Ship parts/hullSmall (1).png"
+      ],
+      "default_facing": "up",
+      "facing_rule": "Terrain tiles and wreck props stay static and scroll under the camera.",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "hitbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "w": 1.0,
+        "h": 1.0
+      },
+      "render_size": {
+        "w": "96f_tile_and_230f_wreck",
+        "h": "96f_tile_and_180f_wreck",
+        "unit": "screen_pixels"
+      },
+      "z_order": "ground",
+      "states": [
+        "beach",
+        "grass",
+        "water",
+        "wreck"
+      ],
+      "animation_rule": "Background rendering alternates beach, grass, and water tiles by region and layers a static pirate wreck landmark in the ridge zone.",
+      "movement_rule": "Camera follows the player while the island map remains persistent and bounded."
+    }
+  ],
+  "required_runtime_checks": [
+    "primary moving entities have idle and move states",
+    "attacking or threat entities have interaction or repel states",
+    "damageable colony state uses morale and collapse feedback",
+    "directional entities define default_facing and facing_rule",
+    "runtime loads assigned bitmaps through AssetManager and BitmapFactory",
+    "anchors and hitboxes match gameplay contact points",
+    "resource and threat visuals remain distinct from decorative terrain"
+  ],
+  "suggested_roles": [
+    "character",
+    "animal",
+    "terrain",
+    "building",
+    "prop",
+    "item",
+    "effect",
+    "background"
+  ]
+}

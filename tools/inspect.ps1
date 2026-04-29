@@ -112,10 +112,12 @@ $gameplayDiversityStatus = "missing"
 $visualIdentityStatus = "missing"
 $implementationFidelityStatus = "untracked"
 $iconStatus = "deferred"
+$iconUniquenessStatus = "unknown"
 $uiStatus = "deferred"
 $gameArtStatus = "deferred"
 $gameArtRuntimeStatus = "missing"
 $audioStatus = "deferred"
+$bgmStatus = "missing"
 
 Write-Section "Inspect Target"
 Write-Ok "Repo root: $root"
@@ -352,8 +354,19 @@ if (Test-Path $resDir) {
 $projectIconPresent = (Test-Path $adaptiveIcon) -or ($legacyIcons.Count -gt 0)
 $iconExportDir = Join-Path $root "artifacts\icons\$gameId"
 $iconExportFiles = @()
+$iconMetadata = $null
 if (Test-Path $iconExportDir) {
   $iconExportFiles = Get-ChildItem -Path $iconExportDir -Recurse -File -ErrorAction SilentlyContinue
+  $iconMetadataPath = Join-Path $iconExportDir "metadata.json"
+  if (Test-Path $iconMetadataPath) {
+    try {
+      $iconMetadata = Get-Content -LiteralPath $iconMetadataPath -Raw | ConvertFrom-Json
+    }
+    catch {
+      Write-Warn "Icon metadata JSON is invalid: artifacts/icons/$gameId/metadata.json"
+      $warnCount++
+    }
+  }
 }
 if ($projectIconPresent -and $iconExportFiles.Count -gt 0) {
   $iconStatus = "complete"
@@ -367,6 +380,32 @@ if ($projectIconPresent -and $iconExportFiles.Count -gt 0) {
   $iconStatus = "deferred"
   Write-Warn "Icon status: deferred"
   $warnCount++
+}
+if ($iconStatus -eq "complete") {
+  $genericIconMotifs = @("shieldstar", "swordshield", "castle")
+  $iconMotif = ""
+  $iconSubject = ""
+  if ($null -ne $iconMetadata) {
+    $iconMotif = [string]$iconMetadata.motif
+    $iconSubject = [string]$iconMetadata.icon_subject
+  }
+  if ([string]::IsNullOrWhiteSpace($iconMotif)) {
+    $iconUniquenessStatus = "unreviewed"
+    Write-Warn "Icon uniqueness: unreviewed (metadata does not declare motif)"
+    $warnCount++
+  } elseif ($genericIconMotifs -contains $iconMotif) {
+    $iconUniquenessStatus = "generic"
+    Write-Warn "Icon uniqueness: generic motif '$iconMotif' should be replaced with a game-specific subject"
+    $warnCount++
+  } elseif ([string]::IsNullOrWhiteSpace($iconSubject)) {
+    $iconUniquenessStatus = "unreviewed"
+    Write-Warn "Icon uniqueness: unreviewed (metadata does not declare icon_subject)"
+    $warnCount++
+  } else {
+    $iconUniquenessStatus = "passed"
+    Write-Ok "Icon uniqueness: passed ($iconMotif)"
+    $passCount++
+  }
 }
 
 $uiRecordPath = Join-Path $projResolved "app\src\main\assets\ui\ui_pack_assignment.json"
@@ -531,7 +570,9 @@ $projectAudioFiles = @()
 if (Test-Path $projectAudioDir) {
   $projectAudioFiles = Get-ChildItem -Path $projectAudioDir -Recurse -File -ErrorAction SilentlyContinue
 }
+$projectBgmFiles = @($projectAudioFiles | Where-Object { $_.Name -like "bgm*" })
 $audioLibraryMatches = @()
+$bgmLibraryMatches = @()
 $audioIndexPath = Join-Path $root "shared_assets\audio\index.json"
 if (Test-Path $audioIndexPath) {
   try {
@@ -541,6 +582,7 @@ if (Test-Path $audioIndexPath) {
         $usedBy = $_.used_by
         ($usedBy -eq $gameId) -or ($usedBy -is [System.Array] -and ($usedBy -contains $gameId))
       })
+      $bgmLibraryMatches = @($audioLibraryMatches | Where-Object { [string]$_.type -eq "bgm" -or [string]$_.role -match '^(menu|play|gameplay|climax|boss|win|fail)$' })
     }
   }
   catch {
@@ -548,7 +590,20 @@ if (Test-Path $audioIndexPath) {
     $warnCount++
   }
 }
-if ($projectAudioFiles.Count -gt 0 -and $audioLibraryMatches.Count -gt 0) {
+if ($projectBgmFiles.Count -gt 0 -and $bgmLibraryMatches.Count -gt 0) {
+  $bgmStatus = "complete"
+  Write-Ok "BGM status: complete ($($projectBgmFiles.Count) project BGM file(s), $($bgmLibraryMatches.Count) shared BGM match(es))"
+  $passCount++
+} elseif ($projectBgmFiles.Count -gt 0) {
+  $bgmStatus = "placeholder_only"
+  Write-Warn "BGM status: placeholder_only (project BGM exists, no shared library BGM linkage found)"
+  $warnCount++
+} else {
+  $bgmStatus = "missing"
+  Write-Warn "BGM status: missing"
+  $warnCount++
+}
+if ($projectAudioFiles.Count -gt 0 -and $audioLibraryMatches.Count -gt 0 -and $bgmStatus -eq "complete") {
   $audioStatus = "complete"
   Write-Ok "Audio status: complete ($($projectAudioFiles.Count) project file(s), $($audioLibraryMatches.Count) shared library match(es))"
   $passCount++
@@ -577,7 +632,7 @@ if ($apkFiles.Count -gt 0) {
 }
 
 $canEnterPack = $doctorReady -and $validatorReady -and $registryReady
-$deliveryReady = $canEnterPack -and ($requirementsStatus -eq "confirmed") -and ($gameplayDiversityStatus -eq "passed") -and ($visualIdentityStatus -eq "passed") -and ($implementationFidelityStatus -eq "passed") -and ($iconStatus -eq "complete") -and ($uiStatus -eq "complete") -and ($gameArtStatus -eq "complete") -and ($audioStatus -eq "complete")
+$deliveryReady = $canEnterPack -and ($requirementsStatus -eq "confirmed") -and ($gameplayDiversityStatus -eq "passed") -and ($visualIdentityStatus -eq "passed") -and ($implementationFidelityStatus -eq "passed") -and ($iconStatus -eq "complete") -and ($iconUniquenessStatus -eq "passed") -and ($uiStatus -eq "complete") -and ($gameArtStatus -eq "complete") -and ($audioStatus -eq "complete") -and ($bgmStatus -eq "complete")
 
 $nextStep = ""
 if (-not $doctorReady) {
@@ -600,12 +655,16 @@ if (-not $doctorReady) {
   $nextStep = "Review and repair implementation fidelity against the confirmed requirements before release delivery"
 } elseif ($iconStatus -eq "deferred" -or $iconStatus -eq "placeholder_only") {
   $nextStep = "Run the icon workflow to export upload-ready icon assets"
+} elseif ($iconUniquenessStatus -ne "passed") {
+  $nextStep = "Regenerate a game-specific icon and avoid generic repeated motifs"
 } elseif ($gameArtStatus -eq "deferred") {
   $nextStep = "Run the gameplay art workflow to assign tracked character, map, prop, effect, or background assets"
 } elseif ($gameArtStatus -eq "placeholder_only") {
   $nextStep = "Complete gameplay art runtime mapping and animation or facing integration before release delivery"
 } elseif ($audioStatus -eq "deferred") {
   $nextStep = "Run the audio workflow to assign at least one tracked BGM or SFX set"
+} elseif ($bgmStatus -ne "complete") {
+  $nextStep = "Run the audio workflow to assign tracked BGM files and shared library metadata"
 } elseif (-not $deliveryReady) {
   $nextStep = "Close the remaining resource completion gaps before release delivery"
 } else {
@@ -621,10 +680,12 @@ Write-Host "GAMEPLAY_DIVERSITY_STATUS=$(Get-StatusValue $gameplayDiversityStatus
 Write-Host "VISUAL_IDENTITY_STATUS=$(Get-StatusValue $visualIdentityStatus)"
 Write-Host "IMPLEMENTATION_FIDELITY_STATUS=$(Get-StatusValue $implementationFidelityStatus)"
 Write-Host "ICON_STATUS=$(Get-StatusValue $iconStatus)"
+Write-Host "ICON_UNIQUENESS_STATUS=$(Get-StatusValue $iconUniquenessStatus)"
 Write-Host "UI_STATUS=$(Get-StatusValue $uiStatus)"
 Write-Host "GAME_ART_STATUS=$(Get-StatusValue $gameArtStatus)"
 Write-Host "GAME_ART_RUNTIME_STATUS=$(Get-StatusValue $gameArtRuntimeStatus)"
 Write-Host "AUDIO_STATUS=$(Get-StatusValue $audioStatus)"
+Write-Host "BGM_STATUS=$(Get-StatusValue $bgmStatus)"
 Write-Host "NEXT_STEP=$nextStep"
 
 if ($canEnterPack) { exit 0 }

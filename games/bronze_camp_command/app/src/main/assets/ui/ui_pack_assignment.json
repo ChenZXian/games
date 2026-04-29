@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "game_id": "bronze_camp_command",
+  "pack_id": "kenney_ui_pack_adventure",
+  "pack_title": "Kenney UI Pack Adventure",
+  "preset_id": "bronze_command_tablet",
+  "preset_title": "Bronze Command Tablet",
+  "ui_skin": "skin_military_tech",
+  "assignment_type": "shared_ui_pack",
+  "style_tags": [
+    "strategy",
+    "bronze",
+    "field_command",
+    "tablet",
+    "military_tech"
+  ],
+  "source_url": "https://kenney.nl/assets/ui-pack-adventure",
+  "license": "CC0-1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "visual_identity_source": "artifacts/requirements/bronze_camp_command/visual_identity.json",
+  "screen_list": [
+    "menu",
+    "campaign",
+    "gameplay_hud",
+    "pause",
+    "result",
+    "codex"
+  ],
+  "playfield_safe_area": {
+    "reserved_edges": [
+      "top 12 percent resource ledger",
+      "right 15 percent squad rail",
+      "bottom-left command radial zone"
+    ],
+    "frame_overlay_policy": "Decorative panels stay in reserved HUD edges and never cover resource nodes, building footprints, unit paths, or selection gestures."
+  },
+  "assigned_at_utc": "2026-04-29T06:55:00Z",
+  "copied_items": [
+    {
+      "type": "drawable",
+      "logical_name": "ui_button_primary",
+      "target": "app/src/main/res/drawable/ui_button_primary.png"
+    },
+    {
+      "type": "drawable",
+      "logical_name": "ui_button_secondary",
+      "target": "app/src/main/res/drawable/ui_button_secondary.png"
+    },
+    {
+      "type": "drawable",
+      "logical_name": "ui_panel",
+      "target": "app/src/main/res/drawable/ui_panel.png"
+    },
+    {
+      "type": "drawable",
+      "logical_name": "ui_card",
+      "target": "app/src/main/res/drawable/ui_card.png"
+    }
+  ]
+}

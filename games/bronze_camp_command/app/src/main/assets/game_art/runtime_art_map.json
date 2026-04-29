@@ -1,0 +1,152 @@
+{
+  "version": 1,
+  "game_id": "bronze_camp_command",
+  "status": "integrated",
+  "camera_perspective": "top_down",
+  "default_coordinate_space": "world_space_pixels",
+  "theme": "bronze age command camp",
+  "game_type": "real_time_strategy_micro_base_building",
+  "runtime_code": "app/src/main/java/com/android/boot/core/GameRenderer.java",
+  "animation_quality_target": "directional_pose_set_with_runtime_flip_and_walk_alternation",
+  "entities": [
+    {
+      "entity_key": "player_humanoid_units",
+      "role": "character",
+      "asset_keys": [
+        "game_art/kenney_top_down_shooter/assets/PNG/Survivor 1/survivor1_stand.png"
+      ],
+      "default_facing": "movement_vector",
+      "facing_rule": "GameRenderer flips the loaded player bitmap by Unit.facing and alternates vertical walk bob by Unit.walkPhase.",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      },
+      "hitbox": {
+        "x": 0.28,
+        "y": 0.18,
+        "w": 0.44,
+        "h": 0.62
+      },
+      "render_size": {
+        "w": "34f",
+        "h": "45f",
+        "unit": "world_pixels"
+      },
+      "z_order": "by_y_then_player",
+      "states": [
+        "idle",
+        "move",
+        "gather",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "animation_rule": "Movement alternates bob frames, facing flips by target direction, attacks pause movement and emit hit feedback text.",
+      "movement_rule": "Tap move and attack orders set per-unit targets with small formation offsets."
+    },
+    {
+      "entity_key": "enemy_humanoid_units",
+      "role": "enemy",
+      "asset_keys": [
+        "game_art/kenney_top_down_shooter/assets/PNG/Zombie 1/zoimbie1_stand.png"
+      ],
+      "default_facing": "target_vector",
+      "facing_rule": "Enemy units face the camp or current target using the same runtime flip and walk phase system.",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      },
+      "hitbox": {
+        "x": 0.28,
+        "y": 0.18,
+        "w": 0.44,
+        "h": 0.62
+      },
+      "render_size": {
+        "w": "34f",
+        "h": "45f",
+        "unit": "world_pixels"
+      },
+      "z_order": "by_y_then_enemy",
+      "states": [
+        "idle",
+        "move",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "animation_rule": "Raiders and guards use target-facing movement, attack cooldown pauses, and hit feedback effects.",
+      "movement_rule": "Enemy raid director sends units toward player buildings then switches to nearby player units."
+    },
+    {
+      "entity_key": "camp_and_enemy_buildings",
+      "role": "building",
+      "asset_keys": [
+        "game_art/kenney_tower_defense_top_down/assets/PNG/Default size/towerDefense_tile249.png"
+      ],
+      "default_facing": "up",
+      "facing_rule": "Buildings are static top-down structures with fixed footprints.",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "hitbox": {
+        "x": 0.08,
+        "y": 0.12,
+        "w": 0.84,
+        "h": 0.76
+      },
+      "render_size": {
+        "w": "type_width",
+        "h": "type_height",
+        "unit": "world_pixels"
+      },
+      "z_order": "ground_then_building",
+      "states": [
+        "idle",
+        "selected",
+        "queueing",
+        "damaged",
+        "destroyed"
+      ],
+      "animation_rule": "Renderer tints building assets by ownership and overlays health, selection, and damage text.",
+      "movement_rule": "Static footprint validates build placement inside the camp radius."
+    },
+    {
+      "entity_key": "resource_nodes_and_obelisks",
+      "role": "terrain",
+      "asset_keys": [
+        "runtime_food_node",
+        "runtime_wood_node",
+        "runtime_stone_node",
+        "runtime_obelisk"
+      ],
+      "default_facing": "up",
+      "facing_rule": "Static map objects keep fixed map orientation.",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "hitbox": {
+        "x": 0.12,
+        "y": 0.12,
+        "w": 0.76,
+        "h": 0.76
+      },
+      "render_size": {
+        "w": "56f",
+        "h": "56f",
+        "unit": "world_pixels"
+      },
+      "z_order": "above_ground_below_units",
+      "states": [
+        "available",
+        "assigned",
+        "capturing",
+        "held"
+      ],
+      "animation_rule": "Control rings and resource outlines pulse according to ownership and interaction state.",
+      "movement_rule": "Static nodes feed villager gather orders and neutral capture timers."
+    }
+  ]
+}

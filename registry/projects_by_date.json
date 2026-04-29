@@ -1,13 +1,20 @@
 {
     "version":  1,
-    "generated_at_utc":  "2026-04-28T10:09:10Z",
+    "generated_at_utc":  "2026-04-29T06:57:44Z",
     "grouping":  "created_at_month",
     "path_policy":  "active projects remain direct children under games/\u003cgame_id\u003e",
     "months":  [
                    {
                        "month":  "2026-04",
-                       "total":  12,
+                       "total":  14,
                        "games":  [
+                                     {
+                                         "id":  "ashen_frontier",
+                                         "name":  "Ashen Frontier",
+                                         "created_at":  "2026-04-24",
+                                         "path":  "games/ashen_frontier",
+                                         "ui_skin":  "skin_post_apocalypse"
+                                     },
                                      {
                                          "id":  "crownroad_bastion",
                                          "name":  "Crownroad Bastion",
@@ -23,20 +30,6 @@
                                          "ui_skin":  "skin_military_tech"
                                      },
                                      {
-                                         "id":  "minecart_bastion",
-                                         "name":  "Minecart Bastion",
-                                         "created_at":  "2026-04-23",
-                                         "path":  "games/minecart_bastion",
-                                         "ui_skin":  "skin_post_apocalypse"
-                                     },
-                                     {
-                                         "id":  "crown_frontier_tactics",
-                                         "name":  "Crown Frontier Tactics",
-                                         "created_at":  "2026-04-28",
-                                         "path":  "games/crown_frontier_tactics",
-                                         "ui_skin":  "skin_military_tech"
-                                     },
-                                     {
                                          "id":  "crownblock_hunt",
                                          "name":  "Crownblock Hunt",
                                          "created_at":  "2026-04-26",
@@ -44,11 +37,25 @@
                                          "ui_skin":  "skin_dark_arcade"
                                      },
                                      {
-                                         "id":  "ashen_frontier",
-                                         "name":  "Ashen Frontier",
-                                         "created_at":  "2026-04-24",
-                                         "path":  "games/ashen_frontier",
-                                         "ui_skin":  "skin_post_apocalypse"
+                                         "id":  "bronze_camp_command",
+                                         "name":  "Bronze Camp Command",
+                                         "created_at":  "2026-04-29",
+                                         "path":  "games/bronze_camp_command",
+                                         "ui_skin":  "skin_military_tech"
+                                     },
+                                     {
+                                         "id":  "castaway_clan",
+                                         "name":  "Castaway Clan",
+                                         "created_at":  "2026-04-29",
+                                         "path":  "games/castaway_clan",
+                                         "ui_skin":  "skin_cartoon_light"
+                                     },
+                                     {
+                                         "id":  "crown_frontier_tactics",
+                                         "name":  "Crown Frontier Tactics",
+                                         "created_at":  "2026-04-28",
+                                         "path":  "games/crown_frontier_tactics",
+                                         "ui_skin":  "skin_military_tech"
                                      },
                                      {
                                          "id":  "clockwork_courier",
@@ -72,6 +79,20 @@
                                          "ui_skin":  "skin_neon_future"
                                      },
                                      {
+                                         "id":  "bloom_orchard",
+                                         "name":  "Bloom Orchard",
+                                         "created_at":  "2026-04-21",
+                                         "path":  "games/bloom_orchard",
+                                         "ui_skin":  "skin_cartoon_light"
+                                     },
+                                     {
+                                         "id":  "minecart_bastion",
+                                         "name":  "Minecart Bastion",
+                                         "created_at":  "2026-04-23",
+                                         "path":  "games/minecart_bastion",
+                                         "ui_skin":  "skin_post_apocalypse"
+                                     },
+                                     {
                                          "id":  "island_supply_command",
                                          "name":  "Island Supply Command",
                                          "created_at":  "2026-04-22",
@@ -83,13 +104,6 @@
                                          "name":  "Pasture Parade Deluxe",
                                          "created_at":  "2026-04-21",
                                          "path":  "games/pasture_parade_deluxe",
-                                         "ui_skin":  "skin_cartoon_light"
-                                     },
-                                     {
-                                         "id":  "bloom_orchard",
-                                         "name":  "Bloom Orchard",
-                                         "created_at":  "2026-04-21",
-                                         "path":  "games/bloom_orchard",
                                          "ui_skin":  "skin_cartoon_light"
                                      }
                                  ]

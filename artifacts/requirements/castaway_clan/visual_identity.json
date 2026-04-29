@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "game_id": "castaway_clan",
+  "status": "passed",
+  "visual_differentiation_axes": [
+    "bright castaway expedition tone instead of military or neon combat framing",
+    "top survival ribbon plus fold-out notebook rail layout",
+    "rope, canvas, driftwood, and map-marker motif language",
+    "character-led icon featuring leader and beacon camp silhouette",
+    "storm warning cards and roster drawer as recurring screen motifs"
+  ],
+  "forbidden_visual_reuse": [
+    "top HUD pills with thick always-open bottom command strip",
+    "neon cyan-magenta sci-fi panel gradients",
+    "dark fortress or siege stone frame language",
+    "military tactical radar dashboard treatment",
+    "generic crate, sword, tower, or shield launcher icon"
+  ],
+  "ui_identity": {
+    "layout_archetype": "shallow top survival ribbon with retractable bottom notebook rail and occasional floating alert cards",
+    "hud_composition": "top-left colony vitals, top-right day and weather chips, bottom notebook tabs for build assign craft map objectives, lower corners reserved for movement and action controls",
+    "navigation_model": "touch exploration in play, one-tap drawer overlays for colony management, lightweight roster screen for assignments",
+    "palette_signature": "seafoam blue, sun-bleached canvas, driftwood tan, coral orange, and leaf green on bright neutral panels",
+    "material_language": "stitched canvas panels, rope knots, washed wood headers, soft map tags, and clean rounded card edges",
+    "typography_style": "friendly expedition signage with bold readable headers and simple clean body labels",
+    "primary_ui_pack": "skin_cartoon_light",
+    "secondary_ui_assets": [
+      "coastal notebook tab motif",
+      "rope fastener corners",
+      "weather alert badge treatment"
+    ],
+    "playfield_safety": {
+      "reserved_edges": [
+        "thin top edge for vitals and weather",
+        "bottom edge for retractable notebook rail",
+        "bottom-left touch zone for joystick",
+        "bottom-right touch zone for actions"
+      ],
+      "hud_anchor_zones": [
+        "top-left vitals cluster",
+        "top-right day weather stack",
+        "upper-center transient warning cards",
+        "bottom-center retractable notebook rail"
+      ],
+      "protected_gameplay_zones": [
+        "central exploration and camp terrain",
+        "resource node interaction ring around player",
+        "hazard reaction space near animals and structures"
+      ],
+      "frame_overlay_policy": "Decorative ropes, canvas seams, and driftwood trims may appear only inside HUD containers and must never overlay the live island terrain."
+    },
+    "unique_screen_motifs": [
+      "storm alert flag cards",
+      "survivor portrait task pins",
+      "notebook tab build categories",
+      "beacon progress meter with flame marker"
+    ],
+    "forbidden_ui_elements": [
+      "side bezels that cover terrain",
+      "bottom full-width metal command slab",
+      "dense sci-fi grid backplates",
+      "grim rusted hazard tape as the primary identity"
+    ]
+  },
+  "icon_identity": {
+    "subject": "castaway leader with raised torch or hammer in front of a half-built beach camp",
+    "silhouette": "large foreground survivor figure with raised arm, triangular tent, and angled beacon flame behind",
+    "composition": "close-up hero in lower center with beacon glow offset behind the shoulder and camp silhouette along the base",
+    "palette": "warm sand beige, ocean blue, sunset orange, and leafy green accents",
+    "background": "soft sky-to-sea gradient with beacon light bloom",
+    "game_specific_motif": "beacon camp flame and rescue-built shelter",
+    "forbidden_icon_reuse": [
+      "generic tropical island without characters",
+      "plain palm tree badge icons",
+      "weapon-only action icon subjects",
+      "reused fortress, truck, or neon emblem compositions"
+    ]
+  }
+}

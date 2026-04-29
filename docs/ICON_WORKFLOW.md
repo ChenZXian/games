@@ -87,6 +87,8 @@ Before marking icon work complete for delivery-ready output, verify that the ico
 - another game's exported upload icon
 - a generic subject that does not clearly identify this game
 
+Inspection must treat generic fallback motifs as incomplete for delivery-ready output. If icon metadata reports a broad motif such as `shieldstar`, `swordshield`, or `castle` without a game-specific subject, the icon workflow must regenerate a distinct icon before packaging.
+
 ### 3.5 Packaging Stage
 
 Packaging should reuse the existing icon workflow outputs whenever possible.
