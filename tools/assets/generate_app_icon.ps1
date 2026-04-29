@@ -64,10 +64,14 @@ function Normalize-TextId([string]$Value) {
 
 function Get-TokenSet([string]$Value) {
   $set = New-Object 'System.Collections.Generic.HashSet[string]'
+  $ignored = @(
+    "a","an","the","and","or","of","to","in","on","at","by","for","with","from","into","over","under","behind","below","above","beside","near",
+    "cartoon","icon","game","specific","small","tiny","clear","strong","bronze","clay","round","visible","stylized"
+  )
   $normalized = Normalize-TextId $Value
   if ([string]::IsNullOrWhiteSpace($normalized)) { return $set }
   foreach ($part in $normalized.Split(' ')) {
-    if (-not [string]::IsNullOrWhiteSpace($part)) {
+    if (-not [string]::IsNullOrWhiteSpace($part) -and ($ignored -notcontains $part)) {
       [void]$set.Add($part)
     }
   }

@@ -107,7 +107,7 @@ Prefer a style-matched shared UI pack if available. If the shared library lacks 
 
 ### Icon Subject And Silhouette
 
-The launcher icon should show a cartoon bronze commander hand placing a tiny barracks marker beside crossed spear and wheat symbols. The silhouette should read as a command token over a camp map, not a generic shield, tower, or sword.
+The launcher icon should show a cartoon bronze villager hand setting a granary marker beside wheat bundles on a clay ledger. The silhouette should read as a compact economy seal with a hut block and wheat cluster, not a generic shield, tower, or sword.
 
 ### Forbidden Visual Reuse
 
@@ -149,7 +149,7 @@ Required roles are villagers, scout, militia, spearman, slinger, shield guard, r
 
 ## Icon Direction
 
-The icon subject is a bronze camp command token with a barracks marker, spear, wheat, and tiny map grid. The silhouette is a round command seal with a diagonal spear and small hut block. The color direction is bronze, olive, stone, and warm wheat gold. The tone is cartoon strategy, clear at small sizes, and strongly tied to base-building warfare.
+The icon subject is a bronze villager hand placing a granary marker beside wheat bundles on a clay ledger. The silhouette is a compact economy seal with a hut block and wheat cluster. The color direction is bronze, olive, stone, wheat gold, and verdigris. The tone is cartoon strategy, clear at small sizes, and strongly tied to base-building warfare.
 
 ## Audio Direction
 

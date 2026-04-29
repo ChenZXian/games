@@ -13,7 +13,7 @@
       "entity_key": "player_humanoid_units",
       "role": "character",
       "asset_keys": [
-        "game_art/kenney_top_down_shooter/assets/PNG/Survivor 1/survivor1_stand.png"
+        "game_art/kenney_pirate_pack/assets/PNG/Default size/Ship parts/crew (1).png"
       ],
       "default_facing": "movement_vector",
       "facing_rule": "GameRenderer flips the loaded player bitmap by Unit.facing and alternates vertical walk bob by Unit.walkPhase.",
@@ -48,7 +48,7 @@
       "entity_key": "enemy_humanoid_units",
       "role": "enemy",
       "asset_keys": [
-        "game_art/kenney_top_down_shooter/assets/PNG/Zombie 1/zoimbie1_stand.png"
+        "game_art/kenney_pirate_pack/assets/PNG/Default size/Ship parts/crew (5).png"
       ],
       "default_facing": "target_vector",
       "facing_rule": "Enemy units face the camp or current target using the same runtime flip and walk phase system.",
@@ -82,7 +82,8 @@
       "entity_key": "camp_and_enemy_buildings",
       "role": "building",
       "asset_keys": [
-        "game_art/kenney_tower_defense_top_down/assets/PNG/Default size/towerDefense_tile249.png"
+        "game_art/kenney_tiny_town/assets/Tiles/tile_0084.png",
+        "game_art/kenney_tiny_town/assets/Tiles/tile_0096.png"
       ],
       "default_facing": "up",
       "facing_rule": "Buildings are static top-down structures with fixed footprints.",
@@ -116,10 +117,10 @@
       "entity_key": "resource_nodes_and_obelisks",
       "role": "terrain",
       "asset_keys": [
-        "runtime_food_node",
-        "runtime_wood_node",
-        "runtime_stone_node",
-        "runtime_obelisk"
+        "game_art/kenney_tiny_town/assets/Tiles/tile_0003.png",
+        "game_art/kenney_tiny_town/assets/Tiles/tile_0015.png",
+        "game_art/kenney_tiny_town/assets/Tiles/tile_0108.png",
+        "game_art/kenney_pirate_pack/assets/PNG/Default size/Ship parts/flag (2).png"
       ],
       "default_facing": "up",
       "facing_rule": "Static map objects keep fixed map orientation.",

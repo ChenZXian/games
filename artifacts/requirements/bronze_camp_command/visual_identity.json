@@ -7,7 +7,7 @@
     "right-side squad rail with contextual bottom-left radial",
     "bronze verdigris olive tactical palette within skin_military_tech",
     "map ink overlays and carved tablet panels",
-    "icon based on command token, barracks marker, spear, and wheat"
+    "icon based on a bronze villager hand, granary marker, and wheat over a clay ledger"
   ],
   "forbidden_visual_reuse": [
     "generic castle or shield launcher icon",
@@ -70,12 +70,12 @@
     ]
   },
   "icon_identity": {
-    "subject": "cartoon bronze commander hand placing a tiny barracks marker beside spear and wheat symbols on a camp map",
-    "silhouette": "round command seal with diagonal spear, small hut block, and visible wheat shape",
-    "composition": "large hand and command marker in foreground, simplified camp grid below, spear crossing behind the marker, wheat tucked as resource cue",
-    "palette": "bronze, dark olive, stone gray, wheat gold, small verdigris highlight",
-    "background": "stylized carved map disk with subtle grid and no generic shield badge",
-    "game_specific_motif": "base-building decision represented by the barracks marker and resource wheat on a tactical map",
+    "subject": "cartoon bronze villager hand setting a granary marker beside wheat bundles on a clay ledger",
+    "silhouette": "compact economy seal with a visible hut block and wheat bundle cluster",
+    "composition": "large bronze villager hand and granary marker in the foreground, a clay ledger below, wheat bundles beside the marker, and a small hut block tucked into the seal",
+    "palette": "bronze, dark olive, stone gray, wheat gold, verdigris highlight",
+    "background": "stylized clay tablet disk with subtle carved map lines and no generic shield badge",
+    "game_specific_motif": "base-building economy represented by a granary marker, wheat resource cue, and clay planning ledger",
     "forbidden_icon_reuse": [
       "plain sword icon",
       "plain shield icon",

@@ -42,6 +42,7 @@ public class GameThread extends Thread {
                 dt = 0.05f;
             }
             world.update(dt);
+            tonePlayer.syncState(world.state, world.matchTime);
             if (world.shouldPlayWarning()) {
                 tonePlayer.warning();
             }

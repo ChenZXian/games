@@ -26,11 +26,17 @@ public class GameRenderer {
         if (!art.isEmpty()) {
             return;
         }
-        load(assets, "terrain_grass", "game_art/kenney_tower_defense_top_down/assets/PNG/Default size/towerDefense_tile024.png");
-        load(assets, "terrain_stone", "game_art/kenney_tower_defense_top_down/assets/PNG/Default size/towerDefense_tile130.png");
-        load(assets, "building", "game_art/kenney_tower_defense_top_down/assets/PNG/Default size/towerDefense_tile249.png");
-        load(assets, "unit", "game_art/kenney_top_down_shooter/assets/PNG/Survivor 1/survivor1_stand.png");
-        load(assets, "enemy", "game_art/kenney_top_down_shooter/assets/PNG/Zombie 1/zoimbie1_stand.png");
+        load(assets, "terrain_grass", "game_art/kenney_tiny_town/assets/Tiles/tile_0001.png");
+        load(assets, "terrain_path", "game_art/kenney_tiny_town/assets/Tiles/tile_0014.png");
+        load(assets, "terrain_stone", "game_art/kenney_tiny_town/assets/Tiles/tile_0048.png");
+        load(assets, "building_player", "game_art/kenney_tiny_town/assets/Tiles/tile_0084.png");
+        load(assets, "building_enemy", "game_art/kenney_tiny_town/assets/Tiles/tile_0096.png");
+        load(assets, "resource_food", "game_art/kenney_tiny_town/assets/Tiles/tile_0003.png");
+        load(assets, "resource_wood", "game_art/kenney_tiny_town/assets/Tiles/tile_0015.png");
+        load(assets, "resource_stone", "game_art/kenney_tiny_town/assets/Tiles/tile_0108.png");
+        load(assets, "obelisk", "game_art/kenney_pirate_pack/assets/PNG/Default size/Ship parts/flag (2).png");
+        load(assets, "unit", "game_art/kenney_pirate_pack/assets/PNG/Default size/Ship parts/crew (1).png");
+        load(assets, "enemy", "game_art/kenney_pirate_pack/assets/PNG/Default size/Ship parts/crew (5).png");
     }
 
     public void render(Canvas canvas, BronzeWorld world, int width, int height) {
@@ -60,19 +66,17 @@ public class GameRenderer {
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(Color.rgb(49, 68, 48));
         canvas.drawRect(0f, 0f, 1280f * sx, 720f * sy, paint);
-        paint.setColor(Color.rgb(74, 82, 55));
-        rect.set(66f * sx, 145f * sy, 520f * sx, 640f * sy);
-        canvas.drawRoundRect(rect, 28f * sx, 28f * sy, paint);
-        paint.setColor(Color.rgb(61, 58, 46));
-        rect.set(760f * sx, 112f * sy, 1200f * sx, 610f * sy);
-        canvas.drawRoundRect(rect, 32f * sx, 32f * sy, paint);
-        paint.setColor(Color.rgb(92, 78, 49));
+        drawTiledArea(canvas, art.get("terrain_grass"), 0f, 0f, 1280f * sx, 720f * sy);
+        drawTiledArea(canvas, art.get("terrain_path"), 430f * sx, 182f * sy, 390f * sx, 396f * sy);
+        drawTiledArea(canvas, art.get("terrain_stone"), 72f * sx, 148f * sy, 452f * sx, 492f * sy);
+        drawTiledArea(canvas, art.get("terrain_stone"), 770f * sx, 116f * sy, 430f * sx, 494f * sy);
+        paint.setColor(Color.argb(82, 32, 27, 18));
         for (int i = 0; i < 4; i++) {
             float y = (210f + i * 105f) * sy;
             rect.set(420f * sx, y - 13f * sy, 840f * sx, y + 13f * sy);
             canvas.drawRoundRect(rect, 18f * sx, 18f * sy, paint);
         }
-        paint.setColor(Color.rgb(44, 52, 45));
+        paint.setColor(Color.argb(72, 16, 28, 20));
         for (int i = 0; i < 7; i++) {
             float x = (500f + i * 35f) * sx;
             rect.set(x, 80f * sy, x + 28f * sx, 160f * sy);
@@ -82,30 +86,37 @@ public class GameRenderer {
 
     private void drawResources(Canvas canvas, BronzeWorld world, float sx, float sy) {
         for (BronzeWorld.ResourceNode node : world.resources) {
-            int color;
-            if (node.type == BronzeWorld.ResourceType.FOOD) {
-                color = Color.rgb(219, 176, 76);
-            } else if (node.type == BronzeWorld.ResourceType.WOOD) {
-                color = Color.rgb(79, 111, 65);
+            Bitmap bitmap = node.type == BronzeWorld.ResourceType.FOOD
+                    ? art.get("resource_food")
+                    : node.type == BronzeWorld.ResourceType.WOOD
+                    ? art.get("resource_wood")
+                    : art.get("resource_stone");
+            rect.set((node.x - 20f) * sx, (node.y - 20f) * sy, (node.x + 20f) * sx, (node.y + 20f) * sy);
+            if (bitmap != null) {
+                canvas.drawBitmap(bitmap, null, rect, paint);
             } else {
-                color = Color.rgb(142, 142, 130);
+                paint.setStyle(Paint.Style.FILL);
+                paint.setColor(Color.rgb(188, 160, 92));
+                canvas.drawCircle(node.x * sx, node.y * sy, 20f * sx, paint);
             }
-            paint.setStyle(Paint.Style.FILL);
-            paint.setColor(color);
-            canvas.drawCircle(node.x * sx, node.y * sy, 28f * sx, paint);
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(3f * sx);
             paint.setColor(Color.argb(180, 232, 255, 248));
-            canvas.drawCircle(node.x * sx, node.y * sy, 31f * sx, paint);
+            canvas.drawCircle(node.x * sx, node.y * sy, 25f * sx, paint);
         }
     }
 
     private void drawObelisks(Canvas canvas, BronzeWorld world, float sx, float sy) {
         for (BronzeWorld.Obelisk obelisk : world.obelisks) {
-            paint.setStyle(Paint.Style.FILL);
-            paint.setColor(Color.rgb(108, 99, 81));
-            rect.set((obelisk.x - 22f) * sx, (obelisk.y - 50f) * sy, (obelisk.x + 22f) * sx, (obelisk.y + 42f) * sy);
-            canvas.drawRoundRect(rect, 10f * sx, 10f * sy, paint);
+            Bitmap bitmap = art.get("obelisk");
+            rect.set((obelisk.x - 20f) * sx, (obelisk.y - 44f) * sy, (obelisk.x + 20f) * sx, (obelisk.y + 42f) * sy);
+            if (bitmap != null) {
+                canvas.drawBitmap(bitmap, null, rect, paint);
+            } else {
+                paint.setStyle(Paint.Style.FILL);
+                paint.setColor(Color.rgb(108, 99, 81));
+                canvas.drawRoundRect(rect, 10f * sx, 10f * sy, paint);
+            }
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(5f * sx);
             paint.setColor(obelisk.control >= 0f ? Color.rgb(79, 227, 193) : Color.rgb(255, 90, 95));
@@ -120,7 +131,7 @@ public class GameRenderer {
             rect.set(building.x * sx - w * 0.5f, building.y * sy - h * 0.5f, building.x * sx + w * 0.5f, building.y * sy + h * 0.5f);
             paint.setStyle(Paint.Style.FILL);
             paint.setColor(building.player ? Color.rgb(109, 94, 53) : Color.rgb(111, 51, 48));
-            Bitmap bitmap = art.get("building");
+            Bitmap bitmap = art.get(building.player ? "building_player" : "building_enemy");
             if (bitmap != null) {
                 canvas.drawBitmap(bitmap, null, rect, paint);
                 paint.setColor(building.player ? Color.argb(88, 79, 227, 193) : Color.argb(95, 255, 90, 95));
@@ -143,7 +154,7 @@ public class GameRenderer {
                 continue;
             }
             float bob = ((int) unit.walkPhase % 2 == 0) ? -2f : 2f;
-            rect.set((unit.x - 17f) * sx, (unit.y - 24f + bob) * sy, (unit.x + 17f) * sx, (unit.y + 21f + bob) * sy);
+            rect.set((unit.x - 14f) * sx, (unit.y - 18f + bob) * sy, (unit.x + 14f) * sx, (unit.y + 16f + bob) * sy);
             Bitmap bitmap = art.get(unit.player ? "unit" : "enemy");
             if (bitmap != null) {
                 canvas.save();
@@ -217,6 +228,24 @@ public class GameRenderer {
             art.put(key, BitmapFactory.decodeStream(input));
             input.close();
         } catch (Exception ignored) {
+        }
+    }
+
+    private void drawTiledArea(Canvas canvas, Bitmap tile, float left, float top, float width, float height) {
+        if (tile == null) {
+            return;
+        }
+        float tileW = Math.max(12f, tile.getWidth() * 2f);
+        float tileH = Math.max(12f, tile.getHeight() * 2f);
+        int columns = Math.max(1, (int) Math.ceil(width / tileW));
+        int rows = Math.max(1, (int) Math.ceil(height / tileH));
+        for (int row = 0; row < rows; row++) {
+            for (int column = 0; column < columns; column++) {
+                float x0 = left + column * tileW;
+                float y0 = top + row * tileH;
+                rect.set(x0, y0, Math.min(left + width, x0 + tileW), Math.min(top + height, y0 + tileH));
+                canvas.drawBitmap(tile, null, rect, paint);
+            }
         }
     }
 }

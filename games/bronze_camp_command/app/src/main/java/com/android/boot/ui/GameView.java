@@ -97,6 +97,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void onHostPause() {
+        tonePlayer.pauseAll();
         stopThread();
     }
 
@@ -121,6 +122,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
+        tonePlayer.pauseAll();
         stopThread();
     }
 

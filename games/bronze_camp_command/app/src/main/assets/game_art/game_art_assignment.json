@@ -1,58 +1,92 @@
 {
   "version": 1,
   "game_id": "bronze_camp_command",
-  "assigned_at_utc": "2026-04-29T07:10:00Z",
-  "assignment_type": "shared_game_art_pack",
-  "brief": {
-    "theme": "bronze age micro base building skirmish",
-    "camera_perspective": "top_down",
-    "game_type": "real_time_strategy",
-    "license_tier": "CC0-1.0",
-    "placeholder_art_acceptable": false
-  },
+  "assigned_at_utc": "2026-04-29T08:59:47Z",
   "packs": [
     {
-      "pack_id": "kenney_top_down_shooter",
-      "pack_title": "Kenney Top-down Shooter",
+      "pack_id": "kenney_pirate_pack",
+      "pack_title": "Kenney Pirate Pack",
       "license": "CC0-1.0",
       "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-      "source_url": "https://kenney.nl/assets/top-down-shooter",
+      "source_url": "https://kenney.nl/assets/pirate-pack",
       "art_roles": [
         "character",
         "enemy",
-        "projectile"
-      ],
-      "project_pack_path": "app/src/main/assets/game_art/kenney_top_down_shooter"
-    },
-    {
-      "pack_id": "kenney_tower_defense_top_down",
-      "pack_title": "Kenney Tower Defense Top-Down",
-      "license": "CC0-1.0",
-      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-      "source_url": "https://kenney.nl/assets/tower-defense-top-down",
-      "art_roles": [
+        "ship",
         "terrain",
         "building",
         "prop",
-        "effect"
+        "item",
+        "background"
       ],
-      "project_pack_path": "app/src/main/assets/game_art/kenney_tower_defense_top_down"
+      "recommended_game_types": [
+        "pirate",
+        "naval",
+        "adventure",
+        "top",
+        "down",
+        "action"
+      ],
+      "style_tags": [
+        "pirate",
+        "ship",
+        "sea",
+        "island",
+        "cartoon",
+        "adventure"
+      ],
+      "quality_tags": [
+        "production",
+        "free",
+        "open",
+        "cc0"
+      ],
+      "animation_capabilities": [],
+      "animation_states": [],
+      "project_pack_path": "app/src/main/assets/game_art/kenney_pirate_pack",
+      "copied_file_count": 409
+    },
+    {
+      "pack_id": "kenney_tiny_town",
+      "pack_title": "Kenney Tiny Town",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://kenney.nl/assets/tiny-town",
+      "art_roles": [
+        "tileset",
+        "terrain",
+        "building",
+        "prop",
+        "map"
+      ],
+      "recommended_game_types": [
+        "town",
+        "management",
+        "world",
+        "map",
+        "top",
+        "down",
+        "casual"
+      ],
+      "style_tags": [
+        "pixel",
+        "town",
+        "overworld",
+        "map",
+        "building",
+        "casual"
+      ],
+      "quality_tags": [
+        "production",
+        "free",
+        "open",
+        "cc0"
+      ],
+      "animation_capabilities": [],
+      "animation_states": [],
+      "project_pack_path": "app/src/main/assets/game_art/kenney_tiny_town",
+      "copied_file_count": 138
     }
   ],
-  "roles_covered": [
-    "villager",
-    "scout",
-    "militia",
-    "spearman",
-    "slinger",
-    "shield_guard",
-    "ram_crew",
-    "enemy_raider",
-    "enemy_guard",
-    "camp_buildings",
-    "resource_nodes",
-    "obelisk",
-    "hit_effects",
-    "terrain"
-  ]
+  "copied_file_count": 547
 }
