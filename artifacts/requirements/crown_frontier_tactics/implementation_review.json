@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "game_id": "crown_frontier_tactics",
+  "status": "passed",
+  "reviewed_at": "2026-04-28",
+  "requirements_trace": "artifacts/requirements/crown_frontier_tactics/requirements.md",
+  "implemented_core_mechanics": [
+    "30 chapter campaign atlas across 6 frontier regions",
+    "square grid battlefield with drag camera panning and tap unit control",
+    "village fort keep and capital ownership economy",
+    "recruitment from captured keeps forts and capitals",
+    "marshal doctrine bonuses wired from the campaign layer into battle rules",
+    "commander order support action with area buff and sustain",
+    "multiple objective types through commander defeat capital capture survive turns and escort heir chapters",
+    "easy normal and hard enemy AI behavior with capture pressure and reinforcement timing",
+    "menu atlas briefing help pause and result overlays",
+    "tracked UI pack assignment gameplay art assignment audio bundle and icon export"
+  ],
+  "animation_and_facing_evidence": [
+    "GameView lerps unit render positions between tiles instead of snapping every action",
+    "unit tokens update faceX and faceY toward travel or target direction before movement and attacks",
+    "attack arcs hit flashes capture pulses and commander-order rings provide stateful combat feedback",
+    "GameView loads shared terrain and frame texture assets through AssetManager and BitmapFactory from game_art paths"
+  ],
+  "evidence": [
+    "games/crown_frontier_tactics/app/src/main/java/com/android/boot/ui/GameView.java",
+    "games/crown_frontier_tactics/app/src/main/java/com/android/boot/MainActivity.java",
+    "games/crown_frontier_tactics/app/src/main/assets/ui/ui_pack_assignment.json",
+    "games/crown_frontier_tactics/app/src/main/assets/game_art/game_art_assignment.json",
+    "games/crown_frontier_tactics/app/src/main/assets/game_art/runtime_art_map.json",
+    "games/crown_frontier_tactics/app/src/main/assets/audio",
+    "artifacts/icons/crown_frontier_tactics"
+  ],
+  "known_limitations": [
+    "The first playable scope uses generated regional map patterns rather than fully bespoke hand-authored layouts for all 30 chapters.",
+    "Primary units use animated heraldic war tokens instead of imported humanoid sprite animations because the current shared library lacks a tactics-ready medieval directional unit pack."
+  ],
+  "remaining_quality_notes": [
+    "The implementation preserves the confirmed turn-based village-capture tactics identity instead of collapsing into tower defense or a tiny skirmish template.",
+    "A future art pass can replace the runtime war tokens with a dedicated medieval tactics sprite pack without changing the current battle systems or HUD structure."
+  ]
+}

@@ -192,7 +192,8 @@
       "path": "packs/kenney_roguelike_rpg_pack",
       "used_by": [
         "empire_wall_guard",
-        "crownroad_bastion"
+        "crownroad_bastion",
+        "crown_frontier_tactics"
       ],
       "validated_with": []
     },
@@ -237,7 +238,9 @@
         "cc0"
       ],
       "path": "packs/kenney_tiny_town",
-      "used_by": [],
+      "used_by": [
+        "crown_frontier_tactics"
+      ],
       "validated_with": []
     },
     {

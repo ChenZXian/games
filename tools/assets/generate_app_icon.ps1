@@ -155,6 +155,7 @@ function Get-Motif([string]$Text, [string[]]$Forbidden = @()) {
   $banHelmet = $forbiddenText -match 'helmet|gas-mask|gas mask'
   $banShield = $forbiddenText -match 'shield|crest'
   if (($value -match 'fist|knuckle|glove') -and ($value -match 'sign|street|district|warrant|route|block')) { return "fistsign" }
+  if ($value -match 'pennant|banner|standard|milestone|tactical-map|tactical map|tile pattern|tile grid') { return "warpennant" }
   if ($value -match 'snow|ice|frost') { return "snowman" }
   if ((-not $banCastle) -and $value -match 'castle|royal|keep|king') { return "castle" }
   if ($value -match 'bomb|bomber|blast') { return "bomb" }
@@ -173,6 +174,11 @@ function Get-Palette([string]$Motif) {
     "fistsign" {
       return @{
         BgStart = "#1B2433"; BgEnd = "#C67B32"; Primary = "#D0B79C"; Secondary = "#E7E0D6"; Accent = "#ED9E3D"; Outline = "#6B5846"; Spot = "#FFD6B4"
+      }
+    }
+    "warpennant" {
+      return @{
+        BgStart = "#19263C"; BgEnd = "#6E2432"; Primary = "#E8E0D2"; Secondary = "#B68B44"; Accent = "#D85B58"; Outline = "#22304A"; Spot = "#F5E9BC"
       }
     }
     "snowman" {
@@ -511,6 +517,66 @@ function Draw-Courier([System.Drawing.Graphics]$Graphics, [hashtable]$Palette, [
   $accentBrush.Dispose()
 }
 
+function Draw-WarPennant([System.Drawing.Graphics]$Graphics, [hashtable]$Palette, [int]$OffsetX, [int]$OffsetY, [int]$ShadowAlpha) {
+  $alpha = Get-DrawAlpha $ShadowAlpha
+  $outline = New-PenFromHex $Palette.Outline 24 $alpha
+  $outline.LineJoin = [System.Drawing.Drawing2D.LineJoin]::Round
+  $stoneBrush = New-Brush $Palette.Primary $alpha
+  $trimBrush = New-Brush $Palette.Secondary $alpha
+  $sealBrush = New-Brush $Palette.Accent $alpha
+  $gridPen = New-PenFromHex $Palette.Primary 10 ([Math]::Max(46, [int]($alpha * 0.42)))
+  $gridPen.StartCap = [System.Drawing.Drawing2D.LineCap]::Round
+  $gridPen.EndCap = [System.Drawing.Drawing2D.LineCap]::Round
+  $flagBrush = New-Brush "#2A466F" $alpha
+  $highlightBrush = New-Brush $Palette.Spot ([Math]::Max(72, [int]($alpha * 0.55)))
+  foreach ($lineX in @(268, 382, 496, 610, 724)) {
+    $Graphics.DrawLine($gridPen, $lineX + $OffsetX, 278 + $OffsetY, $lineX + $OffsetX, 786 + $OffsetY)
+  }
+  foreach ($lineY in @(302, 414, 526, 638, 750)) {
+    $Graphics.DrawLine($gridPen, 224 + $OffsetX, $lineY + $OffsetY, 798 + $OffsetX, $lineY + $OffsetY)
+  }
+  $milestone = New-RoundedPath (328 + $OffsetX) (548 + $OffsetY) 360 248 72
+  $Graphics.FillPath($stoneBrush, $milestone)
+  $Graphics.DrawPath($outline, $milestone)
+  $Graphics.FillRectangle($trimBrush, 482 + $OffsetX, 300 + $OffsetY, 36, 390)
+  $Graphics.DrawLine($outline, 500 + $OffsetX, 280 + $OffsetY, 500 + $OffsetX, 704 + $OffsetY)
+  $Graphics.FillPolygon($flagBrush, @(
+    (New-Point (500 + $OffsetX) (280 + $OffsetY)),
+    (New-Point (742 + $OffsetX) (330 + $OffsetY)),
+    (New-Point (660 + $OffsetX) (454 + $OffsetY)),
+    (New-Point (742 + $OffsetX) (566 + $OffsetY)),
+    (New-Point (500 + $OffsetX) (514 + $OffsetY))
+  ))
+  $Graphics.DrawPolygon($outline, @(
+    (New-Point (500 + $OffsetX) (280 + $OffsetY)),
+    (New-Point (742 + $OffsetX) (330 + $OffsetY)),
+    (New-Point (660 + $OffsetX) (454 + $OffsetY)),
+    (New-Point (742 + $OffsetX) (566 + $OffsetY)),
+    (New-Point (500 + $OffsetX) (514 + $OffsetY))
+  ))
+  $Graphics.FillPolygon($trimBrush, @(
+    (New-Point (530 + $OffsetX) (326 + $OffsetY)),
+    (New-Point (646 + $OffsetX) (350 + $OffsetY)),
+    (New-Point (606 + $OffsetX) (438 + $OffsetY)),
+    (New-Point (646 + $OffsetX) (518 + $OffsetY)),
+    (New-Point (530 + $OffsetX) (492 + $OffsetY))
+  ))
+  $Graphics.FillRectangle($trimBrush, 438 + $OffsetX, 620 + $OffsetY, 140, 40)
+  $Graphics.FillEllipse($sealBrush, 416 + $OffsetX, 660 + $OffsetY, 184, 112)
+  $Graphics.FillEllipse($highlightBrush, 542 + $OffsetX, 342 + $OffsetY, 112, 94)
+  $Graphics.FillRectangle($outline.Brush, 470 + $OffsetX, 404 + $OffsetY, 62, 26)
+  $Graphics.FillRectangle($outline.Brush, 470 + $OffsetX, 458 + $OffsetY, 62, 26)
+  $Graphics.FillRectangle($outline.Brush, 416 + $OffsetX, 712 + $OffsetY, 184, 24)
+  $milestone.Dispose()
+  $outline.Dispose()
+  $stoneBrush.Dispose()
+  $trimBrush.Dispose()
+  $sealBrush.Dispose()
+  $gridPen.Dispose()
+  $flagBrush.Dispose()
+  $highlightBrush.Dispose()
+}
+
 function Draw-SwordShield([System.Drawing.Graphics]$Graphics, [hashtable]$Palette, [int]$OffsetX, [int]$OffsetY, [int]$ShadowAlpha) {
   $alpha = Get-DrawAlpha $ShadowAlpha
   $outline = New-PenFromHex $Palette.Outline 28 $alpha
@@ -646,6 +712,10 @@ function Draw-MotifBitmap([string]$Motif, [hashtable]$Palette) {
     "fistsign" {
       Draw-FistSign $graphics $Palette 20 22 90
       Draw-FistSign $graphics $Palette 0 0 0
+    }
+    "warpennant" {
+      Draw-WarPennant $graphics $Palette 18 20 90
+      Draw-WarPennant $graphics $Palette 0 0 0
     }
     "snowman" {
       Draw-Snowman $graphics $Palette 20 28 90

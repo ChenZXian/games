@@ -20,6 +20,7 @@ Hard rules:
 - Define screen structure and HUD first
 - Prefer `GameView` or `SurfaceView` for gameplay rendering
 - Prefer Android View or XML overlays for menu, help, pause, reward, and result screens
+- Define a protected gameplay safe area before applying decorative borders or heavy panel chrome
 - Reusable external UI resources should be stored under `shared_assets/ui/` first when possible
 - Search both the shared library and `shared_assets/ui/source_catalog.json` before deciding there is no suitable UI source
 - Imported open-source UI assets must keep license and provenance metadata
@@ -28,6 +29,8 @@ Hard rules:
   - screen list
   - state map
   - HUD priorities
+  - playfield safe area
+  - frame and border policy
   - chosen `ui_skin`
   - style tags
   - asset strategy
@@ -42,6 +45,7 @@ Hard rules:
 - Production-grade UI must use a style-matched shared UI pack, imported license-clear UI pack, or equivalent custom asset layer with tracked provenance
 - Production-grade UI must follow `artifacts/requirements/<game_id>/visual_identity.json` when it exists
 - Do not repeatedly reuse the same top HUD pill layout, full-width objective bar, bottom command strip, blue-gray button pack, or pack preset unless the visual identity contract explicitly allows it
+- Decorative borders, frames, or bezels must not cover active gameplay tiles, lanes, routes, board cells, or touch-critical action areas
 - Do not package, update registry, or change git state unless explicitly requested
 
 Workflow:
@@ -51,6 +55,8 @@ Workflow:
    - screen list
    - state map
    - HUD metrics
+   - playfield safe area
+   - frame and border policy
    - chosen `ui_skin`
    - style tags
    - asset strategy
@@ -67,6 +73,8 @@ Report:
 - chosen `ui_skin`
 - screens covered
 - style tags
+- playfield safe area
+- frame and border policy
 - shared UI assets used or imported
 - visual identity contract used or missing
 - project-local resource paths changed

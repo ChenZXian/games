@@ -197,6 +197,8 @@ If this standard conflicts with UI_KIT_FACTORY_SPEC_v1_0.md, the stricter rule a
 - Reusable external UI resources should enter `shared_assets/ui/` first when possible
 - Java code MUST NOT hardcode UI colors or dimensions for styling
 - Layout XML SHOULD NOT inline literal color values
+- Themed borders, bezels, rails, and decorative frames MUST NOT be placed on top of active gameplay space
+- If a project uses a framed presentation, the gameplay viewport MUST reserve a safe area for movement, interaction, and touch-critical regions before decorative chrome is applied
 - UI is allowed to look commercial only by:
   - token tuning (colors/dimens)
   - XML drawables (shape/gradient/layer-list/vector)
@@ -242,6 +244,7 @@ Each game must include:
 - A game-over or result screen
 
 For new or updated UI workflow runs, menu, pause, help, reward, and result screens should prefer View or XML overlays instead of full-screen Canvas-only UI.
+Gameplay must remain visible and operable. HUD or border treatments may not hide active board cells, lanes, routes, units, or touch-critical play areas.
 
 ------
 

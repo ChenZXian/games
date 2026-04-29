@@ -133,7 +133,8 @@
       "path": "packs/kenney_ui_pack_adventure",
       "used_by": [
         "empire_wall_guard",
-        "crownroad_bastion"
+        "crownroad_bastion",
+        "crown_frontier_tactics"
       ],
       "validated_with": []
     },

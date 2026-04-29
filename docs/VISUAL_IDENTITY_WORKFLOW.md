@@ -56,8 +56,16 @@ Allowed status values:
 - `typography_style`
 - `primary_ui_pack`
 - `secondary_ui_assets`
+- `playfield_safety`
 - `unique_screen_motifs`
 - `forbidden_ui_elements`
+
+`playfield_safety` should include:
+
+- `reserved_edges`
+- `hud_anchor_zones`
+- `protected_gameplay_zones`
+- `frame_overlay_policy`
 
 Examples of layout archetypes:
 
@@ -69,6 +77,8 @@ Examples of layout archetypes:
 - card hand plus battlefield HUD
 
 The UI workflow should not repeatedly use the same top HUD pills plus bottom button strip unless the requirements explicitly demand it and at least two other visual axes differ.
+
+The UI workflow should also not treat heavy borders as a cosmetic afterthought. Decorative frames, bezels, side rails, and corner ornaments must either sit outside the active playfield or consume only dead space explicitly reserved in the requirements.
 
 ## 4. Icon Identity
 
@@ -100,6 +110,8 @@ That section should summarize:
 
 - UI layout archetype
 - HUD structure
+- playfield safe area
+- frame overlay policy
 - screen motifs
 - palette and material language
 - typography direction
@@ -119,6 +131,7 @@ For delivery-ready output, the UI workflow should:
 
 - preserve the selected layout archetype
 - avoid generic reuse of the same HUD and bottom-bar composition
+- preserve the declared playfield safe area and frame overlay policy
 - choose a style-matched UI pack or import a new license-clear pack when the shared library lacks variety
 - record the chosen pack in `ui_pack_assignment.json`
 - implement screen-specific motifs instead of only changing colors
@@ -152,3 +165,4 @@ Delivery-ready output requires:
 - visual identity status is `passed`
 - icon and UI tracks are complete
 
+`visual identity status = passed` now also means the contract defines how the UI frame and HUD avoid occluding active gameplay space.

@@ -1,0 +1,21 @@
+{
+    "version":  1,
+    "game_id":  "crown_frontier_tactics",
+    "title":  "Crown Frontier Tactics",
+    "direction":  "Ancient Empires-inspired turn-based tactics with village capture, commander-led armies, a large frontier campaign, and classic unit-counter warfare on mobile.",
+    "selected_concept":  "Crown Frontier",
+    "status":  "confirmed",
+    "ui_skin":  "skin_military_tech",
+    "current_stage":  "requirements",
+    "created_at_utc":  "2026-04-28T09:23:55Z",
+    "updated_at_utc":  "2026-04-28T09:31:54Z",
+    "selected_at_utc":  "2026-04-28T09:23:55Z",
+    "confirmed_at_utc":  "2026-04-28T09:31:54Z",
+    "files":  {
+                  "metadata_json":  "artifacts/requirements/crown_frontier_tactics/metadata.json",
+                  "requirements_md":  "artifacts/requirements/crown_frontier_tactics/requirements.md",
+                  "candidates_md":  "",
+                  "gameplay_diversity_json":  "artifacts/requirements/crown_frontier_tactics/gameplay_diversity.json",
+                  "visual_identity_json":  "artifacts/requirements/crown_frontier_tactics/visual_identity.json"
+              }
+}

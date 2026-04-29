@@ -1,13 +1,20 @@
 {
     "version":  1,
-    "generated_at_utc":  "2026-04-26T10:47:53Z",
+    "generated_at_utc":  "2026-04-28T10:09:10Z",
     "grouping":  "created_at_month",
     "path_policy":  "active projects remain direct children under games/\u003cgame_id\u003e",
     "months":  [
                    {
                        "month":  "2026-04",
-                       "total":  11,
+                       "total":  12,
                        "games":  [
+                                     {
+                                         "id":  "crownroad_bastion",
+                                         "name":  "Crownroad Bastion",
+                                         "created_at":  "2026-04-23",
+                                         "path":  "games/crownroad_bastion",
+                                         "ui_skin":  "skin_cartoon_light"
+                                     },
                                      {
                                          "id":  "empire_wall_guard",
                                          "name":  "Empire Wall Guard",
@@ -23,11 +30,11 @@
                                          "ui_skin":  "skin_post_apocalypse"
                                      },
                                      {
-                                         "id":  "crownroad_bastion",
-                                         "name":  "Crownroad Bastion",
-                                         "created_at":  "2026-04-23",
-                                         "path":  "games/crownroad_bastion",
-                                         "ui_skin":  "skin_cartoon_light"
+                                         "id":  "crown_frontier_tactics",
+                                         "name":  "Crown Frontier Tactics",
+                                         "created_at":  "2026-04-28",
+                                         "path":  "games/crown_frontier_tactics",
+                                         "ui_skin":  "skin_military_tech"
                                      },
                                      {
                                          "id":  "crownblock_hunt",
@@ -44,11 +51,11 @@
                                          "ui_skin":  "skin_post_apocalypse"
                                      },
                                      {
-                                         "id":  "island_supply_command",
-                                         "name":  "Island Supply Command",
-                                         "created_at":  "2026-04-22",
-                                         "path":  "games/island_supply_command",
-                                         "ui_skin":  "skin_cartoon_light"
+                                         "id":  "clockwork_courier",
+                                         "name":  "Clockwork Courier",
+                                         "created_at":  "2026-04-21",
+                                         "path":  "games/clockwork_courier",
+                                         "ui_skin":  "skin_neon_future"
                                      },
                                      {
                                          "id":  "relic_blade_trials",
@@ -65,11 +72,11 @@
                                          "ui_skin":  "skin_neon_future"
                                      },
                                      {
-                                         "id":  "clockwork_courier",
-                                         "name":  "Clockwork Courier",
-                                         "created_at":  "2026-04-21",
-                                         "path":  "games/clockwork_courier",
-                                         "ui_skin":  "skin_neon_future"
+                                         "id":  "island_supply_command",
+                                         "name":  "Island Supply Command",
+                                         "created_at":  "2026-04-22",
+                                         "path":  "games/island_supply_command",
+                                         "ui_skin":  "skin_cartoon_light"
                                      },
                                      {
                                          "id":  "pasture_parade_deluxe",

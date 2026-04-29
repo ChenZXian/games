@@ -80,7 +80,8 @@
       "duration_sec": 0.32,
       "used_by": [
         "island_supply_command",
-        "ashen_frontier"
+        "ashen_frontier",
+        "crown_frontier_tactics"
       ],
       "source": "synth_audio",
       "retrieved_at": "2026-04-22",
@@ -2088,7 +2089,8 @@
       "loop": true,
       "duration_sec": 18.0,
       "used_by": [
-        "crownroad_bastion"
+        "crownroad_bastion",
+        "crown_frontier_tactics"
       ],
       "source": "synth_audio",
       "retrieved_at": "2026-04-23",
@@ -2133,7 +2135,8 @@
       "loop": true,
       "duration_sec": 18.0,
       "used_by": [
-        "crownroad_bastion"
+        "crownroad_bastion",
+        "crown_frontier_tactics"
       ],
       "source": "synth_audio",
       "retrieved_at": "2026-04-23",
@@ -2460,6 +2463,350 @@
       ],
       "source": "synth_audio",
       "retrieved_at": "2026-04-26",
+      "license": "",
+      "license_url": "",
+      "generated": true,
+      "format": "wav"
+    },
+    {
+      "id": "bgm_menu_frontier_bd7ad5e0",
+      "file": "bgm/bgm_menu_frontier_bd7ad5e0.wav",
+      "type": "bgm",
+      "role": "menu",
+      "tags": [
+        "frontier",
+        "nostalgic",
+        "disciplined",
+        "brass",
+        "field",
+        "tension",
+        "measured",
+        "turns",
+        "into",
+        "decisive",
+        "clash",
+        "strategy",
+        "march",
+        "parchment"
+      ],
+      "style": "frontier",
+      "style_tags": [
+        "strategy",
+        "march",
+        "brass",
+        "parchment",
+        "frontier"
+      ],
+      "mood": "nostalgic disciplined brass field tension",
+      "pacing": "measured turns into decisive clash",
+      "loop": true,
+      "duration_sec": 24.0,
+      "used_by": [
+        "crown_frontier_tactics"
+      ],
+      "source": "synth_audio",
+      "retrieved_at": "2026-04-28",
+      "license": "",
+      "license_url": "",
+      "generated": true,
+      "format": "wav"
+    },
+    {
+      "id": "sfx_ui_click_frontier_02c53bef",
+      "file": "sfx/sfx_ui_click_frontier_02c53bef.wav",
+      "type": "sfx",
+      "role": "ui_click",
+      "tags": [
+        "frontier",
+        "nostalgic",
+        "disciplined",
+        "brass",
+        "field",
+        "tension",
+        "measured",
+        "turns",
+        "into",
+        "decisive",
+        "clash",
+        "strategy",
+        "march",
+        "parchment"
+      ],
+      "style": "frontier",
+      "style_tags": [
+        "strategy",
+        "march",
+        "brass",
+        "parchment",
+        "frontier"
+      ],
+      "mood": "nostalgic disciplined brass field tension",
+      "pacing": "measured turns into decisive clash",
+      "loop": false,
+      "duration_sec": 0.1,
+      "used_by": [
+        "crown_frontier_tactics"
+      ],
+      "source": "synth_audio",
+      "retrieved_at": "2026-04-28",
+      "license": "",
+      "license_url": "",
+      "generated": true,
+      "format": "wav"
+    },
+    {
+      "id": "sfx_move_frontier_978b0ce6",
+      "file": "sfx/sfx_move_frontier_978b0ce6.wav",
+      "type": "sfx",
+      "role": "move",
+      "tags": [
+        "frontier",
+        "nostalgic",
+        "disciplined",
+        "brass",
+        "field",
+        "tension",
+        "measured",
+        "turns",
+        "into",
+        "decisive",
+        "clash",
+        "strategy",
+        "march",
+        "parchment"
+      ],
+      "style": "frontier",
+      "style_tags": [
+        "strategy",
+        "march",
+        "brass",
+        "parchment",
+        "frontier"
+      ],
+      "mood": "nostalgic disciplined brass field tension",
+      "pacing": "measured turns into decisive clash",
+      "loop": false,
+      "duration_sec": 0.18,
+      "used_by": [
+        "crown_frontier_tactics"
+      ],
+      "source": "synth_audio",
+      "retrieved_at": "2026-04-28",
+      "license": "",
+      "license_url": "",
+      "generated": true,
+      "format": "wav"
+    },
+    {
+      "id": "sfx_attack_frontier_cdc7da5a",
+      "file": "sfx/sfx_attack_frontier_cdc7da5a.wav",
+      "type": "sfx",
+      "role": "attack",
+      "tags": [
+        "frontier",
+        "nostalgic",
+        "disciplined",
+        "brass",
+        "field",
+        "tension",
+        "measured",
+        "turns",
+        "into",
+        "decisive",
+        "clash",
+        "strategy",
+        "march",
+        "parchment"
+      ],
+      "style": "frontier",
+      "style_tags": [
+        "strategy",
+        "march",
+        "brass",
+        "parchment",
+        "frontier"
+      ],
+      "mood": "nostalgic disciplined brass field tension",
+      "pacing": "measured turns into decisive clash",
+      "loop": false,
+      "duration_sec": 0.14,
+      "used_by": [
+        "crown_frontier_tactics"
+      ],
+      "source": "synth_audio",
+      "retrieved_at": "2026-04-28",
+      "license": "",
+      "license_url": "",
+      "generated": true,
+      "format": "wav"
+    },
+    {
+      "id": "sfx_capture_frontier_923b713f",
+      "file": "sfx/sfx_capture_frontier_923b713f.wav",
+      "type": "sfx",
+      "role": "capture",
+      "tags": [
+        "frontier",
+        "nostalgic",
+        "disciplined",
+        "brass",
+        "field",
+        "tension",
+        "measured",
+        "turns",
+        "into",
+        "decisive",
+        "clash",
+        "strategy",
+        "march",
+        "parchment"
+      ],
+      "style": "frontier",
+      "style_tags": [
+        "strategy",
+        "march",
+        "brass",
+        "parchment",
+        "frontier"
+      ],
+      "mood": "nostalgic disciplined brass field tension",
+      "pacing": "measured turns into decisive clash",
+      "loop": false,
+      "duration_sec": 0.18,
+      "used_by": [
+        "crown_frontier_tactics"
+      ],
+      "source": "synth_audio",
+      "retrieved_at": "2026-04-28",
+      "license": "",
+      "license_url": "",
+      "generated": true,
+      "format": "wav"
+    },
+    {
+      "id": "sfx_heal_frontier_346892f9",
+      "file": "sfx/sfx_heal_frontier_346892f9.wav",
+      "type": "sfx",
+      "role": "heal",
+      "tags": [
+        "frontier",
+        "nostalgic",
+        "disciplined",
+        "brass",
+        "field",
+        "tension",
+        "measured",
+        "turns",
+        "into",
+        "decisive",
+        "clash",
+        "strategy",
+        "march",
+        "parchment"
+      ],
+      "style": "frontier",
+      "style_tags": [
+        "strategy",
+        "march",
+        "brass",
+        "parchment",
+        "frontier"
+      ],
+      "mood": "nostalgic disciplined brass field tension",
+      "pacing": "measured turns into decisive clash",
+      "loop": false,
+      "duration_sec": 0.18,
+      "used_by": [
+        "crown_frontier_tactics"
+      ],
+      "source": "synth_audio",
+      "retrieved_at": "2026-04-28",
+      "license": "",
+      "license_url": "",
+      "generated": true,
+      "format": "wav"
+    },
+    {
+      "id": "sfx_win_frontier_2c2b2793",
+      "file": "sfx/sfx_win_frontier_2c2b2793.wav",
+      "type": "sfx",
+      "role": "win",
+      "tags": [
+        "frontier",
+        "nostalgic",
+        "disciplined",
+        "brass",
+        "field",
+        "tension",
+        "measured",
+        "turns",
+        "into",
+        "decisive",
+        "clash",
+        "strategy",
+        "march",
+        "parchment"
+      ],
+      "style": "frontier",
+      "style_tags": [
+        "strategy",
+        "march",
+        "brass",
+        "parchment",
+        "frontier"
+      ],
+      "mood": "nostalgic disciplined brass field tension",
+      "pacing": "measured turns into decisive clash",
+      "loop": false,
+      "duration_sec": 0.42,
+      "used_by": [
+        "crown_frontier_tactics"
+      ],
+      "source": "synth_audio",
+      "retrieved_at": "2026-04-28",
+      "license": "",
+      "license_url": "",
+      "generated": true,
+      "format": "wav"
+    },
+    {
+      "id": "sfx_fail_frontier_66a7df9f",
+      "file": "sfx/sfx_fail_frontier_66a7df9f.wav",
+      "type": "sfx",
+      "role": "fail",
+      "tags": [
+        "frontier",
+        "nostalgic",
+        "disciplined",
+        "brass",
+        "field",
+        "tension",
+        "measured",
+        "turns",
+        "into",
+        "decisive",
+        "clash",
+        "strategy",
+        "march",
+        "parchment"
+      ],
+      "style": "frontier",
+      "style_tags": [
+        "strategy",
+        "march",
+        "brass",
+        "parchment",
+        "frontier"
+      ],
+      "mood": "nostalgic disciplined brass field tension",
+      "pacing": "measured turns into decisive clash",
+      "loop": false,
+      "duration_sec": 0.4,
+      "used_by": [
+        "crown_frontier_tactics"
+      ],
+      "source": "synth_audio",
+      "retrieved_at": "2026-04-28",
       "license": "",
       "license_url": "",
       "generated": true,

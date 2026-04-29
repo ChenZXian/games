@@ -226,6 +226,10 @@ Recommended UI Skin: $UiSkin
 
 ### HUD Priorities
 
+### Gameplay Safe Area
+
+### Frame And Border Policy
+
 ### Key Overlay Panels
 
 ### UI Asset Strategy
@@ -259,6 +263,38 @@ Recommended UI Skin: $UiSkin
 ### Important Entities
 
 ### Systems To Plan Early
+
+## Gameplay Diversity And Content Budget
+
+### Genre And Sub Archetype
+
+### Map Or Playfield Budget
+
+### Entity Roster Budget
+
+### Mechanic Variety Budget
+
+### Forbidden Template Reuse
+
+## Visual Identity Contract
+
+### UI Layout Archetype
+
+### HUD Composition
+
+### Playfield Safe Area
+
+### Frame Overlay Policy
+
+### Palette And Material Language
+
+### Typography Direction
+
+### UI Pack Strategy
+
+### Icon Subject And Silhouette
+
+### Forbidden Visual Reuse
 
 ## Differentiation Note
 
@@ -343,6 +379,12 @@ function New-VisualIdentityTemplate([string]$GameId, [string]$Direction, [string
       typography_style = ""
       primary_ui_pack = $UiSkin
       secondary_ui_assets = @()
+      playfield_safety = [ordered]@{
+        reserved_edges = @()
+        hud_anchor_zones = @()
+        protected_gameplay_zones = @()
+        frame_overlay_policy = ""
+      }
       unique_screen_motifs = @()
       forbidden_ui_elements = @()
     }

@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "game_id": "crown_frontier_tactics",
+  "status": "passed",
+  "direction": "Ancient Empires-inspired turn-based tactics with village capture, commander-led armies, a large frontier campaign, and classic unit-counter warfare on mobile.",
+  "selected_concept": "Crown Frontier",
+  "visual_differentiation_axes": [
+    "left commander ledger plus bottom turn ribbon instead of top stat pills or a full bottom command strip",
+    "campaign-atlas and war-room navigation instead of plain centered menu panels",
+    "indigo cloth brass and wax-seal palette instead of neon glass or ruin-survival palettes",
+    "selection-driven right context drawer for forecast and recruitment instead of persistent oversized HUD blocks",
+    "war pennant milestone icon subject with tactical-map grid instead of castle shield zombie or helmet motifs"
+  ],
+  "forbidden_visual_reuse": [
+    "do not reuse a top-pill HUD with a full-width bottom action bar",
+    "do not reuse wall-defense battlement framing from empire_wall_guard",
+    "do not reuse sci-fi glass panels or post-apocalypse hazard rails",
+    "do not reuse another project's exported icon silhouette or palette pairing",
+    "do not use a plain banner icon with no milestone and no tactical-map grid signal"
+  ],
+  "ui_identity": {
+    "layout_archetype": "left commander ledger plus bottom turn ribbon plus conditional right-side unit detail drawer",
+    "hud_composition": "commander portrait and gold on the left, turn and action controls along the bottom, unit forecast and recruit details on the right, and a compact objective pennant at the upper right",
+    "navigation_model": "frontier campaign atlas to chapter briefing to battlefield deployment, with a war-room layer for roster doctrine and codex management between battles",
+    "palette_signature": "indigo command cloth, burnished brass, chalk white, muted parchment tan, frontier red wax, and moss-green terrain accents",
+    "material_language": "lacquered map table edges, brass pins, cloth pennants, wax seals, inked route lines, and carved command plaques",
+    "typography_style": "disciplined military headline styling for titles, clean tactical body text for stats, and large high-contrast numerals for gold HP and forecast values",
+    "primary_ui_pack": "skin_military_tech",
+    "secondary_ui_assets": [
+      "campaign atlas chapter cards",
+      "objective pennant plates",
+      "unit forecast drawers",
+      "doctrine unlock medallions"
+    ],
+    "playfield_safety": {
+      "reserved_edges": [
+        "left edge narrow commander rail",
+        "bottom edge turn ribbon",
+        "upper-right corner small objective pennant zone"
+      ],
+      "hud_anchor_zones": [
+        "left vertical rail",
+        "bottom horizontal command band",
+        "right-side collapsible context drawer",
+        "upper-right objective corner"
+      ],
+      "protected_gameplay_zones": [
+        "board center",
+        "upper-middle marching lanes",
+        "bridge and gate interaction cells",
+        "chapter-specific frontline choke points"
+      ],
+      "frame_overlay_policy": "decorative command-table framing may live outside the board bounds only and must never cover active tiles, threat highlights, or touch-critical unit cells"
+    },
+    "unique_screen_motifs": [
+      "wax-sealed chapter briefings",
+      "pinned province markers on the campaign atlas",
+      "fold-out roster ledgers",
+      "carved doctrine plaques",
+      "battle result standards stamped onto parchment reports"
+    ],
+    "forbidden_ui_elements": [
+      "generic centered three-button menu with no atlas identity",
+      "full-width arcade action bar",
+      "heavy stone frame overlapping the battlefield",
+      "fantasy tavern parchment cards as the primary HUD language"
+    ]
+  },
+  "icon_identity": {
+    "subject": "a royal war pennant planted into a cracked frontier milestone with a square tactical-map tile pattern behind it",
+    "silhouette": "tall angled pennant, banner pole, chipped milestone base, and a visible square-grid backing shape",
+    "composition": "the pennant dominates the upper left, the milestone anchors the lower third, and the tile-grid backdrop fills the rear plane with one diagonal spear-shadow for motion",
+    "palette": "deep indigo, brass gold, off-white stone, muted crimson wax accent, and dark map-shadow neutrals",
+    "background": "faded campaign-map texture with subtle tile lines and no flat generic badge",
+    "game_specific_motif": "the milestone and tile grid make the icon read as border conquest on a tactics board rather than a generic fantasy emblem",
+    "forbidden_icon_reuse": [
+      "no castle-only motif",
+      "no shield-only emblem",
+      "no zombie or skull foreground",
+      "no helmet-only icon",
+      "no plain flag with no milestone and no tactical grid"
+    ]
+  }
+}

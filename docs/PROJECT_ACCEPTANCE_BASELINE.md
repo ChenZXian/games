@@ -102,6 +102,7 @@ A project is not considered visually complete if it relies only on bare placehol
 For a delivery-ready result, the project should have:
 
 - a coherent UI direction using the repository UI workflow
+- a documented playfield safe area so decorative borders or HUD chrome do not block active gameplay space
 - gameplay visuals that are not limited to bare placeholder circles or rectangles when a delivery-ready target is requested
 - UI that is more than UI Kit-only token scaffolding when a delivery-ready target is requested
 - a tracked gameplay art strategy using the repository gameplay art workflow when external or reusable character, map, prop, item, effect, or background assets are used

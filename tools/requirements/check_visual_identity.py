@@ -22,8 +22,16 @@ UI_REQUIRED = [
     "material_language",
     "typography_style",
     "primary_ui_pack",
+    "playfield_safety",
     "unique_screen_motifs",
     "forbidden_ui_elements",
+]
+
+PLAYFIELD_SAFETY_REQUIRED = [
+    "reserved_edges",
+    "hud_anchor_zones",
+    "protected_gameplay_zones",
+    "frame_overlay_policy",
 ]
 
 ICON_REQUIRED = [
@@ -79,6 +87,15 @@ def validate_contract(data):
         errors.append("ui_identity must be an object")
     else:
         errors.extend(validate_named_fields(ui_identity, UI_REQUIRED, "ui_identity"))
+        if "secondary_ui_assets" not in ui_identity:
+            errors.append("ui_identity missing field: secondary_ui_assets")
+        elif not isinstance(ui_identity.get("secondary_ui_assets"), list):
+            errors.append("ui_identity.secondary_ui_assets must be a list")
+        playfield_safety = ui_identity.get("playfield_safety")
+        if not isinstance(playfield_safety, dict):
+            errors.append("ui_identity.playfield_safety must be an object")
+        else:
+            errors.extend(validate_named_fields(playfield_safety, PLAYFIELD_SAFETY_REQUIRED, "ui_identity.playfield_safety"))
 
     icon_identity = data.get("icon_identity")
     if not isinstance(icon_identity, dict):

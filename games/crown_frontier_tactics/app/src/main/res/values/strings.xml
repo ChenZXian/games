@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Crown Frontier Tactics</string>
+    <string name="title_main">Crown Frontier Tactics</string>
+    <string name="subtitle_main">Lead the frontier companies, seize villages, and break rival warlords one chapter at a time.</string>
+    <string name="btn_start">Open Atlas</string>
+    <string name="btn_restart">Restart</string>
+    <string name="btn_resume">Resume</string>
+    <string name="btn_menu">Menu</string>
+    <string name="btn_mute">Sound On</string>
+    <string name="btn_how_to_play">How To Play</string>
+    <string name="btn_pause">Pause</string>
+    <string name="btn_continue">Continue Campaign</string>
+    <string name="btn_new_campaign">New Campaign</string>
+    <string name="btn_difficulty">Difficulty</string>
+    <string name="btn_back">Back</string>
+    <string name="btn_end_turn">End Turn</string>
+    <string name="btn_context">Wait</string>
+    <string name="btn_order">Commander Order</string>
+    <string name="btn_archer">Archer</string>
+    <string name="btn_recruit_militia">Militia</string>
+    <string name="btn_recruit_knight">Knight</string>
+    <string name="btn_recruit_healer">Healer</string>
+    <string name="btn_recruit_mage">Mage</string>
+    <string name="btn_campaign">Atlas</string>
+    <string name="hud_region">Region</string>
+    <string name="hud_turn">Turn</string>
+    <string name="hud_gold">Gold</string>
+    <string name="hud_income">Income</string>
+    <string name="hud_objective">Objective</string>
+    <string name="hud_unit">Unit</string>
+    <string name="label_doctrine">Doctrine Points</string>
+    <string name="label_help">Battle Guide</string>
+    <string name="label_briefing">Chapter Briefing</string>
+    <string name="label_result">After Action Report</string>
+    <string name="help_text">Tap an allied unit to see its move range. Tap an empty highlighted cell to move. After moving, tap an enemy in range to attack. Select a friendly keep and use the recruit buttons to deploy fresh units. Stand on neutral or hostile villages, forts, or capitals and press Context to capture them. End Turn hands control to the enemy AI.</string>
+</resources>

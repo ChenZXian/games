@@ -399,5 +399,8 @@ Suggested colors:
 - Use only tokens for colors and dimens.
 - Avoid inline color values in layout XML.
 - Avoid runtime allocations for UI styling.
+- Decorative borders, bezels, corner ornaments, and panel chrome must not cover active gameplay tiles, lanes, routes, board cells, spawn zones, or touch-critical action areas.
+- If a framed presentation is desired, reserve that area structurally with layout bounds, padding, or explicit dead-space margins instead of laying the frame over the live playfield.
+- Floating HUD elements may overlap only non-interactive dead space that is declared in the UI brief.
 
 End of document.

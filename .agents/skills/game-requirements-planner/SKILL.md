@@ -113,6 +113,8 @@ Full requirements document format:
   - UI layout archetype
   - HUD composition
   - navigation model
+  - playfield safe area
+  - frame overlay policy
   - palette signature
   - material language
   - typography style
@@ -131,6 +133,8 @@ Full requirements document format:
   - recommended ui_skin
   - layout tone
   - HUD priorities
+  - playfield safe area
+  - frame and border policy
   - key overlay panels
 - Gameplay art direction:
   - required art roles

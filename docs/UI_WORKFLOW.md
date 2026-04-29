@@ -10,6 +10,7 @@ This document defines the repository UI workflow for Android Java mini-games.
 The UI workflow exists to:
 
 - define screen structure before implementation
+- reserve a protected gameplay safe area before decorative framing
 - keep exactly one `ui_skin`
 - support practical, higher-fidelity game UI instead of token-only placeholder UI
 - allow licensed binary UI assets, fonts, and open-source UI resource packs
@@ -53,6 +54,8 @@ Every UI workflow run should define:
 - screen list
 - HUD metrics
 - state map
+- playfield safe area
+- frame and border policy
 - chosen `ui_skin`
 - style tags
 - asset strategy
@@ -165,7 +168,7 @@ Discovery examples:
 
 1. Identify the target game and the requested UI scope.
 2. Read the visual identity contract when it exists.
-3. Define the UI structure, state map, and visual layout archetype.
+3. Define the UI structure, state map, visual layout archetype, and protected gameplay safe area.
 4. Choose one `ui_skin`.
 5. Decide whether token-only resources are enough for the current stage or whether binary assets are required.
 6. Resolve assets in this order:
@@ -173,11 +176,15 @@ Discovery examples:
    - global source-catalog search for official or license-clear UI sources
    - imported licensed open-source UI pack
    - project-local custom refinement
-7. Do not reuse the same HUD composition, top metric bar, bottom command strip, or pack preset across projects unless the visual identity contract allows it.
-8. Do not silently fall back to generic shape-only placeholder UI for production-grade, menu item `10`, or delivery-ready requests.
-9. Reuse or import shared UI resources under `shared_assets/ui/` when possible.
-10. Assign project-local resources and implement layouts or overlays.
-11. Validate required UI foundation files and resource naming.
+7. Reserve active gameplay space before styling:
+   - themed borders, bezels, or rails should stay outside the active playfield when possible
+   - if a frame touches the gameplay plane, it may only consume dead space that is explicitly reserved in the UI brief
+   - HUD overlays must not cover active board cells, lanes, routes, spawn points, tower pads, combat lanes, or touch-critical action zones
+8. Do not reuse the same HUD composition, top metric bar, bottom command strip, or pack preset across projects unless the visual identity contract allows it.
+9. Do not silently fall back to generic shape-only placeholder UI for production-grade, menu item `10`, or delivery-ready requests.
+10. Reuse or import shared UI resources under `shared_assets/ui/` when possible.
+11. Assign project-local resources and implement layouts or overlays.
+12. Validate required UI foundation files and resource naming.
 
 ## 8. Visual Variety Rules
 
@@ -210,5 +217,7 @@ The final UI result should satisfy all of the following:
 - complete values foundation
 - required logical UI resources present
 - gameplay rendering kept separate from non-real-time UI where practical
+- decorative borders, HUD chrome, and thematic frames do not occlude active gameplay space
+- any framed presentation preserves a documented safe area for movement, combat, interaction, and touch-critical regions
 - provenance recorded for imported open-source assets
 - visual identity contract preserved when one exists

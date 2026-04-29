@@ -229,6 +229,8 @@ The visual identity contract should define:
 - UI layout archetype
 - HUD composition
 - navigation model
+- playfield safe area
+- frame overlay policy
 - palette signature
 - material language
 - typography style

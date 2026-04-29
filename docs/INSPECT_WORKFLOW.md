@@ -91,6 +91,7 @@ Meaning:
 Meaning:
 
 - `passed`: UI and icon visual identity contract exists and is ready to gate delivery
+- `passed` also means the contract defines how themed frames and HUD chrome avoid occluding active gameplay space
 - `draft`: contract exists but should not gate delivery yet
 - `needs_revision`: contract is known to be too generic or too close to another project
 - `missing`: no visual identity contract was found
