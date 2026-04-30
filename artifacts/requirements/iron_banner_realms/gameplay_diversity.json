@@ -1,0 +1,164 @@
+{
+  "version": 1,
+  "game_id": "iron_banner_realms",
+  "status": "passed",
+  "genre_family": "strategy",
+  "genre_archetype": "real-time city-link conquest with supply-line warfare",
+  "camera_perspective": "top-down battlefield strategy view with slight painterly prop tilt",
+  "control_model": "tap-select and drag-route army dispatch with contextual tactical ability buttons",
+  "core_loop_signature": "capture villages and infrastructure nodes, reinforce through roads, cut enemy supply chains, trigger tactical skills, and seize the enemy capital",
+  "differentiation_axes": [
+    "medieval city-state war map instead of abstract prefecture graph",
+    "supply-line pressure and route isolation instead of pure number flooding",
+    "terrain bottlenecks with bridges forts and barracks",
+    "mixed troop classes with readable battle packet animation",
+    "campaign province structure with realm upgrades and doctrines"
+  ],
+  "forbidden_template_reuse": [
+    "abstract circle-only node layout with plain straight lines",
+    "single tiny map reused with recolors across chapters",
+    "three-lane defense map disguised as conquest",
+    "static dot armies without directional marching animation",
+    "copying an older prefecture-conquest template without terrain or supply changes"
+  ],
+  "map_content_budget": {
+    "play_area_model": "linked node battlefield with roads rivers bridges forts villages and economic support points",
+    "route_or_region_count": "14 to 28 capturable nodes per stage across 25 campaign battles",
+    "interactive_regions": "frontline roads, river crossings, province capitals, support settlements, flank routes, and watchtower reveal zones",
+    "terrain_types": [
+      "plains",
+      "forest",
+      "hills",
+      "riverbanks",
+      "stone roads",
+      "mud fields"
+    ],
+    "decorative_prop_count": "at least 12 decorative landmark or terrain prop clusters per map archetype",
+    "functional_map_elements": [
+      "bridges",
+      "forts",
+      "barracks",
+      "farms",
+      "mines",
+      "watchtowers",
+      "choke gates"
+    ],
+    "landmarks": [
+      "monastery ruins",
+      "aqueduct remains",
+      "giant oaks",
+      "cliff shrines",
+      "field camps"
+    ],
+    "camera_or_scroll_model": "single-screen on small maps and pan plus light zoom on large province battlefields"
+  },
+  "entity_content_budget": {
+    "player_unit_types": [
+      "levy infantry",
+      "swordsmen",
+      "spearmen",
+      "archers",
+      "light cavalry"
+    ],
+    "enemy_types": [
+      "enemy levy infantry",
+      "enemy archers",
+      "enemy cavalry raiders",
+      "elite guards",
+      "fortress defenders"
+    ],
+    "neutral_or_resource_entities": [
+      "villages",
+      "forts",
+      "mercenary camps",
+      "holy shrines",
+      "supply wagons"
+    ],
+    "boss_or_elite_types": [
+      "province marshal",
+      "iron guard captain",
+      "river fortress warden"
+    ],
+    "projectile_or_effect_types": [
+      "arrow volleys",
+      "rally banner pulse",
+      "shield wall glow",
+      "capture flare",
+      "bridge repair sparks"
+    ],
+    "item_or_powerup_types": [
+      "realm medals",
+      "command point surge",
+      "temporary mercenary contract"
+    ]
+  },
+  "mechanic_content_budget": {
+    "primary_player_actions": [
+      "dispatch troops between nodes",
+      "split pressure across routes",
+      "commit reinforcements to contested fronts",
+      "time tactical skills"
+    ],
+    "secondary_player_actions": [
+      "repair bridges",
+      "scout fogged sectors",
+      "trigger rally march",
+      "set shield wall defense on key nodes"
+    ],
+    "upgrade_paths": [
+      "Logistics",
+      "War Council",
+      "Iron Discipline"
+    ],
+    "wave_or_level_variants": [
+      "holdout defense",
+      "race to capital",
+      "dual-front invasion",
+      "bridge-control battle",
+      "supply-denial map",
+      "encirclement siege"
+    ],
+    "special_rules": [
+      "isolated cities reinforce more slowly",
+      "barracks upgrade nearby troop quality",
+      "watchtowers reveal ambush routes",
+      "bridges can be damaged and repaired"
+    ],
+    "risk_reward_systems": [
+      "overextending to mines weakens homeland defense",
+      "fast cavalry flanks can cut routes but are fragile",
+      "saving command points for a large swing delays immediate stabilization"
+    ],
+    "failure_pressure_variants": [
+      "attrition from lost supply",
+      "split-front pressure",
+      "timed objectives",
+      "elite counterattacks",
+      "bridge collapse"
+    ]
+  },
+  "asset_variety_budget": {
+    "primary_game_art_packs": [
+      "Kenney Medieval RTS",
+      "Toen Medieval Strategy Sprite Pack"
+    ],
+    "secondary_game_art_packs": [
+      "CitrusGames Medieval Units or equivalent licensed animated medieval troop pack"
+    ],
+    "ui_pack": "skin_military_tech with heraldic war-table refinement",
+    "animation_tier": "medium-plus top-down strategy animation with directional march packets and combat impact feedback",
+    "required_animation_states": [
+      "idle",
+      "march",
+      "brace",
+      "strike",
+      "shoot",
+      "hit",
+      "collapse",
+      "capture flare",
+      "banner wave"
+    ],
+    "minimum_distinct_sprite_families": "at least 10 distinct visual families across capitals villages farms forts bridges watchtowers banners roads infantry cavalry archers and effects",
+    "asset_reuse_note": "environment and unit packs may be combined, but capitals forts bridges and troop classes must remain visually distinct and may not collapse into recolored copies"
+  }
+}

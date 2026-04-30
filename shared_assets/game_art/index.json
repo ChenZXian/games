@@ -69,7 +69,24 @@
         "test_runner",
         "crownblock_hunt"
       ],
-      "validated_with": []
+      "validated_with": [],
+      "map_roles": [],
+      "map_capabilities": [
+        "side_view_layout"
+      ],
+      "camera_perspectives": [
+        "side_view"
+      ],
+      "tile_asset_metrics": {
+        "tile_png_count": 0,
+        "tilemap_sheet_count": 0,
+        "packed_sheet_count": 0,
+        "tiled_tmx_count": 0,
+        "tiled_tsx_count": 0,
+        "sample_map_count": 0,
+        "preview_map_count": 2
+      },
+      "map_builder_strength": "weak"
     },
     {
       "pack_id": "kenney_platformer_art_deluxe",
@@ -144,7 +161,34 @@
         "crownblock_hunt",
         "mountain_pass_guard"
       ],
-      "validated_with": []
+      "validated_with": [],
+      "map_roles": [
+        "background",
+        "terrain",
+        "tileset"
+      ],
+      "map_capabilities": [
+        "background_layers",
+        "grid_ready",
+        "individual_tiles",
+        "large_tile_variation",
+        "modular_tileset",
+        "side_view_layout",
+        "terrain_variants"
+      ],
+      "camera_perspectives": [
+        "side_view"
+      ],
+      "tile_asset_metrics": {
+        "tile_png_count": 560,
+        "tilemap_sheet_count": 0,
+        "packed_sheet_count": 0,
+        "tiled_tmx_count": 0,
+        "tiled_tsx_count": 0,
+        "sample_map_count": 0,
+        "preview_map_count": 16
+      },
+      "map_builder_strength": "moderate"
     },
     {
       "pack_id": "kenney_roguelike_rpg_pack",
@@ -194,9 +238,35 @@
       "used_by": [
         "empire_wall_guard",
         "crownroad_bastion",
-        "crown_frontier_tactics"
+        "crown_frontier_tactics",
+        "iron_banner_realms"
       ],
-      "validated_with": []
+      "validated_with": [],
+      "map_roles": [
+        "building",
+        "prop",
+        "terrain",
+        "tileset"
+      ],
+      "map_capabilities": [
+        "grid_ready",
+        "sample_map_layout",
+        "tiled_tmx",
+        "top_down_layout"
+      ],
+      "camera_perspectives": [
+        "top_down"
+      ],
+      "tile_asset_metrics": {
+        "tile_png_count": 0,
+        "tilemap_sheet_count": 0,
+        "packed_sheet_count": 0,
+        "tiled_tmx_count": 2,
+        "tiled_tsx_count": 0,
+        "sample_map_count": 2,
+        "preview_map_count": 3
+      },
+      "map_builder_strength": "moderate"
     },
     {
       "pack_id": "kenney_tiny_town",
@@ -241,9 +311,42 @@
       "path": "packs/kenney_tiny_town",
       "used_by": [
         "crown_frontier_tactics",
-        "bronze_camp_command"
+        "bronze_camp_command",
+        "iron_banner_realms"
       ],
-      "validated_with": []
+      "validated_with": [],
+      "map_roles": [
+        "building",
+        "map",
+        "prop",
+        "terrain",
+        "tileset"
+      ],
+      "map_capabilities": [
+        "building_tiles",
+        "grid_ready",
+        "individual_tiles",
+        "large_tile_variation",
+        "modular_tileset",
+        "packed_tilemap_sheet",
+        "prop_tiles",
+        "terrain_variants",
+        "tilemap_sheet",
+        "top_down_layout"
+      ],
+      "camera_perspectives": [
+        "top_down"
+      ],
+      "tile_asset_metrics": {
+        "tile_png_count": 132,
+        "tilemap_sheet_count": 2,
+        "packed_sheet_count": 1,
+        "tiled_tmx_count": 0,
+        "tiled_tsx_count": 0,
+        "sample_map_count": 0,
+        "preview_map_count": 2
+      },
+      "map_builder_strength": "strong"
     },
     {
       "pack_id": "kenney_top_down_shooter",
@@ -315,7 +418,32 @@
         "mountain_pass_guard",
         "scrap_ring_outpost"
       ],
-      "validated_with": []
+      "validated_with": [],
+      "map_roles": [
+        "prop",
+        "tileset"
+      ],
+      "map_capabilities": [
+        "grid_ready",
+        "individual_tiles",
+        "large_tile_variation",
+        "modular_tileset",
+        "prop_tiles",
+        "top_down_layout"
+      ],
+      "camera_perspectives": [
+        "top_down"
+      ],
+      "tile_asset_metrics": {
+        "tile_png_count": 524,
+        "tilemap_sheet_count": 0,
+        "packed_sheet_count": 0,
+        "tiled_tmx_count": 0,
+        "tiled_tsx_count": 0,
+        "sample_map_count": 0,
+        "preview_map_count": 2
+      },
+      "map_builder_strength": "moderate"
     },
     {
       "pack_id": "kenney_tower_defense_top_down",
@@ -383,7 +511,28 @@
         "mountain_pass_guard",
         "scrap_ring_outpost"
       ],
-      "validated_with": []
+      "validated_with": [],
+      "map_roles": [
+        "building",
+        "terrain",
+        "tileset"
+      ],
+      "map_capabilities": [
+        "top_down_layout"
+      ],
+      "camera_perspectives": [
+        "top_down"
+      ],
+      "tile_asset_metrics": {
+        "tile_png_count": 0,
+        "tilemap_sheet_count": 0,
+        "packed_sheet_count": 0,
+        "tiled_tmx_count": 0,
+        "tiled_tsx_count": 0,
+        "sample_map_count": 0,
+        "preview_map_count": 3
+      },
+      "map_builder_strength": "weak"
     },
     {
       "pack_id": "kenney_animal_pack",
@@ -425,7 +574,20 @@
       ],
       "path": "packs/kenney_animal_pack",
       "used_by": [],
-      "validated_with": []
+      "validated_with": [],
+      "map_roles": [],
+      "map_capabilities": [],
+      "camera_perspectives": [],
+      "tile_asset_metrics": {
+        "tile_png_count": 0,
+        "tilemap_sheet_count": 0,
+        "packed_sheet_count": 0,
+        "tiled_tmx_count": 0,
+        "tiled_tsx_count": 0,
+        "sample_map_count": 0,
+        "preview_map_count": 1
+      },
+      "map_builder_strength": "weak"
     },
     {
       "pack_id": "kenney_isometric_miniature_farm",
@@ -467,7 +629,31 @@
       ],
       "path": "packs/kenney_isometric_miniature_farm",
       "used_by": [],
-      "validated_with": []
+      "validated_with": [],
+      "map_roles": [
+        "background",
+        "building",
+        "prop",
+        "terrain",
+        "tileset"
+      ],
+      "map_capabilities": [
+        "background_layers",
+        "isometric_layout"
+      ],
+      "camera_perspectives": [
+        "isometric"
+      ],
+      "tile_asset_metrics": {
+        "tile_png_count": 0,
+        "tilemap_sheet_count": 0,
+        "packed_sheet_count": 0,
+        "tiled_tmx_count": 0,
+        "tiled_tsx_count": 0,
+        "sample_map_count": 0,
+        "preview_map_count": 2
+      },
+      "map_builder_strength": "weak"
     },
     {
       "pack_id": "kenney_space_shooter_extension",
@@ -512,7 +698,27 @@
       ],
       "path": "packs/kenney_space_shooter_extension",
       "used_by": [],
-      "validated_with": []
+      "validated_with": [],
+      "map_roles": [
+        "background"
+      ],
+      "map_capabilities": [
+        "background_layers",
+        "top_down_layout"
+      ],
+      "camera_perspectives": [
+        "top_down"
+      ],
+      "tile_asset_metrics": {
+        "tile_png_count": 0,
+        "tilemap_sheet_count": 0,
+        "packed_sheet_count": 0,
+        "tiled_tmx_count": 0,
+        "tiled_tsx_count": 0,
+        "sample_map_count": 0,
+        "preview_map_count": 3
+      },
+      "map_builder_strength": "weak"
     },
     {
       "pack_id": "kenney_simple_space",
@@ -556,7 +762,28 @@
       ],
       "path": "packs/kenney_simple_space",
       "used_by": [],
-      "validated_with": []
+      "validated_with": [],
+      "map_roles": [
+        "background",
+        "prop"
+      ],
+      "map_capabilities": [
+        "background_layers",
+        "top_down_layout"
+      ],
+      "camera_perspectives": [
+        "top_down"
+      ],
+      "tile_asset_metrics": {
+        "tile_png_count": 0,
+        "tilemap_sheet_count": 0,
+        "packed_sheet_count": 0,
+        "tiled_tmx_count": 0,
+        "tiled_tsx_count": 0,
+        "sample_map_count": 0,
+        "preview_map_count": 2
+      },
+      "map_builder_strength": "weak"
     },
     {
       "pack_id": "kenney_new_platformer_pack",
@@ -606,7 +833,34 @@
       ],
       "path": "packs/kenney_new_platformer_pack",
       "used_by": [],
-      "validated_with": []
+      "validated_with": [],
+      "map_roles": [
+        "background",
+        "terrain",
+        "tileset"
+      ],
+      "map_capabilities": [
+        "background_layers",
+        "grid_ready",
+        "individual_tiles",
+        "large_tile_variation",
+        "modular_tileset",
+        "side_view_layout",
+        "terrain_variants"
+      ],
+      "camera_perspectives": [
+        "side_view"
+      ],
+      "tile_asset_metrics": {
+        "tile_png_count": 628,
+        "tilemap_sheet_count": 0,
+        "packed_sheet_count": 0,
+        "tiled_tmx_count": 0,
+        "tiled_tsx_count": 0,
+        "sample_map_count": 0,
+        "preview_map_count": 5
+      },
+      "map_builder_strength": "moderate"
     },
     {
       "pack_id": "kenney_desert_shooter_pack",
@@ -655,7 +909,36 @@
       "used_by": [
         "ashen_frontier"
       ],
-      "validated_with": []
+      "validated_with": [],
+      "map_roles": [
+        "prop",
+        "terrain",
+        "tileset"
+      ],
+      "map_capabilities": [
+        "grid_ready",
+        "individual_tiles",
+        "large_tile_variation",
+        "modular_tileset",
+        "packed_tilemap_sheet",
+        "prop_tiles",
+        "terrain_variants",
+        "tilemap_sheet",
+        "top_down_layout"
+      ],
+      "camera_perspectives": [
+        "top_down"
+      ],
+      "tile_asset_metrics": {
+        "tile_png_count": 506,
+        "tilemap_sheet_count": 10,
+        "packed_sheet_count": 5,
+        "tiled_tmx_count": 0,
+        "tiled_tsx_count": 0,
+        "sample_map_count": 0,
+        "preview_map_count": 3
+      },
+      "map_builder_strength": "strong"
     },
     {
       "pack_id": "kenney_platformer_pack_medieval",
@@ -701,7 +984,31 @@
       ],
       "path": "packs/kenney_platformer_pack_medieval",
       "used_by": [],
-      "validated_with": []
+      "validated_with": [],
+      "map_roles": [
+        "background",
+        "building",
+        "prop",
+        "terrain",
+        "tileset"
+      ],
+      "map_capabilities": [
+        "background_layers",
+        "side_view_layout"
+      ],
+      "camera_perspectives": [
+        "side_view"
+      ],
+      "tile_asset_metrics": {
+        "tile_png_count": 0,
+        "tilemap_sheet_count": 0,
+        "packed_sheet_count": 0,
+        "tiled_tmx_count": 0,
+        "tiled_tsx_count": 0,
+        "sample_map_count": 0,
+        "preview_map_count": 3
+      },
+      "map_builder_strength": "weak"
     },
     {
       "pack_id": "kenney_fish_pack",
@@ -745,7 +1052,24 @@
       ],
       "path": "packs/kenney_fish_pack",
       "used_by": [],
-      "validated_with": []
+      "validated_with": [],
+      "map_roles": [
+        "background"
+      ],
+      "map_capabilities": [
+        "background_layers"
+      ],
+      "camera_perspectives": [],
+      "tile_asset_metrics": {
+        "tile_png_count": 0,
+        "tilemap_sheet_count": 0,
+        "packed_sheet_count": 0,
+        "tiled_tmx_count": 0,
+        "tiled_tsx_count": 0,
+        "sample_map_count": 0,
+        "preview_map_count": 2
+      },
+      "map_builder_strength": "weak"
     },
     {
       "pack_id": "kenney_pirate_pack",
@@ -796,7 +1120,645 @@
         "castaway_clan",
         "bronze_camp_command"
       ],
-      "validated_with": []
+      "validated_with": [],
+      "map_roles": [
+        "background",
+        "building",
+        "prop",
+        "terrain"
+      ],
+      "map_capabilities": [
+        "background_layers",
+        "building_tiles",
+        "grid_ready",
+        "individual_tiles",
+        "large_tile_variation",
+        "modular_tileset",
+        "prop_tiles",
+        "terrain_variants",
+        "top_down_layout"
+      ],
+      "camera_perspectives": [
+        "top_down"
+      ],
+      "tile_asset_metrics": {
+        "tile_png_count": 192,
+        "tilemap_sheet_count": 0,
+        "packed_sheet_count": 0,
+        "tiled_tmx_count": 0,
+        "tiled_tsx_count": 0,
+        "sample_map_count": 0,
+        "preview_map_count": 3
+      },
+      "map_builder_strength": "moderate"
+    },
+    {
+      "pack_id": "kenney_top_down_tanks_remastered",
+      "title": "Kenney Top-down Tanks Remastered",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://kenney.nl/assets/top-down-tanks-remastered",
+      "download_url": "",
+      "download_page_url": "",
+      "asset_types": [
+        "png",
+        "svg",
+        "txt",
+        "xml"
+      ],
+      "art_roles": [
+        "vehicle",
+        "enemy",
+        "character",
+        "projectile",
+        "terrain",
+        "prop"
+      ],
+      "recommended_game_types": [
+        "top",
+        "down",
+        "tank",
+        "shooter",
+        "arena",
+        "action"
+      ],
+      "style_tags": [
+        "tank",
+        "top",
+        "down",
+        "combat",
+        "vehicle",
+        "arena"
+      ],
+      "quality_tags": [
+        "production",
+        "free",
+        "open",
+        "cc0",
+        "rotatable",
+        "static"
+      ],
+      "path": "packs/kenney_top_down_tanks_remastered",
+      "used_by": [],
+      "validated_with": [],
+      "map_roles": [
+        "prop",
+        "terrain"
+      ],
+      "map_capabilities": [
+        "top_down_layout"
+      ],
+      "camera_perspectives": [
+        "top_down"
+      ],
+      "tile_asset_metrics": {
+        "tile_png_count": 0,
+        "tilemap_sheet_count": 0,
+        "packed_sheet_count": 0,
+        "tiled_tmx_count": 0,
+        "tiled_tsx_count": 0,
+        "sample_map_count": 0,
+        "preview_map_count": 2
+      },
+      "map_builder_strength": "weak"
+    },
+    {
+      "pack_id": "kenney_rpg_urban_pack",
+      "title": "Kenney RPG Urban Pack",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://kenney.nl/assets/rpg-urban-pack",
+      "download_url": "",
+      "download_page_url": "",
+      "asset_types": [
+        "png",
+        "txt"
+      ],
+      "art_roles": [
+        "tileset",
+        "terrain",
+        "character",
+        "enemy",
+        "building",
+        "prop",
+        "item"
+      ],
+      "recommended_game_types": [
+        "rpg",
+        "urban",
+        "top",
+        "down",
+        "adventure",
+        "management"
+      ],
+      "style_tags": [
+        "rpg",
+        "urban",
+        "city",
+        "pixel",
+        "character"
+      ],
+      "quality_tags": [
+        "production",
+        "free",
+        "open",
+        "cc0"
+      ],
+      "path": "packs/kenney_rpg_urban_pack",
+      "used_by": [],
+      "validated_with": [],
+      "map_roles": [
+        "building",
+        "prop",
+        "terrain",
+        "tileset"
+      ],
+      "map_capabilities": [
+        "building_tiles",
+        "grid_ready",
+        "individual_tiles",
+        "large_tile_variation",
+        "modular_tileset",
+        "packed_tilemap_sheet",
+        "prop_tiles",
+        "terrain_variants",
+        "tilemap_sheet",
+        "top_down_layout"
+      ],
+      "camera_perspectives": [
+        "top_down"
+      ],
+      "tile_asset_metrics": {
+        "tile_png_count": 486,
+        "tilemap_sheet_count": 2,
+        "packed_sheet_count": 1,
+        "tiled_tmx_count": 0,
+        "tiled_tsx_count": 0,
+        "sample_map_count": 0,
+        "preview_map_count": 2
+      },
+      "map_builder_strength": "strong"
+    },
+    {
+      "pack_id": "kenney_roguelike_modern_city",
+      "title": "Kenney Roguelike Modern City",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://kenney.nl/assets/roguelike-modern-city",
+      "download_url": "",
+      "download_page_url": "",
+      "asset_types": [
+        "png",
+        "txt"
+      ],
+      "art_roles": [
+        "tileset",
+        "terrain",
+        "building",
+        "prop",
+        "item",
+        "character",
+        "enemy",
+        "background"
+      ],
+      "recommended_game_types": [
+        "roguelike",
+        "rpg",
+        "urban",
+        "top",
+        "down",
+        "adventure",
+        "management"
+      ],
+      "style_tags": [
+        "roguelike",
+        "urban",
+        "city",
+        "pixel",
+        "retro"
+      ],
+      "quality_tags": [
+        "production",
+        "free",
+        "open",
+        "cc0"
+      ],
+      "path": "packs/kenney_roguelike_modern_city",
+      "used_by": [],
+      "validated_with": [],
+      "map_roles": [
+        "background",
+        "building",
+        "prop",
+        "terrain",
+        "tileset"
+      ],
+      "map_capabilities": [
+        "background_layers",
+        "building_tiles",
+        "grid_ready",
+        "individual_tiles",
+        "large_tile_variation",
+        "modular_tileset",
+        "packed_tilemap_sheet",
+        "prop_tiles",
+        "terrain_variants",
+        "tilemap_sheet",
+        "top_down_layout"
+      ],
+      "camera_perspectives": [
+        "top_down"
+      ],
+      "tile_asset_metrics": {
+        "tile_png_count": 1036,
+        "tilemap_sheet_count": 2,
+        "packed_sheet_count": 1,
+        "tiled_tmx_count": 0,
+        "tiled_tsx_count": 0,
+        "sample_map_count": 0,
+        "preview_map_count": 2
+      },
+      "map_builder_strength": "strong"
+    },
+    {
+      "pack_id": "kenney_micro_roguelike",
+      "title": "Kenney Micro Roguelike",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://kenney.nl/assets/micro-roguelike",
+      "download_url": "",
+      "download_page_url": "",
+      "asset_types": [
+        "png",
+        "txt"
+      ],
+      "art_roles": [
+        "tileset",
+        "terrain",
+        "character",
+        "enemy",
+        "item",
+        "background"
+      ],
+      "recommended_game_types": [
+        "roguelike",
+        "rpg",
+        "dungeon",
+        "top",
+        "down",
+        "puzzle"
+      ],
+      "style_tags": [
+        "roguelike",
+        "fantasy",
+        "pixel",
+        "dungeon",
+        "retro"
+      ],
+      "quality_tags": [
+        "production",
+        "free",
+        "open",
+        "cc0"
+      ],
+      "path": "packs/kenney_micro_roguelike",
+      "used_by": [],
+      "validated_with": [],
+      "map_roles": [
+        "background",
+        "terrain",
+        "tileset"
+      ],
+      "map_capabilities": [
+        "background_layers",
+        "grid_ready",
+        "individual_tiles",
+        "large_tile_variation",
+        "modular_tileset",
+        "packed_tilemap_sheet",
+        "terrain_variants",
+        "tilemap_sheet",
+        "top_down_layout"
+      ],
+      "camera_perspectives": [
+        "top_down"
+      ],
+      "tile_asset_metrics": {
+        "tile_png_count": 320,
+        "tilemap_sheet_count": 4,
+        "packed_sheet_count": 2,
+        "tiled_tmx_count": 0,
+        "tiled_tsx_count": 0,
+        "sample_map_count": 0,
+        "preview_map_count": 2
+      },
+      "map_builder_strength": "moderate"
+    },
+    {
+      "pack_id": "kenney_tiny_ski",
+      "title": "Kenney Tiny Ski",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://kenney.nl/assets/tiny-ski",
+      "download_url": "",
+      "download_page_url": "",
+      "asset_types": [
+        "png",
+        "tmx",
+        "tsx",
+        "txt"
+      ],
+      "art_roles": [
+        "character",
+        "terrain",
+        "prop",
+        "background",
+        "item"
+      ],
+      "recommended_game_types": [
+        "ski",
+        "snow",
+        "casual",
+        "sports",
+        "arcade"
+      ],
+      "style_tags": [
+        "snow",
+        "winter",
+        "ski",
+        "tiny",
+        "pixel",
+        "casual"
+      ],
+      "quality_tags": [
+        "production",
+        "free",
+        "open",
+        "cc0"
+      ],
+      "path": "packs/kenney_tiny_ski",
+      "used_by": [],
+      "validated_with": [],
+      "map_roles": [
+        "background",
+        "prop",
+        "terrain"
+      ],
+      "map_capabilities": [
+        "background_layers",
+        "grid_ready",
+        "individual_tiles",
+        "large_tile_variation",
+        "modular_tileset",
+        "packed_tilemap_sheet",
+        "prop_tiles",
+        "sample_map_layout",
+        "terrain_variants",
+        "tiled_tmx",
+        "tiled_tsx",
+        "tilemap_sheet"
+      ],
+      "camera_perspectives": [],
+      "tile_asset_metrics": {
+        "tile_png_count": 132,
+        "tilemap_sheet_count": 2,
+        "packed_sheet_count": 1,
+        "tiled_tmx_count": 1,
+        "tiled_tsx_count": 1,
+        "sample_map_count": 1,
+        "preview_map_count": 2
+      },
+      "map_builder_strength": "strong"
+    },
+    {
+      "pack_id": "kenney_1_bit_platformer_pack",
+      "title": "Kenney 1-Bit Platformer Pack",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://kenney.nl/assets/1-bit-platformer-pack",
+      "download_url": "",
+      "download_page_url": "",
+      "asset_types": [
+        "png",
+        "txt"
+      ],
+      "art_roles": [
+        "character",
+        "enemy",
+        "tileset",
+        "terrain",
+        "item",
+        "pickup",
+        "background"
+      ],
+      "recommended_game_types": [
+        "platformer",
+        "runner",
+        "side",
+        "scroller",
+        "action",
+        "puzzle"
+      ],
+      "style_tags": [
+        "1bit",
+        "platformer",
+        "monochrome",
+        "pixel",
+        "minimal"
+      ],
+      "quality_tags": [
+        "production",
+        "free",
+        "open",
+        "cc0",
+        "animated"
+      ],
+      "path": "packs/kenney_1_bit_platformer_pack",
+      "used_by": [],
+      "validated_with": [],
+      "map_roles": [
+        "background",
+        "terrain",
+        "tileset"
+      ],
+      "map_capabilities": [
+        "background_layers",
+        "grid_ready",
+        "individual_tiles",
+        "large_tile_variation",
+        "modular_tileset",
+        "packed_tilemap_sheet",
+        "side_view_layout",
+        "terrain_variants",
+        "tilemap_sheet"
+      ],
+      "camera_perspectives": [
+        "side_view"
+      ],
+      "tile_asset_metrics": {
+        "tile_png_count": 800,
+        "tilemap_sheet_count": 4,
+        "packed_sheet_count": 2,
+        "tiled_tmx_count": 0,
+        "tiled_tsx_count": 0,
+        "sample_map_count": 0,
+        "preview_map_count": 2
+      },
+      "map_builder_strength": "moderate"
+    },
+    {
+      "pack_id": "kenney_tiny_dungeon",
+      "title": "Kenney Tiny Dungeon",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://kenney.nl/assets/tiny-dungeon",
+      "download_url": "",
+      "download_page_url": "",
+      "asset_types": [
+        "png",
+        "tmx",
+        "tsx",
+        "txt"
+      ],
+      "art_roles": [
+        "tileset",
+        "terrain",
+        "character",
+        "enemy",
+        "prop",
+        "item",
+        "background"
+      ],
+      "recommended_game_types": [
+        "dungeon",
+        "roguelike",
+        "rpg",
+        "top",
+        "down",
+        "adventure"
+      ],
+      "style_tags": [
+        "dungeon",
+        "fantasy",
+        "tiny",
+        "pixel",
+        "retro"
+      ],
+      "quality_tags": [
+        "production",
+        "free",
+        "open",
+        "cc0"
+      ],
+      "path": "packs/kenney_tiny_dungeon",
+      "used_by": [],
+      "validated_with": [],
+      "map_roles": [
+        "background",
+        "prop",
+        "terrain",
+        "tileset"
+      ],
+      "map_capabilities": [
+        "background_layers",
+        "grid_ready",
+        "individual_tiles",
+        "large_tile_variation",
+        "modular_tileset",
+        "packed_tilemap_sheet",
+        "prop_tiles",
+        "sample_map_layout",
+        "terrain_variants",
+        "tiled_tmx",
+        "tiled_tsx",
+        "tilemap_sheet",
+        "top_down_layout"
+      ],
+      "camera_perspectives": [
+        "top_down"
+      ],
+      "tile_asset_metrics": {
+        "tile_png_count": 132,
+        "tilemap_sheet_count": 2,
+        "packed_sheet_count": 1,
+        "tiled_tmx_count": 1,
+        "tiled_tsx_count": 1,
+        "sample_map_count": 1,
+        "preview_map_count": 2
+      },
+      "map_builder_strength": "strong"
+    },
+    {
+      "pack_id": "kenney_scribble_platformer",
+      "title": "Kenney Scribble Platformer",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://kenney.nl/assets/scribble-platformer",
+      "download_url": "",
+      "download_page_url": "",
+      "asset_types": [
+        "png",
+        "svg",
+        "txt",
+        "xml"
+      ],
+      "art_roles": [
+        "character",
+        "enemy",
+        "tileset",
+        "terrain",
+        "item",
+        "pickup",
+        "effect",
+        "background"
+      ],
+      "recommended_game_types": [
+        "platformer",
+        "runner",
+        "side",
+        "scroller",
+        "action",
+        "adventure"
+      ],
+      "style_tags": [
+        "scribble",
+        "handdrawn",
+        "platformer",
+        "cartoon",
+        "playful"
+      ],
+      "quality_tags": [
+        "production",
+        "free",
+        "open",
+        "cc0",
+        "animated"
+      ],
+      "path": "packs/kenney_scribble_platformer",
+      "used_by": [],
+      "validated_with": [],
+      "map_roles": [
+        "background",
+        "terrain",
+        "tileset"
+      ],
+      "map_capabilities": [
+        "background_layers",
+        "side_view_layout"
+      ],
+      "camera_perspectives": [
+        "side_view"
+      ],
+      "tile_asset_metrics": {
+        "tile_png_count": 0,
+        "tilemap_sheet_count": 0,
+        "packed_sheet_count": 0,
+        "tiled_tmx_count": 0,
+        "tiled_tsx_count": 0,
+        "sample_map_count": 0,
+        "preview_map_count": 2
+      },
+      "map_builder_strength": "weak"
     }
   ]
 }

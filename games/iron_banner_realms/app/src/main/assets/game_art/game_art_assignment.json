@@ -1,0 +1,93 @@
+{
+  "version": 1,
+  "game_id": "iron_banner_realms",
+  "assigned_at_utc": "2026-04-30T06:31:33Z",
+  "packs": [
+    {
+      "pack_id": "kenney_tiny_town",
+      "pack_title": "Kenney Tiny Town",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://kenney.nl/assets/tiny-town",
+      "art_roles": [
+        "tileset",
+        "terrain",
+        "building",
+        "prop",
+        "map"
+      ],
+      "recommended_game_types": [
+        "town",
+        "management",
+        "world",
+        "map",
+        "top",
+        "down",
+        "casual"
+      ],
+      "style_tags": [
+        "pixel",
+        "town",
+        "overworld",
+        "map",
+        "building",
+        "casual"
+      ],
+      "quality_tags": [
+        "production",
+        "free",
+        "open",
+        "cc0"
+      ],
+      "animation_capabilities": [],
+      "animation_states": [],
+      "project_pack_path": "app/src/main/assets/game_art/kenney_tiny_town",
+      "copied_file_count": 138
+    },
+    {
+      "pack_id": "kenney_roguelike_rpg_pack",
+      "pack_title": "Kenney Roguelike RPG Pack",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://kenney.nl/assets/roguelike-rpg-pack",
+      "art_roles": [
+        "tileset",
+        "terrain",
+        "building",
+        "prop",
+        "item",
+        "character",
+        "enemy"
+      ],
+      "recommended_game_types": [
+        "rpg",
+        "roguelike",
+        "dungeon",
+        "top",
+        "down",
+        "adventure"
+      ],
+      "style_tags": [
+        "pixel",
+        "rpg",
+        "roguelike",
+        "town",
+        "dungeon",
+        "fantasy",
+        "top",
+        "down"
+      ],
+      "quality_tags": [
+        "production",
+        "free",
+        "open",
+        "cc0"
+      ],
+      "animation_capabilities": [],
+      "animation_states": [],
+      "project_pack_path": "app/src/main/assets/game_art/kenney_roguelike_rpg_pack",
+      "copied_file_count": 9
+    }
+  ],
+  "copied_file_count": 147
+}

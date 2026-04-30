@@ -1,0 +1,76 @@
+{
+  "version": 1,
+  "pack_id": "kenney_scribble_platformer",
+  "title": "Kenney Scribble Platformer",
+  "license": "CC0-1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "source_url": "https://kenney.nl/assets/scribble-platformer",
+  "download_url": "",
+  "download_page_url": "",
+  "asset_types": [
+    "png",
+    "svg",
+    "txt",
+    "xml"
+  ],
+  "art_roles": [
+    "character",
+    "enemy",
+    "tileset",
+    "terrain",
+    "item",
+    "pickup",
+    "effect",
+    "background"
+  ],
+  "recommended_game_types": [
+    "platformer",
+    "runner",
+    "side",
+    "scroller",
+    "action",
+    "adventure"
+  ],
+  "style_tags": [
+    "scribble",
+    "handdrawn",
+    "platformer",
+    "cartoon",
+    "playful"
+  ],
+  "quality_tags": [
+    "production",
+    "free",
+    "open",
+    "cc0",
+    "animated"
+  ],
+  "assets_path": "assets",
+  "preview_files": [
+    "Preview.png",
+    "Sample.png"
+  ],
+  "asset_file_count": 216,
+  "map_roles": [
+    "background",
+    "terrain",
+    "tileset"
+  ],
+  "map_capabilities": [
+    "background_layers",
+    "side_view_layout"
+  ],
+  "camera_perspectives": [
+    "side_view"
+  ],
+  "tile_asset_metrics": {
+    "tile_png_count": 0,
+    "tilemap_sheet_count": 0,
+    "packed_sheet_count": 0,
+    "tiled_tmx_count": 0,
+    "tiled_tsx_count": 0,
+    "sample_map_count": 0,
+    "preview_map_count": 2
+  },
+  "map_builder_strength": "weak"
+}

@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "pack_id": "kenney_micro_roguelike",
+  "title": "Kenney Micro Roguelike",
+  "license": "CC0-1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "source_url": "https://kenney.nl/assets/micro-roguelike",
+  "download_url": "",
+  "download_page_url": "",
+  "asset_types": [
+    "png",
+    "txt"
+  ],
+  "art_roles": [
+    "tileset",
+    "terrain",
+    "character",
+    "enemy",
+    "item",
+    "background"
+  ],
+  "recommended_game_types": [
+    "roguelike",
+    "rpg",
+    "dungeon",
+    "top",
+    "down",
+    "puzzle"
+  ],
+  "style_tags": [
+    "roguelike",
+    "fantasy",
+    "pixel",
+    "dungeon",
+    "retro"
+  ],
+  "quality_tags": [
+    "production",
+    "free",
+    "open",
+    "cc0"
+  ],
+  "assets_path": "assets",
+  "preview_files": [
+    "Preview.png",
+    "Sample.png"
+  ],
+  "asset_file_count": 328,
+  "map_roles": [
+    "background",
+    "terrain",
+    "tileset"
+  ],
+  "map_capabilities": [
+    "background_layers",
+    "grid_ready",
+    "individual_tiles",
+    "large_tile_variation",
+    "modular_tileset",
+    "packed_tilemap_sheet",
+    "terrain_variants",
+    "tilemap_sheet",
+    "top_down_layout"
+  ],
+  "camera_perspectives": [
+    "top_down"
+  ],
+  "tile_asset_metrics": {
+    "tile_png_count": 320,
+    "tilemap_sheet_count": 4,
+    "packed_sheet_count": 2,
+    "tiled_tmx_count": 0,
+    "tiled_tsx_count": 0,
+    "sample_map_count": 0,
+    "preview_map_count": 2
+  },
+  "map_builder_strength": "moderate"
+}

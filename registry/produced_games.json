@@ -578,6 +578,22 @@
                       "ui_skin":  "skin_military_tech"
                   },
                   {
+                      "id":  "iron_banner_realms",
+                      "name":  "Iron Banner Realms",
+                      "tags":  [
+                                   "strategy",
+                                   "rts",
+                                   "conquest",
+                                   "city_state_war",
+                                   "supply_lines",
+                                   "medieval",
+                                   "menu_10_complete_flow"
+                               ],
+                      "core_loop":  "capture farms forts mines and cities along linked roads dispatch class-based troop waves cut enemy supply lines use tactical abilities and seize the rival capital across a chapter campaign",
+                      "created_at":  "2026-04-30",
+                      "ui_skin":  "skin_military_tech"
+                  },
+                  {
                       "id":  "scrap_ring_outpost",
                       "name":  "Scrap Ring Outpost",
                       "tags":  [

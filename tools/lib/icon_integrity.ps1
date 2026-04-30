@@ -34,6 +34,7 @@ function Get-IconIntegrityOverlapCount($LeftSet, $RightSet) {
 
 function Get-SupportedIconMotifs {
   return @(
+    "crownbridge",
     "scrapring",
     "mountainbunker",
     "commandcamp",
@@ -112,6 +113,10 @@ function Test-IconGenerationIntegrity {
   $visualSource = [string]$metadata.visual_identity_source
   $projectPathFromMetadata = [string]$metadata.project_path
   $primaryExport = [string]$metadata.primary_export
+  $generationMode = [string]$metadata.generation_mode
+  $reusePolicy = [string]$metadata.reuse_policy
+  $foregroundHash = [string]$metadata.foreground_sha256
+  $primaryExportHash = [string]$metadata.primary_export_sha256
 
   $supportedMotifs = Get-SupportedIconMotifs
   if ([string]::IsNullOrWhiteSpace($motif) -or ($supportedMotifs -notcontains $motif)) {
@@ -159,6 +164,26 @@ function Test-IconGenerationIntegrity {
     $result.Status = "failed"
     $result.Trust = "low"
     $result.Summary = "Icon integrity failed because metadata.json points at a different primary export"
+    return [pscustomobject]$result
+  }
+  if ($generationMode -ne "fresh_render" -or $reusePolicy -ne "no_reuse") {
+    $result.Status = "failed"
+    $result.Trust = "low"
+    $result.Summary = "Icon integrity failed because metadata does not declare fresh render and no-reuse policy"
+    return [pscustomobject]$result
+  }
+  if ([string]::IsNullOrWhiteSpace($foregroundHash) -or [string]::IsNullOrWhiteSpace($primaryExportHash)) {
+    $result.Status = "failed"
+    $result.Trust = "low"
+    $result.Summary = "Icon integrity failed because metadata is missing generated icon hashes"
+    return [pscustomobject]$result
+  }
+  $actualForegroundHash = (Get-FileHash -LiteralPath $foregroundPath -Algorithm SHA256).Hash.ToLowerInvariant()
+  $actualPrimaryExportHash = (Get-FileHash -LiteralPath $uploadPath -Algorithm SHA256).Hash.ToLowerInvariant()
+  if ($actualForegroundHash -ne $foregroundHash -or $actualPrimaryExportHash -ne $primaryExportHash) {
+    $result.Status = "failed"
+    $result.Trust = "low"
+    $result.Summary = "Icon integrity failed because metadata hashes do not match generated icon files"
     return [pscustomobject]$result
   }
 

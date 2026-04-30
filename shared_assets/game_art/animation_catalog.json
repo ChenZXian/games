@@ -107,6 +107,75 @@
         "Use impact sprites or effects for hit feedback.",
         "Use with a character animation pack when humanoid motion is required."
       ]
+    },
+    {
+      "pack_id": "kenney_top_down_tanks_remastered",
+      "animation_tier": "directional_static",
+      "camera_perspective": "top_down",
+      "default_facing": "up",
+      "recommended_roles": [
+        "vehicle",
+        "enemy",
+        "projectile",
+        "prop"
+      ],
+      "states": [
+        "idle",
+        "move",
+        "fire",
+        "hit"
+      ],
+      "integration_notes": [
+        "Rotate hulls or turrets toward travel or target vectors.",
+        "Use projectile sprites with runtime rotation for shell travel.",
+        "Pair with a humanoid pose-set pack when infantry leg animation is required."
+      ]
+    },
+    {
+      "pack_id": "kenney_1_bit_platformer_pack",
+      "animation_tier": "frame_animation",
+      "camera_perspective": "side_view",
+      "default_facing": "right",
+      "recommended_roles": [
+        "player",
+        "enemy",
+        "pickup"
+      ],
+      "states": [
+        "idle",
+        "walk",
+        "jump",
+        "hit"
+      ],
+      "integration_notes": [
+        "Use alternating monochrome locomotion frames for movement instead of bitmap sliding.",
+        "Flip horizontally on direction changes to preserve side-view readability.",
+        "Use this pack for minimal or retro platformer variants that want a strict one-bit look."
+      ]
+    },
+    {
+      "pack_id": "kenney_scribble_platformer",
+      "animation_tier": "frame_animation",
+      "camera_perspective": "side_view",
+      "default_facing": "right",
+      "recommended_roles": [
+        "player",
+        "enemy",
+        "pickup",
+        "effect"
+      ],
+      "states": [
+        "idle",
+        "walk",
+        "jump",
+        "hit",
+        "collect"
+      ],
+      "integration_notes": [
+        "Use the pack for playful hand-drawn side-view platformer variants.",
+        "Flip movement and action frames horizontally on direction changes.",
+        "Pair pickup and effect frames with short collect feedback to keep the scribble style consistent."
+      ]
     }
   ],
   "runtime_rules": [

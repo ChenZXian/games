@@ -1,0 +1,1048 @@
+{
+  "version": 1,
+  "packs": [
+    {
+      "pack_id": "kenney_1_bit_platformer_pack",
+      "title": "Kenney 1-Bit Platformer Pack",
+      "path": "packs/kenney_1_bit_platformer_pack",
+      "source_url": "https://kenney.nl/assets/1-bit-platformer-pack",
+      "map_roles": [
+        "background",
+        "terrain",
+        "tileset"
+      ],
+      "map_capabilities": [
+        "background_layers",
+        "grid_ready",
+        "individual_tiles",
+        "large_tile_variation",
+        "modular_tileset",
+        "packed_tilemap_sheet",
+        "side_view_layout",
+        "terrain_variants",
+        "tilemap_sheet"
+      ],
+      "camera_perspectives": [
+        "side_view"
+      ],
+      "tile_asset_metrics": {
+        "tile_png_count": 800,
+        "tilemap_sheet_count": 4,
+        "packed_sheet_count": 2,
+        "tiled_tmx_count": 0,
+        "tiled_tsx_count": 0,
+        "sample_map_count": 0,
+        "preview_map_count": 2
+      },
+      "map_builder_strength": "moderate",
+      "style_tags": [
+        "1bit",
+        "platformer",
+        "monochrome",
+        "pixel",
+        "minimal"
+      ],
+      "recommended_game_types": [
+        "platformer",
+        "runner",
+        "side",
+        "scroller",
+        "action",
+        "puzzle"
+      ]
+    },
+    {
+      "pack_id": "kenney_desert_shooter_pack",
+      "title": "Kenney Desert Shooter Pack",
+      "path": "packs/kenney_desert_shooter_pack",
+      "source_url": "https://kenney.nl/assets/desert-shooter-pack",
+      "map_roles": [
+        "prop",
+        "terrain",
+        "tileset"
+      ],
+      "map_capabilities": [
+        "grid_ready",
+        "individual_tiles",
+        "large_tile_variation",
+        "modular_tileset",
+        "packed_tilemap_sheet",
+        "prop_tiles",
+        "terrain_variants",
+        "tilemap_sheet",
+        "top_down_layout"
+      ],
+      "camera_perspectives": [
+        "top_down"
+      ],
+      "tile_asset_metrics": {
+        "tile_png_count": 506,
+        "tilemap_sheet_count": 10,
+        "packed_sheet_count": 5,
+        "tiled_tmx_count": 0,
+        "tiled_tsx_count": 0,
+        "sample_map_count": 0,
+        "preview_map_count": 3
+      },
+      "map_builder_strength": "strong",
+      "style_tags": [
+        "desert",
+        "top",
+        "down",
+        "shooter",
+        "modern",
+        "squad",
+        "vehicle"
+      ],
+      "recommended_game_types": [
+        "top",
+        "down",
+        "shooter",
+        "survival",
+        "action",
+        "desert"
+      ]
+    },
+    {
+      "pack_id": "kenney_fish_pack",
+      "title": "Kenney Fish Pack",
+      "path": "packs/kenney_fish_pack",
+      "source_url": "https://kenney.nl/assets/fish-pack",
+      "map_roles": [
+        "background"
+      ],
+      "map_capabilities": [
+        "background_layers"
+      ],
+      "camera_perspectives": [],
+      "tile_asset_metrics": {
+        "tile_png_count": 0,
+        "tilemap_sheet_count": 0,
+        "packed_sheet_count": 0,
+        "tiled_tmx_count": 0,
+        "tiled_tsx_count": 0,
+        "sample_map_count": 0,
+        "preview_map_count": 2
+      },
+      "map_builder_strength": "weak",
+      "style_tags": [
+        "fish",
+        "underwater",
+        "ocean",
+        "animal",
+        "cartoon",
+        "cute"
+      ],
+      "recommended_game_types": [
+        "fishing",
+        "underwater",
+        "collection",
+        "casual",
+        "animal"
+      ]
+    },
+    {
+      "pack_id": "kenney_isometric_miniature_farm",
+      "title": "Kenney Isometric Miniature Farm",
+      "path": "packs/kenney_isometric_miniature_farm",
+      "source_url": "https://kenney.nl/assets/isometric-miniature-farm",
+      "map_roles": [
+        "background",
+        "building",
+        "prop",
+        "terrain",
+        "tileset"
+      ],
+      "map_capabilities": [
+        "background_layers",
+        "isometric_layout"
+      ],
+      "camera_perspectives": [
+        "isometric"
+      ],
+      "tile_asset_metrics": {
+        "tile_png_count": 0,
+        "tilemap_sheet_count": 0,
+        "packed_sheet_count": 0,
+        "tiled_tmx_count": 0,
+        "tiled_tsx_count": 0,
+        "sample_map_count": 0,
+        "preview_map_count": 2
+      },
+      "map_builder_strength": "weak",
+      "style_tags": [
+        "isometric",
+        "farm",
+        "cartoon",
+        "crops",
+        "building",
+        "casual"
+      ],
+      "recommended_game_types": [
+        "farm",
+        "management",
+        "isometric",
+        "casual"
+      ]
+    },
+    {
+      "pack_id": "kenney_micro_roguelike",
+      "title": "Kenney Micro Roguelike",
+      "path": "packs/kenney_micro_roguelike",
+      "source_url": "https://kenney.nl/assets/micro-roguelike",
+      "map_roles": [
+        "background",
+        "terrain",
+        "tileset"
+      ],
+      "map_capabilities": [
+        "background_layers",
+        "grid_ready",
+        "individual_tiles",
+        "large_tile_variation",
+        "modular_tileset",
+        "packed_tilemap_sheet",
+        "terrain_variants",
+        "tilemap_sheet",
+        "top_down_layout"
+      ],
+      "camera_perspectives": [
+        "top_down"
+      ],
+      "tile_asset_metrics": {
+        "tile_png_count": 320,
+        "tilemap_sheet_count": 4,
+        "packed_sheet_count": 2,
+        "tiled_tmx_count": 0,
+        "tiled_tsx_count": 0,
+        "sample_map_count": 0,
+        "preview_map_count": 2
+      },
+      "map_builder_strength": "moderate",
+      "style_tags": [
+        "roguelike",
+        "fantasy",
+        "pixel",
+        "dungeon",
+        "retro"
+      ],
+      "recommended_game_types": [
+        "roguelike",
+        "rpg",
+        "dungeon",
+        "top",
+        "down",
+        "puzzle"
+      ]
+    },
+    {
+      "pack_id": "kenney_new_platformer_pack",
+      "title": "Kenney New Platformer Pack",
+      "path": "packs/kenney_new_platformer_pack",
+      "source_url": "https://kenney.nl/assets/new-platformer-pack",
+      "map_roles": [
+        "background",
+        "terrain",
+        "tileset"
+      ],
+      "map_capabilities": [
+        "background_layers",
+        "grid_ready",
+        "individual_tiles",
+        "large_tile_variation",
+        "modular_tileset",
+        "side_view_layout",
+        "terrain_variants"
+      ],
+      "camera_perspectives": [
+        "side_view"
+      ],
+      "tile_asset_metrics": {
+        "tile_png_count": 628,
+        "tilemap_sheet_count": 0,
+        "packed_sheet_count": 0,
+        "tiled_tmx_count": 0,
+        "tiled_tsx_count": 0,
+        "sample_map_count": 0,
+        "preview_map_count": 5
+      },
+      "map_builder_strength": "moderate",
+      "style_tags": [
+        "cartoon",
+        "platformer",
+        "forest",
+        "cave",
+        "character",
+        "terrain"
+      ],
+      "recommended_game_types": [
+        "platformer",
+        "runner",
+        "side",
+        "scroller",
+        "action",
+        "adventure"
+      ]
+    },
+    {
+      "pack_id": "kenney_pirate_pack",
+      "title": "Kenney Pirate Pack",
+      "path": "packs/kenney_pirate_pack",
+      "source_url": "https://kenney.nl/assets/pirate-pack",
+      "map_roles": [
+        "background",
+        "building",
+        "prop",
+        "terrain"
+      ],
+      "map_capabilities": [
+        "background_layers",
+        "building_tiles",
+        "grid_ready",
+        "individual_tiles",
+        "large_tile_variation",
+        "modular_tileset",
+        "prop_tiles",
+        "terrain_variants",
+        "top_down_layout"
+      ],
+      "camera_perspectives": [
+        "top_down"
+      ],
+      "tile_asset_metrics": {
+        "tile_png_count": 192,
+        "tilemap_sheet_count": 0,
+        "packed_sheet_count": 0,
+        "tiled_tmx_count": 0,
+        "tiled_tsx_count": 0,
+        "sample_map_count": 0,
+        "preview_map_count": 3
+      },
+      "map_builder_strength": "moderate",
+      "style_tags": [
+        "pirate",
+        "ship",
+        "sea",
+        "island",
+        "cartoon",
+        "adventure"
+      ],
+      "recommended_game_types": [
+        "pirate",
+        "naval",
+        "adventure",
+        "top",
+        "down",
+        "action"
+      ]
+    },
+    {
+      "pack_id": "kenney_platformer_art_deluxe",
+      "title": "Kenney Platformer Art Deluxe",
+      "path": "packs/kenney_platformer_art_deluxe",
+      "source_url": "https://kenney.nl/assets/platformer-art-deluxe",
+      "map_roles": [
+        "background",
+        "terrain",
+        "tileset"
+      ],
+      "map_capabilities": [
+        "background_layers",
+        "grid_ready",
+        "individual_tiles",
+        "large_tile_variation",
+        "modular_tileset",
+        "side_view_layout",
+        "terrain_variants"
+      ],
+      "camera_perspectives": [
+        "side_view"
+      ],
+      "tile_asset_metrics": {
+        "tile_png_count": 560,
+        "tilemap_sheet_count": 0,
+        "packed_sheet_count": 0,
+        "tiled_tmx_count": 0,
+        "tiled_tsx_count": 0,
+        "sample_map_count": 0,
+        "preview_map_count": 16
+      },
+      "map_builder_strength": "moderate",
+      "style_tags": [
+        "cartoon",
+        "platformer",
+        "tiles",
+        "terrain",
+        "background",
+        "adventure"
+      ],
+      "recommended_game_types": [
+        "platformer",
+        "runner",
+        "side",
+        "scroller",
+        "adventure"
+      ]
+    },
+    {
+      "pack_id": "kenney_platformer_characters",
+      "title": "Kenney Platformer Characters",
+      "path": "packs/kenney_platformer_characters",
+      "source_url": "https://kenney.nl/assets/platformer-characters",
+      "map_roles": [],
+      "map_capabilities": [
+        "side_view_layout"
+      ],
+      "camera_perspectives": [
+        "side_view"
+      ],
+      "tile_asset_metrics": {
+        "tile_png_count": 0,
+        "tilemap_sheet_count": 0,
+        "packed_sheet_count": 0,
+        "tiled_tmx_count": 0,
+        "tiled_tsx_count": 0,
+        "sample_map_count": 0,
+        "preview_map_count": 2
+      },
+      "map_builder_strength": "weak",
+      "style_tags": [
+        "cartoon",
+        "platformer",
+        "character",
+        "zombie",
+        "adventurer",
+        "casual"
+      ],
+      "recommended_game_types": [
+        "platformer",
+        "runner",
+        "side",
+        "scroller",
+        "action"
+      ]
+    },
+    {
+      "pack_id": "kenney_platformer_pack_medieval",
+      "title": "Kenney Platformer Pack Medieval",
+      "path": "packs/kenney_platformer_pack_medieval",
+      "source_url": "https://kenney.nl/assets/platformer-pack-medieval",
+      "map_roles": [
+        "background",
+        "building",
+        "prop",
+        "terrain",
+        "tileset"
+      ],
+      "map_capabilities": [
+        "background_layers",
+        "side_view_layout"
+      ],
+      "camera_perspectives": [
+        "side_view"
+      ],
+      "tile_asset_metrics": {
+        "tile_png_count": 0,
+        "tilemap_sheet_count": 0,
+        "packed_sheet_count": 0,
+        "tiled_tmx_count": 0,
+        "tiled_tsx_count": 0,
+        "sample_map_count": 0,
+        "preview_map_count": 3
+      },
+      "map_builder_strength": "weak",
+      "style_tags": [
+        "medieval",
+        "castle",
+        "platformer",
+        "cartoon",
+        "wood",
+        "stone"
+      ],
+      "recommended_game_types": [
+        "platformer",
+        "runner",
+        "side",
+        "scroller",
+        "medieval",
+        "adventure"
+      ]
+    },
+    {
+      "pack_id": "kenney_roguelike_modern_city",
+      "title": "Kenney Roguelike Modern City",
+      "path": "packs/kenney_roguelike_modern_city",
+      "source_url": "https://kenney.nl/assets/roguelike-modern-city",
+      "map_roles": [
+        "background",
+        "building",
+        "prop",
+        "terrain",
+        "tileset"
+      ],
+      "map_capabilities": [
+        "background_layers",
+        "building_tiles",
+        "grid_ready",
+        "individual_tiles",
+        "large_tile_variation",
+        "modular_tileset",
+        "packed_tilemap_sheet",
+        "prop_tiles",
+        "terrain_variants",
+        "tilemap_sheet",
+        "top_down_layout"
+      ],
+      "camera_perspectives": [
+        "top_down"
+      ],
+      "tile_asset_metrics": {
+        "tile_png_count": 1036,
+        "tilemap_sheet_count": 2,
+        "packed_sheet_count": 1,
+        "tiled_tmx_count": 0,
+        "tiled_tsx_count": 0,
+        "sample_map_count": 0,
+        "preview_map_count": 2
+      },
+      "map_builder_strength": "strong",
+      "style_tags": [
+        "roguelike",
+        "urban",
+        "city",
+        "pixel",
+        "retro"
+      ],
+      "recommended_game_types": [
+        "roguelike",
+        "rpg",
+        "urban",
+        "top",
+        "down",
+        "adventure",
+        "management"
+      ]
+    },
+    {
+      "pack_id": "kenney_roguelike_rpg_pack",
+      "title": "Kenney Roguelike RPG Pack",
+      "path": "packs/kenney_roguelike_rpg_pack",
+      "source_url": "https://kenney.nl/assets/roguelike-rpg-pack",
+      "map_roles": [
+        "building",
+        "prop",
+        "terrain",
+        "tileset"
+      ],
+      "map_capabilities": [
+        "grid_ready",
+        "sample_map_layout",
+        "tiled_tmx",
+        "top_down_layout"
+      ],
+      "camera_perspectives": [
+        "top_down"
+      ],
+      "tile_asset_metrics": {
+        "tile_png_count": 0,
+        "tilemap_sheet_count": 0,
+        "packed_sheet_count": 0,
+        "tiled_tmx_count": 2,
+        "tiled_tsx_count": 0,
+        "sample_map_count": 2,
+        "preview_map_count": 3
+      },
+      "map_builder_strength": "moderate",
+      "style_tags": [
+        "pixel",
+        "rpg",
+        "roguelike",
+        "town",
+        "dungeon",
+        "fantasy",
+        "top",
+        "down"
+      ],
+      "recommended_game_types": [
+        "rpg",
+        "roguelike",
+        "dungeon",
+        "top",
+        "down",
+        "adventure"
+      ]
+    },
+    {
+      "pack_id": "kenney_rpg_urban_pack",
+      "title": "Kenney RPG Urban Pack",
+      "path": "packs/kenney_rpg_urban_pack",
+      "source_url": "https://kenney.nl/assets/rpg-urban-pack",
+      "map_roles": [
+        "building",
+        "prop",
+        "terrain",
+        "tileset"
+      ],
+      "map_capabilities": [
+        "building_tiles",
+        "grid_ready",
+        "individual_tiles",
+        "large_tile_variation",
+        "modular_tileset",
+        "packed_tilemap_sheet",
+        "prop_tiles",
+        "terrain_variants",
+        "tilemap_sheet",
+        "top_down_layout"
+      ],
+      "camera_perspectives": [
+        "top_down"
+      ],
+      "tile_asset_metrics": {
+        "tile_png_count": 486,
+        "tilemap_sheet_count": 2,
+        "packed_sheet_count": 1,
+        "tiled_tmx_count": 0,
+        "tiled_tsx_count": 0,
+        "sample_map_count": 0,
+        "preview_map_count": 2
+      },
+      "map_builder_strength": "strong",
+      "style_tags": [
+        "rpg",
+        "urban",
+        "city",
+        "pixel",
+        "character"
+      ],
+      "recommended_game_types": [
+        "rpg",
+        "urban",
+        "top",
+        "down",
+        "adventure",
+        "management"
+      ]
+    },
+    {
+      "pack_id": "kenney_scribble_platformer",
+      "title": "Kenney Scribble Platformer",
+      "path": "packs/kenney_scribble_platformer",
+      "source_url": "https://kenney.nl/assets/scribble-platformer",
+      "map_roles": [
+        "background",
+        "terrain",
+        "tileset"
+      ],
+      "map_capabilities": [
+        "background_layers",
+        "side_view_layout"
+      ],
+      "camera_perspectives": [
+        "side_view"
+      ],
+      "tile_asset_metrics": {
+        "tile_png_count": 0,
+        "tilemap_sheet_count": 0,
+        "packed_sheet_count": 0,
+        "tiled_tmx_count": 0,
+        "tiled_tsx_count": 0,
+        "sample_map_count": 0,
+        "preview_map_count": 2
+      },
+      "map_builder_strength": "weak",
+      "style_tags": [
+        "scribble",
+        "handdrawn",
+        "platformer",
+        "cartoon",
+        "playful"
+      ],
+      "recommended_game_types": [
+        "platformer",
+        "runner",
+        "side",
+        "scroller",
+        "action",
+        "adventure"
+      ]
+    },
+    {
+      "pack_id": "kenney_simple_space",
+      "title": "Kenney Simple Space",
+      "path": "packs/kenney_simple_space",
+      "source_url": "https://kenney.nl/assets/simple-space",
+      "map_roles": [
+        "background",
+        "prop"
+      ],
+      "map_capabilities": [
+        "background_layers",
+        "top_down_layout"
+      ],
+      "camera_perspectives": [
+        "top_down"
+      ],
+      "tile_asset_metrics": {
+        "tile_png_count": 0,
+        "tilemap_sheet_count": 0,
+        "packed_sheet_count": 0,
+        "tiled_tmx_count": 0,
+        "tiled_tsx_count": 0,
+        "sample_map_count": 0,
+        "preview_map_count": 2
+      },
+      "map_builder_strength": "weak",
+      "style_tags": [
+        "space",
+        "cartoon",
+        "planet",
+        "ship",
+        "arcade",
+        "sci",
+        "fi"
+      ],
+      "recommended_game_types": [
+        "space",
+        "shooter",
+        "exploration",
+        "arcade"
+      ]
+    },
+    {
+      "pack_id": "kenney_space_shooter_extension",
+      "title": "Kenney Space Shooter Extension",
+      "path": "packs/kenney_space_shooter_extension",
+      "source_url": "https://kenney.nl/assets/space-shooter-extension",
+      "map_roles": [
+        "background"
+      ],
+      "map_capabilities": [
+        "background_layers",
+        "top_down_layout"
+      ],
+      "camera_perspectives": [
+        "top_down"
+      ],
+      "tile_asset_metrics": {
+        "tile_png_count": 0,
+        "tilemap_sheet_count": 0,
+        "packed_sheet_count": 0,
+        "tiled_tmx_count": 0,
+        "tiled_tsx_count": 0,
+        "sample_map_count": 0,
+        "preview_map_count": 3
+      },
+      "map_builder_strength": "weak",
+      "style_tags": [
+        "space",
+        "shooter",
+        "ship",
+        "laser",
+        "arcade",
+        "sci",
+        "fi"
+      ],
+      "recommended_game_types": [
+        "space",
+        "shooter",
+        "shmup",
+        "arcade"
+      ]
+    },
+    {
+      "pack_id": "kenney_tiny_dungeon",
+      "title": "Kenney Tiny Dungeon",
+      "path": "packs/kenney_tiny_dungeon",
+      "source_url": "https://kenney.nl/assets/tiny-dungeon",
+      "map_roles": [
+        "background",
+        "prop",
+        "terrain",
+        "tileset"
+      ],
+      "map_capabilities": [
+        "background_layers",
+        "grid_ready",
+        "individual_tiles",
+        "large_tile_variation",
+        "modular_tileset",
+        "packed_tilemap_sheet",
+        "prop_tiles",
+        "sample_map_layout",
+        "terrain_variants",
+        "tiled_tmx",
+        "tiled_tsx",
+        "tilemap_sheet",
+        "top_down_layout"
+      ],
+      "camera_perspectives": [
+        "top_down"
+      ],
+      "tile_asset_metrics": {
+        "tile_png_count": 132,
+        "tilemap_sheet_count": 2,
+        "packed_sheet_count": 1,
+        "tiled_tmx_count": 1,
+        "tiled_tsx_count": 1,
+        "sample_map_count": 1,
+        "preview_map_count": 2
+      },
+      "map_builder_strength": "strong",
+      "style_tags": [
+        "dungeon",
+        "fantasy",
+        "tiny",
+        "pixel",
+        "retro"
+      ],
+      "recommended_game_types": [
+        "dungeon",
+        "roguelike",
+        "rpg",
+        "top",
+        "down",
+        "adventure"
+      ]
+    },
+    {
+      "pack_id": "kenney_tiny_ski",
+      "title": "Kenney Tiny Ski",
+      "path": "packs/kenney_tiny_ski",
+      "source_url": "https://kenney.nl/assets/tiny-ski",
+      "map_roles": [
+        "background",
+        "prop",
+        "terrain"
+      ],
+      "map_capabilities": [
+        "background_layers",
+        "grid_ready",
+        "individual_tiles",
+        "large_tile_variation",
+        "modular_tileset",
+        "packed_tilemap_sheet",
+        "prop_tiles",
+        "sample_map_layout",
+        "terrain_variants",
+        "tiled_tmx",
+        "tiled_tsx",
+        "tilemap_sheet"
+      ],
+      "camera_perspectives": [],
+      "tile_asset_metrics": {
+        "tile_png_count": 132,
+        "tilemap_sheet_count": 2,
+        "packed_sheet_count": 1,
+        "tiled_tmx_count": 1,
+        "tiled_tsx_count": 1,
+        "sample_map_count": 1,
+        "preview_map_count": 2
+      },
+      "map_builder_strength": "strong",
+      "style_tags": [
+        "snow",
+        "winter",
+        "ski",
+        "tiny",
+        "pixel",
+        "casual"
+      ],
+      "recommended_game_types": [
+        "ski",
+        "snow",
+        "casual",
+        "sports",
+        "arcade"
+      ]
+    },
+    {
+      "pack_id": "kenney_tiny_town",
+      "title": "Kenney Tiny Town",
+      "path": "packs/kenney_tiny_town",
+      "source_url": "https://kenney.nl/assets/tiny-town",
+      "map_roles": [
+        "building",
+        "map",
+        "prop",
+        "terrain",
+        "tileset"
+      ],
+      "map_capabilities": [
+        "building_tiles",
+        "grid_ready",
+        "individual_tiles",
+        "large_tile_variation",
+        "modular_tileset",
+        "packed_tilemap_sheet",
+        "prop_tiles",
+        "terrain_variants",
+        "tilemap_sheet",
+        "top_down_layout"
+      ],
+      "camera_perspectives": [
+        "top_down"
+      ],
+      "tile_asset_metrics": {
+        "tile_png_count": 132,
+        "tilemap_sheet_count": 2,
+        "packed_sheet_count": 1,
+        "tiled_tmx_count": 0,
+        "tiled_tsx_count": 0,
+        "sample_map_count": 0,
+        "preview_map_count": 2
+      },
+      "map_builder_strength": "strong",
+      "style_tags": [
+        "pixel",
+        "town",
+        "overworld",
+        "map",
+        "building",
+        "casual"
+      ],
+      "recommended_game_types": [
+        "town",
+        "management",
+        "world",
+        "map",
+        "top",
+        "down",
+        "casual"
+      ]
+    },
+    {
+      "pack_id": "kenney_top_down_shooter",
+      "title": "Kenney Top-down Shooter",
+      "path": "packs/kenney_top_down_shooter",
+      "source_url": "https://kenney.nl/assets/top-down-shooter",
+      "map_roles": [
+        "prop",
+        "tileset"
+      ],
+      "map_capabilities": [
+        "grid_ready",
+        "individual_tiles",
+        "large_tile_variation",
+        "modular_tileset",
+        "prop_tiles",
+        "top_down_layout"
+      ],
+      "camera_perspectives": [
+        "top_down"
+      ],
+      "tile_asset_metrics": {
+        "tile_png_count": 524,
+        "tilemap_sheet_count": 0,
+        "packed_sheet_count": 0,
+        "tiled_tmx_count": 0,
+        "tiled_tsx_count": 0,
+        "sample_map_count": 0,
+        "preview_map_count": 2
+      },
+      "map_builder_strength": "moderate",
+      "style_tags": [
+        "top",
+        "down",
+        "shooter",
+        "zombie",
+        "modern",
+        "action"
+      ],
+      "recommended_game_types": [
+        "top",
+        "down",
+        "shooter",
+        "survival",
+        "arena",
+        "zombie"
+      ]
+    },
+    {
+      "pack_id": "kenney_top_down_tanks_remastered",
+      "title": "Kenney Top-down Tanks Remastered",
+      "path": "packs/kenney_top_down_tanks_remastered",
+      "source_url": "https://kenney.nl/assets/top-down-tanks-remastered",
+      "map_roles": [
+        "prop",
+        "terrain"
+      ],
+      "map_capabilities": [
+        "top_down_layout"
+      ],
+      "camera_perspectives": [
+        "top_down"
+      ],
+      "tile_asset_metrics": {
+        "tile_png_count": 0,
+        "tilemap_sheet_count": 0,
+        "packed_sheet_count": 0,
+        "tiled_tmx_count": 0,
+        "tiled_tsx_count": 0,
+        "sample_map_count": 0,
+        "preview_map_count": 2
+      },
+      "map_builder_strength": "weak",
+      "style_tags": [
+        "tank",
+        "top",
+        "down",
+        "combat",
+        "vehicle",
+        "arena"
+      ],
+      "recommended_game_types": [
+        "top",
+        "down",
+        "tank",
+        "shooter",
+        "arena",
+        "action"
+      ]
+    },
+    {
+      "pack_id": "kenney_tower_defense_top_down",
+      "title": "Kenney Tower Defense Top-Down",
+      "path": "packs/kenney_tower_defense_top_down",
+      "source_url": "https://kenney.nl/assets/tower-defense-top-down",
+      "map_roles": [
+        "building",
+        "terrain",
+        "tileset"
+      ],
+      "map_capabilities": [
+        "top_down_layout"
+      ],
+      "camera_perspectives": [
+        "top_down"
+      ],
+      "tile_asset_metrics": {
+        "tile_png_count": 0,
+        "tilemap_sheet_count": 0,
+        "packed_sheet_count": 0,
+        "tiled_tmx_count": 0,
+        "tiled_tsx_count": 0,
+        "sample_map_count": 0,
+        "preview_map_count": 3
+      },
+      "map_builder_strength": "weak",
+      "style_tags": [
+        "top",
+        "down",
+        "tower",
+        "defense",
+        "strategy",
+        "cartoon",
+        "terrain"
+      ],
+      "recommended_game_types": [
+        "tower",
+        "defense",
+        "strategy",
+        "lane",
+        "top",
+        "down"
+      ]
+    }
+  ]
+}

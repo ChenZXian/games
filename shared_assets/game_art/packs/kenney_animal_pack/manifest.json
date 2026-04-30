@@ -42,5 +42,18 @@
   "preview_files": [
     "Preview.png"
   ],
-  "asset_file_count": 106
+  "asset_file_count": 106,
+  "map_roles": [],
+  "map_capabilities": [],
+  "camera_perspectives": [],
+  "tile_asset_metrics": {
+    "tile_png_count": 0,
+    "tilemap_sheet_count": 0,
+    "packed_sheet_count": 0,
+    "tiled_tmx_count": 0,
+    "tiled_tsx_count": 0,
+    "sample_map_count": 0,
+    "preview_map_count": 1
+  },
+  "map_builder_strength": "weak"
 }

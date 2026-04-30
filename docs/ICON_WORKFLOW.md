@@ -5,6 +5,12 @@ Last updated: 2026-04-30
 
 This document defines the current repository icon workflow for Android Java mini-games in this monorepo.
 
+Hard rule added on 2026-04-30:
+
+- every icon refresh must be a fresh generation run
+- reusing another project's motif, subject skeleton, silhouette template, exported PNG, or metadata-only pass is forbidden
+- delivery-ready output requires `icon_duplicate_risk=low`
+
 ## 1. Purpose
 
 The icon workflow exists to:
@@ -101,8 +107,16 @@ Minimum duplicate-risk checks:
 
 - compare the candidate icon subject against existing `artifacts/icons/*/metadata.json`
 - compare motif and silhouette against existing icon metadata
-- treat identical subject or same-motif-plus-same-subject overlap as high risk
-- block export on high duplicate risk instead of silently writing a repeated icon
+- treat identical subject, reused motif, or reused export hash as blocked reuse
+- block export on any non-low duplicate risk instead of silently writing a repeated icon
+
+Fresh-generation requirements:
+
+- the workflow must regenerate the project icon bitmaps and upload exports in the same run
+- metadata must declare `generation_mode=fresh_render`
+- metadata must declare `reuse_policy=no_reuse`
+- metadata must record content hashes for the generated foreground and primary export
+- inspection should fail if hashes, timestamps, or policy markers indicate reuse or metadata-only edits
 
 Low-intelligence, auto, or speed-priority runs may reduce candidate count, but they must not skip icon duplicate review.
 

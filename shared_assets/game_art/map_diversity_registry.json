@@ -1,0 +1,145 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "game_id": "map_serial_1",
+      "pack_ids": [
+        "kenney_roguelike_modern_city"
+      ],
+      "camera_perspectives": [
+        "top_down"
+      ],
+      "style_tags": [
+        "city",
+        "pixel",
+        "retro",
+        "roguelike",
+        "urban"
+      ],
+      "map_roles": [
+        "background",
+        "building",
+        "prop",
+        "terrain",
+        "tileset"
+      ],
+      "map_capabilities": [
+        "background_layers",
+        "building_tiles",
+        "grid_ready",
+        "individual_tiles",
+        "large_tile_variation",
+        "modular_tileset",
+        "packed_tilemap_sheet",
+        "prop_tiles",
+        "terrain_variants",
+        "tilemap_sheet",
+        "top_down_layout"
+      ],
+      "map_builder_strengths": [
+        "strong"
+      ],
+      "theme": "dungeon tiles modular map",
+      "game_type": "top down roguelike",
+      "art_roles": "tileset,terrain,building,prop,background",
+      "signature_tokens": [
+        "dungeon",
+        "tiles",
+        "modular",
+        "map",
+        "top",
+        "down",
+        "roguelike",
+        "tileset",
+        "terrain",
+        "building",
+        "prop",
+        "background",
+        "urban",
+        "city",
+        "pixel",
+        "retro",
+        "rpg",
+        "adventure",
+        "management"
+      ]
+    },
+    {
+      "game_id": "map_serial_2",
+      "pack_ids": [
+        "kenney_tiny_dungeon",
+        "kenney_tiny_town"
+      ],
+      "camera_perspectives": [
+        "top_down"
+      ],
+      "style_tags": [
+        "building",
+        "casual",
+        "dungeon",
+        "fantasy",
+        "map",
+        "overworld",
+        "pixel",
+        "retro",
+        "tiny",
+        "town"
+      ],
+      "map_roles": [
+        "background",
+        "building",
+        "map",
+        "prop",
+        "terrain",
+        "tileset"
+      ],
+      "map_capabilities": [
+        "background_layers",
+        "building_tiles",
+        "grid_ready",
+        "individual_tiles",
+        "large_tile_variation",
+        "modular_tileset",
+        "packed_tilemap_sheet",
+        "prop_tiles",
+        "sample_map_layout",
+        "terrain_variants",
+        "tiled_tmx",
+        "tiled_tsx",
+        "tilemap_sheet",
+        "top_down_layout"
+      ],
+      "map_builder_strengths": [
+        "strong"
+      ],
+      "theme": "dungeon tiles modular map",
+      "game_type": "top down roguelike",
+      "art_roles": "tileset,terrain,building,prop,background",
+      "signature_tokens": [
+        "dungeon",
+        "tiles",
+        "modular",
+        "map",
+        "top",
+        "down",
+        "roguelike",
+        "tileset",
+        "terrain",
+        "building",
+        "prop",
+        "background",
+        "fantasy",
+        "tiny",
+        "pixel",
+        "retro",
+        "town",
+        "overworld",
+        "casual",
+        "rpg",
+        "adventure",
+        "management",
+        "world"
+      ]
+    }
+  ]
+}

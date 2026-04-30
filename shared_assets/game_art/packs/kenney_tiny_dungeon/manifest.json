@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "pack_id": "kenney_tiny_dungeon",
+  "title": "Kenney Tiny Dungeon",
+  "license": "CC0-1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "source_url": "https://kenney.nl/assets/tiny-dungeon",
+  "download_url": "",
+  "download_page_url": "",
+  "asset_types": [
+    "png",
+    "tmx",
+    "tsx",
+    "txt"
+  ],
+  "art_roles": [
+    "tileset",
+    "terrain",
+    "character",
+    "enemy",
+    "prop",
+    "item",
+    "background"
+  ],
+  "recommended_game_types": [
+    "dungeon",
+    "roguelike",
+    "rpg",
+    "top",
+    "down",
+    "adventure"
+  ],
+  "style_tags": [
+    "dungeon",
+    "fantasy",
+    "tiny",
+    "pixel",
+    "retro"
+  ],
+  "quality_tags": [
+    "production",
+    "free",
+    "open",
+    "cc0"
+  ],
+  "assets_path": "assets",
+  "preview_files": [
+    "Preview.png",
+    "Sample.png"
+  ],
+  "asset_file_count": 140,
+  "map_roles": [
+    "background",
+    "prop",
+    "terrain",
+    "tileset"
+  ],
+  "map_capabilities": [
+    "background_layers",
+    "grid_ready",
+    "individual_tiles",
+    "large_tile_variation",
+    "modular_tileset",
+    "packed_tilemap_sheet",
+    "prop_tiles",
+    "sample_map_layout",
+    "terrain_variants",
+    "tiled_tmx",
+    "tiled_tsx",
+    "tilemap_sheet",
+    "top_down_layout"
+  ],
+  "camera_perspectives": [
+    "top_down"
+  ],
+  "tile_asset_metrics": {
+    "tile_png_count": 132,
+    "tilemap_sheet_count": 2,
+    "packed_sheet_count": 1,
+    "tiled_tmx_count": 1,
+    "tiled_tsx_count": 1,
+    "sample_map_count": 1,
+    "preview_map_count": 2
+  },
+  "map_builder_strength": "strong"
+}

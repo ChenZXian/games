@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "game_id": "iron_banner_realms",
+  "status": "passed",
+  "reviewed_at_utc": "2026-04-30T06:37:00Z",
+  "requirements_source": "artifacts/requirements/iron_banner_realms/requirements.md",
+  "implemented_requirements": [
+    "linked node conquest campaign with chapter progression",
+    "supply-line connectivity and cut-off penalties",
+    "farms mines barracks forts watchtowers and capitals with distinct roles",
+    "four troop classes with class-based speed and combat multipliers",
+    "rally shield wall scout flare and bridge repair abilities",
+    "realm upgrades for logistics war council and iron discipline",
+    "menu chapter selection upgrades help pause and result overlays",
+    "structurally reserved top left right and bottom UI safe areas around the playfield",
+    "tracked icon UI gameplay art and audio assignments"
+  ],
+  "animation_and_facing_evidence": [
+    "GameView draws shared site art from assigned game_art assets for capitals cities farms mines barracks forts and watchtowers",
+    "marching packets lerp between nodes and use distinct runtime banner silhouettes for levy spear archer and cavalry traffic",
+    "bridge pulse shield status cut-off warnings and capture feedback communicate route and battle state changes during play"
+  ],
+  "known_limits": [
+    "the first delivery scope ships with 10 chapters rather than the broader campaign target described in the planning trace",
+    "moving armies use runtime animated heraldic banner tokens instead of imported humanoid directional sprite sheets"
+  ],
+  "delivery_note": "The first implementation preserves the confirmed conquest, supply, bridge-control, doctrine, upgrade, and tactical ability loop required for APK export."
+}

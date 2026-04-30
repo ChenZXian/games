@@ -514,21 +514,16 @@ if ($iconStatus -eq "complete") {
       $iconDuplicateRisk = "low"
     }
 
-    if ($iconDuplicateRisk -eq "high") {
+    if ($iconDuplicateRisk -eq "high" -or $iconDuplicateRisk -eq "medium") {
       $iconUniquenessStatus = "duplicate_risk"
-      Write-Warn "Icon uniqueness: duplicate_risk (high overlap with existing icon metadata)"
+      Write-Warn "Icon uniqueness: duplicate_risk (non-low overlap with existing icon metadata)"
       $warnCount++
     } else {
       $iconUniquenessStatus = "passed"
       Write-Ok "Icon uniqueness: passed ($iconMotif)"
       $passCount++
-      if ($iconDuplicateRisk -eq "medium") {
-        Write-Warn "Icon duplicate risk: medium"
-        $warnCount++
-      } else {
-        Write-Ok "Icon duplicate risk: low"
-        $passCount++
-      }
+      Write-Ok "Icon duplicate risk: low"
+      $passCount++
     }
   }
 }

@@ -10,6 +10,7 @@ from urllib.request import Request, urlopen
 import requests
 
 from game_art_utils import clear_dir, load_index, merge_pack_entry, save_json, tokenize_text
+from map_catalog_utils import infer_map_metadata_from_assets
 
 
 ALLOWED_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp", ".svg", ".json", ".txt", ".xml", ".tsx", ".tmx"}
@@ -181,6 +182,7 @@ def main() -> int:
             "preview_files": preview_files,
             "asset_file_count": assets_count,
         }
+        manifest.update(infer_map_metadata_from_assets(assets_dir, manifest))
         save_json(pack_dir / "manifest.json", manifest)
 
         index_path = library_root / "index.json"
@@ -198,6 +200,11 @@ def main() -> int:
             "recommended_game_types": manifest["recommended_game_types"],
             "style_tags": manifest["style_tags"],
             "quality_tags": manifest["quality_tags"],
+            "map_roles": manifest.get("map_roles", []),
+            "map_capabilities": manifest.get("map_capabilities", []),
+            "camera_perspectives": manifest.get("camera_perspectives", []),
+            "tile_asset_metrics": manifest.get("tile_asset_metrics", {}),
+            "map_builder_strength": manifest.get("map_builder_strength", "weak"),
             "path": f"packs/{pack_id}",
             "used_by": [],
             "validated_with": [],

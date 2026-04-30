@@ -2530,7 +2530,8 @@
       "loop": true,
       "duration_sec": 24.0,
       "used_by": [
-        "crown_frontier_tactics"
+        "crown_frontier_tactics",
+        "iron_banner_realms"
       ],
       "source": "synth_audio",
       "retrieved_at": "2026-04-28",
@@ -2573,7 +2574,8 @@
       "loop": false,
       "duration_sec": 0.1,
       "used_by": [
-        "crown_frontier_tactics"
+        "crown_frontier_tactics",
+        "iron_banner_realms"
       ],
       "source": "synth_audio",
       "retrieved_at": "2026-04-28",
@@ -2616,7 +2618,8 @@
       "loop": false,
       "duration_sec": 0.18,
       "used_by": [
-        "crown_frontier_tactics"
+        "crown_frontier_tactics",
+        "iron_banner_realms"
       ],
       "source": "synth_audio",
       "retrieved_at": "2026-04-28",
@@ -2660,7 +2663,8 @@
       "duration_sec": 0.14,
       "used_by": [
         "crown_frontier_tactics",
-        "mountain_pass_guard"
+        "mountain_pass_guard",
+        "iron_banner_realms"
       ],
       "source": "synth_audio",
       "retrieved_at": "2026-04-28",
@@ -2703,7 +2707,8 @@
       "loop": false,
       "duration_sec": 0.18,
       "used_by": [
-        "crown_frontier_tactics"
+        "crown_frontier_tactics",
+        "iron_banner_realms"
       ],
       "source": "synth_audio",
       "retrieved_at": "2026-04-28",
@@ -2790,7 +2795,8 @@
       "loop": false,
       "duration_sec": 0.42,
       "used_by": [
-        "crown_frontier_tactics"
+        "crown_frontier_tactics",
+        "iron_banner_realms"
       ],
       "source": "synth_audio",
       "retrieved_at": "2026-04-28",
@@ -2833,7 +2839,8 @@
       "loop": false,
       "duration_sec": 0.4,
       "used_by": [
-        "crown_frontier_tactics"
+        "crown_frontier_tactics",
+        "iron_banner_realms"
       ],
       "source": "synth_audio",
       "retrieved_at": "2026-04-28",
@@ -3028,7 +3035,8 @@
       "loop": false,
       "duration_sec": 0.18,
       "used_by": [
-        "castaway_clan"
+        "castaway_clan",
+        "iron_banner_realms"
       ],
       "source": "synth_audio",
       "retrieved_at": "2026-04-29",
@@ -3200,7 +3208,8 @@
       "duration_sec": 16.0,
       "used_by": [
         "bronze_camp_command",
-        "mountain_pass_guard"
+        "mountain_pass_guard",
+        "iron_banner_realms"
       ],
       "source": "synth_audio",
       "retrieved_at": "2026-04-29",

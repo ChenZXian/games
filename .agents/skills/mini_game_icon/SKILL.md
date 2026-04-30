@@ -16,6 +16,8 @@ Hard rules:
 - Prefer a cartoon style with clear association to the specific game
 - Follow `artifacts/requirements/<game_id>/visual_identity.json` when it exists
 - Do not reuse another game's icon subject, silhouette, source object, background badge, or exported upload icon for delivery-ready output
+- Every icon update must be a fresh generation run; metadata-only edits or copied prior exports are forbidden
+- Treat reused motif or any non-low duplicate risk as blocked; regenerate until duplicate risk is low
 - Do not skip duplicate-risk review in low-intelligence, auto, or speed-priority runs
 - Do not use metadata-only edits to force a pass on motif, uniqueness, or contract alignment checks
 - If subject, silhouette, motif, or duplicate review changes, regenerate project icon resources and exported upload files in the same run

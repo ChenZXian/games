@@ -1,0 +1,148 @@
+{
+  "version": 1,
+  "game_id": "iron_banner_realms",
+  "status": "integrated",
+  "camera_perspective": "top_down_route_conquest_board",
+  "default_coordinate_space": "normalized_board_rect",
+  "theme": "medieval city-state conquest roads rivers bridges forts farms mines watchtowers cavalry archers campaign map",
+  "game_type": "top_down_strategy",
+  "runtime_code": "app/src/main/java/com/android/boot/ui/GameView.java",
+  "animation_quality_target": "shared_tile_art_plus_runtime_animated_war_banners",
+  "minimum_primary_entity_states": [
+    "idle",
+    "move",
+    "attack",
+    "hit",
+    "capture"
+  ],
+  "entities": [
+    {
+      "entity_key": "province_sites",
+      "role": "terrain",
+      "asset_keys": [
+        "game_art/kenney_tiny_town/assets/Tiles/tile_0121.png",
+        "game_art/kenney_tiny_town/assets/Tiles/tile_0120.png",
+        "game_art/kenney_tiny_town/assets/Tiles/tile_0117.png",
+        "game_art/kenney_tiny_town/assets/Tiles/tile_0096.png",
+        "game_art/kenney_tiny_town/assets/Tiles/tile_0072.png",
+        "game_art/kenney_tiny_town/assets/Tiles/tile_0038.png",
+        "game_art/kenney_tiny_town/assets/Tiles/tile_0108.png"
+      ],
+      "default_facing": "north",
+      "facing_rule": "static shared building art loaded through AssetManager and BitmapFactory while ownership rings and warning labels communicate state changes",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "hitbox": {
+        "x": 0.08,
+        "y": 0.08,
+        "w": 0.84,
+        "h": 0.84
+      },
+      "render_size": {
+        "w": "nodeRadius * 2.1",
+        "h": "nodeRadius * 2.1",
+        "unit": "screen_pixels"
+      },
+      "z_order": "ground_then_site",
+      "states": [
+        "idle",
+        "allied_owned",
+        "enemy_owned",
+        "neutral",
+        "cut_off",
+        "shielded"
+      ],
+      "animation_rule": "GameView draws tile art per node type and overlays owner glow, selection stroke, and doctrine state text instead of leaving plain circles",
+      "movement_rule": "static map structures define capture endpoints and supply connectivity"
+    },
+    {
+      "entity_key": "marching_banners",
+      "role": "character",
+      "asset_keys": [
+        "runtime_banner_levy",
+        "runtime_banner_spear",
+        "runtime_banner_archer",
+        "runtime_banner_cavalry"
+      ],
+      "default_facing": "east",
+      "facing_rule": "GameView lerps packet position between route nodes and draws unit-type banner silhouettes oriented along the current route vector",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.58
+      },
+      "hitbox": {
+        "x": 0.2,
+        "y": 0.16,
+        "w": 0.6,
+        "h": 0.68
+      },
+      "render_size": {
+        "w": "16dp",
+        "h": "16dp",
+        "unit": "screen_pixels"
+      },
+      "z_order": "route_packet_above_sites",
+      "states": [
+        "move",
+        "attack",
+        "capture",
+        "rally_buff"
+      ],
+      "animation_rule": "packet banners travel smoothly, use distinct spear bow cavalry and levy marks, and trigger arrival combat or capture feedback on contact",
+      "movement_rule": "troop packets inherit route speed from unit type, supply state, rally state, and logistics upgrades"
+    },
+    {
+      "entity_key": "route_and_bridge_network",
+      "role": "prop",
+      "asset_keys": [
+        "runtime_road_line",
+        "runtime_bridge_line",
+        "runtime_bridge_glow"
+      ],
+      "default_facing": "east",
+      "facing_rule": "roads follow linked node pairs and bridge segments gain separate pulse and broken-state rendering",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "hitbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "w": 1.0,
+        "h": 1.0
+      },
+      "render_size": {
+        "w": "dynamic_line_length",
+        "h": "9dp_max",
+        "unit": "screen_pixels"
+      },
+      "z_order": "ground_before_packets",
+      "states": [
+        "road",
+        "bridge",
+        "broken",
+        "repaired",
+        "pulsing"
+      ],
+      "animation_rule": "bridges thicken and glow during repair windows while broken routes switch to danger color and block packet travel",
+      "movement_rule": "route props are static connectors that govern packet traversal and supply reachability"
+    }
+  ],
+  "required_runtime_checks": [
+    "GameView loads shared tile assets through AssetManager and BitmapFactory from game_art paths",
+    "node sites render type-specific art instead of a single generic marker",
+    "marching packets move by lerp across routes instead of snapping between nodes",
+    "packet marks distinguish levy spear archer and cavalry traffic",
+    "route ownership pressure is communicated with capture hit and shield feedback",
+    "runtime art map reflects the actual route and node rendering used by GameView"
+  ],
+  "suggested_roles": [
+    "terrain",
+    "building",
+    "prop",
+    "character",
+    "effect"
+  ]
+}

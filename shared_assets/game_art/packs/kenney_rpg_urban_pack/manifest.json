@@ -1,0 +1,81 @@
+{
+  "version": 1,
+  "pack_id": "kenney_rpg_urban_pack",
+  "title": "Kenney RPG Urban Pack",
+  "license": "CC0-1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "source_url": "https://kenney.nl/assets/rpg-urban-pack",
+  "download_url": "",
+  "download_page_url": "",
+  "asset_types": [
+    "png",
+    "txt"
+  ],
+  "art_roles": [
+    "tileset",
+    "terrain",
+    "character",
+    "enemy",
+    "building",
+    "prop",
+    "item"
+  ],
+  "recommended_game_types": [
+    "rpg",
+    "urban",
+    "top",
+    "down",
+    "adventure",
+    "management"
+  ],
+  "style_tags": [
+    "rpg",
+    "urban",
+    "city",
+    "pixel",
+    "character"
+  ],
+  "quality_tags": [
+    "production",
+    "free",
+    "open",
+    "cc0"
+  ],
+  "assets_path": "assets",
+  "preview_files": [
+    "Preview.png",
+    "Sample.png"
+  ],
+  "asset_file_count": 492,
+  "map_roles": [
+    "building",
+    "prop",
+    "terrain",
+    "tileset"
+  ],
+  "map_capabilities": [
+    "building_tiles",
+    "grid_ready",
+    "individual_tiles",
+    "large_tile_variation",
+    "modular_tileset",
+    "packed_tilemap_sheet",
+    "prop_tiles",
+    "terrain_variants",
+    "tilemap_sheet",
+    "top_down_layout"
+  ],
+  "camera_perspectives": [
+    "top_down"
+  ],
+  "tile_asset_metrics": {
+    "tile_png_count": 486,
+    "tilemap_sheet_count": 2,
+    "packed_sheet_count": 1,
+    "tiled_tmx_count": 0,
+    "tiled_tsx_count": 0,
+    "sample_map_count": 0,
+    "preview_map_count": 2
+  },
+  "map_builder_strength": "strong"
+}

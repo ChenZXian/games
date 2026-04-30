@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "game_id": "iron_banner_realms",
+  "status": "passed",
+  "visual_differentiation_axes": [
+    "regal war-table dashboard instead of top-pill plus bottom-strip HUD",
+    "royal blue and gold medieval map palette instead of neon or wasteland tones",
+    "left doctrine card and right alert rail framing the battlefield without overlap",
+    "heraldic brass and parchment material language",
+    "crowned gatehouse over a split river-crossing campaign board instead of pennant-led crest icons"
+  ],
+  "forbidden_visual_reuse": [
+    "top HUD pill cluster plus bottom command strip",
+    "heavy frame over active map routes",
+    "post-apocalypse scrap motif",
+    "neon-future panel language",
+    "generic castle-only icon",
+    "plain colored dots as armies"
+  ],
+  "ui_identity": {
+    "layout_archetype": "regal war-table dashboard with top command ribbon, left doctrine card, right alert rail, and bottom-right tactical cluster",
+    "hud_composition": "troop reserve, command points, province objective, timer, current doctrine, alert queue, tactical cooldowns, and selected-node summary",
+    "navigation_model": "menu to province map to battle briefing to gameplay, with compact pause and battle result overlays plus a separate realm-upgrade screen",
+    "palette_signature": "royal blue, parchment tan, iron steel, old gold, muted forest green, and enemy crimson",
+    "material_language": "heraldic military tablecraft with wax seals, brass bezels, stitched map leather, enamel badges, and engraved route markers",
+    "typography_style": "serif campaign titles with condensed tactical labels and large numeric battlefield counters",
+    "primary_ui_pack": "skin_military_tech",
+    "secondary_ui_assets": [
+      "heraldic node ownership crests",
+      "wax seal section dividers",
+      "brass command buttons",
+      "route alert markers",
+      "province banner cards"
+    ],
+    "playfield_safety": {
+      "reserved_edges": [
+        "top 12 percent for command ribbon",
+        "left 14 percent for doctrine card",
+        "right 14 percent for alert rail",
+        "bottom-right 22 by 24 percent for tactical cluster"
+      ],
+      "hud_anchor_zones": [
+        "top center objective and timer",
+        "top left troop reserve and command points",
+        "left side doctrine card",
+        "right side alert rail",
+        "bottom-right tactical skills"
+      ],
+      "protected_gameplay_zones": [
+        "all capturable nodes",
+        "roads and route splines",
+        "bridges and choke crossings",
+        "troop movement packets",
+        "capital approach corridors"
+      ],
+      "frame_overlay_policy": "decorative brass trims and parchment corners must stay in reserved dead space and may not overlap roads, nodes, troop streams, or targeting paths"
+    },
+    "unique_screen_motifs": [
+      "animated parchment province map menu",
+      "battle briefing wax-seal objective card",
+      "realm upgrade chamber styled like a council ledger",
+      "victory screen as a campaign chronicle page"
+    ],
+    "forbidden_ui_elements": [
+      "bottom-only command strip",
+      "floating frame over the map core",
+      "oversized portrait panel blocking routes",
+      "generic sci-fi HUD lines"
+    ]
+  },
+  "icon_identity": {
+    "subject": "a crowned stone gatehouse above a split river bridge on a brass campaign map with etched route pins below",
+    "silhouette": "broad arched gatehouse with a floating crown crest, one broken bridge span, and a low curved river-road band",
+    "composition": "the gatehouse fills the upper center, the crown hovers just above the battlements, a broken bridge cut creates negative space in the lower half, and etched brass route pins guide the eye across the river map",
+    "palette": "deep royal blue, iron gray, old gold, parchment glow, and a sharp crimson enemy accent",
+    "background": "soft parchment-lit dusk gradient without a generic shield medallion or circular badge reuse",
+    "game_specific_motif": "the icon communicates contested crossings and strategic city-state warfare through a fortified royal gate and broken bridge map cue",
+    "forbidden_icon_reuse": [
+      "plain castle front",
+      "shield-only badge",
+      "sword-and-shield generic crest",
+      "zombie or bunker iconography",
+      "unmodified icon export reused from another project"
+    ]
+  }
+}

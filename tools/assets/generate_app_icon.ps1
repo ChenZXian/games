@@ -28,6 +28,12 @@ function Remove-IfExists([string]$PathValue) {
   }
 }
 
+function Get-FileSha256([string]$PathValue) {
+  if (-not (Test-Path -LiteralPath $PathValue)) { return "" }
+  $hash = Get-FileHash -LiteralPath $PathValue -Algorithm SHA256
+  return ([string]$hash.Hash).ToLowerInvariant()
+}
+
 function Get-RepoRoot([string]$StartPath) {
   $current = (Resolve-Path -LiteralPath $StartPath).Path
   for ($i = 0; $i -lt 12; $i++) {
@@ -120,9 +126,9 @@ function Get-IconDuplicateReview([string]$RepoRoot, [string]$GameId, [string]$Su
     $sameSilhouette = ($silhouetteNorm -ne "") -and ($silhouetteNorm -eq (Normalize-TextId $otherSilhouette))
     $otherRisk = ""
 
-    if ($sameSubject -or ($sameMotif -and $subjectOverlap -ge 2)) {
+    if ($sameSubject -or $sameMotif -or ($sameMotif -and $subjectOverlap -ge 1)) {
       $otherRisk = "high"
-    } elseif ($sameMotif -or $sameSilhouette -or $subjectOverlap -ge 1) {
+    } elseif ($sameSilhouette -or $subjectOverlap -ge 1) {
       $otherRisk = "medium"
     }
 
@@ -247,6 +253,7 @@ function Get-Motif([string]$Text, [string[]]$Forbidden = @()) {
   $banZombie = $forbiddenText -match 'zombie'
   $banHelmet = $forbiddenText -match 'helmet|gas-mask|gas mask'
   $banShield = $forbiddenText -match 'shield|crest'
+  if ($value -match 'bridge|river|crossing|gatehouse|crowned bridge|route markers') { return "crownbridge" }
   if (($value -match 'ring|perimeter|outpost|lamp|yard') -and ($value -match 'scrap|barricade|hazard|feral|ghoul|quarantine')) { return "scrapring" }
   if ($value -match 'mountain|ridge|pass|bunker|flare|canyon|notch|rockslide') { return "mountainbunker" }
   if ($value -match 'barracks|camp|command|commander|wheat|resource|map grid|tactical map|town hut|worker|villager') { return "commandcamp" }
@@ -267,6 +274,11 @@ function Get-Motif([string]$Text, [string[]]$Forbidden = @()) {
 
 function Get-Palette([string]$Motif) {
   switch ($Motif) {
+    "crownbridge" {
+      return @{
+        BgStart = "#18314E"; BgEnd = "#6C2833"; Primary = "#E7D9B0"; Secondary = "#9AABB8"; Accent = "#D8A044"; Outline = "#16263D"; Spot = "#F6E7B8"
+      }
+    }
     "scrapring" {
       return @{
         BgStart = "#2A221B"; BgEnd = "#8A4B2F"; Primary = "#8E7A65"; Secondary = "#F2B544"; Accent = "#9BE86B"; Outline = "#18120D"; Spot = "#FFD27A"
@@ -601,6 +613,72 @@ function Draw-MountainBunker([System.Drawing.Graphics]$Graphics, [hashtable]$Pal
   $steelBrush.Dispose()
   $pathBrush.Dispose()
   $flarePen.Dispose()
+}
+
+function Draw-CrownBridge([System.Drawing.Graphics]$Graphics, [hashtable]$Palette, [int]$OffsetX, [int]$OffsetY, [int]$ShadowAlpha) {
+  $alpha = Get-DrawAlpha $ShadowAlpha
+  $outline = New-PenFromHex $Palette.Outline 24 $alpha
+  $outline.LineJoin = [System.Drawing.Drawing2D.LineJoin]::Round
+  $primaryBrush = New-Brush $Palette.Primary $alpha
+  $secondaryBrush = New-Brush $Palette.Secondary $alpha
+  $accentBrush = New-Brush $Palette.Accent $alpha
+  $spotBrush = New-Brush $Palette.Spot $alpha
+  $riverPen = New-PenFromHex $Palette.Accent 34 $alpha
+  $riverPen.StartCap = [System.Drawing.Drawing2D.LineCap]::Round
+  $riverPen.EndCap = [System.Drawing.Drawing2D.LineCap]::Round
+  $riverPen.LineJoin = [System.Drawing.Drawing2D.LineJoin]::Round
+  $Graphics.DrawArc($riverPen, 168 + $OffsetX, 608 + $OffsetY, 670, 240, 200, 138)
+  $Graphics.DrawArc($riverPen, 182 + $OffsetX, 650 + $OffsetY, 636, 188, 194, 132)
+
+  $bridgePath = New-Object System.Drawing.Drawing2D.GraphicsPath
+  $bridgePath.AddArc(298 + $OffsetX, 438 + $OffsetY, 424, 292, 198, 144)
+  $bridgePath.AddLine(610 + $OffsetX, 562 + $OffsetY, 566 + $OffsetX, 562 + $OffsetY)
+  $bridgePath.AddLine(454 + $OffsetX, 562 + $OffsetY, 410 + $OffsetX, 562 + $OffsetY)
+  $bridgePath.CloseFigure()
+  $Graphics.FillPath($primaryBrush, $bridgePath)
+  $Graphics.DrawPath($outline, $bridgePath)
+  $bridgePath.Dispose()
+
+  $Graphics.FillRectangle($secondaryBrush, 248 + $OffsetX, 390 + $OffsetY, 144, 246)
+  $Graphics.FillRectangle($secondaryBrush, 632 + $OffsetX, 390 + $OffsetY, 144, 246)
+  $Graphics.DrawRectangle($outline, 248 + $OffsetX, 390 + $OffsetY, 144, 246)
+  $Graphics.DrawRectangle($outline, 632 + $OffsetX, 390 + $OffsetY, 144, 246)
+  $Graphics.FillRectangle($primaryBrush, 378 + $OffsetX, 302 + $OffsetY, 268, 210)
+  $Graphics.DrawRectangle($outline, 378 + $OffsetX, 302 + $OffsetY, 268, 210)
+  $Graphics.FillRectangle($secondaryBrush, 454 + $OffsetX, 404 + $OffsetY, 116, 108)
+  $Graphics.DrawRectangle($outline, 454 + $OffsetX, 404 + $OffsetY, 116, 108)
+
+  foreach ($x in @(278, 346, 410, 478, 546, 614, 678, 742)) {
+    $Graphics.FillRectangle($primaryBrush, $x + $OffsetX, 248 + $OffsetY, 44, 66)
+    $Graphics.DrawRectangle($outline, $x + $OffsetX, 248 + $OffsetY, 44, 66)
+  }
+
+  $crownPoints = @(
+    (New-Point (390 + $OffsetX) (208 + $OffsetY)),
+    (New-Point (446 + $OffsetX) (140 + $OffsetY)),
+    (New-Point (512 + $OffsetX) (206 + $OffsetY)),
+    (New-Point (570 + $OffsetX) (132 + $OffsetY)),
+    (New-Point (634 + $OffsetX) (208 + $OffsetY)),
+    (New-Point (634 + $OffsetX) (270 + $OffsetY)),
+    (New-Point (390 + $OffsetX) (270 + $OffsetY))
+  )
+  $Graphics.FillPolygon($accentBrush, $crownPoints)
+  $Graphics.DrawPolygon($outline, $crownPoints)
+  foreach ($dot in @(@(444,176), @(570,170), @(512,212))) {
+    $Graphics.FillEllipse($spotBrush, $dot[0] + $OffsetX, $dot[1] + $OffsetY, 26, 26)
+  }
+
+  foreach ($pin in @(@(324,718), @(418,680), @(512,736), @(612,686), @(708,722))) {
+    $Graphics.FillEllipse($spotBrush, $pin[0] + $OffsetX, $pin[1] + $OffsetY, 32, 32)
+    $Graphics.DrawEllipse($outline, $pin[0] + $OffsetX, $pin[1] + $OffsetY, 32, 32)
+  }
+
+  $riverPen.Dispose()
+  $outline.Dispose()
+  $primaryBrush.Dispose()
+  $secondaryBrush.Dispose()
+  $accentBrush.Dispose()
+  $spotBrush.Dispose()
 }
 
 function Draw-Castle([System.Drawing.Graphics]$Graphics, [hashtable]$Palette, [int]$OffsetX, [int]$OffsetY, [int]$ShadowAlpha) {
@@ -1044,6 +1122,10 @@ function Draw-MotifBitmap([string]$Motif, [hashtable]$Palette) {
   $graphics.Clear([System.Drawing.Color]::Transparent)
 
   switch ($Motif) {
+    "crownbridge" {
+      Draw-CrownBridge $graphics $Palette 18 20 90
+      Draw-CrownBridge $graphics $Palette 0 0 0
+    }
     "scrapring" {
       Draw-ScrapRing $graphics $Palette 18 20 90
       Draw-ScrapRing $graphics $Palette 0 0 0
@@ -1208,9 +1290,9 @@ if ([string]::IsNullOrWhiteSpace($subjectValue)) {
 }
 $motif = Get-Motif $subjectValue $iconDirection.Forbidden
 $duplicateReview = Get-IconDuplicateReview $repoRoot $gameIdValue $subjectValue $motif $iconDirection.Silhouette
-if ($duplicateReview.Risk -eq "high") {
-  $blockedGames = @($duplicateReview.Matches | Where-Object { $_.risk -eq "high" } | Select-Object -ExpandProperty game_id -Unique)
-  throw ("High icon duplicate risk for game '" + $gameIdValue + "' against: " + ($blockedGames -join ", ") + ". Refine the icon subject or visual identity before regenerating.")
+if ($duplicateReview.Risk -ne "low") {
+  $blockedGames = @($duplicateReview.Matches | Select-Object -ExpandProperty game_id -Unique)
+  throw ("Icon duplicate risk is '" + $duplicateReview.Risk + "' for game '" + $gameIdValue + "' against: " + ($blockedGames -join ", ") + ". Refine the icon subject or visual identity before regenerating.")
 }
 $palette = Get-Palette $motif
 
@@ -1258,6 +1340,22 @@ Save-Png $foreground (Join-Path $drawableDir "app_icon_fg.png") 432 432
 Save-Png $master (Join-Path $exportDir "$gameIdValue-upload-1024.png") 1024 1024
 Save-Png $master (Join-Path $exportDir "$gameIdValue-upload-512.png") 512 512
 
+$primaryExportPath = Join-Path $exportDir "$gameIdValue-upload-1024.png"
+$foregroundPath = Join-Path $drawableDir "app_icon_fg.png"
+$foregroundHash = Get-FileSha256 $foregroundPath
+$primaryExportHash = Get-FileSha256 $primaryExportPath
+$otherExportFiles = Get-ChildItem -Path (Join-Path $repoRoot "artifacts\icons") -Recurse -File -Filter "*-upload-1024.png" -ErrorAction SilentlyContinue |
+  Where-Object { $_.FullName -ne $primaryExportPath }
+$reusedExportGames = @()
+foreach ($otherExport in $otherExportFiles) {
+  if ((Get-FileSha256 $otherExport.FullName) -eq $primaryExportHash) {
+    $reusedExportGames += (Split-Path (Split-Path $otherExport.FullName -Parent) -Leaf)
+  }
+}
+if ($reusedExportGames.Count -gt 0) {
+  throw ("Icon export hash matches existing game export for: " + (($reusedExportGames | Select-Object -Unique) -join ", ") + ". Regeneration produced a reused icon and is blocked.")
+}
+
 $colorsXml = @"
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
@@ -1286,9 +1384,13 @@ $metadata = [ordered]@{
   style = "cartoon"
   project_path = $projectPath
   generated_at = (Get-Date).ToString("yyyy-MM-ddTHH:mm:ssK")
-  primary_export = (Join-Path $exportDir "$gameIdValue-upload-1024.png")
+  primary_export = $primaryExportPath
   visual_identity_source = $iconDirection.VisualIdentitySource
   icon_duplicate_risk = $duplicateReview.Risk
+  generation_mode = "fresh_render"
+  reuse_policy = "no_reuse"
+  foreground_sha256 = $foregroundHash
+  primary_export_sha256 = $primaryExportHash
   duplicate_review = [ordered]@{
     risk = $duplicateReview.Risk
     compared_games = @($duplicateReview.Matches)

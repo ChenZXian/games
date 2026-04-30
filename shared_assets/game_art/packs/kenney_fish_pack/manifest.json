@@ -45,5 +45,22 @@
     "Preview.png",
     "Sample.png"
   ],
-  "asset_file_count": 385
+  "asset_file_count": 385,
+  "map_roles": [
+    "background"
+  ],
+  "map_capabilities": [
+    "background_layers"
+  ],
+  "camera_perspectives": [],
+  "tile_asset_metrics": {
+    "tile_png_count": 0,
+    "tilemap_sheet_count": 0,
+    "packed_sheet_count": 0,
+    "tiled_tmx_count": 0,
+    "tiled_tsx_count": 0,
+    "sample_map_count": 0,
+    "preview_map_count": 2
+  },
+  "map_builder_strength": "weak"
 }
