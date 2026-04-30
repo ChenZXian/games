@@ -1,0 +1,172 @@
+{
+  "version": 1,
+  "game_id": "mountain_pass_guard",
+  "status": "passed",
+  "genre_family": "defense_strategy",
+  "genre_archetype": "hidden_garrison_choke_point_defense",
+  "camera_perspective": "angled_top_down_canyon_board",
+  "control_model": "tap_and_drag_tactical_assignment_with_support_buttons",
+  "core_loop_signature": "prepare hidden squads reveal ambushes deny routes manage morale and support skills protect command bunker through scripted assault waves",
+  "differentiation_axes": [
+    "hidden deployment and reveal timing instead of always-visible tower builds",
+    "two to four forked mountain routes instead of fixed three-lane horizontal defense",
+    "command bunker durability plus morale pressure plus infiltrator theft loss condition",
+    "terrain-trigger actions such as rockslide and bridge demolition",
+    "reserve squad rotation and retreat management instead of static tower-only defense",
+    "chapter modifiers including fog snow and feint assaults"
+  ],
+  "forbidden_template_reuse": [
+    "no three horizontal lanes",
+    "no bottom-only tower strip",
+    "no left-base versus right-enemy march template",
+    "no single tiny map repeated without route or terrain variation",
+    "no reuse of another game's exact defense roster or support rhythm",
+    "no endless survival loop replacing scripted regroup windows"
+  ],
+  "map_content_budget": {
+    "play_area_model": "central bunker defense inside a forked mountain pass with ridges tunnels bridges and fallback barricade rings",
+    "route_or_region_count": "2-4 active assault routes plus 1 reserve transfer corridor",
+    "interactive_regions": "1 bunker core zone, at least 2 ridge firing nests, at least 1 terrain trigger point, at least 1 extraction edge for infiltrators",
+    "terrain_types": [
+      "cliff road",
+      "ridge shelf",
+      "tunnel mouth",
+      "timber bridge",
+      "rockfall choke",
+      "snow drift",
+      "sandbag ring"
+    ],
+    "decorative_prop_count": "minimum 8 per map shell",
+    "functional_map_elements": [
+      "hidden reveal slot",
+      "barricade point",
+      "flare tower",
+      "ammo cache",
+      "medical post",
+      "demolition trigger",
+      "supply crate drop zone"
+    ],
+    "landmarks": [
+      "command bunker",
+      "signal mast",
+      "collapsed bridge remains",
+      "watch ridge"
+    ],
+    "camera_or_scroll_model": "fixed mission board with minor screen shake and route-focused alerts, no free scroll required"
+  },
+  "entity_content_budget": {
+    "player_unit_types": [
+      "rifle squad",
+      "machine gun nest",
+      "sniper ridge team",
+      "combat engineers",
+      "mortar pit crew",
+      "signal operators"
+    ],
+    "enemy_types": [
+      "scout runners",
+      "rifle raiders",
+      "shield vanguard",
+      "mortar crew",
+      "armored truck",
+      "saboteur infiltrator",
+      "heavy assault squad",
+      "route-feint decoy team"
+    ],
+    "neutral_or_resource_entities": [
+      "supply mule",
+      "field medic convoy"
+    ],
+    "boss_or_elite_types": [
+      "assault commander",
+      "elite saboteur captain"
+    ],
+    "projectile_or_effect_types": [
+      "rifle burst",
+      "machine gun tracer",
+      "sniper shot",
+      "mortar shell",
+      "flare",
+      "smoke cloud"
+    ],
+    "item_or_powerup_types": [
+      "ammo crate",
+      "morale boost order",
+      "emergency barricade kit",
+      "rapid reveal token"
+    ]
+  },
+  "mechanic_content_budget": {
+    "primary_player_actions": [
+      "assign hidden defenders",
+      "reveal ambush squad",
+      "focus a route",
+      "relocate reserves",
+      "trigger terrain denial"
+    ],
+    "secondary_player_actions": [
+      "scan with flare",
+      "repair bunker",
+      "boost morale",
+      "force retreat",
+      "collect supply drops"
+    ],
+    "upgrade_paths": [
+      "hidden infantry",
+      "machine gun nest",
+      "sniper ridge",
+      "combat engineers",
+      "mortar pit",
+      "signal post"
+    ],
+    "wave_or_level_variants": [
+      "fog visibility reduction",
+      "snow slowdown routes",
+      "decoy feint waves",
+      "bridge demolition maps",
+      "infiltrator extraction missions",
+      "boss-led split assaults"
+    ],
+    "special_rules": [
+      "unrevealed squads cannot be directly targeted until activated",
+      "infiltrators can steal the flag if they reach the bunker core",
+      "morale drops from repeated breaches and recovers through successful holds",
+      "some terrain triggers are one-use and alter later routes"
+    ],
+    "risk_reward_systems": [
+      "holding reveals for a late ambush grants stronger burst value but increases breach risk",
+      "saving supplies for support skills reduces upgrade tempo",
+      "chasing supply drops can expose a route temporarily"
+    ],
+    "failure_pressure_variants": [
+      "bunker durability depletion",
+      "morale collapse",
+      "flag theft escape",
+      "simultaneous multi-route overrun"
+    ]
+  },
+  "asset_variety_budget": {
+    "primary_game_art_packs": [
+      "military_frontier_squads",
+      "mountain_pass_environment"
+    ],
+    "secondary_game_art_packs": [
+      "battlefield_effects_smoke_flares",
+      "support_props_cargo_medical"
+    ],
+    "ui_pack": "skin_military_tech",
+    "animation_tier": "mid_tier_directional_sprite_animation",
+    "required_animation_states": [
+      "idle_alert",
+      "move",
+      "attack",
+      "hit",
+      "retreat",
+      "defeated",
+      "vehicle_damaged",
+      "terrain_triggered"
+    ],
+    "minimum_distinct_sprite_families": "at least 14 gameplay sprite families across player, enemy, support, and effect roles",
+    "asset_reuse_note": "Do not reuse a previous tower-defense roster or the same wall, castle, or fantasy unit family; prioritize mountain warfare silhouettes and hidden-slot readability."
+  }
+}

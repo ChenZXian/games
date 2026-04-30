@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "template_id": "base_mini_game",
+  "template_status": "active",
+  "required_paths": [
+    "app/src/main/res/values/strings.xml",
+    "app/src/main/assets/ui/ui_pack_assignment.json",
+    "app/src/main/assets/game_art/game_art_assignment.json",
+    "app/src/main/assets/game_art/runtime_art_map.json"
+  ],
+  "forbidden_markers": [
+    "__GAME_ID__",
+    "__APP_NAME__",
+    "__SELECTED_CONCEPT__",
+    "__UI_SKIN__",
+    "template_game",
+    "base_mini_game",
+    "replace_me"
+  ],
+  "must_rewrite": [
+    "requirements metadata and selected concept",
+    "gameplay diversity contract",
+    "visual identity contract",
+    "icon metadata and exported icon assets",
+    "app_name and project-visible strings",
+    "ui pack assignment and ui_skin linkage",
+    "game art assignment and runtime_art_map game_id",
+    "audio assignment game_id and role mapping"
+  ]
+}

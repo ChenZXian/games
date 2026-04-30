@@ -47,5 +47,26 @@
     "Preview.png",
     "Sample.png"
   ],
-  "asset_file_count": 605
+  "asset_file_count": 605,
+  "map_roles": [
+    "building",
+    "terrain",
+    "tileset"
+  ],
+  "map_capabilities": [
+    "top_down_layout"
+  ],
+  "camera_perspectives": [
+    "top_down"
+  ],
+  "tile_asset_metrics": {
+    "tile_png_count": 0,
+    "tilemap_sheet_count": 0,
+    "packed_sheet_count": 0,
+    "tiled_tmx_count": 0,
+    "tiled_tsx_count": 0,
+    "sample_map_count": 0,
+    "preview_map_count": 3
+  },
+  "map_builder_strength": "weak"
 }

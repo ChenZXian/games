@@ -179,6 +179,7 @@ Full requirements quality bar:
 - Avoid mechanics that require network services, live ops backends, or large external content pipelines unless the user explicitly asks for them.
 - Prefer gameplay that can fit the repository's existing engineering style and UI contract.
 - Ensure UI, gameplay art, icon, and BGM directions are explicit enough to drive later dedicated workflows.
+- Do not leave icon subject, gameplay art pack strategy, or `menu` and `play` BGM roles ambiguous enough that downstream low-intelligence or auto runs can skip them.
 
 Completion rule:
 - End by asking for confirmation of the requirements document.

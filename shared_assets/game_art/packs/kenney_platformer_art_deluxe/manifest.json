@@ -87,5 +87,32 @@
     "preview.png",
     "sample.png"
   ],
-  "asset_file_count": 1002
+  "asset_file_count": 1002,
+  "map_roles": [
+    "background",
+    "terrain",
+    "tileset"
+  ],
+  "map_capabilities": [
+    "background_layers",
+    "grid_ready",
+    "individual_tiles",
+    "large_tile_variation",
+    "modular_tileset",
+    "side_view_layout",
+    "terrain_variants"
+  ],
+  "camera_perspectives": [
+    "side_view"
+  ],
+  "tile_asset_metrics": {
+    "tile_png_count": 560,
+    "tilemap_sheet_count": 0,
+    "packed_sheet_count": 0,
+    "tiled_tmx_count": 0,
+    "tiled_tsx_count": 0,
+    "sample_map_count": 0,
+    "preview_map_count": 16
+  },
+  "map_builder_strength": "moderate"
 }

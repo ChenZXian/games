@@ -1,0 +1,80 @@
+{
+  "version": 1,
+  "pack_id": "kenney_1_bit_platformer_pack",
+  "title": "Kenney 1-Bit Platformer Pack",
+  "license": "CC0-1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "source_url": "https://kenney.nl/assets/1-bit-platformer-pack",
+  "download_url": "",
+  "download_page_url": "",
+  "asset_types": [
+    "png",
+    "txt"
+  ],
+  "art_roles": [
+    "character",
+    "enemy",
+    "tileset",
+    "terrain",
+    "item",
+    "pickup",
+    "background"
+  ],
+  "recommended_game_types": [
+    "platformer",
+    "runner",
+    "side",
+    "scroller",
+    "action",
+    "puzzle"
+  ],
+  "style_tags": [
+    "1bit",
+    "platformer",
+    "monochrome",
+    "pixel",
+    "minimal"
+  ],
+  "quality_tags": [
+    "production",
+    "free",
+    "open",
+    "cc0",
+    "animated"
+  ],
+  "assets_path": "assets",
+  "preview_files": [
+    "Preview.png",
+    "Sample.png"
+  ],
+  "asset_file_count": 808,
+  "map_roles": [
+    "background",
+    "terrain",
+    "tileset"
+  ],
+  "map_capabilities": [
+    "background_layers",
+    "grid_ready",
+    "individual_tiles",
+    "large_tile_variation",
+    "modular_tileset",
+    "packed_tilemap_sheet",
+    "side_view_layout",
+    "terrain_variants",
+    "tilemap_sheet"
+  ],
+  "camera_perspectives": [
+    "side_view"
+  ],
+  "tile_asset_metrics": {
+    "tile_png_count": 800,
+    "tilemap_sheet_count": 4,
+    "packed_sheet_count": 2,
+    "tiled_tmx_count": 0,
+    "tiled_tsx_count": 0,
+    "sample_map_count": 0,
+    "preview_map_count": 2
+  },
+  "map_builder_strength": "moderate"
+}

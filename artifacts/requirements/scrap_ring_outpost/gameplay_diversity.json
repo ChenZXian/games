@@ -1,0 +1,184 @@
+{
+  "version": 1,
+  "game_id": "scrap_ring_outpost",
+  "status": "passed",
+  "genre_family": "strategy_defense",
+  "genre_archetype": "ring_sector_perimeter_defense_with_rotating_command_focus",
+  "camera_perspective": "top_down_circular_base_board_with_mobile_safe_viewport",
+  "control_model": "tap_sector_tap_build_slot_context_build_controls_tap_skill_rotate_focus",
+  "core_loop_signature": "salvage scrap fuel and parts during prep, build and upgrade sector defenses around a circular outpost, rotate command focus to stressed sectors, survive zombie night waves, then reinvest rewards into stronger perimeter tools",
+  "differentiation_axes": [
+    "circular four-sector perimeter instead of linear lanes",
+    "sector focus management instead of always-on global defense",
+    "contextual build slots and breach recovery instead of path-only tower placement",
+    "inner command yard collapse pressure instead of endpoint leak count only",
+    "prep phase plus assault phase rhythm instead of uninterrupted spawn loop"
+  ],
+  "forbidden_template_reuse": [
+    "three horizontal lane push layout",
+    "front-facing castle wall defense template",
+    "bottom-only tower command strip",
+    "single chokepoint maze building loop",
+    "survivor avatar twin-stick shooter loop",
+    "copying the same tower roster from prior defense projects"
+  ],
+  "map_content_budget": {
+    "play_area_model": "one circular survivor outpost with four named outer sectors, four breach gates, one inner command yard, and scenario utility nodes around the ring",
+    "route_or_region_count": "minimum nine regions: four outer sectors, four breach gates, and one inner command yard, plus scenario utility or salvage nodes",
+    "interactive_regions": [
+      "north sector",
+      "east sector",
+      "south sector",
+      "west sector",
+      "inner command yard",
+      "power node",
+      "salvage cache",
+      "beacon or train objective",
+      "explosive barrel cluster"
+    ],
+    "terrain_types": [
+      "scrapyard asphalt",
+      "muddy quarantine ground",
+      "rusted metal deck",
+      "burned dirt edge"
+    ],
+    "decorative_prop_count": "at least sixteen props outside critical tap zones",
+    "functional_map_elements": [
+      "defense slots",
+      "breach gates",
+      "repair pads",
+      "utility nodes",
+      "salvage crates",
+      "explosive barrels",
+      "command core",
+      "sector warning lamps"
+    ],
+    "landmarks": [
+      "command core",
+      "sector gates",
+      "broadcast beacon",
+      "armored train dock"
+    ],
+    "camera_or_scroll_model": "landscape board with the full circular outpost visible inside a reserved HUD-safe viewport"
+  },
+  "entity_content_budget": {
+    "player_unit_types": [
+      "barricade_wall",
+      "gun_nest",
+      "spike_trap",
+      "flame_pipe",
+      "arc_lamp",
+      "repair_station"
+    ],
+    "enemy_types": [
+      "shambler",
+      "runner",
+      "crawler",
+      "spitter",
+      "brute",
+      "armored_riot_zombie"
+    ],
+    "neutral_or_resource_entities": [
+      "salvage_crate",
+      "power_node",
+      "fuel_drum",
+      "explosive_barrel",
+      "objective_device"
+    ],
+    "boss_or_elite_types": [
+      "siege_abomination",
+      "breach_ram_mutant"
+    ],
+    "projectile_or_effect_types": [
+      "bullet_burst",
+      "spike_hit_flash",
+      "flame_stream",
+      "arc_zap",
+      "warning_flash",
+      "breach_smoke"
+    ],
+    "item_or_powerup_types": [
+      "scrap_cache",
+      "fuel_cache",
+      "parts_cache",
+      "emergency_focus_charge"
+    ]
+  },
+  "mechanic_content_budget": {
+    "primary_player_actions": [
+      "select sector",
+      "build defense modules",
+      "upgrade defenses",
+      "trigger emergency skills",
+      "rotate command focus",
+      "prioritize repairs"
+    ],
+    "secondary_player_actions": [
+      "sell damaged modules",
+      "reroute power priority",
+      "collect elite drops",
+      "activate objective devices"
+    ],
+    "upgrade_paths": [
+      "barricade durability",
+      "gun nest burst rate",
+      "trap reset speed",
+      "flame damage and duration",
+      "arc stun strength",
+      "repair throughput",
+      "focus cooldown reduction"
+    ],
+    "wave_or_level_variants": [
+      "single-sector pressure wave",
+      "two-sector split wave",
+      "runner swarm",
+      "spitter support wave",
+      "brute gate-break wave",
+      "elite siege night"
+    ],
+    "special_rules": [
+      "focused sector receives command bonus",
+      "fuel-limited powered defenses",
+      "inner yard loss if breaches remain unchecked",
+      "scenario modifiers such as blackout fog or acid rain"
+    ],
+    "risk_reward_systems": [
+      "investing in outer utility nodes weakens immediate defense but improves future economy",
+      "trap-heavy builds save ammo but can fail against elites",
+      "gun-heavy builds solve burst pressure but strain parts and repair needs",
+      "saving focus skill charges can prevent catastrophic breaches later"
+    ],
+    "failure_pressure_variants": [
+      "sector integrity collapse",
+      "simultaneous split breaches",
+      "elite siege gate destruction",
+      "command core exposure"
+    ]
+  },
+  "asset_variety_budget": {
+    "primary_game_art_packs": [
+      "top-down zombie enemy pack",
+      "scrap fortification defense pack",
+      "industrial quarantine environment props"
+    ],
+    "secondary_game_art_packs": [
+      "warning light and hazard prop set",
+      "post-apocalypse effects pack"
+    ],
+    "ui_pack": "skin_post_apocalypse with tracked tactical scrap refinements",
+    "animation_tier": "delivery_ready_top_down_enemy_walk_attack_hit_death_plus_active_defense_feedback",
+    "required_animation_states": [
+      "idle",
+      "walk",
+      "attack_windup",
+      "attack_action",
+      "attack_recovery",
+      "hit",
+      "defeat",
+      "damaged_structure",
+      "active_powered_loop"
+    ],
+    "minimum_distinct_sprite_families": "at least six enemy families, six defense families, four utility or prop families, and four combat effect families",
+    "asset_reuse_note": "do not reuse fantasy wall-defense, medieval castle, or side-view lane-battle asset families as the main visual identity"
+  }
+}

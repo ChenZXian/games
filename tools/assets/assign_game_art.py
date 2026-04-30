@@ -72,6 +72,10 @@ def create_entity_template(entity_key: str, role: str, camera_perspective: str):
 def create_runtime_map(game_id: str, theme: str, game_type: str, art_roles: str):
     roles = [item.strip() for item in art_roles.replace(",", " ").split() if item.strip()]
     camera_perspective = "side_view" if any(item in game_type.lower() for item in ("platformer", "runner", "side")) else ""
+    if not camera_perspective and any(item in game_type.lower() for item in ("top", "down", "roguelike", "rpg", "dungeon", "strategy", "tower")):
+        camera_perspective = "top_down"
+    if not camera_perspective and "isometric" in game_type.lower():
+        camera_perspective = "isometric"
     entities = []
     if "character" in roles or "player" in roles:
         entities.append(create_entity_template("player", "character", camera_perspective))
@@ -83,6 +87,7 @@ def create_runtime_map(game_id: str, theme: str, game_type: str, art_roles: str)
         entities.append(create_entity_template("projectile", "projectile", camera_perspective))
     if "pickup" in roles or "item" in roles:
         entities.append(create_entity_template("pickup", "pickup", camera_perspective))
+    map_roles = [role for role in roles if role in ("tileset", "terrain", "building", "prop", "background", "map")]
     return {
         "version": 1,
         "game_id": game_id,
@@ -112,6 +117,22 @@ def create_runtime_map(game_id: str, theme: str, game_type: str, art_roles: str)
             "humanoid run or walk uses alternating leg frames when source art provides them",
             "attack uses windup contact and recovery timing or equivalent pose changes",
         ],
+        "map_art_plan": {
+            "enabled": bool(map_roles),
+            "roles": map_roles,
+            "camera_perspective": camera_perspective or "top_down",
+            "recommended_layers": [
+                "ground",
+                "collision",
+                "decoration",
+                "foreground"
+            ] if map_roles else [],
+            "builder_notes": [
+                "Prefer TMX or TSX sample layouts when the assigned pack provides them",
+                "Prefer modular tilesets over one flat background when terrain and collision are gameplay-relevant",
+                "Keep collision, decoration, and foreground layering separate so the map can scale beyond one prototype layout",
+            ] if map_roles else [],
+        },
         "suggested_roles": roles,
     }
 

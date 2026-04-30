@@ -85,7 +85,29 @@ if (Test-Path $validator) {
   Write-Warn "tools/validate.ps1 not found; skip validator"
 }
 
-# 3) Build APK using project wrapper
+# 3) Delivery readiness gate (if exists)
+$inspect = Join-Path $root "tools\inspect.ps1"
+if (Test-Path $inspect) {
+  Write-Host ""
+  Write-Host "=== Run Delivery Inspect ==="
+  $inspectOutput = & powershell -ExecutionPolicy Bypass -File $inspect -Project $Project
+  $inspectExit = $LASTEXITCODE
+  $inspectText = ($inspectOutput | Out-String)
+  Write-Host $inspectText
+  if ($inspectExit -ne 0) {
+    Write-Fail "Inspect failed. Stop."
+    exit 2
+  }
+  if ($inspectText -notmatch 'DELIVERY_READY=true') {
+    Write-Fail "Delivery readiness failed. Stop before APK export."
+    exit 2
+  }
+  Write-Ok "Delivery inspect passed"
+} else {
+  Write-Warn "tools/inspect.ps1 not found; skip delivery inspect"
+}
+
+# 4) Build APK using project wrapper
 Write-Host ""
 Write-Host "=== Build APK (gradlew) ==="
 $gradlew = Join-Path $projResolved "gradlew.bat"
@@ -108,7 +130,7 @@ finally {
   Pop-Location
 }
 
-# 4) Locate APK
+# 5) Locate APK
 $apkPath = $null
 if ($Variant -eq "release") {
   $candidate = Join-Path $projResolved "app\build\outputs\apk\release\app-release.apk"
@@ -129,7 +151,7 @@ if ($null -eq $apkPath) {
 }
 Write-Ok "APK found: $apkPath"
 
-# 5) Copy to artifacts/apk/<id>/
+# 6) Copy to artifacts/apk/<id>/
 Write-Host ""
 Write-Host "=== Export APK ==="
 $artRoot = Join-Path $root "artifacts\apk"

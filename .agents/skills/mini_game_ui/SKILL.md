@@ -21,6 +21,7 @@ Hard rules:
 - Prefer `GameView` or `SurfaceView` for gameplay rendering
 - Prefer Android View or XML overlays for menu, help, pause, reward, and result screens
 - Define a protected gameplay safe area before applying decorative borders or heavy panel chrome
+- Convert that safe area into actual layout constraints, margins, padding, or a verified viewport wrapper in `activity_main.xml`
 - Reusable external UI resources should be stored under `shared_assets/ui/` first when possible
 - Search both the shared library and `shared_assets/ui/source_catalog.json` before deciding there is no suitable UI source
 - Imported open-source UI assets must keep license and provenance metadata
@@ -46,6 +47,7 @@ Hard rules:
 - Production-grade UI must follow `artifacts/requirements/<game_id>/visual_identity.json` when it exists
 - Do not repeatedly reuse the same top HUD pill layout, full-width objective bar, bottom command strip, blue-gray button pack, or pack preset unless the visual identity contract explicitly allows it
 - Decorative borders, frames, or bezels must not cover active gameplay tiles, lanes, routes, board cells, or touch-critical action areas
+- Do not leave gameplay as a full-screen `GameView` and simply stack top or bottom overlays over it unless the reserved dead space is structurally enforced and inspection can verify it
 - Do not package, update registry, or change git state unless explicitly requested
 
 Workflow:

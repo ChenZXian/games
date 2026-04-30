@@ -18,6 +18,34 @@ MATCH_IGNORE = {
     "2d",
 }
 
+MAP_MATCH_HINTS = {
+    "map",
+    "tileset",
+    "tile",
+    "terrain",
+    "building",
+    "prop",
+    "background",
+    "layout",
+    "tmx",
+    "tsx",
+    "tiled",
+    "top",
+    "down",
+    "side",
+    "isometric",
+    "dungeon",
+    "town",
+    "urban",
+    "city",
+    "forest",
+    "cave",
+    "castle",
+    "snow",
+    "road",
+    "lane",
+}
+
 
 def usage_count(pack_entry):
     used_by = pack_entry.get("used_by", []) if isinstance(pack_entry, dict) else []
@@ -96,10 +124,15 @@ def pack_tokens(pack_entry):
     if isinstance(pack_entry, dict):
         for key in ("pack_id", "title", "license", "source_url"):
             tokens.extend(tokenize_text(pack_entry.get(key, "")))
-        for key in ("style_tags", "art_roles", "recommended_game_types", "quality_tags", "animation_capabilities", "animation_states"):
+        for key in ("style_tags", "art_roles", "recommended_game_types", "quality_tags", "animation_capabilities", "animation_states", "map_roles", "map_capabilities", "camera_perspectives"):
             value = pack_entry.get(key, [])
             if isinstance(value, list):
                 tokens.extend(tokenize_text(value))
+        tile_metrics = pack_entry.get("tile_asset_metrics", {})
+        if isinstance(tile_metrics, dict):
+            for metric_key, metric_value in tile_metrics.items():
+                if isinstance(metric_value, (int, float)) and metric_value > 0:
+                    tokens.extend(tokenize_text(metric_key))
     return {token for token in unique_tokens(tokens) if token not in MATCH_IGNORE}
 
 
@@ -110,12 +143,22 @@ def build_match_context(style_tags=None, art_roles=None, game_type: str = "", ro
     focus_tokens = role_focus if role_focus is not None else role_tokens
     focus_tokens = {token for token in tokenize_text(focus_tokens) if token not in MATCH_IGNORE}
     desired_tokens = style_tokens.union(role_tokens).union(game_type_tokens)
+    map_focus_tokens = desired_tokens.intersection(MAP_MATCH_HINTS)
+    desired_cameras = set()
+    if {"top", "down"}.intersection(game_type_tokens) or {"roguelike", "rpg", "dungeon", "strategy", "tower"}.intersection(game_type_tokens):
+        desired_cameras.add("top_down")
+    if {"side", "platformer", "runner", "scroller"}.intersection(game_type_tokens):
+        desired_cameras.add("side_view")
+    if "isometric" in game_type_tokens:
+        desired_cameras.add("isometric")
     return {
         "style_tokens": style_tokens,
         "role_tokens": role_tokens,
         "game_type_tokens": game_type_tokens,
         "focus_tokens": focus_tokens,
         "desired_tokens": desired_tokens,
+        "map_focus_tokens": map_focus_tokens,
+        "desired_cameras": desired_cameras,
     }
 
 
@@ -128,13 +171,24 @@ def score_pack_entry(pack_entry, context):
     pack_style_tokens = set(tokenize_text(pack_entry.get("style_tags", [])))
     pack_game_tokens = set(tokenize_text(pack_entry.get("recommended_game_types", [])))
     pack_animation_tokens = set(tokenize_text(pack_entry.get("animation_capabilities", []), pack_entry.get("animation_states", [])))
+    pack_map_tokens = set(
+        tokenize_text(
+            pack_entry.get("map_roles", []),
+            pack_entry.get("map_capabilities", []),
+            pack_entry.get("camera_perspectives", []),
+            [key for key, value in (pack_entry.get("tile_asset_metrics", {}) or {}).items() if isinstance(value, (int, float)) and value > 0],
+        )
+    )
+    pack_camera_tokens = set(tokenize_text(pack_entry.get("camera_perspectives", [])))
     focus_tokens = context["focus_tokens"] or context["role_tokens"]
     role_matches = len(focus_tokens.intersection(pack_role_tokens))
     style_matches = len(context["style_tokens"].intersection(pack_style_tokens))
     game_matches = len(context["game_type_tokens"].intersection(pack_game_tokens))
     animation_matches = len(desired_tokens.intersection(pack_animation_tokens))
+    map_matches = len(context["map_focus_tokens"].intersection(pack_map_tokens))
+    camera_matches = len(context["desired_cameras"].intersection(set(pack_entry.get("camera_perspectives", []))))
     broad_matches = len(desired_tokens.intersection(tokens))
-    score = role_matches * 7 + style_matches * 5 + game_matches * 6 + animation_matches * 9 + broad_matches
+    score = role_matches * 7 + style_matches * 5 + game_matches * 6 + animation_matches * 9 + map_matches * 8 + camera_matches * 10 + broad_matches
     quality_tags = pack_entry.get("quality_tags", [])
     if "production" in quality_tags:
         score += 2
@@ -146,6 +200,10 @@ def score_pack_entry(pack_entry, context):
         score += 2
     if focus_tokens and role_matches <= 0:
         score -= 3
+    if context["map_focus_tokens"] and map_matches <= 0:
+        score -= 4
+    if context["desired_cameras"] and not camera_matches and pack_entry.get("camera_perspectives"):
+        score -= 12
     return {
         "score": score,
         "usage_count": pack_usage,
@@ -153,6 +211,8 @@ def score_pack_entry(pack_entry, context):
         "style_matches": style_matches,
         "game_matches": game_matches,
         "animation_matches": animation_matches,
+        "map_matches": map_matches,
+        "camera_matches": camera_matches,
         "broad_matches": broad_matches,
         "pack": pack_entry,
     }
@@ -185,7 +245,7 @@ def source_entry_tokens(source_entry):
     if isinstance(source_entry, dict):
         for key in ("pack_id", "title", "source_url", "download_page_url"):
             tokens.extend(tokenize_text(source_entry.get(key, "")))
-        for key in ("art_roles", "recommended_game_types", "style_tags", "quality_tags"):
+        for key in ("art_roles", "recommended_game_types", "style_tags", "quality_tags", "map_roles", "map_capabilities", "camera_perspectives"):
             value = source_entry.get(key, [])
             if isinstance(value, list):
                 tokens.extend(tokenize_text(value))
@@ -209,14 +269,20 @@ def rank_source_candidates(catalog_data, style_tags=None, art_roles=None, game_t
         role_matches = len((context["focus_tokens"] or context["role_tokens"]).intersection(set(tokenize_text(source.get("art_roles", [])))))
         style_matches = len(context["style_tokens"].intersection(set(tokenize_text(source.get("style_tags", [])))))
         game_matches = len(context["game_type_tokens"].intersection(set(tokenize_text(source.get("recommended_game_types", [])))))
+        map_matches = len(context["map_focus_tokens"].intersection(set(tokenize_text(source.get("map_roles", []), source.get("map_capabilities", []), source.get("camera_perspectives", [])))))
+        camera_matches = len(context["desired_cameras"].intersection(set(source.get("camera_perspectives", []))))
         broad_matches = len(desired_tokens.intersection(tokens))
-        score = role_matches * 7 + style_matches * 5 + game_matches * 6 + broad_matches + 2
+        score = role_matches * 7 + style_matches * 5 + game_matches * 6 + map_matches * 8 + camera_matches * 10 + broad_matches + 2
+        if context["desired_cameras"] and not camera_matches and source.get("camera_perspectives"):
+            score -= 12
         candidates.append({
             "score": score,
             "source": source,
             "role_matches": role_matches,
             "style_matches": style_matches,
             "game_matches": game_matches,
+            "map_matches": map_matches,
+            "camera_matches": camera_matches,
             "broad_matches": broad_matches,
         })
     candidates.sort(key=lambda item: (-item["score"], item["source"].get("pack_id", "")))

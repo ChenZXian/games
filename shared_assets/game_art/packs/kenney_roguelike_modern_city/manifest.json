@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "pack_id": "kenney_roguelike_modern_city",
+  "title": "Kenney Roguelike Modern City",
+  "license": "CC0-1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "source_url": "https://kenney.nl/assets/roguelike-modern-city",
+  "download_url": "",
+  "download_page_url": "",
+  "asset_types": [
+    "png",
+    "txt"
+  ],
+  "art_roles": [
+    "tileset",
+    "terrain",
+    "building",
+    "prop",
+    "item",
+    "character",
+    "enemy",
+    "background"
+  ],
+  "recommended_game_types": [
+    "roguelike",
+    "rpg",
+    "urban",
+    "top",
+    "down",
+    "adventure",
+    "management"
+  ],
+  "style_tags": [
+    "roguelike",
+    "urban",
+    "city",
+    "pixel",
+    "retro"
+  ],
+  "quality_tags": [
+    "production",
+    "free",
+    "open",
+    "cc0"
+  ],
+  "assets_path": "assets",
+  "preview_files": [
+    "Preview.png",
+    "Sample.png"
+  ],
+  "asset_file_count": 1042,
+  "map_roles": [
+    "background",
+    "building",
+    "prop",
+    "terrain",
+    "tileset"
+  ],
+  "map_capabilities": [
+    "background_layers",
+    "building_tiles",
+    "grid_ready",
+    "individual_tiles",
+    "large_tile_variation",
+    "modular_tileset",
+    "packed_tilemap_sheet",
+    "prop_tiles",
+    "terrain_variants",
+    "tilemap_sheet",
+    "top_down_layout"
+  ],
+  "camera_perspectives": [
+    "top_down"
+  ],
+  "tile_asset_metrics": {
+    "tile_png_count": 1036,
+    "tilemap_sheet_count": 2,
+    "packed_sheet_count": 1,
+    "tiled_tmx_count": 0,
+    "tiled_tsx_count": 0,
+    "sample_map_count": 0,
+    "preview_map_count": 2
+  },
+  "map_builder_strength": "strong"
+}

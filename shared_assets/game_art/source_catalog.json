@@ -40,7 +40,78 @@
         "free",
         "open",
         "cc0"
-      ]
+      ],
+      "map_roles": [
+        "background",
+        "terrain",
+        "tileset"
+      ],
+      "map_capabilities": [
+        "background_layers",
+        "side_view_layout",
+        "terrain_ready",
+        "tileset_ready"
+      ],
+      "camera_perspectives": [
+        "side_view"
+      ],
+      "tile_asset_metrics": {},
+      "map_builder_strength": "moderate"
+    },
+    {
+      "pack_id": "kenney_1_bit_platformer_pack",
+      "title": "Kenney 1-Bit Platformer Pack",
+      "source_url": "https://www.kenney.nl/assets/1-bit-platformer-pack",
+      "download_page_url": "https://www.kenney.nl/assets/1-bit-platformer-pack",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "art_roles": [
+        "character",
+        "enemy",
+        "tileset",
+        "terrain",
+        "item",
+        "pickup",
+        "background"
+      ],
+      "recommended_game_types": [
+        "platformer",
+        "runner",
+        "side",
+        "scroller",
+        "action",
+        "puzzle"
+      ],
+      "style_tags": [
+        "1bit",
+        "platformer",
+        "monochrome",
+        "pixel",
+        "minimal"
+      ],
+      "quality_tags": [
+        "production",
+        "animated",
+        "free",
+        "open",
+        "cc0"
+      ],
+      "map_roles": [
+        "background",
+        "terrain",
+        "tileset"
+      ],
+      "map_capabilities": [
+        "background_layers",
+        "side_view_layout",
+        "terrain_ready",
+        "tileset_ready"
+      ],
+      "camera_perspectives": [
+        "side_view"
+      ],
+      "tile_asset_metrics": {},
+      "map_builder_strength": "moderate"
     },
     {
       "pack_id": "kenney_platformer_pack_medieval",
@@ -78,7 +149,27 @@
         "free",
         "open",
         "cc0"
-      ]
+      ],
+      "map_roles": [
+        "background",
+        "building",
+        "prop",
+        "terrain",
+        "tileset"
+      ],
+      "map_capabilities": [
+        "background_layers",
+        "building_ready",
+        "prop_ready",
+        "side_view_layout",
+        "terrain_ready",
+        "tileset_ready"
+      ],
+      "camera_perspectives": [
+        "side_view"
+      ],
+      "tile_asset_metrics": {},
+      "map_builder_strength": "moderate"
     },
     {
       "pack_id": "kenney_desert_shooter_pack",
@@ -119,7 +210,23 @@
         "free",
         "open",
         "cc0"
-      ]
+      ],
+      "map_roles": [
+        "prop",
+        "terrain",
+        "tileset"
+      ],
+      "map_capabilities": [
+        "prop_ready",
+        "terrain_ready",
+        "tileset_ready",
+        "top_down_layout"
+      ],
+      "camera_perspectives": [
+        "top_down"
+      ],
+      "tile_asset_metrics": {},
+      "map_builder_strength": "moderate"
     },
     {
       "pack_id": "kenney_top_down_tanks_redux",
@@ -157,7 +264,74 @@
         "free",
         "open",
         "cc0"
-      ]
+      ],
+      "map_roles": [
+        "prop",
+        "terrain"
+      ],
+      "map_capabilities": [
+        "prop_ready",
+        "terrain_ready",
+        "top_down_layout"
+      ],
+      "camera_perspectives": [
+        "top_down"
+      ],
+      "tile_asset_metrics": {},
+      "map_builder_strength": "basic"
+    },
+    {
+      "pack_id": "kenney_top_down_tanks_remastered",
+      "title": "Kenney Top-down Tanks Remastered",
+      "source_url": "https://www.kenney.nl/assets/top-down-tanks-remastered",
+      "download_page_url": "https://www.kenney.nl/assets/top-down-tanks-remastered",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "art_roles": [
+        "vehicle",
+        "enemy",
+        "character",
+        "projectile",
+        "terrain",
+        "prop"
+      ],
+      "recommended_game_types": [
+        "top",
+        "down",
+        "tank",
+        "shooter",
+        "arena",
+        "action"
+      ],
+      "style_tags": [
+        "tank",
+        "top",
+        "down",
+        "combat",
+        "vehicle",
+        "arena"
+      ],
+      "quality_tags": [
+        "production",
+        "free",
+        "open",
+        "cc0",
+        "rotatable_static"
+      ],
+      "map_roles": [
+        "prop",
+        "terrain"
+      ],
+      "map_capabilities": [
+        "prop_ready",
+        "terrain_ready",
+        "top_down_layout"
+      ],
+      "camera_perspectives": [
+        "top_down"
+      ],
+      "tile_asset_metrics": {},
+      "map_builder_strength": "basic"
     },
     {
       "pack_id": "kenney_micro_roguelike",
@@ -194,7 +368,79 @@
         "free",
         "open",
         "cc0"
-      ]
+      ],
+      "map_roles": [
+        "background",
+        "terrain",
+        "tileset"
+      ],
+      "map_capabilities": [
+        "background_layers",
+        "terrain_ready",
+        "tileset_ready",
+        "top_down_layout"
+      ],
+      "camera_perspectives": [
+        "top_down"
+      ],
+      "tile_asset_metrics": {},
+      "map_builder_strength": "moderate"
+    },
+    {
+      "pack_id": "kenney_tiny_dungeon",
+      "title": "Kenney Tiny Dungeon",
+      "source_url": "https://www.kenney.nl/assets/tiny-dungeon",
+      "download_page_url": "https://www.kenney.nl/assets/tiny-dungeon",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "art_roles": [
+        "tileset",
+        "terrain",
+        "character",
+        "enemy",
+        "prop",
+        "item",
+        "background"
+      ],
+      "recommended_game_types": [
+        "dungeon",
+        "roguelike",
+        "rpg",
+        "top",
+        "down",
+        "adventure"
+      ],
+      "style_tags": [
+        "dungeon",
+        "fantasy",
+        "tiny",
+        "pixel",
+        "retro"
+      ],
+      "quality_tags": [
+        "production",
+        "free",
+        "open",
+        "cc0"
+      ],
+      "map_roles": [
+        "background",
+        "prop",
+        "terrain",
+        "tileset"
+      ],
+      "map_capabilities": [
+        "background_layers",
+        "prop_ready",
+        "terrain_ready",
+        "tileset_ready",
+        "top_down_layout"
+      ],
+      "camera_perspectives": [
+        "top_down"
+      ],
+      "tile_asset_metrics": {},
+      "map_builder_strength": "moderate"
     },
     {
       "pack_id": "kenney_rpg_urban_pack",
@@ -232,7 +478,85 @@
         "free",
         "open",
         "cc0"
-      ]
+      ],
+      "map_roles": [
+        "building",
+        "prop",
+        "terrain",
+        "tileset"
+      ],
+      "map_capabilities": [
+        "building_ready",
+        "prop_ready",
+        "terrain_ready",
+        "tileset_ready",
+        "top_down_layout"
+      ],
+      "camera_perspectives": [
+        "top_down"
+      ],
+      "tile_asset_metrics": {},
+      "map_builder_strength": "moderate"
+    },
+    {
+      "pack_id": "kenney_roguelike_modern_city",
+      "title": "Kenney Roguelike Modern City",
+      "source_url": "https://www.kenney.nl/assets/roguelike-modern-city",
+      "download_page_url": "https://www.kenney.nl/assets/roguelike-modern-city",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "art_roles": [
+        "tileset",
+        "terrain",
+        "building",
+        "prop",
+        "item",
+        "character",
+        "enemy",
+        "background"
+      ],
+      "recommended_game_types": [
+        "roguelike",
+        "rpg",
+        "urban",
+        "top",
+        "down",
+        "adventure",
+        "management"
+      ],
+      "style_tags": [
+        "roguelike",
+        "urban",
+        "city",
+        "pixel",
+        "retro"
+      ],
+      "quality_tags": [
+        "production",
+        "free",
+        "open",
+        "cc0"
+      ],
+      "map_roles": [
+        "background",
+        "building",
+        "prop",
+        "terrain",
+        "tileset"
+      ],
+      "map_capabilities": [
+        "background_layers",
+        "building_ready",
+        "prop_ready",
+        "terrain_ready",
+        "tileset_ready",
+        "top_down_layout"
+      ],
+      "camera_perspectives": [
+        "top_down"
+      ],
+      "tile_asset_metrics": {},
+      "map_builder_strength": "moderate"
     },
     {
       "pack_id": "kenney_fish_pack",
@@ -268,7 +592,16 @@
         "free",
         "open",
         "cc0"
-      ]
+      ],
+      "map_roles": [
+        "background"
+      ],
+      "map_capabilities": [
+        "background_layers"
+      ],
+      "camera_perspectives": [],
+      "tile_asset_metrics": {},
+      "map_builder_strength": "basic"
     },
     {
       "pack_id": "kenney_pirate_pack",
@@ -308,7 +641,130 @@
         "free",
         "open",
         "cc0"
-      ]
+      ],
+      "map_roles": [
+        "background",
+        "building",
+        "prop",
+        "terrain"
+      ],
+      "map_capabilities": [
+        "background_layers",
+        "building_ready",
+        "prop_ready",
+        "terrain_ready",
+        "top_down_layout"
+      ],
+      "camera_perspectives": [
+        "top_down"
+      ],
+      "tile_asset_metrics": {},
+      "map_builder_strength": "moderate"
+    },
+    {
+      "pack_id": "kenney_tiny_ski",
+      "title": "Kenney Tiny Ski",
+      "source_url": "https://www.kenney.nl/assets/tiny-ski",
+      "download_page_url": "https://www.kenney.nl/assets/tiny-ski",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "art_roles": [
+        "character",
+        "terrain",
+        "prop",
+        "background",
+        "item"
+      ],
+      "recommended_game_types": [
+        "ski",
+        "snow",
+        "casual",
+        "sports",
+        "arcade"
+      ],
+      "style_tags": [
+        "snow",
+        "winter",
+        "ski",
+        "tiny",
+        "pixel",
+        "casual"
+      ],
+      "quality_tags": [
+        "production",
+        "free",
+        "open",
+        "cc0"
+      ],
+      "map_roles": [
+        "background",
+        "prop",
+        "terrain"
+      ],
+      "map_capabilities": [
+        "background_layers",
+        "prop_ready",
+        "terrain_ready"
+      ],
+      "camera_perspectives": [],
+      "tile_asset_metrics": {},
+      "map_builder_strength": "moderate"
+    },
+    {
+      "pack_id": "kenney_scribble_platformer",
+      "title": "Kenney Scribble Platformer",
+      "source_url": "https://www.kenney.nl/assets/scribble-platformer",
+      "download_page_url": "https://www.kenney.nl/assets/scribble-platformer",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "art_roles": [
+        "character",
+        "enemy",
+        "tileset",
+        "terrain",
+        "item",
+        "pickup",
+        "effect",
+        "background"
+      ],
+      "recommended_game_types": [
+        "platformer",
+        "runner",
+        "side",
+        "scroller",
+        "action",
+        "adventure"
+      ],
+      "style_tags": [
+        "scribble",
+        "handdrawn",
+        "platformer",
+        "cartoon",
+        "playful"
+      ],
+      "quality_tags": [
+        "production",
+        "animated",
+        "free",
+        "open",
+        "cc0"
+      ],
+      "map_roles": [
+        "background",
+        "terrain",
+        "tileset"
+      ],
+      "map_capabilities": [
+        "background_layers",
+        "side_view_layout",
+        "terrain_ready",
+        "tileset_ready"
+      ],
+      "camera_perspectives": [
+        "side_view"
+      ],
+      "tile_asset_metrics": {},
+      "map_builder_strength": "moderate"
     }
   ]
 }

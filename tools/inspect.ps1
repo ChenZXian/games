@@ -9,6 +9,9 @@ param(
 
 $ErrorActionPreference = "Stop"
 
+. (Join-Path $PSScriptRoot "lib\playfield_safety.ps1")
+. (Join-Path $PSScriptRoot "lib\icon_integrity.ps1")
+
 function Write-Section($title) { Write-Host ""; Write-Host "=== $title ===" }
 function Write-Ok($msg) { Write-Host "[OK]  $msg" }
 function Write-Warn($msg) { Write-Host "[WARN] $msg" }
@@ -75,6 +78,40 @@ function Get-StatusValue($value) {
   return $value
 }
 
+function Normalize-TextId($value) {
+  if ([string]::IsNullOrWhiteSpace($value)) { return "" }
+  $normalized = $value.ToLowerInvariant()
+  $normalized = [regex]::Replace($normalized, '[^a-z0-9]+', ' ')
+  $normalized = [regex]::Replace($normalized, '\s+', ' ').Trim()
+  return $normalized
+}
+
+function Get-TokenSet($value) {
+  $set = New-Object 'System.Collections.Generic.HashSet[string]'
+  $ignored = @(
+    "a","an","the","and","or","of","to","in","on","at","by","for","with","from","into","over","under","behind","below","above","beside","near",
+    "cartoon","icon","game","specific","small","tiny","clear","strong","bronze","clay","round","visible","stylized"
+  )
+  $normalized = Normalize-TextId $value
+  if ([string]::IsNullOrWhiteSpace($normalized)) { return $set }
+  foreach ($part in $normalized.Split(' ')) {
+    if (-not [string]::IsNullOrWhiteSpace($part) -and ($ignored -notcontains $part)) {
+      [void]$set.Add($part)
+    }
+  }
+  return $set
+}
+
+function Get-OverlapCount($leftSet, $rightSet) {
+  $count = 0
+  foreach ($item in $leftSet) {
+    if ($rightSet.Contains($item)) {
+      $count++
+    }
+  }
+  return $count
+}
+
 $passCount = 0
 $warnCount = 0
 $failCount = 0
@@ -112,10 +149,18 @@ $gameplayDiversityStatus = "missing"
 $visualIdentityStatus = "missing"
 $implementationFidelityStatus = "untracked"
 $iconStatus = "deferred"
+$iconUniquenessStatus = "unknown"
+$iconDuplicateRisk = "unknown"
+$iconGenerationIntegrity = "unknown"
+$iconMetadataTrust = "unknown"
 $uiStatus = "deferred"
+$playfieldSafeAreaStatus = "unknown"
+$uiOcclusionRisk = "unknown"
 $gameArtStatus = "deferred"
 $gameArtRuntimeStatus = "missing"
 $audioStatus = "deferred"
+$bgmStatus = "missing"
+$bgmCoverage = "missing"
 
 Write-Section "Inspect Target"
 Write-Ok "Repo root: $root"
@@ -352,8 +397,19 @@ if (Test-Path $resDir) {
 $projectIconPresent = (Test-Path $adaptiveIcon) -or ($legacyIcons.Count -gt 0)
 $iconExportDir = Join-Path $root "artifacts\icons\$gameId"
 $iconExportFiles = @()
+$iconMetadata = $null
 if (Test-Path $iconExportDir) {
   $iconExportFiles = Get-ChildItem -Path $iconExportDir -Recurse -File -ErrorAction SilentlyContinue
+  $iconMetadataPath = Join-Path $iconExportDir "metadata.json"
+  if (Test-Path $iconMetadataPath) {
+    try {
+      $iconMetadata = Get-Content -LiteralPath $iconMetadataPath -Raw | ConvertFrom-Json
+    }
+    catch {
+      Write-Warn "Icon metadata JSON is invalid: artifacts/icons/$gameId/metadata.json"
+      $warnCount++
+    }
+  }
 }
 if ($projectIconPresent -and $iconExportFiles.Count -gt 0) {
   $iconStatus = "complete"
@@ -367,6 +423,109 @@ if ($projectIconPresent -and $iconExportFiles.Count -gt 0) {
   $iconStatus = "deferred"
   Write-Warn "Icon status: deferred"
   $warnCount++
+}
+if ($iconStatus -eq "complete") {
+  $iconIntegrity = Test-IconGenerationIntegrity -RepoRoot $root -ProjectPath $projResolved -GameId $gameId -VisualIdentity $visualIdentity
+  $iconGenerationIntegrity = [string]$iconIntegrity.Status
+  $iconMetadataTrust = [string]$iconIntegrity.Trust
+  if ($iconGenerationIntegrity -eq "passed") {
+    Write-Ok "Icon generation integrity: passed"
+    $passCount++
+  } elseif ($iconGenerationIntegrity -eq "warning") {
+    Write-Warn "Icon generation integrity: warning ($($iconIntegrity.Summary))"
+    $warnCount++
+  } elseif ($iconGenerationIntegrity -eq "failed") {
+    Write-Warn "Icon generation integrity: failed ($($iconIntegrity.Summary))"
+    $warnCount++
+  } else {
+    Write-Warn "Icon generation integrity: missing"
+    $warnCount++
+  }
+  if ($iconMetadataTrust -eq "high") {
+    Write-Ok "Icon metadata trust: high"
+    $passCount++
+  } else {
+    Write-Warn "Icon metadata trust: low"
+    $warnCount++
+  }
+  $genericIconMotifs = @("shieldstar", "swordshield", "castle")
+  $iconMotif = ""
+  $iconSubject = ""
+  $iconSilhouette = ""
+  if ($null -ne $iconMetadata) {
+    $iconMotif = [string]$iconMetadata.motif
+    $iconSubject = [string]$iconMetadata.icon_subject
+    $iconSilhouette = [string]$iconMetadata.icon_silhouette
+    if (-not [string]::IsNullOrWhiteSpace([string]$iconMetadata.icon_duplicate_risk)) {
+      $iconDuplicateRisk = [string]$iconMetadata.icon_duplicate_risk
+    }
+  }
+  if ([string]::IsNullOrWhiteSpace($iconMotif)) {
+    $iconUniquenessStatus = "unreviewed"
+    Write-Warn "Icon uniqueness: unreviewed (metadata does not declare motif)"
+    $warnCount++
+  } elseif ($genericIconMotifs -contains $iconMotif) {
+    $iconUniquenessStatus = "generic"
+    Write-Warn "Icon uniqueness: generic motif '$iconMotif' should be replaced with a game-specific subject"
+    $warnCount++
+  } elseif ([string]::IsNullOrWhiteSpace($iconSubject)) {
+    $iconUniquenessStatus = "unreviewed"
+    Write-Warn "Icon uniqueness: unreviewed (metadata does not declare icon_subject)"
+    $warnCount++
+  } else {
+    $subjectTokens = Get-TokenSet $iconSubject
+    $subjectNorm = Normalize-TextId $iconSubject
+    $silhouetteNorm = Normalize-TextId $iconSilhouette
+    $metadataRoot = Join-Path $root "artifacts\icons"
+    if ($iconDuplicateRisk -eq "unknown" -and (Test-Path $metadataRoot)) {
+      $metadataFiles = Get-ChildItem -Path $metadataRoot -Recurse -File -Filter "metadata.json" -ErrorAction SilentlyContinue
+      foreach ($file in $metadataFiles) {
+        $other = $null
+        try {
+          $other = Get-Content -LiteralPath $file.FullName -Raw | ConvertFrom-Json
+        }
+        catch {
+          continue
+        }
+        if ($null -eq $other) { continue }
+        $otherGameId = [string]$other.game_id
+        if ([string]::IsNullOrWhiteSpace($otherGameId) -or $otherGameId -eq $gameId) { continue }
+        $otherSubject = [string]$other.icon_subject
+        if ([string]::IsNullOrWhiteSpace($otherSubject)) { $otherSubject = [string]$other.subject }
+        $otherMotif = [string]$other.motif
+        $otherSilhouette = [string]$other.icon_silhouette
+        $otherTokens = Get-TokenSet $otherSubject
+        $subjectOverlap = Get-OverlapCount $subjectTokens $otherTokens
+        $sameSubject = ($subjectNorm -ne "") -and ($subjectNorm -eq (Normalize-TextId $otherSubject))
+        $sameMotif = (-not [string]::IsNullOrWhiteSpace($iconMotif)) -and ($iconMotif -eq $otherMotif)
+        $sameSilhouette = ($silhouetteNorm -ne "") -and ($silhouetteNorm -eq (Normalize-TextId $otherSilhouette))
+        if ($sameSubject -or ($sameMotif -and $subjectOverlap -ge 2)) {
+          $iconDuplicateRisk = "high"
+          break
+        }
+        if ($iconDuplicateRisk -ne "high" -and ($sameMotif -or $sameSilhouette -or $subjectOverlap -ge 1)) {
+          $iconDuplicateRisk = "medium"
+        }
+      }
+      if ($iconDuplicateRisk -eq "unknown") {
+        $iconDuplicateRisk = "low"
+      }
+    } elseif ($iconDuplicateRisk -eq "unknown") {
+      $iconDuplicateRisk = "low"
+    }
+
+    if ($iconDuplicateRisk -eq "high" -or $iconDuplicateRisk -eq "medium") {
+      $iconUniquenessStatus = "duplicate_risk"
+      Write-Warn "Icon uniqueness: duplicate_risk (non-low overlap with existing icon metadata)"
+      $warnCount++
+    } else {
+      $iconUniquenessStatus = "passed"
+      Write-Ok "Icon uniqueness: passed ($iconMotif)"
+      $passCount++
+      Write-Ok "Icon duplicate risk: low"
+      $passCount++
+    }
+  }
 }
 
 $uiRecordPath = Join-Path $projResolved "app\src\main\assets\ui\ui_pack_assignment.json"
@@ -430,6 +589,23 @@ if ($null -ne $uiRecord -and [string]$uiRecord.assignment_type -eq "project_loca
 } else {
   $uiStatus = "deferred"
   Write-Warn "UI status: deferred"
+  $warnCount++
+}
+
+$playfieldSafety = Test-PlayfieldSafety $projResolved
+$playfieldSafeAreaStatus = [string]$playfieldSafety.Status
+$uiOcclusionRisk = [string]$playfieldSafety.Risk
+if ($playfieldSafeAreaStatus -eq "passed") {
+  Write-Ok "Playfield safe area: passed ($($playfieldSafety.Summary))"
+  $passCount++
+} elseif ($playfieldSafeAreaStatus -eq "warning") {
+  Write-Warn "Playfield safe area: warning ($($playfieldSafety.Summary))"
+  $warnCount++
+} elseif ($playfieldSafeAreaStatus -eq "failed") {
+  Write-Warn "Playfield safe area: failed ($($playfieldSafety.Summary))"
+  $warnCount++
+} else {
+  Write-Warn "Playfield safe area: unknown ($($playfieldSafety.Summary))"
   $warnCount++
 }
 
@@ -531,7 +707,9 @@ $projectAudioFiles = @()
 if (Test-Path $projectAudioDir) {
   $projectAudioFiles = Get-ChildItem -Path $projectAudioDir -Recurse -File -ErrorAction SilentlyContinue
 }
+$projectBgmFiles = @($projectAudioFiles | Where-Object { $_.Name -like "bgm*" })
 $audioLibraryMatches = @()
+$bgmLibraryMatches = @()
 $audioIndexPath = Join-Path $root "shared_assets\audio\index.json"
 if (Test-Path $audioIndexPath) {
   try {
@@ -541,6 +719,7 @@ if (Test-Path $audioIndexPath) {
         $usedBy = $_.used_by
         ($usedBy -eq $gameId) -or ($usedBy -is [System.Array] -and ($usedBy -contains $gameId))
       })
+      $bgmLibraryMatches = @($audioLibraryMatches | Where-Object { [string]$_.type -eq "bgm" -or [string]$_.role -match '^(menu|play|gameplay|climax|boss|win|fail)$' })
     }
   }
   catch {
@@ -548,7 +727,33 @@ if (Test-Path $audioIndexPath) {
     $warnCount++
   }
 }
-if ($projectAudioFiles.Count -gt 0 -and $audioLibraryMatches.Count -gt 0) {
+if ($projectBgmFiles.Count -gt 0 -and $bgmLibraryMatches.Count -gt 0) {
+  $bgmRoles = @($bgmLibraryMatches | ForEach-Object { [string]$_.role } | Where-Object { -not [string]::IsNullOrWhiteSpace($_) } | Select-Object -Unique)
+  $hasMenuBgm = $bgmRoles -contains "menu"
+  $hasPlayBgm = $bgmRoles -contains "play"
+  if ($hasMenuBgm -and $hasPlayBgm) {
+    $bgmCoverage = "complete"
+    $bgmStatus = "complete"
+    Write-Ok "BGM status: complete ($($projectBgmFiles.Count) project BGM file(s), roles: $($bgmRoles -join ', '))"
+    $passCount++
+  } else {
+    $bgmCoverage = "partial"
+    $bgmStatus = "placeholder_only"
+    Write-Warn "BGM status: placeholder_only (tracked BGM exists but required menu/play coverage is incomplete)"
+    $warnCount++
+  }
+} elseif ($projectBgmFiles.Count -gt 0) {
+  $bgmCoverage = "partial"
+  $bgmStatus = "placeholder_only"
+  Write-Warn "BGM status: placeholder_only (project BGM exists, no shared library BGM linkage found)"
+  $warnCount++
+} else {
+  $bgmCoverage = "missing"
+  $bgmStatus = "missing"
+  Write-Warn "BGM status: missing"
+  $warnCount++
+}
+if ($projectAudioFiles.Count -gt 0 -and $audioLibraryMatches.Count -gt 0 -and $bgmStatus -eq "complete") {
   $audioStatus = "complete"
   Write-Ok "Audio status: complete ($($projectAudioFiles.Count) project file(s), $($audioLibraryMatches.Count) shared library match(es))"
   $passCount++
@@ -577,7 +782,7 @@ if ($apkFiles.Count -gt 0) {
 }
 
 $canEnterPack = $doctorReady -and $validatorReady -and $registryReady
-$deliveryReady = $canEnterPack -and ($requirementsStatus -eq "confirmed") -and ($gameplayDiversityStatus -eq "passed") -and ($visualIdentityStatus -eq "passed") -and ($implementationFidelityStatus -eq "passed") -and ($iconStatus -eq "complete") -and ($uiStatus -eq "complete") -and ($gameArtStatus -eq "complete") -and ($audioStatus -eq "complete")
+$deliveryReady = $canEnterPack -and ($requirementsStatus -eq "confirmed") -and ($gameplayDiversityStatus -eq "passed") -and ($visualIdentityStatus -eq "passed") -and ($implementationFidelityStatus -eq "passed") -and ($iconStatus -eq "complete") -and ($iconGenerationIntegrity -eq "passed") -and ($iconMetadataTrust -eq "high") -and ($iconUniquenessStatus -eq "passed") -and ($uiStatus -eq "complete") -and ($playfieldSafeAreaStatus -eq "passed") -and ($gameArtStatus -eq "complete") -and ($audioStatus -eq "complete") -and ($bgmStatus -eq "complete")
 
 $nextStep = ""
 if (-not $doctorReady) {
@@ -600,12 +805,20 @@ if (-not $doctorReady) {
   $nextStep = "Review and repair implementation fidelity against the confirmed requirements before release delivery"
 } elseif ($iconStatus -eq "deferred" -or $iconStatus -eq "placeholder_only") {
   $nextStep = "Run the icon workflow to export upload-ready icon assets"
+} elseif ($iconGenerationIntegrity -ne "passed" -or $iconMetadataTrust -ne "high") {
+  $nextStep = "Regenerate icon assets through the icon workflow and do not rely on metadata-only edits"
+} elseif ($iconUniquenessStatus -ne "passed") {
+  $nextStep = "Regenerate a game-specific icon and avoid generic repeated motifs"
+} elseif ($playfieldSafeAreaStatus -ne "passed") {
+  $nextStep = "Reserve gameplay safe area in activity_main.xml before allowing HUD or frame overlays near the playfield"
 } elseif ($gameArtStatus -eq "deferred") {
   $nextStep = "Run the gameplay art workflow to assign tracked character, map, prop, effect, or background assets"
 } elseif ($gameArtStatus -eq "placeholder_only") {
   $nextStep = "Complete gameplay art runtime mapping and animation or facing integration before release delivery"
 } elseif ($audioStatus -eq "deferred") {
   $nextStep = "Run the audio workflow to assign at least one tracked BGM or SFX set"
+} elseif ($bgmStatus -ne "complete") {
+  $nextStep = "Run the audio workflow to assign tracked BGM files and shared library metadata"
 } elseif (-not $deliveryReady) {
   $nextStep = "Close the remaining resource completion gaps before release delivery"
 } else {
@@ -621,10 +834,18 @@ Write-Host "GAMEPLAY_DIVERSITY_STATUS=$(Get-StatusValue $gameplayDiversityStatus
 Write-Host "VISUAL_IDENTITY_STATUS=$(Get-StatusValue $visualIdentityStatus)"
 Write-Host "IMPLEMENTATION_FIDELITY_STATUS=$(Get-StatusValue $implementationFidelityStatus)"
 Write-Host "ICON_STATUS=$(Get-StatusValue $iconStatus)"
+Write-Host "ICON_GENERATION_INTEGRITY=$(Get-StatusValue $iconGenerationIntegrity)"
+Write-Host "ICON_METADATA_TRUST=$(Get-StatusValue $iconMetadataTrust)"
+Write-Host "ICON_UNIQUENESS_STATUS=$(Get-StatusValue $iconUniquenessStatus)"
+Write-Host "ICON_DUPLICATE_RISK=$(Get-StatusValue $iconDuplicateRisk)"
 Write-Host "UI_STATUS=$(Get-StatusValue $uiStatus)"
+Write-Host "PLAYFIELD_SAFE_AREA_STATUS=$(Get-StatusValue $playfieldSafeAreaStatus)"
+Write-Host "UI_OCCLUSION_RISK=$(Get-StatusValue $uiOcclusionRisk)"
 Write-Host "GAME_ART_STATUS=$(Get-StatusValue $gameArtStatus)"
 Write-Host "GAME_ART_RUNTIME_STATUS=$(Get-StatusValue $gameArtRuntimeStatus)"
 Write-Host "AUDIO_STATUS=$(Get-StatusValue $audioStatus)"
+Write-Host "BGM_STATUS=$(Get-StatusValue $bgmStatus)"
+Write-Host "BGM_COVERAGE=$(Get-StatusValue $bgmCoverage)"
 Write-Host "NEXT_STEP=$nextStep"
 
 if ($canEnterPack) { exit 0 }

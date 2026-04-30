@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "game_id": "mountain_pass_guard",
+  "status": "passed",
+  "reviewed_at_utc": "2026-04-29T10:02:00Z",
+  "summary": "The implementation preserves the confirmed mountain pass defense loop with hidden squad assignment, reveal-on-contact ambushes, four-route rally redirection, bunker and morale pressure, flare scouting, rockslide denial, and fallback recovery."
+}

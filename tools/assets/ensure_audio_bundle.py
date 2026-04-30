@@ -8,6 +8,8 @@ from audio_utils import load_index, pick_entry, tokenize_style_text, unique_toke
 
 DEFAULT_BGM_ROLES = ["menu", "play", "win", "fail"]
 DEFAULT_SFX_ROLES = ["ui_click", "ui_confirm", "ui_back", "collect", "hit", "warning", "win", "fail"]
+SHARED_MATCH_MIN_SCORE = 5
+REQUIRED_BGM_ROLES = {"menu", "play"}
 
 
 def parse_csv(text: str, fallback):
@@ -66,7 +68,7 @@ def choose_shared_entry(library_root: Path, audio_type: str, role: str, tag: str
         audio_id="",
         tag=tag,
         style_tokens=style_tokens,
-        min_score=0,
+        min_score=SHARED_MATCH_MIN_SCORE,
     )
 
 
@@ -81,6 +83,7 @@ def ensure_one(args, audio_type: str, role: str, style_tokens):
             "role": role,
             "type": audio_type,
             "tag": tag,
+            "external_search": "not_needed",
         }
 
     if args.dry_run:
@@ -95,9 +98,14 @@ def ensure_one(args, audio_type: str, role: str, style_tokens):
             "role": role,
             "type": audio_type,
             "tag": tag,
+            "external_search": "required_pending",
         }
 
+    fetch_attempted = False
+    fetch_status = "not_attempted"
     if not args.no_fetch:
+        fetch_attempted = True
+        fetch_status = "required_failed"
         fetch_args = [
             "--game-id", args.game_id,
             "--type", audio_type,
@@ -120,6 +128,7 @@ def ensure_one(args, audio_type: str, role: str, style_tokens):
                     "role": role,
                     "type": audio_type,
                     "tag": tag,
+                    "external_search": "required_done",
                 }
 
     if args.no_synth:
@@ -150,6 +159,7 @@ def ensure_one(args, audio_type: str, role: str, style_tokens):
         "role": role,
         "type": audio_type,
         "tag": tag,
+        "external_search": "required_failed" if fetch_attempted else fetch_status,
     }
 
 
@@ -214,10 +224,25 @@ def main():
         print(f"AUDIO_RESOLVED_TYPE={item['type']}")
         print(f"AUDIO_RESOLVED_ROLE={item['role']}")
         print(f"AUDIO_RESOLVED_METHOD={item['method']}")
+        print(f"EXTERNAL_ASSET_SEARCH={item['external_search']}")
         if item["entry_id"]:
             print(f"AUDIO_RESOLVED_ID={item['entry_id']}")
         if item["target"]:
             print(f"AUDIO_RESOLVED_TARGET={item['target']}")
+
+    bgm_resolved_roles = {item["role"] for item in resolved if item["type"] == "bgm"}
+    required_bgm_roles = {role for role in bgm_roles if role in REQUIRED_BGM_ROLES}
+    if not required_bgm_roles:
+        bgm_coverage = "complete" if bgm_resolved_roles else "missing"
+    else:
+        covered_required_roles = required_bgm_roles.intersection(bgm_resolved_roles)
+        if covered_required_roles == required_bgm_roles:
+            bgm_coverage = "complete"
+        elif covered_required_roles:
+            bgm_coverage = "partial"
+        else:
+            bgm_coverage = "missing"
+    print(f"BGM_COVERAGE={bgm_coverage}")
 
 
 if __name__ == "__main__":

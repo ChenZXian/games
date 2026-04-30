@@ -28,6 +28,12 @@ function Remove-IfExists([string]$PathValue) {
   }
 }
 
+function Get-FileSha256([string]$PathValue) {
+  if (-not (Test-Path -LiteralPath $PathValue)) { return "" }
+  $hash = Get-FileHash -LiteralPath $PathValue -Algorithm SHA256
+  return ([string]$hash.Hash).ToLowerInvariant()
+}
+
 function Get-RepoRoot([string]$StartPath) {
   $current = (Resolve-Path -LiteralPath $StartPath).Path
   for ($i = 0; $i -lt 12; $i++) {
@@ -51,6 +57,99 @@ function Read-JsonObject([string]$PathValue) {
   }
   catch {
     return $null
+  }
+}
+
+function Normalize-TextId([string]$Value) {
+  if ([string]::IsNullOrWhiteSpace($Value)) { return "" }
+  $normalized = $Value.ToLowerInvariant()
+  $normalized = [regex]::Replace($normalized, '[^a-z0-9]+', ' ')
+  $normalized = [regex]::Replace($normalized, '\s+', ' ').Trim()
+  return $normalized
+}
+
+function Get-TokenSet([string]$Value) {
+  $set = New-Object 'System.Collections.Generic.HashSet[string]'
+  $ignored = @(
+    "a","an","the","and","or","of","to","in","on","at","by","for","with","from","into","over","under","behind","below","above","beside","near",
+    "cartoon","icon","game","specific","small","tiny","clear","strong","bronze","clay","round","visible","stylized",
+    "battle","defense","defend","guard","command","commander","route","road","map","tower","banner","base"
+  )
+  $normalized = Normalize-TextId $Value
+  if ([string]::IsNullOrWhiteSpace($normalized)) { return $set }
+  foreach ($part in $normalized.Split(' ')) {
+    if (-not [string]::IsNullOrWhiteSpace($part) -and ($ignored -notcontains $part)) {
+      [void]$set.Add($part)
+    }
+  }
+  return $set
+}
+
+function Get-OverlapCount($LeftSet, $RightSet) {
+  $count = 0
+  foreach ($item in $LeftSet) {
+    if ($RightSet.Contains($item)) {
+      $count++
+    }
+  }
+  return $count
+}
+
+function Get-IconDuplicateReview([string]$RepoRoot, [string]$GameId, [string]$Subject, [string]$Motif, [string]$Silhouette) {
+  $subjectTokens = Get-TokenSet $Subject
+  $subjectNorm = Normalize-TextId $Subject
+  $silhouetteNorm = Normalize-TextId $Silhouette
+  $risk = "low"
+  $matches = @()
+  $metadataRoot = Join-Path $RepoRoot "artifacts\icons"
+  if (-not (Test-Path -LiteralPath $metadataRoot)) {
+    return [pscustomobject]@{
+      Risk = $risk
+      Matches = @()
+    }
+  }
+
+  $metadataFiles = Get-ChildItem -Path $metadataRoot -Recurse -File -Filter "metadata.json" -ErrorAction SilentlyContinue
+  foreach ($file in $metadataFiles) {
+    $metadata = Read-JsonObject $file.FullName
+    if ($null -eq $metadata) { continue }
+    $otherGameId = [string]$metadata.game_id
+    if ([string]::IsNullOrWhiteSpace($otherGameId) -or $otherGameId -eq $GameId) { continue }
+    $otherSubject = [string]$metadata.icon_subject
+    if ([string]::IsNullOrWhiteSpace($otherSubject)) { $otherSubject = [string]$metadata.subject }
+    $otherMotif = [string]$metadata.motif
+    $otherSilhouette = [string]$metadata.icon_silhouette
+    $otherTokens = Get-TokenSet $otherSubject
+    $subjectOverlap = Get-OverlapCount $subjectTokens $otherTokens
+    $sameSubject = ($subjectNorm -ne "") -and ($subjectNorm -eq (Normalize-TextId $otherSubject))
+    $sameMotif = (-not [string]::IsNullOrWhiteSpace($Motif)) -and ($Motif -eq $otherMotif)
+    $sameSilhouette = ($silhouetteNorm -ne "") -and ($silhouetteNorm -eq (Normalize-TextId $otherSilhouette))
+    $otherRisk = ""
+
+    if ($sameSubject -or $sameMotif -or ($sameMotif -and $subjectOverlap -ge 1)) {
+      $otherRisk = "high"
+    } elseif ($sameSilhouette -or $subjectOverlap -ge 1) {
+      $otherRisk = "medium"
+    }
+
+    if (-not [string]::IsNullOrWhiteSpace($otherRisk)) {
+      $matches += [pscustomobject]@{
+        game_id = $otherGameId
+        risk = $otherRisk
+        motif = $otherMotif
+        icon_subject = $otherSubject
+      }
+      if ($otherRisk -eq "high") {
+        $risk = "high"
+      } elseif ($risk -ne "high") {
+        $risk = "medium"
+      }
+    }
+  }
+
+  return [pscustomobject]@{
+    Risk = $risk
+    Matches = $matches
   }
 }
 
@@ -154,6 +253,10 @@ function Get-Motif([string]$Text, [string[]]$Forbidden = @()) {
   $banZombie = $forbiddenText -match 'zombie'
   $banHelmet = $forbiddenText -match 'helmet|gas-mask|gas mask'
   $banShield = $forbiddenText -match 'shield|crest'
+  if ($value -match 'bridge|river|crossing|gatehouse|crowned bridge|route markers') { return "crownbridge" }
+  if (($value -match 'ring|perimeter|outpost|lamp|yard') -and ($value -match 'scrap|barricade|hazard|feral|ghoul|quarantine')) { return "scrapring" }
+  if ($value -match 'mountain|ridge|pass|bunker|flare|canyon|notch|rockslide') { return "mountainbunker" }
+  if ($value -match 'barracks|camp|command|commander|wheat|resource|map grid|tactical map|town hut|worker|villager') { return "commandcamp" }
   if (($value -match 'fist|knuckle|glove') -and ($value -match 'sign|street|district|warrant|route|block')) { return "fistsign" }
   if ($value -match 'pennant|banner|standard|milestone|tactical-map|tactical map|tile pattern|tile grid') { return "warpennant" }
   if ($value -match 'snow|ice|frost') { return "snowman" }
@@ -172,9 +275,29 @@ function Get-Motif([string]$Text, [string[]]$Forbidden = @()) {
 
 function Get-Palette([string]$Motif) {
   switch ($Motif) {
+    "crownbridge" {
+      return @{
+        BgStart = "#18314E"; BgEnd = "#6C2833"; Primary = "#E7D9B0"; Secondary = "#9AABB8"; Accent = "#D8A044"; Outline = "#16263D"; Spot = "#F6E7B8"
+      }
+    }
+    "scrapring" {
+      return @{
+        BgStart = "#2A221B"; BgEnd = "#8A4B2F"; Primary = "#8E7A65"; Secondary = "#F2B544"; Accent = "#9BE86B"; Outline = "#18120D"; Spot = "#FFD27A"
+      }
+    }
     "fistsign" {
       return @{
         BgStart = "#1B2433"; BgEnd = "#C67B32"; Primary = "#D0B79C"; Secondary = "#E7E0D6"; Accent = "#ED9E3D"; Outline = "#6B5846"; Spot = "#FFD6B4"
+      }
+    }
+    "commandcamp" {
+      return @{
+        BgStart = "#263326"; BgEnd = "#B7792F"; Primary = "#D9A441"; Secondary = "#EEE2B7"; Accent = "#5EE0BE"; Outline = "#1C2A24"; Spot = "#F7D784"
+      }
+    }
+    "mountainbunker" {
+      return @{
+        BgStart = "#1E2B24"; BgEnd = "#6F4030"; Primary = "#7A8E86"; Secondary = "#D7A35B"; Accent = "#D94841"; Outline = "#18211D"; Spot = "#FFD589"
       }
     }
     "warpennant" {
@@ -350,6 +473,218 @@ function Draw-FistSign([System.Drawing.Graphics]$Graphics, [hashtable]$Palette, 
   $darkBrush.Dispose()
   $tapeBrush.Dispose()
   $slashPen.Dispose()
+}
+
+function Draw-CommandCamp([System.Drawing.Graphics]$Graphics, [hashtable]$Palette, [int]$OffsetX, [int]$OffsetY, [int]$ShadowAlpha) {
+  $alpha = Get-DrawAlpha $ShadowAlpha
+  $outline = New-PenFromHex $Palette.Outline 24 $alpha
+  $outline.LineJoin = [System.Drawing.Drawing2D.LineJoin]::Round
+  $mapBrush = New-Brush $Palette.Secondary $alpha
+  $bronzeBrush = New-Brush $Palette.Primary $alpha
+  $accentBrush = New-Brush $Palette.Accent $alpha
+  $darkBrush = New-Brush $Palette.Outline $alpha
+  $wheatBrush = New-Brush $Palette.Spot $alpha
+  $gridPen = New-PenFromHex "#8E6A38" 8 ([Math]::Max(70, [int]($alpha * 0.55)))
+  $mapPath = New-RoundedPath (220 + $OffsetX) (292 + $OffsetY) 584 430 70
+  $Graphics.FillPath($mapBrush, $mapPath)
+  $Graphics.DrawPath($outline, $mapPath)
+  foreach ($x in @(310, 430, 550, 670)) {
+    $Graphics.DrawLine($gridPen, $x + $OffsetX, 322 + $OffsetY, $x + $OffsetX, 692 + $OffsetY)
+  }
+  foreach ($y in @(382, 482, 582)) {
+    $Graphics.DrawLine($gridPen, 252 + $OffsetX, $y + $OffsetY, 772 + $OffsetX, $y + $OffsetY)
+  }
+  $Graphics.FillRectangle($bronzeBrush, 422 + $OffsetX, 386 + $OffsetY, 186, 164)
+  $Graphics.DrawRectangle($outline, 422 + $OffsetX, 386 + $OffsetY, 186, 164)
+  $Graphics.FillPolygon($darkBrush, @(
+    (New-Point (388 + $OffsetX) (400 + $OffsetY)),
+    (New-Point (514 + $OffsetX) (310 + $OffsetY)),
+    (New-Point (642 + $OffsetX) (400 + $OffsetY))
+  ))
+  $Graphics.DrawPolygon($outline, @(
+    (New-Point (388 + $OffsetX) (400 + $OffsetY)),
+    (New-Point (514 + $OffsetX) (310 + $OffsetY)),
+    (New-Point (642 + $OffsetX) (400 + $OffsetY))
+  ))
+  $Graphics.FillRectangle($accentBrush, 492 + $OffsetX, 468 + $OffsetY, 42, 82)
+  $Graphics.DrawLine($outline, 296 + $OffsetX, 748 + $OffsetY, 734 + $OffsetX, 236 + $OffsetY)
+  $Graphics.FillPolygon($darkBrush, @(
+    (New-Point (724 + $OffsetX) (230 + $OffsetY)),
+    (New-Point (818 + $OffsetX) (206 + $OffsetY)),
+    (New-Point (768 + $OffsetX) (292 + $OffsetY))
+  ))
+  foreach ($i in 0..4) {
+    $baseX = 304 + $OffsetX + $i * 24
+    $Graphics.DrawLine($outline, $baseX, 620 + $OffsetY, $baseX + 66, 750 + $OffsetY)
+    $Graphics.FillEllipse($wheatBrush, $baseX + 42, 610 + $OffsetY + $i * 16, 34, 54)
+  }
+  $Graphics.FillEllipse($accentBrush, 646 + $OffsetX, 556 + $OffsetY, 118, 86)
+  $Graphics.FillRectangle($darkBrush, 674 + $OffsetX, 586 + $OffsetY, 64, 18)
+  $mapPath.Dispose()
+  $outline.Dispose()
+  $mapBrush.Dispose()
+  $bronzeBrush.Dispose()
+  $accentBrush.Dispose()
+  $darkBrush.Dispose()
+  $wheatBrush.Dispose()
+  $gridPen.Dispose()
+}
+
+function Draw-MountainBunker([System.Drawing.Graphics]$Graphics, [hashtable]$Palette, [int]$OffsetX, [int]$OffsetY, [int]$ShadowAlpha) {
+  $alpha = Get-DrawAlpha $ShadowAlpha
+  $outline = New-PenFromHex $Palette.Outline 24 $alpha
+  $outline.LineJoin = [System.Drawing.Drawing2D.LineJoin]::Round
+  $mountainBrush = New-Brush $Palette.Primary $alpha
+  $amberBrush = New-Brush $Palette.Secondary $alpha
+  $flareBrush = New-Brush $Palette.Accent $alpha
+  $glowBrush = New-Brush $Palette.Spot ([Math]::Max(90, [int]($alpha * 0.55)))
+  $darkBrush = New-Brush $Palette.Outline $alpha
+  $steelBrush = New-Brush "#A7B7B0" $alpha
+  $pathBrush = New-Brush "#705447" $alpha
+
+  $leftMountain = @(
+    (New-Point (168 + $OffsetX) (758 + $OffsetY)),
+    (New-Point (344 + $OffsetX) (350 + $OffsetY)),
+    (New-Point (508 + $OffsetX) (604 + $OffsetY)),
+    (New-Point (508 + $OffsetX) (858 + $OffsetY)),
+    (New-Point (168 + $OffsetX) (858 + $OffsetY))
+  )
+  $rightMountain = @(
+    (New-Point (516 + $OffsetX) (858 + $OffsetY)),
+    (New-Point (516 + $OffsetX) (610 + $OffsetY)),
+    (New-Point (710 + $OffsetX) (318 + $OffsetY)),
+    (New-Point (856 + $OffsetX) (758 + $OffsetY)),
+    (New-Point (856 + $OffsetX) (858 + $OffsetY))
+  )
+  $Graphics.FillPolygon($mountainBrush, $leftMountain)
+  $Graphics.FillPolygon($mountainBrush, $rightMountain)
+  $Graphics.DrawPolygon($outline, $leftMountain)
+  $Graphics.DrawPolygon($outline, $rightMountain)
+
+  $Graphics.FillPolygon($amberBrush, @(
+    (New-Point (344 + $OffsetX) (350 + $OffsetY)),
+    (New-Point (402 + $OffsetX) (438 + $OffsetY)),
+    (New-Point (458 + $OffsetX) (386 + $OffsetY)),
+    (New-Point (516 + $OffsetX) (498 + $OffsetY)),
+    (New-Point (516 + $OffsetX) (604 + $OffsetY)),
+    (New-Point (508 + $OffsetX) (604 + $OffsetY))
+  ))
+  $Graphics.FillPolygon($amberBrush, @(
+    (New-Point (710 + $OffsetX) (318 + $OffsetY)),
+    (New-Point (666 + $OffsetX) (416 + $OffsetY)),
+    (New-Point (616 + $OffsetX) (372 + $OffsetY)),
+    (New-Point (548 + $OffsetX) (516 + $OffsetY)),
+    (New-Point (516 + $OffsetX) (610 + $OffsetY))
+  ))
+
+  $bunkerPath = New-RoundedPath (364 + $OffsetX) (598 + $OffsetY) 300 184 38
+  $Graphics.FillPath($steelBrush, $bunkerPath)
+  $Graphics.DrawPath($outline, $bunkerPath)
+  $Graphics.FillRectangle($darkBrush, 474 + $OffsetX, 648 + $OffsetY, 82, 134)
+  $Graphics.FillRectangle($amberBrush, 400 + $OffsetX, 632 + $OffsetY, 58, 34)
+  $Graphics.FillRectangle($amberBrush, 570 + $OffsetX, 632 + $OffsetY, 58, 34)
+  $Graphics.FillRectangle($pathBrush, 468 + $OffsetX, 782 + $OffsetY, 96, 72)
+  $Graphics.FillEllipse($glowBrush, 434 + $OffsetX, 650 + $OffsetY, 42, 42)
+  $Graphics.FillEllipse($glowBrush, 548 + $OffsetX, 650 + $OffsetY, 42, 42)
+
+  $Graphics.DrawLine($outline, 514 + $OffsetX, 452 + $OffsetY, 514 + $OffsetX, 612 + $OffsetY)
+  $Graphics.FillPolygon($flareBrush, @(
+    (New-Point (514 + $OffsetX) (452 + $OffsetY)),
+    (New-Point (628 + $OffsetX) (492 + $OffsetY)),
+    (New-Point (514 + $OffsetX) (548 + $OffsetY))
+  ))
+  $flarePen = New-PenFromHex "#FFB067" 16 $alpha
+  $flarePen.StartCap = [System.Drawing.Drawing2D.LineCap]::Round
+  $flarePen.EndCap = [System.Drawing.Drawing2D.LineCap]::Round
+  $Graphics.DrawLine($flarePen, 640 + $OffsetX, 244 + $OffsetY, 742 + $OffsetX, 140 + $OffsetY)
+  $Graphics.FillEllipse($flareBrush, 720 + $OffsetX, 118 + $OffsetY, 74, 74)
+  $Graphics.FillEllipse($glowBrush, 696 + $OffsetX, 96 + $OffsetY, 122, 122)
+
+  foreach ($line in @(
+    @(286, 748, 420, 700),
+    @(734, 734, 606, 692),
+    @(304, 804, 444, 756),
+    @(720, 790, 584, 746)
+  )) {
+    $Graphics.DrawLine($outline, $line[0] + $OffsetX, $line[1] + $OffsetY, $line[2] + $OffsetX, $line[3] + $OffsetY)
+  }
+
+  $bunkerPath.Dispose()
+  $outline.Dispose()
+  $mountainBrush.Dispose()
+  $amberBrush.Dispose()
+  $flareBrush.Dispose()
+  $glowBrush.Dispose()
+  $darkBrush.Dispose()
+  $steelBrush.Dispose()
+  $pathBrush.Dispose()
+  $flarePen.Dispose()
+}
+
+function Draw-CrownBridge([System.Drawing.Graphics]$Graphics, [hashtable]$Palette, [int]$OffsetX, [int]$OffsetY, [int]$ShadowAlpha) {
+  $alpha = Get-DrawAlpha $ShadowAlpha
+  $outline = New-PenFromHex $Palette.Outline 24 $alpha
+  $outline.LineJoin = [System.Drawing.Drawing2D.LineJoin]::Round
+  $primaryBrush = New-Brush $Palette.Primary $alpha
+  $secondaryBrush = New-Brush $Palette.Secondary $alpha
+  $accentBrush = New-Brush $Palette.Accent $alpha
+  $spotBrush = New-Brush $Palette.Spot $alpha
+  $riverPen = New-PenFromHex $Palette.Accent 34 $alpha
+  $riverPen.StartCap = [System.Drawing.Drawing2D.LineCap]::Round
+  $riverPen.EndCap = [System.Drawing.Drawing2D.LineCap]::Round
+  $riverPen.LineJoin = [System.Drawing.Drawing2D.LineJoin]::Round
+  $Graphics.DrawArc($riverPen, 168 + $OffsetX, 608 + $OffsetY, 670, 240, 200, 138)
+  $Graphics.DrawArc($riverPen, 182 + $OffsetX, 650 + $OffsetY, 636, 188, 194, 132)
+
+  $bridgePath = New-Object System.Drawing.Drawing2D.GraphicsPath
+  $bridgePath.AddArc(298 + $OffsetX, 438 + $OffsetY, 424, 292, 198, 144)
+  $bridgePath.AddLine(610 + $OffsetX, 562 + $OffsetY, 566 + $OffsetX, 562 + $OffsetY)
+  $bridgePath.AddLine(454 + $OffsetX, 562 + $OffsetY, 410 + $OffsetX, 562 + $OffsetY)
+  $bridgePath.CloseFigure()
+  $Graphics.FillPath($primaryBrush, $bridgePath)
+  $Graphics.DrawPath($outline, $bridgePath)
+  $bridgePath.Dispose()
+
+  $Graphics.FillRectangle($secondaryBrush, 248 + $OffsetX, 390 + $OffsetY, 144, 246)
+  $Graphics.FillRectangle($secondaryBrush, 632 + $OffsetX, 390 + $OffsetY, 144, 246)
+  $Graphics.DrawRectangle($outline, 248 + $OffsetX, 390 + $OffsetY, 144, 246)
+  $Graphics.DrawRectangle($outline, 632 + $OffsetX, 390 + $OffsetY, 144, 246)
+  $Graphics.FillRectangle($primaryBrush, 378 + $OffsetX, 302 + $OffsetY, 268, 210)
+  $Graphics.DrawRectangle($outline, 378 + $OffsetX, 302 + $OffsetY, 268, 210)
+  $Graphics.FillRectangle($secondaryBrush, 454 + $OffsetX, 404 + $OffsetY, 116, 108)
+  $Graphics.DrawRectangle($outline, 454 + $OffsetX, 404 + $OffsetY, 116, 108)
+
+  foreach ($x in @(278, 346, 410, 478, 546, 614, 678, 742)) {
+    $Graphics.FillRectangle($primaryBrush, $x + $OffsetX, 248 + $OffsetY, 44, 66)
+    $Graphics.DrawRectangle($outline, $x + $OffsetX, 248 + $OffsetY, 44, 66)
+  }
+
+  $crownPoints = @(
+    (New-Point (390 + $OffsetX) (208 + $OffsetY)),
+    (New-Point (446 + $OffsetX) (140 + $OffsetY)),
+    (New-Point (512 + $OffsetX) (206 + $OffsetY)),
+    (New-Point (570 + $OffsetX) (132 + $OffsetY)),
+    (New-Point (634 + $OffsetX) (208 + $OffsetY)),
+    (New-Point (634 + $OffsetX) (270 + $OffsetY)),
+    (New-Point (390 + $OffsetX) (270 + $OffsetY))
+  )
+  $Graphics.FillPolygon($accentBrush, $crownPoints)
+  $Graphics.DrawPolygon($outline, $crownPoints)
+  foreach ($dot in @(@(444,176), @(570,170), @(512,212))) {
+    $Graphics.FillEllipse($spotBrush, $dot[0] + $OffsetX, $dot[1] + $OffsetY, 26, 26)
+  }
+
+  foreach ($pin in @(@(324,718), @(418,680), @(512,736), @(612,686), @(708,722))) {
+    $Graphics.FillEllipse($spotBrush, $pin[0] + $OffsetX, $pin[1] + $OffsetY, 32, 32)
+    $Graphics.DrawEllipse($outline, $pin[0] + $OffsetX, $pin[1] + $OffsetY, 32, 32)
+  }
+
+  $riverPen.Dispose()
+  $outline.Dispose()
+  $primaryBrush.Dispose()
+  $secondaryBrush.Dispose()
+  $accentBrush.Dispose()
+  $spotBrush.Dispose()
 }
 
 function Draw-Castle([System.Drawing.Graphics]$Graphics, [hashtable]$Palette, [int]$OffsetX, [int]$OffsetY, [int]$ShadowAlpha) {
@@ -750,6 +1085,84 @@ function Draw-Hook([System.Drawing.Graphics]$Graphics, [hashtable]$Palette, [int
   $accentBrush.Dispose()
 }
 
+function Draw-ScrapRing([System.Drawing.Graphics]$Graphics, [hashtable]$Palette, [int]$OffsetX, [int]$OffsetY, [int]$ShadowAlpha) {
+  $alpha = Get-DrawAlpha $ShadowAlpha
+  $outline = New-PenFromHex $Palette.Outline 28 $alpha
+  $outline.LineJoin = [System.Drawing.Drawing2D.LineJoin]::Round
+  $ringBrush = New-Brush $Palette.Primary $alpha
+  $lampBrush = New-Brush $Palette.Secondary $alpha
+  $glowBrush = New-Brush $Palette.Accent ([Math]::Max(80, [int]($alpha * 0.60)))
+  $darkBrush = New-Brush $Palette.Outline $alpha
+  $hazardPen = New-PenFromHex $Palette.Secondary 18 $alpha
+  $hazardPen.LineJoin = [System.Drawing.Drawing2D.LineJoin]::Round
+  $coreBrush = New-Brush "#E8D5B0" ([Math]::Max(90, [int]($alpha * 0.75)))
+
+  $Graphics.FillEllipse($ringBrush, 218 + $OffsetX, 244 + $OffsetY, 588, 588)
+  $Graphics.DrawEllipse($outline, 218 + $OffsetX, 244 + $OffsetY, 588, 588)
+  $Graphics.FillEllipse($darkBrush, 338 + $OffsetX, 364 + $OffsetY, 348, 348)
+  $Graphics.DrawEllipse($outline, 338 + $OffsetX, 364 + $OffsetY, 348, 348)
+  $Graphics.FillEllipse($coreBrush, 430 + $OffsetX, 456 + $OffsetY, 164, 164)
+
+  foreach ($segment in @(
+    @{ X = 336; Y = 250; W = 114; H = 72 },
+    @{ X = 574; Y = 246; W = 110; H = 74 },
+    @{ X = 696; Y = 430; W = 84; H = 126 },
+    @{ X = 236; Y = 438; W = 82; H = 122 },
+    @{ X = 332; Y = 720; W = 126; H = 72 },
+    @{ X = 570; Y = 720; W = 124; H = 72 }
+  )) {
+    $plate = New-RoundedPath ($segment.X + $OffsetX) ($segment.Y + $OffsetY) $segment.W $segment.H 18
+    $Graphics.FillPath($ringBrush, $plate)
+    $Graphics.DrawPath($outline, $plate)
+    $plate.Dispose()
+  }
+
+  $Graphics.DrawLine($hazardPen, 364 + $OffsetX, 286 + $OffsetY, 424 + $OffsetX, 286 + $OffsetY)
+  $Graphics.DrawLine($hazardPen, 600 + $OffsetX, 286 + $OffsetY, 660 + $OffsetX, 286 + $OffsetY)
+  $Graphics.DrawLine($hazardPen, 730 + $OffsetX, 458 + $OffsetY, 730 + $OffsetX, 520 + $OffsetY)
+  $Graphics.DrawLine($hazardPen, 290 + $OffsetX, 460 + $OffsetY, 290 + $OffsetX, 520 + $OffsetY)
+  $Graphics.DrawLine($hazardPen, 382 + $OffsetX, 754 + $OffsetY, 442 + $OffsetX, 754 + $OffsetY)
+  $Graphics.DrawLine($hazardPen, 602 + $OffsetX, 754 + $OffsetY, 662 + $OffsetX, 754 + $OffsetY)
+
+  $Graphics.FillRectangle($darkBrush, 676 + $OffsetX, 188 + $OffsetY, 42, 220)
+  $Graphics.FillEllipse($lampBrush, 632 + $OffsetX, 132 + $OffsetY, 132, 132)
+  $Graphics.FillEllipse($glowBrush, 600 + $OffsetX, 100 + $OffsetY, 196, 196)
+  $Graphics.FillEllipse($coreBrush, 668 + $OffsetX, 168 + $OffsetY, 60, 60)
+
+  foreach ($hand in @(
+    @( (New-Point (160 + $OffsetX) (520 + $OffsetY)), (New-Point (198 + $OffsetX) (448 + $OffsetY)), (New-Point (252 + $OffsetX) (432 + $OffsetY)), (New-Point (236 + $OffsetX) (508 + $OffsetY)) ),
+    @( (New-Point (848 + $OffsetX) (532 + $OffsetY)), (New-Point (826 + $OffsetX) (454 + $OffsetY)), (New-Point (768 + $OffsetX) (430 + $OffsetY)), (New-Point (786 + $OffsetX) (510 + $OffsetY)) ),
+    @( (New-Point (398 + $OffsetX) (894 + $OffsetY)), (New-Point (430 + $OffsetX) (828 + $OffsetY)), (New-Point (494 + $OffsetX) (824 + $OffsetY)), (New-Point (476 + $OffsetX) (896 + $OffsetY)) )
+  )) {
+    $Graphics.FillPolygon($darkBrush, $hand)
+    $Graphics.DrawPolygon($outline, $hand)
+  }
+  foreach ($finger in @(
+    @{ X = 208; Y = 382; W = 30; H = 82 },
+    @{ X = 242; Y = 366; W = 26; H = 88 },
+    @{ X = 274; Y = 372; W = 24; H = 78 },
+    @{ X = 734; Y = 370; W = 30; H = 84 },
+    @{ X = 768; Y = 354; W = 26; H = 90 },
+    @{ X = 800; Y = 364; W = 24; H = 78 },
+    @{ X = 448; Y = 792; W = 30; H = 80 },
+    @{ X = 484; Y = 786; W = 26; H = 82 },
+    @{ X = 520; Y = 794; W = 24; H = 72 }
+  )) {
+    $fingerPath = New-RoundedPath ($finger.X + $OffsetX) ($finger.Y + $OffsetY) $finger.W $finger.H 12
+    $Graphics.FillPath($darkBrush, $fingerPath)
+    $Graphics.DrawPath($outline, $fingerPath)
+    $fingerPath.Dispose()
+  }
+
+  $outline.Dispose()
+  $ringBrush.Dispose()
+  $lampBrush.Dispose()
+  $glowBrush.Dispose()
+  $darkBrush.Dispose()
+  $hazardPen.Dispose()
+  $coreBrush.Dispose()
+}
+
 function Draw-ShieldStar([System.Drawing.Graphics]$Graphics, [hashtable]$Palette, [int]$OffsetX, [int]$OffsetY, [int]$ShadowAlpha) {
   $alpha = Get-DrawAlpha $ShadowAlpha
   $outline = New-PenFromHex $Palette.Outline 28 $alpha
@@ -793,6 +1206,22 @@ function Draw-MotifBitmap([string]$Motif, [hashtable]$Palette) {
   $graphics.Clear([System.Drawing.Color]::Transparent)
 
   switch ($Motif) {
+    "crownbridge" {
+      Draw-CrownBridge $graphics $Palette 18 20 90
+      Draw-CrownBridge $graphics $Palette 0 0 0
+    }
+    "scrapring" {
+      Draw-ScrapRing $graphics $Palette 18 20 90
+      Draw-ScrapRing $graphics $Palette 0 0 0
+    }
+    "commandcamp" {
+      Draw-CommandCamp $graphics $Palette 18 22 90
+      Draw-CommandCamp $graphics $Palette 0 0 0
+    }
+    "mountainbunker" {
+      Draw-MountainBunker $graphics $Palette 18 22 90
+      Draw-MountainBunker $graphics $Palette 0 0 0
+    }
     "fistsign" {
       Draw-FistSign $graphics $Palette 20 22 90
       Draw-FistSign $graphics $Palette 0 0 0
@@ -948,6 +1377,11 @@ if ([string]::IsNullOrWhiteSpace($subjectValue)) {
   $subjectValue = $explicitSubjectValue
 }
 $motif = Get-Motif $subjectValue $iconDirection.Forbidden
+$duplicateReview = Get-IconDuplicateReview $repoRoot $gameIdValue $subjectValue $motif $iconDirection.Silhouette
+if ($duplicateReview.Risk -ne "low") {
+  $blockedGames = @($duplicateReview.Matches | Select-Object -ExpandProperty game_id -Unique)
+  throw ("Icon duplicate risk is '" + $duplicateReview.Risk + "' for game '" + $gameIdValue + "' against: " + ($blockedGames -join ", ") + ". Refine the icon subject or visual identity before regenerating.")
+}
 $palette = Get-Palette $motif
 
 $exportBase = $ExportRoot
@@ -994,6 +1428,22 @@ Save-Png $foreground (Join-Path $drawableDir "app_icon_fg.png") 432 432
 Save-Png $master (Join-Path $exportDir "$gameIdValue-upload-1024.png") 1024 1024
 Save-Png $master (Join-Path $exportDir "$gameIdValue-upload-512.png") 512 512
 
+$primaryExportPath = Join-Path $exportDir "$gameIdValue-upload-1024.png"
+$foregroundPath = Join-Path $drawableDir "app_icon_fg.png"
+$foregroundHash = Get-FileSha256 $foregroundPath
+$primaryExportHash = Get-FileSha256 $primaryExportPath
+$otherExportFiles = Get-ChildItem -Path (Join-Path $repoRoot "artifacts\icons") -Recurse -File -Filter "*-upload-1024.png" -ErrorAction SilentlyContinue |
+  Where-Object { $_.FullName -ne $primaryExportPath }
+$reusedExportGames = @()
+foreach ($otherExport in $otherExportFiles) {
+  if ((Get-FileSha256 $otherExport.FullName) -eq $primaryExportHash) {
+    $reusedExportGames += (Split-Path (Split-Path $otherExport.FullName -Parent) -Leaf)
+  }
+}
+if ($reusedExportGames.Count -gt 0) {
+  throw ("Icon export hash matches existing game export for: " + (($reusedExportGames | Select-Object -Unique) -join ", ") + ". Regeneration produced a reused icon and is blocked.")
+}
+
 $colorsXml = @"
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
@@ -1022,8 +1472,17 @@ $metadata = [ordered]@{
   style = "cartoon"
   project_path = $projectPath
   generated_at = (Get-Date).ToString("yyyy-MM-ddTHH:mm:ssK")
-  primary_export = (Join-Path $exportDir "$gameIdValue-upload-1024.png")
+  primary_export = $primaryExportPath
   visual_identity_source = $iconDirection.VisualIdentitySource
+  icon_duplicate_risk = $duplicateReview.Risk
+  generation_mode = "fresh_render"
+  reuse_policy = "no_reuse"
+  foreground_sha256 = $foregroundHash
+  primary_export_sha256 = $primaryExportHash
+  duplicate_review = [ordered]@{
+    risk = $duplicateReview.Risk
+    compared_games = @($duplicateReview.Matches)
+  }
   seed = $seedValue
 }
 $metadataJson = $metadata | ConvertTo-Json -Depth 4

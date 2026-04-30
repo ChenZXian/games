@@ -48,5 +48,30 @@
     "Preview.png",
     "Sample.png"
   ],
-  "asset_file_count": 591
+  "asset_file_count": 591,
+  "map_roles": [
+    "prop",
+    "tileset"
+  ],
+  "map_capabilities": [
+    "grid_ready",
+    "individual_tiles",
+    "large_tile_variation",
+    "modular_tileset",
+    "prop_tiles",
+    "top_down_layout"
+  ],
+  "camera_perspectives": [
+    "top_down"
+  ],
+  "tile_asset_metrics": {
+    "tile_png_count": 524,
+    "tilemap_sheet_count": 0,
+    "packed_sheet_count": 0,
+    "tiled_tmx_count": 0,
+    "tiled_tsx_count": 0,
+    "sample_map_count": 0,
+    "preview_map_count": 2
+  },
+  "map_builder_strength": "moderate"
 }
