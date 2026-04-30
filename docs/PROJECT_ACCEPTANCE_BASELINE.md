@@ -134,3 +134,14 @@ The expected readiness ladder is:
 - resource tracks are complete, not deferred or placeholder-only, for the intended release target
 - inspect and validate can report the playfield safe area as passed rather than warning or failed
 - packaging is run only when explicitly requested
+
+## 9. Initialization Residue Baseline
+
+A newly initialized project should not carry identity residue from an older finished game.
+
+At minimum:
+
+- initialization should start from the repository skeleton contract under `templates/base_mini_game/`
+- the project should not contain another game's `game_id` inside requirements, icon metadata, UI assignment, gameplay art assignment, runtime art map, audio assignment, or visible strings
+- unresolved template markers should not remain in identity-bearing files
+- the project should pass `tools/check_project_identity_residue.ps1 -Project games/<game_id> -GameId <game_id>` before downstream polish or packaging

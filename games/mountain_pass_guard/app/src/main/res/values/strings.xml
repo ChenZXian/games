@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Mountain Pass Guard</string>
+    <string name="title_main">Mountain Pass Guard</string>
+    <string name="subtitle_main">Hide squads in the ridges, reveal ambushes on contact, and protect the command bunker.</string>
+    <string name="btn_start">Start Defense</string>
+    <string name="btn_restart">Restart</string>
+    <string name="btn_resume">Resume</string>
+    <string name="btn_menu">Menu</string>
+    <string name="btn_mute">Sound On</string>
+    <string name="btn_how_to_play">How To Play</string>
+    <string name="btn_pause">Pause</string>
+    <string name="btn_rifle">Rifle</string>
+    <string name="btn_gun">Gun Nest</string>
+    <string name="btn_sniper">Sniper</string>
+    <string name="btn_engineer">Engineer</string>
+    <string name="btn_mortar">Mortar</string>
+    <string name="btn_signal">Signal</string>
+    <string name="btn_flare">Flare Scan</string>
+    <string name="btn_demo">Rockslide</string>
+    <string name="btn_retreat">Fallback</string>
+    <string name="btn_next_wave">Next Wave</string>
+    <string name="hud_bunker">Bunker 100</string>
+    <string name="hud_morale">Morale 100</string>
+    <string name="hud_supplies">Supply 150</string>
+    <string name="hud_wave">Wave 0/8</string>
+    <string name="hud_status">Assign hidden squads</string>
+    <string name="result_title">Result</string>
+    <string name="help_text">Select a squad type from the right command tray and tap a ridge slot to hide it. Tap a hidden slot again to reveal the ambush early, or let enemies come close to auto-reveal it. Tap the numbered route markers on the left rail to redirect revealed guards. Use Flare Scan to expose hidden threats, Rockslide to break a clustered route, and Fallback to restore morale and pull revealed guards back from the front.</string>
+</resources>

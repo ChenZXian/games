@@ -155,7 +155,9 @@
       "duration_sec": 18.0,
       "used_by": [
         "minecart_bastion",
-        "ashen_frontier"
+        "ashen_frontier",
+        "mountain_pass_guard",
+        "scrap_ring_outpost"
       ],
       "source": "synth_audio",
       "retrieved_at": "2026-04-23",
@@ -199,7 +201,8 @@
       "duration_sec": 18.0,
       "used_by": [
         "minecart_bastion",
-        "ashen_frontier"
+        "ashen_frontier",
+        "scrap_ring_outpost"
       ],
       "source": "synth_audio",
       "retrieved_at": "2026-04-23",
@@ -244,7 +247,8 @@
       "used_by": [
         "minecart_bastion",
         "ashen_frontier",
-        "castaway_clan"
+        "castaway_clan",
+        "scrap_ring_outpost"
       ],
       "source": "synth_audio",
       "retrieved_at": "2026-04-23",
@@ -288,7 +292,9 @@
       "duration_sec": 0.1,
       "used_by": [
         "minecart_bastion",
-        "ashen_frontier"
+        "ashen_frontier",
+        "mountain_pass_guard",
+        "scrap_ring_outpost"
       ],
       "source": "synth_audio",
       "retrieved_at": "2026-04-23",
@@ -546,7 +552,9 @@
       "loop": false,
       "duration_sec": 0.3,
       "used_by": [
-        "minecart_bastion"
+        "minecart_bastion",
+        "mountain_pass_guard",
+        "scrap_ring_outpost"
       ],
       "source": "synth_audio",
       "retrieved_at": "2026-04-23",
@@ -589,7 +597,8 @@
       "loop": false,
       "duration_sec": 0.18,
       "used_by": [
-        "minecart_bastion"
+        "minecart_bastion",
+        "scrap_ring_outpost"
       ],
       "source": "synth_audio",
       "retrieved_at": "2026-04-23",
@@ -633,7 +642,9 @@
       "duration_sec": 0.42,
       "used_by": [
         "minecart_bastion",
-        "ashen_frontier"
+        "ashen_frontier",
+        "mountain_pass_guard",
+        "scrap_ring_outpost"
       ],
       "source": "synth_audio",
       "retrieved_at": "2026-04-23",
@@ -677,7 +688,9 @@
       "duration_sec": 0.4,
       "used_by": [
         "minecart_bastion",
-        "ashen_frontier"
+        "ashen_frontier",
+        "mountain_pass_guard",
+        "scrap_ring_outpost"
       ],
       "source": "synth_audio",
       "retrieved_at": "2026-04-23",
@@ -2103,7 +2116,8 @@
       "duration_sec": 18.0,
       "used_by": [
         "crownroad_bastion",
-        "crown_frontier_tactics"
+        "crown_frontier_tactics",
+        "mountain_pass_guard"
       ],
       "source": "synth_audio",
       "retrieved_at": "2026-04-23",
@@ -2277,7 +2291,8 @@
       "loop": false,
       "duration_sec": 0.12,
       "used_by": [
-        "ashen_frontier"
+        "ashen_frontier",
+        "mountain_pass_guard"
       ],
       "source": "synth_audio",
       "retrieved_at": "2026-04-24",
@@ -2644,7 +2659,8 @@
       "loop": false,
       "duration_sec": 0.14,
       "used_by": [
-        "crown_frontier_tactics"
+        "crown_frontier_tactics",
+        "mountain_pass_guard"
       ],
       "source": "synth_audio",
       "retrieved_at": "2026-04-28",
@@ -2730,7 +2746,8 @@
       "loop": false,
       "duration_sec": 0.18,
       "used_by": [
-        "crown_frontier_tactics"
+        "crown_frontier_tactics",
+        "mountain_pass_guard"
       ],
       "source": "synth_audio",
       "retrieved_at": "2026-04-28",
@@ -3182,7 +3199,214 @@
       "loop": true,
       "duration_sec": 16.0,
       "used_by": [
-        "bronze_camp_command"
+        "bronze_camp_command",
+        "mountain_pass_guard"
+      ],
+      "source": "synth_audio",
+      "retrieved_at": "2026-04-29",
+      "license": "",
+      "license_url": "",
+      "generated": true,
+      "format": "wav"
+    },
+    {
+      "id": "sfx_build_mountain_6933c278",
+      "file": "sfx/sfx_build_mountain_6933c278.wav",
+      "type": "sfx",
+      "role": "build",
+      "tags": [
+        "mountain",
+        "tense",
+        "disciplined",
+        "bunker",
+        "command",
+        "medium",
+        "rising",
+        "assault",
+        "pressure",
+        "military",
+        "tactical",
+        "ambush"
+      ],
+      "style": "mountain",
+      "style_tags": [
+        "military",
+        "tactical",
+        "mountain",
+        "bunker",
+        "ambush"
+      ],
+      "mood": "tense disciplined bunker command",
+      "pacing": "medium rising assault pressure",
+      "loop": false,
+      "duration_sec": 0.18,
+      "used_by": [
+        "mountain_pass_guard",
+        "scrap_ring_outpost"
+      ],
+      "source": "synth_audio",
+      "retrieved_at": "2026-04-29",
+      "license": "",
+      "license_url": "",
+      "generated": true,
+      "format": "wav"
+    },
+    {
+      "id": "sfx_collect_mountain_c75f4cb7",
+      "file": "sfx/sfx_collect_mountain_c75f4cb7.wav",
+      "type": "sfx",
+      "role": "collect",
+      "tags": [
+        "mountain",
+        "tense",
+        "disciplined",
+        "bunker",
+        "command",
+        "medium",
+        "rising",
+        "assault",
+        "pressure",
+        "military",
+        "tactical",
+        "ambush"
+      ],
+      "style": "mountain",
+      "style_tags": [
+        "military",
+        "tactical",
+        "mountain",
+        "bunker",
+        "ambush"
+      ],
+      "mood": "tense disciplined bunker command",
+      "pacing": "medium rising assault pressure",
+      "loop": false,
+      "duration_sec": 0.24,
+      "used_by": [
+        "mountain_pass_guard",
+        "scrap_ring_outpost"
+      ],
+      "source": "synth_audio",
+      "retrieved_at": "2026-04-29",
+      "license": "",
+      "license_url": "",
+      "generated": true,
+      "format": "wav"
+    },
+    {
+      "id": "sfx_warning_mountain_3792335b",
+      "file": "sfx/sfx_warning_mountain_3792335b.wav",
+      "type": "sfx",
+      "role": "warning",
+      "tags": [
+        "mountain",
+        "tense",
+        "disciplined",
+        "bunker",
+        "command",
+        "medium",
+        "rising",
+        "assault",
+        "pressure",
+        "military",
+        "tactical",
+        "ambush"
+      ],
+      "style": "mountain",
+      "style_tags": [
+        "military",
+        "tactical",
+        "mountain",
+        "bunker",
+        "ambush"
+      ],
+      "mood": "tense disciplined bunker command",
+      "pacing": "medium rising assault pressure",
+      "loop": false,
+      "duration_sec": 0.32,
+      "used_by": [
+        "mountain_pass_guard",
+        "scrap_ring_outpost"
+      ],
+      "source": "synth_audio",
+      "retrieved_at": "2026-04-29",
+      "license": "",
+      "license_url": "",
+      "generated": true,
+      "format": "wav"
+    },
+    {
+      "id": "sfx_attack_scrapyard_fa3ae7cc",
+      "file": "sfx/sfx_attack_scrapyard_fa3ae7cc.wav",
+      "type": "sfx",
+      "role": "attack",
+      "tags": [
+        "scrapyard",
+        "tense",
+        "industrial",
+        "survival",
+        "medium",
+        "rising",
+        "pressure",
+        "post",
+        "apocalypse",
+        "zombie",
+        "defense"
+      ],
+      "style": "scrapyard",
+      "style_tags": [
+        "post",
+        "apocalypse",
+        "industrial",
+        "zombie",
+        "defense"
+      ],
+      "mood": "tense industrial survival",
+      "pacing": "medium rising pressure",
+      "loop": false,
+      "duration_sec": 0.14,
+      "used_by": [
+        "scrap_ring_outpost"
+      ],
+      "source": "synth_audio",
+      "retrieved_at": "2026-04-29",
+      "license": "",
+      "license_url": "",
+      "generated": true,
+      "format": "wav"
+    },
+    {
+      "id": "bgm_play_scrapyard_a626f55b",
+      "file": "bgm/bgm_play_scrapyard_a626f55b.wav",
+      "type": "bgm",
+      "role": "play",
+      "tags": [
+        "scrapyard",
+        "tense",
+        "industrial",
+        "survival",
+        "medium",
+        "rising",
+        "pressure",
+        "post",
+        "apocalypse",
+        "zombie",
+        "defense"
+      ],
+      "style": "scrapyard",
+      "style_tags": [
+        "post",
+        "apocalypse",
+        "industrial",
+        "zombie",
+        "defense"
+      ],
+      "mood": "tense industrial survival",
+      "pacing": "medium rising pressure",
+      "loop": true,
+      "duration_sec": 24.0,
+      "used_by": [
+        "scrap_ring_outpost"
       ],
       "source": "synth_audio",
       "retrieved_at": "2026-04-29",

@@ -66,7 +66,8 @@ function Get-TokenSet([string]$Value) {
   $set = New-Object 'System.Collections.Generic.HashSet[string]'
   $ignored = @(
     "a","an","the","and","or","of","to","in","on","at","by","for","with","from","into","over","under","behind","below","above","beside","near",
-    "cartoon","icon","game","specific","small","tiny","clear","strong","bronze","clay","round","visible","stylized"
+    "cartoon","icon","game","specific","small","tiny","clear","strong","bronze","clay","round","visible","stylized",
+    "battle","defense","defend","guard","command","commander","route","road","map","tower","banner","base"
   )
   $normalized = Normalize-TextId $Value
   if ([string]::IsNullOrWhiteSpace($normalized)) { return $set }
@@ -246,6 +247,8 @@ function Get-Motif([string]$Text, [string[]]$Forbidden = @()) {
   $banZombie = $forbiddenText -match 'zombie'
   $banHelmet = $forbiddenText -match 'helmet|gas-mask|gas mask'
   $banShield = $forbiddenText -match 'shield|crest'
+  if (($value -match 'ring|perimeter|outpost|lamp|yard') -and ($value -match 'scrap|barricade|hazard|feral|ghoul|quarantine')) { return "scrapring" }
+  if ($value -match 'mountain|ridge|pass|bunker|flare|canyon|notch|rockslide') { return "mountainbunker" }
   if ($value -match 'barracks|camp|command|commander|wheat|resource|map grid|tactical map|town hut|worker|villager') { return "commandcamp" }
   if (($value -match 'fist|knuckle|glove') -and ($value -match 'sign|street|district|warrant|route|block')) { return "fistsign" }
   if ($value -match 'pennant|banner|standard|milestone|tactical-map|tactical map|tile pattern|tile grid') { return "warpennant" }
@@ -264,6 +267,11 @@ function Get-Motif([string]$Text, [string[]]$Forbidden = @()) {
 
 function Get-Palette([string]$Motif) {
   switch ($Motif) {
+    "scrapring" {
+      return @{
+        BgStart = "#2A221B"; BgEnd = "#8A4B2F"; Primary = "#8E7A65"; Secondary = "#F2B544"; Accent = "#9BE86B"; Outline = "#18120D"; Spot = "#FFD27A"
+      }
+    }
     "fistsign" {
       return @{
         BgStart = "#1B2433"; BgEnd = "#C67B32"; Primary = "#D0B79C"; Secondary = "#E7E0D6"; Accent = "#ED9E3D"; Outline = "#6B5846"; Spot = "#FFD6B4"
@@ -272,6 +280,11 @@ function Get-Palette([string]$Motif) {
     "commandcamp" {
       return @{
         BgStart = "#263326"; BgEnd = "#B7792F"; Primary = "#D9A441"; Secondary = "#EEE2B7"; Accent = "#5EE0BE"; Outline = "#1C2A24"; Spot = "#F7D784"
+      }
+    }
+    "mountainbunker" {
+      return @{
+        BgStart = "#1E2B24"; BgEnd = "#6F4030"; Primary = "#7A8E86"; Secondary = "#D7A35B"; Accent = "#D94841"; Outline = "#18211D"; Spot = "#FFD589"
       }
     }
     "warpennant" {
@@ -497,6 +510,97 @@ function Draw-CommandCamp([System.Drawing.Graphics]$Graphics, [hashtable]$Palett
   $darkBrush.Dispose()
   $wheatBrush.Dispose()
   $gridPen.Dispose()
+}
+
+function Draw-MountainBunker([System.Drawing.Graphics]$Graphics, [hashtable]$Palette, [int]$OffsetX, [int]$OffsetY, [int]$ShadowAlpha) {
+  $alpha = Get-DrawAlpha $ShadowAlpha
+  $outline = New-PenFromHex $Palette.Outline 24 $alpha
+  $outline.LineJoin = [System.Drawing.Drawing2D.LineJoin]::Round
+  $mountainBrush = New-Brush $Palette.Primary $alpha
+  $amberBrush = New-Brush $Palette.Secondary $alpha
+  $flareBrush = New-Brush $Palette.Accent $alpha
+  $glowBrush = New-Brush $Palette.Spot ([Math]::Max(90, [int]($alpha * 0.55)))
+  $darkBrush = New-Brush $Palette.Outline $alpha
+  $steelBrush = New-Brush "#A7B7B0" $alpha
+  $pathBrush = New-Brush "#705447" $alpha
+
+  $leftMountain = @(
+    (New-Point (168 + $OffsetX) (758 + $OffsetY)),
+    (New-Point (344 + $OffsetX) (350 + $OffsetY)),
+    (New-Point (508 + $OffsetX) (604 + $OffsetY)),
+    (New-Point (508 + $OffsetX) (858 + $OffsetY)),
+    (New-Point (168 + $OffsetX) (858 + $OffsetY))
+  )
+  $rightMountain = @(
+    (New-Point (516 + $OffsetX) (858 + $OffsetY)),
+    (New-Point (516 + $OffsetX) (610 + $OffsetY)),
+    (New-Point (710 + $OffsetX) (318 + $OffsetY)),
+    (New-Point (856 + $OffsetX) (758 + $OffsetY)),
+    (New-Point (856 + $OffsetX) (858 + $OffsetY))
+  )
+  $Graphics.FillPolygon($mountainBrush, $leftMountain)
+  $Graphics.FillPolygon($mountainBrush, $rightMountain)
+  $Graphics.DrawPolygon($outline, $leftMountain)
+  $Graphics.DrawPolygon($outline, $rightMountain)
+
+  $Graphics.FillPolygon($amberBrush, @(
+    (New-Point (344 + $OffsetX) (350 + $OffsetY)),
+    (New-Point (402 + $OffsetX) (438 + $OffsetY)),
+    (New-Point (458 + $OffsetX) (386 + $OffsetY)),
+    (New-Point (516 + $OffsetX) (498 + $OffsetY)),
+    (New-Point (516 + $OffsetX) (604 + $OffsetY)),
+    (New-Point (508 + $OffsetX) (604 + $OffsetY))
+  ))
+  $Graphics.FillPolygon($amberBrush, @(
+    (New-Point (710 + $OffsetX) (318 + $OffsetY)),
+    (New-Point (666 + $OffsetX) (416 + $OffsetY)),
+    (New-Point (616 + $OffsetX) (372 + $OffsetY)),
+    (New-Point (548 + $OffsetX) (516 + $OffsetY)),
+    (New-Point (516 + $OffsetX) (610 + $OffsetY))
+  ))
+
+  $bunkerPath = New-RoundedPath (364 + $OffsetX) (598 + $OffsetY) 300 184 38
+  $Graphics.FillPath($steelBrush, $bunkerPath)
+  $Graphics.DrawPath($outline, $bunkerPath)
+  $Graphics.FillRectangle($darkBrush, 474 + $OffsetX, 648 + $OffsetY, 82, 134)
+  $Graphics.FillRectangle($amberBrush, 400 + $OffsetX, 632 + $OffsetY, 58, 34)
+  $Graphics.FillRectangle($amberBrush, 570 + $OffsetX, 632 + $OffsetY, 58, 34)
+  $Graphics.FillRectangle($pathBrush, 468 + $OffsetX, 782 + $OffsetY, 96, 72)
+  $Graphics.FillEllipse($glowBrush, 434 + $OffsetX, 650 + $OffsetY, 42, 42)
+  $Graphics.FillEllipse($glowBrush, 548 + $OffsetX, 650 + $OffsetY, 42, 42)
+
+  $Graphics.DrawLine($outline, 514 + $OffsetX, 452 + $OffsetY, 514 + $OffsetX, 612 + $OffsetY)
+  $Graphics.FillPolygon($flareBrush, @(
+    (New-Point (514 + $OffsetX) (452 + $OffsetY)),
+    (New-Point (628 + $OffsetX) (492 + $OffsetY)),
+    (New-Point (514 + $OffsetX) (548 + $OffsetY))
+  ))
+  $flarePen = New-PenFromHex "#FFB067" 16 $alpha
+  $flarePen.StartCap = [System.Drawing.Drawing2D.LineCap]::Round
+  $flarePen.EndCap = [System.Drawing.Drawing2D.LineCap]::Round
+  $Graphics.DrawLine($flarePen, 640 + $OffsetX, 244 + $OffsetY, 742 + $OffsetX, 140 + $OffsetY)
+  $Graphics.FillEllipse($flareBrush, 720 + $OffsetX, 118 + $OffsetY, 74, 74)
+  $Graphics.FillEllipse($glowBrush, 696 + $OffsetX, 96 + $OffsetY, 122, 122)
+
+  foreach ($line in @(
+    @(286, 748, 420, 700),
+    @(734, 734, 606, 692),
+    @(304, 804, 444, 756),
+    @(720, 790, 584, 746)
+  )) {
+    $Graphics.DrawLine($outline, $line[0] + $OffsetX, $line[1] + $OffsetY, $line[2] + $OffsetX, $line[3] + $OffsetY)
+  }
+
+  $bunkerPath.Dispose()
+  $outline.Dispose()
+  $mountainBrush.Dispose()
+  $amberBrush.Dispose()
+  $flareBrush.Dispose()
+  $glowBrush.Dispose()
+  $darkBrush.Dispose()
+  $steelBrush.Dispose()
+  $pathBrush.Dispose()
+  $flarePen.Dispose()
 }
 
 function Draw-Castle([System.Drawing.Graphics]$Graphics, [hashtable]$Palette, [int]$OffsetX, [int]$OffsetY, [int]$ShadowAlpha) {
@@ -819,6 +923,84 @@ function Draw-Hook([System.Drawing.Graphics]$Graphics, [hashtable]$Palette, [int
   $accentBrush.Dispose()
 }
 
+function Draw-ScrapRing([System.Drawing.Graphics]$Graphics, [hashtable]$Palette, [int]$OffsetX, [int]$OffsetY, [int]$ShadowAlpha) {
+  $alpha = Get-DrawAlpha $ShadowAlpha
+  $outline = New-PenFromHex $Palette.Outline 28 $alpha
+  $outline.LineJoin = [System.Drawing.Drawing2D.LineJoin]::Round
+  $ringBrush = New-Brush $Palette.Primary $alpha
+  $lampBrush = New-Brush $Palette.Secondary $alpha
+  $glowBrush = New-Brush $Palette.Accent ([Math]::Max(80, [int]($alpha * 0.60)))
+  $darkBrush = New-Brush $Palette.Outline $alpha
+  $hazardPen = New-PenFromHex $Palette.Secondary 18 $alpha
+  $hazardPen.LineJoin = [System.Drawing.Drawing2D.LineJoin]::Round
+  $coreBrush = New-Brush "#E8D5B0" ([Math]::Max(90, [int]($alpha * 0.75)))
+
+  $Graphics.FillEllipse($ringBrush, 218 + $OffsetX, 244 + $OffsetY, 588, 588)
+  $Graphics.DrawEllipse($outline, 218 + $OffsetX, 244 + $OffsetY, 588, 588)
+  $Graphics.FillEllipse($darkBrush, 338 + $OffsetX, 364 + $OffsetY, 348, 348)
+  $Graphics.DrawEllipse($outline, 338 + $OffsetX, 364 + $OffsetY, 348, 348)
+  $Graphics.FillEllipse($coreBrush, 430 + $OffsetX, 456 + $OffsetY, 164, 164)
+
+  foreach ($segment in @(
+    @{ X = 336; Y = 250; W = 114; H = 72 },
+    @{ X = 574; Y = 246; W = 110; H = 74 },
+    @{ X = 696; Y = 430; W = 84; H = 126 },
+    @{ X = 236; Y = 438; W = 82; H = 122 },
+    @{ X = 332; Y = 720; W = 126; H = 72 },
+    @{ X = 570; Y = 720; W = 124; H = 72 }
+  )) {
+    $plate = New-RoundedPath ($segment.X + $OffsetX) ($segment.Y + $OffsetY) $segment.W $segment.H 18
+    $Graphics.FillPath($ringBrush, $plate)
+    $Graphics.DrawPath($outline, $plate)
+    $plate.Dispose()
+  }
+
+  $Graphics.DrawLine($hazardPen, 364 + $OffsetX, 286 + $OffsetY, 424 + $OffsetX, 286 + $OffsetY)
+  $Graphics.DrawLine($hazardPen, 600 + $OffsetX, 286 + $OffsetY, 660 + $OffsetX, 286 + $OffsetY)
+  $Graphics.DrawLine($hazardPen, 730 + $OffsetX, 458 + $OffsetY, 730 + $OffsetX, 520 + $OffsetY)
+  $Graphics.DrawLine($hazardPen, 290 + $OffsetX, 460 + $OffsetY, 290 + $OffsetX, 520 + $OffsetY)
+  $Graphics.DrawLine($hazardPen, 382 + $OffsetX, 754 + $OffsetY, 442 + $OffsetX, 754 + $OffsetY)
+  $Graphics.DrawLine($hazardPen, 602 + $OffsetX, 754 + $OffsetY, 662 + $OffsetX, 754 + $OffsetY)
+
+  $Graphics.FillRectangle($darkBrush, 676 + $OffsetX, 188 + $OffsetY, 42, 220)
+  $Graphics.FillEllipse($lampBrush, 632 + $OffsetX, 132 + $OffsetY, 132, 132)
+  $Graphics.FillEllipse($glowBrush, 600 + $OffsetX, 100 + $OffsetY, 196, 196)
+  $Graphics.FillEllipse($coreBrush, 668 + $OffsetX, 168 + $OffsetY, 60, 60)
+
+  foreach ($hand in @(
+    @( (New-Point (160 + $OffsetX) (520 + $OffsetY)), (New-Point (198 + $OffsetX) (448 + $OffsetY)), (New-Point (252 + $OffsetX) (432 + $OffsetY)), (New-Point (236 + $OffsetX) (508 + $OffsetY)) ),
+    @( (New-Point (848 + $OffsetX) (532 + $OffsetY)), (New-Point (826 + $OffsetX) (454 + $OffsetY)), (New-Point (768 + $OffsetX) (430 + $OffsetY)), (New-Point (786 + $OffsetX) (510 + $OffsetY)) ),
+    @( (New-Point (398 + $OffsetX) (894 + $OffsetY)), (New-Point (430 + $OffsetX) (828 + $OffsetY)), (New-Point (494 + $OffsetX) (824 + $OffsetY)), (New-Point (476 + $OffsetX) (896 + $OffsetY)) )
+  )) {
+    $Graphics.FillPolygon($darkBrush, $hand)
+    $Graphics.DrawPolygon($outline, $hand)
+  }
+  foreach ($finger in @(
+    @{ X = 208; Y = 382; W = 30; H = 82 },
+    @{ X = 242; Y = 366; W = 26; H = 88 },
+    @{ X = 274; Y = 372; W = 24; H = 78 },
+    @{ X = 734; Y = 370; W = 30; H = 84 },
+    @{ X = 768; Y = 354; W = 26; H = 90 },
+    @{ X = 800; Y = 364; W = 24; H = 78 },
+    @{ X = 448; Y = 792; W = 30; H = 80 },
+    @{ X = 484; Y = 786; W = 26; H = 82 },
+    @{ X = 520; Y = 794; W = 24; H = 72 }
+  )) {
+    $fingerPath = New-RoundedPath ($finger.X + $OffsetX) ($finger.Y + $OffsetY) $finger.W $finger.H 12
+    $Graphics.FillPath($darkBrush, $fingerPath)
+    $Graphics.DrawPath($outline, $fingerPath)
+    $fingerPath.Dispose()
+  }
+
+  $outline.Dispose()
+  $ringBrush.Dispose()
+  $lampBrush.Dispose()
+  $glowBrush.Dispose()
+  $darkBrush.Dispose()
+  $hazardPen.Dispose()
+  $coreBrush.Dispose()
+}
+
 function Draw-ShieldStar([System.Drawing.Graphics]$Graphics, [hashtable]$Palette, [int]$OffsetX, [int]$OffsetY, [int]$ShadowAlpha) {
   $alpha = Get-DrawAlpha $ShadowAlpha
   $outline = New-PenFromHex $Palette.Outline 28 $alpha
@@ -862,9 +1044,17 @@ function Draw-MotifBitmap([string]$Motif, [hashtable]$Palette) {
   $graphics.Clear([System.Drawing.Color]::Transparent)
 
   switch ($Motif) {
+    "scrapring" {
+      Draw-ScrapRing $graphics $Palette 18 20 90
+      Draw-ScrapRing $graphics $Palette 0 0 0
+    }
     "commandcamp" {
       Draw-CommandCamp $graphics $Palette 18 22 90
       Draw-CommandCamp $graphics $Palette 0 0 0
+    }
+    "mountainbunker" {
+      Draw-MountainBunker $graphics $Palette 18 22 90
+      Draw-MountainBunker $graphics $Palette 0 0 0
     }
     "fistsign" {
       Draw-FistSign $graphics $Palette 20 22 90

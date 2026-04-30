@@ -17,6 +17,8 @@ Hard rules:
 - Follow `artifacts/requirements/<game_id>/visual_identity.json` when it exists
 - Do not reuse another game's icon subject, silhouette, source object, background badge, or exported upload icon for delivery-ready output
 - Do not skip duplicate-risk review in low-intelligence, auto, or speed-priority runs
+- Do not use metadata-only edits to force a pass on motif, uniqueness, or contract alignment checks
+- If subject, silhouette, motif, or duplicate review changes, regenerate project icon resources and exported upload files in the same run
 - Update project icon resources only inside the requested game project
 - Export upload-ready icon files to `artifacts/icons/<game_id>/`
 - Do not change unrelated gameplay, UI flow, registry entries, packaging outputs, or git state unless explicitly requested

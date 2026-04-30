@@ -10,6 +10,7 @@ param(
 $ErrorActionPreference = "Stop"
 
 . (Join-Path $PSScriptRoot "lib\playfield_safety.ps1")
+. (Join-Path $PSScriptRoot "lib\icon_integrity.ps1")
 
 function Write-Section($title) { Write-Host ""; Write-Host "=== $title ===" }
 function Write-Ok($msg) { Write-Host "[OK]  $msg" }
@@ -150,6 +151,8 @@ $implementationFidelityStatus = "untracked"
 $iconStatus = "deferred"
 $iconUniquenessStatus = "unknown"
 $iconDuplicateRisk = "unknown"
+$iconGenerationIntegrity = "unknown"
+$iconMetadataTrust = "unknown"
 $uiStatus = "deferred"
 $playfieldSafeAreaStatus = "unknown"
 $uiOcclusionRisk = "unknown"
@@ -422,6 +425,29 @@ if ($projectIconPresent -and $iconExportFiles.Count -gt 0) {
   $warnCount++
 }
 if ($iconStatus -eq "complete") {
+  $iconIntegrity = Test-IconGenerationIntegrity -RepoRoot $root -ProjectPath $projResolved -GameId $gameId -VisualIdentity $visualIdentity
+  $iconGenerationIntegrity = [string]$iconIntegrity.Status
+  $iconMetadataTrust = [string]$iconIntegrity.Trust
+  if ($iconGenerationIntegrity -eq "passed") {
+    Write-Ok "Icon generation integrity: passed"
+    $passCount++
+  } elseif ($iconGenerationIntegrity -eq "warning") {
+    Write-Warn "Icon generation integrity: warning ($($iconIntegrity.Summary))"
+    $warnCount++
+  } elseif ($iconGenerationIntegrity -eq "failed") {
+    Write-Warn "Icon generation integrity: failed ($($iconIntegrity.Summary))"
+    $warnCount++
+  } else {
+    Write-Warn "Icon generation integrity: missing"
+    $warnCount++
+  }
+  if ($iconMetadataTrust -eq "high") {
+    Write-Ok "Icon metadata trust: high"
+    $passCount++
+  } else {
+    Write-Warn "Icon metadata trust: low"
+    $warnCount++
+  }
   $genericIconMotifs = @("shieldstar", "swordshield", "castle")
   $iconMotif = ""
   $iconSubject = ""
@@ -761,7 +787,7 @@ if ($apkFiles.Count -gt 0) {
 }
 
 $canEnterPack = $doctorReady -and $validatorReady -and $registryReady
-$deliveryReady = $canEnterPack -and ($requirementsStatus -eq "confirmed") -and ($gameplayDiversityStatus -eq "passed") -and ($visualIdentityStatus -eq "passed") -and ($implementationFidelityStatus -eq "passed") -and ($iconStatus -eq "complete") -and ($iconUniquenessStatus -eq "passed") -and ($uiStatus -eq "complete") -and ($playfieldSafeAreaStatus -eq "passed") -and ($gameArtStatus -eq "complete") -and ($audioStatus -eq "complete") -and ($bgmStatus -eq "complete")
+$deliveryReady = $canEnterPack -and ($requirementsStatus -eq "confirmed") -and ($gameplayDiversityStatus -eq "passed") -and ($visualIdentityStatus -eq "passed") -and ($implementationFidelityStatus -eq "passed") -and ($iconStatus -eq "complete") -and ($iconGenerationIntegrity -eq "passed") -and ($iconMetadataTrust -eq "high") -and ($iconUniquenessStatus -eq "passed") -and ($uiStatus -eq "complete") -and ($playfieldSafeAreaStatus -eq "passed") -and ($gameArtStatus -eq "complete") -and ($audioStatus -eq "complete") -and ($bgmStatus -eq "complete")
 
 $nextStep = ""
 if (-not $doctorReady) {
@@ -784,6 +810,8 @@ if (-not $doctorReady) {
   $nextStep = "Review and repair implementation fidelity against the confirmed requirements before release delivery"
 } elseif ($iconStatus -eq "deferred" -or $iconStatus -eq "placeholder_only") {
   $nextStep = "Run the icon workflow to export upload-ready icon assets"
+} elseif ($iconGenerationIntegrity -ne "passed" -or $iconMetadataTrust -ne "high") {
+  $nextStep = "Regenerate icon assets through the icon workflow and do not rely on metadata-only edits"
 } elseif ($iconUniquenessStatus -ne "passed") {
   $nextStep = "Regenerate a game-specific icon and avoid generic repeated motifs"
 } elseif ($playfieldSafeAreaStatus -ne "passed") {
@@ -811,6 +839,8 @@ Write-Host "GAMEPLAY_DIVERSITY_STATUS=$(Get-StatusValue $gameplayDiversityStatus
 Write-Host "VISUAL_IDENTITY_STATUS=$(Get-StatusValue $visualIdentityStatus)"
 Write-Host "IMPLEMENTATION_FIDELITY_STATUS=$(Get-StatusValue $implementationFidelityStatus)"
 Write-Host "ICON_STATUS=$(Get-StatusValue $iconStatus)"
+Write-Host "ICON_GENERATION_INTEGRITY=$(Get-StatusValue $iconGenerationIntegrity)"
+Write-Host "ICON_METADATA_TRUST=$(Get-StatusValue $iconMetadataTrust)"
 Write-Host "ICON_UNIQUENESS_STATUS=$(Get-StatusValue $iconUniquenessStatus)"
 Write-Host "ICON_DUPLICATE_RISK=$(Get-StatusValue $iconDuplicateRisk)"
 Write-Host "UI_STATUS=$(Get-StatusValue $uiStatus)"

@@ -1,0 +1,117 @@
+{
+  "version": 1,
+  "game_id": "scrap_ring_outpost",
+  "assigned_at_utc": "2026-04-29T10:35:33Z",
+  "packs": [
+    {
+      "pack_id": "kenney_tower_defense_top_down",
+      "pack_title": "Kenney Tower Defense Top-Down",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://kenney.nl/assets/tower-defense-top-down",
+      "art_roles": [
+        "tower",
+        "enemy",
+        "tileset",
+        "terrain",
+        "projectile",
+        "building"
+      ],
+      "recommended_game_types": [
+        "tower",
+        "defense",
+        "strategy",
+        "lane",
+        "top",
+        "down"
+      ],
+      "style_tags": [
+        "top",
+        "down",
+        "tower",
+        "defense",
+        "strategy",
+        "cartoon",
+        "terrain"
+      ],
+      "quality_tags": [
+        "production",
+        "free",
+        "open",
+        "cc0"
+      ],
+      "animation_capabilities": [
+        "top_down",
+        "turret_rotation",
+        "projectile_rotation",
+        "impact_effect",
+        "static_building"
+      ],
+      "animation_states": [
+        "idle",
+        "fire",
+        "hit"
+      ],
+      "project_pack_path": "app/src/main/assets/game_art/kenney_tower_defense_top_down",
+      "copied_file_count": 605
+    },
+    {
+      "pack_id": "kenney_top_down_shooter",
+      "pack_title": "Kenney Top-down Shooter",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://kenney.nl/assets/top-down-shooter",
+      "art_roles": [
+        "character",
+        "enemy",
+        "zombie",
+        "prop",
+        "item",
+        "projectile",
+        "tileset"
+      ],
+      "recommended_game_types": [
+        "top",
+        "down",
+        "shooter",
+        "survival",
+        "arena",
+        "zombie"
+      ],
+      "style_tags": [
+        "top",
+        "down",
+        "shooter",
+        "zombie",
+        "modern",
+        "action"
+      ],
+      "quality_tags": [
+        "production",
+        "free",
+        "open",
+        "cc0"
+      ],
+      "animation_capabilities": [
+        "top_down",
+        "weapon_pose",
+        "hold_pose",
+        "gun_pose",
+        "machine_pose",
+        "reload_pose",
+        "rotate_to_target",
+        "directional_runtime_rotation"
+      ],
+      "animation_states": [
+        "stand",
+        "hold",
+        "gun",
+        "machine",
+        "reload"
+      ],
+      "project_pack_path": "app/src/main/assets/game_art/kenney_top_down_shooter",
+      "copied_file_count": 591
+    }
+  ],
+  "copied_file_count": 1196
+}

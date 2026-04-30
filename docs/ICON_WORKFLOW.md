@@ -1,7 +1,7 @@
 # Icon Workflow
 
-Version: 1.1
-Last updated: 2026-04-23
+Version: 1.2
+Last updated: 2026-04-30
 
 This document defines the current repository icon workflow for Android Java mini-games in this monorepo.
 
@@ -79,6 +79,10 @@ Recommended exports:
 - `icon_duplicate_risk`
 - `duplicate_review`
 
+`metadata.json` is a report artifact, not the source of truth by itself.
+Changing only `metadata.json` is never a valid way to resolve duplicate risk, motif mismatch, or visual identity mismatch.
+If the subject, silhouette, motif, or duplicate review changes, the workflow must regenerate the project icon resources and exported upload files in the same run.
+
 ### 3.4 Uniqueness Review
 
 Before marking icon work complete for delivery-ready output, verify that the icon does not reuse:
@@ -102,11 +106,30 @@ Minimum duplicate-risk checks:
 
 Low-intelligence, auto, or speed-priority runs may reduce candidate count, but they must not skip icon duplicate review.
 
+### 3.4.1 Integrity Gate
+
+Inspection and packaging must also verify icon generation integrity, not only duplicate wording in metadata.
+
+Minimum integrity requirements:
+
+- the metadata motif must be supported by the active generator
+- the metadata subject must align with `visual_identity.json` when that contract exists
+- the metadata silhouette should align with `visual_identity.json` when that contract exists
+- `metadata.json`, the project icon resources, and the exported upload icon should be produced in the same generation window
+- a metadata file that is significantly newer than the generated PNG resources must be treated as suspicious and should fail delivery-ready inspection
+- packaging must not treat a metadata-only edit as a successful icon refresh
+
+Recommended inspect outputs:
+
+- `ICON_GENERATION_INTEGRITY=passed|warning|failed|missing`
+- `ICON_METADATA_TRUST=high|low`
+
 ### 3.5 Packaging Stage
 
 Packaging should reuse the existing icon workflow outputs whenever possible.
 
 If project icon resources are missing or outdated, the packaging workflow may rerun the icon workflow before building artifacts.
+If icon integrity fails, packaging must stop before APK export instead of trusting the existing metadata.
 
 ## 4. Repository Rules
 

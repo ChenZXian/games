@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "game_id": "scrap_ring_outpost",
+  "assigned_at_utc": "2026-04-29T10:36:05Z",
+  "theme": "scrapyard zombie defense",
+  "bgm_roles": [
+    {
+      "role": "menu",
+      "file": "app/src/main/assets/audio/bgm_menu.wav",
+      "shared_audio_id": "bgm_menu_underground_4ec667ce"
+    },
+    {
+      "role": "play",
+      "file": "app/src/main/assets/audio/bgm.wav",
+      "shared_audio_id": "bgm_play_scrapyard_a626f55b"
+    },
+    {
+      "role": "climax",
+      "file": "app/src/main/assets/audio/bgm_climax.wav",
+      "shared_audio_id": "bgm_climax_underground_ff5d3770"
+    }
+  ],
+  "sfx_roles": [
+    {
+      "role": "ui_click",
+      "file": "app/src/main/assets/audio/sfx_ui_click.wav",
+      "shared_audio_id": "sfx_ui_click_underground_0ad917d8"
+    },
+    {
+      "role": "build",
+      "file": "app/src/main/assets/audio/sfx_build.wav",
+      "shared_audio_id": "sfx_build_mountain_6933c278"
+    },
+    {
+      "role": "upgrade",
+      "file": "app/src/main/assets/audio/sfx_upgrade.wav",
+      "shared_audio_id": "sfx_upgrade_underground_4fd8d26c"
+    },
+    {
+      "role": "warning",
+      "file": "app/src/main/assets/audio/sfx_warning.wav",
+      "shared_audio_id": "sfx_warning_mountain_3792335b"
+    },
+    {
+      "role": "repair",
+      "file": "app/src/main/assets/audio/sfx_repair.wav",
+      "shared_audio_id": "sfx_repair_underground_df819600"
+    },
+    {
+      "role": "collect",
+      "file": "app/src/main/assets/audio/sfx_collect.wav",
+      "shared_audio_id": "sfx_collect_mountain_c75f4cb7"
+    },
+    {
+      "role": "attack",
+      "file": "app/src/main/assets/audio/sfx_attack.wav",
+      "shared_audio_id": "sfx_attack_scrapyard_fa3ae7cc"
+    },
+    {
+      "role": "win",
+      "file": "app/src/main/assets/audio/sfx_win.wav",
+      "shared_audio_id": "sfx_win_underground_fed00e5f"
+    },
+    {
+      "role": "fail",
+      "file": "app/src/main/assets/audio/sfx_fail.wav",
+      "shared_audio_id": "sfx_fail_underground_ff2813ff"
+    }
+  ]
+}

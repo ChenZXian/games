@@ -408,6 +408,8 @@ registry/produced_games.json
 
 If similarity is detected, the generator must automatically change mechanics to ensure uniqueness.
 
+For initialization safety, generators must not copy a finished game project as the base for a new game without a neutral rewrite contract and a residue check. New project setup should start from the repository skeleton contract under `templates/base_mini_game/` and must pass `tools/check_project_identity_residue.ps1` before the project moves deeper into the workflow.
+
 ------
 
 ## 13. Registry Update Requirement

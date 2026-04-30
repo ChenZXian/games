@@ -50,6 +50,14 @@ Repo root and path safety rules:
 7. Never write projects under docs/ or registry/.
 8. The only allowed write outside games/<new_game_id>/ is appending one entry to registry/produced_games.json and refreshing registry/projects_by_date.json.
 
+Initialization source policy:
+1. Do not initialize a new project by copying a finished game project and editing it in place.
+2. Use the neutral skeleton contract under `templates/base_mini_game/` as the allowed starting point when a template is needed.
+3. Treat `templates/base_mini_game/identity_contract.json` as the minimum identity rewrite contract.
+4. Before initialization is considered complete, run:
+   `powershell -ExecutionPolicy Bypass -File tools/check_project_identity_residue.ps1 -Project games/<new_game_id> -GameId <new_game_id>`
+5. If the checker does not return `IDENTITY_RESIDUE_OK=true`, stop and rewrite the leaking identity files before moving on to icon, UI, gameplay art, audio, inspect, or packaging.
+
 Mandatory generation rules:
 1. Treat all rules in docs/GAME_GENERATION_STANDARD.md as hard constraints.
 2. Enforce the toolchain baseline from docs/ENVIRONMENT_BASELINE.md in generated files, including:
@@ -239,5 +247,6 @@ Execution requirements:
 3. Verify that the visual identity contract for <new_game_id> has status `passed`
 4. Choose a globally unique <new_game_id> using lowercase snake_case
 5. Create games/<new_game_id>/ with a complete Android Studio project matching the baseline and standards
-6. Append exactly one entry to registry/produced_games.json
-7. Output only the generated project files and the updated registry file unless the user explicitly asks for explanation
+6. Run the identity residue checker and resolve any failures before considering initialization done
+7. Append exactly one entry to registry/produced_games.json
+8. Output only the generated project files and the updated registry file unless the user explicitly asks for explanation

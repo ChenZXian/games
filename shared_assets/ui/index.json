@@ -1,222 +1,212 @@
 {
-    "version":  1,
-    "packs":  [
-                  {
-                      "pack_id":  "kenney_ui_pack",
-                      "title":  "Kenney UI Pack 2.0",
-                      "license":  "CC0-1.0",
-                      "license_url":  "https://creativecommons.org/publicdomain/zero/1.0/",
-                      "source_url":  "https://kenney.nl/assets/ui-pack",
-                      "asset_types":  [
-                                          "png",
-                                          "svg",
-                                          "ttf",
-                                          "wav"
-                                      ],
-                      "recommended_ui_skin":  "skin_cartoon_light",
-                      "default_assignment_preset":  "canonical_cartoon_light",
-                      "assignment_presets":  [
-                                                 "canonical_cartoon_light",
-                                                 "canonical_cartoon_light_green",
-                                                 "canonical_cartoon_light_yellow",
-                                                 "canonical_cartoon_light_red"
-                                             ],
-                      "style_tags":  [
-                                         "clean",
-                                         "rounded",
-                                         "cartoon_friendly",
-                                         "multicolor"
-                                     ],
-                      "quality_tags":  [
-                                           "production",
-                                           "mobile_game",
-                                           "casual"
-                                       ],
-                      "path":  "packs/kenney_ui_pack",
-                      "used_by":  [
-                                      "bloom_orchard",
-                                      "island_supply_command"
-                                  ],
-                      "validated_with":  [
-                                             "bloom_orchard"
-                                         ]
-                  },
-                  {
-                      "pack_id":  "kenney_pixel_ui_pack",
-                      "title":  "Kenney Pixel UI Pack",
-                      "license":  "CC0-1.0",
-                      "license_url":  "https://creativecommons.org/publicdomain/zero/1.0/",
-                      "source_url":  "https://kenney.nl/assets/pixel-ui-pack",
-                      "asset_types":  [
-                                          "png"
-                                      ],
-                      "recommended_ui_skin":  "skin_dark_arcade",
-                      "default_assignment_preset":  "canonical_pixel_green",
-                      "assignment_presets":  [
-                                                 "canonical_pixel_green"
-                                             ],
-                      "style_tags":  [
-                                         "pixel",
-                                         "retro",
-                                         "arcade",
-                                         "adventure"
-                                     ],
-                      "quality_tags":  [
-                                           "production",
-                                           "retro",
-                                           "pixel_art"
-                                       ],
-                      "path":  "packs/kenney_pixel_ui_pack",
-                      "used_by":  [
-                                      "crownblock_hunt"
-                                  ],
-                      "validated_with":  [
-
-                                         ]
-                  },
-                  {
-                      "pack_id":  "kenney_ui_pack_sci_fi",
-                      "title":  "Kenney UI Pack Sci-Fi",
-                      "license":  "CC0-1.0",
-                      "license_url":  "https://creativecommons.org/publicdomain/zero/1.0/",
-                      "source_url":  "https://kenney.nl/assets/ui-pack-sci-fi",
-                      "asset_types":  [
-                                          "png",
-                                          "ttf"
-                                      ],
-                      "recommended_ui_skin":  "skin_neon_future",
-                      "default_assignment_preset":  "canonical_sci_fi_blue",
-                      "assignment_presets":  [
-                                                 "canonical_sci_fi_blue"
-                                             ],
-                      "style_tags":  [
-                                         "sci_fi",
-                                         "space",
-                                         "future",
-                                         "tech",
-                                         "glass"
-                                     ],
-                      "quality_tags":  [
-                                           "production",
-                                           "sci_fi",
-                                           "mobile_game"
-                                       ],
-                      "path":  "packs/kenney_ui_pack_sci_fi",
-                      "used_by":  [
-
-                                  ],
-                      "validated_with":  [
-
-                                         ]
-                  },
-                  {
-                      "pack_id":  "kenney_ui_pack_adventure",
-                      "title":  "Kenney UI Pack Adventure",
-                      "license":  "CC0-1.0",
-                      "license_url":  "https://creativecommons.org/publicdomain/zero/1.0/",
-                      "source_url":  "https://kenney.nl/assets/ui-pack-adventure",
-                      "asset_types":  [
-                                          "png",
-                                          "svg"
-                                      ],
-                      "recommended_ui_skin":  "skin_cartoon_light",
-                      "default_assignment_preset":  "canonical_adventure_brown",
-                      "assignment_presets":  [
-                                                 "canonical_adventure_brown"
-                                             ],
-                      "style_tags":  [
-                                         "fantasy",
-                                         "adventure",
-                                         "rpg",
-                                         "wood",
-                                         "quest"
-                                     ],
-                      "quality_tags":  [
-                                           "production",
-                                           "fantasy",
-                                           "mobile_game"
-                                       ],
-                      "path":  "packs/kenney_ui_pack_adventure",
-                      "used_by":  [
-                                      "empire_wall_guard",
-                                      "crownroad_bastion",
-                                      "crown_frontier_tactics",
-                                      "castaway_clan",
-                                      "bronze_camp_command"
-                                  ],
-                      "validated_with":  [
-
-                                         ]
-                  },
-                  {
-                      "pack_id":  "kenney_ui_pack_rpg_expansion",
-                      "title":  "Kenney UI Pack RPG Expansion",
-                      "license":  "CC0-1.0",
-                      "license_url":  "https://creativecommons.org/publicdomain/zero/1.0/",
-                      "source_url":  "https://kenney.nl/assets/ui-pack-rpg-expansion",
-                      "asset_types":  [
-                                          "png"
-                                      ],
-                      "recommended_ui_skin":  "skin_cartoon_light",
-                      "default_assignment_preset":  "canonical_rpg_blue",
-                      "assignment_presets":  [
-                                                 "canonical_rpg_blue"
-                                             ],
-                      "style_tags":  [
-                                         "rpg",
-                                         "fantasy",
-                                         "upgrade",
-                                         "loadout",
-                                         "blue"
-                                     ],
-                      "quality_tags":  [
-                                           "production",
-                                           "rpg",
-                                           "mobile_game"
-                                       ],
-                      "path":  "packs/kenney_ui_pack_rpg_expansion",
-                      "used_by":  [
-                                      "crownroad_bastion"
-                                  ],
-                      "validated_with":  [
-
-                                         ]
-                  },
-                  {
-                      "pack_id":  "kenney_ui_pack_rusted_control",
-                      "title":  "Kenney Rusted Control UI Pack",
-                      "license":  "CC0-1.0",
-                      "license_url":  "https://creativecommons.org/publicdomain/zero/1.0/",
-                      "source_url":  "https://kenney.nl/assets/ui-pack-adventure",
-                      "asset_types":  [
-                                          "png"
-                                      ],
-                      "recommended_ui_skin":  "skin_post_apocalypse",
-                      "default_assignment_preset":  "canonical_rusted_control",
-                      "assignment_presets":  [
-                                                 "canonical_rusted_control"
-                                             ],
-                      "style_tags":  [
-                                         "post_apocalypse",
-                                         "rust",
-                                         "mine",
-                                         "control",
-                                         "brown",
-                                         "hazard"
-                                     ],
-                      "quality_tags":  [
-                                           "production",
-                                           "mobile_game",
-                                           "industrial"
-                                       ],
-                      "path":  "packs/kenney_ui_pack_rusted_control",
-                      "used_by":  [
-                                      "minecart_bastion",
-                                      "ashen_frontier"
-                                  ],
-                      "validated_with":  [
-
-                                         ]
-                  }
-              ]
+  "version": 1,
+  "packs": [
+    {
+      "pack_id": "kenney_ui_pack",
+      "title": "Kenney UI Pack 2.0",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://kenney.nl/assets/ui-pack",
+      "asset_types": [
+        "png",
+        "svg",
+        "ttf",
+        "wav"
+      ],
+      "recommended_ui_skin": "skin_cartoon_light",
+      "default_assignment_preset": "canonical_cartoon_light",
+      "assignment_presets": [
+        "canonical_cartoon_light",
+        "canonical_cartoon_light_green",
+        "canonical_cartoon_light_yellow",
+        "canonical_cartoon_light_red"
+      ],
+      "style_tags": [
+        "clean",
+        "rounded",
+        "cartoon_friendly",
+        "multicolor"
+      ],
+      "quality_tags": [
+        "production",
+        "mobile_game",
+        "casual"
+      ],
+      "path": "packs/kenney_ui_pack",
+      "used_by": [
+        "bloom_orchard",
+        "island_supply_command"
+      ],
+      "validated_with": [
+        "bloom_orchard"
+      ]
+    },
+    {
+      "pack_id": "kenney_pixel_ui_pack",
+      "title": "Kenney Pixel UI Pack",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://kenney.nl/assets/pixel-ui-pack",
+      "asset_types": [
+        "png"
+      ],
+      "recommended_ui_skin": "skin_dark_arcade",
+      "default_assignment_preset": "canonical_pixel_green",
+      "assignment_presets": [
+        "canonical_pixel_green"
+      ],
+      "style_tags": [
+        "pixel",
+        "retro",
+        "arcade",
+        "adventure"
+      ],
+      "quality_tags": [
+        "production",
+        "retro",
+        "pixel_art"
+      ],
+      "path": "packs/kenney_pixel_ui_pack",
+      "used_by": [
+        "crownblock_hunt"
+      ],
+      "validated_with": []
+    },
+    {
+      "pack_id": "kenney_ui_pack_sci_fi",
+      "title": "Kenney UI Pack Sci-Fi",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://kenney.nl/assets/ui-pack-sci-fi",
+      "asset_types": [
+        "png",
+        "ttf"
+      ],
+      "recommended_ui_skin": "skin_neon_future",
+      "default_assignment_preset": "canonical_sci_fi_blue",
+      "assignment_presets": [
+        "canonical_sci_fi_blue"
+      ],
+      "style_tags": [
+        "sci_fi",
+        "space",
+        "future",
+        "tech",
+        "glass"
+      ],
+      "quality_tags": [
+        "production",
+        "sci_fi",
+        "mobile_game"
+      ],
+      "path": "packs/kenney_ui_pack_sci_fi",
+      "used_by": [],
+      "validated_with": []
+    },
+    {
+      "pack_id": "kenney_ui_pack_adventure",
+      "title": "Kenney UI Pack Adventure",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://kenney.nl/assets/ui-pack-adventure",
+      "asset_types": [
+        "png",
+        "svg"
+      ],
+      "recommended_ui_skin": "skin_cartoon_light",
+      "default_assignment_preset": "canonical_adventure_brown",
+      "assignment_presets": [
+        "canonical_adventure_brown"
+      ],
+      "style_tags": [
+        "fantasy",
+        "adventure",
+        "rpg",
+        "wood",
+        "quest"
+      ],
+      "quality_tags": [
+        "production",
+        "fantasy",
+        "mobile_game"
+      ],
+      "path": "packs/kenney_ui_pack_adventure",
+      "used_by": [
+        "empire_wall_guard",
+        "crownroad_bastion",
+        "crown_frontier_tactics",
+        "castaway_clan",
+        "bronze_camp_command"
+      ],
+      "validated_with": []
+    },
+    {
+      "pack_id": "kenney_ui_pack_rpg_expansion",
+      "title": "Kenney UI Pack RPG Expansion",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://kenney.nl/assets/ui-pack-rpg-expansion",
+      "asset_types": [
+        "png"
+      ],
+      "recommended_ui_skin": "skin_cartoon_light",
+      "default_assignment_preset": "canonical_rpg_blue",
+      "assignment_presets": [
+        "canonical_rpg_blue"
+      ],
+      "style_tags": [
+        "rpg",
+        "fantasy",
+        "upgrade",
+        "loadout",
+        "blue"
+      ],
+      "quality_tags": [
+        "production",
+        "rpg",
+        "mobile_game"
+      ],
+      "path": "packs/kenney_ui_pack_rpg_expansion",
+      "used_by": [
+        "crownroad_bastion"
+      ],
+      "validated_with": []
+    },
+    {
+      "pack_id": "kenney_ui_pack_rusted_control",
+      "title": "Kenney Rusted Control UI Pack",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://kenney.nl/assets/ui-pack-adventure",
+      "asset_types": [
+        "png"
+      ],
+      "recommended_ui_skin": "skin_post_apocalypse",
+      "default_assignment_preset": "canonical_rusted_control",
+      "assignment_presets": [
+        "canonical_rusted_control"
+      ],
+      "style_tags": [
+        "post_apocalypse",
+        "rust",
+        "mine",
+        "control",
+        "brown",
+        "hazard"
+      ],
+      "quality_tags": [
+        "production",
+        "mobile_game",
+        "industrial"
+      ],
+      "path": "packs/kenney_ui_pack_rusted_control",
+      "used_by": [
+        "minecart_bastion",
+        "ashen_frontier",
+        "mountain_pass_guard",
+        "scrap_ring_outpost"
+      ],
+      "validated_with": []
+    }
+  ]
 }

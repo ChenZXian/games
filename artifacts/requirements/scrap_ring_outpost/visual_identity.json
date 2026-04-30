@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "game_id": "scrap_ring_outpost",
+  "status": "passed",
+  "visual_differentiation_axes": [
+    "circular perimeter dashboard instead of top-pill plus bottom-strip HUD",
+    "right-side sector rail with independent pressure states",
+    "scrap-console materials and welded hazard motifs within skin_post_apocalypse",
+    "full circular playfield framed by dead-space console edges rather than overlay chrome",
+    "icon built around a warning-lamp outpost ring under zombie pressure"
+  ],
+  "forbidden_visual_reuse": [
+    "generic castle wall icon",
+    "shield plus skull badge",
+    "neon arcade button language",
+    "top HUD pill cluster plus bottom command strip",
+    "heavy frame over active playfield",
+    "reusing another zombie game's foreground object or background badge"
+  ],
+  "ui_identity": {
+    "layout_archetype": "tactical perimeter dashboard with top resource spine, right-side sector focus rail, and bottom-left contextual build cluster",
+    "hud_composition": "scrap fuel parts night counter objective breach alert selected sector integrity focus cooldown and four sector state cards",
+    "navigation_model": "menu to zone select to blueprint bay to gameplay, with lightweight pause and result overlays and no full-screen interruption for normal gameplay commands",
+    "palette_signature": "rust brown, soot black, oxidized steel, warning amber, acid green alert glow, pale sand text",
+    "material_language": "welded scrap panels, hazard stripe trims, cracked meter glass, bolted edges, field-repaired industrial hardware",
+    "typography_style": "condensed uppercase labels, heavy numeric counters, short industrial action words, high readability at small sizes",
+    "primary_ui_pack": "skin_post_apocalypse token foundation with tracked scrap-command refinements",
+    "secondary_ui_assets": [
+      "sector warning icons",
+      "welded radial or cluster build buttons",
+      "resource glyphs for scrap fuel and parts",
+      "objective beacon marker",
+      "breach siren indicator"
+    ],
+    "playfield_safety": {
+      "reserved_edges": [
+        "top 11 percent for resources and objective",
+        "right 16 percent for sector rail",
+        "bottom-left 24 percent by 24 percent for contextual build controls"
+      ],
+      "hud_anchor_zones": [
+        "top-left resources",
+        "top-center objective and night status",
+        "top-right pause and breach alarm",
+        "right-side sector cards",
+        "bottom-left contextual build cluster"
+      ],
+      "protected_gameplay_zones": [
+        "entire circular perimeter ring",
+        "inner command yard",
+        "breach gates",
+        "defense slots",
+        "main zombie approach routes",
+        "scenario utility nodes"
+      ],
+      "frame_overlay_policy": "all decorative scrap bezels and warning frames must remain in reserved dead space and may not overlap sector slots, breach gates, the circular ring, or emergency tap zones"
+    },
+    "unique_screen_motifs": [
+      "menu background as animated perimeter schematic",
+      "sector cards styled as bolted yard plates",
+      "objective screen using hazard stencil headers",
+      "result panel framed as a breach report sheet",
+      "blueprint bay using module pegboard presentation"
+    ],
+    "forbidden_ui_elements": [
+      "bottom-only tower strip",
+      "full-width objective banner over the ring",
+      "floating chrome covering sectors",
+      "fantasy shield paneling",
+      "plain blue-gray military tech preset reuse"
+    ]
+  },
+  "icon_identity": {
+    "subject": "cartoon scrap barricade ring with one bright warning lamp and feral hands pressing in from outside the perimeter",
+    "silhouette": "circular fortified yard with an offset lamp tower and outward-reaching zombie hands",
+    "composition": "scrap barricade ring centered in the icon, warning lamp rising above one side, dark zombie hands pressing from the outer edge, and a lit inner yard core visible inside the ring",
+    "palette": "rust orange, iron gray, hazard amber, acid green glow, dark shadowed hands",
+    "background": "dirty metal dusk gradient or soot-tinted field with no generic shield medallion",
+    "game_specific_motif": "the entire icon communicates a ring base barely holding against a zombie perimeter breach",
+    "forbidden_icon_reuse": [
+      "plain skull",
+      "plain bunker",
+      "plain shotgun silhouette",
+      "generic biohazard sign",
+      "medieval wall icon",
+      "unmodified icon reused from another project"
+    ]
+  }
+}

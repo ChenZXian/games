@@ -141,7 +141,8 @@
       ],
       "path": "packs/kenney_platformer_art_deluxe",
       "used_by": [
-        "crownblock_hunt"
+        "crownblock_hunt",
+        "mountain_pass_guard"
       ],
       "validated_with": []
     },
@@ -310,7 +311,9 @@
         "minecart_bastion",
         "ashen_frontier",
         "castaway_clan",
-        "bronze_camp_command"
+        "bronze_camp_command",
+        "mountain_pass_guard",
+        "scrap_ring_outpost"
       ],
       "validated_with": []
     },
@@ -376,7 +379,9 @@
         "crownroad_bastion",
         "ashen_frontier",
         "castaway_clan",
-        "bronze_camp_command"
+        "bronze_camp_command",
+        "mountain_pass_guard",
+        "scrap_ring_outpost"
       ],
       "validated_with": []
     },

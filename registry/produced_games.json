@@ -559,6 +559,39 @@
                       "core_loop":  "assign villagers to food wood and stone place buildings train counter squads scout fog capture obelisks and destroy the enemy Chief Hall in short real-time skirmishes",
                       "created_at":  "2026-04-29",
                       "ui_skin":  "skin_military_tech"
+                  },
+                  {
+                      "id":  "mountain_pass_guard",
+                      "name":  "Mountain Pass Guard",
+                      "tags":  [
+                                   "strategy",
+                                   "defense",
+                                   "mountain_pass",
+                                   "hidden_garrison",
+                                   "ambush",
+                                   "bunker",
+                                   "military",
+                                   "menu_10_complete_flow"
+                               ],
+                      "core_loop":  "assign hidden ridge squads reveal ambushes on contact redirect reserves across four fork routes trigger flare scans and rockslides and hold the command bunker through assault waves",
+                      "created_at":  "2026-04-29",
+                      "ui_skin":  "skin_military_tech"
+                  },
+                  {
+                      "id":  "scrap_ring_outpost",
+                      "name":  "Scrap Ring Outpost",
+                      "tags":  [
+                                   "strategy",
+                                   "defense",
+                                   "zombie",
+                                   "ring_perimeter",
+                                   "sector_focus",
+                                   "scrapyard",
+                                   "menu_10_complete_flow"
+                               ],
+                      "core_loop":  "salvage scrap fuel and parts during prep build sector defenses around a circular outpost rotate command focus into weak gates and survive zombie night waves before the inner yard collapses",
+                      "created_at":  "2026-04-29",
+                      "ui_skin":  "skin_post_apocalypse"
                   }
               ]
 }
