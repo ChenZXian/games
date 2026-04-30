@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "game_id": "black_spade_alliance",
+  "status": "passed",
+  "visual_differentiation_axes": [
+    "felt-table center playfield",
+    "four-seat ring layout",
+    "condensed scoreboard labeling",
+    "cross-card icon subject",
+    "compact corner HUD without bottom combat strip"
+  ],
+  "forbidden_visual_reuse": [
+    "top-pill plus bottom-command action HUD",
+    "tower-defense bar layout",
+    "fantasy weapon or shield icon motif",
+    "generic random-card fan icon"
+  ],
+  "ui_identity": {
+    "layout_archetype": "four-edge table ring with central live-play pool and bottom arc hand fan",
+    "hud_composition": "upper-left round and total score, upper-right alliance and lead marker, seat counts around rim, lower action row for play and pass",
+    "navigation_model": "menu to match to round result to final result",
+    "palette_signature": "deep felt green, glass blue-black panels, ivory cards, black and crimson suit marks, warm gold score accents",
+    "material_language": "tactical card table with restrained digital overlays",
+    "typography_style": "condensed numeric-forward sans for score readability",
+    "primary_ui_pack": "black_spade_ui_pack",
+    "secondary_ui_assets": [
+      "score tabs",
+      "alliance seal",
+      "lead token",
+      "card selection glow"
+    ],
+    "playfield_safety": {
+      "reserved_edges": [
+        "bottom hand zone",
+        "upper-left score corner",
+        "upper-right alliance corner"
+      ],
+      "hud_anchor_zones": [
+        "top-left",
+        "top-right",
+        "bottom-center"
+      ],
+      "protected_gameplay_zones": [
+        "center live-play area"
+      ],
+      "frame_overlay_policy": "outer trim only in dead edge space with no opaque cover over live cards"
+    },
+    "unique_screen_motifs": [
+      "score medallion",
+      "cross-card alliance marker",
+      "result flip board"
+    ],
+    "forbidden_ui_elements": [
+      "bottom combat strip",
+      "opaque center bezel",
+      "tower meter layout"
+    ]
+  },
+  "icon_identity": {
+    "subject": "spade 3 and spade A crossing above the felt center",
+    "silhouette": "tilted x-shaped dual-card mark over a circular score ring",
+    "composition": "front crossed cards with score ring and felt badge background",
+    "palette": "deep green ivory black crimson gold",
+    "background": "rounded felt badge",
+    "game_specific_motif": "the alliance relationship between the spade 3 and spade A",
+    "forbidden_icon_reuse": [
+      "random card fan",
+      "chip stack",
+      "weapon crest",
+      "tower badge"
+    ]
+  }
+}

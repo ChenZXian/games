@@ -1,0 +1,120 @@
+{
+  "version": 1,
+  "game_id": "black_spade_alliance",
+  "status": "passed",
+  "genre_family": "card strategy",
+  "genre_archetype": "four-seat partnership shedding game with alliance-anchor cards",
+  "camera_perspective": "top-down table view",
+  "control_model": "tap-select hand management with contextual play or pass actions",
+  "core_loop_signature": "deal cards determine alliance shed legal combinations manage lead tempo score finish order over five rounds",
+  "differentiation_axes": [
+    "custom rank order with 3 highest and 4 lowest",
+    "spade 3 and spade A alliance detection",
+    "solo one-versus-three branch when both anchor cards are held by one seat",
+    "five-round score match rather than endless or level map loop",
+    "turn-based table shedding instead of spatial movement or combat"
+  ],
+  "forbidden_template_reuse": [
+    "generic race-to-empty-hand mode without alliance logic",
+    "standard action HUD top pills plus bottom command strip",
+    "removal of flush or three-with-two support",
+    "conversion into a standard bomb-heavy rule set unrelated to the confirmed design"
+  ],
+  "map_content_budget": {
+    "play_area_model": "single four-seat felt table",
+    "route_or_region_count": 4,
+    "interactive_regions": [
+      "player hand fan",
+      "central live-play zone",
+      "upper-left score board",
+      "upper-right alliance board",
+      "rules overlay trigger"
+    ],
+    "terrain_types": [
+      "normal round table",
+      "pressure round table",
+      "final tally table"
+    ],
+    "decorative_prop_count": 4,
+    "functional_map_elements": [
+      "live combination tracker",
+      "seat card counts",
+      "round result board",
+      "match result board"
+    ],
+    "landmarks": [
+      "cross-table seat ring",
+      "score medallion",
+      "lead marker"
+    ],
+    "camera_or_scroll_model": "fixed"
+  },
+  "entity_content_budget": {
+    "player_unit_types": 1,
+    "enemy_types": 3,
+    "neutral_or_resource_entities": 3,
+    "boss_or_elite_types": 0,
+    "projectile_or_effect_types": 6,
+    "item_or_powerup_types": 0
+  },
+  "mechanic_content_budget": {
+    "primary_player_actions": [
+      "select cards",
+      "play cards",
+      "pass"
+    ],
+    "secondary_player_actions": [
+      "inspect rules",
+      "inspect alliance state",
+      "inspect previous live combination"
+    ],
+    "upgrade_paths": [
+      "none in first release"
+    ],
+    "wave_or_level_variants": [
+      "five rounds per match",
+      "late-round AI pressure emphasis",
+      "solo round escalation when one seat holds both anchor cards"
+    ],
+    "special_rules": [
+      "3 highest",
+      "4 lowest",
+      "no jokers",
+      "flush allowed",
+      "three with two allowed",
+      "three with one forbidden",
+      "spade 3 and spade A form alliance"
+    ],
+    "risk_reward_systems": [
+      "save high cards for lead regain",
+      "feed tempo to an allied seat",
+      "force early finish for over-two score",
+      "gamble on solo round control"
+    ],
+    "failure_pressure_variants": [
+      "opponents chain passes to preserve stronger sets",
+      "player misreads alliance tempo",
+      "solo seat gets focused by three seats"
+    ]
+  },
+  "asset_variety_budget": {
+    "primary_game_art_packs": [
+      "black_spade_table_art"
+    ],
+    "secondary_game_art_packs": [
+      "black_spade_table_fx"
+    ],
+    "ui_pack": "black_spade_ui_pack",
+    "animation_tier": "medium",
+    "required_animation_states": [
+      "deal",
+      "select",
+      "play",
+      "pass",
+      "score_gain",
+      "round_result"
+    ],
+    "minimum_distinct_sprite_families": 5,
+    "asset_reuse_note": "Card-table assets must not visually read as imported combat HUDs or unrelated top-down battle art."
+  }
+}

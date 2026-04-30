@@ -830,6 +830,53 @@
                       "validated_with":  [
 
                                          ]
+                  },
+                  {
+                      "pack_id":  "black_spade_table_art",
+                      "title":  "Black Spade Table Art",
+                      "license":  "Project Internal",
+                      "license_url":  "",
+                      "source_url":  "project_local_shared_pack",
+                      "asset_types":  [
+                                          "png"
+                                      ],
+                      "art_roles":  [
+                                        "table",
+                                        "marker",
+                                        "badge",
+                                        "token"
+                                    ],
+                      "recommended_game_types":  [
+                                                     "card",
+                                                     "tabletop",
+                                                     "turn_based"
+                                                 ],
+                      "style_tags":  [
+                                         "card_table",
+                                         "felt",
+                                         "marker",
+                                         "score_token"
+                                     ],
+                      "quality_tags":  [
+                                           "production",
+                                           "mobile_game",
+                                           "project_internal"
+                                       ],
+                      "animation_capabilities":  [
+                                                     "static_overlay",
+                                                     "pulse_highlight"
+                                                 ],
+                      "animation_states":  [
+                                               "idle",
+                                               "active"
+                                           ],
+                      "path":  "packs/black_spade_table_art",
+                      "used_by":  [
+                                      "black_spade_alliance"
+                                  ],
+                      "validated_with":  [
+                                             "black_spade_alliance"
+                                         ]
                   }
               ]
 }

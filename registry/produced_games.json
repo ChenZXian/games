@@ -544,6 +544,23 @@
                       "core_loop":  "plant flowers and boutique crops care for beds harvest beauty-rated blooms fulfill boutique orders and grow estate beauty before sunset",
                       "created_at":  "2026-04-29",
                       "ui_skin":  "skin_cartoon_light"
+                  },
+                  {
+                      "id":  "black_spade_alliance",
+                      "name":  "Black Spade Alliance",
+                      "tags":  [
+                                   "card",
+                                   "turn_based",
+                                   "alliance",
+                                   "shedding",
+                                   "tabletop",
+                                   "ai_opponents",
+                                   "five_round_match",
+                                   "variant_card_table_ui_art_audio"
+                               ],
+                      "core_loop":  "deal a no-joker deck resolve spade 3 and spade A alliances shed legal combinations manage lead tempo across four seats and score finish order over five rounds",
+                      "created_at":  "2026-04-29",
+                      "ui_skin":  "skin_dark_arcade"
                   }
               ]
 }

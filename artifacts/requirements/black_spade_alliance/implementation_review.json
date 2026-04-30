@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "game_id": "black_spade_alliance",
+  "status": "passed",
+  "reviewed_at_utc": "2026-04-29T08:24:00Z",
+  "summary": "Implementation preserves the confirmed five-round alliance shedding loop, visible team state, solo one-versus-three branch, score outcomes, and mobile table presentation."
+}

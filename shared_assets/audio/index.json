@@ -20,7 +20,8 @@
                       "loop":  true,
                       "duration_sec":  16,
                       "used_by":  [
-                                      "petal_isle_farm"
+                                      "petal_isle_farm",
+                                      "black_spade_alliance"
                                   ],
                       "source":  "legacy_bgm_library",
                       "retrieved_at":  "2026-02-06",
@@ -2548,7 +2549,8 @@
                       "duration_sec":  0.1,
                       "used_by":  [
                                       "crown_frontier_tactics",
-                                      "petal_isle_farm"
+                                      "petal_isle_farm",
+                                      "black_spade_alliance"
                                   ],
                       "source":  "synth_audio",
                       "retrieved_at":  "2026-04-28",
@@ -2764,7 +2766,8 @@
                       "duration_sec":  0.42,
                       "used_by":  [
                                       "crown_frontier_tactics",
-                                      "petal_isle_farm"
+                                      "petal_isle_farm",
+                                      "black_spade_alliance"
                                   ],
                       "source":  "synth_audio",
                       "retrieved_at":  "2026-04-28",

@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "game_id": "black_spade_alliance",
+  "pack_id": "black_spade_ui_pack",
+  "pack_title": "Black Spade Table UI Pack",
+  "preset_id": "black_spade_table_dark",
+  "preset_title": "Black Spade Table Dark",
+  "ui_skin": "skin_dark_arcade",
+  "style_tags": [
+    "card_table",
+    "felt",
+    "scoreboard",
+    "dark_arcade"
+  ],
+  "source_url": "project_local_shared_pack",
+  "license": "Project Internal",
+  "license_url": "",
+  "assigned_at_utc": "2026-04-29T08:24:00Z",
+  "assignment_type": "shared_ui_pack",
+  "copied_items": [
+    {
+      "type": "drawable",
+      "logical_name": "ui_panel",
+      "target": "app/src/main/res/drawable/ui_panel.xml"
+    },
+    {
+      "type": "drawable",
+      "logical_name": "ui_panel_header",
+      "target": "app/src/main/res/drawable/ui_panel_header.xml"
+    },
+    {
+      "type": "drawable",
+      "logical_name": "ui_button_primary",
+      "target": "app/src/main/res/drawable/ui_button_primary.xml"
+    }
+  ]
+}

@@ -216,6 +216,40 @@
                       "validated_with":  [
 
                                          ]
+                  },
+                  {
+                      "pack_id":  "black_spade_ui_pack",
+                      "title":  "Black Spade Table UI Pack",
+                      "license":  "Project Internal",
+                      "license_url":  "",
+                      "source_url":  "project_local_shared_pack",
+                      "asset_types":  [
+                                          "xml",
+                                          "png"
+                                      ],
+                      "recommended_ui_skin":  "skin_dark_arcade",
+                      "default_assignment_preset":  "black_spade_table_dark",
+                      "assignment_presets":  [
+                                                 "black_spade_table_dark"
+                                             ],
+                      "style_tags":  [
+                                         "card_table",
+                                         "felt",
+                                         "scoreboard",
+                                         "dark_arcade"
+                                     ],
+                      "quality_tags":  [
+                                           "production",
+                                           "mobile_game",
+                                           "tabletop"
+                                       ],
+                      "path":  "packs/black_spade_ui_pack",
+                      "used_by":  [
+                                      "black_spade_alliance"
+                                  ],
+                      "validated_with":  [
+                                             "black_spade_alliance"
+                                         ]
                   }
               ]
 }
