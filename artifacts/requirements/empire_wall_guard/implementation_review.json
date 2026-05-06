@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "game_id": "empire_wall_guard",
+  "status": "passed",
+  "reviewed_at": "2026-04-23",
+  "requirements_trace": "artifacts/requirements/empire_wall_guard/requirements.md",
+  "implemented_core_mechanics": [
+    "ancient wall gate durability loss condition",
+    "supplies economy",
+    "nine wave progression",
+    "three approach lanes",
+    "six wall build platforms",
+    "archer tower",
+    "shield barracks with rallyable blockers",
+    "stone thrower splash tower",
+    "oil cauldron tower and fire oil skill",
+    "signal beacon attack speed support",
+    "gate repair skill",
+    "raider scout brute siege cart and warlord enemy types",
+    "siege enemies stopping at range to fire on the gate",
+    "menu help pause HUD and result screens",
+    "tracked UI pack assignment",
+    "tracked gameplay art pack assignment",
+    "integrated runtime art map",
+    "tracked ancient style BGM and SFX assignment"
+  ],
+  "animation_and_facing_evidence": [
+    "GameView maintains state fields for idle move attack hit and dying behavior",
+    "GameView updates facing from movement target blocker or gate vector",
+    "GameView flips unit sprites and facing marks from the facing field",
+    "GameView rotates projectiles from atan2 travel angle",
+    "GameView draws stride bob attack pulse hit shake burn ring and death effects"
+  ],
+  "evidence": [
+    "games/empire_wall_guard/app/src/main/java/com/android/boot/ui/GameView.java",
+    "games/empire_wall_guard/app/src/main/assets/ui/ui_pack_assignment.json",
+    "games/empire_wall_guard/app/src/main/assets/game_art/game_art_assignment.json",
+    "games/empire_wall_guard/app/src/main/assets/game_art/runtime_art_map.json",
+    "games/empire_wall_guard/app/src/main/assets/audio"
+  ],
+  "remaining_quality_notes": [
+    "Further tuning can add a full campaign stage map and deeper upgrade choices.",
+    "The first delivery implementation preserves the confirmed ancient empire wall defense concept instead of replacing it with a generic tower defense loop."
+  ]
+}

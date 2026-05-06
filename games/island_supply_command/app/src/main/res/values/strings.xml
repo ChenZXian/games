@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Island Supply Command</string>
+    <string name="btn_start">Start</string>
+    <string name="btn_restart">Restart</string>
+    <string name="btn_resume">Resume</string>
+    <string name="btn_menu">Menu</string>
+    <string name="btn_mute">Mute</string>
+    <string name="btn_how_to_play">How To Play</string>
+    <string name="btn_route_tool">Route</string>
+    <string name="btn_surge_tool">Surge</string>
+    <string name="btn_upgrade_tool">Upgrade</string>
+    <string name="label_command">Command</string>
+    <string name="label_status">Status</string>
+    <string name="label_timer">Timer</string>
+    <string name="label_pause">Pause</string>
+    <string name="body_menu">Build convoy routes across island harbors and defeat the enemy by winning the supply war.</string>
+    <string name="body_help">Tap an owned harbor, then tap a linked harbor to open a route. Use Surge to refill stock and Upgrade to strengthen critical ports.</string>
+    <string name="label_paused">Paused</string>
+    <string name="body_paused">Review your route web, then resume the convoy push when ready.</string>
+    <string name="label_report">Mission Report</string>
+    <string name="body_report">Route status and flagship condition will appear here.</string>
+    <string name="hint_tool_route">Route mode. Tap one owned harbor, then a linked harbor to toggle a convoy line.</string>
+    <string name="hint_tool_surge">Surge mode. Tap an owned harbor to inject stock and energize its guns.</string>
+    <string name="hint_tool_upgrade">Upgrade mode. Tap an owned harbor to improve dock speed, hull strength, or cannon range.</string>
+</resources>

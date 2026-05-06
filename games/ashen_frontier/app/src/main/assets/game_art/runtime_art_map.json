@@ -1,0 +1,263 @@
+{
+  "version": 1,
+  "game_id": "ashen_frontier",
+  "status": "integrated",
+  "camera_perspective": "3_4_top_down_frontier_field",
+  "default_coordinate_space": "normalized_screen",
+  "theme": "post apocalypse frontier scavenger zombie survival large map roads safehouse bike",
+  "game_type": "top_down_survival_shooter",
+  "runtime_code": "app/src/main/java/com/android/boot/ui/GameView.java",
+  "animation_quality_target": "pose_rotation_with_runtime_feedback",
+  "minimum_primary_entity_states": [
+    "idle",
+    "move",
+    "attack",
+    "hit",
+    "death"
+  ],
+  "entities": [
+    {
+      "entity_key": "scavenger_player",
+      "role": "character",
+      "asset_keys": [
+        "game_art/kenney_top_down_shooter/assets/PNG/Survivor 1/survivor1_stand.png",
+        "game_art/kenney_top_down_shooter/assets/PNG/Survivor 1/survivor1_gun.png",
+        "game_art/kenney_top_down_shooter/assets/PNG/Survivor 1/survivor1_machine.png",
+        "game_art/kenney_top_down_shooter/assets/PNG/Survivor 1/survivor1_reload.png",
+        "runtime_bike_chassis_overlay"
+      ],
+      "default_facing": "aim_vector",
+      "facing_rule": "rotate full-body sprite by player aim vector and layer runtime bike chassis when mounted",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      },
+      "hitbox": {
+        "x": 0.28,
+        "y": 0.18,
+        "w": 0.44,
+        "h": 0.64
+      },
+      "render_size": {
+        "w": "110f_or_140f_when_bike_mounted",
+        "h": "110f_or_140f_when_bike_mounted",
+        "unit": "screen_pixels"
+      },
+      "z_order": "by_y_then_player",
+      "states": [
+        "idle",
+        "move",
+        "attack",
+        "reload",
+        "hit",
+        "death",
+        "bike"
+      ],
+      "animation_rule": "GameView swaps stand, gun, machine, and reload poses by action state, rotates the sprite toward aim, and adds bike, hp bar, and hit feedback overlays at runtime",
+      "movement_rule": "left-half touch drives 8-direction movement, right-half touch drives aim and sustained fire, and bike mode boosts speed while restricting heavy weapons"
+    },
+    {
+      "entity_key": "infected_pack",
+      "role": "enemy",
+      "asset_keys": [
+        "game_art/kenney_top_down_shooter/assets/PNG/Zombie 1/zoimbie1_stand.png",
+        "game_art/kenney_top_down_shooter/assets/PNG/Zombie 1/zoimbie1_machine.png",
+        "runtime_type_tint_runner",
+        "runtime_type_tint_bloater",
+        "runtime_type_tint_armored",
+        "runtime_type_tint_howler"
+      ],
+      "default_facing": "movement_vector",
+      "facing_rule": "rotate infected sprite by current velocity and tint the shared zombie frames by type class",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.84
+      },
+      "hitbox": {
+        "x": 0.24,
+        "y": 0.20,
+        "w": 0.52,
+        "h": 0.62
+      },
+      "render_size": {
+        "w": "zombie.radius * 4f",
+        "h": "zombie.radius * 4f",
+        "unit": "screen_pixels"
+      },
+      "z_order": "by_y_then_enemy",
+      "states": [
+        "idle",
+        "move",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "animation_rule": "GameView rotates the infected sprite toward travel, swaps to the attack frame during hit flash, and uses runtime tint, scale, and special behaviors for runner, crawler, bloater, armored, and howler variants",
+      "movement_rule": "infected advance on the player or lure source using per-type speed, agro, attack delay, infection gain, and howler reinforcement rules"
+    },
+    {
+      "entity_key": "rescue_survivor",
+      "role": "character",
+      "asset_keys": [
+        "game_art/kenney_top_down_shooter/assets/PNG/Survivor 1/survivor1_hold.png",
+        "runtime_rescued_highlight"
+      ],
+      "default_facing": "right",
+      "facing_rule": "follow player position during escort and pulse a success tint once rescued",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.84
+      },
+      "hitbox": {
+        "x": 0.28,
+        "y": 0.18,
+        "w": 0.44,
+        "h": 0.64
+      },
+      "render_size": {
+        "w": "86f_or_96f_when_rescued",
+        "h": "86f_or_96f_when_rescued",
+        "unit": "screen_pixels"
+      },
+      "z_order": "by_y_then_survivor",
+      "states": [
+        "idle",
+        "panic",
+        "follow",
+        "extract"
+      ],
+      "animation_rule": "GameView renders hold pose survivors in place until rescued, then lerps them behind the player and adds a green highlight when escort is active",
+      "movement_rule": "rescued survivors interpolate toward the player and count as extracted once they enter the extraction zone"
+    },
+    {
+      "entity_key": "terrain_and_structures",
+      "role": "terrain",
+      "asset_keys": [
+        "game_art/kenney_top_down_shooter/assets/PNG/Tiles/tile_01.png",
+        "game_art/kenney_top_down_shooter/assets/PNG/Tiles/tile_02.png",
+        "game_art/kenney_top_down_shooter/assets/PNG/Tiles/tile_21.png",
+        "game_art/kenney_tower_defense_top_down/assets/PNG/Default size/towerDefense_tile040.png",
+        "runtime_extraction_zone_fill"
+      ],
+      "default_facing": "right",
+      "facing_rule": "static world geometry with relay structure marker and extraction zone overlay",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "hitbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "w": 1.0,
+        "h": 1.0
+      },
+      "render_size": {
+        "w": "160f_tiles_and_zone_rects",
+        "h": "160f_tiles_and_zone_rects",
+        "unit": "screen_pixels"
+      },
+      "z_order": "ground_then_structure",
+      "states": [
+        "idle",
+        "blocked",
+        "secured"
+      ],
+      "animation_rule": "ground alternates two tile bitmaps, obstacles use a dedicated wreck tile, and the relay structure switches between warning and success states",
+      "movement_rule": "terrain is static while roads, extraction zones, and relay goal areas define movement corridors and objective ownership"
+    },
+    {
+      "entity_key": "projectile_and_throwable",
+      "role": "projectile",
+      "asset_keys": [
+        "runtime_bullet_circle",
+        "runtime_molotov_burn_zone",
+        "runtime_noise_lure_pulse"
+      ],
+      "default_facing": "travel_vector",
+      "facing_rule": "projectile travel follows the current aim vector and utility effects expand from their impact point",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "hitbox": {
+        "x": 0.35,
+        "y": 0.35,
+        "w": 0.30,
+        "h": 0.30
+      },
+      "render_size": {
+        "w": "projectile.radius * 2f",
+        "h": "projectile.radius * 2f",
+        "unit": "screen_pixels"
+      },
+      "z_order": "above_ground_below_units",
+      "states": [
+        "fly",
+        "burn",
+        "pulse",
+        "hit"
+      ],
+      "animation_rule": "bullets render as fast moving impact circles, molotovs create persistent burn zones, and lure pulses expand with a sinusoidal radius",
+      "movement_rule": "weapon projectiles move at weapon-specific speed and lifetime while utility effects stay anchored to their landing point"
+    },
+    {
+      "entity_key": "resource_pickups",
+      "role": "pickup",
+      "asset_keys": [
+        "runtime_scrap_pickup_orb",
+        "runtime_ammo_pickup_orb",
+        "runtime_fuel_pickup_orb",
+        "runtime_medicine_pickup_orb"
+      ],
+      "default_facing": "up",
+      "facing_rule": "static circular pickups with type color coding",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "hitbox": {
+        "x": 0.20,
+        "y": 0.20,
+        "w": 0.60,
+        "h": 0.60
+      },
+      "render_size": {
+        "w": "36f_diameter",
+        "h": "36f_diameter",
+        "unit": "screen_pixels"
+      },
+      "z_order": "above_ground",
+      "states": [
+        "idle",
+        "collect"
+      ],
+      "animation_rule": "drop circles use loot-type color coding for scrap, ammo, fuel, and medicine and disappear on collection",
+      "movement_rule": "pickup markers remain fixed until collected by the player"
+    }
+  ],
+  "required_runtime_checks": [
+    "primary moving entities have idle and move states",
+    "attacking entities have attack or fire states",
+    "damageable entities have hit or damage feedback states",
+    "removed entities have death destroy or equivalent effects",
+    "directional entities define default_facing and facing_rule",
+    "movement direction matches face weapon or front side",
+    "projectiles and weapons rotate or choose frames toward travel or target direction",
+    "anchors and hitboxes match gameplay contact points",
+    "runtime loads assigned bitmaps through AssetManager and BitmapFactory",
+    "humanoid run or walk uses alternating leg frames when source art provides them",
+    "attack uses windup contact and recovery timing or equivalent pose changes"
+  ],
+  "suggested_roles": [
+    "character",
+    "enemy",
+    "terrain",
+    "building",
+    "prop",
+    "item",
+    "projectile",
+    "pickup",
+    "effect",
+    "background"
+  ]
+}

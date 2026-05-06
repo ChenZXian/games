@@ -27,4 +27,5 @@
     <color name="cst_chip_stroke">#A8CCFA</color>
     <color name="cst_meter_track">#B9D8FF</color>
     <color name="cst_meter_fill">#26CE74</color>
+    <color name="cst_overlay_scrim">#990E1F35</color>
 </resources>

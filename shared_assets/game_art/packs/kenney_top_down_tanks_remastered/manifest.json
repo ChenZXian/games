@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "pack_id": "kenney_top_down_tanks_remastered",
+  "title": "Kenney Top-down Tanks Remastered",
+  "license": "CC0-1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "source_url": "https://kenney.nl/assets/top-down-tanks-remastered",
+  "download_url": "",
+  "download_page_url": "",
+  "asset_types": [
+    "png",
+    "svg",
+    "txt",
+    "xml"
+  ],
+  "art_roles": [
+    "vehicle",
+    "enemy",
+    "character",
+    "projectile",
+    "terrain",
+    "prop"
+  ],
+  "recommended_game_types": [
+    "top",
+    "down",
+    "tank",
+    "shooter",
+    "arena",
+    "action"
+  ],
+  "style_tags": [
+    "tank",
+    "top",
+    "down",
+    "combat",
+    "vehicle",
+    "arena"
+  ],
+  "quality_tags": [
+    "production",
+    "free",
+    "open",
+    "cc0",
+    "rotatable",
+    "static"
+  ],
+  "assets_path": "assets",
+  "preview_files": [
+    "Preview.png",
+    "Sample.png"
+  ],
+  "asset_file_count": 388,
+  "map_roles": [
+    "prop",
+    "terrain"
+  ],
+  "map_capabilities": [
+    "top_down_layout"
+  ],
+  "camera_perspectives": [
+    "top_down"
+  ],
+  "tile_asset_metrics": {
+    "tile_png_count": 0,
+    "tilemap_sheet_count": 0,
+    "packed_sheet_count": 0,
+    "tiled_tmx_count": 0,
+    "tiled_tsx_count": 0,
+    "sample_map_count": 0,
+    "preview_map_count": 2
+  },
+  "map_builder_strength": "weak"
+}

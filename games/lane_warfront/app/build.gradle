@@ -13,12 +13,21 @@ android {
     versionName "1.0"
   }
 
+  // Ensure release builds are signed so they can be installed locally.
+  // For production distribution, replace this with a dedicated release keystore.
+  signingConfigs {
+    release {
+      initWith signingConfigs.debug
+    }
+  }
+
   buildTypes {
     debug {
       minifyEnabled false
     }
     release {
       minifyEnabled false
+      signingConfig signingConfigs.release
     }
   }
 

@@ -1,0 +1,180 @@
+{
+  "version": 1,
+  "game_id": "crownroad_bastion",
+  "status": "passed",
+  "genre_family": "tower_defense",
+  "genre_archetype": "node_graph_kingdom_road_defense",
+  "camera_perspective": "top_down_board",
+  "control_model": "tap_build_pad_tap_hero_destination_tap_spell_target",
+  "core_loop_signature": "build towers on fixed pads around a curved merge split road network move a hero rally barracks cast spells and stop fantasy waves before the bastion gate",
+  "differentiation_axes": [
+    "multiple entrances",
+    "merge and split road nodes",
+    "fixed tower build pads around bends",
+    "barracks interception squads",
+    "movable hero with road-node destination",
+    "area spell timing at merge points",
+    "wave preview and boss pressure"
+  ],
+  "forbidden_template_reuse": [
+    "simple horizontal three lane map",
+    "laneY only enemy routing",
+    "single straight left to right road",
+    "generic tower defense with one enemy class",
+    "canvas only placeholder circles for primary units",
+    "smooth sliding without facing or action animation"
+  ],
+  "map_content_budget": {
+    "play_area_model": "single visible landscape battlefield with normalized node graph coordinates",
+    "route_or_region_count": "three enemy route variants across at least two entrances",
+    "interactive_regions": [
+      "fixed build pads",
+      "hero command nodes",
+      "spell target zones",
+      "wave start control",
+      "campaign stage stubs"
+    ],
+    "terrain_types": [
+      "grass field",
+      "curved dirt road",
+      "market square",
+      "hill split",
+      "forest edge",
+      "bastion gate"
+    ],
+    "decorative_prop_count": 12,
+    "functional_map_elements": [
+      "north forest entrance",
+      "east road entrance",
+      "market merge node",
+      "hill split nodes",
+      "final rejoin node",
+      "bastion exit"
+    ],
+    "landmarks": [
+      "market square",
+      "hill crest",
+      "bastion gate",
+      "forest entrance"
+    ],
+    "camera_or_scroll_model": "full map landscape view"
+  },
+  "entity_content_budget": {
+    "player_unit_types": [
+      "Hero Knight",
+      "Militia Soldier",
+      "Reinforcement Spearman",
+      "Royal Guard"
+    ],
+    "enemy_types": [
+      "Foot Raider",
+      "Fast Runner",
+      "Shield Bearer",
+      "Wolf Rider",
+      "Shaman Healer",
+      "Armored Ogre",
+      "Bat Swarm",
+      "Battering Ram",
+      "Warlord Captain"
+    ],
+    "neutral_or_resource_entities": [
+      "gold crate",
+      "build pad",
+      "wave flag"
+    ],
+    "boss_or_elite_types": [
+      "Warlord Captain",
+      "Armored Ogre",
+      "Battering Ram"
+    ],
+    "projectile_or_effect_types": [
+      "arrow",
+      "cannon shell",
+      "magic bolt",
+      "meteor",
+      "banner aura"
+    ],
+    "item_or_powerup_types": [
+      "gold reward",
+      "early wave bonus",
+      "reinforcement cooldown"
+    ]
+  },
+  "mechanic_content_budget": {
+    "primary_player_actions": [
+      "build tower on pad",
+      "upgrade tower",
+      "move hero to road node",
+      "start next wave"
+    ],
+    "secondary_player_actions": [
+      "summon reinforcements",
+      "cast meteor",
+      "select tower class",
+      "time barracks blocks"
+    ],
+    "upgrade_paths": [
+      "Archer Tower tier 1 to 3",
+      "Militia Barracks tier 1 to 3",
+      "Cannon Tower tier 1 to 3",
+      "Mage Tower tier 1 to 3",
+      "Banner Shrine tier 1 to 3"
+    ],
+    "wave_or_level_variants": [
+      "north route wave",
+      "east upper route wave",
+      "east lower route wave",
+      "mixed merge wave",
+      "boss wave"
+    ],
+    "special_rules": [
+      "barracks block ground enemies",
+      "bat swarm ignores blockers",
+      "shaman heals nearby enemies",
+      "banner shrine buffs nearby towers",
+      "siege enemy deals high gate damage"
+    ],
+    "risk_reward_systems": [
+      "early wave start bonus",
+      "spell cooldown timing",
+      "hero destination commitment"
+    ],
+    "failure_pressure_variants": [
+      "fast leak enemies",
+      "healed enemy clusters",
+      "flying bypass",
+      "ram gate burst",
+      "boss armor pressure"
+    ]
+  },
+  "asset_variety_budget": {
+    "primary_game_art_packs": [
+      "kenney_tower_defense_top_down",
+      "kenney_roguelike_rpg_pack"
+    ],
+    "secondary_game_art_packs": [
+      "project local runtime tinting and effects only when backed by assigned pack assets"
+    ],
+    "ui_pack": "kenney_ui_pack_adventure",
+    "animation_tier": "advanced_sprite_animation",
+    "required_animation_states": [
+      "idle",
+      "move",
+      "attack",
+      "hit",
+      "death",
+      "fire",
+      "spell"
+    ],
+    "minimum_distinct_sprite_families": 8,
+    "asset_reuse_note": "Use shared Kenney CC0 tower and RPG packs with runtime facing, bob, attack pulse, recoil, projectile rotation, hit flash, and death effects instead of shape-only placeholders."
+  },
+  "implementation_gate": {
+    "must_use_node_graph_paths": true,
+    "must_face_entities_by_velocity_or_target": true,
+    "must_show_walk_or_attack_pose_change": true,
+    "must_use_tracked_gameplay_art_assets": true,
+    "must_use_tracked_ui_assets": true,
+    "must_use_theme_matched_audio": true
+  }
+}

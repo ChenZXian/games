@@ -1,0 +1,194 @@
+{
+  "version": 1,
+  "game_id": "mountain_pass_guard",
+  "status": "integrated",
+  "camera_perspective": "angled_top_down_mountain_pass",
+  "default_coordinate_space": "normalized_screen",
+  "theme": "mountain pass bunker defense hidden ambush military",
+  "game_type": "top_down_hidden_garrison_defense",
+  "runtime_code": "app/src/main/java/com/android/boot/ui/GameView.java",
+  "animation_quality_target": "pose_swap_with_directional_runtime_facing",
+  "minimum_primary_entity_states": [
+    "idle",
+    "move",
+    "attack",
+    "hit",
+    "death"
+  ],
+  "entities": [
+    {
+      "entity_key": "hidden_ridge_squads",
+      "role": "character",
+      "asset_keys": [
+        "game_art/kenney_top_down_shooter/assets/PNG/Man Blue/manBlue_hold.png",
+        "game_art/kenney_top_down_shooter/assets/PNG/Man Blue/manBlue_stand.png"
+      ],
+      "default_facing": "route_or_target_vector",
+      "facing_rule": "Revealed rifle and gun squads face their current route target while concealed slots remain abstract markers until reveal.",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      },
+      "hitbox": {
+        "x": 0.28,
+        "y": 0.20,
+        "w": 0.44,
+        "h": 0.58
+      },
+      "z_order": "by_y_then_guard",
+      "states": [
+        "hidden",
+        "reveal",
+        "idle",
+        "move",
+        "attack",
+        "hit",
+        "fallback"
+      ],
+      "animation_rule": "Guard bodies swap between stand and hold poses, use directional facing marks, and pulse on reveal or attack cadence.",
+      "movement_rule": "Revealed squads reposition between four fork routes based on left-side route focus markers and fallback orders."
+    },
+    {
+      "entity_key": "engineer_teams",
+      "role": "character",
+      "asset_keys": [
+        "game_art/kenney_top_down_shooter/assets/PNG/Man Brown/manBrown_hold.png",
+        "game_art/kenney_top_down_shooter/assets/PNG/Man Brown/manBrown_stand.png"
+      ],
+      "default_facing": "bunker_line",
+      "facing_rule": "Engineer squads face the bunker line while repairing and turn with movement when retasked.",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      },
+      "hitbox": {
+        "x": 0.28,
+        "y": 0.20,
+        "w": 0.44,
+        "h": 0.58
+      },
+      "z_order": "by_y_then_engineer",
+      "states": [
+        "hidden",
+        "reveal",
+        "idle",
+        "move",
+        "repair",
+        "hit"
+      ],
+      "animation_rule": "Engineer teams alternate stand and hold poses and emit green repair pulses when bunker recovery triggers.",
+      "movement_rule": "Engineers anchor near the bunker line and only shift lanes when their source slot or fallback logic changes."
+    },
+    {
+      "entity_key": "ridge_weapons",
+      "role": "building",
+      "asset_keys": [
+        "game_art/kenney_tower_defense_top_down/assets/PNG/Default size/towerDefense_tile249.png",
+        "game_art/kenney_tower_defense_top_down/assets/PNG/Default size/towerDefense_tile245.png",
+        "game_art/kenney_tower_defense_top_down/assets/PNG/Default size/towerDefense_tile247.png",
+        "game_art/kenney_tower_defense_top_down/assets/PNG/Default size/towerDefense_tile250.png"
+      ],
+      "default_facing": "current_target_vector_or_route",
+      "facing_rule": "Gun nests, sniper ridges, mortar pits, and signal posts rotate or pulse toward active route threats once revealed.",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.58
+      },
+      "hitbox": {
+        "x": 0.22,
+        "y": 0.22,
+        "w": 0.56,
+        "h": 0.56
+      },
+      "z_order": "slot_y",
+      "states": [
+        "hidden",
+        "reveal",
+        "idle",
+        "fire",
+        "upgrade"
+      ],
+      "animation_rule": "Static weapons use angle tracking, cooldown flashes, and signal pulse rings instead of free movement animation.",
+      "movement_rule": "Static ridge emplacements remain fixed to reveal slots and only change facing or flash state."
+    },
+    {
+      "entity_key": "assault_columns",
+      "role": "enemy",
+      "asset_keys": [
+        "game_art/kenney_top_down_shooter/assets/PNG/Soldier 1/soldier1_hold.png",
+        "game_art/kenney_top_down_shooter/assets/PNG/Soldier 1/soldier1_stand.png",
+        "game_art/kenney_tower_defense_top_down/assets/PNG/Default size/towerDefense_tile268.png"
+      ],
+      "default_facing": "left_to_bunker",
+      "facing_rule": "Raiders, scouts, brutes, infiltrators, mortar trucks, and commander units face travel direction, blockers, or bunker impact direction.",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      },
+      "hitbox": {
+        "x": 0.24,
+        "y": 0.18,
+        "w": 0.52,
+        "h": 0.62
+      },
+      "z_order": "by_y_then_enemy",
+      "states": [
+        "move",
+        "attack",
+        "hit",
+        "burn",
+        "death",
+        "scan_exposed"
+      ],
+      "animation_rule": "Enemy columns use runtime bob, hit shake, warning marks, and mortar truck rotation to keep route roles readable.",
+      "movement_rule": "Enemies enter from one of four fork routes, bend through the pass, then attack guards or the bunker once they reach contact distance."
+    },
+    {
+      "entity_key": "projectiles_and_route_effects",
+      "role": "projectile",
+      "asset_keys": [
+        "game_art/kenney_tower_defense_top_down/assets/PNG/Default size/towerDefense_tile251.png",
+        "runtime_rockslide_ring",
+        "runtime_flare_scan_ring"
+      ],
+      "default_facing": "atan2_travel_vector",
+      "facing_rule": "Bullets and mortar rounds rotate by travel angle while flare and rockslide effects expand from the triggered route center.",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "hitbox": {
+        "x": 0.35,
+        "y": 0.35,
+        "w": 0.30,
+        "h": 0.30
+      },
+      "z_order": "above_units_below_hud",
+      "states": [
+        "fly",
+        "impact",
+        "flare_scan",
+        "rockslide"
+      ],
+      "animation_rule": "Projectile trails, splash rings, and scan circles scale by remaining life and route event type.",
+      "movement_rule": "Projectiles chase live targets while route effects remain centered on selected fork positions until life expires."
+    }
+  ],
+  "required_runtime_checks": [
+    "hidden slots remain abstract until reveal",
+    "primary guards and enemies have move attack hit and death readable states",
+    "facing field updates from route target or travel vector",
+    "runtime loads assigned assets through AssetManager and BitmapFactory",
+    "route effects remain distinct from decorative terrain",
+    "anchors and hitboxes stay aligned with ridge slot combat contact points"
+  ],
+  "suggested_roles": [
+    "character",
+    "enemy",
+    "building",
+    "projectile",
+    "terrain",
+    "effect",
+    "background"
+  ]
+}

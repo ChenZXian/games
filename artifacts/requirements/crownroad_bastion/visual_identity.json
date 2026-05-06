@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "game_id": "crownroad_bastion",
+  "status": "passed",
+  "visual_differentiation_axes": [
+    "royal blue command map palette instead of brown adventure parchment",
+    "banner header plus tactical route strip menu composition",
+    "stage node war map motif",
+    "blue rpg expansion UI pack instead of adventure brown pack",
+    "sword and shield icon silhouette instead of castle badge silhouette"
+  ],
+  "forbidden_visual_reuse": [
+    "brown wood adventure panels used by empire_wall_guard and earlier crownroad build",
+    "generic castle icon subject with pink purple background",
+    "top HUD pills plus plain centered menu without route map motif",
+    "reusing another game's exported icon colors or foreground silhouette"
+  ],
+  "ui_identity": {
+    "layout_archetype": "banner command header plus tactical route strip and horizontal action row",
+    "hud_composition": "top resource ribbon with bottom action dock and map-first menu card",
+    "navigation_model": "start from war map card then enter single-stage battlefield with overlay help and pause panels",
+    "palette_signature": "royal blue, gold, pale sky, and command white",
+    "material_language": "enameled command plates, blue inset cards, medal nodes, and polished military fantasy trim",
+    "typography_style": "serif fantasy title with compact tactical badge labels",
+    "primary_ui_pack": "kenney_ui_pack_rpg_expansion/canonical_rpg_blue",
+    "secondary_ui_assets": [
+      "menu_command_banner.xml",
+      "menu_stage_node.xml",
+      "token recolor in colors.xml"
+    ],
+    "unique_screen_motifs": [
+      "war map badge row",
+      "forest market gate node strip",
+      "hero command badge",
+      "blue command banner"
+    ],
+    "forbidden_ui_elements": [
+      "brown parchment adventure panel",
+      "generic wood quest frame",
+      "plain three-button vertical menu with no map motif"
+    ]
+  },
+  "icon_identity": {
+    "subject": "royal road war emblem with crossed sword and shield under crown banner",
+    "silhouette": "shield crest with diagonal sword mass and compact combat badge",
+    "composition": "single centered heraldic emblem on rounded command badge background",
+    "palette": "royal blue gradient, gold accent, ivory shield, deep ink outline",
+    "background": "blue command badge with glossy highlight instead of pink purple fantasy plate",
+    "game_specific_motif": "battle route command emblem for a road-network bastion defense",
+    "forbidden_icon_reuse": [
+      "castle keep foreground motif",
+      "pink purple background from previous export",
+      "generic sword-only or shield-only icon without command map context"
+    ]
+  }
+}

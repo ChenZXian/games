@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "game_id": "scrap_ring_outpost",
+  "status": "passed",
+  "reviewed_at_utc": "2026-04-29T10:36:25Z",
+  "summary": "The implementation preserves the ring-sector defense identity, contextual build loop, rotating focus command, post-apocalypse HUD safe area, and tracked icon UI art and audio resource flows required by the confirmed requirements.",
+  "checked_areas": [
+    "circular four-sector perimeter layout",
+    "prep and assault phase loop",
+    "sector selection and contextual build actions",
+    "focus burst and field patch command skills",
+    "safe-area-aware activity_main layout",
+    "tracked icon, ui, gameplay art, and audio integration"
+  ]
+}

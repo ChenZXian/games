@@ -1,0 +1,87 @@
+<resources>
+    <style name="TextAppearance" />
+    <style name="TextAppearance.Game" />
+    <style name="TextAppearance.Game.Title">
+        <item name="android:textColor">@color/cst_text_primary</item>
+        <item name="android:textSize">@dimen/cst_text_xxl</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">serif</item>
+    </style>
+    <style name="TextAppearance.Game.Subtitle">
+        <item name="android:textColor">@color/cst_text_secondary</item>
+        <item name="android:textSize">@dimen/cst_text_m</item>
+        <item name="android:fontFamily">serif</item>
+    </style>
+    <style name="TextAppearance.Game.Body">
+        <item name="android:textColor">@color/cst_text_secondary</item>
+        <item name="android:textSize">@dimen/cst_text_m</item>
+        <item name="android:lineSpacingExtra">3dp</item>
+        <item name="android:fontFamily">serif</item>
+    </style>
+    <style name="TextAppearance.Game.Caption">
+        <item name="android:textColor">@color/cst_text_muted</item>
+        <item name="android:textSize">@dimen/cst_text_s</item>
+        <item name="android:fontFamily">serif</item>
+    </style>
+    <style name="TextAppearance.Game.HudValue">
+        <item name="android:textColor">@color/cst_text_primary</item>
+        <item name="android:textSize">@dimen/cst_text_s</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">serif</item>
+    </style>
+    <style name="TextAppearance.Game.HudLabel">
+        <item name="android:textColor">@color/cst_text_muted</item>
+        <item name="android:textSize">@dimen/cst_text_xs</item>
+        <item name="android:fontFamily">serif</item>
+    </style>
+    <style name="Widget" />
+    <style name="Widget.Game" />
+    <style name="Widget.Game.Button" />
+    <style name="Widget.Game.Button.Primary" parent="Widget.MaterialComponents.Button">
+        <item name="android:background">@drawable/ui_button_primary</item>
+        <item name="android:textColor">@color/cst_text_on_primary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:minHeight">42dp</item>
+        <item name="android:paddingLeft">@dimen/cst_pad_10</item>
+        <item name="android:paddingRight">@dimen/cst_pad_10</item>
+    </style>
+    <style name="Widget.Game.Button.Secondary" parent="Widget.MaterialComponents.Button">
+        <item name="android:background">@drawable/ui_button_secondary</item>
+        <item name="android:textColor">@color/cst_text_on_secondary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:minHeight">42dp</item>
+        <item name="android:paddingLeft">@dimen/cst_pad_10</item>
+        <item name="android:paddingRight">@dimen/cst_pad_10</item>
+    </style>
+    <style name="Widget.Game.Button.Icon" parent="Widget.MaterialComponents.Button">
+        <item name="android:background">@drawable/ui_button_icon</item>
+        <item name="android:textColor">@color/cst_text_on_secondary</item>
+        <item name="android:minHeight">42dp</item>
+    </style>
+    <style name="Widget.Game.Panel">
+        <item name="android:background">@drawable/ui_panel</item>
+        <item name="android:padding">@dimen/cst_pad_12</item>
+    </style>
+    <style name="Widget.Game.Card">
+        <item name="android:background">@drawable/ui_card</item>
+        <item name="android:padding">@dimen/cst_pad_12</item>
+    </style>
+    <style name="Widget.Game.Chip">
+        <item name="android:background">@drawable/ui_chip</item>
+        <item name="android:paddingLeft">@dimen/cst_pad_8</item>
+        <item name="android:paddingRight">@dimen/cst_pad_8</item>
+        <item name="android:paddingTop">@dimen/cst_pad_4</item>
+        <item name="android:paddingBottom">@dimen/cst_pad_4</item>
+    </style>
+    <style name="Widget.Game.Badge">
+        <item name="android:background">@drawable/ui_badge</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">@dimen/cst_pad_8</item>
+        <item name="android:paddingRight">@dimen/cst_pad_8</item>
+        <item name="android:paddingTop">@dimen/cst_pad_4</item>
+        <item name="android:paddingBottom">@dimen/cst_pad_4</item>
+    </style>
+    <style name="Widget.Game.Meter">
+        <item name="android:background">@drawable/ui_meter_track</item>
+    </style>
+</resources>

@@ -103,43 +103,6 @@ Run doctor only if:
 
 Doctor must always be executed and must pass before packaging.
 
-------
-
-## 2. Knowledge Base Workflow (Error-Driven Only)
-
-KB location:
-- kb/problems/*.md
-
-KB workflow is triggered only when an actual error occurs.
-
-### 2.1 Search KB First
-
-rg -n "<key error snippet>" kb/problems
-
-### 2.2 If Found
-
-1. Apply the fix exactly.
-2. Improve Prevention if applicable.
-
-### 2.3 If Not Found
-
-Create a new KB entry:
-powershell -ExecutionPolicy Bypass -File tools/kb/new_kb_entry.ps1 -Slug "<short_slug>"
-
-Fill sections:
-1. Symptom
-2. Error Log
-3. Root Cause
-4. Fix
-5. Prevention
-6. References (optional)
-
-### 2.4 KB Commit Rule
-
-KB entries may only be committed during PACK phase.
-
-------
-
 ## 3. Repository Hard Constraints (Always Enforced)
 
 Always comply with:
@@ -177,18 +140,20 @@ a package rename with clear intent.
 All projects MUST use exactly one ui_skin as defined in docs/GAME_GENERATION_STANDARD.md.
 
 During INIT and OPTIMIZE, Cursor MUST NOT:
-- introduce bitmap assets (png/jpg/jpeg/webp/gif/bmp/ico)
-- introduce fonts (ttf/otf)
-- introduce audio binaries (ogg/mp3/wav/m4a/aac)
-- download or copy any UI kits or external resources
+- introduce ad hoc UI binary assets or fonts outside the repository UI workflow
+- introduce ad hoc audio binaries (ogg/mp3/wav/m4a/aac) outside the repository audio workflow
+- download or copy external UI resources without provenance or user approval
 - add or modify .gitattributes or any Git config files
 - mix multiple skins or invent a new skin
 
-Cursor MAY improve UI ONLY by working inside the UI Kit system:
+Cursor MAY improve UI by working inside the repository UI workflow:
 - editing token resources in res/values (colors/dimens/styles/themes)
-- editing XML-only drawables in res/drawable
+- editing XML or binary UI resources in res/drawable*
+- importing repository-managed fonts and licensed open-source UI packs
+- assigning shared UI resources from `shared_assets/ui/`
 - editing layouts to improve spacing and hierarchy
 - refactoring UI code to reference tokens and styles
+- separating gameplay rendering from non-real-time overlays when practical
 
 Hard rules:
 - Java code must not hardcode UI colors or dimensions for styling.
@@ -203,26 +168,26 @@ Values:
 - res/values/themes.xml
 
 Drawables:
-- res/drawable/ui_panel.xml
-- res/drawable/ui_panel_header.xml
-- res/drawable/ui_card.xml
-- res/drawable/ui_divider.xml
-- res/drawable/ui_button_primary.xml
-- res/drawable/ui_button_secondary.xml
-- res/drawable/ui_button_icon.xml
-- res/drawable/ui_chip.xml
-- res/drawable/ui_meter_track.xml
-- res/drawable/ui_meter_fill.xml
-- res/drawable/ui_toast.xml
-- res/drawable/ui_dialog.xml
+- res/drawable/ui_panel.*
+- res/drawable/ui_panel_header.*
+- res/drawable/ui_card.*
+- res/drawable/ui_divider.*
+- res/drawable/ui_button_primary.*
+- res/drawable/ui_button_secondary.*
+- res/drawable/ui_button_icon.*
+- res/drawable/ui_chip.*
+- res/drawable/ui_meter_track.*
+- res/drawable/ui_meter_fill.*
+- res/drawable/ui_toast.*
+- res/drawable/ui_dialog.*
 
 Icons:
-- res/drawable/ic_play.xml
-- res/drawable/ic_pause.xml
-- res/drawable/ic_restart.xml
-- res/drawable/ic_sound_on.xml
-- res/drawable/ic_sound_off.xml
-- res/drawable/ic_help.xml
+- res/drawable/ic_play.*
+- res/drawable/ic_pause.*
+- res/drawable/ic_restart.*
+- res/drawable/ic_sound_on.*
+- res/drawable/ic_sound_off.*
+- res/drawable/ic_help.*
 
 If any required UI Kit file is missing,
 Cursor MUST stop UI-related changes and report the missing file.
@@ -237,13 +202,13 @@ outside the following allowed set:
 - res/layout
 - res/values
 - res/drawable
+- res/font
 - res/mipmap-anydpi-v26
 
 Creation of the following is forbidden unless user explicitly requests it:
 - res/anim
 - res/xml
 - res/color
-- res/font
 - res/raw
 - any other resource directory
 
@@ -268,10 +233,12 @@ Special rule for gradle-wrapper.jar:
 
 ------
 
-## 6. BGM Library Policy
+## 6. Audio Workflow Policy
 
-- No binary BGM or SFX assets during INIT or OPTIMIZE.
-- ToneGenerator may be used for simple feedback.
+- Dedicated audio workflow requests may introduce repository-managed BGM and SFX assets.
+- Audio binaries should be stored in `shared_assets/audio/` first whenever possible.
+- Project audio should be assigned into `app/src/main/assets/audio/` from the shared library.
+- Audio should follow the target game's tone, pacing, and core interaction feel.
 - Online download is forbidden unless user explicitly requests it.
 
 ------

@@ -1,0 +1,162 @@
+{
+  "version": 1,
+  "game_id": "scrap_ring_outpost",
+  "status": "integrated",
+  "camera_perspective": "top_down_circular_outpost_board",
+  "default_coordinate_space": "normalized_screen",
+  "theme": "scrap ring zombie outpost",
+  "game_type": "top_down_strategy_defense",
+  "runtime_code": "app/src/main/java/com/android/boot/ui/GameView.java",
+  "animation_quality_target": "pose_swap_plus_directional_runtime_facing",
+  "minimum_primary_entity_states": [
+    "idle",
+    "move",
+    "attack",
+    "hit",
+    "death"
+  ],
+  "entities": [
+    {
+      "entity_key": "sector_gates",
+      "role": "building",
+      "asset_keys": [
+        "game_art/kenney_tower_defense_top_down/assets/PNG/Default size/towerDefense_tile179.png",
+        "game_art/kenney_tower_defense_top_down/assets/PNG/Default size/towerDefense_tile180.png"
+      ],
+      "default_facing": "sector_angle",
+      "facing_rule": "Gate modules rotate to sector orientation while the command core remains centered.",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.58
+      },
+      "hitbox": {
+        "x": 0.20,
+        "y": 0.18,
+        "w": 0.60,
+        "h": 0.58
+      },
+      "z_order": "below_units_above_ground",
+      "states": [
+        "idle",
+        "damaged",
+        "critical"
+      ],
+      "animation_rule": "Gate structures use integrity bars and alert pulses rather than free movement animation.",
+      "movement_rule": "Static defense landmark."
+    },
+    {
+      "entity_key": "sector_modules",
+      "role": "building",
+      "asset_keys": [
+        "game_art/kenney_tower_defense_top_down/assets/PNG/Default size/towerDefense_tile134.png",
+        "game_art/kenney_tower_defense_top_down/assets/PNG/Default size/towerDefense_tile249.png",
+        "game_art/kenney_tower_defense_top_down/assets/PNG/Default size/towerDefense_tile136.png",
+        "game_art/kenney_tower_defense_top_down/assets/PNG/Default size/towerDefense_tile250.png",
+        "game_art/kenney_tower_defense_top_down/assets/PNG/Default size/towerDefense_tile245.png",
+        "game_art/kenney_tower_defense_top_down/assets/PNG/Default size/towerDefense_tile247.png"
+      ],
+      "default_facing": "sector_angle_or_target_vector",
+      "facing_rule": "Gun nests and active modules rotate to the current sector angle while fire effects track the leading zombie target.",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.58
+      },
+      "hitbox": {
+        "x": 0.18,
+        "y": 0.16,
+        "w": 0.64,
+        "h": 0.60
+      },
+      "z_order": "slot_y",
+      "states": [
+        "idle",
+        "fire",
+        "active",
+        "upgrade"
+      ],
+      "animation_rule": "Modules pulse on cooldown completion and emit color-coded combat effects on attack or repair.",
+      "movement_rule": "Static defense slot occupants."
+    },
+    {
+      "entity_key": "zombie_wave_units",
+      "role": "enemy",
+      "asset_keys": [
+        "game_art/kenney_top_down_shooter/assets/PNG/Zombie 1/zoimbie1_stand.png",
+        "game_art/kenney_top_down_shooter/assets/PNG/Zombie 1/zoimbie1_hold.png",
+        "game_art/kenney_top_down_shooter/assets/PNG/Zombie 2/zoimbie2_stand.png",
+        "game_art/kenney_top_down_shooter/assets/PNG/Zombie 2/zoimbie2_hold.png",
+        "game_art/kenney_top_down_shooter/assets/PNG/Robot 1/robot1_stand.png",
+        "game_art/kenney_top_down_shooter/assets/PNG/Robot 1/robot1_machine.png",
+        "game_art/kenney_top_down_shooter/assets/PNG/Zombie 1/zoimbie1_machine.png"
+      ],
+      "default_facing": "toward_command_core",
+      "facing_rule": "Enemies rotate toward the command core along their sector approach and swap between two pose frames to keep motion readable.",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      },
+      "hitbox": {
+        "x": 0.26,
+        "y": 0.18,
+        "w": 0.48,
+        "h": 0.62
+      },
+      "z_order": "by_y_then_enemy",
+      "states": [
+        "move",
+        "attack",
+        "hit",
+        "burn",
+        "death"
+      ],
+      "animation_rule": "Walk readability comes from alternating stand and hold or machine poses with runtime rotation and effect overlays for stun, burn, and impact.",
+      "movement_rule": "Enemies advance from the outer ring toward their sector gate, then convert pressure into gate damage or command core damage."
+    },
+    {
+      "entity_key": "combat_effects",
+      "role": "projectile",
+      "asset_keys": [
+        "runtime_sector_pulse",
+        "runtime_focus_burst",
+        "runtime_repair_ring"
+      ],
+      "default_facing": "radial",
+      "facing_rule": "Effect rings stay centered on sector arcs, modules, or the command core and scale by remaining lifetime.",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "hitbox": {
+        "x": 0.30,
+        "y": 0.30,
+        "w": 0.40,
+        "h": 0.40
+      },
+      "z_order": "above_units_below_hud",
+      "states": [
+        "burst",
+        "repair",
+        "warning",
+        "collect"
+      ],
+      "animation_rule": "Effects use lifetime-based circle expansion with hazard or repair colors tied to action type.",
+      "movement_rule": "Pure effect overlays with no collision."
+    }
+  ],
+  "required_runtime_checks": [
+    "enemy sprites load through AssetManager and BitmapFactory",
+    "primary enemies rotate toward the command core or current path vector",
+    "enemy visuals alternate between at least two readable pose frames during travel",
+    "sector modules render from assigned game_art assets rather than placeholder circles",
+    "effect overlays stay above combat entities and below HUD panels",
+    "gate and command core hit areas stay aligned with combat contact points"
+  ],
+  "suggested_roles": [
+    "building",
+    "enemy",
+    "projectile",
+    "terrain",
+    "effect",
+    "background"
+  ]
+}

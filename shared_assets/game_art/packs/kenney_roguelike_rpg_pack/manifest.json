@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "pack_id": "kenney_roguelike_rpg_pack",
+  "title": "Kenney Roguelike RPG Pack",
+  "license": "CC0-1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "source_url": "https://kenney.nl/assets/roguelike-rpg-pack",
+  "download_url": "",
+  "asset_types": [
+    "png",
+    "tmx",
+    "txt"
+  ],
+  "art_roles": [
+    "tileset",
+    "terrain",
+    "building",
+    "prop",
+    "item",
+    "character",
+    "enemy"
+  ],
+  "recommended_game_types": [
+    "rpg",
+    "roguelike",
+    "dungeon",
+    "top",
+    "down",
+    "adventure"
+  ],
+  "style_tags": [
+    "pixel",
+    "rpg",
+    "roguelike",
+    "town",
+    "dungeon",
+    "fantasy",
+    "top",
+    "down"
+  ],
+  "quality_tags": [
+    "production",
+    "free",
+    "open",
+    "cc0"
+  ],
+  "assets_path": "assets",
+  "preview_files": [
+    "Preview.png",
+    "Sample1.png",
+    "Sample2.png"
+  ],
+  "asset_file_count": 9,
+  "map_roles": [
+    "building",
+    "prop",
+    "terrain",
+    "tileset"
+  ],
+  "map_capabilities": [
+    "grid_ready",
+    "sample_map_layout",
+    "tiled_tmx",
+    "top_down_layout"
+  ],
+  "camera_perspectives": [
+    "top_down"
+  ],
+  "tile_asset_metrics": {
+    "tile_png_count": 0,
+    "tilemap_sheet_count": 0,
+    "packed_sheet_count": 0,
+    "tiled_tmx_count": 2,
+    "tiled_tsx_count": 0,
+    "sample_map_count": 2,
+    "preview_map_count": 3
+  },
+  "map_builder_strength": "moderate"
+}

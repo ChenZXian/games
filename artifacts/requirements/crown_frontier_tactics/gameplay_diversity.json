@@ -1,0 +1,239 @@
+{
+  "version": 1,
+  "game_id": "crown_frontier_tactics",
+  "status": "passed",
+  "direction": "Ancient Empires-inspired turn-based tactics with village capture, commander-led armies, a large frontier campaign, and classic unit-counter warfare on mobile.",
+  "selected_concept": "Crown Frontier",
+  "genre_family": "turn-based tactics",
+  "genre_archetype": "kingdom-frontier square-grid capture-and-command war campaign",
+  "camera_perspective": "top-down orthographic square-grid battlefield with light tactical elevation cues",
+  "control_model": "tap-select unit control with contextual move attack capture recruit wait and commander-order actions, drag camera panning, and dedicated end-turn plus threat-range toggles",
+  "core_loop_signature": "capture villages and keeps for gold, recruit and rotate counter units across large authored maps, leverage terrain and commander orders, and defeat regional warlords to reclaim the frontier chapter by chapter",
+  "differentiation_axes": [
+    "large authored square-grid campaign maps instead of wave lanes or small skirmish rooms",
+    "village income and recruit-structure tempo rather than passive build-slot defense economy",
+    "commander-led war roster with terrain warfare and counter matchups instead of physics puzzle or action timing",
+    "multi-front battle objectives including escort holdout fortress assault and breakthrough chapters",
+    "persistent marshal doctrine and hero continuity across a six-region campaign"
+  ],
+  "forbidden_template_reuse": [
+    "no tower-defense wave lanes",
+    "no one-screen skirmish loop reused as the whole campaign",
+    "no auto-battler resolution replacing direct unit control",
+    "no tiny 8 x 8 production map budget",
+    "no generic fantasy reskin with copied economy roster and mission structure from another project"
+  ],
+  "map_content_budget": {
+    "play_area_model": "six-region campaign made of 30 authored square-grid battle maps with multiple fronts, capturable structures, and chapter-specific objectives",
+    "route_or_region_count": "6 macro regions and 30 maps minimum, with most maps offering 2 to 4 approach lines or pressure points",
+    "interactive_regions": [
+      "villages",
+      "keeps",
+      "forts",
+      "gates",
+      "healing springs",
+      "watchtowers",
+      "docks",
+      "treasure vaults",
+      "supply wagons",
+      "shrine circles"
+    ],
+    "terrain_types": [
+      "plains",
+      "road",
+      "forest",
+      "hill",
+      "mountain",
+      "bridge",
+      "riverbank",
+      "fort wall",
+      "ruins",
+      "marsh",
+      "shrine ground"
+    ],
+    "decorative_prop_count": "at least 24 recurring prop families across banners, barricades, braziers, stones, carts, statues, tents, ruins, siege debris, trees, fence lines, and dock clutter",
+    "functional_map_elements": [
+      "villages",
+      "keeps",
+      "forts",
+      "gates",
+      "towers",
+      "bridges",
+      "docks",
+      "healing springs",
+      "watchfires",
+      "ballista pads",
+      "barricades",
+      "supply wagons",
+      "ferry points",
+      "collapsible bridges",
+      "signal braziers",
+      "treasure vaults"
+    ],
+    "landmarks": [
+      "border arch",
+      "red ford",
+      "pinewatch camp",
+      "ruined abbey",
+      "iron gate",
+      "stone viaduct",
+      "ash ridge",
+      "crown milestone",
+      "harbor tower",
+      "marsh shrine",
+      "canyon stairs",
+      "royal pass beacon"
+    ],
+    "camera_or_scroll_model": "drag-pannable battlefield camera with optional zoom, tile-locked selection, and quick recenter on active unit or commander"
+  },
+  "entity_content_budget": {
+    "player_unit_types": [
+      "marshal commander",
+      "militia",
+      "swordsman",
+      "spearman",
+      "archer",
+      "ranger",
+      "knight",
+      "lancer",
+      "healer",
+      "battle mage",
+      "scout rider",
+      "wyvern rider",
+      "ballista crew"
+    ],
+    "enemy_types": [
+      "raider swordsman",
+      "pike guard",
+      "crossbowman",
+      "wolf rider",
+      "heavy knight",
+      "siege crew",
+      "war priest",
+      "rogue mage",
+      "wyvern raider",
+      "elite commander"
+    ],
+    "neutral_or_resource_entities": [
+      "villagers",
+      "caravans",
+      "prisoners",
+      "shrine wardens",
+      "supply wagons",
+      "allied garrisons",
+      "reinforcement markers"
+    ],
+    "boss_or_elite_types": [
+      "border baron",
+      "ford butcher",
+      "ash witch",
+      "iron pass marshal",
+      "wyvern captain",
+      "crown pretender"
+    ],
+    "projectile_or_effect_types": [
+      "arrows",
+      "bolts",
+      "fire orbs",
+      "healing sigils",
+      "lance charge streaks",
+      "banner aura pulses",
+      "fort-shot impacts",
+      "capture flag raises"
+    ],
+    "item_or_powerup_types": [
+      "treasury cache",
+      "promotion token",
+      "supply chest",
+      "healing relic",
+      "commander order refill",
+      "rescue reward bundle"
+    ]
+  },
+  "mechanic_content_budget": {
+    "primary_player_actions": [
+      "move",
+      "attack",
+      "wait",
+      "capture",
+      "recruit",
+      "heal",
+      "use commander order",
+      "inspect threat range"
+    ],
+    "secondary_player_actions": [
+      "promote hero",
+      "rescue prisoner",
+      "escort convoy",
+      "hold fort gate",
+      "toggle danger overlay",
+      "review terrain details"
+    ],
+    "upgrade_paths": [
+      "marshal doctrine tree",
+      "hero class promotion",
+      "region support perks",
+      "commander aura improvements",
+      "recruitment discount branches"
+    ],
+    "wave_or_level_variants": [
+      "conquest",
+      "holdout",
+      "escort",
+      "breakthrough",
+      "fortress assault",
+      "river crossing",
+      "shrine defense",
+      "two-front split defense"
+    ],
+    "special_rules": [
+      "terrain defense and movement costs materially alter matchup value",
+      "captured villages and keeps change income and forward recruitment tempo",
+      "commander orders create limited burst turns without replacing core positioning play",
+      "combat should expose a readable forecast before commitment",
+      "chapter objectives must vary and not default to rout-only wins",
+      "enemy armies are AI-controlled by default and must show distinct easy normal and hard behavior presets instead of relying only on raw stat cheating"
+    ],
+    "risk_reward_systems": [
+      "fast village capture accelerates income but overextends fragile units",
+      "side objectives grant stronger campaign rewards at the cost of tempo",
+      "preserving named heroes unlocks later regional advantages",
+      "aggressive early pushes can shorten maps but expose commanders to counterattacks"
+    ],
+    "failure_pressure_variants": [
+      "commander defeat",
+      "capital loss",
+      "escort death",
+      "turn-limit expiration",
+      "full army collapse with no recruit structure remaining"
+    ]
+  },
+  "asset_variety_budget": {
+    "primary_game_art_packs": [
+      "tactics-scale medieval unit sprite pack",
+      "frontier battlefield terrain tileset",
+      "fortress and village structure pack"
+    ],
+    "secondary_game_art_packs": [
+      "commander portrait and banner pack",
+      "spell and projectile effect pack",
+      "campaign map and landmark prop pack"
+    ],
+    "ui_pack": "skin_military_tech",
+    "animation_tier": "medium-high for commanders cavalry flyers and elites, medium for core infantry ranged units healers and siege pieces",
+    "required_animation_states": [
+      "idle",
+      "march",
+      "attack",
+      "hurt",
+      "defeat",
+      "capture raise",
+      "ranged release",
+      "spell cast",
+      "commander order",
+      "promotion or victory pose"
+    ],
+    "minimum_distinct_sprite_families": "minimum 18 major sprite families across allied units enemy units commanders structures terrain landmarks projectiles and capture banners",
+    "asset_reuse_note": "do not collapse the game into one generic troop sheet, one repeated village tile, and one fortress background; the asset plan must support faction identity, terrain variety, and chapter-scale readability"
+  }
+}

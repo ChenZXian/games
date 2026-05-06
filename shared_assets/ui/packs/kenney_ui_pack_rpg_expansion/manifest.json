@@ -1,0 +1,37 @@
+{
+  "pack_id": "kenney_ui_pack_rpg_expansion",
+  "title": "Kenney UI Pack RPG Expansion",
+  "source_url": "https://kenney.nl/assets/ui-pack-rpg-expansion",
+  "download_url": "https://kenney.nl/media/pages/assets/ui-pack-rpg-expansion/b1e1f298c6-1677661824/kenney_ui-pack-rpg-expansion.zip",
+  "license": "CC0-1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "asset_types": [
+    "png"
+  ],
+  "style_tags": [
+    "rpg",
+    "fantasy",
+    "upgrade",
+    "loadout",
+    "blue"
+  ],
+  "quality_tags": [
+    "production",
+    "rpg",
+    "mobile_game"
+  ],
+  "recommended_ui_skin": "skin_cartoon_light",
+  "default_assignment_preset": "canonical_rpg_blue",
+  "assignment_presets": [
+    "canonical_rpg_blue"
+  ],
+  "selected_assets": [
+    "drawable/button_primary_blue_rpg.png",
+    "drawable/button_secondary_grey_rpg.png",
+    "drawable/button_icon_round_blue_rpg.png",
+    "drawable/panel_blue_rpg.png",
+    "drawable/panel_inset_blue_rpg.png"
+  ],
+  "notes": "Curated blue RPG button and inset panel assets for equipment, progression, reward, and upgrade-heavy projects.",
+  "validated_with": []
+}

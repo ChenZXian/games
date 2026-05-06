@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "game_id": "ashen_frontier",
+  "status": "passed",
+  "direction": "Post-apocalypse large-map survival against zombie hordes with a full weapon system and safehouse expansion.",
+  "selected_concept": "Ashen Frontier",
+  "visual_differentiation_axes": [
+    "asymmetrical field-kit HUD instead of mirrored top capsules",
+    "route compass and weapon tower as the dominant gameplay UI motif",
+    "dust-metal hazard palette instead of neon or fantasy color signatures",
+    "scavenger helmet and rifle icon subject instead of generic tower or crate imagery",
+    "bench-style upgrade screens and folded map overlays instead of simple card stacks"
+  ],
+  "forbidden_visual_reuse": [
+    "do not reuse a top HUD pill trio with a bottom-wide action strip as the main layout",
+    "do not reuse bright cyan sci-fi accents as the primary palette",
+    "do not reuse a castle, tower, plant, crate, or plain zombie head as the icon subject",
+    "do not reuse another game's untouched exported icon badge",
+    "do not reuse a generic rounded arcade panel set without rugged field motifs"
+  ],
+  "ui_identity": {
+    "layout_archetype": "left survival rig plus top route compass plus right weapon tower plus bottom utility strip",
+    "hud_composition": "stacked gauges on the left, narrow compass ribbon at top center, tall weapon column on the right, compact contextual actions at bottom center",
+    "navigation_model": "hub safehouse screens feed into a fold-out regional map, then into field missions and bench-style drawers for upgrades and loadout",
+    "palette_signature": "ash beige, rust orange, oxidized brown, soot black, muted parchment, and hazard amber",
+    "material_language": "worn metal plates, scratched acrylic, stitched canvas tabs, field tape labels, and hazard paint accents",
+    "typography_style": "condensed tactical sans for labels with broad distressed numerals for ammo and survival gauges",
+    "primary_ui_pack": "skin_post_apocalypse",
+    "secondary_ui_assets": [
+      "rugged industrial panel trim",
+      "analog gauge motifs",
+      "folded map texture accents"
+    ],
+    "unique_screen_motifs": [
+      "field-map fold lines across pause and world-map screens",
+      "weapon bench slot clamps on upgrade drawers",
+      "radio mast distress pulses on menu and objective notifications"
+    ],
+    "forbidden_ui_elements": [
+      "generic circular neon buttons",
+      "clean fantasy parchment cards",
+      "top-only stat pills as the main HUD identity",
+      "full-width bottom command deck dominating the screen"
+    ]
+  },
+  "icon_identity": {
+    "subject": "masked frontier scavenger helmet with a rifle crossing a route marker",
+    "silhouette": "broad triangular helmet mass over a diagonal long-gun slash with one bright contamination eye",
+    "composition": "helmet centered slightly high, rifle crossing the lower third, route marker notch behind the visor, ash burst framing the badge",
+    "palette": "ember orange, rust brown, charcoal black, pale ash beige, and one acid-green contamination accent",
+    "background": "dark charcoal badge with smoke haze and dust sparks, not a flat color chip",
+    "game_specific_motif": "the crossed rifle and route marker signal frontier travel and weaponized zombie survival at the same time",
+    "forbidden_icon_reuse": [
+      "no plain zombie face close-up",
+      "no generic gas mask alone",
+      "no reused circular shield badge",
+      "no tower or crate foreground object",
+      "no blue-purple sci-fi gradient badge"
+    ]
+  }
+}

@@ -1,0 +1,228 @@
+{
+  "version": 1,
+  "game_id": "crown_frontier_tactics",
+  "status": "integrated",
+  "camera_perspective": "top_down_square_grid_campaign_board",
+  "default_coordinate_space": "tile_grid_with_safe_area_viewport",
+  "theme": "frontier kingdom tactics campaign villages keeps capitals and commander led square grid warfare",
+  "game_type": "turn_based_tactics",
+  "runtime_code": "app/src/main/java/com/android/boot/ui/GameView.java",
+  "animation_quality_target": "shared_tile_art_plus_runtime_animated_war_tokens",
+  "minimum_primary_entity_states": [
+    "idle",
+    "move",
+    "attack",
+    "hit",
+    "death"
+  ],
+  "entities": [
+    {
+      "entity_key": "allied_frontier_units",
+      "role": "character",
+      "asset_keys": [
+        "runtime_allied_heraldic_token",
+        "runtime_commander_crown_overlay",
+        "runtime_healer_cross_overlay",
+        "runtime_knight_lance_overlay"
+      ],
+      "default_facing": "east",
+      "facing_rule": "GameView rotates the pennant tip and front marker by unit faceX and faceY after movement and attacks",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.58
+      },
+      "hitbox": {
+        "x": 0.22,
+        "y": 0.22,
+        "w": 0.56,
+        "h": 0.56
+      },
+      "render_size": {
+        "w": "cellSize * 0.72",
+        "h": "cellSize * 0.72",
+        "unit": "screen_pixels"
+      },
+      "z_order": "by_renderY_then_faction",
+      "states": [
+        "idle",
+        "move",
+        "attack",
+        "hit",
+        "death",
+        "capture",
+        "order_buff"
+      ],
+      "animation_rule": "GameView lerps unit tokens between tiles, pulses attack arcs, flashes damage, and expands capture or commander-order rings instead of leaving static markers",
+      "movement_rule": "selected player units advance by reachable tile paths on the square grid while preserving facing toward travel or target direction"
+    },
+    {
+      "entity_key": "enemy_warband_units",
+      "role": "enemy",
+      "asset_keys": [
+        "runtime_enemy_heraldic_token",
+        "runtime_elite_commander_crown_overlay",
+        "runtime_wolf_rider_slash_overlay",
+        "runtime_crossbow_cross_overlay"
+      ],
+      "default_facing": "west",
+      "facing_rule": "GameView mirrors the directional pennant marker toward AI movement and counterattack direction",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.58
+      },
+      "hitbox": {
+        "x": 0.22,
+        "y": 0.22,
+        "w": 0.56,
+        "h": 0.56
+      },
+      "render_size": {
+        "w": "cellSize * 0.72",
+        "h": "cellSize * 0.72",
+        "unit": "screen_pixels"
+      },
+      "z_order": "by_renderY_then_faction",
+      "states": [
+        "idle",
+        "move",
+        "attack",
+        "hit",
+        "death",
+        "capture"
+      ],
+      "animation_rule": "AI units share the animated token system, including move interpolation, attack arcs, hit flashes, and capture pulses",
+      "movement_rule": "enemy AI chooses move cells, attacks, and captures through the same tile-grid movement rules as the player"
+    },
+    {
+      "entity_key": "escort_heir_token",
+      "role": "character",
+      "asset_keys": [
+        "runtime_heir_token",
+        "runtime_escape_highlight_ring"
+      ],
+      "default_facing": "east",
+      "facing_rule": "the heir token follows movement or danger direction and uses the same render anchor as allied units",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.58
+      },
+      "hitbox": {
+        "x": 0.22,
+        "y": 0.22,
+        "w": 0.56,
+        "h": 0.56
+      },
+      "render_size": {
+        "w": "cellSize * 0.68",
+        "h": "cellSize * 0.68",
+        "unit": "screen_pixels"
+      },
+      "z_order": "by_renderY_then_escort",
+      "states": [
+        "idle",
+        "move",
+        "hit",
+        "death",
+        "escape"
+      ],
+      "animation_rule": "the escort token shares movement lerp and damage flash behavior and highlights the exit state through a bright ring pulse",
+      "movement_rule": "escort chapters advance the heir on the same board grid until the unit reaches the exit tiles on the far edge"
+    },
+    {
+      "entity_key": "battlefield_tiles_and_sites",
+      "role": "terrain",
+      "asset_keys": [
+        "game_art/kenney_tiny_town/assets/Tiles/tile_0000.png",
+        "game_art/kenney_tiny_town/assets/Tiles/tile_0012.png",
+        "game_art/kenney_tiny_town/assets/Tiles/tile_0086.png",
+        "game_art/kenney_tiny_town/assets/Tiles/tile_0046.png",
+        "game_art/kenney_tiny_town/assets/Tiles/tile_0038.png",
+        "game_art/kenney_tiny_town/assets/Tiles/tile_0104.png",
+        "game_art/kenney_tiny_town/assets/Tiles/tile_0090.png",
+        "game_art/kenney_tiny_town/assets/Tiles/tile_0054.png",
+        "game_art/kenney_tiny_town/assets/Tiles/tile_0027.png",
+        "game_art/kenney_tiny_town/assets/Tiles/tile_0067.png",
+        "game_art/kenney_tiny_town/assets/Tiles/tile_0072.png",
+        "game_art/kenney_tiny_town/assets/Tiles/tile_0117.png",
+        "game_art/kenney_tiny_town/assets/Tiles/tile_0120.png",
+        "game_art/kenney_tiny_town/assets/Tiles/tile_0121.png",
+        "game_art/kenney_tiny_town/assets/Tiles/tile_0015.png"
+      ],
+      "default_facing": "north",
+      "facing_rule": "terrain is static while ownership glow and capture pulse communicate state changes",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "hitbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "w": 1.0,
+        "h": 1.0
+      },
+      "render_size": {
+        "w": "cellSize",
+        "h": "cellSize",
+        "unit": "screen_pixels"
+      },
+      "z_order": "ground_then_structure",
+      "states": [
+        "idle",
+        "capturable",
+        "allied_owned",
+        "enemy_owned",
+        "exit"
+      ],
+      "animation_rule": "GameView draws shared tile bitmaps when present, falls back to color-coded terrain fills, and overlays ownership pulses for keeps forts villages and capitals",
+      "movement_rule": "terrain sets movement cost defense bonuses capture eligibility and exit logic for escort chapters"
+    },
+    {
+      "entity_key": "command_atlas_texture_strip",
+      "role": "prop",
+      "asset_keys": [
+        "game_art/kenney_roguelike_rpg_pack/assets/Spritesheet/roguelikeSheet_transparent.png"
+      ],
+      "default_facing": "right",
+      "facing_rule": "no directional logic",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "hitbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "w": 1.0,
+        "h": 1.0
+      },
+      "render_size": {
+        "w": "boardRect.width - 20dp",
+        "h": "28dp",
+        "unit": "screen_pixels"
+      },
+      "z_order": "board_frame_overlay",
+      "states": [
+        "idle"
+      ],
+      "animation_rule": "GameView crops a pixel-art strip from the shared roguelike sheet and places it inside the board frame as a tactical command texture",
+      "movement_rule": "static decorative runtime prop"
+    }
+  ],
+  "required_runtime_checks": [
+    "primary moving entities have idle and move states",
+    "attacking entities have attack states with visible arcs or timing pulses",
+    "damageable entities flash or otherwise communicate hit feedback",
+    "defeated units are removed from the live board roster",
+    "directional entities define default_facing and use the facing_rule during movement and attacks",
+    "shared tile assets are loaded through AssetManager and BitmapFactory from game_art paths",
+    "both assigned shared gameplay art packs are used by the running game",
+    "anchors and hitboxes match tile-center interactions on the board",
+    "capture ownership changes produce a distinct pulse state before the next turn"
+  ],
+  "suggested_roles": [
+    "character",
+    "enemy",
+    "terrain",
+    "prop",
+    "effect"
+  ]
+}

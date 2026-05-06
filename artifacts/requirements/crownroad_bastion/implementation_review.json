@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "game_id": "crownroad_bastion",
+  "status": "passed",
+  "reviewed_at_utc": "2026-04-23T14:00:00Z",
+  "requirements_status": "confirmed",
+  "gameplay_diversity_status": "passed",
+  "evidence": [
+    "GameView implements node graph routes with multiple entrances, merge node, split nodes, rejoin node, and bastion exit",
+    "No laneY array or horizontal three-lane route template is used",
+    "Tower roster includes Archer Tower, Militia Barracks, Cannon Tower, Mage Tower, and Banner Shrine",
+    "Enemy roster includes raider, runner, shield, wolf, shaman, ogre, bat, ram, and warlord classes",
+    "Hero movement, reinforcement summon, meteor spell, barracks blockers, tower upgrades, wave preview, flying enemy, healer enemy, and siege pressure are implemented",
+    "Runtime art uses assigned Kenney CC0 tower and RPG packs with facing markers, movement bob, attack pulses, projectile rotation, hit feedback, and death effects",
+    "UI, gameplay art, icon, and audio workflows have project-local assignment evidence"
+  ],
+  "known_limitations": [
+    "Only Stage 1 is playable; Stage 2 to Stage 5 are campaign stubs as required for the first playable scope"
+  ]
+}

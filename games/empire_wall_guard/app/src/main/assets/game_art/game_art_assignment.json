@@ -1,0 +1,104 @@
+{
+  "version": 1,
+  "game_id": "empire_wall_guard",
+  "assigned_at_utc": "2026-04-23T06:41:48Z",
+  "packs": [
+    {
+      "pack_id": "kenney_tower_defense_top_down",
+      "pack_title": "Kenney Tower Defense Top-Down",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://kenney.nl/assets/tower-defense-top-down",
+      "art_roles": [
+        "tower",
+        "enemy",
+        "tileset",
+        "terrain",
+        "projectile",
+        "building"
+      ],
+      "recommended_game_types": [
+        "tower",
+        "defense",
+        "strategy",
+        "lane",
+        "top",
+        "down"
+      ],
+      "style_tags": [
+        "top",
+        "down",
+        "tower",
+        "defense",
+        "strategy",
+        "cartoon",
+        "terrain"
+      ],
+      "quality_tags": [
+        "production",
+        "free",
+        "open",
+        "cc0"
+      ],
+      "animation_capabilities": [
+        "top_down",
+        "turret_rotation",
+        "projectile_rotation",
+        "impact_effect",
+        "static_building"
+      ],
+      "animation_states": [
+        "idle",
+        "fire",
+        "hit"
+      ],
+      "project_pack_path": "app/src/main/assets/game_art/kenney_tower_defense_top_down",
+      "copied_file_count": 605
+    },
+    {
+      "pack_id": "kenney_roguelike_rpg_pack",
+      "pack_title": "Kenney Roguelike RPG Pack",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://kenney.nl/assets/roguelike-rpg-pack",
+      "art_roles": [
+        "tileset",
+        "terrain",
+        "building",
+        "prop",
+        "item",
+        "character",
+        "enemy"
+      ],
+      "recommended_game_types": [
+        "rpg",
+        "roguelike",
+        "dungeon",
+        "top",
+        "down",
+        "adventure"
+      ],
+      "style_tags": [
+        "pixel",
+        "rpg",
+        "roguelike",
+        "town",
+        "dungeon",
+        "fantasy",
+        "top",
+        "down"
+      ],
+      "quality_tags": [
+        "production",
+        "free",
+        "open",
+        "cc0"
+      ],
+      "animation_capabilities": [],
+      "animation_states": [],
+      "project_pack_path": "app/src/main/assets/game_art/kenney_roguelike_rpg_pack",
+      "copied_file_count": 9
+    }
+  ],
+  "copied_file_count": 614
+}

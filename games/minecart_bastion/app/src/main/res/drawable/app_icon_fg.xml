@@ -1,0 +1,9 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="108dp" android:height="108dp" android:viewportWidth="108" android:viewportHeight="108">
+    <path android:fillColor="@color/cst_panel_header_bg" android:pathData="M12,80 L96,80 L96,94 L12,94 Z" />
+    <path android:strokeColor="@color/cst_accent" android:strokeWidth="5" android:strokeLineCap="round" android:fillColor="@android:color/transparent" android:pathData="M15,78 L93,78 M22,91 L86,91" />
+    <path android:fillColor="@color/cst_btn_primary_bg_end" android:pathData="M25,42 L75,42 L86,62 L21,62 Z" />
+    <path android:fillColor="@color/cst_btn_primary_stroke" android:pathData="M32,49 L46,49 L46,58 L32,58 Z M53,49 L68,49 L68,58 L53,58 Z" />
+    <path android:strokeColor="@color/cst_text_primary" android:strokeWidth="5" android:strokeLineCap="round" android:fillColor="@android:color/transparent" android:pathData="M70,42 L87,33" />
+    <path android:fillColor="@color/cst_bg_alt" android:pathData="M31,63 A8,8 0,1 0,47,63 A8,8 0,1 0,31,63 M62,63 A8,8 0,1 0,78,63 A8,8 0,1 0,62,63" />
+    <path android:fillColor="@color/cst_success" android:pathData="M79,27 L91,22 L88,35 Z" />
+</vector>

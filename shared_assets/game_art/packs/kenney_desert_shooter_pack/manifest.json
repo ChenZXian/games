@@ -1,0 +1,80 @@
+{
+  "version": 1,
+  "pack_id": "kenney_desert_shooter_pack",
+  "title": "Kenney Desert Shooter Pack",
+  "license": "CC0-1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "source_url": "https://kenney.nl/assets/desert-shooter-pack",
+  "download_url": "",
+  "asset_types": [
+    "png",
+    "txt"
+  ],
+  "art_roles": [
+    "character",
+    "enemy",
+    "prop",
+    "vehicle",
+    "projectile",
+    "tileset",
+    "terrain"
+  ],
+  "recommended_game_types": [
+    "top",
+    "down",
+    "shooter",
+    "survival",
+    "action",
+    "desert"
+  ],
+  "style_tags": [
+    "desert",
+    "top",
+    "down",
+    "shooter",
+    "modern",
+    "squad",
+    "vehicle"
+  ],
+  "quality_tags": [
+    "production",
+    "animated",
+    "free",
+    "open",
+    "cc0"
+  ],
+  "assets_path": "assets",
+  "preview_files": [
+    "Preview.png"
+  ],
+  "asset_file_count": 523,
+  "map_roles": [
+    "prop",
+    "terrain",
+    "tileset"
+  ],
+  "map_capabilities": [
+    "grid_ready",
+    "individual_tiles",
+    "large_tile_variation",
+    "modular_tileset",
+    "packed_tilemap_sheet",
+    "prop_tiles",
+    "terrain_variants",
+    "tilemap_sheet",
+    "top_down_layout"
+  ],
+  "camera_perspectives": [
+    "top_down"
+  ],
+  "tile_asset_metrics": {
+    "tile_png_count": 506,
+    "tilemap_sheet_count": 10,
+    "packed_sheet_count": 5,
+    "tiled_tmx_count": 0,
+    "tiled_tsx_count": 0,
+    "sample_map_count": 0,
+    "preview_map_count": 3
+  },
+  "map_builder_strength": "strong"
+}

@@ -1,0 +1,189 @@
+{
+  "version": 1,
+  "game_id": "ashen_frontier",
+  "status": "passed",
+  "direction": "Post-apocalypse large-map survival against zombie hordes with a full weapon system and safehouse expansion.",
+  "selected_concept": "Ashen Frontier",
+  "genre_family": "survival action",
+  "genre_archetype": "regional extraction scavenger shooter",
+  "camera_perspective": "3/4 top-down",
+  "control_model": "left-stick movement, right-side aim and fire controls, contextual action buttons, bike mount transition",
+  "core_loop_signature": "plan route, ride into a frontier region, scavenge resources, fight or evade zombie groups with weapon choice, rescue survivors, extract to safehouse, upgrade weapons and facilities",
+  "differentiation_axes": [
+    "large macro map with 12 connected frontier regions instead of one small arena",
+    "bike-supported traversal and extraction pressure as a core system",
+    "explicit multi-family weapon system with mastery and attachment progression",
+    "safehouse network growth and survivor assignment instead of simple score progression",
+    "noise attraction and horde migration that alter repeat routes"
+  ],
+  "forbidden_template_reuse": [
+    "no endless arena-only wave loop",
+    "no three-lane defense map",
+    "no fixed central keep defense structure",
+    "no one-weapon dominant combat model",
+    "no tiny single-screen survival board reused from prior zombie projects"
+  ],
+  "map_content_budget": {
+    "play_area_model": "12 macro regions with 3 to 5 connected field subzones each, linked by roads, alleys, tunnels, and relay corridors",
+    "route_or_region_count": "12 macro regions, minimum 40 field subzones, minimum 18 signature landmarks, minimum 5 safehouse or relay hubs",
+    "interactive_regions": "safehouses, gas stations, checkpoints, hospitals, relay towers, depots, survivor camps, infected nests, trader stops",
+    "terrain_types": [
+      "cracked highway",
+      "burned suburb",
+      "industrial yard",
+      "drainage canal",
+      "collapsed overpass",
+      "trailer camp",
+      "charred woodland",
+      "dead shopping strip"
+    ],
+    "decorative_prop_count": "at least 25 recurring prop families across vehicles, barricades, signs, rubble, fencing, and utility hardware",
+    "functional_map_elements": [
+      "fuel pumps",
+      "locked supply crates",
+      "relay switches",
+      "alarm boxes",
+      "breakable barricades",
+      "fire hazards",
+      "explosive tanks",
+      "extraction gates"
+    ],
+    "landmarks": [
+      "radio tower",
+      "field hospital",
+      "refinery tank farm",
+      "overrun school shelter",
+      "freight depot",
+      "collapsed bridge span"
+    ],
+    "camera_or_scroll_model": "free camera within each field zone with bounded follow, plus macro route map between zones"
+  },
+  "entity_content_budget": {
+    "player_unit_types": [
+      "scavenger on foot",
+      "bike-mounted scavenger"
+    ],
+    "enemy_types": [
+      "shambler",
+      "runner",
+      "crawler",
+      "bloater",
+      "armored infected",
+      "howler elite"
+    ],
+    "neutral_or_resource_entities": [
+      "rescued civilians",
+      "traders",
+      "fuel caches",
+      "supply crates",
+      "relay consoles"
+    ],
+    "boss_or_elite_types": [
+      "howler pack leader",
+      "armored brute",
+      "nest matriarch"
+    ],
+    "projectile_or_effect_types": [
+      "pistol rounds",
+      "shotgun pellets",
+      "rifle bursts",
+      "crossbow bolts",
+      "molotov fire",
+      "pipe bomb blast",
+      "noise lure pulse"
+    ],
+    "item_or_powerup_types": [
+      "bandage kit",
+      "stim shot",
+      "armor plate",
+      "ammo box",
+      "fuel can",
+      "weapon part cache"
+    ]
+  },
+  "mechanic_content_budget": {
+    "primary_player_actions": [
+      "move",
+      "aim",
+      "fire",
+      "reload",
+      "interact",
+      "mount or dismount bike"
+    ],
+    "secondary_player_actions": [
+      "melee shove",
+      "dodge roll",
+      "throw utility",
+      "heal",
+      "mark route",
+      "escort command"
+    ],
+    "upgrade_paths": [
+      "weapon mastery",
+      "weapon attachments",
+      "bike modules",
+      "safehouse facilities",
+      "survivor specialist bonuses"
+    ],
+    "wave_or_level_variants": [
+      "free scavenging run",
+      "rescue escort mission",
+      "timed extraction run",
+      "relay activation mission",
+      "nest purge mission",
+      "night siege event"
+    ],
+    "special_rules": [
+      "weapon noise raises nearby threat",
+      "infection meter pressures overstay",
+      "nightfall changes zombie density",
+      "fuel limits deep route choices",
+      "landmark completion can permanently open safer routes"
+    ],
+    "risk_reward_systems": [
+      "deeper landmark dives provide rare weapon parts",
+      "quiet weapon play preserves ammo and reduces horde attraction",
+      "optional contracts trade safety for high-value rewards",
+      "escorting survivors slows extraction but unlocks long-term bonuses"
+    ],
+    "failure_pressure_variants": [
+      "health collapse",
+      "infection overflow",
+      "escort death",
+      "fuel exhaustion",
+      "overwhelming horde convergence"
+    ]
+  },
+  "asset_variety_budget": {
+    "primary_game_art_packs": [
+      "gritty top-down post-apocalypse survivor pack",
+      "zombie horde actor pack",
+      "ruined road and industrial terrain pack"
+    ],
+    "secondary_game_art_packs": [
+      "burned suburb prop pack",
+      "utility and relay structure pack",
+      "weapon muzzle and explosion effect pack"
+    ],
+    "ui_pack": "skin_post_apocalypse",
+    "animation_tier": "medium_high for player and primary infected, medium for props and support actors",
+    "required_animation_states": [
+      "player idle",
+      "player walk",
+      "player run",
+      "player fire",
+      "player reload",
+      "player dodge",
+      "player shove",
+      "player hurt",
+      "bike ride",
+      "infected shamble",
+      "infected sprint",
+      "infected lunge",
+      "infected hurt",
+      "infected death"
+    ],
+    "minimum_distinct_sprite_families": "minimum 12 major sprite families across player, bike, six zombie roles, survivors, landmarks, pickups, hazards, and major effects",
+    "asset_reuse_note": "reuse should stay role-specific and must not collapse the game into one zombie sprite family, one road tile family, or one generic HUD pack reused from earlier survival projects"
+  }
+}

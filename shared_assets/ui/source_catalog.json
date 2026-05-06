@@ -1,0 +1,140 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "pack_id": "kenney_ui_pack_pixel_adventure",
+      "title": "Kenney UI Pack - Pixel Adventure",
+      "source_url": "https://www.kenney.nl/assets/ui-pack-pixel-adventure",
+      "download_page_url": "https://www.kenney.nl/assets/ui-pack-pixel-adventure",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "supported_ui_skins": [
+        "skin_dark_arcade",
+        "skin_cartoon_light"
+      ],
+      "style_tags": [
+        "pixel",
+        "adventure",
+        "fantasy",
+        "retro",
+        "outlined"
+      ],
+      "quality_tags": [
+        "production",
+        "pixel_art",
+        "mobile_game",
+        "free",
+        "open",
+        "cc0"
+      ]
+    },
+    {
+      "pack_id": "kenney_fantasy_ui_borders",
+      "title": "Kenney Fantasy UI Borders",
+      "source_url": "https://www.kenney.nl/assets/fantasy-ui-borders",
+      "download_page_url": "https://www.kenney.nl/assets/fantasy-ui-borders",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "supported_ui_skins": [
+        "skin_cartoon_light",
+        "skin_post_apocalypse"
+      ],
+      "style_tags": [
+        "fantasy",
+        "frame",
+        "border",
+        "ornate",
+        "quest"
+      ],
+      "quality_tags": [
+        "production",
+        "ornamental",
+        "free",
+        "open",
+        "cc0"
+      ]
+    },
+    {
+      "pack_id": "kenney_mobile_controls",
+      "title": "Kenney Mobile Controls",
+      "source_url": "https://www.kenney.nl/assets/mobile-controls",
+      "download_page_url": "https://www.kenney.nl/assets/mobile-controls",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "supported_ui_skins": [
+        "skin_dark_arcade",
+        "skin_neon_future",
+        "skin_military_tech"
+      ],
+      "style_tags": [
+        "mobile",
+        "touch",
+        "controls",
+        "overlay",
+        "input"
+      ],
+      "quality_tags": [
+        "production",
+        "overlay",
+        "free",
+        "open",
+        "cc0"
+      ]
+    },
+    {
+      "pack_id": "kenney_minimap_pack",
+      "title": "Kenney Minimap Pack",
+      "source_url": "https://www.kenney.nl/assets/minimap-pack",
+      "download_page_url": "https://www.kenney.nl/assets/minimap-pack",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "supported_ui_skins": [
+        "skin_military_tech",
+        "skin_neon_future",
+        "skin_dark_arcade"
+      ],
+      "style_tags": [
+        "map",
+        "minimap",
+        "radar",
+        "overlay",
+        "panel"
+      ],
+      "quality_tags": [
+        "production",
+        "overlay",
+        "free",
+        "open",
+        "cc0"
+      ]
+    },
+    {
+      "pack_id": "kenney_input_prompts",
+      "title": "Kenney Input Prompts",
+      "source_url": "https://www.kenney.nl/assets/input-prompts",
+      "download_page_url": "https://www.kenney.nl/assets/input-prompts",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "supported_ui_skins": [
+        "skin_dark_arcade",
+        "skin_neon_future",
+        "skin_military_tech",
+        "skin_cartoon_light"
+      ],
+      "style_tags": [
+        "input",
+        "prompt",
+        "controller",
+        "keyboard",
+        "overlay"
+      ],
+      "quality_tags": [
+        "production",
+        "overlay",
+        "free",
+        "open",
+        "cc0"
+      ]
+    }
+  ]
+}

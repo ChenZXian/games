@@ -1,0 +1,21 @@
+{
+    "version":  1,
+    "game_id":  "crownblock_hunt",
+    "title":  "Crownblock Hunt",
+    "direction":  "Large-map side-scrolling street action inspired by flash-era district brawlers, with partner support, a layered weapon system, strong hit impact, and fluid combat.",
+    "selected_concept":  "Old King District Hunt",
+    "status":  "confirmed",
+    "ui_skin":  "skin_dark_arcade",
+    "current_stage":  "requirements",
+    "created_at_utc":  "2026-04-25T15:21:07Z",
+    "updated_at_utc":  "2026-04-26T07:53:04Z",
+    "selected_at_utc":  "2026-04-25T15:21:07Z",
+    "confirmed_at_utc":  "2026-04-26T07:53:04Z",
+    "files":  {
+                  "metadata_json":  "artifacts/requirements/crownblock_hunt/metadata.json",
+                  "requirements_md":  "artifacts/requirements/crownblock_hunt/requirements.md",
+                  "candidates_md":  "",
+                  "gameplay_diversity_json":  "artifacts/requirements/crownblock_hunt/gameplay_diversity.json",
+                  "visual_identity_json":  "artifacts/requirements/crownblock_hunt/visual_identity.json"
+              }
+}

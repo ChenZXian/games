@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "pack_id": "kenney_tower_defense_top_down",
+  "title": "Kenney Tower Defense Top-Down",
+  "license": "CC0-1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "source_url": "https://kenney.nl/assets/tower-defense-top-down",
+  "download_url": "",
+  "asset_types": [
+    "png",
+    "svg",
+    "txt"
+  ],
+  "art_roles": [
+    "tower",
+    "enemy",
+    "tileset",
+    "terrain",
+    "projectile",
+    "building"
+  ],
+  "recommended_game_types": [
+    "tower",
+    "defense",
+    "strategy",
+    "lane",
+    "top",
+    "down"
+  ],
+  "style_tags": [
+    "top",
+    "down",
+    "tower",
+    "defense",
+    "strategy",
+    "cartoon",
+    "terrain"
+  ],
+  "quality_tags": [
+    "production",
+    "free",
+    "open",
+    "cc0"
+  ],
+  "assets_path": "assets",
+  "preview_files": [
+    "Preview.png",
+    "Sample.png"
+  ],
+  "asset_file_count": 605,
+  "map_roles": [
+    "building",
+    "terrain",
+    "tileset"
+  ],
+  "map_capabilities": [
+    "top_down_layout"
+  ],
+  "camera_perspectives": [
+    "top_down"
+  ],
+  "tile_asset_metrics": {
+    "tile_png_count": 0,
+    "tilemap_sheet_count": 0,
+    "packed_sheet_count": 0,
+    "tiled_tmx_count": 0,
+    "tiled_tsx_count": 0,
+    "sample_map_count": 0,
+    "preview_map_count": 3
+  },
+  "map_builder_strength": "weak"
+}

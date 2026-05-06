@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "pack_id": "kenney_pirate_pack",
+  "title": "Kenney Pirate Pack",
+  "license": "CC0-1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "source_url": "https://kenney.nl/assets/pirate-pack",
+  "download_url": "",
+  "asset_types": [
+    "png",
+    "svg",
+    "txt",
+    "xml"
+  ],
+  "art_roles": [
+    "character",
+    "enemy",
+    "ship",
+    "terrain",
+    "building",
+    "prop",
+    "item",
+    "background"
+  ],
+  "recommended_game_types": [
+    "pirate",
+    "naval",
+    "adventure",
+    "top",
+    "down",
+    "action"
+  ],
+  "style_tags": [
+    "pirate",
+    "ship",
+    "sea",
+    "island",
+    "cartoon",
+    "adventure"
+  ],
+  "quality_tags": [
+    "production",
+    "free",
+    "open",
+    "cc0"
+  ],
+  "assets_path": "assets",
+  "preview_files": [
+    "Preview.png",
+    "Sample.png"
+  ],
+  "asset_file_count": 409,
+  "map_roles": [
+    "background",
+    "building",
+    "prop",
+    "terrain"
+  ],
+  "map_capabilities": [
+    "background_layers",
+    "building_tiles",
+    "grid_ready",
+    "individual_tiles",
+    "large_tile_variation",
+    "modular_tileset",
+    "prop_tiles",
+    "terrain_variants",
+    "top_down_layout"
+  ],
+  "camera_perspectives": [
+    "top_down"
+  ],
+  "tile_asset_metrics": {
+    "tile_png_count": 192,
+    "tilemap_sheet_count": 0,
+    "packed_sheet_count": 0,
+    "tiled_tmx_count": 0,
+    "tiled_tsx_count": 0,
+    "sample_map_count": 0,
+    "preview_map_count": 3
+  },
+  "map_builder_strength": "moderate"
+}

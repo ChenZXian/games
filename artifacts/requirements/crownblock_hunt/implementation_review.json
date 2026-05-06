@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "game_id": "crownblock_hunt",
+  "status": "passed",
+  "reviewed_at": "2026-04-26",
+  "requirements_trace": "artifacts/requirements/crownblock_hunt/requirements.md",
+  "implemented_core_mechanics": [
+    "district board flow with 9 named territories and 40 total blocks across the campaign",
+    "safehouse flow with field meds ammo cache weapon bench and partner recruit actions",
+    "side-scrolling route combat with long scrolling streets and staged spawn events",
+    "melee combo flow with light heavy finisher timing hitstop and dash pressure",
+    "weapon switching across pistol SMG shotgun and rifle progression",
+    "clip ammo reserve ammo and reload timing with combat slab UI",
+    "partner roster with assist cooldowns and context-sensitive slot rotation outside battle",
+    "enemy pressure mix across brawler rusher pipe gunner brute and lieutenant roles",
+    "pickup economy for cash ammo and meds with route reward carryover",
+    "district completion unlocking later territories and carrying campaign control state",
+    "tracked UI pack assignment",
+    "tracked gameplay art pack assignment with integrated runtime art map",
+    "tracked icon export artifacts",
+    "tracked BGM and SFX assignment with project-local audio manifest"
+  ],
+  "animation_and_facing_evidence": [
+    "GameView loads separate idle walk action hurt and jump poses for the player and flips them from current direction",
+    "GameView loads zombie and soldier pose sets for enemy types and alternates walk frames while flipping toward the player",
+    "GameView adds dash afterimage, hit sparks, hp bars, pickup bob, projectile travel, and screen shake instead of leaving static placeholders",
+    "GameView renders board and safehouse portrait usage for partner support roles and keeps runtime asset paths inside AssetManager-backed project assets"
+  ],
+  "evidence": [
+    "games/crownblock_hunt/app/src/main/java/com/android/boot/ui/GameView.java",
+    "games/crownblock_hunt/app/src/main/java/com/android/boot/MainActivity.java",
+    "games/crownblock_hunt/app/src/main/assets/ui/ui_pack_assignment.json",
+    "games/crownblock_hunt/app/src/main/assets/game_art/game_art_assignment.json",
+    "games/crownblock_hunt/app/src/main/assets/game_art/runtime_art_map.json",
+    "games/crownblock_hunt/app/src/main/assets/audio/audio_assignment.json",
+    "artifacts/icons/crownblock_hunt/crownblock_hunt"
+  ],
+  "known_limitations": [
+    "The first playable scope generates district blocks from systemic route templates rather than bespoke hand-authored geometry for every one of the 40 campaign blocks.",
+    "The broader concept roster for rooftop sniper biker and shield specialist enemies is compressed into the implemented gunner brute and lieutenant archetypes for the first delivery pass."
+  ],
+  "remaining_quality_notes": [
+    "The implemented loop preserves district conquest partner support weapon switching and heavy combat feedback instead of collapsing into a short lock-room arena template.",
+    "A later polish pass can deepen unique district prop sets and icon specificity without replacing the current production-ready core."
+  ]
+}

@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Iron Banner Realms</string>
+    <string name="btn_start">Campaign</string>
+    <string name="btn_restart">Retry Province</string>
+    <string name="btn_resume">Resume Battle</string>
+    <string name="btn_menu">Return To Menu</string>
+    <string name="btn_mute">Mute</string>
+    <string name="btn_how_to_play">How To Play</string>
+    <string name="btn_pause">Pause</string>
+    <string name="btn_upgrades">Realm Upgrades</string>
+    <string name="btn_next_province">Next Province</string>
+    <string name="label_province">Province</string>
+    <string name="label_owned">Owned</string>
+    <string name="label_enemy">Enemy</string>
+    <string name="label_income">Income</string>
+    <string name="label_command">Command</string>
+    <string name="label_objective">Objective</string>
+    <string name="label_objective_idle">Select a province from the campaign war map.</string>
+    <string name="label_doctrine">Doctrine</string>
+    <string name="label_alerts">War Reports</string>
+    <string name="label_menu_ready">Campaign Map</string>
+    <string name="label_menu_pitch">Command a rising crown across roads, rivers, forts, and farms. Cut enemy supply, rally marches, and storm rival capitals.</string>
+    <string name="label_idle_board">The war table is ready.</string>
+    <string name="label_idle_hint">Choose a province from the campaign panel to begin the conquest.</string>
+    <string name="label_choose_province">Choose A Province</string>
+    <string name="label_upgrade_logistics">Upgrade Logistics</string>
+    <string name="label_upgrade_council">Upgrade War Council</string>
+    <string name="label_upgrade_discipline">Upgrade Iron Discipline</string>
+    <string name="label_victory">Victory</string>
+    <string name="label_defeat">Defeat</string>
+    <string name="label_result_placeholder">Campaign report will appear here.</string>
+    <string name="label_default_alert">Secure farms and watchtowers before forcing the capital.</string>
+    <string name="label_shielded">Shielded</string>
+    <string name="label_cut_off">Cut Off</string>
+    <string name="text_help_body">Tap a friendly city or fort to select it. Tap a linked target to dispatch troops. Farms grow fast levy ranks, mines feed command, barracks train sharper packets, watchtowers reveal nearby enemy strength, and forts resist charges. Rally speeds one friendly node, Shield Wall hardens a frontline stronghold, Scout Flare reveals the entire map for a short time, and Bridge Repair restores broken crossings. Capture the rival capital before your own crown city falls.</string>
+</resources>

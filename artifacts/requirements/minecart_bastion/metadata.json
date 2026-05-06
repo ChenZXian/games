@@ -1,0 +1,19 @@
+{
+    "version":  1,
+    "game_id":  "minecart_bastion",
+    "title":  "Minecart Bastion",
+    "direction":  "tower defense",
+    "selected_concept":  "Minecart Bastion - mine rail defense where weapon carts patrol tracks and the player switches junctions to cover monster waves.",
+    "status":  "confirmed",
+    "ui_skin":  "skin_post_apocalypse",
+    "current_stage":  "requirements",
+    "created_at_utc":  "2026-04-23T02:16:29Z",
+    "updated_at_utc":  "2026-04-23T02:18:26Z",
+    "selected_at_utc":  "2026-04-23T02:16:29Z",
+    "confirmed_at_utc":  "2026-04-23T02:18:26Z",
+    "files":  {
+                  "metadata_json":  "artifacts/requirements/minecart_bastion/metadata.json",
+                  "requirements_md":  "artifacts/requirements/minecart_bastion/requirements.md",
+                  "candidates_md":  ""
+              }
+}

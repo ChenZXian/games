@@ -1,0 +1,21 @@
+{
+    "version":  1,
+    "game_id":  "iron_banner_realms",
+    "title":  "Iron Banner Realms",
+    "direction":  "city-state conquest inspired by classic territory expansion warfare with elegant medieval presentation and smooth marching combat animation",
+    "selected_concept":  "Iron Banner Realms",
+    "status":  "confirmed",
+    "ui_skin":  "skin_military_tech",
+    "current_stage":  "requirements",
+    "created_at_utc":  "2026-04-30T02:34:54Z",
+    "updated_at_utc":  "2026-04-30T02:35:52Z",
+    "selected_at_utc":  "2026-04-30T02:34:54Z",
+    "confirmed_at_utc":  "2026-04-30T02:35:52Z",
+    "files":  {
+                  "metadata_json":  "artifacts/requirements/iron_banner_realms/metadata.json",
+                  "requirements_md":  "artifacts/requirements/iron_banner_realms/requirements.md",
+                  "candidates_md":  "",
+                  "gameplay_diversity_json":  "artifacts/requirements/iron_banner_realms/gameplay_diversity.json",
+                  "visual_identity_json":  "artifacts/requirements/iron_banner_realms/visual_identity.json"
+              }
+}

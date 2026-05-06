@@ -1,0 +1,220 @@
+{
+  "version": 1,
+  "game_id": "crownblock_hunt",
+  "status": "passed",
+  "direction": "Large-map side-scrolling street action inspired by flash-era district brawlers, with partner support, a layered weapon system, strong hit impact, and fluid combat.",
+  "selected_concept": "Old King District Hunt",
+  "genre_family": "action brawler",
+  "genre_archetype": "large-district side-scrolling street-control beat-em-up shooter",
+  "camera_perspective": "side-scrolling 2.5D lane-depth street action",
+  "control_model": "left-stick movement with short lane shifting, right-side light heavy jump dodge firearm and partner-command buttons, plus weapon pickup and swap actions",
+  "core_loop_signature": "pick a district route, fight through connected city sectors, chain melee and firearm combos, deploy partners, seize control points, and upgrade the crew to take the next block",
+  "differentiation_axes": [
+    "district conquest board instead of a single short stage chain",
+    "two active partners with assist and revive utility instead of solo-only combat",
+    "melee-to-firearm cancel flow with pickup weapons instead of cosmetic gun use",
+    "captured blocks permanently change shops, patrol pressure, and shortcuts",
+    "sector routes mix streets interiors rooftops and transit spaces instead of one corridor template"
+  ],
+  "forbidden_template_reuse": [
+    "no one-room survival arena loop",
+    "no tiny lock-gate corridor used as the whole campaign structure",
+    "no boss-rush-only action loop",
+    "no pure melee brawler that treats guns as non-interactive props",
+    "no top-down scavenging or extraction map"
+  ],
+  "map_content_budget": {
+    "play_area_model": "one connected district board with 9 macro territories feeding side-scrolling combat sectors with branch exits and revisit logic",
+    "route_or_region_count": "9 macro districts, minimum 40 sector nodes, minimum 18 major landmarks, minimum 6 persistent support locations",
+    "interactive_regions": [
+      "safehouses",
+      "weapon shops",
+      "clinics",
+      "intel dens",
+      "captured block posts",
+      "rescue rooms",
+      "boss compounds"
+    ],
+    "terrain_types": [
+      "market street",
+      "service alley",
+      "subway entrance",
+      "rooftop walkway",
+      "warehouse floor",
+      "old arcade interior",
+      "courthouse stair",
+      "riverside road"
+    ],
+    "decorative_prop_count": "at least 30 recurring prop families across signs, fences, kiosks, benches, market stalls, power boxes, traffic blockers, and storefront debris",
+    "functional_map_elements": [
+      "breakable doors",
+      "chain gates",
+      "med vending points",
+      "weapon lockers",
+      "stash crates",
+      "improvised barricades",
+      "drop bridges",
+      "elevator lifts",
+      "roof jump links",
+      "alarm switches",
+      "control banners",
+      "rescue cages"
+    ],
+    "landmarks": [
+      "tram depot",
+      "fish market gate",
+      "old station tunnel",
+      "church yard",
+      "canal bridge",
+      "pawn district sign",
+      "courthouse arch",
+      "warehouse crane"
+    ],
+    "camera_or_scroll_model": "side-scrolling segmented camera with lane-depth combat plane, boss locks, and branch transition points"
+  },
+  "entity_content_budget": {
+    "player_unit_types": [
+      "player leader",
+      "partner striker",
+      "partner gunner",
+      "partner tank",
+      "partner medic"
+    ],
+    "enemy_types": [
+      "street brawler",
+      "knife rusher",
+      "pipe bruiser",
+      "shield enforcer",
+      "pistol thug",
+      "SMG gunner",
+      "rooftop sniper",
+      "biker rusher",
+      "heavy brute"
+    ],
+    "neutral_or_resource_entities": [
+      "civilians",
+      "informants",
+      "shopkeepers",
+      "med staff",
+      "captured allies",
+      "district guards after capture"
+    ],
+    "boss_or_elite_types": [
+      "riot captain",
+      "blade twin",
+      "shotgun lieutenant",
+      "bike chief",
+      "district ruler"
+    ],
+    "projectile_or_effect_types": [
+      "pistol shots",
+      "SMG bursts",
+      "shotgun spread",
+      "rifle rounds",
+      "thrown bottles",
+      "flash bursts",
+      "hit sparks",
+      "wall slam debris"
+    ],
+    "item_or_powerup_types": [
+      "melee weapon pickup",
+      "ammo crate",
+      "medicine bag",
+      "cash bundle",
+      "combo booster",
+      "throwable stash"
+    ]
+  },
+  "mechanic_content_budget": {
+    "primary_player_actions": [
+      "move",
+      "light combo",
+      "heavy strike",
+      "launcher",
+      "jump attack",
+      "dodge",
+      "firearm attack",
+      "reload",
+      "pickup",
+      "partner assist"
+    ],
+    "secondary_player_actions": [
+      "execution",
+      "revive partner",
+      "guard break",
+      "wall combo",
+      "control-point capture",
+      "rescue contact",
+      "stash breach"
+    ],
+    "upgrade_paths": [
+      "player move tree",
+      "firearm mods",
+      "partner assist tree",
+      "territory support perks",
+      "consumable capacity"
+    ],
+    "wave_or_level_variants": [
+      "route sweep",
+      "escort rescue",
+      "hold point takeover",
+      "boss raid",
+      "manhunt chase",
+      "last-block defense"
+    ],
+    "special_rules": [
+      "hitstop and stagger are mandatory on heavy impacts",
+      "melee strings can cancel into firearm finishers and partner assists",
+      "captured blocks unlock persistent support changes on the district board",
+      "pickup weapons alter crowd-control reach and combo finishers",
+      "downed partners can be revived or left to recover off-screen depending on mission pressure"
+    ],
+    "risk_reward_systems": [
+      "deeper route pushes grant better rewards but reduce safe retreat options",
+      "high combo preservation increases money and reputation gain",
+      "optional rescue contacts trade combat pace for crew progression rewards",
+      "elite no-hit clears award rare weapon parts"
+    ],
+    "failure_pressure_variants": [
+      "player defeat",
+      "team wipe",
+      "escort target death",
+      "control timer expiration",
+      "boss route collapse"
+    ]
+  },
+  "asset_variety_budget": {
+    "primary_game_art_packs": [
+      "urban brawler character pack",
+      "modern firearms and pickup pack",
+      "city district environment pack"
+    ],
+    "secondary_game_art_packs": [
+      "storefront and transit prop pack",
+      "impact and muzzle effect pack",
+      "partner portrait or dossier frame pack"
+    ],
+    "ui_pack": "skin_dark_arcade",
+    "animation_tier": "high for player partners elites and bosses, medium-high for standard gang enemies",
+    "required_animation_states": [
+      "player idle",
+      "player walk",
+      "player run",
+      "player light combo",
+      "player heavy attack",
+      "player launcher",
+      "player dodge",
+      "player shoot",
+      "player reload",
+      "player hurt",
+      "enemy attack",
+      "enemy hurt",
+      "enemy knockdown",
+      "enemy get_up",
+      "boss stagger",
+      "partner assist"
+    ],
+    "minimum_distinct_sprite_families": "minimum 14 major sprite families across player, partners, gang classes, elites, bosses, pickups, interactives, and environment landmarks",
+    "asset_reuse_note": "do not collapse the game into one hero sprite family, one repeated thug family, and one corridor background; the asset plan must support district, role, and weapon variety"
+  }
+}

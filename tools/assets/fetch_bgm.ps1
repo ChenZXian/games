@@ -2,24 +2,20 @@ param(
   [Parameter(Mandatory=$true)][string]$GameId,
   [Parameter(Mandatory=$true)][string]$Tag,
   [Parameter(Mandatory=$false)][string]$AssignProject = "",
+  [Parameter(Mandatory=$false)][string]$LibraryRoot = "shared_assets/audio",
   [Parameter(Mandatory=$false)][string]$MaxKb = "1000"
 )
 
 $ErrorActionPreference = "Stop"
 
-$python = Get-Command python -ErrorAction SilentlyContinue
-if (-not $python) {
-  throw "python not found in PATH"
-}
-
 $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
-$py = Join-Path $scriptDir "fetch_bgm.py"
+$ps = Join-Path $scriptDir "fetch_audio.ps1"
 
-if (-not (Test-Path -LiteralPath $py)) {
-  throw "Missing script: $py"
+if (-not (Test-Path -LiteralPath $ps)) {
+  throw "Missing script: $ps"
 }
 
-& python $py --game-id $GameId --tag $Tag --assign-project $AssignProject --max-kb $MaxKb
+& $ps -GameId $GameId -Type "bgm" -Role "play" -Tag $Tag -AssignProject $AssignProject -LibraryRoot $LibraryRoot -MaxKb $MaxKb
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 Write-Host "BGM_FETCH_OK=true"

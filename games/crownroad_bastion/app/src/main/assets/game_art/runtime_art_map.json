@@ -1,0 +1,185 @@
+{
+  "version": 1,
+  "game_id": "crownroad_bastion",
+  "status": "integrated",
+  "camera_perspective": "top_down_board",
+  "default_coordinate_space": "normalized_screen",
+  "theme": "royal fantasy curved road tower defense",
+  "game_type": "top down node graph tower defense strategy",
+  "animation_quality_target": "advanced_sprite_animation",
+  "minimum_primary_entity_states": [
+    "idle",
+    "move",
+    "attack",
+    "hit",
+    "death"
+  ],
+  "entities": [
+    {
+      "entity_key": "player",
+      "role": "character",
+      "asset_keys": [
+        "kenney_roguelike_rpg_pack/assets/Spritesheet/roguelikeSheet_transparent.png:tile_52_16",
+        "runtime_facing_mark",
+        "runtime_crown_marker"
+      ],
+      "default_facing": "right",
+      "facing_rule": "rotate_or_select_direction_frame_by_velocity_or_attack_vector",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      },
+      "hitbox": {
+        "x": 0.25,
+        "y": 0.2,
+        "w": 0.5,
+        "h": 0.7
+      },
+      "render_size": {
+        "w": 1.0,
+        "h": 1.0,
+        "unit": "entity"
+      },
+      "z_order": "by_y_then_role",
+      "states": [
+        "idle",
+        "move",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "animation_rule": "GameView applies walk bob, facing mark toward velocity or target, attack stretch, hit flash, hp bar, and death or respawn effects",
+      "movement_rule": "hero moves between tapped route nodes and aligns front marker to velocity or attack target"
+    },
+    {
+      "entity_key": "enemy",
+      "role": "enemy",
+      "asset_keys": [
+        "kenney_roguelike_rpg_pack/assets/Spritesheet/roguelikeSheet_transparent.png:tiles_48_15_to_52_17",
+        "kenney_tower_defense_top_down/assets/PNG/Default size/towerDefense_tile268.png",
+        "runtime_facing_mark",
+        "runtime_bat_wings",
+        "runtime_warlord_crest"
+      ],
+      "default_facing": "right",
+      "facing_rule": "rotate_or_select_direction_frame_by_velocity_or_attack_vector",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      },
+      "hitbox": {
+        "x": 0.25,
+        "y": 0.2,
+        "w": 0.5,
+        "h": 0.7
+      },
+      "render_size": {
+        "w": 1.0,
+        "h": 1.0,
+        "unit": "entity"
+      },
+      "z_order": "by_y_then_role",
+      "states": [
+        "idle",
+        "move",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "animation_rule": "GameView applies route tangent facing, movement bob, attack pose pulse, hit flash, healer aura, bat wing flap, warlord crest, ram rotation, and death burst",
+      "movement_rule": "enemies follow node graph polylines through multiple entrances, merge nodes, split nodes, rejoin nodes, and gate exit"
+    },
+    {
+      "entity_key": "projectile",
+      "role": "projectile",
+      "asset_keys": [
+        "kenney_tower_defense_top_down/assets/PNG/Default size/towerDefense_tile251.png",
+        "runtime_cannon_shell",
+        "runtime_magic_bolt",
+        "runtime_meteor_effect"
+      ],
+      "default_facing": "right",
+      "facing_rule": "rotate_or_select_direction_frame_by_velocity_or_attack_vector",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      },
+      "hitbox": {
+        "x": 0.25,
+        "y": 0.2,
+        "w": 0.5,
+        "h": 0.7
+      },
+      "render_size": {
+        "w": 1.0,
+        "h": 1.0,
+        "unit": "entity"
+      },
+      "z_order": "by_y_then_role",
+      "states": [
+        "fly",
+        "hit"
+      ],
+      "animation_rule": "GameView rotates projectile visuals to travel vector and spawns impact, splash, magic, and meteor effects",
+      "movement_rule": "projectiles track targets or target points with angle-aligned motion"
+    },
+    {
+      "entity_key": "pickup",
+      "role": "pickup",
+      "asset_keys": [
+        "runtime_gold_pickup_effect",
+        "runtime_wave_flag_marker",
+        "runtime_build_pad_highlight"
+      ],
+      "default_facing": "right",
+      "facing_rule": "rotate_or_select_direction_frame_by_velocity_or_attack_vector",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      },
+      "hitbox": {
+        "x": 0.25,
+        "y": 0.2,
+        "w": 0.5,
+        "h": 0.7
+      },
+      "render_size": {
+        "w": 1.0,
+        "h": 1.0,
+        "unit": "entity"
+      },
+      "z_order": "by_y_then_role",
+      "states": [
+        "idle",
+        "collect"
+      ],
+      "animation_rule": "GameView uses pulsing gold pickup rings, pad highlight strokes, and wave planning badges",
+      "movement_rule": "pickup and marker effects animate in place with timed scale and alpha"
+    }
+  ],
+  "required_runtime_checks": [
+    "primary moving entities have idle and move states",
+    "attacking entities have attack or fire states",
+    "damageable entities have hit or damage feedback states",
+    "removed entities have death destroy or equivalent effects",
+    "directional entities define default_facing and facing_rule",
+    "movement direction matches face weapon or front side",
+    "projectiles and weapons rotate or choose frames toward travel or target direction",
+    "anchors and hitboxes match gameplay contact points",
+    "humanoid run or walk uses alternating leg frames when source art provides them",
+    "attack uses windup contact and recovery timing or equivalent pose changes"
+  ],
+  "suggested_roles": [
+    "character",
+    "enemy",
+    "animal",
+    "tileset",
+    "terrain",
+    "building",
+    "prop",
+    "projectile",
+    "pickup",
+    "effect",
+    "background"
+  ]
+}

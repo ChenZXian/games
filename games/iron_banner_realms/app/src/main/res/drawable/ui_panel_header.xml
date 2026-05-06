@@ -1,0 +1,4 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <gradient android:angle="90" android:startColor="@color/cst_panel_header_bg" android:endColor="@color/cst_panel_bg" />
+    <stroke android:width="@dimen/cst_stroke_m" android:color="@color/cst_panel_stroke" />
+</shape>

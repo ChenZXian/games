@@ -1,0 +1,81 @@
+{
+  "version": 1,
+  "game_id": "mountain_pass_guard",
+  "status": "passed",
+  "visual_differentiation_axes": [
+    "left dossier status rail instead of top pill HUD",
+    "top route-pressure strip plus right command tray instead of bottom command strip",
+    "mountain notch bunker icon instead of wall, rail, or fortress icon reuse",
+    "radar-cyan tactical highlights with bunker red alerts within military tech skin",
+    "mission briefing and debrief sheets as a recurring motif"
+  ],
+  "forbidden_visual_reuse": [
+    "no top pill HUD plus bottom button strip",
+    "no fantasy castle silhouette",
+    "no minecart, rail, or harbor motif",
+    "no ancient wall gate icon",
+    "no copied defense-unit badge set from another project"
+  ],
+  "ui_identity": {
+    "layout_archetype": "left status rail plus top route-pressure strip plus right collapsible command tray",
+    "hud_composition": "left rail shows bunker durability and morale, top strip shows wave and route forecast, right tray holds support skills, lower right card shows selected squad details",
+    "navigation_model": "menu to sector map to mission briefing to gameplay to debrief",
+    "palette_signature": "forest black-green base, desaturated steel panels, radar cyan highlights, warning amber utility cues, bunker red breach alarms",
+    "material_language": "matte tactical plates, radar glass accents, stencil labels, restrained illuminated switches",
+    "typography_style": "compact uppercase tactical labels with wide numeric readouts and high-contrast briefing copy",
+    "primary_ui_pack": "skin_military_tech",
+    "secondary_ui_assets": [
+      "tactical dossier cards",
+      "route alert chevrons",
+      "signal flare icons"
+    ],
+    "playfield_safety": {
+      "reserved_edges": [
+        "left outer margin",
+        "top outer band",
+        "far-right outer margin"
+      ],
+      "hud_anchor_zones": [
+        "left durability rail",
+        "top wave strip",
+        "right support tray",
+        "lower-right squad card pocket"
+      ],
+      "protected_gameplay_zones": [
+        "central bunker approach",
+        "route forks",
+        "ridge firing slots",
+        "terrain trigger markers",
+        "infiltrator extraction edge"
+      ],
+      "frame_overlay_policy": "Decorative frames and chrome must remain outside the protected canyon board and may not overlap roads, bunker tiles, reveal slots, or support interaction markers."
+    },
+    "unique_screen_motifs": [
+      "paperclip briefing card headers",
+      "route pressure chevrons",
+      "after-action stamp labels",
+      "flare scan pulse overlays"
+    ],
+    "forbidden_ui_elements": [
+      "bottom-only tower bar",
+      "floating decorative frame over the pass center",
+      "fantasy parchment ornament",
+      "arcade neon gradient button stack"
+    ]
+  },
+  "icon_identity": {
+    "subject": "mountain bunker command flag with emergency flare",
+    "silhouette": "triangular mountain notch framing a square bunker and central flag pole",
+    "composition": "bunker at lower center, flag rising upward, flare streak crossing the upper corner, barricades forming a defensive base",
+    "palette": "dark olive, cool steel, warning amber, red flag accent",
+    "background": "shadowed canyon wall with a soft tactical glow",
+    "game_specific_motif": "flare-lit mountain pass defense around a command flag bunker",
+    "forbidden_icon_reuse": [
+      "no castle gate",
+      "no generic shield-only badge",
+      "no train or rail icon silhouette",
+      "no harbor or ship emblem",
+      "no reused fortress icon foreground from prior defense games"
+    ]
+  }
+}

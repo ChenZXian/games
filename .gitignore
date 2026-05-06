@@ -1,6 +1,8 @@
-/.gradle/
+/gradle/
 /build/
-artifacts/
+artifacts/*
+!artifacts/requirements/
+!artifacts/requirements/**
 
 # Android/Gradle
 *.apk
@@ -21,4 +23,3 @@ captures/
 *.swo
 .DS_Store
 Thumbs.db
-

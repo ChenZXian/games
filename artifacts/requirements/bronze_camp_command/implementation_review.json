@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "game_id": "bronze_camp_command",
+  "status": "passed",
+  "reviewed_at_utc": "2026-04-29T06:58:00Z",
+  "requirements_source": "artifacts/requirements/bronze_camp_command/requirements.md",
+  "implemented_requirements": [
+    "worker assignment to food wood and stone",
+    "camp building placement through Town Hut selection",
+    "production buildings and queued unit training",
+    "five player unit classes plus scout and siege unit",
+    "enemy raids and final assault pressure",
+    "free movement top-down squad control with tap and drag selection",
+    "neutral Obelisk control alternative victory",
+    "enemy Chief Hall landmark destruction victory",
+    "menu playing paused game over and victory states",
+    "resource ledger right squad rail and bottom-left command controls",
+    "tracked UI icon gameplay art and audio assignments"
+  ],
+  "known_limits": [
+    "campaign map is represented by the single skirmish entry in the first APK build",
+    "unit art uses shared top-down sprites with runtime facing and motion feedback rather than custom bronze-age sprite sheets"
+  ],
+  "delivery_note": "The first implementation preserves the confirmed economy, building, scouting, squad control, neutral objective, raid pressure, and landmark assault mechanics required before APK export."
+}

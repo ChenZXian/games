@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Ashen Frontier</string>
+    <string name="btn_start">Start</string>
+    <string name="btn_restart">Restart</string>
+    <string name="btn_resume">Resume</string>
+    <string name="btn_menu">Menu</string>
+    <string name="btn_mute">Mute</string>
+    <string name="btn_how_to_play">How To Play</string>
+    <string name="btn_close">Close</string>
+    <string name="btn_deploy">Deploy</string>
+    <string name="btn_reload">Reload</string>
+    <string name="btn_heal">Heal</string>
+    <string name="btn_interact">Interact</string>
+    <string name="btn_bike">Bike</string>
+    <string name="btn_utility">Utility</string>
+    <string name="btn_switch_weapon">Swap</string>
+    <string name="btn_pause">Pause</string>
+    <string name="btn_workshop">Workshop</string>
+    <string name="btn_infirmary">Infirmary</string>
+    <string name="btn_garage">Garage</string>
+    <string name="btn_safehouse">Safehouse</string>
+    <string name="label_world_map">Frontier Map</string>
+    <string name="label_safehouse">Safehouse Grid</string>
+    <string name="label_region">Region</string>
+    <string name="label_objective">Objective</string>
+    <string name="label_weapon">Weapon</string>
+    <string name="label_resources">Resources</string>
+    <string name="label_upgrades">Upgrade Tracks</string>
+</resources>

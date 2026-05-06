@@ -1,0 +1,32 @@
+{
+  "preset_id": "canonical_cartoon_light",
+  "title": "Canonical Cartoon Light",
+  "ui_skin": "skin_cartoon_light",
+  "notes": "Maps the curated Kenney pack assets onto the repository's canonical UI button and font resource names for bright cartoon-friendly projects.",
+  "assignments": [
+    {
+      "type": "drawable",
+      "logical_name": "ui_button_primary",
+      "source": "drawable/button_primary_blue_gloss.png",
+      "target": "app/src/main/res/drawable/ui_button_primary.png"
+    },
+    {
+      "type": "drawable",
+      "logical_name": "ui_button_secondary",
+      "source": "drawable/button_secondary_grey_gloss.png",
+      "target": "app/src/main/res/drawable/ui_button_secondary.png"
+    },
+    {
+      "type": "drawable",
+      "logical_name": "ui_button_icon",
+      "source": "drawable/button_icon_round_blue_gloss.png",
+      "target": "app/src/main/res/drawable/ui_button_icon.png"
+    },
+    {
+      "type": "font",
+      "logical_name": "kenney_future_narrow",
+      "source": "font/kenney_future_narrow.ttf",
+      "target": "app/src/main/res/font/kenney_future_narrow.ttf"
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "game_id": "crownblock_hunt",
+  "status": "passed",
+  "direction": "Large-map side-scrolling street action inspired by flash-era district brawlers, with partner support, a layered weapon system, strong hit impact, and fluid combat.",
+  "selected_concept": "Old King District Hunt",
+  "visual_differentiation_axes": [
+    "district warrant-board HUD instead of top stat pills or a wide bottom command strip",
+    "right-side partner pager as a dominant gameplay motif",
+    "asphalt navy and sodium amber palette instead of fantasy or neon-future defaults",
+    "evidence-wall navigation screens instead of plain centered button menus",
+    "taped fist plus cracked street-sign icon subject instead of shield tower zombie or helmet motifs"
+  ],
+  "forbidden_visual_reuse": [
+    "do not reuse a top-pill HUD with a full-width bottom action bar",
+    "do not reuse fantasy parchment, royal crest, or clean sci-fi glass panels",
+    "do not reuse post-apocalypse field-kit framing from survival shooters",
+    "do not reuse another project's exported icon silhouette or palette pairing",
+    "do not use a plain fist-only icon with no district-sign motif"
+  ],
+  "ui_identity": {
+    "layout_archetype": "left dossier rail plus right partner pager plus lower-right combat slab and upper-left district stamp",
+    "hud_composition": "vertical player status on the left, stacked partner portraits on the right, compact weapon and combo block at lower right, small block objective card at upper left",
+    "navigation_model": "evidence-wall main menu to district board to route cards to combat sectors with safehouse drawers for crew and gear",
+    "palette_signature": "asphalt navy, sodium amber, bruised crimson, faded police white, dirty brass, and cold mint route traces",
+    "material_language": "scratched enamel signs, taped warrants, acetate evidence sleeves, chipped station metal, spray-painted route marks, and dented gear trays",
+    "typography_style": "bold compressed action sans for titles, narrow dossier labels for system text, and thick impact numerals for combo and ammo",
+    "primary_ui_pack": "skin_dark_arcade",
+    "secondary_ui_assets": [
+      "district route card trim",
+      "partner pager portrait frames",
+      "evidence-wall pin markers",
+      "gear-tray comparison slots"
+    ],
+    "unique_screen_motifs": [
+      "pinned mugshots on the crew screen",
+      "chalk route overlays on the district board",
+      "capture stamp graphics on result screens",
+      "confiscated weapon trays on the bench screen"
+    ],
+    "forbidden_ui_elements": [
+      "generic circular neon buttons as the main identity",
+      "full-width bottom command deck",
+      "plain centered three-button menu with no board motif",
+      "fantasy quest cards or royal banner framing"
+    ]
+  },
+  "icon_identity": {
+    "subject": "taped fist raised in front of a cracked Old King district street sign with a short sawn-off silhouette at the base",
+    "silhouette": "strong upright fist, broken rectangular sign plate, and short diagonal weapon line",
+    "composition": "fist centered slightly left, cracked sign behind it, amber route slash crossing the sign, short weapon edge anchoring the lower third",
+    "palette": "asphalt blue, sodium amber, dirty off-white sign paint, muted brass, and restrained crimson damage accents",
+    "background": "dark enamel street-sign badge with edge wear, city haze, and light route scratches instead of a flat chip background",
+    "game_specific_motif": "the broken district sign makes the icon about block takeover and urban territory fighting rather than generic action combat",
+    "forbidden_icon_reuse": [
+      "no shield or crest emblem",
+      "no zombie face",
+      "no helmet or gas-mask foreground",
+      "no tower or castle motif",
+      "no plain fist badge with no urban sign element"
+    ]
+  }
+}

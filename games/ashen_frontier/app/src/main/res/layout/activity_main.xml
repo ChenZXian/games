@@ -1,0 +1,550 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cst_bg_main">
+
+    <com.android.boot.ui.GameView
+        android:id="@+id/game_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:id="@+id/play_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:id="@+id/left_hud_panel"
+                android:layout_width="132dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center_vertical"
+                android:layout_marginStart="@dimen/cst_pad_12"
+                android:background="@drawable/ui_panel"
+                android:orientation="vertical"
+                android:padding="@dimen/cst_pad_12">
+
+                <TextView
+                    android:id="@+id/hud_health"
+                    style="@style/TextAppearance.Game.HudValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="HP 0" />
+
+                <TextView
+                    android:id="@+id/hud_infection"
+                    style="@style/TextAppearance.Game.HudValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="INF 0" />
+
+                <TextView
+                    android:id="@+id/hud_fuel"
+                    style="@style/TextAppearance.Game.HudValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="FUEL 0" />
+
+                <TextView
+                    android:id="@+id/hud_loot"
+                    style="@style/TextAppearance.Game.HudValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="SCRAP 0" />
+
+                <TextView
+                    android:id="@+id/hud_survivors"
+                    style="@style/TextAppearance.Game.HudValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="SAVE 0" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/top_compass_panel"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|center_horizontal"
+                android:layout_marginTop="@dimen/cst_pad_12"
+                android:background="@drawable/ui_panel"
+                android:orientation="vertical"
+                android:padding="@dimen/cst_pad_12">
+
+                <TextView
+                    android:id="@+id/hud_region"
+                    style="@style/TextAppearance.Game.Subtitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Region" />
+
+                <TextView
+                    android:id="@+id/hud_objective"
+                    style="@style/TextAppearance.Game.Body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Objective" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/right_weapon_panel"
+                android:layout_width="148dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="@dimen/cst_pad_12"
+                android:background="@drawable/ui_panel"
+                android:orientation="vertical"
+                android:padding="@dimen/cst_pad_12">
+
+                <TextView
+                    android:id="@+id/hud_weapon"
+                    style="@style/TextAppearance.Game.HudValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Weapon" />
+
+                <TextView
+                    android:id="@+id/hud_ammo"
+                    style="@style/TextAppearance.Game.HudValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ammo" />
+
+                <TextView
+                    android:id="@+id/hud_utility"
+                    style="@style/TextAppearance.Game.HudValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Utility" />
+
+                <TextView
+                    android:id="@+id/hud_status"
+                    style="@style/TextAppearance.Game.Caption"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Status" />
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_pause"
+                style="@style/Widget.Game.Button.Icon"
+                android:layout_width="96dp"
+                android:layout_height="48dp"
+                android:layout_gravity="top|end"
+                android:layout_marginTop="@dimen/cst_pad_12"
+                android:layout_marginEnd="@dimen/cst_pad_12"
+                android:text="@string/btn_pause" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/bottom_action_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/cst_pad_12"
+            android:layout_marginEnd="@dimen/cst_pad_12"
+            android:layout_marginBottom="@dimen/cst_pad_12"
+            android:background="@drawable/ui_panel"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/cst_pad_8">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_reload"
+                style="@style/Widget.Game.Button.Secondary"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="@dimen/cst_pad_6"
+                android:layout_weight="1"
+                android:text="@string/btn_reload" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_heal"
+                style="@style/Widget.Game.Button.Secondary"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="@dimen/cst_pad_6"
+                android:layout_weight="1"
+                android:text="@string/btn_heal" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_interact"
+                style="@style/Widget.Game.Button.Secondary"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="@dimen/cst_pad_6"
+                android:layout_weight="1"
+                android:text="@string/btn_interact" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_bike"
+                style="@style/Widget.Game.Button.Secondary"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="@dimen/cst_pad_6"
+                android:layout_weight="1"
+                android:text="@string/btn_bike" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_utility"
+                style="@style/Widget.Game.Button.Secondary"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="@dimen/cst_pad_6"
+                android:layout_weight="1"
+                android:text="@string/btn_utility" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_switch_weapon"
+                style="@style/Widget.Game.Button.Primary"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:text="@string/btn_switch_weapon" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/menu_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/cst_shadow">
+
+        <LinearLayout
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/ui_panel"
+            android:orientation="vertical"
+            android:padding="@dimen/cst_pad_20">
+
+            <TextView
+                style="@style/TextAppearance.Game.Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name" />
+
+            <TextView
+                android:id="@+id/menu_subtitle"
+                style="@style/TextAppearance.Game.Body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_8"
+                android:text="Ride the ash frontier, rescue survivors, and outgun infected swarms across a connected wasteland." />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_start"
+                style="@style/Widget.Game.Button.Primary"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="@dimen/cst_pad_16"
+                android:text="@string/btn_start" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_how_to_play"
+                style="@style/Widget.Game.Button.Secondary"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="@dimen/cst_pad_10"
+                android:text="@string/btn_how_to_play" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_mute"
+                style="@style/Widget.Game.Button.Secondary"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="@dimen/cst_pad_10"
+                android:text="@string/btn_mute" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/strategy_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/cst_shadow"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/cst_pad_16"
+            android:background="@drawable/ui_panel"
+            android:orientation="vertical"
+            android:padding="@dimen/cst_pad_16">
+
+            <TextView
+                android:id="@+id/strategy_title"
+                style="@style/TextAppearance.Game.Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/label_safehouse" />
+
+            <TextView
+                android:id="@+id/strategy_summary"
+                style="@style/TextAppearance.Game.Body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_6"
+                android:text="Resources" />
+
+            <TextView
+                android:id="@+id/strategy_hint"
+                style="@style/TextAppearance.Game.Caption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_4"
+                android:text="Choose a frontier region, tune your upgrades, and deploy." />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_12"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/cst_pad_8"
+                    android:layout_weight="1"
+                    android:background="@drawable/ui_card"
+                    android:orientation="vertical"
+                    android:padding="@dimen/cst_pad_12">
+
+                    <TextView
+                        style="@style/TextAppearance.Game.Subtitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_upgrades" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_workshop"
+                        style="@style/Widget.Game.Button.Secondary"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="@dimen/cst_pad_10"
+                        android:text="@string/btn_workshop" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_infirmary"
+                        style="@style/Widget.Game.Button.Secondary"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="@dimen/cst_pad_8"
+                        android:text="@string/btn_infirmary" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_garage"
+                        style="@style/Widget.Game.Button.Secondary"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="@dimen/cst_pad_8"
+                        android:text="@string/btn_garage" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:background="@drawable/ui_card"
+                    android:orientation="vertical"
+                    android:padding="@dimen/cst_pad_12">
+
+                    <TextView
+                        style="@style/TextAppearance.Game.Subtitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_world_map" />
+
+                    <GridLayout
+                        android:id="@+id/region_grid"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/cst_pad_10"
+                        android:columnCount="3"
+                        android:orientation="horizontal"
+                        android:rowCount="4"
+                        android:useDefaultMargins="true" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_16"
+                android:gravity="end"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_safehouse"
+                    style="@style/Widget.Game.Button.Secondary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="@dimen/cst_pad_8"
+                    android:text="@string/btn_safehouse" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_back_menu"
+                    style="@style/Widget.Game.Button.Secondary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:text="@string/btn_menu" />
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/pause_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/cst_shadow"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/ui_panel"
+            android:orientation="vertical"
+            android:padding="@dimen/cst_pad_20">
+
+            <TextView
+                style="@style/TextAppearance.Game.Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Paused" />
+
+            <TextView
+                android:id="@+id/pause_summary"
+                style="@style/TextAppearance.Game.Body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_8"
+                android:text="Check your route, ammo, and infection before moving again." />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_resume"
+                style="@style/Widget.Game.Button.Primary"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="@dimen/cst_pad_16"
+                android:text="@string/btn_resume" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_restart"
+                style="@style/Widget.Game.Button.Secondary"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="@dimen/cst_pad_10"
+                android:text="@string/btn_restart" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_pause_menu"
+                style="@style/Widget.Game.Button.Secondary"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="@dimen/cst_pad_10"
+                android:text="@string/btn_menu" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/result_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/cst_shadow"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/ui_panel"
+            android:orientation="vertical"
+            android:padding="@dimen/cst_pad_20">
+
+            <TextView
+                android:id="@+id/result_title"
+                style="@style/TextAppearance.Game.Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Result" />
+
+            <TextView
+                android:id="@+id/result_body"
+                style="@style/TextAppearance.Game.Body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_8"
+                android:text="Summary" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_result_retry"
+                style="@style/Widget.Game.Button.Primary"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="@dimen/cst_pad_16"
+                android:text="@string/btn_restart" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_result_safehouse"
+                style="@style/Widget.Game.Button.Secondary"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="@dimen/cst_pad_10"
+                android:text="@string/btn_safehouse" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_result_menu"
+                style="@style/Widget.Game.Button.Secondary"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="@dimen/cst_pad_10"
+                android:text="@string/btn_menu" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/help_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/cst_shadow"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/ui_panel"
+            android:orientation="vertical"
+            android:padding="@dimen/cst_pad_20">
+
+            <TextView
+                style="@style/TextAppearance.Game.Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="How To Play" />
+
+            <TextView
+                android:id="@+id/help_body"
+                style="@style/TextAppearance.Game.Body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_8"
+                android:text="Use the left half of the screen as a move stick, drag on the right half to aim and fire, use the action bar for reload, utility, bike, heal, and interactions, then extract after securing the relay and rescuing civilians." />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_close_help"
+                style="@style/Widget.Game.Button.Primary"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="@dimen/cst_pad_16"
+                android:text="@string/btn_close" />
+        </LinearLayout>
+    </FrameLayout>
+</FrameLayout>

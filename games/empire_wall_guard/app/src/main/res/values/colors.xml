@@ -1,0 +1,35 @@
+<resources>
+    <color name="cst_bg_main">#0B1110</color>
+    <color name="cst_bg_alt">#101A18</color>
+    <color name="cst_panel_bg">#101A18</color>
+    <color name="cst_panel_stroke">#27413A</color>
+    <color name="cst_panel_header_bg">#13211E</color>
+    <color name="cst_card_bg">#0E1715</color>
+    <color name="cst_divider">#27413A</color>
+    <color name="cst_shadow">#66000000</color>
+    <color name="cst_text_primary">#E8FFF8</color>
+    <color name="cst_text_secondary">#BFEBDD</color>
+    <color name="cst_text_muted">#7FB8A8</color>
+    <color name="cst_text_on_primary">#0B1110</color>
+    <color name="cst_text_on_secondary">#E8FFF8</color>
+    <color name="cst_accent">#4FE3C1</color>
+    <color name="cst_accent_2">#73A7FF</color>
+    <color name="cst_danger">#FF5A5F</color>
+    <color name="cst_success">#4FE38A</color>
+    <color name="cst_warning">#FFD166</color>
+    <color name="cst_btn_primary_bg_start">#4FE3C1</color>
+    <color name="cst_btn_primary_bg_end">#2FA7FF</color>
+    <color name="cst_btn_primary_stroke">#B7FFF0</color>
+    <color name="cst_btn_secondary_bg_start">#27413A</color>
+    <color name="cst_btn_secondary_bg_end">#13211E</color>
+    <color name="cst_btn_secondary_stroke">#356154</color>
+    <color name="cst_chip_bg">#13211E</color>
+    <color name="cst_chip_stroke">#27413A</color>
+    <color name="cst_meter_track">#27413A</color>
+    <color name="cst_meter_fill">#4FE38A</color>
+    <color name="cst_game_stone">#8E9184</color>
+    <color name="cst_game_road">#8A623D</color>
+    <color name="cst_game_dust">#B98248</color>
+    <color name="cst_game_bronze">#B98439</color>
+    <color name="cst_game_fire">#FF8A2A</color>
+</resources>
