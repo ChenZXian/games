@@ -19,6 +19,9 @@ public class Pen {
     public float w;
     public float h;
 
+    private static final float HUNGER_DECAY_MULT = 0.45f;
+    private static final float DIRT_DECAY_MULT = 0.5f;
+
     public Pen(int id, Animal animal, boolean unlocked, float x, float y, float w, float h) {
         this.id = id;
         this.animal = animal;
@@ -43,8 +46,8 @@ public class Pen {
         if (!unlocked) {
             return;
         }
-        feed -= dt * animal.species.hungerRate / feedDuration;
-        cleanliness -= dt * animal.species.dirtRate * (1f - autoClean);
+        feed -= dt * animal.species.hungerRate / feedDuration * HUNGER_DECAY_MULT;
+        cleanliness -= dt * animal.species.dirtRate * (1f - autoClean) * DIRT_DECAY_MULT;
         if (feed < 0f) {
             feed = 0f;
         }

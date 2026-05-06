@@ -1,4 +1,6 @@
 <resources>
+    <style name="Widget" />
+    <style name="Widget.Game" />
     <style name="TextAppearance.Game.Title" parent="TextAppearance.MaterialComponents.Headline5">
         <item name="android:textColor">@color/cst_text_primary</item>
         <item name="android:textSize">@dimen/cst_text_xxl</item>
@@ -31,13 +33,13 @@
         <item name="android:background">@drawable/ui_button_secondary</item>
         <item name="android:textColor">@color/cst_text_on_secondary</item>
     </style>
-    <style name="Widget.Game.Button.Icon" parent="Widget.MaterialComponents.ImageButton">
+    <style name="Widget.Game.Button.Icon" parent="Widget.AppCompat.ImageButton">
         <item name="android:background">@drawable/ui_button_icon</item>
         <item name="android:tint">@color/cst_text_primary</item>
     </style>
-    <style name="Widget.Game.Panel"><item name="android:background">@drawable/ui_panel</item></style>
-    <style name="Widget.Game.Card"><item name="android:background">@drawable/ui_card</item></style>
-    <style name="Widget.Game.Chip"><item name="android:background">@drawable/ui_chip</item></style>
-    <style name="Widget.Game.Badge"><item name="android:background">@drawable/ui_badge</item></style>
-    <style name="Widget.Game.Meter"><item name="android:progressDrawable">@drawable/ui_meter_fill</item></style>
+    <style name="Widget.Game.Panel" parent="Widget.Game"><item name="android:background">@drawable/ui_panel</item></style>
+    <style name="Widget.Game.Card" parent="Widget.Game"><item name="android:background">@drawable/ui_card</item></style>
+    <style name="Widget.Game.Chip" parent="Widget.Game"><item name="android:background">@drawable/ui_chip</item></style>
+    <style name="Widget.Game.Badge" parent="Widget.Game"><item name="android:background">@drawable/ui_badge</item></style>
+    <style name="Widget.Game.Meter" parent="Widget.Game"><item name="android:progressDrawable">@drawable/ui_meter_fill</item></style>
 </resources>

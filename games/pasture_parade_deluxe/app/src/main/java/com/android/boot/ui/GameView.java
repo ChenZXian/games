@@ -11,6 +11,7 @@ import com.android.boot.core.GameThread;
 import com.android.boot.core.RanchState;
 import com.android.boot.core.RanchWorld;
 import com.android.boot.audio.TonePlayer;
+import com.android.boot.MainActivity;
 
 public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     private final RanchWorld world = new RanchWorld();
@@ -18,6 +19,30 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     private final TonePlayer tonePlayer = new TonePlayer();
     private GameThread thread;
     private float lastX;
+
+    public RanchState getState() {
+        return world.state;
+    }
+
+    public void setState(RanchState state) {
+        world.state = state;
+    }
+
+    public int getSessionCoins() {
+        return world.sessionCoins;
+    }
+
+    public int getDeliveriesDone() {
+        return world.deliveriesDone;
+    }
+
+    public int getHighestCombo() {
+        return world.economy.highestCombo;
+    }
+
+    public int getRanchLevel() {
+        return world.economy.ranchLevel;
+    }
 
     public GameView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -33,7 +58,12 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
             if (world.state == RanchState.PLAYING) world.state = RanchState.PAUSED;
             else if (world.state == RanchState.PAUSED) world.state = RanchState.PLAYING;
         });
-        activity.findViewById(com.android.boot.R.id.btn_mute).setOnClickListener(v -> tonePlayer.setMuted(!tonePlayer.isMuted()));
+        activity.findViewById(com.android.boot.R.id.btn_mute).setOnClickListener(v -> {
+            tonePlayer.setMuted(!tonePlayer.isMuted());
+            if (activity instanceof MainActivity) {
+                ((MainActivity) activity).setMuted(tonePlayer.isMuted());
+            }
+        });
     }
 
     @Override
@@ -56,7 +86,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void onHostResume() {
-        if (world.state == RanchState.MENU) world.startGame();
         if (thread == null && getHolder().getSurface().isValid()) {
             thread = new GameThread(getHolder(), world, renderer, tonePlayer);
             thread.setSize(getWidth(), getHeight());
@@ -89,23 +118,22 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public boolean onTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             lastX = event.getX();
-            if (world.state == RanchState.MENU) {
-                world.startGame();
-            } else if (world.state == RanchState.GAME_OVER) {
-                world.state = RanchState.MENU;
-            } else {
-                world.selectPen(event.getX(), event.getY());
-            }
+            world.selectPen(event.getX(), event.getY());
             return true;
         }
         if (event.getAction() == MotionEvent.ACTION_MOVE) {
             float dx = event.getX() - lastX;
             world.scrollX -= dx;
             if (world.scrollX < 0f) world.scrollX = 0f;
-            if (world.scrollX > 1300f) world.scrollX = 1300f;
+            float maxScroll = world.maxScroll(getWidth());
+            if (world.scrollX > maxScroll) world.scrollX = maxScroll;
             lastX = event.getX();
             return true;
         }
         return super.onTouchEvent(event);
+    }
+
+    public void startGame() {
+        world.startGame();
     }
 }

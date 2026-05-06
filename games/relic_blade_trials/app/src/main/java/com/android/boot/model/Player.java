@@ -15,6 +15,9 @@ public class Player {
     public float invulnTimer;
     public int comboIndex;
     public float comboTimer;
+    public float attackCooldown;
+    public float dashCooldown;
+    public float facing = 1f;
 
     public void update(float dt) {
         if (invulnTimer > 0f) {
@@ -24,9 +27,13 @@ public class Player {
         if (comboTimer <= 0f) {
             comboIndex = 0;
         }
+        if (attackCooldown > 0f) attackCooldown -= dt;
+        if (dashCooldown > 0f) dashCooldown -= dt;
         velocityY += 760f * dt;
         x += velocityX * dt;
         y += velocityY * dt;
+        if (velocityX > 0.01f) facing = 1f;
+        if (velocityX < -0.01f) facing = -1f;
         if (y > 420f) {
             y = 420f;
             velocityY = 0f;

@@ -6,4 +6,19 @@
     <string name="btn_menu">Menu</string>
     <string name="btn_mute">Mute</string>
     <string name="btn_how_to_play">How To Play</string>
+    <string name="menu_start_game">Start Game</string>
+    <string name="menu_how_to_play">Game Guide</string>
+    <string name="menu_select_level">Select Level</string>
+    <string name="action_back">Back to Main Menu</string>
+    <string name="action_ok">OK</string>
+    <string name="how_to_play_title">How to Play</string>
+    <string name="how_to_play_body">Move with the left stick, attack with the sword button, and dash to evade danger. Defeat enemies to charge relic power, beat the stage boss, and step into the portal to clear the level.</string>
+    <string name="stage_1">Stage 1 - Ruined Gate</string>
+    <string name="stage_2">Stage 2 - Thorn Marsh</string>
+    <string name="stage_3">Stage 3 - Ash Foundry</string>
+    <string name="stage_4">Stage 4 - Dusk Barracks</string>
+    <string name="stage_5">Stage 5 - Storm Watch</string>
+    <string name="stage_6">Stage 6 - Relic Abyss</string>
+    <string name="music_on">Music: ON</string>
+    <string name="music_off">Music: OFF</string>
 </resources>

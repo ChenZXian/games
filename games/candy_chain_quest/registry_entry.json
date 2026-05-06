@@ -1,0 +1,13 @@
+{
+  "id": "candy_chain_quest",
+  "name": "Candy Chain Quest",
+  "tags": [
+    "match3",
+    "puzzle",
+    "cascade",
+    "special-combo"
+  ],
+  "core_loop": "Swap adjacent tiles to form matches, generate specials, break obstacles, and complete layered goals under move or time pressure.",
+  "created_at": "2026-04-22",
+  "ui_skin": "skin_neon_future"
+}

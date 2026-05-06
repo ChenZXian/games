@@ -6,6 +6,7 @@ public class Player {
     public float vx;
     public float vy;
     public boolean onGround = true;
+    public float facing = 1f;
     public int maxHp = 160;
     public int hp = 160;
     public float invul;
@@ -13,6 +14,8 @@ public class Player {
     public int comboStep;
     public float comboTimer;
     public float attackTimer;
+    public float runTime;
+    public float landSquash;
     public int atkPowerBonus;
     public int hpBonus;
     public float cdBonus;
@@ -28,6 +31,9 @@ public class Player {
         comboStep = 0;
         comboTimer = 0f;
         attackTimer = 0f;
+        runTime = 0f;
+        landSquash = 0f;
+        facing = 1f;
     }
 
     public void update(float dt, boolean left, boolean right, boolean jump) {
@@ -35,12 +41,18 @@ public class Player {
         skillCd -= dt;
         comboTimer -= dt;
         attackTimer -= dt;
+        landSquash -= dt;
         float target = 0f;
         if (left) {
             target = -250f;
         }
         if (right) {
             target = 250f;
+        }
+        if (left && !right) {
+            facing = -1f;
+        } else if (right && !left) {
+            facing = 1f;
         }
         vx += (target - vx) * Math.min(1f, dt * 12f);
         if (attackTimer > 0f) {
@@ -54,10 +66,14 @@ public class Player {
         x += vx * dt;
         y += vy * dt;
         if (y >= 420f) {
+            if (!onGround) {
+                landSquash = 0.10f;
+            }
             y = 420f;
             vy = 0f;
             onGround = true;
         }
+        runTime += Math.abs(vx) * dt * 0.02f;
     }
 
     public boolean tryDamage(int dmg, float knock) {

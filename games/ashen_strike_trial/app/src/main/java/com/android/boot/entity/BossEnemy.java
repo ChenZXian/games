@@ -7,6 +7,7 @@ public class BossEnemy extends Enemy {
     public BossEnemy(float x, float y) {
         super(x, y);
         hp = 380;
+        maxHp = 380;
         radius = 52f;
     }
 
@@ -51,6 +52,7 @@ public class BossEnemy extends Enemy {
         hp -= dmg;
         vx = knock * 0.35f;
         hitStun = 0.06f;
+        hitFlash = 0.08f;
         if (hp <= 0) {
             dead = true;
         }

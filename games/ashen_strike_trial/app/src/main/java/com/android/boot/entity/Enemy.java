@@ -6,21 +6,25 @@ public class Enemy {
     public float x;
     public float y;
     public float vx;
+    public int maxHp = 42;
     public int hp = 42;
     public float atkCd;
     public float hitStun;
+    public float hitFlash;
     public float radius = 28f;
     public boolean dead;
 
     public Enemy(float x, float y) {
         this.x = x;
         this.y = y;
+        maxHp = hp;
     }
 
     public void update(float dt, Player player) {
         if (dead) {
             return;
         }
+        hitFlash -= dt;
         if (hitStun > 0f) {
             hitStun -= dt;
             x += vx * dt;
@@ -51,6 +55,7 @@ public class Enemy {
         hp -= dmg;
         vx = knock;
         hitStun = 0.13f;
+        hitFlash = 0.10f;
         if (hp <= 0) {
             dead = true;
         }

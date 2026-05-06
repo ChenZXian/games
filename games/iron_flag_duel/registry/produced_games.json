@@ -1,0 +1,10 @@
+[
+  {
+    "id": "iron_flag_duel",
+    "name": "Iron Flag Duel",
+    "tags": ["board", "strategy", "hidden-info", "ai", "land-battle-chess"],
+    "core_loop": "Deploy a hidden army, probe enemy positions, use rails and rank matchups, and capture the opposing flag before losing mobility.",
+    "created_at": "2026-04-23",
+    "ui_skin": "skin_military_tech"
+  }
+]

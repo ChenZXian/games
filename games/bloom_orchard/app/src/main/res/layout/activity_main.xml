@@ -4,10 +4,66 @@
     android:layout_height="match_parent"
     android:background="@color/cst_bg_main">
 
+    <ScrollView
+        android:id="@+id/menu_screen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:padding="@dimen/cst_pad_16">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextAppearance.Game.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/menu_title" />
+
+            <TextView
+                style="@style/TextAppearance.Game.Subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_8"
+                android:text="@string/menu_subtitle" />
+
+            <Button
+                android:id="@+id/btn_start_game"
+                style="@style/Widget.Game.Button.Primary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_16"
+                android:text="@string/btn_start" />
+
+            <Button
+                android:id="@+id/btn_how_to_play"
+                style="@style/Widget.Game.Button.Secondary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_8"
+                android:text="@string/btn_how_to_play" />
+
+            <TextView
+                android:id="@+id/txt_how_to_play"
+                style="@style/TextAppearance.Game.Body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_12"
+                android:background="@drawable/ui_dialog"
+                android:padding="@dimen/cst_pad_12"
+                android:text="@string/how_to_play_rules"
+                android:visibility="gone" />
+        </LinearLayout>
+    </ScrollView>
+
     <com.android.boot.ui.GameView
         android:id="@+id/game_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:visibility="gone" />
 
     <LinearLayout
         android:id="@+id/top_hud"
@@ -16,7 +72,8 @@
         android:layout_gravity="top"
         android:background="@drawable/ui_panel_header"
         android:orientation="horizontal"
-        android:padding="@dimen/cst_pad_8">
+        android:padding="@dimen/cst_pad_8"
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/tv_coins"
@@ -51,7 +108,8 @@
         android:layout_gravity="bottom"
         android:background="@drawable/ui_panel"
         android:orientation="horizontal"
-        android:padding="@dimen/cst_pad_8">
+        android:padding="@dimen/cst_pad_8"
+        android:visibility="gone">
 
         <Button
             android:id="@+id/btn_seed"
@@ -87,6 +145,56 @@
             android:layout_marginStart="@dimen/cst_pad_6"
             android:contentDescription="Pause"
             android:src="@drawable/ic_pause" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/game_over_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/cst_pad_16"
+        android:background="@drawable/ui_dialog"
+        android:orientation="vertical"
+        android:padding="@dimen/cst_pad_12"
+        android:visibility="gone">
+
+        <TextView
+            style="@style/TextAppearance.Game.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/game_over_title" />
+
+        <TextView
+            android:id="@+id/txt_game_over_score"
+            style="@style/TextAppearance.Game.Body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/cst_pad_8"
+            android:text="@string/game_over_summary_placeholder" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/cst_pad_8"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_restart_game_over"
+                style="@style/Widget.Game.Button.Primary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/btn_restart" />
+
+            <Button
+                android:id="@+id/btn_menu_game_over"
+                style="@style/Widget.Game.Button.Secondary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/cst_pad_8"
+                android:layout_weight="1"
+                android:text="@string/btn_menu" />
+        </LinearLayout>
     </LinearLayout>
 
 </FrameLayout>

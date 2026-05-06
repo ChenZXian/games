@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">Ember Watch</string>
+    <string name="btn_start">Start</string>
+    <string name="btn_restart">Restart</string>
+    <string name="btn_resume">Resume</string>
+    <string name="btn_menu">Menu</string>
+    <string name="btn_mute">Mute</string>
+    <string name="btn_how_to_play">How To Play</string>
+    <string name="hud_gold">Gold</string>
+    <string name="hud_life">Life</string>
+    <string name="hud_wave">Wave</string>
+    <string name="hud_early">Call</string>
+    <string name="hud_pause">Pause</string>
+    <string name="state_victory">Victory</string>
+    <string name="state_defeat">Defeat</string>
+    <string name="panel_build">Build</string>
+    <string name="panel_upgrade">Upgrade</string>
+    <string name="panel_sell">Sell</string>
+    <string name="panel_branch">Branch</string>
+    <string name="panel_close">Close</string>
+    <string name="panel_archer">Arrow</string>
+    <string name="panel_artillery">Cannon</string>
+    <string name="panel_barracks">Barracks</string>
+    <string name="panel_mage">Mage</string>
+    <string name="tip_start">Defend the ember gate from the ash horde.</string>
+    <string name="tip_controls">Tap a tower pad to build. Tap a tower to upgrade, branch, or sell. Tap the hero then tap the field to move. Tap a skill button then tap the battlefield to cast.</string>
+    <string name="menu_start_game">Start Game</string>
+    <string name="menu_how_to_play">How to Play</string>
+    <string name="menu_select_level">Select Level</string>
+    <string name="level_1">Level 1 - Sunbreak Pass</string>
+    <string name="level_2">Level 2 - Ember Valley</string>
+    <string name="level_3">Level 3 - Obsidian Front</string>
+    <string name="action_back">Back to Main Menu</string>
+    <string name="action_ok">OK</string>
+    <string name="how_to_play_title">How to Play</string>
+    <string name="how_to_play_body">Build towers on open pads to stop incoming enemies. Upgrade and branch towers for stronger effects, call waves early for bonus gold, move your hero to pressure dangerous targets, and cast skills at the right moment to protect the gate.</string>
+</resources>

@@ -1,9 +1,21 @@
 <resources>
     <string name="app_name">Pasture Parade Deluxe</string>
+    <string name="menu_title">Pasture Parade Deluxe</string>
+    <string name="menu_subtitle">Cozy ranch management</string>
     <string name="btn_start">Start</string>
     <string name="btn_restart">Restart</string>
     <string name="btn_resume">Resume</string>
     <string name="btn_menu">Menu</string>
     <string name="btn_mute">Mute</string>
     <string name="btn_how_to_play">How To Play</string>
+    <string name="how_to_play">Tap an animal pen to select it.\n\nUse Feed and Clean to keep animals happy.\nCollect goods to earn coins.\nUpgrade pens to increase speed and value.\n\nDrag left/right to scroll the ranch.\nNeglect for too long ends the run.</string>
+
+    <string name="btn_feed">Feed</string>
+    <string name="btn_clean">Clean</string>
+    <string name="btn_collect">Collect</string>
+    <string name="btn_upgrade">Upgrade</string>
+
+    <string name="game_over_title">Game Over</string>
+    <string name="game_over_score_placeholder">Score</string>
+    <string name="unlock_tip">How to unlock new pens: raise your Ranch Level and save coins. New pens unlock automatically when you meet the level requirement and have enough coins.</string>
 </resources>

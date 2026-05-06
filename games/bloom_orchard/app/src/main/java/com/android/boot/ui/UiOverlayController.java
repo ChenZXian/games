@@ -19,6 +19,6 @@ public class UiOverlayController {
         coins.setText("Coins " + s.progression.coins);
         level.setText("Lv " + s.progression.level + " Combo " + s.combo);
         int t = (int) s.sessionLeft;
-        timer.setText(String.format("%02d:%02d", t / 60, t % 60));
+        timer.setText(String.format("%02d:%02d  %s", t / 60, t % 60, s.getObjectiveText()));
     }
 }

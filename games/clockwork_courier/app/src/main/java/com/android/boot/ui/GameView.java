@@ -48,6 +48,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     private final Paint paintSuccess = new Paint();
     private final Paint paintWarning = new Paint();
     private final Paint paintText = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private final Paint paintControlBase = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private final Paint paintControlAction = new Paint(Paint.ANTI_ALIAS_FLAG);
 
     private final InputController inputController = new InputController();
     private final LevelManager levelManager;
@@ -96,6 +98,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         paintWarning.setColor(ContextCompat.getColor(context, R.color.cst_warning));
         paintText.setColor(ContextCompat.getColor(context, R.color.cst_text_primary));
         paintText.setTextSize(getResources().getDimension(R.dimen.cst_text_m));
+        paintControlBase.setColor(ContextCompat.getColor(context, R.color.cst_panel_bg));
+        paintControlBase.setAlpha(180);
+        paintControlAction.setColor(ContextCompat.getColor(context, R.color.cst_accent));
+        paintControlAction.setAlpha(220);
 
         player = new Player(paintAccent);
         particleSystem = new ParticleSystem(paintAccent);
@@ -154,11 +160,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
             if (timer <= 0 || player.health <= 0) {
                 state = GameState.GAME_OVER;
             }
+            player.setAccelerating(inputController.acceleratePressed);
             player.update(dt);
             player.move(inputController.moveX, inputController.moveY, dt, level.stageW, level.stageH);
-            if (inputController.dashPressed && player.tryDash()) {
-                tonePlayer.button();
-            }
             boolean shielded = shieldZone != null && CollisionHelper.overlaps(player.bounds, shieldZone.bounds);
             for (GameEntity e : hazards) {
                 e.update(dt);
@@ -263,6 +267,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
         canvas.restore();
         drawHud(canvas);
+        drawControls(canvas);
         drawOverlays(canvas);
     }
 
@@ -310,6 +315,22 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         paintText.setTextAlign(Paint.Align.LEFT);
     }
 
+    private void drawControls(Canvas canvas) {
+        float joyX = getWidth() * 0.16f;
+        float joyY = getHeight() - getHeight() * 0.16f;
+        float joyR = getWidth() * 0.11f;
+        float actionX = getWidth() - getWidth() * 0.17f;
+        float actionY = getHeight() - getHeight() * 0.16f;
+        float actionR = getWidth() * 0.1f;
+        canvas.drawCircle(joyX, joyY, joyR, paintControlBase);
+        canvas.drawCircle(actionX, actionY, actionR, paintControlAction);
+        paintText.setTextAlign(Paint.Align.CENTER);
+        paintText.setTextSize(getResources().getDimension(R.dimen.cst_text_s));
+        canvas.drawText("MOVE", joyX, joyY + 6f, paintText);
+        canvas.drawText("BOOST", actionX, actionY + 6f, paintText);
+        paintText.setTextAlign(Paint.Align.LEFT);
+    }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         float actionX = getWidth() - getWidth() * 0.17f;
@@ -352,6 +373,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
             }
             gameLoopThread = null;
         }
+    }
+
+    public void startFromMenu() {
+        state = GameState.PLAYING;
     }
 
     @Override

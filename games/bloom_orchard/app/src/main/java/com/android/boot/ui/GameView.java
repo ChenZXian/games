@@ -69,6 +69,11 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
             if (p.crop != null) {
                 drawCrop(canvas, p, x + w * 0.5f, y + h * 0.5f, Math.min(w, h) * 0.24f);
             }
+            if (session.pestPlotIndex == p.index) {
+                paint.setStyle(Paint.Style.FILL);
+                paint.setColor(ContextCompat.getColor(getContext(), R.color.cst_danger));
+                canvas.drawCircle(x + w - 24f, y + 24f, 10f, paint);
+            }
         }
         paint.setColor(ContextCompat.getColor(getContext(), R.color.cst_warning));
         particles.draw(canvas, paint);
@@ -109,10 +114,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (event.getAction() != MotionEvent.ACTION_DOWN || session == null) return true;
-        if (session.state != com.android.boot.core.GameState.PLAYING) {
-            session.start();
-            return true;
-        }
+        if (session.state != com.android.boot.core.GameState.PLAYING) return true;
         int cols = 6;
         int rows = 6;
         float w = getWidth() / (float) cols;

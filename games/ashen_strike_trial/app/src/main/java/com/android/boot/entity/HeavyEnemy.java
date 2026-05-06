@@ -4,6 +4,7 @@ public class HeavyEnemy extends Enemy {
     public HeavyEnemy(float x, float y) {
         super(x, y);
         hp = 94;
+        maxHp = 94;
         radius = 34f;
     }
 

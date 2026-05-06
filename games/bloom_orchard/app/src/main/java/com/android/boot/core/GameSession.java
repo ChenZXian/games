@@ -5,9 +5,11 @@ import android.content.Context;
 import com.android.boot.entity.CropPlot;
 import com.android.boot.entity.CropType;
 import com.android.boot.entity.FloatingText;
+import com.android.boot.entity.OrderData;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class GameSession {
     public final CropCatalog cropCatalog;
@@ -21,10 +23,17 @@ public class GameSession {
     public final WeatherManager weather;
     public final List<CropPlot> plots = new ArrayList<>();
     public final List<FloatingText> texts = new ArrayList<>();
+    private final Random random = new Random();
     public GameState state = GameState.MENU;
     public float sessionLeft = 480f;
     public int combo;
     public int bestBeauty;
+    public OrderData activeOrder;
+    public int orderProgress;
+    public int ordersCompleted;
+    public int pestPlotIndex = -1;
+    private float pestTimer;
+    private float comboDecayTimer;
 
     public GameSession(Context context) {
         cropCatalog = new CropCatalog();
@@ -51,6 +60,20 @@ public class GameSession {
         state = GameState.PLAYING;
         sessionLeft = 480f;
         combo = 0;
+        orderProgress = 0;
+        ordersCompleted = 0;
+        pestPlotIndex = -1;
+        pestTimer = 0f;
+        comboDecayTimer = 0f;
+        if (orders.activeOrders.isEmpty()) orders.refresh();
+        activeOrder = orders.activeOrders.get(random.nextInt(orders.activeOrders.size()));
+        for (CropPlot p : plots) {
+            p.crop = null;
+            p.growth = 0f;
+            p.mature = false;
+            p.watered = 0;
+            p.fertilizer = "NONE";
+        }
     }
 
     public void update(float dt) {
@@ -63,9 +86,12 @@ public class GameSession {
             return;
         }
         weather.update(dt);
+        updatePest(dt);
+        updateComboDecay(dt);
         float weatherMul = weather.state.growthBoost;
         for (CropPlot p : plots) {
             if (!p.unlocked || p.crop == null || p.mature) continue;
+            if (p.index == pestPlotIndex) continue;
             float grow = dt / p.crop.baseGrowTimeSec;
             if (p.watered > 0) grow *= 1.2f;
             if ("YIELD".equals(p.fertilizer)) grow *= 1.06f;
@@ -96,6 +122,12 @@ public class GameSession {
     }
 
     public void water(CropPlot p) {
+        if (p.index == pestPlotIndex) {
+            pestPlotIndex = -1;
+            combo = Math.min(combo + 1, 99);
+            spawnText("Pest Cleared", 60 + p.index * 6, 180 + p.index * 4);
+            return;
+        }
         if (p.crop == null || p.mature) return;
         p.watered++;
         p.growth = Math.min(1f, p.growth + 0.14f);
@@ -108,6 +140,7 @@ public class GameSession {
 
     public void harvest(CropPlot p) {
         if (p.crop == null || !p.mature) return;
+        String harvestedCropId = p.crop.id;
         float beauty = p.crop.matureBeautyBase;
         beauty += p.watered * 4f;
         if (p.crop.fertilizerAffinity.equals(p.fertilizer)) beauty += 10f;
@@ -120,6 +153,8 @@ public class GameSession {
         storage.add(p.crop.id, p.crop.storageYield, progression.storageCapacity);
         codex.onHarvest(p.crop.id, beautyInt, weather.state.name());
         combo++;
+        comboDecayTimer = 0f;
+        onHarvestForOrder(harvestedCropId, beautyInt);
         spawnText("+" + coinReward + "c B" + beautyInt, 60 + p.index * 6, 180 + p.index * 4);
         p.crop = null;
         p.growth = 0f;
@@ -127,6 +162,50 @@ public class GameSession {
         p.watered = 0;
         p.fertilizer = "NONE";
         achievements.unlock("First Seed");
+    }
+
+    private void onHarvestForOrder(String cropId, int beautyInt) {
+        if (activeOrder == null) return;
+        if (!activeOrder.cropId.equals(cropId)) return;
+        orderProgress++;
+        if (orderProgress >= activeOrder.count) {
+            progression.addReward(activeOrder.coins + beautyInt / 6, activeOrder.xp);
+            ordersCompleted++;
+            orderProgress = 0;
+            activeOrder = orders.activeOrders.get(random.nextInt(orders.activeOrders.size()));
+            spawnText("Order Complete", 44f, 140f);
+        }
+    }
+
+    private void updatePest(float dt) {
+        pestTimer += dt;
+        if (pestPlotIndex >= 0) {
+            CropPlot p = plots.get(pestPlotIndex);
+            if (p.crop == null || p.mature || !p.unlocked) pestPlotIndex = -1;
+            return;
+        }
+        if (pestTimer < 18f) return;
+        pestTimer = 0f;
+        List<Integer> candidates = new ArrayList<>();
+        for (CropPlot p : plots) {
+            if (p.unlocked && p.crop != null && !p.mature) candidates.add(p.index);
+        }
+        if (candidates.isEmpty()) return;
+        pestPlotIndex = candidates.get(random.nextInt(candidates.size()));
+    }
+
+    private void updateComboDecay(float dt) {
+        if (combo <= 0) return;
+        comboDecayTimer += dt;
+        if (comboDecayTimer >= 9f) {
+            comboDecayTimer = 0f;
+            combo = Math.max(0, combo - 1);
+        }
+    }
+
+    public String getObjectiveText() {
+        if (activeOrder == null) return "Objective: Grow and harvest crops";
+        return "Order " + activeOrder.cropId + " " + orderProgress + "/" + activeOrder.count + " Done " + ordersCompleted;
     }
 
     private void spawnText(String text, float x, float y) {

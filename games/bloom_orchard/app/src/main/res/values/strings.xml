@@ -1,9 +1,14 @@
 <resources>
     <string name="app_name">Bloom Orchard</string>
+    <string name="menu_title">Bloom Orchard</string>
+    <string name="menu_subtitle">Grow beautiful crops in short orchard sessions</string>
     <string name="btn_start">Start</string>
     <string name="btn_restart">Restart</string>
     <string name="btn_resume">Resume</string>
     <string name="btn_menu">Menu</string>
     <string name="btn_mute">Mute</string>
     <string name="btn_how_to_play">How To Play</string>
+    <string name="how_to_play_rules">Plant seeds on unlocked plots. Water growing crops to speed growth. Apply fertilizer before maturity for better beauty scores. Harvest mature crops for coins and experience. Chain harvests to build combo rewards. Manage storage and complete rotating orders before the session timer ends.</string>
+    <string name="game_over_title">Session Complete</string>
+    <string name="game_over_summary_placeholder">Coins 0  Level 1  Best Beauty 0  Combo 0</string>
 </resources>

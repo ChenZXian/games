@@ -1,0 +1,8 @@
+{
+  "id": "ember_watch_td",
+  "name": "Ember Watch",
+  "tags": ["tower_defense", "route_defense", "hero", "branching_upgrades", "fantasy"],
+  "core_loop": "Build on fixed pads, upgrade and branch four tower classes, block lanes with barracks troops, cast support skills, move a hero, and survive scripted enemy waves on a winding path.",
+  "created_at": "2026-04-22",
+  "ui_skin": "skin_cartoon_light"
+}

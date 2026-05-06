@@ -5,7 +5,7 @@ import android.view.MotionEvent;
 public class InputController {
     public float moveX;
     public float moveY;
-    public boolean dashPressed;
+    public boolean acceleratePressed;
     public boolean pausePressed;
 
     private int joystickPointer = -1;
@@ -21,7 +21,6 @@ public class InputController {
     }
 
     public void resetFrameFlags() {
-        dashPressed = false;
         pausePressed = false;
     }
 
@@ -37,7 +36,7 @@ public class InputController {
                 updateMove(x, y);
             } else if (dist(x, y, actionX, actionY) <= actionR * 1.2f && actionPointer == -1) {
                 actionPointer = pointerId;
-                dashPressed = true;
+                acceleratePressed = true;
             } else if (dist(x, y, pauseX, pauseY) <= pauseR * 1.2f) {
                 pausePressed = true;
             }
@@ -60,6 +59,7 @@ public class InputController {
             }
             if (pointerId == actionPointer) {
                 actionPointer = -1;
+                acceleratePressed = false;
             }
             return true;
         }

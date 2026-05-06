@@ -1,4 +1,7 @@
 <resources>
+    <style name="Widget" />
+    <style name="Widget.Game" parent="Widget" />
+    <style name="Widget.Game.Button" parent="Widget.Game" />
     <style name="TextAppearance.Game.Title" parent="TextAppearance.MaterialComponents.Headline6">
         <item name="android:textColor">@color/cst_text_primary</item>
         <item name="android:textSize">@dimen/cst_text_xl</item>
@@ -32,19 +35,19 @@
     <style name="Widget.Game.Button.Icon" parent="Widget.MaterialComponents.Button.Icon">
         <item name="android:background">@drawable/ui_button_icon</item>
     </style>
-    <style name="Widget.Game.Panel">
+    <style name="Widget.Game.Panel" parent="Widget.Game">
         <item name="android:background">@drawable/ui_panel</item>
     </style>
-    <style name="Widget.Game.Card">
+    <style name="Widget.Game.Card" parent="Widget.Game">
         <item name="android:background">@drawable/ui_card</item>
     </style>
-    <style name="Widget.Game.Chip">
+    <style name="Widget.Game.Chip" parent="Widget.Game">
         <item name="android:background">@drawable/ui_chip</item>
     </style>
-    <style name="Widget.Game.Badge">
+    <style name="Widget.Game.Badge" parent="Widget.Game">
         <item name="android:background">@drawable/ui_badge</item>
     </style>
-    <style name="Widget.Game.Meter">
+    <style name="Widget.Game.Meter" parent="Widget.Game">
         <item name="android:background">@drawable/ui_meter_track</item>
     </style>
 </resources>

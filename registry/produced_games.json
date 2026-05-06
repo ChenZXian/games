@@ -360,6 +360,8 @@
       "core_loop": "Choose an unlocked stage, fight through enemy encounters with responsive melee combat, defeat a boss, collect guaranteed Green+ loot, and replay stages to chase boss-exclusive Purple and Gold gear upgrades.",
       "created_at": "2026-04-21",
       "ui_skin": "skin_dark_arcade"
+    },
+    {
       "id": "clockwork_courier",
       "name": "Clockwork Courier",
       "tags": [
@@ -374,6 +376,8 @@
       "core_loop": "read hazard rhythms steer a courier with virtual joystick and timed dash collect badges and key unlock exits reach delivery gate before timer for star ratings",
       "created_at": "2026-04-21",
       "ui_skin": "skin_neon_future"
+    },
+    {
       "id": "bloom_orchard",
       "name": "Bloom Orchard",
       "tags": [
@@ -390,6 +394,10 @@
         "variant_a_core_ui_entity_fx_audio"
       ],
       "core_loop": "Plant crops on a timed orchard grid, optimize watering and fertilizer for beauty-rated harvests, store produce, fulfill rotating orders, expand land, unlock species, and complete achievements in short sessions.",
+      "created_at": "2026-04-21",
+      "ui_skin": "skin_neon_future"
+    },
+    {
       "id": "pasture_parade_deluxe",
       "name": "Pasture Parade Deluxe",
       "tags": [
@@ -404,6 +412,47 @@
       "core_loop": "Manage multi-species pens, maintain feed and cleanliness, chain timed collections for combo growth, fulfill rotating delivery board contracts, leverage pen adjacency bonuses, claim achievement rewards, and survive escalating neglect pressure.",
       "created_at": "2026-04-21",
       "ui_skin": "skin_cartoon_light"
+    },
+    {
+      "id": "candy_chain_quest",
+      "name": "Candy Chain Quest",
+      "tags": [
+        "match3",
+        "puzzle",
+        "cascade",
+        "special-combo"
+      ],
+      "core_loop": "Swap adjacent tiles to form matches, generate specials, break obstacles, and complete layered goals under move or time pressure.",
+      "created_at": "2026-04-22",
+      "ui_skin": "skin_neon_future"
+    },
+    {
+      "id": "ember_watch_td",
+      "name": "Ember Watch",
+      "tags": [
+        "tower_defense",
+        "route_defense",
+        "hero",
+        "branching_upgrades",
+        "fantasy"
+      ],
+      "core_loop": "Build on fixed pads, upgrade and branch four tower classes, block lanes with barracks troops, cast support skills, move a hero, and survive scripted enemy waves on a winding path.",
+      "created_at": "2026-04-22",
+      "ui_skin": "skin_cartoon_light"
+    },
+    {
+      "id": "iron_flag_duel",
+      "name": "Iron Flag Duel",
+      "tags": [
+        "board",
+        "strategy",
+        "hidden-info",
+        "ai",
+        "land-battle-chess"
+      ],
+      "core_loop": "Deploy a hidden army, probe enemy positions, use rails and rank matchups, and capture the opposing flag before losing mobility.",
+      "created_at": "2026-04-23",
+      "ui_skin": "skin_military_tech"
     }
   ]
 }

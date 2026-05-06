@@ -4,20 +4,20 @@ SET APP_BASE_NAME=%~n0
 SET APP_HOME=%DIRNAME%
 SET CLASSPATH=%APP_HOME%\gradle\wrapper\gradle-wrapper.jar
 
-IF NOT "%JAVA_HOME%"=="" GOTO findJavaFromJavaHome
+IF "%JAVA_HOME%"=="" GOTO findJavaFromPath
+SET _JAVA_HOME=%JAVA_HOME:"=%
+SET JAVA_EXE=%_JAVA_HOME%\bin\java.exe
+IF EXIST "%JAVA_EXE%" GOTO execute
+
+ECHO WARN: JAVA_HOME is set to an invalid directory: %JAVA_HOME%
+GOTO findJavaFromPath
+
+:findJavaFromPath
 SET JAVA_EXE=java.exe
 %JAVA_EXE% -version >NUL 2>&1
 IF "%ERRORLEVEL%" == "0" GOTO execute
 
-ECHO ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
-GOTO fail
-
-:findJavaFromJavaHome
-SET JAVA_HOME=%JAVA_HOME:"=%
-SET JAVA_EXE=%JAVA_HOME%/bin/java.exe
-IF EXIST "%JAVA_EXE%" GOTO execute
-
-ECHO ERROR: JAVA_HOME is set to an invalid directory: %JAVA_HOME%
+ECHO ERROR: JAVA_HOME is invalid and no 'java' command could be found in your PATH.
 GOTO fail
 
 :execute

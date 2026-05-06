@@ -4,6 +4,7 @@ import com.android.boot.entity.Animal;
 import com.android.boot.entity.AnimalSpecies;
 import com.android.boot.entity.DeliveryOrder;
 import com.android.boot.entity.Pen;
+import com.android.boot.fx.CoinPopup;
 import com.android.boot.fx.FloatText;
 import com.android.boot.fx.ParticleSystem;
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class RanchWorld {
     public final AchievementManager achievements = new AchievementManager();
     public final ParticleSystem particles = new ParticleSystem();
     public final FloatText[] floatTexts = new FloatText[24];
+    public final CoinPopup[] coinPopups = new CoinPopup[24];
     public final Map<AnimalSpecies, Integer> inventory = new HashMap<>();
     public RanchState state = RanchState.MENU;
     public Pen selected;
@@ -27,18 +29,43 @@ public class RanchWorld {
     public float scrollX;
     public int deliveriesDone;
     public int sessionCoins;
+    public float contentWidth;
 
     public RanchWorld() {
         for (int i = 0; i < floatTexts.length; i++) floatTexts[i] = new FloatText();
+        for (int i = 0; i < coinPopups.length; i++) coinPopups[i] = new CoinPopup();
         AnimalSpecies[] s = AnimalSpecies.values();
-        float x = 80f;
+        float x = 60f;
+        float penW = 240f;
+        float penH = 180f;
+        float gap = 36f;
         for (int i = 0; i < s.length; i++) {
             boolean unlocked = i < 3;
-            Pen pen = new Pen(i, new Animal(s[i], x + 60f, 260f + (i % 2) * 180f), unlocked, x, 210f + (i % 2) * 180f, 180f, 140f);
+            float rowY = 220f + (i % 2) * 220f;
+            Pen pen = new Pen(
+                    i,
+                    new Animal(s[i], x + penW * 0.5f, rowY + penH * 0.56f),
+                    unlocked,
+                    x,
+                    rowY,
+                    penW,
+                    penH
+            );
             pens.add(pen);
-            x += 200f;
+            x += penW + gap;
+        }
+        if (!pens.isEmpty()) {
+            Pen last = pens.get(pens.size() - 1);
+            contentWidth = last.x + last.w + 60f;
+        } else {
+            contentWidth = 0f;
         }
         board.seed(economy.ranchLevel);
+    }
+
+    public float maxScroll(int viewWidth) {
+        float max = contentWidth - viewWidth;
+        return Math.max(0f, max);
     }
 
     public void startGame() {
@@ -49,8 +76,18 @@ public class RanchWorld {
     }
 
     public void update(float dt) {
+        particles.update(dt);
+        for (CoinPopup cp : coinPopups) cp.update(dt);
+        for (FloatText ft : floatTexts) {
+            if (ft.time > 0f) {
+                ft.time -= dt;
+                ft.y -= 20f * dt;
+            }
+        }
+
         if (state != RanchState.PLAYING) return;
         economy.update(dt, upgrades.comboRetention);
+        unlockByLevel();
         float neglectAdd = 0f;
         for (Pen pen : pens) {
             float speed = 1f + adjacencySpeedBonus(pen) + premiumComboBonus(pen);
@@ -68,13 +105,6 @@ public class RanchWorld {
             }
         } else {
             neglectMaxTime = 0f;
-        }
-        particles.update(dt);
-        for (FloatText ft : floatTexts) {
-            if (ft.time > 0f) {
-                ft.time -= dt;
-                ft.y -= 20f * dt;
-            }
         }
         checkDeliveries();
     }
@@ -151,6 +181,7 @@ public class RanchWorld {
         int value = (int) (selected.animal.species.baseValue * selected.valueBonus * economy.combo);
         economy.addCoins(value);
         sessionCoins += value;
+        spawnCoinPopup(selected);
         int count = inventory.containsKey(selected.animal.species) ? inventory.get(selected.animal.species) : 0;
         inventory.put(selected.animal.species, count + 1);
         particles.burst(selected.x - scrollX + selected.w * 0.5f, selected.y + 30f);
@@ -189,6 +220,17 @@ public class RanchWorld {
         for (FloatText ft : floatTexts) {
             if (ft.time <= 0f) {
                 ft.set(text, x, y, color);
+                break;
+            }
+        }
+    }
+
+    private void spawnCoinPopup(Pen p) {
+        float x = p.x - scrollX + p.w * 0.5f;
+        float y = p.y + 22f;
+        for (CoinPopup cp : coinPopups) {
+            if (cp.time <= 0f) {
+                cp.spawn(x, y);
                 break;
             }
         }
