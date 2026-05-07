@@ -781,7 +781,7 @@ if ($apkFiles.Count -gt 0) {
   $warnCount++
 }
 
-$canEnterPack = $doctorReady -and $validatorReady -and $registryReady
+$canEnterPack = $doctorReady -and $validatorReady -and $registryReady -and ($playfieldSafeAreaStatus -eq "passed") -and ($uiOcclusionRisk -eq "low")
 $deliveryReady = $canEnterPack -and ($requirementsStatus -eq "confirmed") -and ($gameplayDiversityStatus -eq "passed") -and ($visualIdentityStatus -eq "passed") -and ($implementationFidelityStatus -eq "passed") -and ($iconStatus -eq "complete") -and ($iconGenerationIntegrity -eq "passed") -and ($iconMetadataTrust -eq "high") -and ($iconUniquenessStatus -eq "passed") -and ($uiStatus -eq "complete") -and ($playfieldSafeAreaStatus -eq "passed") -and ($gameArtStatus -eq "complete") -and ($audioStatus -eq "complete") -and ($bgmStatus -eq "complete")
 
 $nextStep = ""
@@ -811,6 +811,8 @@ if (-not $doctorReady) {
   $nextStep = "Regenerate a game-specific icon and avoid generic repeated motifs"
 } elseif ($playfieldSafeAreaStatus -ne "passed") {
   $nextStep = "Reserve gameplay safe area in activity_main.xml before allowing HUD or frame overlays near the playfield"
+} elseif ($uiOcclusionRisk -ne "low") {
+  $nextStep = "Reduce battle-state UI occlusion risk and keep controls or panels out of the active gameplay area"
 } elseif ($gameArtStatus -eq "deferred") {
   $nextStep = "Run the gameplay art workflow to assign tracked character, map, prop, effect, or background assets"
 } elseif ($gameArtStatus -eq "placeholder_only") {

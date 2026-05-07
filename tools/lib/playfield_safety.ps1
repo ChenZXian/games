@@ -250,8 +250,8 @@ function Test-PlayfieldSafety($projectRoot) {
     $result.Summary = "Full-span gameplay view with anchored overlays but no reserved playfield margins or padding detected"
   }
   elseif ($hasContractReservations -and -not $result.ReservedSpaceDetected) {
-    $result.Status = "warning"
-    $result.Risk = "medium"
+    $result.Status = "failed"
+    $result.Risk = "high"
     $result.Summary = "Visual identity declares playfield reservations, but matching layout reserve evidence was not detected"
   }
   elseif ($result.AnchoredOverlayCount -gt 0 -and $result.ReservedSpaceDetected) {
