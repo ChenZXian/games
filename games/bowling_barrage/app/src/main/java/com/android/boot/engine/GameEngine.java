@@ -299,7 +299,7 @@ public final class GameEngine {
             if (audio != null) {
                 audio.playArm();
             }
-            createPopupFx(0.18f, 0.2f, 1.6f, 0);
+            createPopupFx(0.18f, 0.2f, 1, 0);
         }
     }
 

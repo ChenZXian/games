@@ -50,6 +50,7 @@ if (-not ((Split-Path $parent -Leaf) -ieq "games")) {
 }
 
 $gameId = Split-Path $projResolved -Leaf
+$gradlew = Join-Path $projResolved "gradlew.bat"
 
 Write-Ok "Repo root: $root"
 Write-Ok "Project: $projResolved"
@@ -85,7 +86,29 @@ if (Test-Path $validator) {
   Write-Warn "tools/validate.ps1 not found; skip validator"
 }
 
-# 3) Delivery readiness gate (if exists)
+if (!(Test-Path $gradlew)) {
+  Write-Fail "Missing gradlew.bat in project"
+  exit 2
+}
+
+# 3) Build sanity compile gate
+Write-Host ""
+Write-Host "=== Build Sanity Compile (gradlew) ==="
+$compileTask = if ($Variant -eq "release") { ":app:compileReleaseJavaWithJavac" } else { ":app:compileDebugJavaWithJavac" }
+Push-Location $projResolved
+try {
+  & $gradlew --no-daemon $compileTask
+  if ($LASTEXITCODE -ne 0) {
+    Write-Fail "Gradle compile sanity check failed ($compileTask). Stop before APK export."
+    exit 2
+  }
+  Write-Ok "Gradle compile sanity OK ($compileTask)"
+}
+finally {
+  Pop-Location
+}
+
+# 4) Delivery readiness gate (if exists)
 $inspect = Join-Path $root "tools\inspect.ps1"
 if (Test-Path $inspect) {
   Write-Host ""
@@ -107,14 +130,9 @@ if (Test-Path $inspect) {
   Write-Warn "tools/inspect.ps1 not found; skip delivery inspect"
 }
 
-# 4) Build APK using project wrapper
+# 5) Build APK using project wrapper
 Write-Host ""
 Write-Host "=== Build APK (gradlew) ==="
-$gradlew = Join-Path $projResolved "gradlew.bat"
-if (!(Test-Path $gradlew)) {
-  Write-Fail "Missing gradlew.bat in project"
-  exit 2
-}
 
 $task = if ($Variant -eq "release") { "assembleRelease" } else { "assembleDebug" }
 Push-Location $projResolved
@@ -130,7 +148,7 @@ finally {
   Pop-Location
 }
 
-# 5) Locate APK
+# 6) Locate APK
 $apkPath = $null
 if ($Variant -eq "release") {
   $candidate = Join-Path $projResolved "app\build\outputs\apk\release\app-release.apk"
@@ -151,7 +169,7 @@ if ($null -eq $apkPath) {
 }
 Write-Ok "APK found: $apkPath"
 
-# 6) Copy to artifacts/apk/<id>/
+# 7) Copy to artifacts/apk/<id>/
 Write-Host ""
 Write-Host "=== Export APK ==="
 $artRoot = Join-Path $root "artifacts\apk"

@@ -25,6 +25,9 @@ Hard rules:
 - Design for adaptive behavior across common phone and tablet aspect ratios instead of one fixed layout
 - Preserve minimum touch target size for direct gameplay-state controls across the runtime UI viewport matrix
 - Keep visible button text inside its adaptive target width after `@string` resolution
+- Keep UI Kit base styles resolvable when nested `Widget.Game` styles are used
+- Do not use unsupported style parents such as `Widget.MaterialComponents.ImageButton`
+- Ensure SurfaceView canvas rendering protects `lockCanvas` and `unlockCanvasAndPost` with null guards, `catch`, and `finally`
 - Reusable external UI resources should be stored under `shared_assets/ui/` first when possible
 - Search both the shared library and `shared_assets/ui/source_catalog.json` before deciding there is no suitable UI source
 - Imported open-source UI assets must keep license and provenance metadata

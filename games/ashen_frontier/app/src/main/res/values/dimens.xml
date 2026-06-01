@@ -28,5 +28,5 @@
     <dimen name="cst_playfield_margin_top">92dp</dimen>
     <dimen name="cst_playfield_margin_bottom">82dp</dimen>
     <dimen name="cst_hud_badge_min_w">72dp</dimen>
-    <dimen name="cst_hud_icon_size">24dp</dimen>
+    <dimen name="cst_hud_icon_size">48dp</dimen>
 </resources>

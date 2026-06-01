@@ -24,7 +24,7 @@
     <dimen name="cst_text_xxl">30sp</dimen>
     <dimen name="cst_hud_height">54dp</dimen>
     <dimen name="cst_hud_badge_min_w">78dp</dimen>
-    <dimen name="cst_hud_icon_size">44dp</dimen>
+    <dimen name="cst_hud_icon_size">48dp</dimen>
     <dimen name="cst_command_rail_width">132dp</dimen>
     <dimen name="cst_selected_panel_width">220dp</dimen>
     <dimen name="cst_playfield_margin_top">60dp</dimen>

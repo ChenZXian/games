@@ -12,11 +12,11 @@ android {
   compileSdk 34
 
   defaultConfig {
-    applicationId "com.android.boot"
+    applicationId "com.android.boot.magnetscrapper"
     minSdk 24
     targetSdk 34
-    versionCode ((project.findProperty("MAGNET_VERSION_CODE") ?: "1") as String).toInteger()
-    versionName (project.findProperty("MAGNET_VERSION_NAME") ?: "1.0") as String
+    versionCode 1
+    versionName "1.0"
   }
 
   signingConfigs {

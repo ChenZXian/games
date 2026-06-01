@@ -123,6 +123,11 @@ UI Kit system rules:
 6. Do not treat UI Kit-only XML scaffolding as delivery-ready UI for menu item `10`.
 7. Do not use external UI kits or downloaded UI resources unless routed through the repository UI workflow and stored with license provenance.
 8. Do not use external gameplay art assets unless they are routed through the repository gameplay art workflow and stored with license provenance.
+9. Define resolvable UI Kit base styles when nested styles are used:
+   - Widget
+   - Widget.Game
+   - Widget.Game.Button when nested button styles omit explicit parents
+10. Do not use unsupported style parents such as Widget.MaterialComponents.ImageButton.
 
 Minimum required UI files:
 Values:
@@ -169,6 +174,7 @@ Implementation baseline:
 - Use delta time with clamping
 - Keep allocations low inside the loop
 - Pause and resume must stop updates correctly and handle lifecycle properly
+- SurfaceView loops that call lockCanvas must use null guards, catch, and finally around lockCanvas and unlockCanvasAndPost
 - Use the repository-approved audio strategy for initialization-stage output
 
 Required strings:
@@ -186,6 +192,10 @@ Gradle and project output requirements:
 - Java only
 - Kotlin is forbidden unless the repository standard explicitly changes
 - Include the required Gradle wrapper scripts and Gradle files defined by the repository baseline
+- Include a real gradle/wrapper/gradle-wrapper.jar
+- Define org.gradle.java.home in project gradle.properties with a path that resolves locally
+- Declare pluginManagement repositories in settings.gradle when using the root AGP Plugins DSL
+- Keep AndroidX versions compatible with compileSdk 34
 - Include:
   - settings.gradle
   - root build.gradle

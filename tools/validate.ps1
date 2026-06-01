@@ -58,6 +58,20 @@ function Match-First($text, $pattern){
   return $null
 }
 
+function Normalize-GradlePathValue($value){
+  if ([string]::IsNullOrWhiteSpace($value)) { return "" }
+  $normalized = $value.Trim().Trim('"').Trim("'")
+  $normalized = $normalized -replace '\\:', ':'
+  $normalized = $normalized -replace '\\\\', '\'
+  return $normalized
+}
+
+function Has-StyleName($stylesText, $styleName){
+  if ($null -eq $stylesText) { return $false }
+  $escaped = [regex]::Escape($styleName)
+  return [regex]::IsMatch($stylesText, "<style\s+name\s*=\s*['""]$escaped['""]", "IgnoreCase")
+}
+
 function Get-ApplicationId($projectPath){
   $buildPath = Join-Path $projectPath "app\build.gradle"
   $buildKtsPath = Join-Path $projectPath "app\build.gradle.kts"
@@ -131,8 +145,47 @@ function Validate-Project($projDir, [ref]$fails, [ref]$warns){
   # 2) Must have wrapper + app module
   if (!(Test-Path (Join-Path $projResolved "gradlew.bat"))) { $fails.Value++; Write-Fail "Missing gradlew.bat"; }
   if (!(Test-Path (Join-Path $projResolved "gradle\wrapper\gradle-wrapper.properties"))) { $fails.Value++; Write-Fail "Missing gradle wrapper properties"; }
+  if (!(Test-Path (Join-Path $projResolved "gradle\wrapper\gradle-wrapper.jar"))) { $fails.Value++; Write-Fail "Missing gradle-wrapper.jar"; }
+  else { Write-Ok "Gradle wrapper jar found" }
   if (!(Test-Path (Join-Path $projResolved "app\build.gradle")) -and !(Test-Path (Join-Path $projResolved "app\build.gradle.kts"))) { $fails.Value++; Write-Fail "Missing app/build.gradle(.kts)"; }
   if (!(Test-Path (Join-Path $projResolved "app\src\main\AndroidManifest.xml"))) { $fails.Value++; Write-Fail "Missing app/src/main/AndroidManifest.xml"; }
+
+  $projectGradlePropsPath = Join-Path $projResolved "gradle.properties"
+  $projectGradlePropsText = Read-Text $projectGradlePropsPath
+  if ($null -eq $projectGradlePropsText) {
+    $fails.Value++
+    Write-Fail "Missing project gradle.properties"
+  } else {
+    $projectJavaHome = Match-First $projectGradlePropsText 'org\.gradle\.java\.home\s*=\s*([^\r\n]+)'
+    if ([string]::IsNullOrWhiteSpace($projectJavaHome)) {
+      $fails.Value++
+      Write-Fail "Project gradle.properties must define org.gradle.java.home"
+    } else {
+      $javaHomePath = Normalize-GradlePathValue $projectJavaHome
+      if (Test-Path $javaHomePath) {
+        Write-Ok "Project org.gradle.java.home path exists"
+      } else {
+        $fails.Value++
+        Write-Fail "Project org.gradle.java.home path is invalid: $projectJavaHome"
+      }
+    }
+  }
+
+  $settingsGradlePath = Join-Path $projResolved "settings.gradle"
+  $settingsGradleText = Read-Text $settingsGradlePath
+  $rootBuildGradleText = Read-Text (Join-Path $projResolved "build.gradle")
+  if ($rootBuildGradleText -match 'id\s+["'']com\.android\.application["'']\s+version') {
+    $hasPluginRepos = $settingsGradleText -match 'pluginManagement' -and
+      $settingsGradleText -match 'google\s*\(\s*\)' -and
+      $settingsGradleText -match 'mavenCentral\s*\(\s*\)' -and
+      $settingsGradleText -match 'gradlePluginPortal\s*\(\s*\)'
+    if ($hasPluginRepos) {
+      Write-Ok "Gradle plugin repositories found"
+    } else {
+      $fails.Value++
+      Write-Fail "settings.gradle must declare pluginManagement repositories google, mavenCentral, and gradlePluginPortal"
+    }
+  }
 
   # 3) GAME_GENERATION_STANDARD presence (repo-level)
   $std = Join-Path $root "docs\GAME_GENERATION_STANDARD.md"
@@ -253,6 +306,28 @@ function Validate-Project($projDir, [ref]$fails, [ref]$warns){
     Write-Ok "No non-ASCII chars found in authored files"
   }
 
+  $canvasRiskFiles = @()
+  $javaRoot = Join-Path $projResolved "app\src\main\java"
+  if (Test-Path $javaRoot) {
+    foreach ($javaFile in (Get-ChildItem -Path $javaRoot -Recurse -File -Filter "*.java" -ErrorAction SilentlyContinue)) {
+      $javaText = Read-Text $javaFile.FullName
+      if ($javaText -match 'lockCanvas\s*\(') {
+        $hasUnlock = $javaText -match 'unlockCanvasAndPost\s*\('
+        $hasCatch = $javaText -match '\bcatch\s*\('
+        $hasFinally = $javaText -match '\bfinally\b'
+        $hasNullGuard = $javaText -match '!=\s*null' -or $javaText -match '==\s*null'
+        if (-not ($hasUnlock -and $hasCatch -and $hasFinally -and $hasNullGuard)) {
+          $canvasRiskFiles += $javaFile.FullName
+        }
+      }
+    }
+  }
+  if ($canvasRiskFiles.Count -gt 0) {
+    $fails.Value++
+    Write-Fail "Surface canvas drawing must protect lockCanvas/unlockCanvasAndPost with catch, finally, and a null guard. Example: $($canvasRiskFiles[0])"
+    if ($canvasRiskFiles.Count -gt 1) { Write-Warn "Total Surface canvas risk files: $($canvasRiskFiles.Count)" }
+  }
+
   # 6) Android resources: app_icon contract
   $resDir = Join-Path $projResolved "app\src\main\res"
   $iconFound = $false
@@ -298,6 +373,44 @@ function Validate-Project($projDir, [ref]$fails, [ref]$warns){
     } else {
       $fails.Value++
       Write-Fail "Missing required UI file: $rel"
+    }
+  }
+
+  $stylesPath = Join-Path $projResolved "app\src\main\res\values\styles.xml"
+  $stylesText = Read-Text $stylesPath
+  if ($null -ne $stylesText) {
+    $usesWidgetGame = $stylesText -match 'Widget\.Game'
+    $hasWidget = Has-StyleName $stylesText "Widget"
+    $hasWidgetGame = Has-StyleName $stylesText "Widget.Game"
+    if ($usesWidgetGame -and -not $hasWidget) {
+      $fails.Value++
+      Write-Fail "styles.xml must define base style Widget when Widget.Game styles are present"
+    }
+    if ($usesWidgetGame -and -not $hasWidgetGame) {
+      $fails.Value++
+      Write-Fail "styles.xml must define base style Widget.Game when nested Widget.Game styles are present"
+    }
+    $buttonBaseNeeded = $false
+    foreach ($m in [regex]::Matches($stylesText, '<style\s+name\s*=\s*["'']Widget\.Game\.Button\.[^"'']+["'']([^>]*)>', "IgnoreCase")) {
+      if ($m.Groups[1].Value -notmatch '\bparent\s*=') {
+        $buttonBaseNeeded = $true
+      }
+    }
+    if ($buttonBaseNeeded -and -not (Has-StyleName $stylesText "Widget.Game.Button")) {
+      $fails.Value++
+      Write-Fail "styles.xml must define Widget.Game.Button when nested button styles omit an explicit parent"
+    }
+    $badParentPatterns = @(
+      'Widget\.MaterialComponents\.ImageButton',
+      'Widget\.MaterialComponents\.Button\.Icon',
+      'Widget\.AppCompat\.ImageButton',
+      'Widget\.AppCompat\.ProgressBar\.Horizontal'
+    )
+    foreach ($pattern in $badParentPatterns) {
+      if ($stylesText -match $pattern) {
+        $fails.Value++
+        Write-Fail "styles.xml uses an unsupported style parent that can fail AAPT: $pattern"
+      }
     }
   }
 
@@ -366,6 +479,18 @@ function Validate-Project($projDir, [ref]$fails, [ref]$warns){
     if ($cs -ne "34") { $fails.Value++; Write-Fail "compileSdk must be 34 (got $cs)" } else { Write-Ok "compileSdk=34" }
     if ($mins -ne "24") { $fails.Value++; Write-Fail "minSdk must be 24 (got $mins)" } else { Write-Ok "minSdk=24" }
     if ($ts -ne "34") { $fails.Value++; Write-Fail "targetSdk must be 34 (got $ts)" } else { Write-Ok "targetSdk=34" }
+
+    $blockedDependencyPatterns = @(
+      'androidx\.core:core(?:-ktx)?:1\.16\.',
+      'androidx\.appcompat:appcompat:1\.7\.1',
+      'androidx\.constraintlayout:constraintlayout:2\.2\.1'
+    )
+    foreach ($pattern in $blockedDependencyPatterns) {
+      if ($appText -match $pattern) {
+        $fails.Value++
+        Write-Fail "Dependency version is not compatible with compileSdk 34 or this baseline: $pattern"
+      }
+    }
   } else {
     $warns.Value++
     Write-Warn "Cannot read app/build.gradle(.kts) to verify SDK levels"

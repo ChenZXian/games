@@ -331,8 +331,8 @@
 
         <ImageButton
             android:id="@+id/pauseIconButton"
-            android:layout_width="46dp"
-            android:layout_height="46dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_marginStart="8dp"
             android:background="@drawable/ui_button_icon"
             android:padding="10dp"

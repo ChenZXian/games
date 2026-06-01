@@ -135,6 +135,14 @@ AndroidX configuration:
 
 - android.useAndroidX=true
 - android.enableJetifier=true
+- Projects using compileSdk 34 must avoid AndroidX dependency versions whose AAR metadata requires compileSdk 35 or newer
+- Known compatible defaults for this repository are `androidx.appcompat:appcompat:1.6.1`, `androidx.core:core:1.12.0`, and `androidx.constraintlayout:constraintlayout:2.1.4`
+
+Per-project Gradle setup:
+
+- `gradle/wrapper/gradle-wrapper.jar` must be present
+- project `gradle.properties` must define `org.gradle.java.home` with a path that resolves on the build machine
+- projects declaring AGP in the root Plugins DSL must declare `pluginManagement` repositories in `settings.gradle`
 
 ------
 
@@ -190,6 +198,12 @@ Build debug APK (Windows):
 
 ```
 .\gradlew.bat clean assembleDebug
+```
+
+Run compile sanity before APK export:
+
+```
+.\gradlew.bat --no-daemon :app:compileDebugJavaWithJavac
 ```
 
 Install debug to device (Windows):

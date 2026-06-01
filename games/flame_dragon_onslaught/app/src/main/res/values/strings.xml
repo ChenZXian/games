@@ -9,7 +9,7 @@
   <string name="btn_pause">Pause</string>
   <string name="btn_stage_select">Chapter Select</string>
   <string name="btn_upgrades">Forge Upgrades</string>
-  <string name="btn_overdrive">Overdrive</string>
+  <string name="btn_overdrive">OD</string>
   <string name="btn_close">Close</string>
   <string name="label_health">Vitality</string>
   <string name="label_heat">Heat</string>

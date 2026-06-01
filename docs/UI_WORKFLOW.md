@@ -1,6 +1,6 @@
 # UI Workflow
 
-Version: 1.6
+Version: 1.7
 Last updated: 2026-06-01
 
 This document defines the repository UI workflow for Android Java mini-games.
@@ -239,5 +239,8 @@ The final UI result should satisfy all of the following:
 - battle-state controls preserve minimum touch targets and do not rely on cramped one-row command bars
 - visible button text fits its estimated adaptive width after string resolution
 - delivery-ready UI should fail validation when a full-span gameplay view is combined with anchored overlays and no reserved safe area is detectable
+- `styles.xml` should define resolvable base styles for `Widget`, `Widget.Game`, and `Widget.Game.Button` when nested widget styles need them
+- style parents should use known Material Components button or platform progress styles instead of unsupported parents such as `Widget.MaterialComponents.ImageButton`
+- SurfaceView canvas rendering should protect `lockCanvas` and `unlockCanvasAndPost` with null guards, `catch`, and `finally` so backgrounding, rotation, and surface destruction do not crash the app
 - provenance recorded for imported open-source assets
 - visual identity contract preserved when one exists

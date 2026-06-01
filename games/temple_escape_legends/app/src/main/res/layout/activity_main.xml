@@ -6,7 +6,8 @@
     <com.android.boot.ui.GameView
         android:id="@+id/gameView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/cst_hud_height" />
 
     <LinearLayout
         android:id="@+id/hudRoot"
@@ -30,7 +31,7 @@
         <TextView android:id="@+id/hudMagnet" style="@style/TextAppearance.Game.HudValue" android:text="Off" />
         <TextView android:id="@+id/hudSlow" style="@style/TextAppearance.Game.HudValue" android:text="Off" />
         <TextView android:id="@+id/hudRevive" style="@style/TextAppearance.Game.HudValue" android:text="No" />
-        <Button android:id="@+id/btnPause" android:text="||" style="@style/Widget.Game.Button.Icon" />
+        <Button android:id="@+id/btnPause" android:layout_width="48dp" android:layout_height="48dp" android:text="||" style="@style/Widget.Game.Button.Icon" />
     </LinearLayout>
 
     <LinearLayout

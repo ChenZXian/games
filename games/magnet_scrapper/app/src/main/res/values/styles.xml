@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+  <style name="Widget" />
+  <style name="Widget.Game" />
   <style name="TextAppearance.Game.Title" parent="TextAppearance.MaterialComponents.Headline5">
     <item name="android:textColor">@color/cst_text_primary</item>
     <item name="android:textSize">@dimen/cst_text_xxl</item>

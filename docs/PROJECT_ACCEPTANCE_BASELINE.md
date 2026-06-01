@@ -1,6 +1,6 @@
 # Project Acceptance Baseline
 
-Version: 1.6
+Version: 1.7
 Last updated: 2026-06-01
 
 This document defines the generic structure and acceptance baseline for any Android Java mini-game in this repository.
@@ -39,6 +39,7 @@ Every project must satisfy:
 - no comments in Java, XML, or Gradle files
 - custom color resources use the `cst_` prefix and must not conflict with `android.jar`
 - exactly one allowed `ui_skin` is selected
+- SurfaceView or GameView canvas loops that use `lockCanvas` must protect `lockCanvas` and `unlockCanvasAndPost` with a null guard, `catch`, and `finally`
 
 ## 4. Gameplay And Screen Baseline
 
@@ -141,10 +142,28 @@ The expected readiness ladder is:
 - inspect should block packaging when `UI_OCCLUSION_RISK` is not `low`
 - validate should run a runtime UI safety check that simulates representative phone and tablet viewports and blocks visible HUD or panel collisions with runtime gameplay nodes when they can be inferred from code
 - validate should block dense horizontal battle-control rows, undersized direct touch targets, and likely button text overflow across the runtime UI viewport matrix
+- validate should block missing `gradle-wrapper.jar`, invalid per-project `org.gradle.java.home`, missing plugin repositories, AndroidX dependency versions known to require a higher compileSdk than the baseline, unsupported UI style parents, missing `Widget` or `Widget.Game` base styles, and unsafe Surface canvas drawing loops
+- packaging should run a Gradle Java compile sanity task before APK export so old source type errors, AAPT resource linking errors, AAR metadata errors, and plugin resolution errors are caught before delivery
 - inspect should block delivery readiness when `MECHANIC_DUPLICATE_RISK` is not `low`
 - packaging is run only when explicitly requested
 
-## 9. Initialization Residue Baseline
+## 9. Build Preflight Baseline
+
+Before APK export, a project should pass both static and Gradle-backed build preflight.
+
+Static preflight should verify:
+
+- `gradle/wrapper/gradle-wrapper.jar` exists
+- project `gradle.properties` defines a valid `org.gradle.java.home`
+- root AGP plugin declarations have `pluginManagement` repositories with `google`, `mavenCentral`, and `gradlePluginPortal`
+- dependencies remain compatible with compileSdk 34
+- UI Kit nested styles have resolvable base styles
+- no unsupported style parent references are used
+- Surface canvas drawing has lifecycle and exception protection
+
+Gradle-backed preflight should run the Java compile task for the requested variant before final APK export.
+
+## 10. Initialization Residue Baseline
 
 A newly initialized project should not carry identity residue from an older finished game.
 

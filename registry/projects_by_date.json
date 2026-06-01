@@ -1,9 +1,106 @@
 {
     "version":  1,
-    "generated_at_utc":  "2026-05-12T02:38:23Z",
+    "generated_at_utc":  "2026-06-01T07:39:14Z",
     "grouping":  "created_at_month",
     "path_policy":  "active projects remain direct children under games/\u003cgame_id\u003e",
     "months":  [
+                   {
+                       "month":  "2026-06",
+                       "total":  13,
+                       "games":  [
+                                     {
+                                         "id":  "pocket_landlord_classic",
+                                         "name":  "Pocket Landlord Classic",
+                                         "created_at":  "2026-06-01",
+                                         "path":  "games/pocket_landlord_classic",
+                                         "ui_skin":  "skin_dark_arcade"
+                                     },
+                                     {
+                                         "id":  "petal_isle_farm",
+                                         "name":  "Petal Isle Farm",
+                                         "created_at":  "2026-06-01",
+                                         "path":  "games/petal_isle_farm",
+                                         "ui_skin":  "skin_cartoon_light"
+                                     },
+                                     {
+                                         "id":  "minecart_hook_express",
+                                         "name":  "Minecart Hook Express",
+                                         "created_at":  "2026-06-01",
+                                         "path":  "games/minecart_hook_express",
+                                         "ui_skin":  "skin_post_apocalypse"
+                                     },
+                                     {
+                                         "id":  "stormbeak_siege",
+                                         "name":  "Stormbeak Siege",
+                                         "created_at":  "2026-06-01",
+                                         "path":  "games/stormbeak_siege",
+                                         "ui_skin":  "skin_dark_arcade"
+                                     },
+                                     {
+                                         "id":  "ranch_vet_rescue",
+                                         "name":  "Ranch Vet Rescue",
+                                         "created_at":  "2026-06-01",
+                                         "path":  "games/ranch_vet_rescue",
+                                         "ui_skin":  "skin_cartoon_light"
+                                     },
+                                     {
+                                         "id":  "prism_sector_collapse",
+                                         "name":  "Prism Sector Collapse",
+                                         "created_at":  "2026-06-01",
+                                         "path":  "games/prism_sector_collapse",
+                                         "ui_skin":  "skin_neon_future"
+                                     },
+                                     {
+                                         "id":  "meadow_snack_ranch",
+                                         "name":  "Meadow Snack Ranch",
+                                         "created_at":  "2026-06-01",
+                                         "path":  "games/meadow_snack_ranch",
+                                         "ui_skin":  "skin_cartoon_light"
+                                     },
+                                     {
+                                         "id":  "candy_pulse_parade",
+                                         "name":  "Candy Pulse Parade",
+                                         "created_at":  "2026-06-01",
+                                         "path":  "games/candy_pulse_parade",
+                                         "ui_skin":  "skin_cartoon_light"
+                                     },
+                                     {
+                                         "id":  "blaze_dragon_reborn",
+                                         "name":  "Blaze Dragon Reborn",
+                                         "created_at":  "2026-06-01",
+                                         "path":  "games/blaze_dragon_reborn",
+                                         "ui_skin":  "skin_dark_arcade"
+                                     },
+                                     {
+                                         "id":  "black_spade_alliance",
+                                         "name":  "Black Spade Alliance",
+                                         "created_at":  "2026-06-01",
+                                         "path":  "games/black_spade_alliance",
+                                         "ui_skin":  "skin_dark_arcade"
+                                     },
+                                     {
+                                         "id":  "market_morning_farm",
+                                         "name":  "Market Morning Farm",
+                                         "created_at":  "2026-06-01",
+                                         "path":  "games/market_morning_farm",
+                                         "ui_skin":  "skin_cartoon_light"
+                                     },
+                                     {
+                                         "id":  "lunar_salvage_miner",
+                                         "name":  "Lunar Salvage Miner",
+                                         "created_at":  "2026-06-01",
+                                         "path":  "games/lunar_salvage_miner",
+                                         "ui_skin":  "skin_military_tech"
+                                     },
+                                     {
+                                         "id":  "crystal_cavern_hook",
+                                         "name":  "Crystal Cavern Hook",
+                                         "created_at":  "2026-06-01",
+                                         "path":  "games/crystal_cavern_hook",
+                                         "ui_skin":  "skin_cartoon_light"
+                                     }
+                                 ]
+                   },
                    {
                        "month":  "2026-05",
                        "total":  3,
@@ -33,29 +130,8 @@
                    },
                    {
                        "month":  "2026-04",
-                       "total":  17,
+                       "total":  19,
                        "games":  [
-                                     {
-                                         "id":  "crown_frontier_tactics",
-                                         "name":  "Crown Frontier Tactics",
-                                         "created_at":  "2026-04-28",
-                                         "path":  "games/crown_frontier_tactics",
-                                         "ui_skin":  "skin_military_tech"
-                                     },
-                                     {
-                                         "id":  "castaway_clan",
-                                         "name":  "Castaway Clan",
-                                         "created_at":  "2026-04-29",
-                                         "path":  "games/castaway_clan",
-                                         "ui_skin":  "skin_cartoon_light"
-                                     },
-                                     {
-                                         "id":  "ashen_frontier",
-                                         "name":  "Ashen Frontier",
-                                         "created_at":  "2026-04-24",
-                                         "path":  "games/ashen_frontier",
-                                         "ui_skin":  "skin_post_apocalypse"
-                                     },
                                      {
                                          "id":  "crownblock_hunt",
                                          "name":  "Crownblock Hunt",
@@ -64,17 +140,24 @@
                                          "ui_skin":  "skin_dark_arcade"
                                      },
                                      {
-                                         "id":  "iron_banner_realms",
-                                         "name":  "Iron Banner Realms",
-                                         "created_at":  "2026-04-30",
-                                         "path":  "games/iron_banner_realms",
+                                         "id":  "crown_frontier_tactics",
+                                         "name":  "Crown Frontier Tactics",
+                                         "created_at":  "2026-04-28",
+                                         "path":  "games/crown_frontier_tactics",
                                          "ui_skin":  "skin_military_tech"
                                      },
                                      {
-                                         "id":  "scrap_ring_outpost",
-                                         "name":  "Scrap Ring Outpost",
-                                         "created_at":  "2026-04-29",
-                                         "path":  "games/scrap_ring_outpost",
+                                         "id":  "minecart_bastion",
+                                         "name":  "Minecart Bastion",
+                                         "created_at":  "2026-04-23",
+                                         "path":  "games/minecart_bastion",
+                                         "ui_skin":  "skin_post_apocalypse"
+                                     },
+                                     {
+                                         "id":  "ashen_frontier",
+                                         "name":  "Ashen Frontier",
+                                         "created_at":  "2026-04-24",
+                                         "path":  "games/ashen_frontier",
                                          "ui_skin":  "skin_post_apocalypse"
                                      },
                                      {
@@ -85,6 +168,27 @@
                                          "ui_skin":  "skin_military_tech"
                                      },
                                      {
+                                         "id":  "scrap_ring_outpost",
+                                         "name":  "Scrap Ring Outpost",
+                                         "created_at":  "2026-04-29",
+                                         "path":  "games/scrap_ring_outpost",
+                                         "ui_skin":  "skin_post_apocalypse"
+                                     },
+                                     {
+                                         "id":  "iron_banner_realms",
+                                         "name":  "Iron Banner Realms",
+                                         "created_at":  "2026-04-30",
+                                         "path":  "games/iron_banner_realms",
+                                         "ui_skin":  "skin_military_tech"
+                                     },
+                                     {
+                                         "id":  "castaway_clan",
+                                         "name":  "Castaway Clan",
+                                         "created_at":  "2026-04-29",
+                                         "path":  "games/castaway_clan",
+                                         "ui_skin":  "skin_cartoon_light"
+                                     },
+                                     {
                                          "id":  "mountain_pass_guard",
                                          "name":  "Mountain Pass Guard",
                                          "created_at":  "2026-04-29",
@@ -92,11 +196,11 @@
                                          "ui_skin":  "skin_military_tech"
                                      },
                                      {
-                                         "id":  "crownroad_bastion",
-                                         "name":  "Crownroad Bastion",
+                                         "id":  "empire_wall_guard",
+                                         "name":  "Empire Wall Guard",
                                          "created_at":  "2026-04-23",
-                                         "path":  "games/crownroad_bastion",
-                                         "ui_skin":  "skin_cartoon_light"
+                                         "path":  "games/empire_wall_guard",
+                                         "ui_skin":  "skin_military_tech"
                                      },
                                      {
                                          "id":  "clockwork_courier",
@@ -106,10 +210,10 @@
                                          "ui_skin":  "skin_neon_future"
                                      },
                                      {
-                                         "id":  "bloom_orchard",
-                                         "name":  "Bloom Orchard",
+                                         "id":  "pasture_parade_deluxe",
+                                         "name":  "Pasture Parade Deluxe",
                                          "created_at":  "2026-04-21",
-                                         "path":  "games/bloom_orchard",
+                                         "path":  "games/pasture_parade_deluxe",
                                          "ui_skin":  "skin_cartoon_light"
                                      },
                                      {
@@ -120,6 +224,13 @@
                                          "ui_skin":  "skin_neon_future"
                                      },
                                      {
+                                         "id":  "bloom_orchard",
+                                         "name":  "Bloom Orchard",
+                                         "created_at":  "2026-04-21",
+                                         "path":  "games/bloom_orchard",
+                                         "ui_skin":  "skin_cartoon_light"
+                                     },
+                                     {
                                          "id":  "relic_blade_trials",
                                          "name":  "Relic Blade Trials",
                                          "created_at":  "2026-04-21",
@@ -127,25 +238,25 @@
                                          "ui_skin":  "skin_dark_arcade"
                                      },
                                      {
-                                         "id":  "minecart_bastion",
-                                         "name":  "Minecart Bastion",
-                                         "created_at":  "2026-04-23",
-                                         "path":  "games/minecart_bastion",
-                                         "ui_skin":  "skin_post_apocalypse"
+                                         "id":  "magnet_scrapper",
+                                         "name":  "Magnet Scrapper",
+                                         "created_at":  "2026-04-22",
+                                         "path":  "games/magnet_scrapper",
+                                         "ui_skin":  "skin_neon_future"
                                      },
                                      {
-                                         "id":  "empire_wall_guard",
-                                         "name":  "Empire Wall Guard",
+                                         "id":  "crownroad_bastion",
+                                         "name":  "Crownroad Bastion",
                                          "created_at":  "2026-04-23",
-                                         "path":  "games/empire_wall_guard",
-                                         "ui_skin":  "skin_military_tech"
-                                     },
-                                     {
-                                         "id":  "pasture_parade_deluxe",
-                                         "name":  "Pasture Parade Deluxe",
-                                         "created_at":  "2026-04-21",
-                                         "path":  "games/pasture_parade_deluxe",
+                                         "path":  "games/crownroad_bastion",
                                          "ui_skin":  "skin_cartoon_light"
+                                     },
+                                     {
+                                         "id":  "bowling_battle",
+                                         "name":  "Bowling Battle",
+                                         "created_at":  "2026-04-22",
+                                         "path":  "games/bowling_battle",
+                                         "ui_skin":  "skin_dark_arcade"
                                      },
                                      {
                                          "id":  "island_supply_command",
@@ -257,10 +368,10 @@
                                          "ui_skin":  ""
                                      },
                                      {
-                                         "id":  "mosaic_studio",
-                                         "name":  "Mosaic Studio",
+                                         "id":  "sky_relic_runner_shift",
+                                         "name":  "Sky Relic Runner Shift",
                                          "created_at":  "2026-01-18",
-                                         "path":  "games/mosaic_studio",
+                                         "path":  "games/sky_relic_runner_shift",
                                          "ui_skin":  ""
                                      },
                                      {
@@ -320,10 +431,10 @@
                                          "ui_skin":  ""
                                      },
                                      {
-                                         "id":  "orbit_dodger",
-                                         "name":  "Orbit Dodger",
+                                         "id":  "mosaic_studio",
+                                         "name":  "Mosaic Studio",
                                          "created_at":  "2026-01-18",
-                                         "path":  "games/orbit_dodger",
+                                         "path":  "games/mosaic_studio",
                                          "ui_skin":  ""
                                      },
                                      {
@@ -334,17 +445,17 @@
                                          "ui_skin":  ""
                                      },
                                      {
-                                         "id":  "sky_relic_runner_shift",
-                                         "name":  "Sky Relic Runner Shift",
-                                         "created_at":  "2026-01-18",
-                                         "path":  "games/sky_relic_runner_shift",
-                                         "ui_skin":  ""
-                                     },
-                                     {
                                          "id":  "sky_relic_runner",
                                          "name":  "Sky Relic Runner",
                                          "created_at":  "2026-01-18",
                                          "path":  "games/sky_relic_runner",
+                                         "ui_skin":  ""
+                                     },
+                                     {
+                                         "id":  "orbit_dodger",
+                                         "name":  "Orbit Dodger",
+                                         "created_at":  "2026-01-18",
+                                         "path":  "games/orbit_dodger",
                                          "ui_skin":  ""
                                      }
                                  ]

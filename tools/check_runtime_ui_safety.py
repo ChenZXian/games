@@ -7,6 +7,7 @@ from pathlib import Path
 
 
 ANDROID_NS = "{http://schemas.android.com/apk/res/android}"
+APP_NS = "{http://schemas.android.com/apk/res-auto}"
 VIEWPORTS = [
     ("small_phone_portrait", 480, 800),
     ("small_phone_landscape", 800, 480),
@@ -15,12 +16,24 @@ VIEWPORTS = [
     ("tablet_landscape", 1600, 900),
     ("tablet_square", 1200, 800),
 ]
+LANDSCAPE_VIEWPORTS = [
+    item for item in VIEWPORTS
+    if item[1] >= item[2]
+]
+PORTRAIT_VIEWPORTS = [
+    item for item in VIEWPORTS
+    if item[1] <= item[2]
+]
 MIN_TOUCH_WIDTH = 48.0
 MIN_TOUCH_HEIGHT = 44.0
 
 
 def attr(node, name, default=""):
     return node.attrib.get(ANDROID_NS + name, node.attrib.get("android:" + name, default))
+
+
+def app_attr(node, name, default=""):
+    return node.attrib.get(APP_NS + name, node.attrib.get("app:" + name, default))
 
 
 def dimen_value(project, value):
@@ -86,6 +99,30 @@ def resolve_text(node, strings):
     return value
 
 
+def manifest_orientation(project):
+    manifest = project / "app/src/main/AndroidManifest.xml"
+    if not manifest.exists():
+        return ""
+    try:
+        root = ET.parse(manifest).getroot()
+    except Exception:
+        return ""
+    for node in root.iter():
+        orientation = attr(node, "screenOrientation")
+        if orientation:
+            return orientation.lower()
+    return ""
+
+
+def viewport_matrix(project):
+    orientation = manifest_orientation(project)
+    if "landscape" in orientation:
+        return LANDSCAPE_VIEWPORTS
+    if "portrait" in orientation:
+        return PORTRAIT_VIEWPORTS
+    return VIEWPORTS
+
+
 def parse_gravity(value):
     return set(part.strip().lower() for part in (value or "").replace("|", " ").split() if part.strip())
 
@@ -99,8 +136,10 @@ def estimate_node_rect(project, node, viewport):
     margin_end = dimen_value(project, attr(node, "layout_marginEnd") or attr(node, "layout_marginRight") or attr(node, "layout_margin"))
     margin_top = dimen_value(project, attr(node, "layout_marginTop") or attr(node, "layout_margin"))
     margin_bottom = dimen_value(project, attr(node, "layout_marginBottom") or attr(node, "layout_margin"))
-    node_width = max(0.0, width - margin_start - margin_end) if w in ("match_parent", "fill_parent") else dimen_value(project, w)
-    node_height = max(0.0, height - margin_top - margin_bottom) if h in ("match_parent", "fill_parent") else dimen_value(project, h)
+    horizontal_constraint = bool(app_attr(node, "layout_constraintStart_toStartOf") or app_attr(node, "layout_constraintStart_toEndOf") or app_attr(node, "layout_constraintLeft_toLeftOf") or app_attr(node, "layout_constraintLeft_toRightOf")) and bool(app_attr(node, "layout_constraintEnd_toEndOf") or app_attr(node, "layout_constraintEnd_toStartOf") or app_attr(node, "layout_constraintRight_toRightOf") or app_attr(node, "layout_constraintRight_toLeftOf"))
+    vertical_constraint = bool(app_attr(node, "layout_constraintTop_toTopOf") or app_attr(node, "layout_constraintTop_toBottomOf")) and bool(app_attr(node, "layout_constraintBottom_toBottomOf") or app_attr(node, "layout_constraintBottom_toTopOf"))
+    node_width = max(0.0, width - margin_start - margin_end) if w in ("match_parent", "fill_parent") or (w in ("0dp", "0dip") and horizontal_constraint) else dimen_value(project, w)
+    node_height = max(0.0, height - margin_top - margin_bottom) if h in ("match_parent", "fill_parent") or (h in ("0dp", "0dip") and vertical_constraint) else dimen_value(project, h)
     if h == "wrap_content":
         node_height = estimate_wrap_height(project, node)
     if w == "wrap_content":
@@ -284,6 +323,8 @@ def estimate_horizontal_button_widths(project, row, buttons, viewport, strings):
     row_rect = estimate_node_rect(project, row, (viewport[1], viewport[2]))
     row_width = max(0.0, row_rect[2] - row_rect[0])
     row_height = max(0.0, row_rect[3] - row_rect[1])
+    if row_width <= 0.0 and parse_float(attr(row, "layout_weight"), 0.0) > 0.0:
+        row_width = estimate_wrap_width(project, row)
     if row_height <= 0.0 and parse_float(attr(row, "layout_weight"), 0.0) > 0.0:
         row_height = estimate_wrap_height(project, row)
     pad_start, pad_end, pad_top, pad_bottom = row_padding(project, row)
@@ -383,7 +424,7 @@ def main():
         report["warnings"].append("No GameView or SurfaceView found")
         return finish(report, args.json)
     strings = parse_strings(project)
-    viewports = VIEWPORTS
+    viewports = viewport_matrix(project)
     check_dense_control_rows(root, report)
     check_fixed_width_panels(project, root, report, viewports)
     check_button_touch_and_text(project, root, report, viewports, strings)

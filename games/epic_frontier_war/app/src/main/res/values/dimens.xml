@@ -24,7 +24,7 @@
   <dimen name="cst_text_xxl">32sp</dimen>
   <dimen name="cst_hud_height">68dp</dimen>
   <dimen name="cst_hud_badge_min_w">72dp</dimen>
-  <dimen name="cst_hud_icon_size">24dp</dimen>
+  <dimen name="cst_hud_icon_size">48dp</dimen>
   <dimen name="cst_button_height">48dp</dimen>
   <dimen name="cst_button_height_small">40dp</dimen>
   <dimen name="cst_panel_max_width">380dp</dimen>

@@ -1,4 +1,6 @@
 <resources>
+    <style name="Widget" />
+    <style name="Widget.Game" />
     <style name="TextAppearance.Game.Title" parent="TextAppearance.MaterialComponents.Headline4">
         <item name="android:textColor">@color/cst_text_primary</item>
         <item name="android:textSize">@dimen/cst_text_xxl</item>
@@ -38,7 +40,7 @@
         <item name="android:paddingEnd">@dimen/cst_pad_16</item>
         <item name="android:textSize">@dimen/cst_text_m</item>
     </style>
-    <style name="Widget.Game.Button.Icon" parent="Widget.AppCompat.ImageButton">
+    <style name="Widget.Game.Button.Icon" parent="Widget.MaterialComponents.Button">
         <item name="android:background">@drawable/ui_button_icon</item>
         <item name="android:padding">@dimen/cst_pad_8</item>
         <item name="android:tint">@color/cst_text_primary</item>

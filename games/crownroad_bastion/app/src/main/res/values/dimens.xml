@@ -25,5 +25,5 @@
     <dimen name="cst_hud_height">56dp</dimen>
     <dimen name="cst_command_panel_height">118dp</dimen>
     <dimen name="cst_hud_badge_min_w">86dp</dimen>
-    <dimen name="cst_hud_icon_size">42dp</dimen>
+    <dimen name="cst_hud_icon_size">48dp</dimen>
 </resources>
