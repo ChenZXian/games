@@ -1,7 +1,7 @@
 # Project Acceptance Baseline
 
-Version: 1.4
-Last updated: 2026-04-23
+Version: 1.5
+Last updated: 2026-05-07
 
 This document defines the generic structure and acceptance baseline for any Android Java mini-game in this repository.
 
@@ -104,6 +104,8 @@ For a delivery-ready result, the project should have:
 - a coherent UI direction using the repository UI workflow
 - a documented playfield safe area so decorative borders or HUD chrome do not block active gameplay space
 - a gameplay layout that materially reserves that safe area in `activity_main.xml`, container padding, or an equivalent verified viewport wrapper instead of relying on overlays sitting on top of a full-screen playfield
+- adaptive gameplay-state UI that remains readable across narrow phones, tall phones, and tablet-style aspect ratios
+- battle-state buttons, panels, bars, and floating controls that do not cover units, routes, nodes, lanes, build pads, drag paths, or other touch-critical gameplay targets
 - gameplay visuals that are not limited to bare placeholder circles or rectangles when a delivery-ready target is requested
 - UI that is more than UI Kit-only token scaffolding when a delivery-ready target is requested
 - a tracked gameplay art strategy using the repository gameplay art workflow when external or reusable character, map, prop, item, effect, or background assets are used
@@ -133,6 +135,7 @@ The expected readiness ladder is:
 - inspect can report `CAN_ENTER_PACK=true`
 - resource tracks are complete, not deferred or placeholder-only, for the intended release target
 - inspect and validate can report the playfield safe area as passed rather than warning or failed
+- inspect should block packaging when `UI_OCCLUSION_RISK` is not `low`
 - packaging is run only when explicitly requested
 
 ## 9. Initialization Residue Baseline
