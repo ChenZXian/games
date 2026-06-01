@@ -1,0 +1,17 @@
+{
+  "pack_id": "black_spade_table_art",
+  "title": "Black Spade Table Art",
+  "license": "Project Internal",
+  "source_url": "project_local_shared_pack",
+  "art_roles": [
+    "table",
+    "marker",
+    "badge",
+    "token"
+  ],
+  "style_tags": [
+    "card_table",
+    "felt",
+    "score_tokens"
+  ]
+}

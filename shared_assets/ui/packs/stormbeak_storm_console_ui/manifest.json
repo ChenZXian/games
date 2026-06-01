@@ -1,0 +1,14 @@
+{
+  "pack_id": "stormbeak_storm_console_ui",
+  "title": "Stormbeak Storm Console UI",
+  "license": "Project Internal",
+  "source_url": "project_local_shared_pack",
+  "recommended_ui_skin": "skin_dark_arcade",
+  "style_tags": [
+    "storm",
+    "siege",
+    "landscape",
+    "brass",
+    "teal"
+  ]
+}

@@ -1,113 +1,19 @@
 {
   "version": 1,
   "game_id": "island_supply_command",
-  "status": "warning",
-  "duplicate_risk": "medium",
-  "top_similarity": 0.3071,
+  "status": "passed",
+  "duplicate_risk": "low",
+  "top_similarity": 0.0,
   "fingerprint": {
     "version": 1,
     "game_id": "island_supply_command",
-    "tokens": [
-      "audio",
-      "boats",
-      "capture",
-      "convoy",
-      "core",
-      "entity",
-      "flagship",
-      "grow",
-      "harbors",
-      "intercept",
-      "islands",
-      "key",
-      "linked",
-      "logistics",
-      "naval",
-      "open",
-      "ports",
-      "pressure",
-      "routes",
-      "stock",
-      "strategy",
-      "supply",
-      "surge",
-      "tap",
-      "upgrade",
-      "variant"
-    ],
-    "mechanic_axes": [
-      "node_graph_capture"
-    ],
+    "tokens": [],
+    "mechanic_axes": [],
     "genre_family": "",
     "genre_archetype": "",
     "control_model": "",
-    "core_loop_signature": "tap linked harbors to open convoy routes, grow stock, surge or upgrade key ports, intercept enemy boats, and capture the enemy flagship through supply pressure"
+    "core_loop_signature": ""
   },
-  "similar_projects": [
-    {
-      "game_id": "territory_swarm",
-      "score": 0.3071,
-      "shared_axes": [
-        "node_graph_capture"
-      ]
-    }
-  ],
-  "nearest_projects": [
-    {
-      "game_id": "territory_swarm",
-      "score": 0.3071,
-      "shared_axes": [
-        "node_graph_capture"
-      ]
-    },
-    {
-      "game_id": "crownroad_bastion",
-      "score": 0.2852,
-      "shared_axes": [
-        "node_graph_capture"
-      ]
-    },
-    {
-      "game_id": "three_minute_empire",
-      "score": 0.2108,
-      "shared_axes": [
-        "node_graph_capture"
-      ]
-    },
-    {
-      "game_id": "ring_prefecture_clash",
-      "score": 0.2057,
-      "shared_axes": [
-        "node_graph_capture"
-      ]
-    },
-    {
-      "game_id": "mountain_pass_guard",
-      "score": 0.196,
-      "shared_axes": [
-        "node_graph_capture"
-      ]
-    },
-    {
-      "game_id": "crownblock_hunt",
-      "score": 0.1931,
-      "shared_axes": [
-        "node_graph_capture"
-      ]
-    },
-    {
-      "game_id": "scrap_ring_outpost",
-      "score": 0.1926,
-      "shared_axes": [
-        "node_graph_capture"
-      ]
-    },
-    {
-      "game_id": "iron_banner_realms",
-      "score": 0.159,
-      "shared_axes": [
-        "node_graph_capture"
-      ]
-    }
-  ]
+  "similar_projects": [],
+  "nearest_projects": []
 }

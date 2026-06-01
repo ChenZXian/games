@@ -1,0 +1,23 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <shape>
+            <corners android:radius="@dimen/cst_radius_m" />
+            <solid android:color="@color/cst_danger" />
+            <stroke
+                android:width="@dimen/cst_stroke_s"
+                android:color="@color/cst_warning" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <corners android:radius="@dimen/cst_radius_m" />
+            <gradient
+                android:angle="270"
+                android:endColor="@color/cst_danger"
+                android:startColor="#FF6E86" />
+            <stroke
+                android:width="@dimen/cst_stroke_s"
+                android:color="@color/cst_warning" />
+        </shape>
+    </item>
+</selector>

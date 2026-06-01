@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "game_id": "crystal_cavern_hook",
+  "theme": "generic arcade cave mining",
+  "overall_mood": "clear shared background music with existing crystal SFX",
+  "pacing": "medium arcade play with short reward and failure stings",
+  "menu_mood": "shared underground menu loop",
+  "gameplay_mood": "shared default arcade play loop",
+  "climax_mood": "brighter reward chimes for completed orders",
+  "bgm_roles": [
+    "menu",
+    "play",
+    "win",
+    "fail"
+  ],
+  "sfx_roles": [
+    "ui_click",
+    "launch",
+    "collect",
+    "tool",
+    "hazard",
+    "prism",
+    "win",
+    "fail"
+  ],
+  "asset_strategy": "reuse existing shared BGM files and keep project SFX assigned"
+}

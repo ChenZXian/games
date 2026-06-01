@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "game_id": "market_morning_farm",
+  "status": "initial_scaffold",
+  "asset_strategy": "canvas vector-style rendering until the gameplay art workflow assigns license-clear farm, market, and customer packs",
+  "required_roles": [
+    "crop_plots",
+    "seed_packets",
+    "crop_growth_stages",
+    "harvested_produce",
+    "storage_crate",
+    "stall_shelves",
+    "customer_sprites",
+    "coin_feedback",
+    "reputation_feedback",
+    "watering_effect",
+    "sold_out_marker",
+    "special_order_marker"
+  ],
+  "source_policy": "shared_assets/game_art first, then license-clear external pack through gameplay art workflow"
+}

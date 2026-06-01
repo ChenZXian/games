@@ -1,0 +1,162 @@
+{
+  "version": 1,
+  "game_id": "candy_pulse_parade",
+  "status": "passed",
+  "genre_family": "puzzle",
+  "genre_archetype": "objective_driven_match_3",
+  "camera_perspective": "fixed_top_down_board",
+  "control_model": "single_finger_adjacent_swap",
+  "core_loop_signature": "swap candies build cascades create specials break blockers clear stage goals within move limits",
+  "differentiation_axes": [
+    "first match-3 puzzle project in the repository",
+    "portrait-first centered board layout",
+    "spectacle-first cascade animation timing",
+    "objective and blocker routing rather than action combat pressure",
+    "chapter-based handcrafted board progression"
+  ],
+  "forbidden_template_reuse": [
+    "no action combat HUD reuse",
+    "no landscape lane battle layout",
+    "no bottom command strip from existing action titles",
+    "no one-blocker prototype board",
+    "no generic endless score chase as the primary mode"
+  ],
+  "map_content_budget": {
+    "play_area_model": "portrait rectangular candy board with chapter map progression",
+    "route_or_region_count": "120 stages across 6 chapters",
+    "interactive_regions": [
+      "main board grid",
+      "ingredient drop columns",
+      "portal-linked rows",
+      "conveyor segments",
+      "objective marquee"
+    ],
+    "terrain_types": [
+      "standard cells",
+      "jelly-coated cells",
+      "blocked crate cells",
+      "portal-linked cells",
+      "conveyor cells"
+    ],
+    "decorative_prop_count": "6 chapter visual themes",
+    "functional_map_elements": [
+      "jelly layers",
+      "frosting blocks",
+      "licorice locks",
+      "chocolate spreaders",
+      "ingredient exits",
+      "portals",
+      "conveyor rows"
+    ],
+    "landmarks": [
+      "chapter gate arch",
+      "candy parade stage",
+      "syrup fountain hub",
+      "finale celebration board"
+    ],
+    "camera_or_scroll_model": "static board camera with UI outside playfield"
+  },
+  "entity_content_budget": {
+    "player_unit_types": [
+      "player swap cursor"
+    ],
+    "enemy_types": [
+      "jelly blocker",
+      "frosting blocker",
+      "licorice lock",
+      "chocolate spreader",
+      "crate blocker",
+      "ingredient obstacle",
+      "portal routing obstacle",
+      "conveyor disruption tile"
+    ],
+    "neutral_or_resource_entities": [
+      "5 standard candy colors",
+      "ingredient pieces",
+      "objective order pieces"
+    ],
+    "boss_or_elite_types": [
+      "chapter finale spectacle boards"
+    ],
+    "projectile_or_effect_types": [
+      "striped blast",
+      "wrapped blast",
+      "rainbow clear",
+      "cascade pulse",
+      "syrup wave",
+      "celebration confetti"
+    ],
+    "item_or_powerup_types": [
+      "striped candy",
+      "wrapped candy",
+      "rainbow candy",
+      "earned pre-run booster"
+    ]
+  },
+  "mechanic_content_budget": {
+    "primary_player_actions": [
+      "select candy",
+      "swap adjacent candy",
+      "route cascades toward blockers",
+      "combine special candies"
+    ],
+    "secondary_player_actions": [
+      "trigger earned booster",
+      "read board hints",
+      "optimize move efficiency for stars"
+    ],
+    "upgrade_paths": [
+      "chapter unlock progression",
+      "star chest rewards",
+      "optional earned booster inventory"
+    ],
+    "wave_or_level_variants": [
+      "score target",
+      "jelly clear",
+      "order collection",
+      "ingredient drop",
+      "blocker purge",
+      "chapter finale spectacle stage"
+    ],
+    "special_rules": [
+      "special candy creation by larger matches",
+      "special plus special combination outcomes",
+      "cascades lock input until resolve completes",
+      "late-game portals and conveyors alter routing"
+    ],
+    "risk_reward_systems": [
+      "hold strong special pieces for combo fusion",
+      "choose between immediate clear and setup turn",
+      "use move budget for higher star efficiency"
+    ],
+    "failure_pressure_variants": [
+      "low move budget",
+      "board partitions",
+      "blocker spread pressure",
+      "ingredient routing complexity"
+    ]
+  },
+  "asset_variety_budget": {
+    "primary_game_art_packs": [
+      "custom candy puzzle art set"
+    ],
+    "secondary_game_art_packs": [
+      "shared UI polish assets matched to candy theme"
+    ],
+    "ui_pack": "custom candy refinement on top of skin_cartoon_light",
+    "animation_tier": "high",
+    "required_animation_states": [
+      "idle",
+      "selected",
+      "swap",
+      "match_pop",
+      "cascade_land",
+      "special_charge",
+      "special_trigger",
+      "blocker_damage",
+      "celebration_burst"
+    ],
+    "minimum_distinct_sprite_families": 16,
+    "asset_reuse_note": "prefer polished custom candy shapes and blocker silhouettes over generic circles or minimal placeholder gems"
+  }
+}

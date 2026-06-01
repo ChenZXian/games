@@ -1,0 +1,16 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/button_radius" />
+            <solid android:color="@color/cst_button_primary_dark" />
+            <stroke android:width="1dp" android:color="@color/cst_panel" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/button_radius" />
+            <gradient android:angle="270" android:startColor="@color/cst_button_primary" android:endColor="@color/cst_button_primary_dark" />
+            <stroke android:width="1dp" android:color="@color/cst_panel" />
+        </shape>
+    </item>
+</selector>

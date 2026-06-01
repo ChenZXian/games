@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Candy Pulse Parade</string>
+    <string name="btn_start">Start</string>
+    <string name="btn_restart">Restart</string>
+    <string name="btn_resume">Resume</string>
+    <string name="btn_menu">Menu</string>
+    <string name="btn_mute">Mute</string>
+    <string name="btn_how_to_play">How To Play</string>
+    <string name="label_stage">Stage</string>
+    <string name="label_combo">Combo</string>
+    <string name="label_score">Score</string>
+    <string name="label_moves">Moves</string>
+    <string name="label_goal">Goal</string>
+    <string name="label_chapter">Chapter</string>
+    <string name="label_collection">Candy Guide</string>
+    <string name="label_continue">Continue</string>
+    <string name="label_next">Next Stage</string>
+</resources>

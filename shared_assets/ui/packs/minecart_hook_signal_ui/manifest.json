@@ -1,0 +1,31 @@
+{
+  "pack_id": "minecart_hook_signal_ui",
+  "title": "Minecart Hook Signal UI",
+  "license": "Project Internal",
+  "license_url": "",
+  "source_url": "project_local_shared_pack",
+  "asset_types": [
+    "xml",
+    "canvas"
+  ],
+  "recommended_ui_skin": "skin_post_apocalypse",
+  "default_assignment_preset": "rail_signal_dashboard_landscape",
+  "assignment_presets": [
+    "rail_signal_dashboard_landscape"
+  ],
+  "style_tags": [
+    "post_apocalypse_rail",
+    "rusted_signal_dashboard",
+    "route_meter_panel",
+    "hazard_lamps",
+    "side_hook_runner"
+  ],
+  "quality_tags": [
+    "production",
+    "mobile_game",
+    "project_internal"
+  ],
+  "used_by": [
+    "minecart_hook_express"
+  ]
+}

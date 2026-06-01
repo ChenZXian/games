@@ -1,0 +1,21 @@
+{
+    "version":  1,
+    "game_id":  "crystal_cavern_hook",
+    "title":  "Crystal Cavern Hook",
+    "direction":  "A Gold Miner inspired Android Java arcade hook game set in a bright crystal cavern, focused on swing timing, refracted hook paths, order goals, hazards, and upgradeable tools.",
+    "selected_concept":  "Candidate 1 - Crystal Cavern Hook: use a swinging claw to pull crystals, gold nuggets, relic chests, bombs, and order targets from layered crystal caverns while avoiding shatter hazards and using tools to bend or speed up the hook.",
+    "status":  "confirmed",
+    "ui_skin":  "skin_cartoon_light",
+    "current_stage":  "requirements",
+    "created_at_utc":  "2026-05-27T02:25:00Z",
+    "updated_at_utc":  "2026-05-27T02:41:06Z",
+    "selected_at_utc":  "2026-05-27T02:25:00Z",
+    "confirmed_at_utc":  "2026-05-27T02:41:06Z",
+    "files":  {
+                  "metadata_json":  "artifacts/requirements/crystal_cavern_hook/metadata.json",
+                  "requirements_md":  "artifacts/requirements/crystal_cavern_hook/requirements.md",
+                  "candidates_md":  "",
+                  "gameplay_diversity_json":  "artifacts/requirements/crystal_cavern_hook/gameplay_diversity.json",
+                  "visual_identity_json":  "artifacts/requirements/crystal_cavern_hook/visual_identity.json"
+              }
+}

@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "game_id": "black_spade_alliance",
+  "assigned_at_utc": "2026-04-29T08:24:00Z",
+  "pack_id": "black_spade_table_art",
+  "pack_title": "Black Spade Table Art",
+  "project_pack_path": "app/src/main/assets/game_art/black_spade_table_art",
+  "license": "Project Internal",
+  "license_url": "",
+  "source_url": "project_local_shared_pack",
+  "style_tags": [
+    "card_table",
+    "felt",
+    "chips",
+    "score_tokens"
+  ],
+  "art_roles": [
+    "table",
+    "marker",
+    "badge",
+    "token"
+  ]
+}

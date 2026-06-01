@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "game_id": "meadow_snack_ranch",
+  "status": "passed",
+  "visual_differentiation_axes": [
+    "cookbook recipe rail as the main command surface",
+    "right-side delivery clipboard instead of bottom order strip",
+    "semi-realistic animal silhouettes inside a warm cartoon ranch",
+    "mint meadow, barn red, sunflower yellow, and milk white palette signature",
+    "launcher icon centered on a realistic cow head with feed bowl and recipe tag"
+  ],
+  "forbidden_visual_reuse": [
+    "do not reuse Market Morning Farm crate-and-stall icon",
+    "do not reuse Pasture Parade Deluxe generic pen badge composition",
+    "do not use repeated top HUD pills plus bottom command strip",
+    "do not represent animals as simple round blobs",
+    "do not let decorative frames cover the ranch board or animal touch zones"
+  ],
+  "ui_identity": {
+    "layout_archetype": "storybook ranch board with left cookbook recipe rail and right delivery clipboard",
+    "hud_composition": "compact day clock and coin badge at upper left, reputation ribbon near upper center, freshness cooler meter as a small lower-right dock outside the animal pens",
+    "navigation_model": "main menu opens into ranch board; recipe rail, order clipboard, upgrades sheet, pause sheet, and result sheet appear as anchored panels",
+    "palette_signature": "mint meadow green, milk white panels, barn red section tabs, sunflower yellow reward highlights, small sky blue accents",
+    "material_language": "painted wood tabs, paper recipe cards, soft raised buttons, stitched cloth badges, light shadows",
+    "typography_style": "rounded friendly English UI text with clear hierarchy and large numeric counters",
+    "primary_ui_pack": "skin_cartoon_light with custom ranch cookbook and clipboard drawable refinements",
+    "secondary_ui_assets": [
+      "feed recipe card icons",
+      "order stamp badges",
+      "small product quality stars",
+      "wood tab panel headers"
+    ],
+    "playfield_safety": {
+      "reserved_edges": [
+        "left 18 percent for cookbook rail",
+        "right 22 percent for order clipboard",
+        "top 12 percent for small HUD only",
+        "bottom 10 percent for cooler dock and toast area"
+      ],
+      "hud_anchor_zones": [
+        "upper left clock and coins",
+        "upper center reputation ribbon",
+        "right clipboard orders",
+        "left cookbook recipes"
+      ],
+      "protected_gameplay_zones": [
+        "central animal pens",
+        "ingredient beds",
+        "feed mixer drop zone",
+        "collection crate path"
+      ],
+      "frame_overlay_policy": "decorative wood and paper frames must sit in reserved side panels or dead space only and must never overlap animal bodies, drop targets, ingredient beds, or collection crates"
+    },
+    "unique_screen_motifs": [
+      "recipe book page flips",
+      "delivery clipboard stamps",
+      "barn tag upgrade sheet",
+      "cooler freshness gauge shaped like a milk bottle"
+    ],
+    "forbidden_ui_elements": [
+      "generic sci-fi meters",
+      "dark arcade panels",
+      "full-width bottom command bar",
+      "oversized modal cards covering active animals",
+      "single hue blue-only cartoon UI"
+    ]
+  },
+  "icon_identity": {
+    "subject": "friendly realistic dairy cow head beside a wooden feed bowl with colorful snack pieces and a small recipe tag",
+    "silhouette": "large cow head with visible muzzle, ears, small horns, and bowl crescent at the bottom",
+    "composition": "cow head fills the upper center, feed bowl anchors the lower foreground, recipe tag overlaps one side without hiding the face",
+    "palette": "milk white, black cow patches, mint green background, barn red tag, sunflower yellow snack highlights",
+    "background": "rounded meadow badge with subtle grass base and light sky rim",
+    "game_specific_motif": "recipe tag marked by simple feed icons to communicate snack mixing, not generic ranch care",
+    "forbidden_icon_reuse": [
+      "no market crate foreground",
+      "no flower crop basket",
+      "no generic barn-only icon",
+      "no single animal silhouette without feed recipe motif"
+    ]
+  }
+}

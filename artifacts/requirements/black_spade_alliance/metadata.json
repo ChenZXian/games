@@ -1,0 +1,21 @@
+{
+    "version":  1,
+    "game_id":  "black_spade_alliance",
+    "title":  "Black Spade Alliance",
+    "direction":  "Custom four-seat shedding card game with alliance cards, one human player, three AI players, five-round score match",
+    "selected_concept":  "Black Spade Alliance",
+    "status":  "confirmed",
+    "ui_skin":  "skin_dark_arcade",
+    "current_stage":  "requirements",
+    "created_at_utc":  "2026-04-29T07:48:50Z",
+    "updated_at_utc":  "2026-04-29T08:24:00Z",
+    "selected_at_utc":  "2026-04-29T07:48:50Z",
+    "confirmed_at_utc":  "2026-04-29T08:24:00Z",
+    "files":  {
+                  "metadata_json":  "artifacts/requirements/black_spade_alliance/metadata.json",
+                  "requirements_md":  "artifacts/requirements/black_spade_alliance/requirements.md",
+                  "candidates_md":  "",
+                  "gameplay_diversity_json":  "artifacts/requirements/black_spade_alliance/gameplay_diversity.json",
+                  "visual_identity_json":  "artifacts/requirements/black_spade_alliance/visual_identity.json"
+              }
+}

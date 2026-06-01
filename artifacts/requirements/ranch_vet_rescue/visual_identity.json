@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "game_id": "ranch_vet_rescue",
+  "status": "passed",
+  "visual_differentiation_axes": [
+    "bottom treatment card tray as the main command surface",
+    "curved left-side animal intake lane",
+    "right-side station status rack with timers",
+    "clinic awning and heart-tag recovery motifs",
+    "launcher icon combines real animal faces with ranch medical kit rather than feed bowl or market crate"
+  ],
+  "forbidden_visual_reuse": [
+    "do not reuse Meadow Snack Ranch cookbook rail and delivery clipboard composition",
+    "do not reuse Meadow Snack Ranch cow with feed bowl icon",
+    "do not reuse Market Morning Farm crate icon or stall framing",
+    "do not reuse Pasture Parade Deluxe generic pen badge layout",
+    "do not cover active animal paths or station drop zones with decorative frames"
+  ],
+  "ui_identity": {
+    "layout_archetype": "cozy pasture clinic board with bottom treatment card tray, curved intake lane, and right station status rack",
+    "hud_composition": "upper-left shift timer, top-center heart-tag trust meter, upper-right coins and stress counter, selected animal condition tag near bottom tray",
+    "navigation_model": "menu opens to clinic board; diagnosis, upgrade, pause, help, and result views appear as anchored clinic sheets",
+    "palette_signature": "clean meadow green, warm clinic white, soft coral red, straw yellow, and medicine teal",
+    "material_language": "canvas awnings, rounded wooden station signs, paper diagnosis tags, cloth treatment cards, soft shadowed clinic panels",
+    "typography_style": "rounded friendly English labels with clear condition icon captions and large trust numbers",
+    "primary_ui_pack": "skin_cartoon_light with clinic-specific card tray and station sign refinements",
+    "secondary_ui_assets": [
+      "condition tag chips",
+      "treatment card icons",
+      "station timer rings",
+      "heart trust badges",
+      "release stamp effects"
+    ],
+    "playfield_safety": {
+      "reserved_edges": [
+        "bottom 18 percent for treatment card tray",
+        "right 20 percent for station status rack",
+        "top 11 percent for trust and timer HUD",
+        "left curved lane reserved for intake path"
+      ],
+      "hud_anchor_zones": [
+        "upper-left shift timer",
+        "top-center trust meter",
+        "upper-right coins and stress",
+        "bottom treatment tray",
+        "right station rack"
+      ],
+      "protected_gameplay_zones": [
+        "animal arrival lane",
+        "diagnosis desk",
+        "care station drop zones",
+        "recovery meadow",
+        "release gate"
+      ],
+      "frame_overlay_policy": "decorative clinic awnings, boards, and frames must stay inside reserved panels or station headers and must never overlap animal drag paths, station hitboxes, or release gate interactions"
+    },
+    "unique_screen_motifs": [
+      "paper diagnosis tags",
+      "heart-shaped recovery stamp",
+      "red-cross ranch kit header",
+      "station timer rings",
+      "cloth treatment cards"
+    ],
+    "forbidden_ui_elements": [
+      "left cookbook rail",
+      "right delivery clipboard",
+      "bottom-only generic command strip without cards",
+      "dark arcade panel treatment",
+      "single hue blue medical UI",
+      "oversized modal covering active station zones"
+    ]
+  },
+  "icon_identity": {
+    "subject": "friendly realistic cow head and rabbit beside a red-cross ranch medical kit with a heart recovery tag",
+    "silhouette": "cow muzzle and small horns on one side, tall rabbit ears on the other side, handled medical kit at the bottom, heart tag hanging forward",
+    "composition": "animal faces fill the upper half, medical kit anchors the lower foreground, heart tag overlaps the kit edge, meadow clinic badge background remains visible",
+    "palette": "milk white, warm brown, clinic white, coral red, medicine teal, straw yellow, meadow green",
+    "background": "rounded meadow clinic badge with soft awning stripe and pale green pasture base",
+    "game_specific_motif": "heart recovery tag attached to a ranch medical kit to communicate veterinary rescue",
+    "forbidden_icon_reuse": [
+      "no cow feed bowl foreground",
+      "no recipe tag",
+      "no market crate",
+      "no flower basket",
+      "no generic medical cross without animals",
+      "no barn-only icon"
+    ]
+  }
+}

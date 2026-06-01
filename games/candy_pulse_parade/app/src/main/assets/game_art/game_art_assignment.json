@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "game_id": "candy_pulse_parade",
+  "assigned_at_utc": "2026-05-11T02:51:00Z",
+  "packs": [
+    {
+      "pack_id": "candy_pulse_runtime_art",
+      "pack_title": "Candy Pulse Runtime Art Pack",
+      "license": "Project Internal",
+      "license_url": "",
+      "source_url": "project_local_shared_pack",
+      "project_pack_path": "app/src/main/assets/game_art"
+    }
+  ]
+}

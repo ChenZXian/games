@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/cst_bg_alt" />
+    <stroke android:width="@dimen/cst_stroke_m" android:color="@color/cst_accent" />
+    <corners android:radius="@dimen/cst_radius_l" />
+    <padding android:left="@dimen/cst_pad_20" android:top="@dimen/cst_pad_16" android:right="@dimen/cst_pad_20" android:bottom="@dimen/cst_pad_16" />
+</shape>

@@ -1,0 +1,30 @@
+<resources>
+    <color name="cst_bg_main">#0D1310</color>
+    <color name="cst_table_outer">#271A12</color>
+    <color name="cst_table_inner">#174B34</color>
+    <color name="cst_panel">#C8A96E</color>
+    <color name="cst_panel_dark">#3A291D</color>
+    <color name="cst_panel_mid">#5A4330</color>
+    <color name="cst_button_primary">#C89A42</color>
+    <color name="cst_button_primary_dark">#8F6224</color>
+    <color name="cst_button_secondary">#314137</color>
+    <color name="cst_button_secondary_dark">#1E2922</color>
+    <color name="cst_text_primary">#FFF6E2</color>
+    <color name="cst_text_secondary">#E2D0A7</color>
+    <color name="cst_text_dark">#22150C</color>
+    <color name="cst_card_face">#FFFDF8</color>
+    <color name="cst_card_edge">#E4DCCB</color>
+    <color name="cst_card_shadow">#33000000</color>
+    <color name="cst_card_back">#7A1421</color>
+    <color name="cst_card_back_dark">#4B0A12</color>
+    <color name="cst_red">#D03535</color>
+    <color name="cst_black">#161616</color>
+    <color name="cst_win">#E8C86A</color>
+    <color name="cst_loss">#8B4C4C</color>
+    <color name="cst_overlay">#CC0F0E0A</color>
+    <color name="cst_meter_track">#29352E</color>
+    <color name="cst_meter_fill">#D5A042</color>
+    <color name="cst_chip">#0F2D21</color>
+    <color name="cst_divider">#6F573D</color>
+    <color name="cst_badge_red">#B82C2C</color>
+</resources>

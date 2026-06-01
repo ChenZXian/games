@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Market Morning Farm</string>
+    <string name="btn_start">Start Market</string>
+    <string name="btn_restart">Restart Day</string>
+    <string name="btn_resume">Resume</string>
+    <string name="btn_menu">Menu</string>
+    <string name="btn_mute">Sound</string>
+    <string name="btn_how_to_play">How To Play</string>
+    <string name="btn_next_day">Next Day</string>
+    <string name="btn_upgrades">Upgrades</string>
+    <string name="btn_pause">Pause</string>
+    <string name="hud_revenue">Revenue</string>
+    <string name="hud_reputation">Reputation</string>
+</resources>

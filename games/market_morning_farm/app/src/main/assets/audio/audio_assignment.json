@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "game_id": "market_morning_farm",
+  "status": "complete",
+  "audio_brief": {
+    "theme": "sunny morning farm market",
+    "mood": "warm cheerful acoustic small town market",
+    "pacing": "medium gentle upbeat",
+    "style_tags": [
+      "farm",
+      "market",
+      "acoustic",
+      "cheerful",
+      "casual",
+      "cartoon",
+      "produce"
+    ]
+  },
+  "bgm": {
+    "menu": {
+      "shared_id": "bgm_menu_market_morning_farm_20260526",
+      "project_file": "audio/bgm_menu.wav"
+    },
+    "play": {
+      "shared_id": "bgm_play_market_morning_farm_20260526",
+      "project_file": "audio/bgm.wav"
+    },
+    "win": {
+      "shared_id": "bgm_win_market_morning_farm_20260526",
+      "project_file": "audio/bgm_win.wav"
+    },
+    "fail": {
+      "shared_id": "bgm_fail_market_morning_farm_20260526",
+      "project_file": "audio/bgm_fail.wav"
+    }
+  },
+  "sfx": {
+    "ui_click": {
+      "shared_id": "sfx_ui_click_market_morning_farm_20260526",
+      "project_file": "audio/sfx_ui_click.wav"
+    },
+    "plant": {
+      "shared_id": "sfx_plant_market_morning_farm_20260526",
+      "project_file": "audio/sfx_plant.wav"
+    },
+    "water": {
+      "shared_id": "sfx_water_market_morning_farm_20260526",
+      "project_file": "audio/sfx_water.wav"
+    },
+    "harvest": {
+      "shared_id": "sfx_harvest_market_morning_farm_20260526",
+      "project_file": "audio/sfx_harvest.wav"
+    },
+    "sell": {
+      "shared_id": "sfx_sell_market_morning_farm_20260526",
+      "project_file": "audio/sfx_sell.wav"
+    },
+    "upgrade": {
+      "shared_id": "sfx_upgrade_market_morning_farm_20260526",
+      "project_file": "audio/sfx_upgrade.wav"
+    },
+    "win": {
+      "shared_id": "sfx_win_market_morning_farm_20260526",
+      "project_file": "audio/sfx_win.wav"
+    },
+    "fail": {
+      "shared_id": "sfx_fail_market_morning_farm_20260526",
+      "project_file": "audio/sfx_fail.wav"
+    }
+  },
+  "source": "repository_synthesis_fallback",
+  "runtime": "MediaPlayer BGM with ToneGenerator SFX fallback"
+}

@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "game_id": "lunar_salvage_miner",
+  "status": "passed",
+  "reviewed_at": "2026-05-28",
+  "requirements_source": "artifacts/requirements/lunar_salvage_miner/requirements.md",
+  "review_scope": [
+    "core loop",
+    "controls",
+    "resource pressure",
+    "hazards",
+    "region progression",
+    "base repair",
+    "UI safe area",
+    "icon",
+    "audio"
+  ],
+  "implemented_mechanics": [
+    "cart repositioning with left and right hold controls",
+    "tap-to-launch electromagnetic hook",
+    "scanner sweep with battery cost",
+    "magnet boost with battery cost",
+    "oxygen drain and recovery canisters",
+    "battery drain and recovery cells",
+    "hull damage from meteor impacts",
+    "meteor fragments, moon rocks, cable snags, scrap, module parts, rare cores, oxygen, and battery targets",
+    "six ruin regions with base repair progress",
+    "game over on oxygen, battery, or hull failure",
+    "win state after restoring all regions",
+    "menu, pause, help, HUD, and result states",
+    "tracked BGM and SFX assignment"
+  ],
+  "known_delivery_notes": [
+    "runtime art is custom canvas rendering tracked through a project internal shared pack",
+    "UI is custom XML and canvas dashboard rendering tracked through a project internal shared pack"
+  ],
+  "result": "The implementation preserves the confirmed Lunar Salvage Miner requirements closely enough for debug APK packaging."
+}

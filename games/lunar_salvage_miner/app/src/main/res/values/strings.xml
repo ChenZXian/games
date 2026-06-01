@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Lunar Salvage Miner</string>
+    <string name="btn_start">Start</string>
+    <string name="btn_restart">Restart</string>
+    <string name="btn_resume">Resume</string>
+    <string name="btn_menu">Menu</string>
+    <string name="btn_mute">Sound</string>
+    <string name="btn_how_to_play">Help</string>
+    <string name="btn_scan">Scan</string>
+    <string name="btn_boost">Boost</string>
+    <string name="btn_left">Left</string>
+    <string name="btn_right">Right</string>
+    <string name="btn_pause">Pause</string>
+</resources>

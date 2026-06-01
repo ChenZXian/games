@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Pocket Landlord Classic</string>
+    <string name="btn_start">Start</string>
+    <string name="btn_restart">Restart</string>
+    <string name="btn_resume">Resume</string>
+    <string name="btn_menu">Menu</string>
+    <string name="btn_mute">Mute</string>
+    <string name="btn_how_to_play">How To Play</string>
+    <string name="btn_play">Play</string>
+    <string name="btn_pass">Pass</string>
+    <string name="btn_hint">Hint</string>
+    <string name="btn_sort">Sort</string>
+    <string name="btn_clear">Clear</string>
+    <string name="btn_call_one">Call 1</string>
+    <string name="btn_call_two">Call 2</string>
+    <string name="btn_call_three">Call 3</string>
+    <string name="btn_pass_bid">Pass Bid</string>
+    <string name="btn_next">Next</string>
+    <string name="btn_drill">Drill</string>
+</resources>

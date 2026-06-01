@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "game_id": "pocket_landlord_classic",
+  "status": "integrated",
+  "camera_perspective": "top_down_table",
+  "runtime_code": "app/src/main/java/com/android/boot/ui/GameTableView.java",
+  "animation_quality_target": "polished_card_table_feedback",
+  "entities": [
+    {
+      "entity_key": "player_and_ai_cards",
+      "role": "card",
+      "asset_keys": [
+        "game_art/runtime_art_map.json"
+      ],
+      "default_facing": "upright",
+      "facing_rule": "cards remain upright for readability and fan from each seat anchor",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "hitbox": {
+        "x": 0.05,
+        "y": 0.05,
+        "w": 0.9,
+        "h": 0.9
+      },
+      "z_order": "card_layer",
+      "states": [
+        "idle",
+        "selected",
+        "hinted",
+        "played",
+        "winning_finish"
+      ],
+      "animation_rule": "cards lift when selected, snap into trick lanes, and pulse gold on hint highlight",
+      "movement_rule": "player cards fan along the bottom rail while ai cards stack vertically at seat anchors"
+    },
+    {
+      "entity_key": "table_markers",
+      "role": "badge",
+      "asset_keys": [
+        "game_art/felt_badge.png",
+        "game_art/lead_token.png",
+        "game_art/alliance_seal.png"
+      ],
+      "default_facing": "screen_upright",
+      "facing_rule": "badges remain upright and pin to reserved table hud zones",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "hitbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "w": 1.0,
+        "h": 1.0
+      },
+      "z_order": "table_badge_layer",
+      "states": [
+        "idle",
+        "landlord_marked",
+        "lead_marked",
+        "result_marked"
+      ],
+      "animation_rule": "badges fade in and hold position during key round states",
+      "movement_rule": "badges are static overlays tied to game state"
+    }
+  ]
+}

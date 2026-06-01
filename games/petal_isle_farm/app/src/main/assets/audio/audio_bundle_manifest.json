@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "game_id": "petal_isle_farm",
+  "theme": "storybook flower estate",
+  "mood": "warm calm bright",
+  "pacing": "gentle management loop",
+  "bgm_roles": [
+    {
+      "role": "play",
+      "file": "bgm.wav",
+      "loop": true,
+      "style_tags": [
+        "garden",
+        "acoustic",
+        "light",
+        "pastoral"
+      ]
+    }
+  ],
+  "sfx_roles": [
+    {
+      "role": "ui_click",
+      "file": "sfx_ui_click.wav"
+    },
+    {
+      "role": "fail",
+      "file": "sfx_fail.wav"
+    },
+    {
+      "role": "win",
+      "file": "sfx_win.wav"
+    }
+  ]
+}

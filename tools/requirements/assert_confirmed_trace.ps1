@@ -42,14 +42,12 @@ if ([string]::IsNullOrWhiteSpace([string]$metadata.ui_skin)) {
   throw "Requirements trace is missing ui_skin."
 }
 
-$checkerPath = Join-Path $PSScriptRoot "check_gameplay_diversity.py"
-python $checkerPath --path $gameplayDiversityPath --strict
+& powershell -ExecutionPolicy Bypass -File (Join-Path $PSScriptRoot "check_gameplay_diversity.ps1") -GameId $GameId -Strict
 if ($LASTEXITCODE -ne 0) {
   throw "Gameplay diversity contract is not passed for $GameId."
 }
 
-$visualCheckerPath = Join-Path $PSScriptRoot "check_visual_identity.py"
-python $visualCheckerPath --path $visualIdentityPath --strict
+& powershell -ExecutionPolicy Bypass -File (Join-Path $PSScriptRoot "check_visual_identity.ps1") -GameId $GameId -Strict
 if ($LASTEXITCODE -ne 0) {
   throw "Visual identity contract is not passed for $GameId."
 }

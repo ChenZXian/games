@@ -1,0 +1,93 @@
+{
+  "version": 1,
+  "game_id": "candy_pulse_parade",
+  "status": "passed",
+  "visual_differentiation_axes": [
+    "portrait candy theater layout",
+    "top objective marquee with floating side counters",
+    "glossy confection material language",
+    "bright pastel parade palette",
+    "striped rainbow candy burst icon subject"
+  ],
+  "forbidden_visual_reuse": [
+    "no action-combat HUD shell reuse",
+    "no dark arcade framing",
+    "no military or industrial motifs",
+    "no top-pill plus bottom-strip action layout",
+    "no reused weapon, fist, fortress, ranch, or map icon subject"
+  ],
+  "ui_identity": {
+    "layout_archetype": "portrait candy theater with top marquee, centered board stage, and bottom utility tray",
+    "hud_composition": [
+      "top objective marquee",
+      "left floating chapter badge and score ribbon",
+      "right moves counter tower",
+      "bottom booster and utility tray"
+    ],
+    "navigation_model": "chapter map to stage card to gameplay to result panel",
+    "palette_signature": [
+      "taffy cyan",
+      "berry pink",
+      "lemon yellow",
+      "cream white",
+      "mint accent"
+    ],
+    "material_language": "glossy candy shell, syrup glass, jelly translucency, cream borders",
+    "typography_style": "playful rounded display with clean readable body text",
+    "primary_ui_pack": "custom candy refinement on skin_cartoon_light",
+    "secondary_ui_assets": [
+      "syrup glass panels",
+      "striped marquee chips",
+      "candy shard celebration effects"
+    ],
+    "playfield_safety": {
+      "reserved_edges": [
+        "top hud band",
+        "bottom utility tray"
+      ],
+      "hud_anchor_zones": [
+        "top outside board",
+        "left outside board",
+        "right outside board",
+        "bottom outside board"
+      ],
+      "protected_gameplay_zones": [
+        "entire active candy grid"
+      ],
+      "frame_overlay_policy": "decorative frame remains outside board bounds and must not cover cells"
+    },
+    "unique_screen_motifs": [
+      "candy parade curtains",
+      "marquee starbursts",
+      "syrup ribbon transitions",
+      "chapter confection landmarks"
+    ],
+    "forbidden_ui_elements": [
+      "combat health bars",
+      "bottom command strip buttons from action titles",
+      "heavy metallic rails",
+      "dark tactical cards"
+    ]
+  },
+  "icon_identity": {
+    "subject": "striped rainbow candy exploding from a parade ribbon arc",
+    "silhouette": "large rounded candy core with diagonal stripe slash and shard halo",
+    "composition": "single dominant candy centered with burst ring and ribbon sweep behind it",
+    "palette": [
+      "pink",
+      "cyan",
+      "yellow",
+      "cream"
+    ],
+    "background": "soft sky-blue or pale yellow sugar burst",
+    "game_specific_motif": "parade ribbon and candy shard celebration",
+    "forbidden_icon_reuse": [
+      "no fists",
+      "no weapons",
+      "no towers",
+      "no farm animals",
+      "no tactical maps",
+      "no reused badge silhouettes from existing icons"
+    ]
+  }
+}

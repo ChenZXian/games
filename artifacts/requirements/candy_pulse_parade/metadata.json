@@ -1,0 +1,21 @@
+{
+    "version":  1,
+    "game_id":  "candy_pulse_parade",
+    "title":  "Candy Pulse Parade",
+    "direction":  "match-3 puzzle with beautiful elimination animation and beautiful UI",
+    "selected_concept":  "Candy Pulse Parade",
+    "status":  "confirmed",
+    "ui_skin":  "skin_cartoon_light",
+    "current_stage":  "requirements",
+    "created_at_utc":  "2026-05-11T02:17:08Z",
+    "updated_at_utc":  "2026-05-11T02:18:57Z",
+    "selected_at_utc":  "2026-05-11T02:17:08Z",
+    "confirmed_at_utc":  "2026-05-11T02:18:57Z",
+    "files":  {
+                  "metadata_json":  "artifacts/requirements/candy_pulse_parade/metadata.json",
+                  "requirements_md":  "artifacts/requirements/candy_pulse_parade/requirements.md",
+                  "candidates_md":  "",
+                  "gameplay_diversity_json":  "artifacts/requirements/candy_pulse_parade/gameplay_diversity.json",
+                  "visual_identity_json":  "artifacts/requirements/candy_pulse_parade/visual_identity.json"
+              }
+}

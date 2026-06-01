@@ -1,0 +1,95 @@
+﻿{
+  "version": 1,
+  "game_id": "prism_sector_collapse",
+  "status": "passed",
+  "visual_differentiation_axes": [
+    "oversized reactor board with thin telemetry shell",
+    "dark neon console palette",
+    "left spine plus right objective stack HUD composition",
+    "sharp prism icon silhouette",
+    "color-accessibility symbols on every standard piece"
+  ],
+  "forbidden_visual_reuse": [
+    "no candy theater layout",
+    "no rounded confection panels",
+    "no pastel celebration palette",
+    "no top objective marquee with bottom tray",
+    "no ribbon-burst candy icon silhouette"
+  ],
+  "ui_identity": {
+    "layout_archetype": "reactor survey console with giant central board, thin top telemetry strip, left sector spine, and right objective stack",
+    "hud_composition": [
+      "thin top telemetry strip",
+      "left vertical sector and chain spine",
+      "right moves and objective modules",
+      "no bottom tray during core gameplay"
+    ],
+    "navigation_model": "sector console menu to stage node grid to gameplay to debrief panel",
+    "palette_signature": [
+      "graphite black",
+      "cyan glow",
+      "lime signal",
+      "amber warning",
+      "magenta pulse",
+      "white highlights"
+    ],
+    "material_language": "glassy reactor panels, luminous contour lines, matte industrial backdrop, hard-edged prism cells",
+    "typography_style": "squared futuristic display numerals with condensed technical labels",
+    "primary_ui_pack": "custom reactor refinement on skin_neon_future",
+    "secondary_ui_assets": [
+      "telemetry dividers",
+      "reactor contour frames",
+      "signal glyph badges"
+    ],
+    "playfield_safety": {
+      "reserved_edges": [
+        "top hud strip",
+        "left spine",
+        "right module rail"
+      ],
+      "hud_anchor_zones": [
+        "top outside board",
+        "left outside board",
+        "right outside board"
+      ],
+      "protected_gameplay_zones": [
+        "entire active prism board"
+      ],
+      "frame_overlay_policy": "all framing remains outside board bounds and no persistent control overlays may cover cells"
+    },
+    "unique_screen_motifs": [
+      "reactor scan grids",
+      "sector warning glyphs",
+      "prism fracture highlights",
+      "debrief waveform panels"
+    ],
+    "forbidden_ui_elements": [
+      "candy badges",
+      "cream borders",
+      "soft toybox buttons",
+      "bottom gameplay command strip"
+    ]
+  },
+  "icon_identity": {
+    "subject": "fractured prism cube releasing a cross-shaped energy burst",
+    "silhouette": "tilted sharp-edged prism cube with shard wings and a bright central flare",
+    "composition": "single dominant prism core in the center with angular shards and cross-beam energy",
+    "palette": [
+      "cyan",
+      "lime",
+      "magenta",
+      "white",
+      "graphite"
+    ],
+    "background": "deep navy or graphite reactor field with a restrained glow ring",
+    "game_specific_motif": "reactor prism fracture and sector energy release",
+    "forbidden_icon_reuse": [
+      "no candy burst",
+      "no ribbons",
+      "no fists",
+      "no shields",
+      "no fortress silhouettes",
+      "no reused soft round icon subjects"
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "game_id": "crystal_cavern_hook",
+  "ui_skin": "skin_cartoon_light",
+  "screen_list": [
+    "menu",
+    "help",
+    "playing_hud",
+    "pause",
+    "result"
+  ],
+  "hud_priorities": [
+    "score",
+    "timer",
+    "stage",
+    "tool charges",
+    "order progress"
+  ],
+  "playfield_safe_area": {
+    "top": "winch beam is outside CrystalGameView",
+    "right": "tool pocket is outside CrystalGameView",
+    "bottom": "order rail is outside CrystalGameView",
+    "center": "full hook arc remains visible inside CrystalGameView"
+  },
+  "frame_policy": "decorative chrome stays in XML-reserved strips or inactive overlays",
+  "asset_strategy": "project-local XML chrome and Canvas gameplay art with no external binary imports",
+  "visual_identity_alignment": "matches brass winch beam, faceted tool pocket, protected cavern viewport, and carved order rail"
+}

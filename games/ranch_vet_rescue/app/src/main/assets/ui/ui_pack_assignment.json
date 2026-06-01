@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "game_id": "ranch_vet_rescue",
+  "status": "integrated_custom_runtime",
+  "ui_skin": "skin_cartoon_light",
+  "pack_id": "kenney_ui_pack",
+  "preset": "canonical_cartoon_light_green",
+  "assignment_type": "shared_ui_pack_reference_with_custom_runtime_refinement",
+  "source": "project_text_resources_with_shared_pack_reference",
+  "shared_pack_reference": {
+    "pack_id": "kenney_ui_pack",
+    "title": "Kenney UI Pack 2.0",
+    "license": "CC0-1.0",
+    "source_url": "https://kenney.nl/assets/ui-pack",
+    "usage": "style reference for rounded cartoon light buttons and color grouping"
+  },
+  "screen_structure": [
+    "main menu overlay",
+    "active clinic board",
+    "pause overlay",
+    "shift result overlay"
+  ],
+  "layout_identity": {
+    "hud_model": "top compact status blocks with central trust meter",
+    "playfield_model": "intake lane left, care board center, station rack right, treatment tray bottom",
+    "frame_policy": "decorative clinic chrome stays in reserved edge zones",
+    "primary_controls": [
+      "start shift",
+      "help",
+      "pause",
+      "resume",
+      "restart",
+      "animal drag",
+      "station tap"
+    ]
+  },
+  "asset_strategy": {
+    "current_tier": "custom runtime clinic UI",
+    "future_tier": "optional bitmap refinement through UI workflow",
+    "provenance": "generated XML drawables, vector icons, and Java canvas UI elements"
+  }
+}

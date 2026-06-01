@@ -1,0 +1,6 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <gradient
+        android:angle="270"
+        android:endColor="@color/cst_stage_sky_bottom"
+        android:startColor="@color/cst_stage_sky_top" />
+</shape>

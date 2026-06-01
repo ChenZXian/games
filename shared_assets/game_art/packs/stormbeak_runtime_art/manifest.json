@@ -1,0 +1,17 @@
+{
+  "pack_id": "stormbeak_runtime_art",
+  "title": "Stormbeak Runtime Art Pack",
+  "license": "Project Internal",
+  "source_url": "project_local_shared_pack",
+  "art_roles": [
+    "projectile",
+    "structure",
+    "background"
+  ],
+  "style_tags": [
+    "stormbird",
+    "siege",
+    "floating_fortress",
+    "runtime_drawn"
+  ]
+}

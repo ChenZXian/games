@@ -1,9 +1,9 @@
 {
   "version": 1,
   "game_id": "crownroad_bastion",
-  "status": "failed",
-  "duplicate_risk": "high",
-  "top_similarity": 0.4217,
+  "status": "passed",
+  "duplicate_risk": "low",
+  "top_similarity": 0.0,
   "fingerprint": {
     "version": 1,
     "game_id": "crownroad_bastion",
@@ -112,7 +112,6 @@
       "raider",
       "rally",
       "ram",
-      "reach",
       "reinforcement",
       "reinforcements",
       "rejoin",
@@ -137,13 +136,11 @@
       "square",
       "start",
       "stop",
-      "strategy",
       "stubs",
       "summon",
       "swarm",
       "tap",
       "target",
-      "they",
       "three",
       "tier",
       "time",
@@ -172,116 +169,6 @@
     "control_model": "tap_build_pad_tap_hero_destination_tap_spell_target",
     "core_loop_signature": "build towers on fixed pads around a curved merge split road network move a hero rally barracks cast spells and stop fantasy waves before the bastion gate"
   },
-  "similar_projects": [
-    {
-      "game_id": "scrap_ring_outpost",
-      "score": 0.4217,
-      "shared_axes": [
-        "node_graph_capture",
-        "tower_defense"
-      ]
-    },
-    {
-      "game_id": "mountain_pass_guard",
-      "score": 0.4035,
-      "shared_axes": [
-        "node_graph_capture",
-        "tower_defense"
-      ]
-    },
-    {
-      "game_id": "crown_frontier_tactics",
-      "score": 0.3292,
-      "shared_axes": [
-        "node_graph_capture",
-        "tower_defense"
-      ]
-    },
-    {
-      "game_id": "iron_banner_realms",
-      "score": 0.3282,
-      "shared_axes": [
-        "node_graph_capture",
-        "tower_defense"
-      ]
-    },
-    {
-      "game_id": "empire_wall_guard",
-      "score": 0.3096,
-      "shared_axes": [
-        "tower_defense"
-      ]
-    },
-    {
-      "game_id": "castaway_clan",
-      "score": 0.303,
-      "shared_axes": [
-        "node_graph_capture",
-        "tower_defense"
-      ]
-    }
-  ],
-  "nearest_projects": [
-    {
-      "game_id": "scrap_ring_outpost",
-      "score": 0.4217,
-      "shared_axes": [
-        "node_graph_capture",
-        "tower_defense"
-      ]
-    },
-    {
-      "game_id": "mountain_pass_guard",
-      "score": 0.4035,
-      "shared_axes": [
-        "node_graph_capture",
-        "tower_defense"
-      ]
-    },
-    {
-      "game_id": "crown_frontier_tactics",
-      "score": 0.3292,
-      "shared_axes": [
-        "node_graph_capture",
-        "tower_defense"
-      ]
-    },
-    {
-      "game_id": "iron_banner_realms",
-      "score": 0.3282,
-      "shared_axes": [
-        "node_graph_capture",
-        "tower_defense"
-      ]
-    },
-    {
-      "game_id": "empire_wall_guard",
-      "score": 0.3096,
-      "shared_axes": [
-        "tower_defense"
-      ]
-    },
-    {
-      "game_id": "castaway_clan",
-      "score": 0.303,
-      "shared_axes": [
-        "node_graph_capture",
-        "tower_defense"
-      ]
-    },
-    {
-      "game_id": "royal_line_defense",
-      "score": 0.299,
-      "shared_axes": [
-        "tower_defense"
-      ]
-    },
-    {
-      "game_id": "minecart_bastion",
-      "score": 0.2932,
-      "shared_axes": [
-        "tower_defense"
-      ]
-    }
-  ]
+  "similar_projects": [],
+  "nearest_projects": []
 }

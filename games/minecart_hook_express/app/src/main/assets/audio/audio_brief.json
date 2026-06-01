@@ -1,0 +1,23 @@
+{
+  "game_id": "minecart_hook_express",
+  "theme": "minecart rail hook express",
+  "mood": "tense mechanical mine runner with hot cable pressure",
+  "pacing": "fast rhythmic rail pressure with short metallic action cues",
+  "no_new_generation": true,
+  "bgm_roles": {
+    "menu": "low underground station loop for route planning and garage decisions",
+    "play": "scrapyard rail pulse for constant auto-scroll pressure"
+  },
+  "sfx_roles": {
+    "ui_click": "menu and panel acknowledgement",
+    "launch": "side hook cable shot",
+    "collect": "ore, gem, bolt, and coolant pickup",
+    "lane": "rail lane switch or switch box trigger",
+    "hazard": "barricade pull, broken rail clear, or impact",
+    "warning": "heat, durability, or speed danger",
+    "upgrade": "repair bolt, coolant support, or garage upgrade",
+    "win": "station contract success",
+    "fail": "cart disabled or station miss"
+  },
+  "status": "complete"
+}

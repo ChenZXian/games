@@ -1,0 +1,136 @@
+{
+  "version": 1,
+  "game_id": "stormbeak_siege",
+  "status": "passed",
+  "genre_family": "physics destruction puzzle action",
+  "genre_archetype": "landscape slingshot elemental bird siege with fortress-core targeting",
+  "camera_perspective": "fixed landscape side-view siege field",
+  "control_model": "drag-release slingshot aiming with one-tap mid-flight skill activation",
+  "core_loop_signature": "aim elemental stormbirds at modular sky fortresses trigger air skills collapse support chains and destroy the core in limited shots",
+  "differentiation_axes": [
+    "landscape side-view fortress assault instead of portrait puzzle board play",
+    "elemental bird classes with air-trigger skills instead of plain impact-only launchers",
+    "floating wind towers and suspended bridges instead of grounded pig forts",
+    "core-destruction and storm relay targets instead of only enemy elimination",
+    "chapter weather rules that alter projectile arc and debris behavior"
+  ],
+  "forbidden_template_reuse": [
+    "no candy or reactor board mechanics",
+    "no reuse of the prior tactical bird fortress loop template",
+    "no generic ground castle-only stages across the whole game",
+    "no top hud pill plus bottom strip reuse",
+    "no icon subject unrelated to the stormbird hero"
+  ],
+  "map_content_budget": {
+    "play_area_model": "landscape slingshot lane on the left with suspended fortress field to the right",
+    "route_or_region_count": 6,
+    "interactive_regions": [
+      "slingshot launch pad",
+      "air lane",
+      "fortress structure cluster",
+      "storm relay devices",
+      "core chamber",
+      "debris landing zone"
+    ],
+    "terrain_types": [
+      "cliff launch perch",
+      "floating bridge span",
+      "cloudstone tower",
+      "storm crystal platform",
+      "airship deck",
+      "tempest ruin"
+    ],
+    "decorative_prop_count": 14,
+    "functional_map_elements": [
+      "hanging chains",
+      "rope bridges",
+      "storm relays",
+      "powder barrels",
+      "wind fans",
+      "shield cores",
+      "collapse plates"
+    ],
+    "landmarks": [
+      "chapter fortress cores",
+      "boss citadel turbines",
+      "lightning pylons"
+    ],
+    "camera_or_scroll_model": "fixed stage camera with slight impact shake only"
+  },
+  "entity_content_budget": {
+    "player_unit_types": 5,
+    "enemy_types": 6,
+    "neutral_or_resource_entities": 7,
+    "boss_or_elite_types": 4,
+    "projectile_or_effect_types": 12,
+    "item_or_powerup_types": 5
+  },
+  "mechanic_content_budget": {
+    "primary_player_actions": [
+      "drag aim",
+      "release launch",
+      "trigger mid-flight skill",
+      "choose bird order",
+      "target support weakpoints"
+    ],
+    "secondary_player_actions": [
+      "camera nudge preview",
+      "retry instantly",
+      "inspect structure weakpoints",
+      "activate chapter utility booster"
+    ],
+    "upgrade_paths": [
+      "chapter unlock progression",
+      "bird squad expansion",
+      "skill potency upgrades",
+      "cosmetic nest banner unlocks"
+    ],
+    "wave_or_level_variants": [
+      "core break",
+      "all enemies clear",
+      "relay overload",
+      "cargo rescue",
+      "storm boss tower"
+    ],
+    "special_rules": [
+      "crosswinds alter arcs",
+      "ice shells freeze joints",
+      "lightning birds chain between metal anchors",
+      "wind birds split debris fields",
+      "lava birds ignite powder stores"
+    ],
+    "risk_reward_systems": [
+      "saving elite birds for core shots",
+      "choosing chain-collapse over direct enemy hits",
+      "using weather boosts at precise timing"
+    ],
+    "failure_pressure_variants": [
+      "limited bird count",
+      "shielded core timer",
+      "hostage loss risk",
+      "boss retaliatory hazards"
+    ]
+  },
+  "asset_variety_budget": {
+    "primary_game_art_packs": [
+      "project-local stormbird siege art set"
+    ],
+    "secondary_game_art_packs": [
+      "shared fantasy support props if style-matched"
+    ],
+    "ui_pack": "skin_dark_arcade refined into wind-forged siege dashboard",
+    "animation_tier": "high",
+    "required_animation_states": [
+      "idle perch",
+      "launch stretch",
+      "mid-flight skill",
+      "impact burst",
+      "debris collapse",
+      "core overload",
+      "enemy panic",
+      "victory flare"
+    ],
+    "minimum_distinct_sprite_families": 9,
+    "asset_reuse_note": "must not reuse prior bird slingshot silhouettes, puzzle icons, or generic castle attack assets without storm-element differentiation"
+  }
+}
