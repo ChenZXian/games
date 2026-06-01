@@ -1,0 +1,183 @@
+{
+  "version": 1,
+  "game_id": "minecart_hook_express",
+  "status": "passed",
+  "genre_family": "arcade action runner",
+  "genre_archetype": "auto-scrolling rail runner with side hooks and lane switching",
+  "camera_perspective": "side-view forward scrolling rail corridor",
+  "control_model": "left half tap fires left hook, right half tap fires right hook, vertical swipe changes rail lane, tap hold charges heavy pull",
+  "core_loop_signature": "auto rolling cart reads upcoming rail segment, fires side hook to collect ore or pull obstacles, switches lanes to avoid danger, reaches station, scores cargo, buys cart and hook upgrades",
+  "differentiation_axes": [
+    "moving cart instead of fixed hook turret",
+    "side hooks rather than downward pendulum claw",
+    "lane switching and rail hazards share priority with resource collection",
+    "station target scoring replaces open minefield score chasing",
+    "cable heat and cart durability create runner pressure",
+    "route chapters and express stations create progression"
+  ],
+  "forbidden_template_reuse": [
+    "do not reuse fixed gold miner or crystal cave hook field",
+    "do not reuse lunar oxygen battery repair loop",
+    "do not reuse tower defense rails or moving turret patrol rules",
+    "do not use a farm, ranch, card table, or static puzzle board layout",
+    "do not collapse the game into one lane or one obstacle type"
+  ],
+  "map_content_budget": {
+    "play_area_model": "three horizontal rail lanes in a side-view auto-scrolling mine corridor with side target walls",
+    "route_or_region_count": "4 chapters, each with 5 station routes and 1 final express route",
+    "interactive_regions": [
+      "upper rail",
+      "middle rail",
+      "lower rail",
+      "left side hook wall",
+      "right side hook wall",
+      "station approach",
+      "bonus depot lane"
+    ],
+    "terrain_types": [
+      "wooden mine tunnel",
+      "iron bridge",
+      "coal cavern",
+      "crystal seam pocket",
+      "switchyard",
+      "station platform"
+    ],
+    "decorative_prop_count": "at least 18 rail signs, lamps, braces, crates, pipes, sparks, and tunnel props",
+    "functional_map_elements": [
+      "split rail forks",
+      "switch levers",
+      "broken rails",
+      "bridge gaps",
+      "ore walls",
+      "side barricades",
+      "moving gates",
+      "station gates"
+    ],
+    "landmarks": [
+      "coal depot",
+      "amber bridge",
+      "deep switchyard",
+      "gem lift",
+      "old station clock",
+      "express terminus"
+    ],
+    "camera_or_scroll_model": "constant rightward scroll with speed ramps and preview distance scaling by chapter"
+  },
+  "entity_content_budget": {
+    "player_unit_types": [
+      "minecart",
+      "left hook",
+      "right hook",
+      "heated cable"
+    ],
+    "enemy_types": [
+      "crusher gate",
+      "rolling boulder",
+      "sparking rail hazard",
+      "falling timber"
+    ],
+    "neutral_or_resource_entities": [
+      "copper ore",
+      "silver ore",
+      "amber gem",
+      "coal crate",
+      "rare bolt",
+      "cargo wagon"
+    ],
+    "boss_or_elite_types": [
+      "final express crusher chain",
+      "timed switchyard gauntlet",
+      "heavy barricade convoy"
+    ],
+    "projectile_or_effect_types": [
+      "hook cable",
+      "latch spark",
+      "ore burst",
+      "rail change dust",
+      "impact flash",
+      "warning light"
+    ],
+    "item_or_powerup_types": [
+      "coolant can",
+      "armor plate",
+      "cargo magnet",
+      "speed brake token",
+      "station bonus stamp"
+    ]
+  },
+  "mechanic_content_budget": {
+    "primary_player_actions": [
+      "fire left hook",
+      "fire right hook",
+      "switch rail lane",
+      "charge heavy pull"
+    ],
+    "secondary_player_actions": [
+      "release overheated cable",
+      "hit side switch lever",
+      "pull barricade from rail",
+      "choose upgrade after station"
+    ],
+    "upgrade_paths": [
+      "hook range",
+      "rewind speed",
+      "cable heat capacity",
+      "cart durability",
+      "cargo multiplier",
+      "switch reaction assist"
+    ],
+    "wave_or_level_variants": [
+      "ore rush",
+      "barricade route",
+      "split switch lane",
+      "bridge gap route",
+      "crusher gauntlet",
+      "station bonus sprint"
+    ],
+    "special_rules": [
+      "heavy targets require charged hook",
+      "overheated cable temporarily disables hooks",
+      "some switches must be pulled before cart reaches fork",
+      "cargo wagons slow the cart but increase station payout"
+    ],
+    "risk_reward_systems": [
+      "optional bonus depot lanes have more ore and more hazards",
+      "charging hook pulls heavy rewards but raises heat",
+      "late lane switches save time but risk collision",
+      "undamaged arrival multiplies cargo value"
+    ],
+    "failure_pressure_variants": [
+      "cart durability loss",
+      "hard barricade collision",
+      "broken rail fall",
+      "missed station target",
+      "cable overheat at critical switch"
+    ]
+  },
+  "asset_variety_budget": {
+    "primary_game_art_packs": [
+      "project internal minecart runtime art",
+      "license-clear rail or mine prop pack if available"
+    ],
+    "secondary_game_art_packs": [
+      "industrial UI pack",
+      "shared audio mechanical rail cues"
+    ],
+    "ui_pack": "skin_post_apocalypse",
+    "animation_tier": "medium 2D runner animation with moving wheels, hook launch states, obstacle pull states, and impact effects",
+    "required_animation_states": [
+      "cart rolling",
+      "cart lane change",
+      "hook ready",
+      "hook launch",
+      "hook latch",
+      "hook pull",
+      "hook rewind",
+      "obstacle break",
+      "ore collect",
+      "station arrival"
+    ],
+    "minimum_distinct_sprite_families": "at least 10 visible families: cart, hook, cable, rails, ore, gems, barricades, switches, hazards, stations",
+    "asset_reuse_note": "rail and mine assets may share industrial texture language, but icon, HUD, cart, side hooks, and station motifs must be unique to this game"
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "game_id": "minecart_hook_express",
+  "status": "passed",
+  "visual_differentiation_axes": [
+    "fast side-view rail corridor instead of fixed mining field",
+    "dual side hook cables crossing the playfield",
+    "station signal dashboard instead of rounded top score pills",
+    "coal black, rust red, signal green, steel gray, and amber ore palette",
+    "minecart speed silhouette rather than static hook or lunar salvage claw",
+    "right-side route distance meter with station stamps"
+  ],
+  "forbidden_visual_reuse": [
+    "do not reuse crystal cave brass claw or prism order rail",
+    "do not reuse lunar dashboard oxygen and battery gauges",
+    "do not reuse farm market shelves or ranch animal cards",
+    "do not reuse tower defense build pads, shields, or medieval badges",
+    "do not use a generic gold nugget hook icon",
+    "do not place large HUD panels over side hook corridors"
+  ],
+  "ui_identity": {
+    "layout_archetype": "rail express dashboard with top signal bar, central scrolling track, right station route meter, and compact bottom garage controls",
+    "hud_composition": "durability gauge, cargo value, cable heat, current lane, station target, route distance, and warning signal lamps",
+    "navigation_model": "menu to chapter route map to gameplay to station result to garage upgrades, with pause and help overlays",
+    "palette_signature": "coal black, iron gray, rust red, amber ore glow, signal green, safety yellow, and cream gauge text",
+    "material_language": "riveted metal, worn rail signs, station lamps, hazard stripes, old gauge glass, chain hooks, and timber braces",
+    "typography_style": "condensed industrial sans labels with uppercase English station codes and readable numeric gauges",
+    "primary_ui_pack": "skin_post_apocalypse with rail signal dashboard tuning",
+    "secondary_ui_assets": [
+      "station stamp strip",
+      "cable heat gauge",
+      "lane signal lights",
+      "route distance ruler",
+      "garage upgrade plates",
+      "warning lamp badges"
+    ],
+    "playfield_safety": {
+      "reserved_edges": [
+        "top 12 percent for signal bar and cargo gauges",
+        "right 12 percent for route distance meter",
+        "bottom 10 percent for compact upgrade or result controls outside gameplay",
+        "left and right hook corridors remain open during play"
+      ],
+      "hud_anchor_zones": [
+        "top-left durability",
+        "top-center cargo and target",
+        "top-right cable heat",
+        "right route meter",
+        "bottom result controls only outside active route"
+      ],
+      "protected_gameplay_zones": [
+        "three rail lanes",
+        "left hook travel corridor",
+        "right hook travel corridor",
+        "upcoming obstacle preview zone",
+        "station approach gates"
+      ],
+      "frame_overlay_policy": "decorative rails, rivets, and signal frames must stay outside active lanes and must never cover hook targets, switches, obstacles, or lane change warnings"
+    },
+    "unique_screen_motifs": [
+      "chapter map as stamped rail tickets",
+      "station result as cargo manifest",
+      "garage upgrades as bolted cart plates",
+      "help overlay as switchyard signal diagram"
+    ],
+    "forbidden_ui_elements": [
+      "generic rounded score pill row",
+      "wide bottom command strip covering rails",
+      "lunar oxygen battery dashboard",
+      "farm shop shelf cards",
+      "animal portraits",
+      "static minefield order panel"
+    ]
+  },
+  "icon_identity": {
+    "subject": "speeding minecart firing two side hooks, one grabbing amber ore and one pulling a red rail barricade",
+    "silhouette": "diagonal minecart motion, crossed hook cables, rail track arc, ore sparkle, and torn barricade plank",
+    "composition": "cart in lower center racing right, left hook cable reaches amber ore, right hook cable yanks a warning barricade, curved rail and tunnel glow behind",
+    "palette": "coal black, steel gray, rust red, amber ore glow, signal green, safety yellow",
+    "background": "dark mine tunnel badge with curved rails, sparks, and station signal lights",
+    "game_specific_motif": "moving minecart dual side hooks and rail obstacle pulling",
+    "forbidden_icon_reuse": [
+      "no static gold hook and nugget",
+      "no crystal claw badge",
+      "no lunar oxygen canister or satellite panel",
+      "no farm crate",
+      "no animal face",
+      "no shield or sword"
+    ]
+  }
+}

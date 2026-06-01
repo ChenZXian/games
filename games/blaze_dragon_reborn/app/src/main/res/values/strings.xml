@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Blaze Dragon Reborn</string>
+    <string name="btn_start">Start</string>
+    <string name="btn_restart">Restart</string>
+    <string name="btn_resume">Resume</string>
+    <string name="btn_menu">Menu</string>
+    <string name="btn_mute">Sound</string>
+    <string name="btn_how_to_play">Training</string>
+    <string name="label_stage">Stage</string>
+    <string name="label_combo">Combo</string>
+    <string name="label_chi">Chi</string>
+</resources>

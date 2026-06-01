@@ -1,0 +1,15 @@
+{
+  "pack_id": "candy_pulse_runtime_art",
+  "title": "Candy Pulse Runtime Art Pack",
+  "license": "Project Internal",
+  "source_url": "project_local_shared_pack",
+  "style_tags": [
+    "candy",
+    "glossy",
+    "pastel",
+    "runtime_drawn"
+  ],
+  "used_by": [
+    "candy_pulse_parade"
+  ]
+}

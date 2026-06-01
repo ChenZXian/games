@@ -1,0 +1,13 @@
+<resources>
+    <dimen name="screen_padding">16dp</dimen>
+    <dimen name="panel_radius">18dp</dimen>
+    <dimen name="button_radius">16dp</dimen>
+    <dimen name="chip_radius">14dp</dimen>
+    <dimen name="header_height">64dp</dimen>
+    <dimen name="action_bar_height">92dp</dimen>
+    <dimen name="button_height">44dp</dimen>
+    <dimen name="table_margin">12dp</dimen>
+    <dimen name="card_corner">10dp</dimen>
+    <dimen name="card_elevation">4dp</dimen>
+    <dimen name="dialog_width">320dp</dimen>
+</resources>

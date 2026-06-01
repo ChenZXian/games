@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "game_id": "meadow_snack_ranch",
+  "pack_id": "kenney_ui_pack",
+  "pack_title": "Kenney UI Pack 2.0",
+  "preset_id": "canonical_cartoon_light_green",
+  "preset_title": "Canonical Cartoon Light Green",
+  "ui_skin": "skin_cartoon_light",
+  "style_tags": [
+    "clean",
+    "rounded",
+    "cartoon_friendly",
+    "multicolor",
+    "ranch",
+    "cookbook",
+    "clipboard"
+  ],
+  "source_url": "https://kenney.nl/assets/ui-pack",
+  "license": "CC0-1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "assigned_at_utc": "2026-05-26T07:35:00Z",
+  "copied_items": [
+    {
+      "type": "drawable",
+      "logical_name": "ui_button_primary",
+      "source": "drawable/button_primary_green_gloss.png",
+      "target": "app/src/main/res/drawable/ui_button_primary.png"
+    },
+    {
+      "type": "drawable",
+      "logical_name": "ui_button_secondary",
+      "source": "drawable/button_secondary_grey_gloss.png",
+      "target": "app/src/main/res/drawable/ui_button_secondary.png"
+    },
+    {
+      "type": "drawable",
+      "logical_name": "ui_button_icon",
+      "source": "drawable/button_icon_round_green_gloss.png",
+      "target": "app/src/main/res/drawable/ui_button_icon.png"
+    },
+    {
+      "type": "font",
+      "logical_name": "kenney_future_narrow",
+      "source": "font/kenney_future_narrow.ttf",
+      "target": "app/src/main/res/font/kenney_future_narrow.ttf"
+    }
+  ],
+  "custom_refinements": [
+    "storybook ranch board",
+    "left cookbook rail",
+    "right delivery clipboard",
+    "milk bottle cooler meter",
+    "wood tab headers"
+  ]
+}

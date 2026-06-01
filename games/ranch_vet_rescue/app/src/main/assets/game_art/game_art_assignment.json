@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "game_id": "ranch_vet_rescue",
+  "status": "integrated_custom_runtime",
+  "pack_id": "kenney_animal_pack",
+  "assignment_type": "shared_game_art_pack_reference_with_custom_runtime_silhouettes",
+  "source": "project_canvas_shapes_with_shared_pack_reference",
+  "shared_pack_reference": {
+    "pack_id": "kenney_animal_pack",
+    "title": "Kenney Animal Pack",
+    "license": "CC0-1.0",
+    "source_url": "https://kenney.nl/assets/animal-pack",
+    "usage": "style reference for friendly animal readability; runtime uses project-local silhouettes for required farm species"
+  },
+  "art_direction": "cozy pasture veterinary clinic with readable realistic animal silhouettes",
+  "required_roles": [
+    "dairy cow",
+    "laying hen",
+    "wool sheep",
+    "goat",
+    "piglet",
+    "rabbit",
+    "care stations",
+    "condition markers",
+    "release gate"
+  ],
+  "current_roles": [
+    "cow",
+    "hen",
+    "sheep",
+    "goat",
+    "piglet",
+    "rabbit",
+    "tonic station",
+    "brush station",
+    "blanket station",
+    "medicine station",
+    "recovery station",
+    "release gate"
+  ],
+  "asset_strategy": {
+    "current_tier": "custom runtime silhouette art",
+    "future_tier": "license-clear semi-realistic farm animal sprites with multi-state variants",
+    "provenance": "generated Java canvas rendering with CC0 shared pack reference"
+  }
+}

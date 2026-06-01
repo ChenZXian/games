@@ -1,5 +1,4 @@
-{
-<<<<<<< HEAD
+﻿{
     "version":  1,
     "packs":  [
                   {
@@ -37,7 +36,9 @@
                       "used_by":  [
                                       "bloom_orchard",
                                       "island_supply_command",
-                                      "petal_isle_farm"
+                                      "candy_pulse_parade",
+                                      "meadow_snack_ranch",
+                                      "ranch_vet_rescue"
                                   ],
                       "validated_with":  [
                                              "bloom_orchard"
@@ -70,7 +71,8 @@
                                        ],
                       "path":  "packs/kenney_pixel_ui_pack",
                       "used_by":  [
-                                      "crownblock_hunt"
+                                      "crownblock_hunt",
+                                      "blaze_dragon_reborn"
                                   ],
                       "validated_with":  [
 
@@ -105,7 +107,7 @@
                                        ],
                       "path":  "packs/kenney_ui_pack_sci_fi",
                       "used_by":  [
-
+                                      "prism_sector_collapse"
                                   ],
                       "validated_with":  [
 
@@ -142,7 +144,10 @@
                       "used_by":  [
                                       "empire_wall_guard",
                                       "crownroad_bastion",
-                                      "crown_frontier_tactics"
+                                      "crown_frontier_tactics",
+                                      "castaway_clan",
+                                      "bronze_camp_command",
+                                      "iron_banner_realms"
                                   ],
                       "validated_with":  [
 
@@ -212,7 +217,9 @@
                       "path":  "packs/kenney_ui_pack_rusted_control",
                       "used_by":  [
                                       "minecart_bastion",
-                                      "ashen_frontier"
+                                      "ashen_frontier",
+                                      "mountain_pass_guard",
+                                      "scrap_ring_outpost"
                                   ],
                       "validated_with":  [
 
@@ -246,224 +253,117 @@
                                        ],
                       "path":  "packs/black_spade_ui_pack",
                       "used_by":  [
-                                      "black_spade_alliance"
+                                      "black_spade_alliance",
+                                      "pocket_landlord_classic"
                                   ],
                       "validated_with":  [
                                              "black_spade_alliance"
                                          ]
+                  },
+                  {
+                      "pack_id":  "stormbeak_storm_console_ui",
+                      "title":  "Stormbeak Storm Console UI",
+                      "license":  "Project Internal",
+                      "license_url":  "",
+                      "source_url":  "project_local_shared_pack",
+                      "asset_types":  [
+                                          "xml",
+                                          "png"
+                                      ],
+                      "recommended_ui_skin":  "skin_dark_arcade",
+                      "default_assignment_preset":  "storm_console_landscape",
+                      "assignment_presets":  [
+                                                 "storm_console_landscape"
+                                             ],
+                      "style_tags":  [
+                                         "storm",
+                                         "siege",
+                                         "landscape",
+                                         "brass",
+                                         "teal"
+                                     ],
+                      "quality_tags":  [
+                                           "production",
+                                           "mobile_game",
+                                           "project_internal"
+                                       ],
+                      "path":  "packs/stormbeak_storm_console_ui",
+                      "used_by":  [
+                                      "stormbeak_siege"
+                                  ],
+                      "validated_with":  [
+                                             "stormbeak_siege"
+                                         ]
+                  },
+                  {
+                      "pack_id":  "lunar_salvage_dashboard_ui",
+                      "title":  "Lunar Salvage Dashboard UI",
+                      "license":  "Project Internal",
+                      "license_url":  "",
+                      "source_url":  "project_local_shared_pack",
+                      "asset_types":  [
+                                          "xml",
+                                          "canvas"
+                                      ],
+                      "recommended_ui_skin":  "skin_military_tech",
+                      "default_assignment_preset":  "lunar_dashboard_landscape",
+                      "assignment_presets":  [
+                                                 "lunar_dashboard_landscape"
+                                             ],
+                      "style_tags":  [
+                                         "lunar_dashboard",
+                                         "segmented_gauges",
+                                         "eva_controls",
+                                         "blueprint_module_rail",
+                                         "vacuum_navy_teal_amber"
+                                     ],
+                      "quality_tags":  [
+                                           "production",
+                                           "mobile_game",
+                                           "project_internal"
+                                       ],
+                      "path":  "packs/lunar_salvage_dashboard_ui",
+                      "used_by":  [
+                                      "lunar_salvage_miner"
+                                  ],
+                      "validated_with":  [
+                                             "lunar_salvage_miner"
+                                         ]
+                  },
+                  {
+                      "pack_id":  "minecart_hook_signal_ui",
+                      "title":  "Minecart Hook Signal UI",
+                      "license":  "Project Internal",
+                      "license_url":  "",
+                      "source_url":  "project_local_shared_pack",
+                      "asset_types":  [
+                                          "xml",
+                                          "canvas"
+                                      ],
+                      "recommended_ui_skin":  "skin_post_apocalypse",
+                      "default_assignment_preset":  "rail_signal_dashboard_landscape",
+                      "assignment_presets":  [
+                                                 "rail_signal_dashboard_landscape"
+                                             ],
+                      "style_tags":  [
+                                         "post_apocalypse_rail",
+                                         "rusted_signal_dashboard",
+                                         "route_meter_panel",
+                                         "hazard_lamps",
+                                         "side_hook_runner"
+                                     ],
+                      "quality_tags":  [
+                                           "production",
+                                           "mobile_game",
+                                           "project_internal"
+                                       ],
+                      "path":  "packs/minecart_hook_signal_ui",
+                      "used_by":  [
+                                      "minecart_hook_express"
+                                  ],
+                      "validated_with":  [
+                                             "minecart_hook_express"
+                                         ]
                   }
               ]
-=======
-  "version": 1,
-  "packs": [
-    {
-      "pack_id": "kenney_ui_pack",
-      "title": "Kenney UI Pack 2.0",
-      "license": "CC0-1.0",
-      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-      "source_url": "https://kenney.nl/assets/ui-pack",
-      "asset_types": [
-        "png",
-        "svg",
-        "ttf",
-        "wav"
-      ],
-      "recommended_ui_skin": "skin_cartoon_light",
-      "default_assignment_preset": "canonical_cartoon_light",
-      "assignment_presets": [
-        "canonical_cartoon_light",
-        "canonical_cartoon_light_green",
-        "canonical_cartoon_light_yellow",
-        "canonical_cartoon_light_red"
-      ],
-      "style_tags": [
-        "clean",
-        "rounded",
-        "cartoon_friendly",
-        "multicolor"
-      ],
-      "quality_tags": [
-        "production",
-        "mobile_game",
-        "casual"
-      ],
-      "path": "packs/kenney_ui_pack",
-      "used_by": [
-        "bloom_orchard",
-        "island_supply_command"
-      ],
-      "validated_with": [
-        "bloom_orchard"
-      ]
-    },
-    {
-      "pack_id": "kenney_pixel_ui_pack",
-      "title": "Kenney Pixel UI Pack",
-      "license": "CC0-1.0",
-      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-      "source_url": "https://kenney.nl/assets/pixel-ui-pack",
-      "asset_types": [
-        "png"
-      ],
-      "recommended_ui_skin": "skin_dark_arcade",
-      "default_assignment_preset": "canonical_pixel_green",
-      "assignment_presets": [
-        "canonical_pixel_green"
-      ],
-      "style_tags": [
-        "pixel",
-        "retro",
-        "arcade",
-        "adventure"
-      ],
-      "quality_tags": [
-        "production",
-        "retro",
-        "pixel_art"
-      ],
-      "path": "packs/kenney_pixel_ui_pack",
-      "used_by": [
-        "crownblock_hunt"
-      ],
-      "validated_with": []
-    },
-    {
-      "pack_id": "kenney_ui_pack_sci_fi",
-      "title": "Kenney UI Pack Sci-Fi",
-      "license": "CC0-1.0",
-      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-      "source_url": "https://kenney.nl/assets/ui-pack-sci-fi",
-      "asset_types": [
-        "png",
-        "ttf"
-      ],
-      "recommended_ui_skin": "skin_neon_future",
-      "default_assignment_preset": "canonical_sci_fi_blue",
-      "assignment_presets": [
-        "canonical_sci_fi_blue"
-      ],
-      "style_tags": [
-        "sci_fi",
-        "space",
-        "future",
-        "tech",
-        "glass"
-      ],
-      "quality_tags": [
-        "production",
-        "sci_fi",
-        "mobile_game"
-      ],
-      "path": "packs/kenney_ui_pack_sci_fi",
-      "used_by": [],
-      "validated_with": []
-    },
-    {
-      "pack_id": "kenney_ui_pack_adventure",
-      "title": "Kenney UI Pack Adventure",
-      "license": "CC0-1.0",
-      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-      "source_url": "https://kenney.nl/assets/ui-pack-adventure",
-      "asset_types": [
-        "png",
-        "svg"
-      ],
-      "recommended_ui_skin": "skin_cartoon_light",
-      "default_assignment_preset": "canonical_adventure_brown",
-      "assignment_presets": [
-        "canonical_adventure_brown"
-      ],
-      "style_tags": [
-        "fantasy",
-        "adventure",
-        "rpg",
-        "wood",
-        "quest"
-      ],
-      "quality_tags": [
-        "production",
-        "fantasy",
-        "mobile_game"
-      ],
-      "path": "packs/kenney_ui_pack_adventure",
-      "used_by": [
-        "empire_wall_guard",
-        "crownroad_bastion",
-        "crown_frontier_tactics",
-        "castaway_clan",
-        "bronze_camp_command",
-        "iron_banner_realms"
-      ],
-      "validated_with": []
-    },
-    {
-      "pack_id": "kenney_ui_pack_rpg_expansion",
-      "title": "Kenney UI Pack RPG Expansion",
-      "license": "CC0-1.0",
-      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-      "source_url": "https://kenney.nl/assets/ui-pack-rpg-expansion",
-      "asset_types": [
-        "png"
-      ],
-      "recommended_ui_skin": "skin_cartoon_light",
-      "default_assignment_preset": "canonical_rpg_blue",
-      "assignment_presets": [
-        "canonical_rpg_blue"
-      ],
-      "style_tags": [
-        "rpg",
-        "fantasy",
-        "upgrade",
-        "loadout",
-        "blue"
-      ],
-      "quality_tags": [
-        "production",
-        "rpg",
-        "mobile_game"
-      ],
-      "path": "packs/kenney_ui_pack_rpg_expansion",
-      "used_by": [
-        "crownroad_bastion"
-      ],
-      "validated_with": []
-    },
-    {
-      "pack_id": "kenney_ui_pack_rusted_control",
-      "title": "Kenney Rusted Control UI Pack",
-      "license": "CC0-1.0",
-      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-      "source_url": "https://kenney.nl/assets/ui-pack-adventure",
-      "asset_types": [
-        "png"
-      ],
-      "recommended_ui_skin": "skin_post_apocalypse",
-      "default_assignment_preset": "canonical_rusted_control",
-      "assignment_presets": [
-        "canonical_rusted_control"
-      ],
-      "style_tags": [
-        "post_apocalypse",
-        "rust",
-        "mine",
-        "control",
-        "brown",
-        "hazard"
-      ],
-      "quality_tags": [
-        "production",
-        "mobile_game",
-        "industrial"
-      ],
-      "path": "packs/kenney_ui_pack_rusted_control",
-      "used_by": [
-        "minecart_bastion",
-        "ashen_frontier",
-        "mountain_pass_guard",
-        "scrap_ring_outpost"
-      ],
-      "validated_with": []
-    }
-  ]
->>>>>>> ca55be502ad6967c7f08a6d57ad23d89182143ca
 }

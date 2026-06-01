@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "game_id": "candy_pulse_parade",
+  "pack_id": "kenney_ui_pack",
+  "pack_title": "Kenney UI Pack 2.0",
+  "preset_id": "canonical_cartoon_light",
+  "preset_title": "Canonical Cartoon Light",
+  "ui_skin": "skin_cartoon_light",
+  "style_tags": [
+    "candy",
+    "glossy",
+    "pastel",
+    "marquee",
+    "parade"
+  ],
+  "source_url": "https://kenney.nl/assets/ui-pack",
+  "license": "CC0-1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "assignment_type": "shared_pack_with_project_refinement",
+  "refinement_mode": "custom candy refinement on skin_cartoon_light",
+  "assigned_at_utc": "2026-05-11T02:50:00Z",
+  "copied_items": [
+    {
+      "type": "drawable",
+      "logical_name": "ui_panel",
+      "source": "project refinement layered over kenney_ui_pack",
+      "target": "app/src/main/res/drawable/ui_panel.xml"
+    },
+    {
+      "type": "drawable",
+      "logical_name": "ui_button_primary",
+      "source": "project refinement layered over kenney_ui_pack",
+      "target": "app/src/main/res/drawable/ui_button_primary.xml"
+    },
+    {
+      "type": "drawable",
+      "logical_name": "ui_dialog",
+      "source": "project refinement layered over kenney_ui_pack",
+      "target": "app/src/main/res/drawable/ui_dialog.xml"
+    }
+  ]
+}

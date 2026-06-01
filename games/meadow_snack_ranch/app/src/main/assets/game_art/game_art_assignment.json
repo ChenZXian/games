@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "game_id": "meadow_snack_ranch",
+  "assigned_at_utc": "2026-05-26T07:35:00Z",
+  "status": "integrated_custom_runtime",
+  "packs": [
+    {
+      "pack_id": "kenney_animal_pack",
+      "pack_title": "Kenney Animal Pack",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://kenney.nl/assets/animal-pack",
+      "art_roles": [
+        "animal",
+        "character",
+        "npc"
+      ],
+      "style_tags": [
+        "cartoon",
+        "animal",
+        "farm",
+        "ranch",
+        "casual",
+        "cute"
+      ],
+      "project_pack_path": "app/src/main/assets/game_art/kenney_animal_pack",
+      "usage_note": "Used as CC0 animal reference and fallback for pig and rabbit icon-style variants; runtime primary animals are custom Canvas silhouettes for stronger real-animal readability."
+    },
+    {
+      "pack_id": "kenney_isometric_miniature_farm",
+      "pack_title": "Kenney Isometric Miniature Farm",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://kenney.nl/assets/isometric-miniature-farm",
+      "art_roles": [
+        "terrain",
+        "building",
+        "prop",
+        "item",
+        "tileset",
+        "background"
+      ],
+      "style_tags": [
+        "isometric",
+        "farm",
+        "cartoon",
+        "crops",
+        "building",
+        "casual"
+      ],
+      "project_pack_path": "app/src/main/assets/game_art/kenney_isometric_miniature_farm",
+      "usage_note": "Used as CC0 farm prop and terrain reference; runtime uses matching custom Canvas ranch props for consistency with the three-quarter board."
+    }
+  ],
+  "runtime_art_strategy": "custom Canvas animal silhouettes with shared CC0 pack provenance and project-local runtime mapping",
+  "art_roles_covered": [
+    "cow",
+    "hen",
+    "sheep",
+    "goat",
+    "piglet",
+    "rabbit",
+    "terrain",
+    "building",
+    "prop",
+    "item",
+    "effect",
+    "background"
+  ]
+}

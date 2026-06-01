@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Stormbeak Siege</string>
+    <string name="btn_start">Start</string>
+    <string name="btn_restart">Restart</string>
+    <string name="btn_resume">Resume</string>
+    <string name="btn_menu">Menu</string>
+    <string name="btn_mute">Mute</string>
+    <string name="btn_unmute">Unmute</string>
+    <string name="btn_how_to_play">How To Play</string>
+    <string name="btn_pause">Pause</string>
+    <string name="btn_next">Next</string>
+</resources>

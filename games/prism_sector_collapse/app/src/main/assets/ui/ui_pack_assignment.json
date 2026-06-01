@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "game_id": "prism_sector_collapse",
+  "pack_id": "kenney_ui_pack_sci_fi",
+  "pack_title": "Kenney UI Pack Sci-Fi",
+  "preset_id": "canonical_sci_fi_blue",
+  "preset_title": "Canonical Sci-Fi Blue",
+  "ui_skin": "skin_neon_future",
+  "style_tags": [
+    "reactor",
+    "neon",
+    "prism",
+    "console",
+    "high_clarity"
+  ],
+  "source_url": "https://kenney.nl/assets/ui-pack-sci-fi",
+  "license": "CC0-1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "assignment_type": "shared_pack_with_project_refinement",
+  "refinement_mode": "custom reactor refinement on skin_neon_future",
+  "assigned_at_utc": "2026-05-11T03:40:00Z",
+  "copied_items": [
+    {
+      "type": "drawable",
+      "logical_name": "ui_panel",
+      "source": "project refinement layered over kenney_ui_pack_sci_fi",
+      "target": "app/src/main/res/drawable/ui_panel.xml"
+    },
+    {
+      "type": "drawable",
+      "logical_name": "ui_panel_header",
+      "source": "project refinement layered over kenney_ui_pack_sci_fi",
+      "target": "app/src/main/res/drawable/ui_panel_header.xml"
+    },
+    {
+      "type": "drawable",
+      "logical_name": "ui_button_primary",
+      "source": "project refinement layered over kenney_ui_pack_sci_fi",
+      "target": "app/src/main/res/drawable/ui_button_primary.xml"
+    }
+  ]
+}

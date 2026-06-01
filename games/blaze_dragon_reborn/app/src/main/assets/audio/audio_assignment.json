@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "game_id": "blaze_dragon_reborn",
+  "assigned_at_utc": "2026-05-06T08:25:00Z",
+  "tracks": [
+    {
+      "type": "bgm",
+      "role": "menu",
+      "id": "bgm_menu_ancient_2565d7c0",
+      "file": "audio/bgm_menu.wav",
+      "source": "shared_assets/audio"
+    },
+    {
+      "type": "bgm",
+      "role": "play",
+      "id": "bgm_play_ancient_6bb5b52e",
+      "file": "audio/bgm_play.wav",
+      "source": "shared_assets/audio"
+    },
+    {
+      "type": "sfx",
+      "role": "hit",
+      "id": "sfx_enemy_hit_ancient_8fb9436b",
+      "file": "audio/sfx_hit.wav",
+      "source": "shared_assets/audio"
+    },
+    {
+      "type": "sfx",
+      "role": "warning",
+      "id": "sfx_warning_mountain_3792335b",
+      "file": "audio/sfx_warning.wav",
+      "source": "shared_assets/audio"
+    },
+    {
+      "type": "sfx",
+      "role": "win",
+      "id": "sfx_win_ancient_2d4dd36f",
+      "file": "audio/sfx_win.wav",
+      "source": "shared_assets/audio"
+    },
+    {
+      "type": "sfx",
+      "role": "fail",
+      "id": "sfx_fail_ancient_dfa4a413",
+      "file": "audio/sfx_fail.wav",
+      "source": "shared_assets/audio"
+    }
+  ]
+}

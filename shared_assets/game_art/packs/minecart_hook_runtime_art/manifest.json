@@ -1,0 +1,48 @@
+{
+  "pack_id": "minecart_hook_runtime_art",
+  "title": "Minecart Hook Runtime Art",
+  "license": "Project Internal",
+  "license_url": "",
+  "source_url": "project_local_shared_pack",
+  "asset_types": [
+    "json",
+    "canvas"
+  ],
+  "art_roles": [
+    "minecart",
+    "side_hook",
+    "hook_cable",
+    "rail_lanes",
+    "ore",
+    "gem",
+    "barricade",
+    "broken_rail",
+    "switch_box",
+    "coolant",
+    "repair_bolt",
+    "tunnel_background",
+    "station_signal_gate",
+    "route_meter"
+  ],
+  "recommended_game_types": [
+    "runner",
+    "hook",
+    "rail",
+    "side_view"
+  ],
+  "style_tags": [
+    "minecart",
+    "rail",
+    "mechanical",
+    "runtime_drawn",
+    "post_apocalypse"
+  ],
+  "quality_tags": [
+    "production",
+    "mobile_game",
+    "runtime_animation"
+  ],
+  "used_by": [
+    "minecart_hook_express"
+  ]
+}

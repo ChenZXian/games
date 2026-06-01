@@ -1,0 +1,169 @@
+{
+  "version": 1,
+  "game_id": "market_morning_farm",
+  "status": "passed",
+  "genre_family": "casual management",
+  "genre_archetype": "farm-to-market stall pricing and customer-flow management",
+  "camera_perspective": "fixed orthographic split workspace with upper garden plots and lower front-facing market stall",
+  "control_model": "single-touch tap, drag-to-stock, and tap-to-cycle price tiers",
+  "core_loop_signature": "plant crops, time harvests, stock stall shelves, adjust price tiers, satisfy customer demand, earn coins and reputation, upgrade market capacity",
+  "differentiation_axes": [
+    "primary pressure is live market selling rather than static crop orders",
+    "customer price tolerance and preferences determine success",
+    "shelf placement changes product visibility",
+    "reputation and revenue targets must both be managed",
+    "perishable produce creates timing risk after harvest"
+  ],
+  "forbidden_template_reuse": [
+    "do not reuse Bloom Orchard's timed orchard grid plus rotating order board as the main loop",
+    "do not reuse Petal Isle Farm's flower beauty score structure",
+    "do not reuse Pasture Parade Deluxe's animal pen collection and cleanliness loop",
+    "do not reduce the design to generic crop timers with one sell button",
+    "do not use a repeated three-pill top HUD and bottom command strip as the main layout"
+  ],
+  "map_content_budget": {
+    "play_area_model": "one integrated market screen split into garden zone, stall workbench, customer queue, seed tray, storage crate, and chalkboard HUD",
+    "route_or_region_count": "at least 6 interactive regions: garden grid, seed tray, storage crate, three stall shelves, customer queue, and forecast sign",
+    "interactive_regions": "12 crop plots, 3 stall shelves, 1 storage crate, 1 seed tray drawer, 1 customer queue lane, 1 daily forecast sign",
+    "terrain_types": [
+      "soil plot",
+      "wooden counter",
+      "market path",
+      "awning edge",
+      "chalkboard sign",
+      "crate area"
+    ],
+    "decorative_prop_count": "at least 10 distinct props across crates, signs, awning folds, baskets, seed packets, and small market decorations",
+    "functional_map_elements": [
+      "crop plot cells",
+      "storage crate slots",
+      "stall shelf slots",
+      "customer queue anchors",
+      "forecast sign",
+      "price tag controls"
+    ],
+    "landmarks": [
+      "striped stall awning",
+      "chalkboard revenue meter",
+      "produce crate storage",
+      "daily special sign"
+    ],
+    "camera_or_scroll_model": "fixed landscape camera for the first delivery with no scrolling and no hidden interaction zones"
+  },
+  "entity_content_budget": {
+    "player_unit_types": [
+      "farmer cursor represented by touch actions rather than a moving avatar"
+    ],
+    "enemy_types": [
+      "no hostile enemies; customer pressure replaces combat"
+    ],
+    "neutral_or_resource_entities": [
+      "carrot crop",
+      "tomato crop",
+      "corn crop",
+      "strawberry crop",
+      "pumpkin crop",
+      "herb crop",
+      "seed packets",
+      "storage stacks",
+      "stall shelf slots",
+      "price tags"
+    ],
+    "boss_or_elite_types": [
+      "premium collector customer",
+      "rush-hour impatient commuter"
+    ],
+    "projectile_or_effect_types": [
+      "water splash",
+      "harvest sparkle",
+      "coin burst",
+      "reputation heart",
+      "complaint puff",
+      "sold-out marker"
+    ],
+    "item_or_powerup_types": [
+      "quick water",
+      "display polish",
+      "bulk basket",
+      "trend hint"
+    ]
+  },
+  "mechanic_content_budget": {
+    "primary_player_actions": [
+      "plant crops",
+      "water selected plots",
+      "harvest ready crops",
+      "drag produce from storage to shelves",
+      "cycle product price tiers",
+      "serve customer demand"
+    ],
+    "secondary_player_actions": [
+      "inspect customer preference bubbles",
+      "trigger limited boost items",
+      "choose upgrades between days",
+      "select next market day"
+    ],
+    "upgrade_paths": [
+      "plot growth speed",
+      "storage capacity",
+      "shelf appeal",
+      "watering cooldown",
+      "price insight"
+    ],
+    "wave_or_level_variants": [
+      "crop trend day",
+      "bargain crowd day",
+      "chef order day",
+      "low-stock challenge",
+      "premium rush day"
+    ],
+    "special_rules": [
+      "perishable goods lose value after being stored too long",
+      "shelf placement changes product attention",
+      "price tiers affect conversion and reputation",
+      "daily forecast nudges customer demand",
+      "special orders grant star rating bonuses"
+    ],
+    "risk_reward_systems": [
+      "premium pricing yields more coins but risks complaints",
+      "fast crops are reliable but low margin",
+      "premium crops can miss demand timing",
+      "overstocking one product can cause lost opportunity"
+    ],
+    "failure_pressure_variants": [
+      "market timer",
+      "customer patience",
+      "stockouts",
+      "reputation loss",
+      "daily revenue target"
+    ]
+  },
+  "asset_variety_budget": {
+    "primary_game_art_packs": [
+      "bright farm produce pack",
+      "market stall and shop prop pack",
+      "cartoon customer sprite pack"
+    ],
+    "secondary_game_art_packs": [
+      "UI Kit cartoon light market motifs",
+      "simple harvest and coin effect sprites"
+    ],
+    "ui_pack": "skin_cartoon_light",
+    "animation_tier": "medium for customers, staged crop growth for crops, simple effect animation for sale feedback",
+    "required_animation_states": [
+      "crop empty",
+      "crop sprout",
+      "crop growing",
+      "crop ready",
+      "crop withered",
+      "customer walking",
+      "customer waiting",
+      "customer happy",
+      "customer annoyed",
+      "customer leaving",
+      "sale coin burst"
+    ],
+    "minimum_distinct_sprite_families": "at least 6 crop families, 5 customer families, 4 market prop families, and 6 feedback effect families",
+    "asset_reuse_note": "reuse only style-matched farm, market, and customer assets with provenance; generic geometric placeholders are not acceptable for delivery-ready output"
+  }
+}

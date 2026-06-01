@@ -1,0 +1,243 @@
+{
+  "version": 1,
+  "game_id": "meadow_snack_ranch",
+  "status": "integrated",
+  "camera_perspective": "three-quarter_top_down",
+  "default_coordinate_space": "screen_reserved_playfield",
+  "animation_quality_target": "pose_set",
+  "entities": [
+    {
+      "entity_key": "cow",
+      "role": "animal",
+      "asset_keys": [
+        "runtime_canvas_cow_body",
+        "runtime_canvas_cow_head",
+        "runtime_canvas_cow_muzzle",
+        "runtime_canvas_quality_marker"
+      ],
+      "default_facing": "right",
+      "facing_rule": "body and head face right in pen; future horizontal movement may flip the grouped silhouette",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.88
+      },
+      "hitbox": {
+        "x": 0.08,
+        "y": 0.12,
+        "w": 0.84,
+        "h": 0.78
+      },
+      "render_size": {
+        "w": 0.72,
+        "h": 0.58,
+        "unit": "pen"
+      },
+      "z_order": 20,
+      "states": [
+        "idle",
+        "eat",
+        "happy",
+        "ready",
+        "low_mood"
+      ],
+      "animation_rule": "gentle body bob, leg offset, eating head dip, ready star, mood dot",
+      "movement_rule": "pen-local idle motion only"
+    },
+    {
+      "entity_key": "hen",
+      "role": "animal",
+      "asset_keys": [
+        "runtime_canvas_hen_body",
+        "runtime_canvas_hen_comb",
+        "runtime_canvas_hen_tail",
+        "runtime_canvas_quality_marker"
+      ],
+      "default_facing": "right",
+      "facing_rule": "beak and tail define right-facing silhouette",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      },
+      "hitbox": {
+        "x": 0.15,
+        "y": 0.12,
+        "w": 0.72,
+        "h": 0.78
+      },
+      "render_size": {
+        "w": 0.56,
+        "h": 0.62,
+        "unit": "pen"
+      },
+      "z_order": 21,
+      "states": [
+        "idle",
+        "eat",
+        "happy",
+        "ready",
+        "low_mood"
+      ],
+      "animation_rule": "body bob, leg switch, comb and tail pose, ready star, mood dot",
+      "movement_rule": "pen-local peck motion only"
+    },
+    {
+      "entity_key": "sheep",
+      "role": "animal",
+      "asset_keys": [
+        "runtime_canvas_sheep_wool",
+        "runtime_canvas_sheep_face",
+        "runtime_canvas_sheep_legs",
+        "runtime_canvas_quality_marker"
+      ],
+      "default_facing": "right",
+      "facing_rule": "dark face on right side defines facing",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.88
+      },
+      "hitbox": {
+        "x": 0.1,
+        "y": 0.12,
+        "w": 0.8,
+        "h": 0.76
+      },
+      "render_size": {
+        "w": 0.68,
+        "h": 0.56,
+        "unit": "pen"
+      },
+      "z_order": 22,
+      "states": [
+        "idle",
+        "eat",
+        "happy",
+        "ready",
+        "low_mood"
+      ],
+      "animation_rule": "wool bob and leg offset with ready and mood markers",
+      "movement_rule": "pen-local idle motion only"
+    },
+    {
+      "entity_key": "goat",
+      "role": "animal",
+      "asset_keys": [
+        "runtime_canvas_goat_body",
+        "runtime_canvas_goat_horns",
+        "runtime_canvas_goat_beard",
+        "runtime_canvas_quality_marker"
+      ],
+      "default_facing": "right",
+      "facing_rule": "horns and beard face right",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      },
+      "hitbox": {
+        "x": 0.08,
+        "y": 0.12,
+        "w": 0.84,
+        "h": 0.78
+      },
+      "render_size": {
+        "w": 0.66,
+        "h": 0.62,
+        "unit": "pen"
+      },
+      "z_order": 23,
+      "states": [
+        "idle",
+        "eat",
+        "happy",
+        "ready",
+        "low_mood"
+      ],
+      "animation_rule": "body bob, head dip, beard and horn silhouette, ready and mood markers",
+      "movement_rule": "pen-local idle motion only"
+    },
+    {
+      "entity_key": "piglet",
+      "role": "animal",
+      "asset_keys": [
+        "runtime_canvas_pig_body",
+        "runtime_canvas_pig_snout",
+        "runtime_canvas_pig_tail",
+        "kenney_animal_pack_png_pig_fallback"
+      ],
+      "default_facing": "right",
+      "facing_rule": "snout faces right and curly tail sits left",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      },
+      "hitbox": {
+        "x": 0.08,
+        "y": 0.16,
+        "w": 0.84,
+        "h": 0.72
+      },
+      "render_size": {
+        "w": 0.66,
+        "h": 0.5,
+        "unit": "pen"
+      },
+      "z_order": 24,
+      "states": [
+        "idle",
+        "eat",
+        "happy",
+        "ready",
+        "low_mood"
+      ],
+      "animation_rule": "body bob, tail curl, snout marker, ready and mood markers",
+      "movement_rule": "pen-local idle motion only"
+    },
+    {
+      "entity_key": "rabbit",
+      "role": "animal",
+      "asset_keys": [
+        "runtime_canvas_rabbit_body",
+        "runtime_canvas_rabbit_ears",
+        "runtime_canvas_rabbit_paws",
+        "kenney_animal_pack_png_rabbit_fallback"
+      ],
+      "default_facing": "right",
+      "facing_rule": "ears and face are right-biased with tail on left",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.92
+      },
+      "hitbox": {
+        "x": 0.14,
+        "y": 0.08,
+        "w": 0.72,
+        "h": 0.84
+      },
+      "render_size": {
+        "w": 0.56,
+        "h": 0.72,
+        "unit": "pen"
+      },
+      "z_order": 25,
+      "states": [
+        "idle",
+        "eat",
+        "happy",
+        "ready",
+        "low_mood"
+      ],
+      "animation_rule": "ear pose, body bob, paw offset, ready and mood markers",
+      "movement_rule": "pen-local idle hop only"
+    }
+  ],
+  "map_art_plan": {
+    "enabled": true,
+    "roles": [
+      "terrain",
+      "building",
+      "prop",
+      "item",
+      "background"
+    ],
+    "runtime_usage": "Canvas ranch board uses matching stylized grass, barn, beds, cooler, feed cards, order cards, and stamped feedback."
+  }
+}

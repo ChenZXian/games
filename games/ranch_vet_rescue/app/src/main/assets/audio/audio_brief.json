@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "game_id": "ranch_vet_rescue",
+  "theme": "cozy pasture veterinary clinic",
+  "mood": "warm, caring, bright, and gently busy",
+  "pacing": "relaxed menu loop, medium clinic shift loop, short feedback stings",
+  "bgm_roles": [
+    "menu",
+    "play",
+    "win",
+    "fail"
+  ],
+  "sfx_roles": [
+    "ui_click",
+    "animal_select",
+    "assign",
+    "good_treatment",
+    "bad_treatment",
+    "release",
+    "stress_warning",
+    "day_clear"
+  ],
+  "style_tags": [
+    "ranch",
+    "clinic",
+    "cozy",
+    "acoustic",
+    "cartoon",
+    "management"
+  ],
+  "resolution_order": [
+    "shared library",
+    "licensed fetch",
+    "repository synthesis fallback"
+  ],
+  "selected_resolution": "repository synthesis fallback",
+  "runtime_notes": "Menu and play BGM are looped through MediaPlayer. Short event feedback is loaded through SoundPool."
+}

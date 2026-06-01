@@ -1,0 +1,101 @@
+{
+  "version": 1,
+  "game_id": "market_morning_farm",
+  "status": "initial_scaffold",
+  "camera": "fixed landscape orthographic split workspace",
+  "roles": [
+    {
+      "role": "crop",
+      "asset_keys": [
+        "crop_empty",
+        "crop_sprout",
+        "crop_growing",
+        "crop_ready",
+        "crop_withered"
+      ],
+      "default_facing": "up",
+      "facing_rules": "static plot-bound entities do not rotate",
+      "anchors": "center bottom of plot cell",
+      "hitboxes": "full plot cell",
+      "z_order": 20,
+      "states": [
+        "empty",
+        "sprout",
+        "growing",
+        "ready",
+        "withered"
+      ],
+      "animation_rules": "stage changes by growth progress",
+      "movement_rules": "none"
+    },
+    {
+      "role": "customer",
+      "asset_keys": [
+        "customer_bargain",
+        "customer_chef",
+        "customer_family",
+        "customer_collector",
+        "customer_commuter"
+      ],
+      "default_facing": "left",
+      "facing_rules": "face the stall while waiting and flip when entering from the opposite queue side",
+      "anchors": "feet center",
+      "hitboxes": "body circle plus thought bubble region",
+      "z_order": 40,
+      "states": [
+        "walking",
+        "waiting",
+        "happy",
+        "annoyed",
+        "leaving"
+      ],
+      "animation_rules": "two-step walk cycle expected after art workflow completion",
+      "movement_rules": "move from queue entrance to shelf target, then leave after sale or complaint"
+    },
+    {
+      "role": "produce",
+      "asset_keys": [
+        "produce_carrot",
+        "produce_tomato",
+        "produce_corn",
+        "produce_berry",
+        "produce_pumpkin",
+        "produce_herb"
+      ],
+      "default_facing": "front",
+      "facing_rules": "front-facing icons",
+      "anchors": "center of storage or shelf slot",
+      "hitboxes": "storage icon or shelf slot bounds",
+      "z_order": 50,
+      "states": [
+        "stored",
+        "stocked",
+        "sold"
+      ],
+      "animation_rules": "small scale pulse on stock and sale",
+      "movement_rules": "drag from crate to shelf"
+    },
+    {
+      "role": "effect",
+      "asset_keys": [
+        "water_splash",
+        "harvest_sparkle",
+        "coin_burst",
+        "reputation_heart",
+        "complaint_puff",
+        "sold_out_marker"
+      ],
+      "default_facing": "front",
+      "facing_rules": "front-facing effects",
+      "anchors": "effect origin",
+      "hitboxes": "non-interactive",
+      "z_order": 90,
+      "states": [
+        "active",
+        "fading"
+      ],
+      "animation_rules": "fade and float upward",
+      "movement_rules": "screen-space feedback motion"
+    }
+  ]
+}

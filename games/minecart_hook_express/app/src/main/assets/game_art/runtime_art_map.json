@@ -1,0 +1,122 @@
+{
+  "version": 1,
+  "game_id": "minecart_hook_express",
+  "status": "integrated",
+  "camera_perspective": "fixed 2D side view rail runner",
+  "default_coordinate_space": "GameView canvas pixels",
+  "entities": [
+    {
+      "entity_key": "minecart",
+      "role": "vehicle",
+      "asset_keys": [
+        "canvas_red_minecart",
+        "canvas_wheel_pair",
+        "canvas_headlamp"
+      ],
+      "default_facing": "right",
+      "facing_rule": "cart faces the scroll direction and lane changes vertically",
+      "anchor": "bottom_center",
+      "hitbox": "cart_body",
+      "render_size": "116x104 canvas units",
+      "z_order": 60,
+      "states": [
+        "rolling",
+        "lane_shift",
+        "damaged",
+        "arrived"
+      ],
+      "animation_rule": "wheel circles, rail sleepers, and cart lane changes show motion while durability affects warning state",
+      "movement_rule": "fixed horizontal screen position with vertical lane switching"
+    },
+    {
+      "entity_key": "side_hook",
+      "role": "projectile",
+      "asset_keys": [
+        "canvas_left_hook_cable",
+        "canvas_right_hook_cable",
+        "canvas_hook_tip"
+      ],
+      "default_facing": "left_right",
+      "facing_rule": "left and right hook variants extend toward their target side and cable vector",
+      "anchor": "cart_mount",
+      "hitbox": "hook_tip",
+      "render_size": "dynamic cable length",
+      "z_order": 90,
+      "states": [
+        "ready",
+        "fire",
+        "heavy_fire",
+        "pull",
+        "retract"
+      ],
+      "animation_rule": "hook cable and tip stay visible during the active window with heavier stroke for charged pulls",
+      "movement_rule": "target lock chooses nearest valid side object and retracts after a short timing window"
+    },
+    {
+      "entity_key": "resource_target",
+      "role": "pickup",
+      "asset_keys": [
+        "canvas_ore_chunk",
+        "canvas_gem",
+        "canvas_coolant",
+        "canvas_repair_bolt"
+      ],
+      "default_facing": "front",
+      "facing_rule": "static except scroll direction",
+      "anchor": "center",
+      "hitbox": "circle_or_diamond",
+      "render_size": "38 to 56 canvas units",
+      "z_order": 44,
+      "states": [
+        "available",
+        "hooked",
+        "collected"
+      ],
+      "animation_rule": "shine marks valuable targets and coolant or bolt colors communicate support roles",
+      "movement_rule": "scrolls from right to left with track speed"
+    },
+    {
+      "entity_key": "rail_hazard",
+      "role": "hazard",
+      "asset_keys": [
+        "canvas_barricade",
+        "canvas_broken_rail"
+      ],
+      "default_facing": "front",
+      "facing_rule": "static except scroll direction",
+      "anchor": "center",
+      "hitbox": "lane_obstacle",
+      "render_size": "60 to 70 canvas units",
+      "z_order": 48,
+      "states": [
+        "blocking",
+        "pulled_clear",
+        "impact"
+      ],
+      "animation_rule": "hazard color, striped bar, and angled broken rail slashes communicate danger",
+      "movement_rule": "damages cart when active on the current lane at impact range"
+    },
+    {
+      "entity_key": "station_signal_gate",
+      "role": "background",
+      "asset_keys": [
+        "canvas_signal_post",
+        "canvas_warning_lamp",
+        "canvas_station_stamp"
+      ],
+      "default_facing": "front",
+      "facing_rule": "static and aligned to route progress",
+      "anchor": "right_edge",
+      "hitbox": "none",
+      "render_size": "reserved side signal frame",
+      "z_order": 35,
+      "states": [
+        "clear",
+        "heat_warning",
+        "damage_warning"
+      ],
+      "animation_rule": "lamp color follows heat and durability warning state",
+      "movement_rule": "subtle parallax tied to route distance"
+    }
+  ]
+}

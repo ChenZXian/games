@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Crystal Cavern Hook</string>
+    <string name="btn_start">Start Shift</string>
+    <string name="btn_restart">Restart Shift</string>
+    <string name="btn_resume">Resume</string>
+    <string name="btn_menu">Menu</string>
+    <string name="btn_mute">Sound</string>
+    <string name="btn_how_to_play">How To Play</string>
+    <string name="btn_pause">Pause</string>
+    <string name="btn_dynamite">Dynamite</string>
+    <string name="btn_magnet">Magnet</string>
+    <string name="btn_boost">Boost</string>
+    <string name="btn_lens">Lens</string>
+    <string name="btn_shield">Shield</string>
+</resources>

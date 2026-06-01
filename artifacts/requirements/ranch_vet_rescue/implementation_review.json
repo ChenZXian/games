@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "game_id": "ranch_vet_rescue",
+  "status": "passed",
+  "reviewed_at": "2026-05-27",
+  "requirements_source": "artifacts/requirements/ranch_vet_rescue/requirements.md",
+  "coverage": {
+    "game_states": "MENU, PLAYING, PAUSED, and GAME_OVER are implemented",
+    "core_loop": "animal intake, condition inspection, station assignment, treatment timing, recovery, release rewards, trust target, and stress failure are implemented",
+    "controls": "tap animal inspection, drag to station, station tap, pause, resume, restart, and help are implemented",
+    "progression": "day advancement, rising trust target, shorter shift timer, restock, and rewards are implemented",
+    "ui_identity": "bottom treatment tray, left intake lane, right station rack, top trust HUD, clinic awning, release gate, and reserved play zones are implemented",
+    "gameplay_art": "cow, hen, sheep, goat, piglet, and rabbit use distinct realistic runtime silhouettes with state badges and idle motion",
+    "icon": "project icon and upload exports use cow, rabbit, medical kit, red cross, and heart recovery tag",
+    "audio": "menu, play, win, fail BGM and event SFX are generated, assigned, and wired through runtime audio code"
+  },
+  "known_gaps": [
+    "rare alpaca and pony visitors are planned but not implemented in the current delivery pass",
+    "upgrade sheet is represented by day progression and restock rather than a separate upgrade overlay",
+    "external multi-frame animal sprite packs are not used because the available CC0 shared animal pack does not cover all required farm species"
+  ],
+  "release_assessment": "The implemented build preserves the confirmed veterinary triage loop, visual identity, icon direction, and audio coverage well enough to proceed to packaging."
+}

@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "game_id": "prism_sector_collapse",
+  "assigned_at_utc": "2026-05-11T03:42:00Z",
+  "tracks": [
+    {
+      "type": "bgm",
+      "role": "menu",
+      "id": "bgm_menu_underground_4ec667ce",
+      "file": "audio/bgm_menu.wav",
+      "source": "shared_assets/audio"
+    },
+    {
+      "type": "bgm",
+      "role": "play",
+      "id": "bgm_play_default_3aad06a6",
+      "file": "audio/bgm_play.wav",
+      "source": "shared_assets/audio"
+    },
+    {
+      "type": "sfx",
+      "role": "click",
+      "id": "sfx_ui_click_underground_0ad917d8",
+      "file": "audio/sfx_click.wav",
+      "source": "shared_assets/audio"
+    },
+    {
+      "type": "sfx",
+      "role": "collect",
+      "id": "sfx_ore_pickup_underground_bba4a31f",
+      "file": "audio/sfx_collect.wav",
+      "source": "shared_assets/audio"
+    },
+    {
+      "type": "sfx",
+      "role": "warning",
+      "id": "sfx_warning_mountain_3792335b",
+      "file": "audio/sfx_warning.wav",
+      "source": "shared_assets/audio"
+    },
+    {
+      "type": "sfx",
+      "role": "win",
+      "id": "sfx_win_underground_fed00e5f",
+      "file": "audio/sfx_win.wav",
+      "source": "shared_assets/audio"
+    },
+    {
+      "type": "sfx",
+      "role": "fail",
+      "id": "sfx_fail_underground_ff2813ff",
+      "file": "audio/sfx_fail.wav",
+      "source": "shared_assets/audio"
+    }
+  ]
+}

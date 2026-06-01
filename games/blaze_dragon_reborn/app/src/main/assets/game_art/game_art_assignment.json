@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "game_id": "blaze_dragon_reborn",
+  "assigned_at_utc": "2026-05-06T08:22:00Z",
+  "packs": [
+    {
+      "pack_id": "kenney_platformer_characters",
+      "pack_title": "Kenney Platformer Characters",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://kenney.nl/assets/platformer-characters",
+      "project_pack_path": "app/src/main/assets/game_art/kenney_platformer_characters"
+    },
+    {
+      "pack_id": "kenney_platformer_art_deluxe",
+      "pack_title": "Kenney Platformer Art Deluxe",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://kenney.nl/assets/platformer-art-deluxe",
+      "project_pack_path": "app/src/main/assets/game_art/kenney_platformer_art_deluxe"
+    },
+    {
+      "pack_id": "kenney_new_platformer_pack",
+      "pack_title": "Kenney New Platformer Pack",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://kenney.nl/assets/new-platformer-pack",
+      "project_pack_path": "app/src/main/assets/game_art/kenney_new_platformer_pack"
+    }
+  ]
+}

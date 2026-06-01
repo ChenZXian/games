@@ -1,0 +1,22 @@
+{
+  "game_id": "lunar_salvage_miner",
+  "theme": "lunar salvage mechanical pressure",
+  "mood": "tense focused survival with metallic recovery feedback",
+  "pacing": "medium pressure loop with short utility cues",
+  "no_new_generation": true,
+  "bgm_roles": {
+    "menu": "calm mechanical pressure while reviewing the lunar salvage mission",
+    "play": "industrial salvage pulse during hook recovery and resource pressure"
+  },
+  "sfx_roles": {
+    "ui_click": "menu and panel acknowledgement",
+    "launch": "electromagnetic hook launch",
+    "collect": "scrap and supply recovery",
+    "repair": "module repair and core install",
+    "warning": "meteor hit, rock bounce, or cable snag",
+    "boost": "magnet boost activation",
+    "win": "base repair completion",
+    "fail": "oxygen, battery, or hull failure"
+  },
+  "status": "complete"
+}

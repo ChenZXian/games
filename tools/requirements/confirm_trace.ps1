@@ -46,14 +46,12 @@ if ([string]$existing.status -ne "draft") {
   throw "Cannot confirm requirements trace unless current status is draft."
 }
 
-$checkerPath = Join-Path $PSScriptRoot "check_gameplay_diversity.py"
-python $checkerPath --path $gameplayDiversityPath --strict
+& powershell -ExecutionPolicy Bypass -File (Join-Path $PSScriptRoot "check_gameplay_diversity.ps1") -GameId $GameId -Strict
 if ($LASTEXITCODE -ne 0) {
   throw "Cannot confirm requirements trace until gameplay_diversity.json passes strict validation."
 }
 
-$visualCheckerPath = Join-Path $PSScriptRoot "check_visual_identity.py"
-python $visualCheckerPath --path $visualIdentityPath --strict
+& powershell -ExecutionPolicy Bypass -File (Join-Path $PSScriptRoot "check_visual_identity.ps1") -GameId $GameId -Strict
 if ($LASTEXITCODE -ne 0) {
   throw "Cannot confirm requirements trace until visual_identity.json passes strict validation."
 }

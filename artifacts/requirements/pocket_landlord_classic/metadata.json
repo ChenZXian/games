@@ -1,0 +1,21 @@
+{
+    "version":  1,
+    "game_id":  "pocket_landlord_classic",
+    "title":  "Pocket Landlord Classic",
+    "direction":  "offline single-player landlord poker game",
+    "selected_concept":  "Pocket Landlord Classic",
+    "status":  "confirmed",
+    "ui_skin":  "skin_dark_arcade",
+    "current_stage":  "requirements",
+    "created_at_utc":  "2026-05-11T03:38:00Z",
+    "updated_at_utc":  "2026-05-11T06:28:03Z",
+    "selected_at_utc":  "2026-05-11T03:38:00Z",
+    "confirmed_at_utc":  "2026-05-11T06:28:03Z",
+    "files":  {
+                  "metadata_json":  "artifacts/requirements/pocket_landlord_classic/metadata.json",
+                  "requirements_md":  "artifacts/requirements/pocket_landlord_classic/requirements.md",
+                  "candidates_md":  "",
+                  "gameplay_diversity_json":  "artifacts/requirements/pocket_landlord_classic/gameplay_diversity.json",
+                  "visual_identity_json":  "artifacts/requirements/pocket_landlord_classic/visual_identity.json"
+              }
+}

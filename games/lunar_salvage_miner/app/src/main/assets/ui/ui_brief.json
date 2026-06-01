@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "game_id": "lunar_salvage_miner",
+  "screen_structure": "menu, gameplay HUD, pause overlay, help panel, result panel",
+  "chosen_ui_skin": "skin_military_tech",
+  "hud_metrics": "top 56dp external HUD, bottom 58dp external control bar, center playfield with in-field reserved rail and right module rail",
+  "playfield_safe_area": "central hook arc and debris field stay unobstructed; controls and major HUD sit outside GameView bounds",
+  "frame_policy": "no decorative frame may cover targets or hook path",
+  "style_tags": [
+    "lunar",
+    "dashboard",
+    "oxygen_gauge",
+    "battery_gauge",
+    "module_blueprint"
+  ],
+  "asset_strategy": "custom XML drawables plus runtime canvas dashboard motifs"
+}

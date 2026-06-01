@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "game_id": "stormbeak_siege",
+  "status": "integrated",
+  "camera_perspective": "side_view",
+  "runtime_code": "app/src/main/java/com/android/boot/ui/GameView.java",
+  "animation_quality_target": "stormbird_siege_runtime_fx",
+  "entities": [
+    {
+      "entity_key": "stormbirds",
+      "role": "projectile",
+      "asset_keys": [
+        "game_art/bird_gust.png",
+        "game_art/bird_ember.png",
+        "game_art/bird_bolt.png",
+        "game_art/bird_frost.png",
+        "game_art/bird_ram.png"
+      ],
+      "default_facing": "right",
+      "facing_rule": "birds face the fortress and rotate only by flight arc implication",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "hitbox": {
+        "x": 0.16,
+        "y": 0.16,
+        "w": 0.68,
+        "h": 0.68
+      },
+      "z_order": "projectile_layer",
+      "states": [
+        "ready",
+        "launched",
+        "skill",
+        "impact"
+      ],
+      "animation_rule": "GameView swaps the current stormbird bitmap and enhances launch, trail, and flash feedback with runtime effects",
+      "movement_rule": "birds move along sling launch trajectories with weather modifiers and one tap skill trigger"
+    },
+    {
+      "entity_key": "fortress_blocks",
+      "role": "structure",
+      "asset_keys": [
+        "game_art/block_wood.png",
+        "game_art/block_stone.png",
+        "game_art/block_glass.png",
+        "game_art/block_metal.png",
+        "game_art/core.png",
+        "game_art/relay.png",
+        "game_art/barrel.png"
+      ],
+      "default_facing": "front",
+      "facing_rule": "static side-view props",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "hitbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "w": 1.0,
+        "h": 1.0
+      },
+      "z_order": "structure_layer",
+      "states": [
+        "stable",
+        "damaged",
+        "dynamic",
+        "destroyed"
+      ],
+      "animation_rule": "GameView keeps block art readable while health bars, highlight frames, and motion communicate collapse state",
+      "movement_rule": "anchored blocks hold until damaged or unsupported, then transition into falling dynamic pieces"
+    },
+    {
+      "entity_key": "sky_set",
+      "role": "background",
+      "asset_keys": [
+        "game_art/cloud.png",
+        "game_art/island.png",
+        "game_art/sling.png"
+      ],
+      "default_facing": "side_view",
+      "facing_rule": "non-directional environment art",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "hitbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "w": 1.0,
+        "h": 1.0
+      },
+      "z_order": "background_and_rig",
+      "states": [
+        "idle"
+      ],
+      "animation_rule": "GameView composes sky gradients, cloud layers, islands, and the slingshot rig around the active launch lane",
+      "movement_rule": "background remains static while the sling anchors the left launch zone"
+    }
+  ]
+}

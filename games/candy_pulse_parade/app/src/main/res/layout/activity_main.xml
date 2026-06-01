@@ -1,0 +1,583 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_stage_sky">
+
+    <LinearLayout
+        android:id="@+id/gameplay_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/cst_pad_12"
+        android:paddingTop="@dimen/cst_pad_16"
+        android:paddingEnd="@dimen/cst_pad_12"
+        android:paddingBottom="@dimen/cst_pad_12">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/ui_badge"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/cst_pad_8">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_chapter"
+                    android:textColor="@color/cst_text_secondary"
+                    android:textSize="@dimen/cst_text_s" />
+
+                <TextView
+                    android:id="@+id/chapter_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1"
+                    android:textColor="@color/cst_text_primary"
+                    android:textSize="@dimen/cst_text_l"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/cst_pad_10"
+                android:layout_marginEnd="@dimen/cst_pad_10"
+                android:layout_weight="2.6"
+                android:background="@drawable/ui_panel_header"
+                android:orientation="vertical"
+                android:padding="@dimen/cst_pad_12">
+
+                <TextView
+                    android:id="@+id/objective_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_goal"
+                    android:textColor="@color/cst_text_secondary"
+                    android:textSize="@dimen/cst_text_s" />
+
+                <TextView
+                    android:id="@+id/objective_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/cst_pad_4"
+                    android:text="Clear all jelly in 22 moves"
+                    android:textColor="@color/cst_text_primary"
+                    android:textSize="@dimen/cst_text_m"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/ui_badge"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/cst_pad_8">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_stage"
+                    android:textColor="@color/cst_text_secondary"
+                    android:textSize="@dimen/cst_text_s" />
+
+                <TextView
+                    android:id="@+id/stage_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1-1"
+                    android:textColor="@color/cst_text_primary"
+                    android:textSize="@dimen/cst_text_l"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/cst_pad_12"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="72dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="@dimen/cst_pad_8"
+                android:background="@drawable/ui_panel"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/cst_pad_16"
+                android:paddingBottom="@dimen/cst_pad_16">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_score"
+                    android:textColor="@color/cst_text_secondary"
+                    android:textSize="@dimen/cst_text_s" />
+
+                <TextView
+                    android:id="@+id/score_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/cst_pad_4"
+                    android:text="0"
+                    android:textColor="@color/cst_text_primary"
+                    android:textSize="@dimen/cst_text_l"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="36dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/cst_pad_12"
+                    android:background="@drawable/ui_divider" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/cst_pad_12"
+                    android:text="@string/label_combo"
+                    android:textColor="@color/cst_text_secondary"
+                    android:textSize="@dimen/cst_text_s" />
+
+                <TextView
+                    android:id="@+id/combo_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/cst_pad_4"
+                    android:text="0"
+                    android:textColor="@color/cst_warning"
+                    android:textSize="@dimen/cst_text_l"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/board_shell"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/ui_panel"
+                android:padding="@dimen/cst_pad_8">
+
+                <com.android.boot.ui.GameView
+                    android:id="@+id/board_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="72dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/cst_pad_8"
+                android:background="@drawable/ui_panel"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/cst_pad_16"
+                android:paddingBottom="@dimen/cst_pad_16">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_moves"
+                    android:textColor="@color/cst_text_secondary"
+                    android:textSize="@dimen/cst_text_s" />
+
+                <TextView
+                    android:id="@+id/moves_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/cst_pad_4"
+                    android:text="22"
+                    android:textColor="@color/cst_text_primary"
+                    android:textSize="@dimen/cst_text_xl"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="44dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/cst_pad_16"
+                    android:layout_weight="1"
+                    android:background="@drawable/ui_chip"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/btn_pause"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ui_button_icon"
+                        android:padding="8dp"
+                        android:src="@drawable/ic_pause" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/cst_pad_12"
+            android:background="@drawable/ui_panel"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/cst_pad_12">
+
+            <Button
+                android:id="@+id/btn_booster"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/ui_button_secondary"
+                android:text="Booster"
+                android:textColor="@color/cst_text_on_secondary" />
+
+            <Button
+                android:id="@+id/btn_menu_link"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/cst_pad_8"
+                android:layout_weight="1"
+                android:background="@drawable/ui_button_secondary"
+                android:text="@string/btn_menu"
+                android:textColor="@color/cst_text_on_secondary" />
+
+            <Button
+                android:id="@+id/btn_hint"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/cst_pad_8"
+                android:layout_weight="1"
+                android:background="@drawable/ui_button_primary"
+                android:text="Hint"
+                android:textColor="@color/cst_text_on_primary" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/screen_menu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_stage_sky"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/cst_pad_24">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ui_panel"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="@dimen/cst_pad_24">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Candy Pulse Parade"
+                android:textColor="@color/cst_text_primary"
+                android:textSize="@dimen/cst_text_xxl"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_8"
+                android:gravity="center"
+                android:text="Build sparkling cascades, blast syrup waves, and clear glossy candy stages."
+                android:textColor="@color/cst_text_secondary"
+                android:textSize="@dimen/cst_text_m" />
+
+            <Button
+                android:id="@+id/btn_start_game"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_20"
+                android:background="@drawable/ui_button_primary"
+                android:text="@string/btn_start"
+                android:textColor="@color/cst_text_on_primary" />
+
+            <Button
+                android:id="@+id/btn_chapter_map"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_10"
+                android:background="@drawable/ui_button_secondary"
+                android:text="Chapter Map"
+                android:textColor="@color/cst_text_on_secondary" />
+
+            <Button
+                android:id="@+id/btn_guide"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_10"
+                android:background="@drawable/ui_button_secondary"
+                android:text="@string/label_collection"
+                android:textColor="@color/cst_text_on_secondary" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/screen_map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/cst_overlay_scrim"
+        android:padding="@dimen/cst_pad_20"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ui_dialog"
+            android:orientation="vertical"
+            android:padding="@dimen/cst_pad_20">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chapter Map"
+                android:textColor="@color/cst_text_primary"
+                android:textSize="@dimen/cst_text_xl"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_6"
+                android:text="Choose a candy parade route. Each chapter adds a new board trick."
+                android:textColor="@color/cst_text_secondary"
+                android:textSize="@dimen/cst_text_m" />
+
+            <Button
+                android:id="@+id/chapter_one"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_16"
+                android:background="@drawable/ui_button_primary"
+                android:text="Chapter 1  Sugar Square"
+                android:textColor="@color/cst_text_on_primary" />
+
+            <Button
+                android:id="@+id/chapter_two"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_10"
+                android:background="@drawable/ui_button_secondary"
+                android:text="Chapter 2  Jelly Avenue"
+                android:textColor="@color/cst_text_on_secondary" />
+
+            <Button
+                android:id="@+id/chapter_three"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_10"
+                android:background="@drawable/ui_button_secondary"
+                android:text="Chapter 3  Frosting Canal"
+                android:textColor="@color/cst_text_on_secondary" />
+
+            <Button
+                android:id="@+id/chapter_four"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_10"
+                android:background="@drawable/ui_button_secondary"
+                android:text="Chapter 4  Ribbon Drop"
+                android:textColor="@color/cst_text_on_secondary" />
+
+            <Button
+                android:id="@+id/chapter_five"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_10"
+                android:background="@drawable/ui_button_secondary"
+                android:text="Chapter 5  Portal Parade"
+                android:textColor="@color/cst_text_on_secondary" />
+
+            <Button
+                android:id="@+id/chapter_six"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_10"
+                android:background="@drawable/ui_button_secondary"
+                android:text="Chapter 6  Starburst Finale"
+                android:textColor="@color/cst_text_on_secondary" />
+
+            <Button
+                android:id="@+id/btn_close_map"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_16"
+                android:background="@drawable/ui_button_secondary"
+                android:text="@string/btn_menu"
+                android:textColor="@color/cst_text_on_secondary" />
+        </LinearLayout>
+    </ScrollView>
+
+    <ScrollView
+        android:id="@+id/screen_guide"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/cst_overlay_scrim"
+        android:padding="@dimen/cst_pad_20"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ui_dialog"
+            android:orientation="vertical"
+            android:padding="@dimen/cst_pad_20">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Candy Guide"
+                android:textColor="@color/cst_text_primary"
+                android:textSize="@dimen/cst_text_xl"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_12"
+                android:text="Swap adjacent candies to form matches. Four in a row creates a striped candy. T and L shapes create a wrapped candy. Five in a row creates a rainbow candy. Clear jelly, crack frosting, guide ingredients, and chase chain reactions for big score bursts."
+                android:textColor="@color/cst_text_secondary"
+                android:textSize="@dimen/cst_text_m" />
+
+            <Button
+                android:id="@+id/btn_close_guide"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_16"
+                android:background="@drawable/ui_button_primary"
+                android:text="@string/label_continue"
+                android:textColor="@color/cst_text_on_primary" />
+        </LinearLayout>
+    </ScrollView>
+
+    <FrameLayout
+        android:id="@+id/overlay_pause"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/cst_overlay_scrim"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/cst_pad_20"
+            android:background="@drawable/ui_dialog"
+            android:orientation="vertical"
+            android:padding="@dimen/cst_pad_20">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Paused"
+                android:textColor="@color/cst_text_primary"
+                android:textSize="@dimen/cst_text_xl"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btn_resume_game"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_16"
+                android:background="@drawable/ui_button_primary"
+                android:text="@string/btn_resume"
+                android:textColor="@color/cst_text_on_primary" />
+
+            <Button
+                android:id="@+id/btn_restart_game"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_10"
+                android:background="@drawable/ui_button_secondary"
+                android:text="@string/btn_restart"
+                android:textColor="@color/cst_text_on_secondary" />
+
+            <Button
+                android:id="@+id/btn_quit_to_menu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_10"
+                android:background="@drawable/ui_button_secondary"
+                android:text="@string/btn_menu"
+                android:textColor="@color/cst_text_on_secondary" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/overlay_result"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/cst_overlay_scrim"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/cst_pad_20"
+            android:background="@drawable/ui_dialog"
+            android:orientation="vertical"
+            android:padding="@dimen/cst_pad_20">
+
+            <TextView
+                android:id="@+id/result_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Stage Clear"
+                android:textColor="@color/cst_text_primary"
+                android:textSize="@dimen/cst_text_xl"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/result_body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_10"
+                android:text="Sweet parade chain!"
+                android:textColor="@color/cst_text_secondary"
+                android:textSize="@dimen/cst_text_m" />
+
+            <Button
+                android:id="@+id/btn_next_stage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_16"
+                android:background="@drawable/ui_button_primary"
+                android:text="@string/label_next"
+                android:textColor="@color/cst_text_on_primary" />
+
+            <Button
+                android:id="@+id/btn_retry_stage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_10"
+                android:background="@drawable/ui_button_secondary"
+                android:text="@string/btn_restart"
+                android:textColor="@color/cst_text_on_secondary" />
+
+            <Button
+                android:id="@+id/btn_result_menu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cst_pad_10"
+                android:background="@drawable/ui_button_secondary"
+                android:text="@string/btn_menu"
+                android:textColor="@color/cst_text_on_secondary" />
+        </LinearLayout>
+    </FrameLayout>
+
+</FrameLayout>

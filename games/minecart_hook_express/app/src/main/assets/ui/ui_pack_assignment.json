@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "game_id": "minecart_hook_express",
+  "ui_skin": "skin_post_apocalypse",
+  "pack_id": "minecart_hook_signal_ui",
+  "assignment_type": "project_internal_shared_ui_pack",
+  "assignment_preset": "rail_signal_dashboard_landscape",
+  "status": "integrated_custom",
+  "screen_list": [
+    "menu",
+    "gameplay_hud",
+    "pause",
+    "help",
+    "result"
+  ],
+  "state_map": [
+    "MENU",
+    "PLAYING",
+    "PAUSED",
+    "GAME_OVER"
+  ],
+  "hud_priorities": [
+    "durability",
+    "cargo",
+    "cable_heat",
+    "station_target",
+    "lane",
+    "route_distance",
+    "warning_signal"
+  ],
+  "playfield_safe_area": {
+    "top": "external signal HUD bar",
+    "right": "route meter is a real side panel outside the GameView",
+    "bottom": "station progress remains below active rails",
+    "protected": "three active rail lanes and both side hook corridors"
+  },
+  "frame_and_border_policy": "decorative panels and route stamps are structurally separated from active rail lanes",
+  "style_tags": [
+    "post_apocalypse_rail",
+    "rusted_signal_dashboard",
+    "route_meter_panel",
+    "hazard_lamps",
+    "side_hook_runner"
+  ],
+  "asset_strategy": "project-local XML UI with custom canvas signal accents",
+  "shared_ui_assets_reviewed": [
+    "kenney_ui_pack_rusted_control"
+  ],
+  "shared_ui_assets_used": [
+    "minecart_hook_signal_ui"
+  ],
+  "source_review": "kenney_ui_pack_rusted_control matches the skin but this run only needed structural safe-area and HUD refinement without importing additional binary UI assets",
+  "visual_identity_source": "artifacts/requirements/minecart_hook_express/visual_identity.json",
+  "implemented_paths": [
+    "app/src/main/res/layout/activity_main.xml",
+    "app/src/main/res/values/colors.xml",
+    "app/src/main/res/values/dimens.xml",
+    "app/src/main/res/drawable/ui_panel_header.xml",
+    "app/src/main/res/drawable/ui_card.xml",
+    "app/src/main/java/com/android/boot/MainActivity.java"
+  ]
+}

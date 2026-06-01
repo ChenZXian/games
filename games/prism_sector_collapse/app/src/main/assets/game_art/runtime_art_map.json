@@ -1,0 +1,94 @@
+{
+  "version": 1,
+  "game_id": "prism_sector_collapse",
+  "status": "integrated",
+  "camera_perspective": "top_down_board",
+  "runtime_code": "app/src/main/java/com/android/boot/ui/GameView.java",
+  "animation_quality_target": "high_clarity_prism_cluster_collapse_fx",
+  "entities": [
+    {
+      "entity_key": "prism_cells",
+      "role": "piece",
+      "asset_keys": [
+        "game_art/runtime_art_map.json"
+      ],
+      "default_facing": "up_light_source",
+      "facing_rule": "not directional and readability depends on color plus internal symbol motif",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "hitbox": {
+        "x": 0.1,
+        "y": 0.1,
+        "w": 0.8,
+        "h": 0.8
+      },
+      "z_order": "board_piece_layer",
+      "states": [
+        "idle",
+        "highlighted",
+        "hold_preview",
+        "collapse_pull",
+        "landing"
+      ],
+      "animation_rule": "GameView renders hard-edged prism cells with symbol overlays, glow shifts, and pop ripple feedback",
+      "movement_rule": "cells occupy the grid and move by gravity collapse and column shift"
+    },
+    {
+      "entity_key": "armor_and_relays",
+      "role": "blocker",
+      "asset_keys": [
+        "game_art/runtime_art_map.json"
+      ],
+      "default_facing": "static",
+      "facing_rule": "not directional",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "hitbox": {
+        "x": 0.08,
+        "y": 0.08,
+        "w": 0.84,
+        "h": 0.84
+      },
+      "z_order": "board_system_layer",
+      "states": [
+        "idle",
+        "damaged",
+        "charged",
+        "cleared"
+      ],
+      "animation_rule": "armor fractures by layer and relay nodes cross-flash when energized",
+      "movement_rule": "static system cells that only change state or disappear"
+    },
+    {
+      "entity_key": "pulse_core_fx",
+      "role": "effect",
+      "asset_keys": [
+        "game_art/runtime_art_map.json"
+      ],
+      "default_facing": "radial",
+      "facing_rule": "line pulse extends across row and column",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "hitbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "w": 1.0,
+        "h": 1.0
+      },
+      "z_order": "fx_above_board_entities",
+      "states": [
+        "pulse_core",
+        "sector_wave",
+        "cluster_pop"
+      ],
+      "animation_rule": "pulse cores emit line-cross shockwaves and cluster collapses produce sharp electric bloom rings",
+      "movement_rule": "short-lived effect events with no collision role"
+    }
+  ]
+}

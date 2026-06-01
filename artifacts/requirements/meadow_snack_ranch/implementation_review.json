@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "game_id": "meadow_snack_ranch",
+  "status": "passed",
+  "reviewed_at": "2026-05-26T16:25:00+08:00",
+  "reviewer": "codex",
+  "requirements_source": "artifacts/requirements/meadow_snack_ranch/requirements.md",
+  "evidence": {
+    "core_loop": [
+      "RanchGameView implements touch drag recipe cards to animal pens",
+      "Animals use production timers, ready states, mood, product quality, and collection",
+      "Order cards consume collected inventory and award coins plus reputation",
+      "Day timer and reputation target drive clear or failure outcomes"
+    ],
+    "content_budget": [
+      "Six normal animals are present: cow, hen, sheep, goat, piglet, rabbit",
+      "Five feed recipe cards are implemented with recipe stock and animal favorites",
+      "Six product families are represented through animal products and order generation",
+      "Quality tiers are implemented as standard, fresh, premium, and perfect"
+    ],
+    "screen_and_controls": [
+      "Game states include MENU, PLAYING, PAUSED, and GAME_OVER",
+      "MainActivity provides start, pause, resume, restart, help, and sound controls",
+      "Gameplay view includes cookbook rail, delivery clipboard, HUD badges, cooler dock, and result dialog"
+    ],
+    "visual_and_audio": [
+      "Runtime animal drawing uses recognizable silhouettes for cow, hen, sheep, goat, piglet, and rabbit",
+      "Runtime art map is integrated with anchors, hitboxes, z-order, states, and animation rules",
+      "UI assignment and UI brief track the cookbook, clipboard, HUD, safe area, and asset strategy",
+      "Audio assignment covers menu, play, win, fail BGM plus required ranch SFX",
+      "Icon workflow generated project icons and upload exports with high-trust metadata"
+    ]
+  },
+  "non_blocking_notes": [
+    "Persistent progression is represented by day advancement, increasing reputation targets, coin rewards, recipe restock, and stronger order generation in this build.",
+    "The current APK package scope is suitable for repository delivery even though future expansion could add a dedicated upgrade sheet."
+  ]
+}

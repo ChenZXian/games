@@ -1,0 +1,28 @@
+{
+  "pack_id": "lunar_salvage_dashboard_ui",
+  "title": "Lunar Salvage Dashboard UI",
+  "license": "Project Internal",
+  "license_url": "",
+  "source_url": "project_local_shared_pack",
+  "asset_types": [
+    "xml",
+    "canvas"
+  ],
+  "recommended_ui_skin": "skin_military_tech",
+  "default_assignment_preset": "lunar_dashboard_landscape",
+  "style_tags": [
+    "lunar_dashboard",
+    "segmented_gauges",
+    "eva_controls",
+    "blueprint_module_rail",
+    "vacuum_navy_teal_amber"
+  ],
+  "quality_tags": [
+    "production",
+    "mobile_game",
+    "project_internal"
+  ],
+  "used_by": [
+    "lunar_salvage_miner"
+  ]
+}

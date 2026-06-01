@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "game_id": "crystal_cavern_hook",
+  "ui_skin": "skin_cartoon_light",
+  "status": "custom_integrated",
+  "layout_archetype": "top brass winch beam, protected cavern viewport, right tool pocket, bottom carved order rail",
+  "primary_ui_pack": "project_custom_crystal_console",
+  "source": "project_local_xml_ui",
+  "screen_list": [
+    "menu",
+    "help",
+    "playing_hud",
+    "pause",
+    "result"
+  ],
+  "state_map": {
+    "MENU": "center cave preview panel",
+    "PLAYING": "reserved HUD strips with live cavern viewport",
+    "PAUSED": "center stone sheet outside active play",
+    "GAME_OVER": "center result sheet"
+  },
+  "playfield_safe_area": {
+    "top_reserved": "fixed winch beam in XML layout",
+    "right_reserved": "fixed tool pocket in XML layout",
+    "bottom_reserved": "fixed order rail in XML layout",
+    "active_viewport": "CrystalGameView bounds exclude HUD and tool rail"
+  },
+  "style_tags": [
+    "cartoon_light",
+    "crystal_cave",
+    "brass_winch",
+    "faceted_tools",
+    "carved_order_rail"
+  ],
+  "notes": "This workflow run upgraded XML HUD chrome and preserved a protected central playfield. No external pack was available, so no third-party assets were imported."
+}

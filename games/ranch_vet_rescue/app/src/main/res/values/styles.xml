@@ -1,0 +1,61 @@
+<resources>
+    <style name="TextAppearance.Game.Title" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/cst_text_primary</item>
+        <item name="android:textSize">@dimen/cst_text_xxl</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="TextAppearance.Game.Subtitle" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/cst_text_secondary</item>
+        <item name="android:textSize">@dimen/cst_text_l</item>
+    </style>
+    <style name="TextAppearance.Game.Body" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/cst_text_primary</item>
+        <item name="android:textSize">@dimen/cst_text_m</item>
+    </style>
+    <style name="TextAppearance.Game.Caption" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/cst_text_muted</item>
+        <item name="android:textSize">@dimen/cst_text_s</item>
+    </style>
+    <style name="TextAppearance.Game.HudValue" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/cst_text_primary</item>
+        <item name="android:textSize">@dimen/cst_text_l</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="TextAppearance.Game.HudLabel" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/cst_text_secondary</item>
+        <item name="android:textSize">@dimen/cst_text_xs</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+    <style name="Widget.Game.Button.Primary" parent="@android:style/Widget.Material.Button">
+        <item name="android:background">@drawable/ui_button_primary</item>
+        <item name="android:textColor">@color/cst_text_on_primary</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:minHeight">@dimen/cst_hud_icon_size</item>
+    </style>
+    <style name="Widget.Game.Button.Secondary" parent="@android:style/Widget.Material.Button">
+        <item name="android:background">@drawable/ui_button_secondary</item>
+        <item name="android:textColor">@color/cst_text_secondary</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:minHeight">@dimen/cst_hud_icon_size</item>
+    </style>
+    <style name="Widget.Game.Button.Icon" parent="@android:style/Widget.Material.Button">
+        <item name="android:background">@drawable/ui_button_icon</item>
+        <item name="android:textColor">@color/cst_text_primary</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+    <style name="Widget.Game.Panel" parent="@android:style/Widget">
+        <item name="android:background">@drawable/ui_panel</item>
+    </style>
+    <style name="Widget.Game.Card" parent="@android:style/Widget">
+        <item name="android:background">@drawable/ui_card</item>
+    </style>
+    <style name="Widget.Game.Chip" parent="@android:style/Widget">
+        <item name="android:background">@drawable/ui_chip</item>
+    </style>
+    <style name="Widget.Game.Badge" parent="@android:style/Widget">
+        <item name="android:background">@drawable/ui_badge</item>
+    </style>
+    <style name="Widget.Game.Meter" parent="@android:style/Widget">
+        <item name="android:background">@drawable/ui_meter_track</item>
+    </style>
+</resources>

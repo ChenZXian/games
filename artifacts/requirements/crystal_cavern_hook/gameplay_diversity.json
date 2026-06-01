@@ -1,0 +1,198 @@
+{
+  "version": 1,
+  "game_id": "crystal_cavern_hook",
+  "status": "passed",
+  "genre_family": "arcade physics timing",
+  "genre_archetype": "refracted hook mining with order-based cave collection",
+  "camera_perspective": "fixed 2D side cutaway crystal cavern with top winch and layered target field",
+  "control_model": "tap to launch the swinging claw, tap tool buttons for dynamite, magnet pulse, cable boost, prism lens, and shield glove",
+  "core_loop_signature": "read the swing arc and cave layout, launch hook, bend or boost through prism tools, catch weighted treasure or order targets, pull items back, avoid shard hazards, complete stage orders, earn coins, and upgrade mining tools",
+  "differentiation_axes": [
+    "prism crystals can bend or preview the hook path instead of a single straight claw line",
+    "stage orders require specific target families rather than only a money quota",
+    "hazard shards, bombs, and bats create risk during hook timing and return",
+    "tool choices change the outcome of bad pulls or heavy targets",
+    "layered cave bands create shallow, mid, and deep target planning"
+  ],
+  "forbidden_template_reuse": [
+    "do not copy a classic hook miner loop as aim hook pull loot only",
+    "do not use farm, ranch, market, or animal management loops",
+    "do not use tower defense lane waves or rail defense routes",
+    "do not represent every collectible as plain circles with only score labels",
+    "do not cover the central swing arc with HUD panels or decorative frames"
+  ],
+  "map_content_budget": {
+    "play_area_model": "fixed cavern board with top winch, central hook field, layered target bands, side tool pocket, and bottom order rail",
+    "route_or_region_count": 9,
+    "interactive_regions": [
+      "top winch beam",
+      "swing arc lane",
+      "shallow gem band",
+      "mid crystal band",
+      "deep treasure band",
+      "prism bend cluster",
+      "hazard shard pocket",
+      "right tool pocket",
+      "bottom order rail"
+    ],
+    "terrain_types": [
+      "dark stone wall",
+      "emerald crystal shelf",
+      "cyan glow pocket",
+      "gold dust vein",
+      "fragile shard field",
+      "relic alcove"
+    ],
+    "decorative_prop_count": 22,
+    "functional_map_elements": [
+      "swinging winch",
+      "cable",
+      "three-prong claw",
+      "weighted collectibles",
+      "prism redirectors",
+      "bomb hazards",
+      "bat movement lanes",
+      "order chips",
+      "tool charge slots",
+      "return chute"
+    ],
+    "landmarks": [
+      "brass winch beam",
+      "giant emerald prism",
+      "relic chest alcove",
+      "lantern-lit depth marker"
+    ],
+    "camera_or_scroll_model": "fixed screen with stage-to-stage layout variation and no scrolling during a pull"
+  },
+  "entity_content_budget": {
+    "player_unit_types": [
+      "swinging claw",
+      "cable",
+      "mining winch",
+      "tool buttons"
+    ],
+    "enemy_types": [
+      "cave bat",
+      "falling shard",
+      "fuse bomb",
+      "cracked dead stone",
+      "mimic chest"
+    ],
+    "neutral_or_resource_entities": [
+      "small gold nugget",
+      "large gold boulder",
+      "emerald crystal",
+      "ruby crystal",
+      "sapphire crystal",
+      "rainbow prism gem",
+      "relic chest",
+      "crystal shard",
+      "order token",
+      "tool crate"
+    ],
+    "boss_or_elite_types": [
+      "giant prism cluster",
+      "ancient locked chest"
+    ],
+    "projectile_or_effect_types": [
+      "hook trail",
+      "cable tension line",
+      "prism bend flash",
+      "coin burst",
+      "shatter dust",
+      "dynamite pop",
+      "magnet pulse ring"
+    ],
+    "item_or_powerup_types": [
+      "dynamite",
+      "magnet pulse",
+      "cable boost",
+      "prism lens",
+      "shield glove",
+      "lucky lantern"
+    ]
+  },
+  "mechanic_content_budget": {
+    "primary_player_actions": [
+      "time the swinging claw",
+      "launch toward a target",
+      "judge item weight and return speed",
+      "complete order targets",
+      "use tools during a pull"
+    ],
+    "secondary_player_actions": [
+      "prioritize shallow fast targets or deep heavy treasure",
+      "destroy bad catches with dynamite",
+      "boost slow cable returns",
+      "preview prism bend routes",
+      "protect against one shatter penalty",
+      "buy permanent upgrades between stages"
+    ],
+    "upgrade_paths": [
+      "cable speed",
+      "claw grip strength",
+      "heavy-pull motor",
+      "dynamite stock",
+      "magnet pulse radius",
+      "prism lens duration",
+      "order reward multiplier",
+      "lucky gem spawn chance"
+    ],
+    "wave_or_level_variants": [
+      "basic gold quota cave",
+      "blue crystal order cave",
+      "fragile relic rescue cave",
+      "bomb-heavy hazard cave",
+      "prism bend tutorial cave",
+      "bat patrol timing cave",
+      "deep heavy treasure cave",
+      "mixed order challenge cave"
+    ],
+    "special_rules": [
+      "heavy items return more slowly",
+      "fragile crystals can break if hit by bombs or shard traps",
+      "prism crystals bend hook path once per launch",
+      "wrong catches consume time but may still sell for coins",
+      "stage orders can require specific item families or no-shatter completion"
+    ],
+    "risk_reward_systems": [
+      "deep treasures are valuable but slow enough to risk the timer",
+      "bombs can clear hazards but punish accidental direct pulls",
+      "prism bends can reach rare gems but require more precise timing",
+      "tool charges can save a bad pull but reduce later flexibility"
+    ],
+    "failure_pressure_variants": [
+      "stage timer expires",
+      "order target remains incomplete",
+      "fragile relic breaks",
+      "too many shatter penalties",
+      "high-value target gets blocked by hazard placement"
+    ]
+  },
+  "asset_variety_budget": {
+    "primary_game_art_packs": [
+      "license-clear cave, crystal, treasure, and mining hook assets or project-local generated canvas art with tracked roles"
+    ],
+    "secondary_game_art_packs": [
+      "faceted UI chips",
+      "brass mining tools",
+      "sparkle and shatter effects",
+      "small cave hazard sprites"
+    ],
+    "ui_pack": "skin_cartoon_light with custom crystal cave panels and brass tool buttons",
+    "animation_tier": "delivery-ready hook swing, launch, catch, return, sparkle, shatter, and bat flap states",
+    "required_animation_states": [
+      "claw idle swing",
+      "claw launch",
+      "claw catch",
+      "cable return strain",
+      "item sparkle",
+      "item delivered",
+      "crystal shattered",
+      "prism bend flash",
+      "bat flap"
+    ],
+    "minimum_distinct_sprite_families": 12,
+    "asset_reuse_note": "Existing generic hook or gold assets may only be reused if prism crystals, order chips, cave hazards, and crystal identity are visually distinct from a classic hook miner baseline."
+  }
+}

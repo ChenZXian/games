@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "game_id": "ranch_vet_rescue",
+  "ui_skin": "skin_cartoon_light",
+  "screen_list": [
+    "main menu",
+    "clinic play",
+    "pause sheet",
+    "shift result",
+    "toast feedback"
+  ],
+  "state_map": {
+    "MENU": "menu overlay with clinic title and start action",
+    "PLAYING": "fixed pasture clinic board with drag and station interactions",
+    "PAUSED": "center sheet with resume and restart actions",
+    "GAME_OVER": "result sheet over protected board"
+  },
+  "hud_priorities": [
+    "remaining shift time",
+    "trust progress",
+    "coins",
+    "missed stressed patients",
+    "selected animal condition",
+    "station timer state",
+    "treatment card stock"
+  ],
+  "playfield_safe_area": {
+    "top_reserved_percent": 11,
+    "bottom_reserved_percent": 22,
+    "left_reserved_percent": 17,
+    "right_reserved_percent": 20,
+    "protected_zones": [
+      "intake lane",
+      "care station grid",
+      "release gate",
+      "bottom treatment tray",
+      "right station rack"
+    ]
+  },
+  "frame_and_border_policy": "clinic awning, fence trim, rack panels, and tray panels stay inside reserved regions and do not cover station hitboxes or animal drag routes",
+  "style_tags": [
+    "cozy",
+    "cartoon_light",
+    "pasture_clinic",
+    "paper_tags",
+    "cloth_cards",
+    "rounded_wood_signs"
+  ],
+  "asset_strategy": "custom XML and Java canvas UI with CC0 Kenney UI pack used as rounded cartoon reference"
+}

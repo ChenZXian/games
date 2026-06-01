@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "game_id": "lunar_salvage_miner",
+  "ui_skin": "skin_military_tech",
+  "pack_id": "lunar_salvage_dashboard_ui",
+  "assignment_type": "project_internal_shared_ui_pack",
+  "assignment_preset": "lunar_dashboard_landscape",
+  "status": "integrated_custom",
+  "screen_list": [
+    "menu",
+    "gameplay_hud",
+    "pause",
+    "help",
+    "result"
+  ],
+  "state_map": [
+    "MENU",
+    "PLAYING",
+    "PAUSED",
+    "GAME_OVER"
+  ],
+  "hud_priorities": [
+    "oxygen",
+    "battery",
+    "repair_progress",
+    "hull",
+    "parts",
+    "scan",
+    "boost"
+  ],
+  "playfield_safe_area": {
+    "top": "external hud bar and in-field cart rail reserve",
+    "right": "in-field base module rail outside dense target clusters",
+    "bottom": "external control bar plus compact status log",
+    "protected": "central hook arc, debris field, meteor lanes, hook return path"
+  },
+  "frame_and_border_policy": "dashboard chrome is outside the active view or drawn in reserved dead-space zones",
+  "style_tags": [
+    "lunar_dashboard",
+    "segmented_gauges",
+    "eva_controls",
+    "blueprint_module_rail",
+    "vacuum_navy_teal_amber"
+  ],
+  "asset_strategy": "project_local_custom_canvas_and_xml_ui",
+  "shared_ui_assets_used": [
+    "lunar_salvage_dashboard_ui"
+  ],
+  "source_review": "shared Kenney UI packs are available but too cartoon or pixel for the required lunar dashboard identity",
+  "visual_identity_source": "artifacts/requirements/lunar_salvage_miner/visual_identity.json",
+  "implemented_paths": [
+    "app/src/main/res/layout/activity_main.xml",
+    "app/src/main/res/values/colors.xml",
+    "app/src/main/res/values/dimens.xml",
+    "app/src/main/res/drawable/ui_panel_header.xml",
+    "app/src/main/java/com/android/boot/ui/GameView.java"
+  ]
+}

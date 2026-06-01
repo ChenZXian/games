@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "game_id": "stormbeak_siege",
+  "status": "passed",
+  "visual_differentiation_axes": [
+    "landscape storm-fortress battlefield instead of portrait board or card table",
+    "left launch perch plus right fortress composition instead of centered board layouts",
+    "wind-forged metal and storm crystal materials instead of candy, sci-fi reactor, or tabletop wood",
+    "icon built around the playable stormbird face and sling arc instead of generic crown or gem symbols"
+  ],
+  "forbidden_visual_reuse": [
+    "no reactor neon framing",
+    "no candy gradients",
+    "no premium card-table visual language",
+    "no split puzzle board motif",
+    "no generic shieldstar or unrelated icon motif"
+  ],
+  "ui_identity": {
+    "layout_archetype": "landscape siege frame with left launch perch HUD, right fortress status stack, and bottom power rail outside play space",
+    "hud_composition": "top chapter ribbon, left bird queue and launch metrics, right target objective tower, bottom reserved skill and retry rail",
+    "navigation_model": "chapter map to stage briefing to siege field to result panel flow",
+    "palette_signature": "storm teal, ember orange, brass gold, slate blue, cloud gray, sharp white lightning accents",
+    "material_language": "wind-forged bronze, storm crystal, canvas straps, carved cloudstone",
+    "typography_style": "bold adventure headings with sharp military-fantasy counters",
+    "primary_ui_pack": "skin_dark_arcade custom-refined for landscape storm siege",
+    "secondary_ui_assets": [
+      "storm crystal meters",
+      "wind-banner headers",
+      "brass objective plates",
+      "bird squad medallions"
+    ],
+    "playfield_safety": {
+      "reserved_edges": [
+        "top status band",
+        "bottom control rail",
+        "left launch information rail",
+        "right objective rail"
+      ],
+      "hud_anchor_zones": [
+        "left outer launch frame",
+        "right fortress status frame",
+        "bottom outer command rail"
+      ],
+      "protected_gameplay_zones": [
+        "slingshot pull arc",
+        "projectile flight lane",
+        "fortress collapse area"
+      ],
+      "frame_overlay_policy": "all chrome stays outside the launch arc and collapse field"
+    },
+    "unique_screen_motifs": [
+      "storm banners",
+      "lightning etched objective plates",
+      "squad feather medallions",
+      "weather hazard markers"
+    ],
+    "forbidden_ui_elements": [
+      "portrait-only stacked overlays",
+      "top hud pills",
+      "candy bubble buttons",
+      "reactor warning bands",
+      "tabletop card rails"
+    ]
+  },
+  "icon_identity": {
+    "subject": "a fierce stormbird head lunging forward from a slingshot arc with lightning feathers",
+    "silhouette": "round aggressive bird face with a sharp beak crest and a curved launch trail behind it",
+    "composition": "stormbird face large in foreground with one visible sling band and a shattered cloudstone shard behind",
+    "palette": "storm teal, white lightning, orange beak, brass highlight",
+    "background": "dark storm cloud disk with bright electric rim",
+    "game_specific_motif": "stormbird arc strike",
+    "forbidden_icon_reuse": [
+      "no generic bird ball icon without storm element",
+      "no crown-only icon",
+      "no gem cluster icon",
+      "no copied slingshot silhouette from earlier games"
+    ]
+  }
+}

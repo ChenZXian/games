@@ -1,0 +1,62 @@
+{
+  "game_id": "lunar_salvage_miner",
+  "source": "shared_assets_audio_existing",
+  "generated_new_audio": false,
+  "assignments": [
+    {
+      "role": "menu_bgm",
+      "shared_id": "bgm_menu_underground_4ec667ce",
+      "project_file": "audio/bgm_menu.wav"
+    },
+    {
+      "role": "play_bgm",
+      "shared_id": "bgm_play_scrapyard_a626f55b",
+      "project_file": "audio/bgm.wav"
+    },
+    {
+      "role": "ui_click",
+      "shared_id": "sfx_ui_click_underground_0ad917d8",
+      "project_file": "audio/sfx_ui_click.wav"
+    },
+    {
+      "role": "launch",
+      "shared_id": "sfx_cart_shot_underground_89beaa24",
+      "project_file": "audio/sfx_launch.wav"
+    },
+    {
+      "role": "collect",
+      "shared_id": "sfx_ore_pickup_underground_bba4a31f",
+      "project_file": "audio/sfx_collect.wav"
+    },
+    {
+      "role": "repair",
+      "shared_id": "sfx_repair_underground_df819600",
+      "project_file": "audio/sfx_repair.wav"
+    },
+    {
+      "role": "warning",
+      "shared_id": "sfx_reactor_damage_underground_f423880c",
+      "project_file": "audio/sfx_warning.wav"
+    },
+    {
+      "role": "boost",
+      "shared_id": "sfx_upgrade_underground_4fd8d26c",
+      "project_file": "audio/sfx_boost.wav"
+    },
+    {
+      "role": "win",
+      "shared_id": "sfx_win_underground_fed00e5f",
+      "project_file": "audio/sfx_win.wav"
+    },
+    {
+      "role": "fail",
+      "shared_id": "sfx_fail_underground_ff2813ff",
+      "project_file": "audio/sfx_fail.wav"
+    }
+  ],
+  "coverage": {
+    "menu_bgm": true,
+    "play_bgm": true,
+    "sfx": true
+  }
+}

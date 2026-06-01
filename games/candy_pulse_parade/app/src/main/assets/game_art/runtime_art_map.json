@@ -1,0 +1,123 @@
+{
+  "version": 1,
+  "game_id": "candy_pulse_parade",
+  "status": "integrated",
+  "camera_perspective": "top_down_board",
+  "runtime_code": "app/src/main/java/com/android/boot/ui/CandyBoardView.java",
+  "animation_quality_target": "glossy_match3_squash_pop_wave_shard_fx",
+  "entities": [
+    {
+      "entity_key": "candy_tiles",
+      "role": "piece",
+      "asset_keys": [
+        "game_art/runtime_art_map.json"
+      ],
+      "default_facing": "up_light_source",
+      "facing_rule": "not directional; highlight and stripe angle remain consistent while swap motion rotates slightly",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "hitbox": {
+        "x": 0.12,
+        "y": 0.12,
+        "w": 0.76,
+        "h": 0.76
+      },
+      "z_order": "board_piece_layer",
+      "states": [
+        "idle",
+        "selected",
+        "swap",
+        "match_pulse",
+        "landing"
+      ],
+      "animation_rule": "CandyBoardView draws glossy rounded candy bodies with pulse, wobble, and pop timing during swaps and clears",
+      "movement_rule": "cell-centered grid movement with tweened swap and gravity-driven cascade drop"
+    },
+    {
+      "entity_key": "special_candies",
+      "role": "special",
+      "asset_keys": [
+        "game_art/runtime_art_map.json"
+      ],
+      "default_facing": "up_light_source",
+      "facing_rule": "striped orientation follows stored special type and rainbow uses radial sweep only",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "hitbox": {
+        "x": 0.08,
+        "y": 0.08,
+        "w": 0.84,
+        "h": 0.84
+      },
+      "z_order": "board_piece_layer",
+      "states": [
+        "charged",
+        "selected",
+        "pre_flash",
+        "activate"
+      ],
+      "animation_rule": "Striped candies flash and launch line clears, wrapped candies pulse with a larger body, and rainbow candies emit a board-scan glow",
+      "movement_rule": "inherits normal candy swap and cascade motion until activation"
+    },
+    {
+      "entity_key": "blockers_and_jelly",
+      "role": "blocker",
+      "asset_keys": [
+        "game_art/runtime_art_map.json"
+      ],
+      "default_facing": "static",
+      "facing_rule": "not directional",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "hitbox": {
+        "x": 0.06,
+        "y": 0.06,
+        "w": 0.88,
+        "h": 0.88
+      },
+      "z_order": "blocker_above_board_below_fx",
+      "states": [
+        "idle",
+        "damaged",
+        "breaking",
+        "cleared"
+      ],
+      "animation_rule": "Frosting uses layered crack states and jelly uses translucent under-glow that fades when cleared",
+      "movement_rule": "static board occupants that only transition through damage and removal states"
+    },
+    {
+      "entity_key": "celebration_fx",
+      "role": "effect",
+      "asset_keys": [
+        "game_art/runtime_art_map.json"
+      ],
+      "default_facing": "radial",
+      "facing_rule": "particles radiate from clear origin or along line-clear direction",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "hitbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "w": 1.0,
+        "h": 1.0
+      },
+      "z_order": "fx_above_all_board_entities",
+      "states": [
+        "pop",
+        "wave",
+        "shard",
+        "combo_ribbon"
+      ],
+      "animation_rule": "Pop bursts, syrup waves, and shard sprays stack over the board with short-lived additive celebration timing",
+      "movement_rule": "free particle motion decays over time and never blocks input"
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "game_id": "blaze_dragon_reborn",
+  "status": "passed",
+  "direction": "Side-scrolling fantasy brawler inspired by classic combo-driven action games with fluid chaining, beautiful chi blasts, attractive heroes, and premium UI presentation",
+  "selected_concept": "Blaze Dragon Reborn",
+  "visual_differentiation_axes": [
+    "character-stage menu composition instead of centered utility menu cards",
+    "crest-cluster vitals and free-floating combo bloom rather than top pill HUD plus bottom strip",
+    "midnight lacquer fantasy martial palette with cyan chi and ember gold accents",
+    "dragon-arc hero punch icon silhouette rather than generic sword or shield emblem",
+    "strict playfield-safe framing that keeps ornate chrome outside the live combat lane"
+  ],
+  "forbidden_visual_reuse": [
+    "do not reuse generic top HUD pills with a bottom command strip",
+    "do not use a plain centered menu panel over a static backdrop",
+    "do not reuse a castle badge, shield crest, or generic sword icon concept",
+    "do not cover the combat lane with decorative bezels or thick borders",
+    "do not reuse another project's unchanged dark fantasy palette composition"
+  ],
+  "ui_identity": {
+    "layout_archetype": "upper-left crest vitals cluster, upper-right combo bloom, lower-corner control halos, and chapter-stage menu with layered right-side cards",
+    "hud_composition": "stacked life and chi crest module, transient style rank bloom, slim top-center objective banner, conditional boss strip, and corner-anchored touch controls",
+    "navigation_model": "main menu hero stage to horizontal chapter cards, then route-node stage select with slide-over upgrade and codex panels",
+    "palette_signature": "midnight navy and black lacquer base with cyan energy highlights, ember gold trims, and restrained crimson danger accents",
+    "material_language": "polished lacquer panels, etched metal trims, translucent energy glass, slash-brush separators, and medallion crests",
+    "typography_style": "angular heroic display headers with condensed readable secondary labels",
+    "primary_ui_pack": "skin_dark_arcade",
+    "secondary_ui_assets": [
+      "fantasy martial crest frames",
+      "dragon-line dividers",
+      "chapter sigil backplates",
+      "boss emblem strips"
+    ],
+    "playfield_safety": {
+      "reserved_edges": [
+        "top HUD band",
+        "bottom-left movement dead zone",
+        "bottom-right action dead zone",
+        "thin outer side gutters"
+      ],
+      "hud_anchor_zones": [
+        "upper-left vitals",
+        "upper-right combo rank",
+        "top-center objective",
+        "right-side pause and skill column"
+      ],
+      "protected_gameplay_zones": [
+        "center combat lane",
+        "hero jump apex band",
+        "enemy approach corridor",
+        "forward chi projectile travel path"
+      ],
+      "frame_overlay_policy": "menu and result frames may be ornate, but gameplay chrome must stop outside protected combat zones and retract fully after scripted boss intros"
+    },
+    "unique_screen_motifs": [
+      "hero spotlight stage on main menu",
+      "dragon-crest chapter seals",
+      "slash-cut result panels",
+      "chi-lit combo bloom numerals",
+      "boss warning banner that tears open then retracts"
+    ],
+    "forbidden_ui_elements": [
+      "generic rounded mobile pills across the top",
+      "flat monochrome bottom command bar",
+      "opaque full-width frame over gameplay",
+      "plain spreadsheet-like upgrade table"
+    ]
+  },
+  "icon_identity": {
+    "subject": "the main hero delivering a forward dragon-chi punch",
+    "silhouette": "diagonal striking forearm with a sweeping dragon-energy arc wrapping one side of the frame",
+    "composition": "three-quarter hero close-up with the punch breaking toward camera and the dragon-energy tail framing the face",
+    "palette": "cyan chi core, ember gold sparks, deep navy shadows, and small crimson contrast notes",
+    "background": "dark stormy gradient or lacquered night backdrop with subtle radial burst",
+    "game_specific_motif": "dragon-shaped chi arc emerging from the hero's strike",
+    "forbidden_icon_reuse": [
+      "generic sword badge",
+      "shield crest icon",
+      "reused castle silhouette",
+      "plain fireball portrait",
+      "copied icon silhouette from prior fantasy projects"
+    ]
+  }
+}

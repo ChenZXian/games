@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "game_id": "stormbeak_siege",
+  "pack_id": "stormbeak_storm_console_ui",
+  "pack_title": "Stormbeak Storm Console UI",
+  "preset_id": "storm_console_landscape",
+  "preset_title": "Storm Console Landscape",
+  "ui_skin": "skin_dark_arcade",
+  "style_tags": [
+    "storm",
+    "siege",
+    "brass",
+    "teal",
+    "landscape"
+  ],
+  "source_url": "project_local_shared_pack",
+  "license": "Project Internal",
+  "license_url": "",
+  "assignment_type": "shared_pack_with_project_refinement",
+  "refinement_mode": "storm siege refinement on skin_dark_arcade",
+  "assigned_at_utc": "2026-05-11T08:40:00Z",
+  "copied_items": [
+    {
+      "type": "drawable",
+      "logical_name": "ui_panel",
+      "source": "stormbeak_storm_console_ui",
+      "target": "app/src/main/res/drawable/ui_panel.xml"
+    },
+    {
+      "type": "drawable",
+      "logical_name": "ui_button_primary",
+      "source": "stormbeak_storm_console_ui",
+      "target": "app/src/main/res/drawable/ui_button_primary.xml"
+    }
+  ]
+}

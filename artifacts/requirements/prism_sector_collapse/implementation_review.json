@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "game_id": "prism_sector_collapse",
+  "status": "passed",
+  "reviewed_at": "2026-05-11T11:32:00+08:00",
+  "review_source": "codex_delivery_review",
+  "summary": "Implemented a large-board cluster-collapse puzzle with strong color separation, reactor-console UI, tracked icon, tracked runtime art, tracked audio, sector map flow, and distinct gameplay separation from Candy Pulse Parade."
+}

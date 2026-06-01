@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "game_id": "ranch_vet_rescue",
+  "status": "integrated",
+  "audio_direction": "gentle ranch clinic music with soft acoustic rhythm and friendly treatment feedback",
+  "theme": "cozy pasture veterinary clinic",
+  "mood": "warm, friendly, lightly urgent during clinic shifts",
+  "pacing": "relaxed menu, medium management loop, short positive and negative stings",
+  "bgm_roles": {
+    "menu": "audio/bgm_menu.wav",
+    "play": "audio/bgm.wav",
+    "win": "audio/bgm_win.wav",
+    "fail": "audio/bgm_fail.wav"
+  },
+  "sfx_roles": {
+    "ui_click": "audio/sfx_ui_click.wav",
+    "animal_select": "audio/sfx_animal_select.wav",
+    "assign": "audio/sfx_assign.wav",
+    "good_treatment": "audio/sfx_good_treatment.wav",
+    "bad_treatment": "audio/sfx_bad_treatment.wav",
+    "release": "audio/sfx_release.wav",
+    "stress_warning": "audio/sfx_stress_warning.wav",
+    "day_clear": "audio/sfx_day_clear.wav"
+  },
+  "asset_strategy": {
+    "current_tier": "repository synthesis fallback",
+    "future_tier": "optional licensed acoustic ranch music replacement",
+    "provenance": "generated WAV assets stored in shared_assets/audio and assigned into project assets"
+  },
+  "runtime_integration": {
+    "player": "RanchVetAudio",
+    "bgm_engine": "MediaPlayer from project assets",
+    "sfx_engine": "SoundPool from project assets",
+    "menu_bgm_coverage": true,
+    "play_bgm_coverage": true,
+    "sfx_coverage": true
+  }
+}

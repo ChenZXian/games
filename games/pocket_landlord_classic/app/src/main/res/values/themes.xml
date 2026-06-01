@@ -1,0 +1,12 @@
+<resources>
+    <style name="Theme.Game" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowBackground">@color/cst_bg_main</item>
+        <item name="android:statusBarColor">@color/cst_bg_main</item>
+        <item name="android:navigationBarColor">@color/cst_bg_main</item>
+        <item name="colorPrimary">@color/cst_button_primary</item>
+        <item name="colorPrimaryVariant">@color/cst_button_primary_dark</item>
+        <item name="colorOnPrimary">@color/cst_text_dark</item>
+        <item name="colorSurface">@color/cst_panel_dark</item>
+        <item name="colorOnSurface">@color/cst_text_primary</item>
+    </style>
+</resources>

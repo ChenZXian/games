@@ -1,4 +1,4 @@
-{
+﻿{
     "version":  1,
     "games":  [
                   {
@@ -247,6 +247,19 @@
                       "core_loop":  "drag slingshot to launch tactical bird units tap to trigger in-flight skills break mixed-material fortresses exploit stage devices and chain collapses eliminate marked cores and earn three-star clears",
                       "created_at":  "2026-03-08",
                       "ui_skin":  "skin_dark_arcade"
+                  },
+                  {
+                      "id":  "candy_pulse_parade",
+                      "name":  "Candy Pulse Parade",
+                      "tags":  [
+                                   "puzzle",
+                                   "match3",
+                                   "candy",
+                                   "cascade"
+                               ],
+                      "core_loop":  "swap adjacent candies trigger cascades create specials clear stage goals within move limits",
+                      "created_at":  "2026-05-11",
+                      "ui_skin":  "skin_cartoon_light"
                   },
                   {
                       "id":  "snowman_adventure",
@@ -561,7 +574,8 @@
                       "core_loop":  "deal a no-joker deck resolve spade 3 and spade A alliances shed legal combinations manage lead tempo across four seats and score finish order over five rounds",
                       "created_at":  "2026-04-29",
                       "ui_skin":  "skin_dark_arcade"
-=======
+                  },
+                  {
                       "id":  "bronze_camp_command",
                       "name":  "Bronze Camp Command",
                       "tags":  [
@@ -625,7 +639,159 @@
                       "core_loop":  "salvage scrap fuel and parts during prep build sector defenses around a circular outpost rotate command focus into weak gates and survive zombie night waves before the inner yard collapses",
                       "created_at":  "2026-04-29",
                       "ui_skin":  "skin_post_apocalypse"
->>>>>>> ca55be502ad6967c7f08a6d57ad23d89182143ca
+                  },
+                  {
+                      "id":  "prism_sector_collapse",
+                      "name":  "Prism Sector Collapse",
+                      "tags":  [
+                                   "puzzle",
+                                   "cluster_collapse",
+                                   "large_board",
+                                   "reactor",
+                                   "neon",
+                                   "menu_10_complete_flow"
+                               ],
+                      "core_loop":  "tap connected same-color prism clusters on a giant board collapse regions charge devices crack armor and finish sector objectives within move limits",
+                      "created_at":  "2026-05-11",
+                      "ui_skin":  "skin_neon_future"
+                  },
+                  {
+                      "id":  "blaze_dragon_reborn",
+                      "name":  "Blaze Dragon Reborn",
+                      "tags":  [
+                                   "action",
+                                   "side_scroller",
+                                   "combo",
+                                   "chi_blast",
+                                   "fantasy_brawler",
+                                   "menu_10_complete_flow"
+                               ],
+                      "core_loop":  "advance through side scrolling combat gates chain melee combos build chi unleash wave bursts defeat mixed enemy packs and finish a boss duel",
+                      "created_at":  "2026-05-06",
+                      "ui_skin":  "skin_dark_arcade"
+                  },
+                  {
+                      "id":  "pocket_landlord_classic",
+                      "name":  "Pocket Landlord Classic",
+                      "tags":  [
+                                   "card",
+                                   "dou_dizhu",
+                                   "tabletop",
+                                   "offline_campaign",
+                                   "landlord",
+                                   "menu_10_complete_flow"
+                               ],
+                      "core_loop":  "deal call score claim landlord play legal card combinations race to empty your hand earn stars and climb through offline campaign tables",
+                      "created_at":  "2026-05-11",
+                      "ui_skin":  "skin_dark_arcade"
+                  },
+                  {
+                      "id":  "stormbeak_siege",
+                      "name":  "Stormbeak Siege",
+                      "tags":  [
+                                   "action",
+                                   "slingshot",
+                                   "siege",
+                                   "physics_puzzle",
+                                   "stormbird",
+                                   "menu_10_complete_flow"
+                               ],
+                      "core_loop":  "drag and release stormbirds trigger in-flight skills break floating fortresses and destroy target cores under weather effects",
+                      "created_at":  "2026-05-11",
+                      "ui_skin":  "skin_dark_arcade"
+                  },
+                  {
+                      "id":  "market_morning_farm",
+                      "name":  "Market Morning Farm",
+                      "tags":  [
+                                   "farm",
+                                   "market",
+                                   "casual",
+                                   "management",
+                                   "pricing",
+                                   "customers",
+                                   "android_java"
+                               ],
+                      "core_loop":  "plant crops water and harvest produce stock market stall shelves adjust price tiers serve customer preferences earn coins and reputation then upgrade plots crate shelves and watering",
+                      "created_at":  "2026-05-26",
+                      "ui_skin":  "skin_cartoon_light"
+                  },
+                  {
+                      "id":  "meadow_snack_ranch",
+                      "name":  "Meadow Snack Ranch",
+                      "tags":  [
+                                   "ranch",
+                                   "animals",
+                                   "casual",
+                                   "management",
+                                   "feed_recipes",
+                                   "quality_orders",
+                                   "android_java"
+                               ],
+                      "core_loop":  "restock ingredients mix feed snack recipes drag snacks to realistic animal pens collect quality products fulfill delivery orders earn coins and reputation then unlock recipes animals and ranch upgrades",
+                      "created_at":  "2026-05-26",
+                      "ui_skin":  "skin_cartoon_light"
+                  },
+                  {
+                      "id":  "ranch_vet_rescue",
+                      "name":  "Ranch Vet Rescue",
+                      "tags":  [
+                                   "ranch",
+                                   "animals",
+                                   "casual",
+                                   "management",
+                                   "vet_care",
+                                   "triage",
+                                   "android_java"
+                               ],
+                      "core_loop":  "receive animals with visible conditions diagnose needs match treatment cards to care stations manage station timers stress and waiting pressure release recovered animals earn trust coins and upgrades",
+                      "created_at":  "2026-05-27",
+                      "ui_skin":  "skin_cartoon_light"
+                  },
+                  {
+                      "id":  "crystal_cavern_hook",
+                      "name":  "Crystal Cavern Hook",
+                      "tags":  [
+                                   "arcade",
+                                   "hook",
+                                   "crystal",
+                                   "orders",
+                                   "prism",
+                                   "android_java"
+                               ],
+                      "core_loop":  "time swinging claw launches through prism bends collect ordered crystals relics and gold avoid hazards use tools and upgrades to fill stage contracts",
+                      "created_at":  "2026-05-27",
+                      "ui_skin":  "skin_cartoon_light"
+                  },
+                  {
+                      "id":  "lunar_salvage_miner",
+                      "name":  "Lunar Salvage Miner",
+                      "tags":  [
+                                   "arcade",
+                                   "hook",
+                                   "lunar",
+                                   "salvage",
+                                   "survival",
+                                   "android_java"
+                               ],
+                      "core_loop":  "scan lunar wreckage reposition cart launch electromagnetic hook recover parts batteries oxygen and repair cores avoid meteor debris repair base modules and unlock six ruin regions",
+                      "created_at":  "2026-05-27",
+                      "ui_skin":  "skin_military_tech"
+                  },
+                  {
+                      "id":  "minecart_hook_express",
+                      "name":  "Minecart Hook Express",
+                      "tags":  [
+                                   "arcade",
+                                   "runner",
+                                   "hook",
+                                   "minecart",
+                                   "rail",
+                                   "android_java"
+                               ],
+                      "core_loop":  "auto-scroll minecart through rail routes fire left and right side hooks collect ore pull barricades trigger switches change lanes avoid rail hazards reach stations and upgrade cart and hooks",
+                      "created_at":  "2026-05-28",
+                      "ui_skin":  "skin_post_apocalypse"
                   }
               ]
 }

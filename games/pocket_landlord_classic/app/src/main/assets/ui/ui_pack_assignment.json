@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "game_id": "pocket_landlord_classic",
+  "pack_id": "black_spade_ui_pack",
+  "pack_title": "Black Spade Table UI Pack",
+  "preset_id": "black_spade_table_dark",
+  "preset_title": "Black Spade Table Dark",
+  "ui_skin": "skin_dark_arcade",
+  "style_tags": [
+    "card_table",
+    "felt",
+    "scoreboard",
+    "dark_arcade"
+  ],
+  "source_url": "project_local_shared_pack",
+  "license": "Project Internal",
+  "assignment_type": "shared_pack_with_project_refinement",
+  "refinement_mode": "custom premium tabletop refinement on skin_dark_arcade",
+  "assigned_at_utc": "2026-05-11T06:55:00Z",
+  "copied_items": [
+    {
+      "type": "layout",
+      "logical_name": "activity_main",
+      "source": "project refinement aligned with black_spade_ui_pack",
+      "target": "app/src/main/res/layout/activity_main.xml"
+    },
+    {
+      "type": "drawable",
+      "logical_name": "ui_panel",
+      "source": "project refinement aligned with black_spade_ui_pack",
+      "target": "app/src/main/res/drawable/ui_panel.xml"
+    },
+    {
+      "type": "drawable",
+      "logical_name": "ui_button_primary",
+      "source": "project refinement aligned with black_spade_ui_pack",
+      "target": "app/src/main/res/drawable/ui_button_primary.xml"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "game_id": "crystal_cavern_hook",
+  "status": "custom_integrated",
+  "source": "project_local_canvas_art",
+  "license": "project_generated_for_this_repository",
+  "roles": [
+    "claw",
+    "gold_nugget",
+    "emerald_crystal",
+    "amethyst_crystal",
+    "relic_chest",
+    "bomb",
+    "shatter_shard",
+    "cave_bat",
+    "prism_gate",
+    "cavern_background"
+  ],
+  "style_tags": [
+    "luminous_cavern",
+    "faceted_crystals",
+    "brass_hook",
+    "treasure_props",
+    "hazard_feedback"
+  ],
+  "notes": "Runtime Canvas art now draws layered cave lighting, wall crystals, lanterns, prism glow, order highlights, distinct treasures, hazards, and animated cave bats. No external binary art was imported."
+}

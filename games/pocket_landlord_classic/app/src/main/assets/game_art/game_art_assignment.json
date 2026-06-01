@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "game_id": "pocket_landlord_classic",
+  "pack_id": "black_spade_table_art",
+  "pack_title": "Black Spade Table Art",
+  "license": "Project Internal",
+  "source_url": "project_local_shared_pack",
+  "assignment_type": "shared_pack_with_project_integration",
+  "assigned_at_utc": "2026-05-11T06:57:00Z",
+  "assets": [
+    {
+      "role": "badge",
+      "source": "shared_assets/game_art/packs/black_spade_table_art/felt_badge.png",
+      "target": "app/src/main/assets/game_art/felt_badge.png"
+    },
+    {
+      "role": "lead_token",
+      "source": "shared_assets/game_art/packs/black_spade_table_art/lead_token.png",
+      "target": "app/src/main/assets/game_art/lead_token.png"
+    },
+    {
+      "role": "alliance_seal",
+      "source": "shared_assets/game_art/packs/black_spade_table_art/alliance_seal.png",
+      "target": "app/src/main/assets/game_art/alliance_seal.png"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "game_id": "market_morning_farm",
+  "ui_skin": "skin_cartoon_light",
+  "status": "initial_scaffold",
+  "primary_pack": "repository_ui_kit",
+  "secondary_assets": [
+    "market_awning_motif",
+    "paper_price_tag_chips",
+    "chalkboard_target_panel",
+    "wooden_crate_panel"
+  ],
+  "layout_archetype": "split garden-and-stall workspace",
+  "hud_composition": "chalkboard revenue sign, day time plaque, reputation hearts, compact pause button",
+  "playfield_safety": {
+    "reserved_edges": [
+      "top hud banner",
+      "bottom seed and stall workbench"
+    ],
+    "protected_gameplay_zones": [
+      "crop plot cells",
+      "stall shelf slots",
+      "customer queue lane"
+    ],
+    "frame_overlay_policy": "decorative trim stays outside active touch regions"
+  }
+}

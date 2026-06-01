@@ -1,0 +1,21 @@
+{
+    "version":  1,
+    "game_id":  "market_morning_farm",
+    "title":  "Market Morning Farm",
+    "direction":  "A casual farm management game inspired by classic crop games, focused on growing produce and running a morning market stall.",
+    "selected_concept":  "Market Morning Farm",
+    "status":  "confirmed",
+    "ui_skin":  "skin_cartoon_light",
+    "current_stage":  "requirements",
+    "created_at_utc":  "2026-05-26T02:28:03Z",
+    "updated_at_utc":  "2026-05-26T02:31:30Z",
+    "selected_at_utc":  "2026-05-26T02:28:03Z",
+    "confirmed_at_utc":  "2026-05-26T02:31:30Z",
+    "files":  {
+                  "metadata_json":  "artifacts/requirements/market_morning_farm/metadata.json",
+                  "requirements_md":  "artifacts/requirements/market_morning_farm/requirements.md",
+                  "candidates_md":  "",
+                  "gameplay_diversity_json":  "artifacts/requirements/market_morning_farm/gameplay_diversity.json",
+                  "visual_identity_json":  "artifacts/requirements/market_morning_farm/visual_identity.json"
+              }
+}

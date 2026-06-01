@@ -1,0 +1,166 @@
+{
+  "version": 1,
+  "game_id": "meadow_snack_ranch",
+  "status": "passed",
+  "genre_family": "casual management",
+  "genre_archetype": "feed recipe animal ranch with quality-based production orders",
+  "camera_perspective": "three-quarter top-down ranch board with stable animal silhouettes and readable pen zones",
+  "control_model": "tap animals and buildings, drag feed recipes to pens, tap order cards, use short hold for batch collection",
+  "core_loop_signature": "grow or restock ingredients, mix named feed snacks, feed realistic animal types, collect quality products, fulfill recipe-matched orders, unlock new animals, pens, and feed stations",
+  "differentiation_axes": [
+    "feed recipe selection is the primary decision instead of generic feed and clean meters",
+    "animal product quality depends on recipe fit, freshness, mood, and timing",
+    "orders request product quality combinations, not only raw item counts",
+    "visual requirement favors realistic animal silhouettes over simple mascot circles",
+    "UI uses cookbook and order clipboard panels instead of repeated top pills plus bottom command strip"
+  ],
+  "forbidden_template_reuse": [
+    "do not copy Pasture Parade Deluxe multi-species pen adjacency combo loop",
+    "do not copy Market Morning Farm crop stall pricing and customer queue loop",
+    "do not reduce animals to generic circles or rectangles",
+    "do not use a tiny single-screen pasture with one repeated pen type",
+    "do not use the same top HUD pill layout and bottom action strip as prior farm projects"
+  ],
+  "map_content_budget": {
+    "play_area_model": "single ranch yard divided into functional production zones with upgradeable pen footprints",
+    "route_or_region_count": 7,
+    "interactive_regions": [
+      "ingredient beds",
+      "feed mixer counter",
+      "cow meadow",
+      "chicken coop",
+      "sheep paddock",
+      "goat corner",
+      "delivery board"
+    ],
+    "terrain_types": [
+      "short meadow grass",
+      "packed barn path",
+      "straw pen floor",
+      "flower border",
+      "water trough edge"
+    ],
+    "decorative_prop_count": 18,
+    "functional_map_elements": [
+      "feed mixer",
+      "ingredient bins",
+      "animal water troughs",
+      "collection crates",
+      "cooler chest",
+      "delivery board",
+      "upgrade signposts"
+    ],
+    "landmarks": [
+      "red-roof snack barn",
+      "painted recipe sign",
+      "windmill ingredient marker"
+    ],
+    "camera_or_scroll_model": "fixed landscape viewport with slight board pan only if content exceeds safe area"
+  },
+  "entity_content_budget": {
+    "player_unit_types": [
+      "ranch cursor hand",
+      "recipe tray selection"
+    ],
+    "enemy_types": [],
+    "neutral_or_resource_entities": [
+      "dairy cow",
+      "laying hen",
+      "wool sheep",
+      "goat",
+      "piglet",
+      "rabbit",
+      "corn",
+      "clover",
+      "oats",
+      "carrot",
+      "apple",
+      "herb bundle"
+    ],
+    "boss_or_elite_types": [
+      "prize cow",
+      "golden hen"
+    ],
+    "projectile_or_effect_types": [
+      "feed sparkle",
+      "freshness glow",
+      "happy heart",
+      "quality star burst",
+      "order stamp"
+    ],
+    "item_or_powerup_types": [
+      "sweet grain mix",
+      "green meadow roll",
+      "apple crunch",
+      "carrot nibble",
+      "herb comfort snack",
+      "premium recipe coupon"
+    ]
+  },
+  "mechanic_content_budget": {
+    "primary_player_actions": [
+      "drag feed snacks to animal pens",
+      "tap animals to collect products",
+      "tap mixer to craft feed recipes",
+      "tap order cards to fulfill deliveries"
+    ],
+    "secondary_player_actions": [
+      "batch collect ready products",
+      "restock ingredient bins",
+      "upgrade pen comfort",
+      "reroll one order per day"
+    ],
+    "upgrade_paths": [
+      "mixer speed",
+      "ingredient bin capacity",
+      "animal comfort",
+      "cooler freshness duration",
+      "order board slots"
+    ],
+    "wave_or_level_variants": [
+      "morning tutorial orders",
+      "lunch rush quality orders",
+      "rainy day comfort penalty",
+      "festival snack request",
+      "rare animal visit"
+    ],
+    "special_rules": [
+      "each animal has favorite and disliked snack categories",
+      "fresh products lose quality if not moved to cooler",
+      "mixed snack recipes can create bonus output when matched correctly",
+      "premium orders require two product qualities in one delivery"
+    ],
+    "risk_reward_systems": [
+      "wait longer for higher quality but risk freshness decay",
+      "use rare ingredients for stronger output or save them for festival orders",
+      "reroll low-value orders at the cost of reputation"
+    ],
+    "failure_pressure_variants": [
+      "day timer ends before target reputation",
+      "animal mood falls if fed disliked snacks",
+      "cooler overflow wastes fresh products"
+    ]
+  },
+  "asset_variety_budget": {
+    "primary_game_art_packs": [
+      "license-clear semi-realistic farm animal sprites or generated repository art with quadruped and bird silhouettes"
+    ],
+    "secondary_game_art_packs": [
+      "cartoon ranch props",
+      "ingredient crop icons",
+      "product crate icons"
+    ],
+    "ui_pack": "cartoon ranch cookbook and clipboard UI assets built on skin_cartoon_light",
+    "animation_tier": "delivery-ready animal idle, walk, eat, happy, and product-ready poses",
+    "required_animation_states": [
+      "idle",
+      "walk left right",
+      "eat",
+      "happy",
+      "ready to collect",
+      "low mood"
+    ],
+    "minimum_distinct_sprite_families": 8,
+    "asset_reuse_note": "animal bodies must read as cow, hen, sheep, goat, pig, and rabbit through real-world proportions, not only color swaps or icon labels"
+  }
+}

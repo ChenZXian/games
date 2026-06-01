@@ -1,0 +1,125 @@
+{
+  "version": 1,
+  "game_id": "crystal_cavern_hook",
+  "status": "integrated",
+  "camera_perspective": "fixed_side_cutaway",
+  "default_coordinate_space": "view_pixels",
+  "entities": [
+    {
+      "entity_key": "claw",
+      "role": "player_tool",
+      "asset_keys": [
+        "canvas_brass_cable",
+        "canvas_three_prong_claw",
+        "canvas_winch_pivot"
+      ],
+      "default_facing": "down",
+      "facing_rule": "angle follows cable direction",
+      "anchor": "top_center",
+      "hitbox": "circle_18",
+      "render_size": "variable by cable length",
+      "z_order": 40,
+      "states": [
+        "swing",
+        "extend",
+        "retract",
+        "carry"
+      ],
+      "animation_rule": "position and cable angle update every frame",
+      "movement_rule": "swing arc, outward launch vector, weighted return vector",
+      "animation_quality_tier": "directional_static"
+    },
+    {
+      "entity_key": "treasure",
+      "role": "collectible",
+      "asset_keys": [
+        "canvas_gold_nugget",
+        "canvas_emerald_crystal",
+        "canvas_amethyst_crystal",
+        "canvas_relic_chest"
+      ],
+      "default_facing": "front",
+      "facing_rule": "static item facing",
+      "anchor": "center",
+      "hitbox": "scaled_circle",
+      "render_size": "24_to_54_pixels",
+      "z_order": 20,
+      "states": [
+        "idle",
+        "carried",
+        "collected"
+      ],
+      "animation_rule": "idle pulse and highlight on order targets, carried items attach under the claw",
+      "movement_rule": "static until caught, then follows claw return",
+      "animation_quality_tier": "pose_set"
+    },
+    {
+      "entity_key": "cave_bat",
+      "role": "hazard_enemy",
+      "asset_keys": [
+        "canvas_bat_body",
+        "canvas_bat_wings",
+        "canvas_bat_eye_glow"
+      ],
+      "default_facing": "horizontal",
+      "facing_rule": "oscillates across a short patrol path",
+      "anchor": "center",
+      "hitbox": "oval",
+      "render_size": "scaled_by_item_size",
+      "z_order": 25,
+      "states": [
+        "patrol",
+        "carried",
+        "cleared"
+      ],
+      "animation_rule": "wing ovals flap by phase while moving",
+      "movement_rule": "short horizontal patrol drift",
+      "animation_quality_tier": "frame_animation"
+    },
+    {
+      "entity_key": "prism_gate",
+      "role": "map_device",
+      "asset_keys": [
+        "canvas_prism_triangle",
+        "canvas_prism_glow",
+        "canvas_prism_shine"
+      ],
+      "default_facing": "front",
+      "facing_rule": "fixed",
+      "anchor": "center",
+      "hitbox": "triangle_region",
+      "render_size": "96_pixels",
+      "z_order": 18,
+      "states": [
+        "idle",
+        "bend_flash",
+        "lens_active"
+      ],
+      "animation_rule": "radial glow and color shift when lens is active or cable bends",
+      "movement_rule": "fixed map landmark",
+      "animation_quality_tier": "pose_set"
+    },
+    {
+      "entity_key": "cavern_background",
+      "role": "background",
+      "asset_keys": [
+        "canvas_cave_gradient",
+        "canvas_wall_crystals",
+        "canvas_lanterns",
+        "canvas_depth_markers"
+      ],
+      "default_facing": "front",
+      "facing_rule": "fixed",
+      "anchor": "viewport",
+      "hitbox": "none",
+      "render_size": "full_viewport",
+      "z_order": 0,
+      "states": [
+        "ambient"
+      ],
+      "animation_rule": "glow layers and item pulses refresh every frame",
+      "movement_rule": "fixed",
+      "animation_quality_tier": "static"
+    }
+  ]
+}
