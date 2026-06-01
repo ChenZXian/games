@@ -1,0 +1,171 @@
+{
+  "version": 1,
+  "game_id": "ring_prefecture_clash",
+  "status": "passed",
+  "direction": "Inspired by prefecture and city conquest strategy games with round battle units and bright tabletop-style territorial warfare.",
+  "selected_concept": "Nationwide node-link conquest across prefectures and major cities with auto-growing forces, visible front-line streams, and supply-cut tactics.",
+  "genre_family": "strategy",
+  "genre_archetype": "real_time_node_conquest",
+  "camera_perspective": "top_down_tabletop_map",
+  "control_model": "tap_select_drag_route_with_context_modes",
+  "core_loop_signature": "grow forces on owned nodes send round unit streams through connected prefectures cut reinforcement routes capture capitals and collapse the enemy front",
+  "differentiation_axes": [
+    "graph-based territorial conquest instead of lane combat",
+    "supply isolation and route denial as primary tactical lever",
+    "bright atlas-board presentation instead of neon or military dashboards",
+    "round battle unit streams with directional facing and contact feedback",
+    "regional chapter structure with map-rule diversity"
+  ],
+  "forbidden_template_reuse": [
+    "no fixed three-lane side-view battle layout",
+    "no single repeated national map template across chapters",
+    "no one-unit generic auto-capture loop",
+    "no placeholder circles without facing bounce recoil and capture feedback",
+    "no pure transport puzzle focus replacing conquest pressure"
+  ],
+  "map_content_budget": {
+    "play_area_model": "connected prefecture and city graph maps with specialty nodes and alternate route links",
+    "route_or_region_count": "40 campaign stages across 6 regional chapter sets with 8 to 18 nodes per stage",
+    "interactive_regions": "command capitals city nodes supply depots rail hubs ferry ports watchtowers and temporary neutral forts",
+    "terrain_types": [
+      "urban cluster",
+      "coastal bay",
+      "mountain pass",
+      "river crossing",
+      "island chain",
+      "industrial corridor"
+    ],
+    "decorative_prop_count": "at least 10 landmark families used across the campaign",
+    "functional_map_elements": [
+      "rail speed links",
+      "ferry transfer links",
+      "fortified capitals",
+      "bridge chokepoints",
+      "intel towers",
+      "morale shrines"
+    ],
+    "landmarks": [
+      "castle",
+      "station",
+      "port",
+      "dam",
+      "bridge",
+      "shrine",
+      "watchtower",
+      "industrial stack",
+      "tunnel gate",
+      "civic hall"
+    ],
+    "camera_or_scroll_model": "single-screen authored maps with adaptive fit and optional mild pan for dense tablet layouts"
+  },
+  "entity_content_budget": {
+    "player_unit_types": [
+      "standard militia token",
+      "fast courier token",
+      "heavy banner token"
+    ],
+    "enemy_types": [
+      "standard rival token",
+      "rush token",
+      "fortified guard token",
+      "elite commander token"
+    ],
+    "neutral_or_resource_entities": [
+      "supply depot",
+      "rail hub",
+      "ferry port",
+      "morale shrine"
+    ],
+    "boss_or_elite_types": [
+      "regional commander north",
+      "regional commander east",
+      "regional commander west",
+      "fortress governor",
+      "naval marshal",
+      "final grand commander"
+    ],
+    "projectile_or_effect_types": [
+      "route pulse",
+      "capture burst",
+      "morale aura",
+      "surge trail",
+      "collision spark",
+      "defeat pop"
+    ],
+    "item_or_powerup_types": [
+      "medal reward node",
+      "temporary speed order",
+      "temporary growth order",
+      "reserve shield buff"
+    ]
+  },
+  "mechanic_content_budget": {
+    "primary_player_actions": [
+      "select node",
+      "drag route to send troops",
+      "chain multiple routes",
+      "double tap for all-in surge"
+    ],
+    "secondary_player_actions": [
+      "toggle reserve-safe send mode",
+      "activate commander skill",
+      "inspect node bonuses",
+      "adjust match speed"
+    ],
+    "upgrade_paths": [
+      "logistics branch",
+      "morale branch",
+      "command branch"
+    ],
+    "wave_or_level_variants": [
+      "fortified capital maps",
+      "ferry-link maps",
+      "rail-dominant maps",
+      "fogged intel maps",
+      "revolt event maps",
+      "storm-slowed maps",
+      "bridge-control maps",
+      "multi-capital maps"
+    ],
+    "special_rules": [
+      "isolated nodes lose reinforcement access",
+      "specialty nodes grant persistent in-match bonuses",
+      "regional modifiers alter route speed or growth behavior",
+      "elite commanders use stage-specific pressure patterns"
+    ],
+    "risk_reward_systems": [
+      "sending too many troops exposes backline",
+      "capturing bonus nodes can overextend the front",
+      "all-in surge can break stalemates or cause collapse",
+      "reserve-safe mode trades tempo for stability"
+    ],
+    "failure_pressure_variants": [
+      "capital siege",
+      "multi-front collapse",
+      "slow attrition loss",
+      "bonus-objective timeout"
+    ]
+  },
+  "asset_variety_budget": {
+    "primary_game_art_packs": [
+      "cartoon atlas map icons",
+      "round battle unit token pack"
+    ],
+    "secondary_game_art_packs": [
+      "regional landmark prop pack",
+      "route and burst effects pack"
+    ],
+    "ui_pack": "skin_cartoon_light",
+    "animation_tier": "medium",
+    "required_animation_states": [
+      "idle bob",
+      "move bounce",
+      "contact bump",
+      "hit recoil",
+      "capture cheer",
+      "defeat pop"
+    ],
+    "minimum_distinct_sprite_families": "at least 6 primary token families plus region landmark families",
+    "asset_reuse_note": "round battle units are a mandatory identity pillar and must not degrade into generic colored dots during delivery-ready implementation"
+  }
+}

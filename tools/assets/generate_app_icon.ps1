@@ -253,6 +253,7 @@ function Get-Motif([string]$Text, [string[]]$Forbidden = @()) {
   $banZombie = $forbiddenText -match 'zombie'
   $banHelmet = $forbiddenText -match 'helmet|gas-mask|gas mask'
   $banShield = $forbiddenText -match 'shield|crest'
+  if ($value -match 'prefecture|atlas|ticket|map pin|regional map pin') { return "atlaspin" }
   if ($value -match 'bridge|river|crossing|gatehouse|crowned bridge|route markers') { return "crownbridge" }
   if (($value -match 'ring|perimeter|outpost|lamp|yard') -and ($value -match 'scrap|barricade|hazard|feral|ghoul|quarantine')) { return "scrapring" }
   if ($value -match 'mountain|ridge|pass|bunker|flare|canyon|notch|rockslide') { return "mountainbunker" }
@@ -260,6 +261,7 @@ function Get-Motif([string]$Text, [string[]]$Forbidden = @()) {
   if (($value -match 'fist|knuckle|glove') -and ($value -match 'sign|street|district|warrant|route|block')) { return "fistsign" }
   if ($value -match 'pennant|banner|standard|milestone|tactical-map|tactical map|tile pattern|tile grid') { return "warpennant" }
   if ($value -match 'snow|ice|frost') { return "snowman" }
+  if ($value -match 'dragon|wyrm|drake|flame horn|horn crest|half-dragon|fire warrior') { return "dragonflame" }
   if ((-not $banCastle) -and $value -match 'castle|royal|keep|king') { return "castle" }
   if ($value -match 'bomb|bomber|blast') { return "bomb" }
   if ($value -match 'garden|plant|farm|orchard|pasture|bloom') { return "leaf" }
@@ -274,6 +276,11 @@ function Get-Motif([string]$Text, [string[]]$Forbidden = @()) {
 
 function Get-Palette([string]$Motif) {
   switch ($Motif) {
+    "atlaspin" {
+      return @{
+        BgStart = "#8FD7FF"; BgEnd = "#FFB874"; Primary = "#FFF9EC"; Secondary = "#2C5F9E"; Accent = "#F05D5E"; Outline = "#173A63"; Spot = "#FFE6A7"
+      }
+    }
     "crownbridge" {
       return @{
         BgStart = "#18314E"; BgEnd = "#6C2833"; Primary = "#E7D9B0"; Secondary = "#9AABB8"; Accent = "#D8A044"; Outline = "#16263D"; Spot = "#F6E7B8"
@@ -307,6 +314,11 @@ function Get-Palette([string]$Motif) {
     "snowman" {
       return @{
         BgStart = "#72D7FF"; BgEnd = "#2F8BFF"; Primary = "#FFFFFF"; Secondary = "#FF8B38"; Accent = "#1D4ED8"; Outline = "#15315C"; Spot = "#FFF1B8"
+      }
+    }
+    "dragonflame" {
+      return @{
+        BgStart = "#28121C"; BgEnd = "#B13B1C"; Primary = "#8A141E"; Secondary = "#FFB44C"; Accent = "#FFE7B0"; Outline = "#230C12"; Spot = "#FFD38A"
       }
     }
     "castle" {
@@ -1113,6 +1125,157 @@ function Draw-ShieldStar([System.Drawing.Graphics]$Graphics, [hashtable]$Palette
   $secondaryBrush.Dispose()
 }
 
+function Draw-DragonFlame([System.Drawing.Graphics]$Graphics, [hashtable]$Palette, [int]$OffsetX, [int]$OffsetY, [int]$ShadowAlpha) {
+  $alpha = Get-DrawAlpha $ShadowAlpha
+  $outline = New-PenFromHex $Palette.Outline 24 $alpha
+  $outline.LineJoin = [System.Drawing.Drawing2D.LineJoin]::Round
+  $primaryBrush = New-Brush $Palette.Primary $alpha
+  $secondaryBrush = New-Brush $Palette.Secondary $alpha
+  $accentBrush = New-Brush $Palette.Accent $alpha
+  $darkBrush = New-Brush $Palette.Outline $alpha
+  $spotBrush = New-Brush $Palette.Spot ([Math]::Max(110, [int]($alpha * 0.72)))
+  $jawBrush = New-Brush "#F4C88A" $alpha
+  $eyeBrush = New-Brush "#FFF8D6" $alpha
+
+  $headPoints = @(
+    (New-Point (260 + $OffsetX) (398 + $OffsetY)),
+    (New-Point (354 + $OffsetX) (234 + $OffsetY)),
+    (New-Point (528 + $OffsetX) (162 + $OffsetY)),
+    (New-Point (722 + $OffsetX) (214 + $OffsetY)),
+    (New-Point (824 + $OffsetX) (356 + $OffsetY)),
+    (New-Point (786 + $OffsetX) (554 + $OffsetY)),
+    (New-Point (648 + $OffsetX) (724 + $OffsetY)),
+    (New-Point (428 + $OffsetX) (742 + $OffsetY)),
+    (New-Point (286 + $OffsetX) (612 + $OffsetY))
+  )
+  $jawPoints = @(
+    (New-Point (510 + $OffsetX) (484 + $OffsetY)),
+    (New-Point (768 + $OffsetX) (576 + $OffsetY)),
+    (New-Point (676 + $OffsetX) (686 + $OffsetY)),
+    (New-Point (470 + $OffsetX) (620 + $OffsetY))
+  )
+  $manePoints = @(
+    (New-Point (220 + $OffsetX) (502 + $OffsetY)),
+    (New-Point (194 + $OffsetX) (350 + $OffsetY)),
+    (New-Point (284 + $OffsetX) (200 + $OffsetY)),
+    (New-Point (386 + $OffsetX) (168 + $OffsetY)),
+    (New-Point (344 + $OffsetX) (332 + $OffsetY)),
+    (New-Point (356 + $OffsetX) (538 + $OffsetY))
+  )
+  $hornMain = @(
+    (New-Point (566 + $OffsetX) (176 + $OffsetY)),
+    (New-Point (636 + $OffsetX) (14 + $OffsetY)),
+    (New-Point (752 + $OffsetX) (188 + $OffsetY))
+  )
+  $hornSide = @(
+    (New-Point (388 + $OffsetX) (244 + $OffsetY)),
+    (New-Point (324 + $OffsetX) (88 + $OffsetY)),
+    (New-Point (468 + $OffsetX) (198 + $OffsetY))
+  )
+  $flameArc = @(
+    (New-Point (736 + $OffsetX) (506 + $OffsetY)),
+    (New-Point (858 + $OffsetX) (414 + $OffsetY)),
+    (New-Point (930 + $OffsetX) (530 + $OffsetY)),
+    (New-Point (876 + $OffsetX) (660 + $OffsetY)),
+    (New-Point (774 + $OffsetX) (612 + $OffsetY)),
+    (New-Point (838 + $OffsetX) (542 + $OffsetY))
+  )
+
+  Fill-ClosedCurve $Graphics $spotBrush @(
+    (New-Point (186 + $OffsetX) (608 + $OffsetY)),
+    (New-Point (226 + $OffsetX) (446 + $OffsetY)),
+    (New-Point (306 + $OffsetX) (308 + $OffsetY)),
+    (New-Point (438 + $OffsetX) (212 + $OffsetY)),
+    (New-Point (572 + $OffsetX) (196 + $OffsetY)),
+    (New-Point (438 + $OffsetX) (658 + $OffsetY))
+  )
+  $Graphics.FillPolygon($secondaryBrush, $manePoints)
+  $Graphics.DrawPolygon($outline, $manePoints)
+  $Graphics.FillPolygon($primaryBrush, $headPoints)
+  $Graphics.DrawPolygon($outline, $headPoints)
+  $Graphics.FillPolygon($jawBrush, $jawPoints)
+  $Graphics.DrawPolygon($outline, $jawPoints)
+  $Graphics.FillPolygon($secondaryBrush, $hornMain)
+  $Graphics.DrawPolygon($outline, $hornMain)
+  $Graphics.FillPolygon($secondaryBrush, $hornSide)
+  $Graphics.DrawPolygon($outline, $hornSide)
+  $Graphics.FillPolygon($accentBrush, $flameArc)
+  $Graphics.DrawPolygon($outline, $flameArc)
+  $Graphics.FillEllipse($darkBrush, 470 + $OffsetX, 336 + $OffsetY, 160, 124)
+  $Graphics.FillEllipse($eyeBrush, 512 + $OffsetX, 366 + $OffsetY, 76, 46)
+  $Graphics.FillEllipse($darkBrush, 544 + $OffsetX, 380 + $OffsetY, 18, 22)
+  $Graphics.DrawLine($outline, 560 + $OffsetX, 520 + $OffsetY, 690 + $OffsetX, 556 + $OffsetY)
+  foreach ($tooth in @(
+    @{ X = 598; Y = 520; W = 18; H = 34 },
+    @{ X = 632; Y = 532; W = 16; H = 28 },
+    @{ X = 664; Y = 544; W = 14; H = 24 }
+  )) {
+    $toothPoints = @(
+      (New-Point ($tooth.X + $OffsetX) ($tooth.Y + $OffsetY)),
+      (New-Point ($tooth.X + $tooth.W + $OffsetX) ($tooth.Y + $OffsetY)),
+      (New-Point ($tooth.X + ($tooth.W / 2) + $OffsetX) ($tooth.Y + $tooth.H + $OffsetY))
+    )
+    $Graphics.FillPolygon($accentBrush, $toothPoints)
+    $Graphics.DrawPolygon($outline, $toothPoints)
+  }
+
+  $outline.Dispose()
+  $primaryBrush.Dispose()
+  $secondaryBrush.Dispose()
+  $accentBrush.Dispose()
+  $darkBrush.Dispose()
+  $spotBrush.Dispose()
+  $jawBrush.Dispose()
+  $eyeBrush.Dispose()
+}
+
+function Draw-AtlasPin([System.Drawing.Graphics]$Graphics, [hashtable]$Palette, [int]$OffsetX, [int]$OffsetY, [int]$ShadowAlpha) {
+  $alpha = Get-DrawAlpha $ShadowAlpha
+  $outline = New-PenFromHex $Palette.Outline 24 $alpha
+  $outline.LineJoin = [System.Drawing.Drawing2D.LineJoin]::Round
+  $primaryBrush = New-Brush $Palette.Primary $alpha
+  $secondaryBrush = New-Brush $Palette.Secondary $alpha
+  $accentBrush = New-Brush $Palette.Accent $alpha
+  $spotBrush = New-Brush $Palette.Spot ([Math]::Max(110, [int]($alpha * 0.72)))
+  $darkBrush = New-Brush $Palette.Outline $alpha
+  $pinPath = New-Object System.Drawing.Drawing2D.GraphicsPath
+  $pinPath.AddEllipse(284 + $OffsetX, 172 + $OffsetY, 456, 456)
+  $pinPath.AddPolygon(@(
+    (New-Point (512 + $OffsetX) (860 + $OffsetY)),
+    (New-Point (372 + $OffsetX) (530 + $OffsetY)),
+    (New-Point (652 + $OffsetX) (530 + $OffsetY))
+  ))
+  $Graphics.FillPath($primaryBrush, $pinPath)
+  $Graphics.DrawPath($outline, $pinPath)
+  $Graphics.FillEllipse($accentBrush, 386 + $OffsetX, 274 + $OffsetY, 250, 250)
+  $Graphics.DrawEllipse($outline, 386 + $OffsetX, 274 + $OffsetY, 250, 250)
+  $Graphics.FillEllipse($secondaryBrush, 436 + $OffsetX, 326 + $OffsetY, 54, 54)
+  $Graphics.FillEllipse($secondaryBrush, 534 + $OffsetX, 326 + $OffsetY, 54, 54)
+  $Graphics.DrawArc($outline, 434 + $OffsetX, 360 + $OffsetY, 160, 110, 12, 156)
+  $ticketPath = New-RoundedPath (180 + $OffsetX) (562 + $OffsetY) 264 138 24
+  $Graphics.FillPath($spotBrush, $ticketPath)
+  $Graphics.DrawPath($outline, $ticketPath)
+  $Graphics.DrawLine($outline, 218 + $OffsetX, 616 + $OffsetY, 406 + $OffsetX, 616 + $OffsetY)
+  $Graphics.DrawLine($outline, 226 + $OffsetX, 650 + $OffsetY, 360 + $OffsetX, 650 + $OffsetY)
+  $Graphics.FillEllipse($darkBrush, 204 + $OffsetX, 604 + $OffsetY, 18, 18)
+  $Graphics.FillEllipse($darkBrush, 390 + $OffsetX, 604 + $OffsetY, 18, 18)
+  $routePen = New-PenFromHex $Palette.Secondary 18 $alpha
+  $routePen.StartCap = [System.Drawing.Drawing2D.LineCap]::Round
+  $routePen.EndCap = [System.Drawing.Drawing2D.LineCap]::Round
+  $Graphics.DrawBezier($routePen, 566 + $OffsetX, 598 + $OffsetY, 664 + $OffsetX, 530 + $OffsetY, 742 + $OffsetX, 642 + $OffsetY, 822 + $OffsetX, 574 + $OffsetY)
+  $Graphics.FillEllipse($accentBrush, 792 + $OffsetX, 548 + $OffsetY, 56, 56)
+  $Graphics.DrawEllipse($outline, 792 + $OffsetX, 548 + $OffsetY, 56, 56)
+  $pinPath.Dispose()
+  $ticketPath.Dispose()
+  $outline.Dispose()
+  $primaryBrush.Dispose()
+  $secondaryBrush.Dispose()
+  $accentBrush.Dispose()
+  $spotBrush.Dispose()
+  $darkBrush.Dispose()
+  $routePen.Dispose()
+}
+
 function Draw-MotifBitmap([string]$Motif, [hashtable]$Palette) {
   $bitmap = New-Object System.Drawing.Bitmap 1024, 1024
   $graphics = [System.Drawing.Graphics]::FromImage($bitmap)
@@ -1122,6 +1285,10 @@ function Draw-MotifBitmap([string]$Motif, [hashtable]$Palette) {
   $graphics.Clear([System.Drawing.Color]::Transparent)
 
   switch ($Motif) {
+    "atlaspin" {
+      Draw-AtlasPin $graphics $Palette 18 20 90
+      Draw-AtlasPin $graphics $Palette 0 0 0
+    }
     "crownbridge" {
       Draw-CrownBridge $graphics $Palette 18 20 90
       Draw-CrownBridge $graphics $Palette 0 0 0
@@ -1149,6 +1316,10 @@ function Draw-MotifBitmap([string]$Motif, [hashtable]$Palette) {
     "snowman" {
       Draw-Snowman $graphics $Palette 20 28 90
       Draw-Snowman $graphics $Palette 0 0 0
+    }
+    "dragonflame" {
+      Draw-DragonFlame $graphics $Palette 20 24 90
+      Draw-DragonFlame $graphics $Palette 0 0 0
     }
     "castle" {
       Draw-Castle $graphics $Palette 22 30 90

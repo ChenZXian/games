@@ -1,0 +1,200 @@
+{
+  "version": 1,
+  "game_id": "flame_dragon_onslaught",
+  "status": "integrated",
+  "camera_perspective": "side_view",
+  "default_coordinate_space": "world_space_pixels",
+  "theme": "dragon fire side scrolling action with half-dragon overdrive and chapter bosses",
+  "game_type": "side_scroller",
+  "runtime_code": "app/src/main/java/com/android/boot/ui/GameView.java",
+  "animation_quality_target": "runtime multi-state frame swap with boss phase poses and overdrive variants",
+  "entities": [
+    {
+      "entity_key": "player_flame_warrior",
+      "role": "character",
+      "asset_keys": [
+        "game_art/flame_dragon_forge_pack/assets/player_idle.png",
+        "game_art/flame_dragon_forge_pack/assets/player_run_a.png",
+        "game_art/flame_dragon_forge_pack/assets/player_run_b.png",
+        "game_art/flame_dragon_forge_pack/assets/player_jump.png",
+        "game_art/flame_dragon_forge_pack/assets/player_light_1.png",
+        "game_art/flame_dragon_forge_pack/assets/player_light_2.png",
+        "game_art/flame_dragon_forge_pack/assets/player_light_3.png",
+        "game_art/flame_dragon_forge_pack/assets/player_heavy.png",
+        "game_art/flame_dragon_forge_pack/assets/player_skill.png",
+        "game_art/flame_dragon_forge_pack/assets/player_overdrive_idle.png",
+        "game_art/flame_dragon_forge_pack/assets/player_overdrive_run_a.png",
+        "game_art/flame_dragon_forge_pack/assets/player_overdrive_run_b.png",
+        "game_art/flame_dragon_forge_pack/assets/player_overdrive_skill.png"
+      ],
+      "default_facing": "right",
+      "facing_rule": "GameView flips all player frames by move or target direction and swaps to overdrive variants when the heat core transforms.",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.94
+      },
+      "hitbox": {
+        "x": 0.24,
+        "y": 0.18,
+        "w": 0.52,
+        "h": 0.74
+      },
+      "z_order": "actors_above_props_below_fx",
+      "states": [
+        "idle",
+        "run",
+        "jump",
+        "light_attack",
+        "heavy_attack",
+        "skill",
+        "hit",
+        "overdrive_idle",
+        "overdrive_run",
+        "overdrive_skill"
+      ],
+      "animation_rule": "Alternate run frames by cadence, use explicit attack frames for combo steps, and switch to separate overdrive poses instead of tint-only reuse.",
+      "movement_rule": "Face the current move direction, keep the foot anchor on the ground line, and preserve the protected combat lane while lunging or jumping."
+    },
+    {
+      "entity_key": "enemy_roster",
+      "role": "enemy",
+      "asset_keys": [
+        "game_art/flame_dragon_forge_pack/assets/enemy_soldier_idle.png",
+        "game_art/flame_dragon_forge_pack/assets/enemy_soldier_move_a.png",
+        "game_art/flame_dragon_forge_pack/assets/enemy_soldier_move_b.png",
+        "game_art/flame_dragon_forge_pack/assets/enemy_shield_idle.png",
+        "game_art/flame_dragon_forge_pack/assets/enemy_shield_move_a.png",
+        "game_art/flame_dragon_forge_pack/assets/enemy_shield_move_b.png",
+        "game_art/flame_dragon_forge_pack/assets/enemy_archer_idle.png",
+        "game_art/flame_dragon_forge_pack/assets/enemy_archer_attack.png",
+        "game_art/flame_dragon_forge_pack/assets/enemy_cultist_idle.png",
+        "game_art/flame_dragon_forge_pack/assets/enemy_cultist_cast.png",
+        "game_art/flame_dragon_forge_pack/assets/enemy_drake_fly_a.png",
+        "game_art/flame_dragon_forge_pack/assets/enemy_drake_fly_b.png",
+        "game_art/flame_dragon_forge_pack/assets/enemy_captain_move_a.png",
+        "game_art/flame_dragon_forge_pack/assets/enemy_captain_move_b.png",
+        "game_art/flame_dragon_forge_pack/assets/enemy_captain_attack.png"
+      ],
+      "default_facing": "left",
+      "facing_rule": "Melee, ranged, caster, drake, and captain variants all flip toward the player; flying drakes keep directional body lean while frames alternate.",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.94
+      },
+      "hitbox": {
+        "x": 0.24,
+        "y": 0.18,
+        "w": 0.52,
+        "h": 0.74
+      },
+      "z_order": "actors_above_props_below_fx",
+      "states": [
+        "idle",
+        "move",
+        "attack",
+        "cast",
+        "fly",
+        "hit",
+        "defeat"
+      ],
+      "animation_rule": "Ground units alternate move frames, ranged and cultist enemies switch to explicit attack or cast poses, and defeat timing is handled with knockback plus pickup burst.",
+      "movement_rule": "Ground enemies stay foot-anchored to the lane while drakes use an elevated wave path and still face attack travel."
+    },
+    {
+      "entity_key": "boss_wyrm_lord",
+      "role": "boss",
+      "asset_keys": [
+        "game_art/flame_dragon_forge_pack/assets/boss_idle.png",
+        "game_art/flame_dragon_forge_pack/assets/boss_move.png",
+        "game_art/flame_dragon_forge_pack/assets/boss_cast.png",
+        "game_art/flame_dragon_forge_pack/assets/boss_slam.png",
+        "game_art/flame_dragon_forge_pack/assets/boss_phase.png"
+      ],
+      "default_facing": "left",
+      "facing_rule": "Boss frames flip toward the player while phase changes select cast and slam poses that visibly pre-commit direction.",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.96
+      },
+      "hitbox": {
+        "x": 0.2,
+        "y": 0.12,
+        "w": 0.6,
+        "h": 0.8
+      },
+      "z_order": "boss_above_actors_below_fullscreen_fx",
+      "states": [
+        "idle",
+        "move",
+        "cast",
+        "slam",
+        "phase_shift",
+        "hit",
+        "defeat"
+      ],
+      "animation_rule": "Boss logic selects dedicated cast, slam, and phase frames instead of reusing a single sprite for all attacks.",
+      "movement_rule": "Boss remains centered on the combat lane, advances in ground space, and uses larger telegraph spacing before projectile or slam attacks."
+    },
+    {
+      "entity_key": "fire_projectiles_and_pickups",
+      "role": "projectile",
+      "asset_keys": [
+        "game_art/flame_dragon_forge_pack/assets/effect_fireball.png",
+        "game_art/flame_dragon_forge_pack/assets/effect_burst.png",
+        "game_art/flame_dragon_forge_pack/assets/effect_heat_orb.png",
+        "game_art/flame_dragon_forge_pack/assets/effect_medal.png",
+        "game_art/flame_dragon_forge_pack/assets/effect_warning.png"
+      ],
+      "default_facing": "travel_direction",
+      "facing_rule": "Projectile circles and pickup emblems stay centered while gameplay logic aligns travel to the current velocity and owner side.",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "hitbox": {
+        "x": 0.16,
+        "y": 0.16,
+        "w": 0.68,
+        "h": 0.68
+      },
+      "z_order": "fx_and_pickups_above_actors",
+      "states": [
+        "travel",
+        "impact",
+        "idle_collectible"
+      ],
+      "animation_rule": "Projectiles use separate effect sprites and burst circles rather than moving one static actor frame through space.",
+      "movement_rule": "Fireballs travel forward, warning shots linger on arcing paths, and pickups hover down toward the lane before collection."
+    },
+    {
+      "entity_key": "chapter_backdrops",
+      "role": "background",
+      "asset_keys": [
+        "game_art/flame_dragon_forge_pack/assets/background_1.png",
+        "game_art/flame_dragon_forge_pack/assets/background_2.png",
+        "game_art/flame_dragon_forge_pack/assets/background_3.png",
+        "game_art/flame_dragon_forge_pack/assets/background_4.png",
+        "game_art/flame_dragon_forge_pack/assets/background_5.png",
+        "game_art/flame_dragon_forge_pack/assets/background_6.png"
+      ],
+      "default_facing": "screen_facing",
+      "facing_rule": "Backgrounds remain unflipped and pan with a light parallax factor behind the combat lane.",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "hitbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "w": 1.0,
+        "h": 1.0
+      },
+      "z_order": "background",
+      "states": [
+        "idle"
+      ],
+      "animation_rule": "Backdrop variation comes from chapter swaps and layered parallax silhouettes.",
+      "movement_rule": "Pan at a reduced camera multiplier so active gameplay remains readable."
+    }
+  ]
+}

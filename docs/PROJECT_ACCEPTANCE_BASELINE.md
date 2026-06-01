@@ -136,6 +136,8 @@ The expected readiness ladder is:
 - resource tracks are complete, not deferred or placeholder-only, for the intended release target
 - inspect and validate can report the playfield safe area as passed rather than warning or failed
 - inspect should block packaging when `UI_OCCLUSION_RISK` is not `low`
+- validate should run a runtime UI safety check that simulates representative phone and tablet viewports and blocks visible HUD or panel collisions with runtime gameplay nodes when they can be inferred from code
+- inspect should block delivery readiness when `MECHANIC_DUPLICATE_RISK` is not `low`
 - packaging is run only when explicitly requested
 
 ## 9. Initialization Residue Baseline

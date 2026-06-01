@@ -35,7 +35,8 @@
       "path": "packs/kenney_ui_pack",
       "used_by": [
         "bloom_orchard",
-        "island_supply_command"
+        "island_supply_command",
+        "ring_prefecture_clash"
       ],
       "validated_with": [
         "bloom_orchard"
@@ -68,7 +69,8 @@
       ],
       "path": "packs/kenney_pixel_ui_pack",
       "used_by": [
-        "crownblock_hunt"
+        "crownblock_hunt",
+        "flame_dragon_onslaught"
       ],
       "validated_with": []
     },
@@ -100,7 +102,9 @@
         "mobile_game"
       ],
       "path": "packs/kenney_ui_pack_sci_fi",
-      "used_by": [],
+      "used_by": [
+        "three_minute_empire"
+      ],
       "validated_with": []
     },
     {

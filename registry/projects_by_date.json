@@ -1,9 +1,36 @@
 {
     "version":  1,
-    "generated_at_utc":  "2026-04-30T06:34:06Z",
+    "generated_at_utc":  "2026-05-12T02:38:23Z",
     "grouping":  "created_at_month",
     "path_policy":  "active projects remain direct children under games/\u003cgame_id\u003e",
     "months":  [
+                   {
+                       "month":  "2026-05",
+                       "total":  3,
+                       "games":  [
+                                     {
+                                         "id":  "three_minute_empire",
+                                         "name":  "Three Minute Empire",
+                                         "created_at":  "2026-05-12",
+                                         "path":  "games/three_minute_empire",
+                                         "ui_skin":  "skin_military_tech"
+                                     },
+                                     {
+                                         "id":  "flame_dragon_onslaught",
+                                         "name":  "Flame Dragon Onslaught",
+                                         "created_at":  "2026-05-09",
+                                         "path":  "games/flame_dragon_onslaught",
+                                         "ui_skin":  "skin_dark_arcade"
+                                     },
+                                     {
+                                         "id":  "ring_prefecture_clash",
+                                         "name":  "Ring Prefecture Clash",
+                                         "created_at":  "2026-05-07",
+                                         "path":  "games/ring_prefecture_clash",
+                                         "ui_skin":  "skin_cartoon_light"
+                                     }
+                                 ]
+                   },
                    {
                        "month":  "2026-04",
                        "total":  17,

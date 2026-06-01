@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "game_id": "three_minute_empire",
+  "status": "passed",
+  "reviewed_at_utc": "2026-05-12T02:45:00Z",
+  "requirements_source": "artifacts/requirements/three_minute_empire/requirements.md",
+  "implemented_requirements": [
+    "fixed three minute match timer",
+    "one screen node graph map",
+    "gray neutral resource points",
+    "player owned points use teal ownership color",
+    "enemy owned points use red ownership color",
+    "contested points use amber pulse",
+    "drag routes dispatch troop streams",
+    "resource point ownership increases supply income",
+    "controlled points can be upgraded",
+    "surge command dispatches reinforced streams",
+    "repair command reinforces selected friendly point",
+    "enemy commander dispatches counter streams",
+    "win by enemy base capture or timer score",
+    "lose by player base capture or timer score",
+    "HUD reserves top timer band and left command rail",
+    "runtime gameplay art map is integrated",
+    "menu, pause, result, and gameplay states are present"
+  ],
+  "resource_track_evidence": {
+    "ui_assignment": "games/three_minute_empire/app/src/main/assets/ui/ui_pack_assignment.json",
+    "game_art_assignment": "games/three_minute_empire/app/src/main/assets/game_art/game_art_assignment.json",
+    "runtime_art_map": "games/three_minute_empire/app/src/main/assets/game_art/runtime_art_map.json",
+    "audio_assets": "games/three_minute_empire/app/src/main/assets/audio",
+    "icon_exports": "artifacts/icons/three_minute_empire"
+  },
+  "notes": [
+    "The first playable preserves the confirmed core loop instead of replacing it with a generic tap loop.",
+    "Neutral to player ownership color conversion is implemented in GameView ownerColor and capture arrival logic.",
+    "The implementation uses a compact route graph and avoids three horizontal lanes, bottom unit strips, worker economy, prefecture conquest, and tower placement."
+  ]
+}

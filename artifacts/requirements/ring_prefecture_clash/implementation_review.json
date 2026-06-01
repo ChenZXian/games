@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "game_id": "ring_prefecture_clash",
+  "status": "passed",
+  "reviewed_at_utc": "2026-05-07T09:12:00Z",
+  "summary": "The implementation preserves the confirmed real-time node conquest loop with 40 stage definitions, round unit streams, route-based pressure, rail and shrine and port node bonuses, reserve send modes, commander skills, stage progression, tracked UI identity, generated icon exports, integrated runtime art mapping, and menu plus play audio coverage."
+}

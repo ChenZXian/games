@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "game_id": "three_minute_empire",
+  "status": "passed",
+  "visual_differentiation_axes": [
+    "one screen command board",
+    "left vertical command rail",
+    "top center three minute timer ribbon",
+    "gray neutral resource points converting to player or enemy color",
+    "node graph route map instead of lane field",
+    "compact selected node stat plate",
+    "ownership color is the primary visual language"
+  ],
+  "forbidden_visual_reuse": [
+    "top HUD pill row plus bottom command strip",
+    "full screen GameView with controls covering active nodes",
+    "generic castle or shield icon",
+    "prefecture map visual metaphor",
+    "three lane warfront layout",
+    "tower defense path and turret bar"
+  ],
+  "ui_identity": {
+    "layout_archetype": "one screen tactical command board with left command rail and top timer ribbon",
+    "hud_composition": "top timer and score ribbon, left pause surge repair rail, contextual bottom left selected node plate",
+    "navigation_model": "menu to stage select to gameplay to result, with compact side drawer pause overlay",
+    "palette_signature": "dark military green foundation, gray neutral nodes, teal green player ownership, red orange enemy ownership, amber contested pulse",
+    "material_language": "tactical glass panels, thin route lines, crisp node rings, compact command icons",
+    "typography_style": "compact military display using repository text appearance styles",
+    "primary_ui_pack": "repository ui kit with skin_military_tech",
+    "secondary_ui_assets": [
+      "tactical node rings",
+      "route line accents",
+      "small command button icons",
+      "capture pulse overlays"
+    ],
+    "playfield_safety": {
+      "reserved_edges": [
+        "top timer band",
+        "left command rail"
+      ],
+      "hud_anchor_zones": [
+        "top center timer",
+        "top right score",
+        "left vertical command controls",
+        "bottom left selected node plate"
+      ],
+      "protected_gameplay_zones": [
+        "all graph nodes",
+        "route lines",
+        "drag paths between connected nodes",
+        "troop stream travel lanes"
+      ],
+      "frame_overlay_policy": "Decorative borders and HUD chrome must stay outside active graph routes and must not cover node hitboxes or drag paths."
+    },
+    "unique_screen_motifs": [
+      "node ownership color flip",
+      "three minute command timer",
+      "map route pulse",
+      "captured point flag marker",
+      "surge command rail"
+    ],
+    "forbidden_ui_elements": [
+      "bottom full width unit strip",
+      "large card stack over playfield",
+      "decorative frame over active graph",
+      "same top HUD pill pattern used by previous strategy games",
+      "generic gray prototype circles without ownership styling"
+    ]
+  },
+  "icon_identity": {
+    "subject": "three minute countdown bomb clock over a gray to teal capture core",
+    "silhouette": "round countdown core with split gray and teal halves plus small amber spark",
+    "composition": "large central countdown core, gray left half, teal right half, small 3 minute timer ticks, amber spark at the conversion edge",
+    "palette": "dark military green, teal green, neutral gray, amber highlight, small red orange enemy accent",
+    "background": "compact tactical grid or map plate",
+    "game_specific_motif": "fixed three minute pressure and visible resource point ownership conversion",
+    "forbidden_icon_reuse": [
+      "generic tower",
+      "generic castle",
+      "generic shield",
+      "soldier portrait only",
+      "prefecture map marker",
+      "lane battle base icon"
+    ]
+  }
+}

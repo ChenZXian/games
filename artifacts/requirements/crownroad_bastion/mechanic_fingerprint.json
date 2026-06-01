@@ -1,0 +1,287 @@
+{
+  "version": 1,
+  "game_id": "crownroad_bastion",
+  "status": "failed",
+  "duplicate_risk": "high",
+  "top_similarity": 0.4217,
+  "fingerprint": {
+    "version": 1,
+    "game_id": "crownroad_bastion",
+    "tokens": [
+      "across",
+      "archer",
+      "armor",
+      "armored",
+      "around",
+      "arrow",
+      "aura",
+      "banner",
+      "barracks",
+      "bastion",
+      "bat",
+      "battering",
+      "battlefield",
+      "bearer",
+      "block",
+      "blockers",
+      "blocks",
+      "board",
+      "bolt",
+      "bonus",
+      "boss",
+      "buffs",
+      "build",
+      "burst",
+      "bypass",
+      "campaign",
+      "cannon",
+      "captain",
+      "cast",
+      "class",
+      "clusters",
+      "command",
+      "commitment",
+      "control",
+      "cooldown",
+      "coordinates",
+      "crate",
+      "crest",
+      "curved",
+      "damage",
+      "deals",
+      "defense",
+      "destination",
+      "dirt",
+      "down",
+      "early",
+      "east",
+      "edge",
+      "enemies",
+      "entrance",
+      "entrances",
+      "exit",
+      "fantasy",
+      "fast",
+      "field",
+      "final",
+      "fixed",
+      "flag",
+      "flying",
+      "foot",
+      "forest",
+      "full",
+      "gate",
+      "gold",
+      "graph",
+      "grass",
+      "ground",
+      "guard",
+      "healed",
+      "healer",
+      "heals",
+      "hero",
+      "high",
+      "hill",
+      "ignores",
+      "kingdom",
+      "knight",
+      "landscape",
+      "leak",
+      "least",
+      "lower",
+      "mage",
+      "magic",
+      "map",
+      "market",
+      "merge",
+      "meteor",
+      "militia",
+      "mixed",
+      "move",
+      "nearby",
+      "network",
+      "next",
+      "node",
+      "nodes",
+      "normalized",
+      "north",
+      "ogre",
+      "pad",
+      "pads",
+      "pressure",
+      "raider",
+      "rally",
+      "ram",
+      "reach",
+      "reinforcement",
+      "reinforcements",
+      "rejoin",
+      "reward",
+      "rider",
+      "road",
+      "route",
+      "royal",
+      "runner",
+      "select",
+      "shaman",
+      "shell",
+      "shield",
+      "shrine",
+      "siege",
+      "single",
+      "soldier",
+      "spearman",
+      "spell",
+      "spells",
+      "split",
+      "square",
+      "start",
+      "stop",
+      "strategy",
+      "stubs",
+      "summon",
+      "swarm",
+      "tap",
+      "target",
+      "they",
+      "three",
+      "tier",
+      "time",
+      "timing",
+      "top",
+      "tower",
+      "towers",
+      "two",
+      "upgrade",
+      "upper",
+      "variants",
+      "view",
+      "visible",
+      "warlord",
+      "wave",
+      "waves",
+      "wolf",
+      "zones"
+    ],
+    "mechanic_axes": [
+      "node_graph_capture",
+      "tower_defense"
+    ],
+    "genre_family": "tower_defense",
+    "genre_archetype": "node_graph_kingdom_road_defense",
+    "control_model": "tap_build_pad_tap_hero_destination_tap_spell_target",
+    "core_loop_signature": "build towers on fixed pads around a curved merge split road network move a hero rally barracks cast spells and stop fantasy waves before the bastion gate"
+  },
+  "similar_projects": [
+    {
+      "game_id": "scrap_ring_outpost",
+      "score": 0.4217,
+      "shared_axes": [
+        "node_graph_capture",
+        "tower_defense"
+      ]
+    },
+    {
+      "game_id": "mountain_pass_guard",
+      "score": 0.4035,
+      "shared_axes": [
+        "node_graph_capture",
+        "tower_defense"
+      ]
+    },
+    {
+      "game_id": "crown_frontier_tactics",
+      "score": 0.3292,
+      "shared_axes": [
+        "node_graph_capture",
+        "tower_defense"
+      ]
+    },
+    {
+      "game_id": "iron_banner_realms",
+      "score": 0.3282,
+      "shared_axes": [
+        "node_graph_capture",
+        "tower_defense"
+      ]
+    },
+    {
+      "game_id": "empire_wall_guard",
+      "score": 0.3096,
+      "shared_axes": [
+        "tower_defense"
+      ]
+    },
+    {
+      "game_id": "castaway_clan",
+      "score": 0.303,
+      "shared_axes": [
+        "node_graph_capture",
+        "tower_defense"
+      ]
+    }
+  ],
+  "nearest_projects": [
+    {
+      "game_id": "scrap_ring_outpost",
+      "score": 0.4217,
+      "shared_axes": [
+        "node_graph_capture",
+        "tower_defense"
+      ]
+    },
+    {
+      "game_id": "mountain_pass_guard",
+      "score": 0.4035,
+      "shared_axes": [
+        "node_graph_capture",
+        "tower_defense"
+      ]
+    },
+    {
+      "game_id": "crown_frontier_tactics",
+      "score": 0.3292,
+      "shared_axes": [
+        "node_graph_capture",
+        "tower_defense"
+      ]
+    },
+    {
+      "game_id": "iron_banner_realms",
+      "score": 0.3282,
+      "shared_axes": [
+        "node_graph_capture",
+        "tower_defense"
+      ]
+    },
+    {
+      "game_id": "empire_wall_guard",
+      "score": 0.3096,
+      "shared_axes": [
+        "tower_defense"
+      ]
+    },
+    {
+      "game_id": "castaway_clan",
+      "score": 0.303,
+      "shared_axes": [
+        "node_graph_capture",
+        "tower_defense"
+      ]
+    },
+    {
+      "game_id": "royal_line_defense",
+      "score": 0.299,
+      "shared_axes": [
+        "tower_defense"
+      ]
+    },
+    {
+      "game_id": "minecart_bastion",
+      "score": 0.2932,
+      "shared_axes": [
+        "tower_defense"
+      ]
+    }
+  ]
+}

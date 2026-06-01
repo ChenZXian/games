@@ -1,0 +1,82 @@
+{
+  "pack_id": "ring_prefecture_tokens",
+  "title": "Ring Prefecture Tokens",
+  "license": "CC0-1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "source_url": "repository_generated",
+  "asset_types": [
+    "png"
+  ],
+  "art_roles": [
+    "character",
+    "enemy",
+    "building",
+    "prop",
+    "background",
+    "effect"
+  ],
+  "recommended_game_types": [
+    "strategy",
+    "territory",
+    "top",
+    "down",
+    "map"
+  ],
+  "style_tags": [
+    "cartoon",
+    "round",
+    "strategy",
+    "map",
+    "conquest",
+    "atlas"
+  ],
+  "quality_tags": [
+    "production",
+    "generated",
+    "open",
+    "cc0"
+  ],
+  "animation_capabilities": [
+    "top_down",
+    "runtime_swap",
+    "bounce_cycle",
+    "directional_badge"
+  ],
+  "animation_states": [
+    "idle",
+    "move",
+    "attack",
+    "hit",
+    "capture",
+    "defeat"
+  ],
+  "path": "packs/ring_prefecture_tokens",
+  "used_by": [
+    "ring_prefecture_clash"
+  ],
+  "validated_with": [
+    "ring_prefecture_clash"
+  ],
+  "map_roles": [
+    "background",
+    "building",
+    "prop"
+  ],
+  "map_capabilities": [
+    "top_down_layout",
+    "route_overlay_support"
+  ],
+  "camera_perspectives": [
+    "top_down"
+  ],
+  "tile_asset_metrics": {
+    "tile_png_count": 10,
+    "tilemap_sheet_count": 0,
+    "packed_sheet_count": 0,
+    "tiled_tmx_count": 0,
+    "tiled_tsx_count": 0,
+    "sample_map_count": 0,
+    "preview_map_count": 1
+  },
+  "map_builder_strength": "moderate"
+}

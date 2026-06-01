@@ -219,11 +219,13 @@ The inspect workflow reports:
 - `GAMEPLAY_DIVERSITY_STATUS=needs_revision`
 - `GAMEPLAY_DIVERSITY_STATUS=missing`
 - `GAMEPLAY_DIVERSITY_STATUS=invalid`
+- `MECHANIC_FINGERPRINT_STATUS=passed|warning|failed|unknown`
+- `MECHANIC_DUPLICATE_RISK=low|medium|high|unknown`
 
 Delivery-ready output requires:
 
 - requirements status is `confirmed`
 - gameplay diversity status is `passed`
+- mechanic duplicate risk is `low`
 - implementation fidelity status is `passed`
 - icon, UI, gameplay art, runtime art map, and audio are complete
-

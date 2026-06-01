@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "game_id": "three_minute_empire",
+  "pack_id": "kenney_ui_pack_sci_fi",
+  "pack_title": "Kenney UI Pack Sci-Fi",
+  "preset_id": "canonical_sci_fi_blue",
+  "preset_title": "Canonical Sci-Fi Blue",
+  "ui_skin": "skin_military_tech",
+  "style_tags": [
+    "sci_fi",
+    "space",
+    "future",
+    "tech",
+    "glass"
+  ],
+  "source_url": "https://kenney.nl/assets/ui-pack-sci-fi",
+  "license": "CC0-1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "assigned_at_utc": "2026-05-12T02:35:10Z",
+  "copied_items": [
+    {
+      "type": "drawable",
+      "logical_name": "ui_button_primary",
+      "source": "drawable/button_primary_sci_fi.png",
+      "target": "app/src/main/res/drawable/ui_button_primary.png"
+    },
+    {
+      "type": "drawable",
+      "logical_name": "ui_button_secondary",
+      "source": "drawable/button_secondary_sci_fi.png",
+      "target": "app/src/main/res/drawable/ui_button_secondary.png"
+    },
+    {
+      "type": "drawable",
+      "logical_name": "ui_button_icon",
+      "source": "drawable/button_icon_sci_fi.png",
+      "target": "app/src/main/res/drawable/ui_button_icon.png"
+    },
+    {
+      "type": "drawable",
+      "logical_name": "ui_panel",
+      "source": "drawable/panel_glass_sci_fi.png",
+      "target": "app/src/main/res/drawable/ui_panel.png"
+    },
+    {
+      "type": "drawable",
+      "logical_name": "ui_card",
+      "source": "drawable/panel_rectangle_sci_fi.png",
+      "target": "app/src/main/res/drawable/ui_card.png"
+    },
+    {
+      "type": "font",
+      "logical_name": "kenney_future_narrow",
+      "source": "font/kenney_future_narrow.ttf",
+      "target": "app/src/main/res/font/kenney_future_narrow.ttf"
+    }
+  ]
+}

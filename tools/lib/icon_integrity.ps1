@@ -34,6 +34,8 @@ function Get-IconIntegrityOverlapCount($LeftSet, $RightSet) {
 
 function Get-SupportedIconMotifs {
   return @(
+    "atlaspin",
+    "dragonflame",
     "crownbridge",
     "scrapring",
     "mountainbunker",

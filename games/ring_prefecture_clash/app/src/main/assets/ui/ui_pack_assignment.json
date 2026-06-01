@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "game_id": "ring_prefecture_clash",
+  "pack_id": "kenney_ui_pack",
+  "pack_title": "Kenney UI Pack 2.0",
+  "preset_id": "canonical_cartoon_light",
+  "preset_title": "Canonical Cartoon Light",
+  "ui_skin": "skin_cartoon_light",
+  "source_url": "https://kenney.nl/assets/ui-pack",
+  "license": "CC0-1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "assigned_at_utc": "2026-05-07T00:00:00Z",
+  "assignment_type": "shared_ui_pack",
+  "style_tags": [
+    "atlas",
+    "cartoon_friendly",
+    "rounded",
+    "strategy",
+    "paper_map"
+  ]
+}

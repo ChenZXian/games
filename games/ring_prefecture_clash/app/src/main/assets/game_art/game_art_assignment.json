@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "game_id": "ring_prefecture_clash",
+  "assigned_at_utc": "2026-05-07T00:00:00Z",
+  "packs": [
+    {
+      "pack_id": "ring_prefecture_tokens",
+      "pack_title": "Ring Prefecture Tokens",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "repository_generated",
+      "art_roles": [
+        "character",
+        "enemy",
+        "building",
+        "prop",
+        "background",
+        "effect"
+      ],
+      "recommended_game_types": [
+        "strategy",
+        "territory",
+        "top",
+        "down",
+        "map"
+      ],
+      "style_tags": [
+        "cartoon",
+        "round",
+        "strategy",
+        "map",
+        "conquest",
+        "atlas"
+      ],
+      "quality_tags": [
+        "production",
+        "generated",
+        "open",
+        "cc0"
+      ],
+      "animation_capabilities": [
+        "top_down",
+        "runtime_swap",
+        "bounce_cycle",
+        "directional_badge"
+      ],
+      "animation_states": [
+        "idle",
+        "move",
+        "attack",
+        "hit",
+        "capture",
+        "defeat"
+      ],
+      "project_pack_path": "app/src/main/assets/game_art/ring_prefecture_tokens",
+      "copied_file_count": 10
+    }
+  ],
+  "copied_file_count": 10
+}

@@ -509,7 +509,8 @@
         "castaway_clan",
         "bronze_camp_command",
         "mountain_pass_guard",
-        "scrap_ring_outpost"
+        "scrap_ring_outpost",
+        "three_minute_empire"
       ],
       "validated_with": [],
       "map_roles": [
@@ -697,7 +698,9 @@
         "cc0"
       ],
       "path": "packs/kenney_space_shooter_extension",
-      "used_by": [],
+      "used_by": [
+        "three_minute_empire"
+      ],
       "validated_with": [],
       "map_roles": [
         "background"
@@ -1759,6 +1762,170 @@
         "preview_map_count": 2
       },
       "map_builder_strength": "weak"
+    },
+    {
+      "pack_id": "ring_prefecture_tokens",
+      "title": "Ring Prefecture Tokens",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "repository_generated",
+      "asset_types": [
+        "png"
+      ],
+      "art_roles": [
+        "character",
+        "enemy",
+        "building",
+        "prop",
+        "background",
+        "effect"
+      ],
+      "recommended_game_types": [
+        "strategy",
+        "territory",
+        "top",
+        "down",
+        "map"
+      ],
+      "style_tags": [
+        "cartoon",
+        "round",
+        "strategy",
+        "map",
+        "conquest",
+        "atlas"
+      ],
+      "quality_tags": [
+        "production",
+        "generated",
+        "open",
+        "cc0"
+      ],
+      "animation_capabilities": [
+        "top_down",
+        "runtime_swap",
+        "bounce_cycle",
+        "directional_badge"
+      ],
+      "animation_states": [
+        "idle",
+        "move",
+        "attack",
+        "hit",
+        "capture",
+        "defeat"
+      ],
+      "path": "packs/ring_prefecture_tokens",
+      "used_by": [
+        "ring_prefecture_clash",
+        "three_minute_empire"
+      ],
+      "validated_with": [
+        "ring_prefecture_clash"
+      ],
+      "map_roles": [
+        "background",
+        "building",
+        "prop"
+      ],
+      "map_capabilities": [
+        "top_down_layout",
+        "route_overlay_support"
+      ],
+      "camera_perspectives": [
+        "top_down"
+      ],
+      "tile_asset_metrics": {
+        "tile_png_count": 10,
+        "tilemap_sheet_count": 0,
+        "packed_sheet_count": 0,
+        "tiled_tmx_count": 0,
+        "tiled_tsx_count": 0,
+        "sample_map_count": 0,
+        "preview_map_count": 1
+      },
+      "map_builder_strength": "moderate"
+    },
+    {
+      "pack_id": "flame_dragon_forge_pack",
+      "title": "Flame Dragon Forge Pack",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "repository_generated",
+      "asset_types": [
+        "png"
+      ],
+      "art_roles": [
+        "character",
+        "enemy",
+        "boss",
+        "background",
+        "pickup",
+        "effect",
+        "projectile"
+      ],
+      "recommended_game_types": [
+        "side",
+        "scroller",
+        "action",
+        "boss",
+        "fantasy"
+      ],
+      "style_tags": [
+        "dragon",
+        "flame",
+        "fantasy",
+        "side_view",
+        "action",
+        "forge"
+      ],
+      "quality_tags": [
+        "production",
+        "generated",
+        "open",
+        "cc0"
+      ],
+      "animation_capabilities": [
+        "side_view",
+        "humanoid",
+        "boss_pose_set",
+        "runtime_frame_swap",
+        "horizontal_flip"
+      ],
+      "animation_states": [
+        "idle",
+        "run",
+        "jump",
+        "attack",
+        "skill",
+        "hit",
+        "boss_phase"
+      ],
+      "path": "packs/flame_dragon_forge_pack",
+      "used_by": [
+        "flame_dragon_onslaught"
+      ],
+      "validated_with": [],
+      "map_roles": [
+        "background"
+      ],
+      "map_capabilities": [
+        "background_layers",
+        "side_view_layout"
+      ],
+      "camera_perspectives": [
+        "side_view"
+      ],
+      "tile_asset_metrics": {
+        "tile_png_count": 44,
+        "tilemap_sheet_count": 0,
+        "packed_sheet_count": 0,
+        "tiled_tmx_count": 0,
+        "tiled_tsx_count": 0,
+        "sample_map_count": 0,
+        "preview_map_count": 6
+      },
+      "map_builder_strength": "moderate"
     }
   ]
 }

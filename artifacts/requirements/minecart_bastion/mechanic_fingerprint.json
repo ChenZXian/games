@@ -1,0 +1,134 @@
+{
+  "version": 1,
+  "game_id": "minecart_bastion",
+  "status": "failed",
+  "duplicate_risk": "high",
+  "top_similarity": 0.617,
+  "fingerprint": {
+    "version": 1,
+    "game_id": "minecart_bastion",
+    "tokens": [
+      "armed",
+      "build",
+      "carts",
+      "cave",
+      "defend",
+      "defense",
+      "depot",
+      "earn",
+      "intercept",
+      "junction",
+      "lanes",
+      "minecart",
+      "monster",
+      "moving",
+      "ore",
+      "patrol",
+      "rail",
+      "rails",
+      "reactor",
+      "routes",
+      "strategy",
+      "switch",
+      "tower",
+      "towers",
+      "upgrade",
+      "waves"
+    ],
+    "mechanic_axes": [
+      "tower_defense"
+    ],
+    "genre_family": "",
+    "genre_archetype": "",
+    "control_model": "",
+    "core_loop_signature": "build armed minecart towers on depot rails switch junction routes to patrol lanes intercept cave monster waves earn ore upgrade carts and defend the reactor"
+  },
+  "similar_projects": [
+    {
+      "game_id": "empire_wall_guard",
+      "score": 0.617,
+      "shared_axes": [
+        "tower_defense"
+      ]
+    },
+    {
+      "game_id": "royal_line_defense",
+      "score": 0.6114,
+      "shared_axes": [
+        "tower_defense"
+      ]
+    },
+    {
+      "game_id": "garden_siege",
+      "score": 0.3031,
+      "shared_axes": [
+        "tower_defense"
+      ]
+    },
+    {
+      "game_id": "bowling_barrage",
+      "score": 0.3031,
+      "shared_axes": [
+        "tower_defense"
+      ]
+    }
+  ],
+  "nearest_projects": [
+    {
+      "game_id": "empire_wall_guard",
+      "score": 0.617,
+      "shared_axes": [
+        "tower_defense"
+      ]
+    },
+    {
+      "game_id": "royal_line_defense",
+      "score": 0.6114,
+      "shared_axes": [
+        "tower_defense"
+      ]
+    },
+    {
+      "game_id": "garden_siege",
+      "score": 0.3031,
+      "shared_axes": [
+        "tower_defense"
+      ]
+    },
+    {
+      "game_id": "bowling_barrage",
+      "score": 0.3031,
+      "shared_axes": [
+        "tower_defense"
+      ]
+    },
+    {
+      "game_id": "castle_keep_defender",
+      "score": 0.2934,
+      "shared_axes": [
+        "tower_defense"
+      ]
+    },
+    {
+      "game_id": "crownroad_bastion",
+      "score": 0.2932,
+      "shared_axes": [
+        "tower_defense"
+      ]
+    },
+    {
+      "game_id": "flame_dragon_onslaught",
+      "score": 0.2847,
+      "shared_axes": [
+        "tower_defense"
+      ]
+    },
+    {
+      "game_id": "mountain_pass_guard",
+      "score": 0.1942,
+      "shared_axes": [
+        "tower_defense"
+      ]
+    }
+  ]
+}

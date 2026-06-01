@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "game_id": "flame_dragon_onslaught",
+  "status": "passed",
+  "reviewed_at_utc": "2026-05-09T03:20:00Z",
+  "summary": "The implementation preserves the confirmed side-scrolling fire action loop with chapter-based stage selection, arena lock encounters, light and heavy combo pressure, jump movement, flame skill spending, heat-based overdrive transformation, hazard variants, boss phases, forge-themed dark arcade UI, dedicated dragon icon exports, integrated runtime art mapping, and complete menu plus play plus boss audio coverage."
+}

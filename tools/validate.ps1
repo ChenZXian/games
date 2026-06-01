@@ -280,6 +280,25 @@ function Validate-Project($projDir, [ref]$fails, [ref]$warns){
     Write-Warn "Playfield safety could not be fully verified: $($playfieldSafety.Summary)"
   }
 
+  $runtimeUiScript = Join-Path $root "tools\check_runtime_ui_safety.ps1"
+  if (Test-Path $runtimeUiScript) {
+    $runtimeOutput = & powershell -ExecutionPolicy Bypass -File $runtimeUiScript -Project $projResolved
+    $runtimeExit = $LASTEXITCODE
+    $runtimeText = ($runtimeOutput | Out-String)
+    $runtimeStatus = Match-First $runtimeText 'RUNTIME_UI_SAFETY_STATUS=([^\r\n]+)'
+    $runtimeRisk = Match-First $runtimeText 'RUNTIME_UI_OCCLUSION_RISK=([^\r\n]+)'
+    $runtimeCollisions = Match-First $runtimeText 'RUNTIME_UI_COLLISIONS=([^\r\n]+)'
+    if ($runtimeExit -eq 0 -and $runtimeStatus -eq "passed" -and $runtimeRisk -eq "low") {
+      Write-Ok "Runtime UI safety passed: $runtimeCollisions collision(s)"
+    } else {
+      $fails.Value++
+      Write-Fail "Runtime UI safety failed: status=$runtimeStatus risk=$runtimeRisk collisions=$runtimeCollisions"
+    }
+  } else {
+    $warns.Value++
+    Write-Warn "Runtime UI safety checker not found"
+  }
+
   # 8) Baseline alignment quick checks (compileSdk/minSdk/targetSdk)
   $appGradle = Join-Path $projResolved "app\build.gradle"
   $appGradleKts = Join-Path $projResolved "app\build.gradle.kts"
