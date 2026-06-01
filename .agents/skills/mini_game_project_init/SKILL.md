@@ -80,6 +80,7 @@ No-Chinese and no-comments rules:
 
 Project identity rules:
 - Root package must be com.android.boot
+- applicationId must be unique per game and must not be exactly com.android.boot
 - Entry Activity must be com.android.boot.MainActivity
 - It must be the only launcher activity
 - AndroidManifest.xml must use:

@@ -58,6 +58,24 @@ function Match-First($text, $pattern){
   return $null
 }
 
+function Get-ApplicationId($projectPath){
+  $buildPath = Join-Path $projectPath "app\build.gradle"
+  $buildKtsPath = Join-Path $projectPath "app\build.gradle.kts"
+  $text = $null
+  if (Test-Path $buildPath) { $text = Read-Text $buildPath }
+  elseif (Test-Path $buildKtsPath) { $text = Read-Text $buildKtsPath }
+  return Match-First $text 'applicationId\s*(?:=)?\s*["'']([^"'']+)["'']'
+}
+
+function Get-NamespaceId($projectPath){
+  $buildPath = Join-Path $projectPath "app\build.gradle"
+  $buildKtsPath = Join-Path $projectPath "app\build.gradle.kts"
+  $text = $null
+  if (Test-Path $buildPath) { $text = Read-Text $buildPath }
+  elseif (Test-Path $buildKtsPath) { $text = Read-Text $buildKtsPath }
+  return Match-First $text 'namespace\s*(?:=)?\s*["'']([^"'']+)["'']'
+}
+
 function Has-NonAscii($filePath){
   $bytes = [System.IO.File]::ReadAllBytes($filePath)
   foreach ($b in $bytes) { if ($b -gt 127) { return $true } }
@@ -155,6 +173,37 @@ function Validate-Project($projDir, [ref]$fails, [ref]$warns){
 
       if ($man -notmatch 'android:icon\s*=\s*"@mipmap/app_icon"') { $fails.Value++; Write-Fail "Manifest icon must be @mipmap/app_icon"; }
       else { Write-Ok "Manifest icon OK" }
+    }
+  }
+
+  $namespaceId = Get-NamespaceId $projResolved
+  $applicationId = Get-ApplicationId $projResolved
+  if ($namespaceId -ne "com.android.boot") {
+    $fails.Value++
+    Write-Fail "Android namespace must be com.android.boot (got $namespaceId)"
+  } else {
+    Write-Ok "Android namespace OK"
+  }
+  if ([string]::IsNullOrWhiteSpace($applicationId)) {
+    $fails.Value++
+    Write-Fail "Missing applicationId in app/build.gradle"
+  } elseif ($applicationId -eq "com.android.boot") {
+    $fails.Value++
+    Write-Fail "applicationId must be unique per game and must not be exactly com.android.boot"
+  } else {
+    $duplicates = @()
+    foreach ($candidate in (Discover-Projects $root)) {
+      $candidateResolved = (Resolve-Path $candidate).Path
+      if ($candidateResolved -eq $projResolved) { continue }
+      if ((Get-ApplicationId $candidateResolved) -eq $applicationId) {
+        $duplicates += (Split-Path $candidateResolved -Leaf)
+      }
+    }
+    if ($duplicates.Count -gt 0) {
+      $fails.Value++
+      Write-Fail "applicationId is duplicated by: $($duplicates -join ', ')"
+    } else {
+      Write-Ok "applicationId is unique: $applicationId"
     }
   }
 
@@ -286,13 +335,16 @@ function Validate-Project($projDir, [ref]$fails, [ref]$warns){
     $runtimeExit = $LASTEXITCODE
     $runtimeText = ($runtimeOutput | Out-String)
     $runtimeStatus = Match-First $runtimeText 'RUNTIME_UI_SAFETY_STATUS=([^\r\n]+)'
+    $adaptiveStatus = Match-First $runtimeText 'RUNTIME_UI_ADAPTIVE_STATUS=([^\r\n]+)'
     $runtimeRisk = Match-First $runtimeText 'RUNTIME_UI_OCCLUSION_RISK=([^\r\n]+)'
+    $touchRisk = Match-First $runtimeText 'RUNTIME_UI_TOUCH_TARGET_RISK=([^\r\n]+)'
     $runtimeCollisions = Match-First $runtimeText 'RUNTIME_UI_COLLISIONS=([^\r\n]+)'
-    if ($runtimeExit -eq 0 -and $runtimeStatus -eq "passed" -and $runtimeRisk -eq "low") {
-      Write-Ok "Runtime UI safety passed: $runtimeCollisions collision(s)"
+    $adaptiveErrors = Match-First $runtimeText 'RUNTIME_UI_ADAPTIVE_ERRORS=([^\r\n]+)'
+    if ($runtimeExit -eq 0 -and $runtimeStatus -eq "passed" -and $runtimeRisk -eq "low" -and $adaptiveStatus -eq "passed" -and $touchRisk -eq "low") {
+      Write-Ok "Runtime UI safety passed: $runtimeCollisions collision(s), $adaptiveErrors adaptive error(s)"
     } else {
       $fails.Value++
-      Write-Fail "Runtime UI safety failed: status=$runtimeStatus risk=$runtimeRisk collisions=$runtimeCollisions"
+      Write-Fail "Runtime UI safety failed: status=$runtimeStatus adaptive=$adaptiveStatus occlusion=$runtimeRisk touch=$touchRisk collisions=$runtimeCollisions adaptive_errors=$adaptiveErrors"
     }
   } else {
     $warns.Value++

@@ -23,6 +23,8 @@ Hard rules:
 - Define a protected gameplay safe area before applying decorative borders or heavy panel chrome
 - Convert that safe area into actual layout constraints, margins, padding, or a verified viewport wrapper in `activity_main.xml`
 - Design for adaptive behavior across common phone and tablet aspect ratios instead of one fixed layout
+- Preserve minimum touch target size for direct gameplay-state controls across the runtime UI viewport matrix
+- Keep visible button text inside its adaptive target width after `@string` resolution
 - Reusable external UI resources should be stored under `shared_assets/ui/` first when possible
 - Search both the shared library and `shared_assets/ui/source_catalog.json` before deciding there is no suitable UI source
 - Imported open-source UI assets must keep license and provenance metadata
@@ -71,7 +73,8 @@ Workflow:
 7. Use `tools/assets/import_ui_pack.ps1` when a licensed structured UI pack should be added to the shared library.
 8. Assign project-local resources.
 9. Implement or refine layouts, overlays, and style wiring.
-10. Verify the required UI foundation files and logical resource names still exist.
+10. Run or account for runtime UI safety validation across small phone, landscape phone, narrow landscape, and tablet-style viewports.
+11. Verify the required UI foundation files and logical resource names still exist.
 
 Report:
 - chosen `ui_skin`

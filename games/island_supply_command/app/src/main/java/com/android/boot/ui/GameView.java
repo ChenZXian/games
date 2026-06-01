@@ -53,15 +53,22 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
             return;
         }
         session.update(dt);
+        if (!surfaceReady || !getHolder().getSurface().isValid()) {
+            return;
+        }
         Canvas canvas = null;
         try {
             canvas = getHolder().lockCanvas();
             if (canvas != null) {
                 drawWorld(canvas);
             }
+        } catch (RuntimeException ignored) {
         } finally {
             if (canvas != null) {
-                getHolder().unlockCanvasAndPost(canvas);
+                try {
+                    getHolder().unlockCanvasAndPost(canvas);
+                } catch (RuntimeException ignored) {
+                }
             }
         }
         if (overlay != null) {
@@ -380,16 +387,16 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     private void stopLoop() {
-        if (loop == null) {
+        GameLoopThread active = loop;
+        if (active == null) {
             return;
         }
-        loop.setRunning(false);
-        boolean waiting = true;
-        while (waiting) {
+        active.setRunning(false);
+        if (Thread.currentThread() != active) {
             try {
-                loop.join();
-                waiting = false;
+                active.join(500L);
             } catch (InterruptedException ignored) {
+                Thread.currentThread().interrupt();
             }
         }
         loop = null;

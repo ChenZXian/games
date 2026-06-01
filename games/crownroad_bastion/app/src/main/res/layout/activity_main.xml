@@ -6,7 +6,9 @@
     <com.android.boot.ui.GameView
         android:id="@+id/game_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/cst_hud_height"
+        android:layout_marginBottom="@dimen/cst_command_panel_height" />
 
     <LinearLayout
         android:id="@+id/top_hud"
@@ -70,99 +72,117 @@
         android:id="@+id/build_panel"
         style="@style/Widget.Game.Panel"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/cst_command_panel_height"
         android:layout_gravity="bottom"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
+        android:gravity="center"
+        android:orientation="vertical"
         android:padding="@dimen/cst_pad_8">
 
-        <Button
-            android:id="@+id/archer_button"
-            style="@style/Widget.Game.Button.Primary"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="@string/btn_archer" />
+            android:gravity="center"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/barracks_button"
-            style="@style/Widget.Game.Button.Secondary"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/cst_pad_6"
-            android:layout_weight="1"
-            android:text="@string/btn_barracks" />
+            <Button
+                android:id="@+id/archer_button"
+                style="@style/Widget.Game.Button.Primary"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/btn_archer" />
 
-        <Button
-            android:id="@+id/cannon_button"
-            style="@style/Widget.Game.Button.Secondary"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/cst_pad_6"
-            android:layout_weight="1"
-            android:text="@string/btn_cannon" />
+            <Button
+                android:id="@+id/barracks_button"
+                style="@style/Widget.Game.Button.Secondary"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/cst_pad_6"
+                android:layout_weight="1"
+                android:text="@string/btn_barracks" />
 
-        <Button
-            android:id="@+id/mage_button"
-            style="@style/Widget.Game.Button.Secondary"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/cst_pad_6"
-            android:layout_weight="1"
-            android:text="@string/btn_mage" />
+            <Button
+                android:id="@+id/cannon_button"
+                style="@style/Widget.Game.Button.Secondary"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/cst_pad_6"
+                android:layout_weight="1"
+                android:text="@string/btn_cannon" />
 
-        <Button
-            android:id="@+id/shrine_button"
-            style="@style/Widget.Game.Button.Secondary"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/cst_pad_6"
-            android:layout_weight="1"
-            android:text="@string/btn_shrine" />
+            <Button
+                android:id="@+id/mage_button"
+                style="@style/Widget.Game.Button.Secondary"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/cst_pad_6"
+                android:layout_weight="1"
+                android:text="@string/btn_mage" />
 
-        <Button
-            android:id="@+id/hero_button"
-            style="@style/Widget.Game.Button.Secondary"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/cst_pad_6"
-            android:layout_weight="1"
-            android:text="@string/btn_hero" />
+            <Button
+                android:id="@+id/shrine_button"
+                style="@style/Widget.Game.Button.Secondary"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/cst_pad_6"
+                android:layout_weight="1"
+                android:text="@string/btn_shrine" />
+        </LinearLayout>
 
-        <Button
-            android:id="@+id/reinforce_button"
-            style="@style/Widget.Game.Button.Secondary"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/cst_pad_6"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/cst_pad_6"
             android:layout_weight="1"
-            android:text="@string/btn_reinforce" />
+            android:gravity="center"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/spell_button"
-            style="@style/Widget.Game.Button.Secondary"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/cst_pad_6"
-            android:layout_weight="1"
-            android:text="@string/btn_spell" />
+            <Button
+                android:id="@+id/hero_button"
+                style="@style/Widget.Game.Button.Secondary"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/btn_hero" />
 
-        <Button
-            android:id="@+id/next_wave_button"
-            style="@style/Widget.Game.Button.Primary"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/cst_pad_6"
-            android:layout_weight="1"
-            android:text="@string/btn_next_wave" />
+            <Button
+                android:id="@+id/reinforce_button"
+                style="@style/Widget.Game.Button.Secondary"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/cst_pad_6"
+                android:layout_weight="1"
+                android:text="@string/btn_reinforce" />
+
+            <Button
+                android:id="@+id/spell_button"
+                style="@style/Widget.Game.Button.Secondary"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/cst_pad_6"
+                android:layout_weight="1"
+                android:text="@string/btn_spell" />
+
+            <Button
+                android:id="@+id/next_wave_button"
+                style="@style/Widget.Game.Button.Primary"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/cst_pad_6"
+                android:layout_weight="1.5"
+                android:text="@string/btn_next_wave" />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/menu_panel"
         style="@style/Widget.Game.Panel"
-        android:layout_width="560dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/cst_pad_24"
+        android:layout_marginRight="@dimen/cst_pad_24"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         android:padding="@dimen/cst_pad_20">
@@ -359,9 +379,11 @@
     <LinearLayout
         android:id="@+id/help_panel"
         style="@style/Widget.Game.Panel"
-        android:layout_width="520dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/cst_pad_24"
+        android:layout_marginRight="@dimen/cst_pad_24"
         android:orientation="vertical"
         android:padding="@dimen/cst_pad_20"
         android:visibility="gone">
@@ -391,9 +413,11 @@
     <LinearLayout
         android:id="@+id/pause_panel"
         style="@style/Widget.Game.Panel"
-        android:layout_width="320dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/cst_pad_24"
+        android:layout_marginRight="@dimen/cst_pad_24"
         android:orientation="vertical"
         android:padding="@dimen/cst_pad_20"
         android:visibility="gone">
@@ -432,9 +456,11 @@
     <LinearLayout
         android:id="@+id/result_panel"
         style="@style/Widget.Game.Panel"
-        android:layout_width="380dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/cst_pad_24"
+        android:layout_marginRight="@dimen/cst_pad_24"
         android:orientation="vertical"
         android:padding="@dimen/cst_pad_20"
         android:visibility="gone">

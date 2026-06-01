@@ -7,7 +7,11 @@
     <com.android.boot.ui.GameView
         android:id="@+id/game_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/cst_playfield_margin_start"
+        android:layout_marginTop="@dimen/cst_playfield_margin_top"
+        android:layout_marginEnd="@dimen/cst_playfield_margin_end"
+        android:layout_marginBottom="@dimen/cst_playfield_margin_bottom" />
 
     <LinearLayout
         android:id="@+id/play_overlay"

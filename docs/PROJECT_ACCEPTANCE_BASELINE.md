@@ -1,7 +1,7 @@
 # Project Acceptance Baseline
 
-Version: 1.5
-Last updated: 2026-05-07
+Version: 1.6
+Last updated: 2026-06-01
 
 This document defines the generic structure and acceptance baseline for any Android Java mini-game in this repository.
 
@@ -23,6 +23,7 @@ Every new game project should satisfy all of the following:
 Every project must satisfy:
 
 - root package is `com.android.boot`
+- Android namespace may remain `com.android.boot`, but installable `applicationId` must be unique per game
 - launcher activity is `com.android.boot.MainActivity`
 - `AndroidManifest.xml` uses:
   - `android:label="@string/app_name"`
@@ -106,6 +107,8 @@ For a delivery-ready result, the project should have:
 - a gameplay layout that materially reserves that safe area in `activity_main.xml`, container padding, or an equivalent verified viewport wrapper instead of relying on overlays sitting on top of a full-screen playfield
 - adaptive gameplay-state UI that remains readable across narrow phones, tall phones, and tablet-style aspect ratios
 - battle-state buttons, panels, bars, and floating controls that do not cover units, routes, nodes, lanes, build pads, drag paths, or other touch-critical gameplay targets
+- battle-state controls that preserve minimum touch target size across representative phone and tablet viewports
+- button labels that fit their adaptive target width after `@string` resolution
 - gameplay visuals that are not limited to bare placeholder circles or rectangles when a delivery-ready target is requested
 - UI that is more than UI Kit-only token scaffolding when a delivery-ready target is requested
 - a tracked gameplay art strategy using the repository gameplay art workflow when external or reusable character, map, prop, item, effect, or background assets are used
@@ -137,6 +140,7 @@ The expected readiness ladder is:
 - inspect and validate can report the playfield safe area as passed rather than warning or failed
 - inspect should block packaging when `UI_OCCLUSION_RISK` is not `low`
 - validate should run a runtime UI safety check that simulates representative phone and tablet viewports and blocks visible HUD or panel collisions with runtime gameplay nodes when they can be inferred from code
+- validate should block dense horizontal battle-control rows, undersized direct touch targets, and likely button text overflow across the runtime UI viewport matrix
 - inspect should block delivery readiness when `MECHANIC_DUPLICATE_RISK` is not `low`
 - packaging is run only when explicitly requested
 

@@ -133,6 +133,11 @@ Rules:
 com.android.boot
 ```
 
+- Android namespace should remain `com.android.boot`
+- Launcher Activity must remain `com.android.boot.MainActivity`
+- Installable `applicationId` must be unique per game and must not be exactly `com.android.boot`
+- A unique `applicationId` does not change the Java root package or launcher Activity requirement
+
 ------
 
 ### 5.2 Recommended Structure (Per Game)

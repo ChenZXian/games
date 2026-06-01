@@ -1,7 +1,7 @@
 # UI Workflow
 
-Version: 1.5
-Last updated: 2026-05-07
+Version: 1.6
+Last updated: 2026-06-01
 
 This document defines the repository UI workflow for Android Java mini-games.
 
@@ -17,6 +17,7 @@ The UI workflow exists to:
 - allow licensed binary UI assets, fonts, and open-source UI resource packs
 - keep reusable external UI resources in a shared library first when possible
 - prevent repeated UI layouts, HUD composition, and pack/preset reuse from becoming the default look
+- make adaptive gameplay-state UI measurable before inspection or packaging
 
 ## 2. Repository UI Model
 
@@ -183,12 +184,17 @@ Discovery examples:
    - themed borders, bezels, or rails should stay outside the active playfield when possible
    - if a frame touches the gameplay plane, it may only consume dead space that is explicitly reserved in the UI brief
    - HUD overlays must not cover active board cells, lanes, routes, spawn points, tower pads, combat lanes, units, drag paths, or touch-critical action zones
+   - gameplay-state command rows should avoid packing more than six direct buttons into one horizontal row
+   - menu, help, pause, and result panels should avoid fixed widths that can exceed small phone landscape widths
    - the UI brief must be translated into actual `activity_main.xml` bounds, margins, padding, or equivalent viewport constraints before polish is considered complete
    - do not ship the anti-pattern `full-screen GameView + edge-anchored HUD stack` unless the gameplay renderer itself reserves the same dead space and inspection can verify that reserve
 9. Verify the adaptive behavior:
    - narrow-phone layouts should not collapse or overlap
    - tall-phone layouts should not leave battle controls detached from their reserved zones
    - tablet-like layouts should not leave the gameplay area undersized or squeezed by fixed side rails
+   - runtime UI checks should cover small-phone portrait, small-phone landscape, narrow landscape, phone landscape, tablet landscape, and tablet-square viewports
+   - direct battle-control touch targets should stay at or above the repository minimum touch size
+   - button text should fit within the estimated target width after resolving `@string` values
 10. Do not reuse the same HUD composition, top metric bar, bottom command strip, or pack preset across projects unless the visual identity contract allows it.
 11. Do not silently fall back to generic shape-only placeholder UI for production-grade, menu item `10`, or delivery-ready requests.
 12. Reuse or import shared UI resources under `shared_assets/ui/` when possible.
@@ -230,6 +236,8 @@ The final UI result should satisfy all of the following:
 - any framed presentation preserves a documented safe area for movement, combat, interaction, and touch-critical regions
 - battle-state controls, HUD bars, and tactical panels stay outside the active gameplay viewport instead of floating over it
 - battle-state layouts remain readable and non-overlapping on narrow phones, tall phones, and tablet-style aspect ratios
+- battle-state controls preserve minimum touch targets and do not rely on cramped one-row command bars
+- visible button text fits its estimated adaptive width after string resolution
 - delivery-ready UI should fail validation when a full-span gameplay view is combined with anchored overlays and no reserved safe area is detectable
 - provenance recorded for imported open-source assets
 - visual identity contract preserved when one exists

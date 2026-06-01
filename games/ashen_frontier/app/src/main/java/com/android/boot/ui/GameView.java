@@ -362,20 +362,33 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Gam
         stopLoop();
     }
 
-    private synchronized void startLoop() {
-        if (loop != null) {
-            return;
+    private void startLoop() {
+        synchronized (this) {
+            if (loop != null) {
+                return;
+            }
+            loop = new GameLoop(this);
+            loop.start();
         }
-        loop = new GameLoop(this);
-        loop.start();
     }
 
-    private synchronized void stopLoop() {
-        if (loop == null) {
-            return;
+    private void stopLoop() {
+        GameLoop active;
+        synchronized (this) {
+            if (loop == null) {
+                return;
+            }
+            active = loop;
+            loop = null;
         }
-        loop.shutdown();
-        loop = null;
+        active.shutdown();
+        if (Thread.currentThread() != active) {
+            try {
+                active.join(500L);
+            } catch (InterruptedException ignored) {
+                Thread.currentThread().interrupt();
+            }
+        }
     }
 
     @Override
@@ -928,6 +941,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Gam
     }
 
     private void drawFrame() {
+        if (!getHolder().getSurface().isValid()) {
+            return;
+        }
         Canvas canvas = null;
         try {
             canvas = getHolder().lockCanvas();
@@ -939,9 +955,13 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Gam
             } else {
                 drawAttractScreen(canvas);
             }
+        } catch (RuntimeException ignored) {
         } finally {
             if (canvas != null) {
-                getHolder().unlockCanvasAndPost(canvas);
+                try {
+                    getHolder().unlockCanvasAndPost(canvas);
+                } catch (RuntimeException ignored) {
+                }
             }
         }
     }
