@@ -1,0 +1,147 @@
+{
+  "version": 1,
+  "game_id": "ranch_vet_rescue",
+  "status": "integrated",
+  "entities": [
+    {
+      "role": "cow",
+      "asset_key": "canvas_cow_silhouette",
+      "default_facing": "right",
+      "facing_rules": "face station or release direction by horizontal placement",
+      "anchor": "center",
+      "hitbox": "animal_card_bounds",
+      "z_order": 30,
+      "states": [
+        "waiting",
+        "selected",
+        "treating",
+        "recovered",
+        "stressed"
+      ],
+      "animation_rules": "idle bob, selected outline, recovered highlight, and stress badge marker",
+      "movement_rules": "drag from intake lane to care station or release lane"
+    },
+    {
+      "role": "hen",
+      "asset_key": "canvas_hen_silhouette",
+      "default_facing": "right",
+      "facing_rules": "face station or release direction by horizontal placement",
+      "anchor": "center",
+      "hitbox": "animal_card_bounds",
+      "z_order": 31,
+      "states": [
+        "waiting",
+        "selected",
+        "treating",
+        "recovered",
+        "stressed"
+      ],
+      "animation_rules": "idle bob, selected outline, recovered highlight, and stress badge marker",
+      "movement_rules": "drag from intake lane to care station or release lane"
+    },
+    {
+      "role": "sheep",
+      "asset_key": "canvas_sheep_silhouette",
+      "default_facing": "right",
+      "facing_rules": "face station or release direction by horizontal placement",
+      "anchor": "center",
+      "hitbox": "animal_card_bounds",
+      "z_order": 32,
+      "states": [
+        "waiting",
+        "selected",
+        "treating",
+        "recovered",
+        "stressed"
+      ],
+      "animation_rules": "idle bob, selected outline, recovered highlight, and stress badge marker",
+      "movement_rules": "drag from intake lane to care station or release lane"
+    },
+    {
+      "role": "goat",
+      "asset_key": "canvas_goat_silhouette",
+      "default_facing": "right",
+      "facing_rules": "face station or release direction by horizontal placement",
+      "anchor": "center",
+      "hitbox": "animal_card_bounds",
+      "z_order": 33,
+      "states": [
+        "waiting",
+        "selected",
+        "treating",
+        "recovered",
+        "stressed"
+      ],
+      "animation_rules": "idle bob, selected outline, recovered highlight, and stress badge marker",
+      "movement_rules": "drag from intake lane to care station or release lane"
+    },
+    {
+      "role": "piglet",
+      "asset_key": "canvas_piglet_silhouette",
+      "default_facing": "right",
+      "facing_rules": "face station or release direction by horizontal placement",
+      "anchor": "center",
+      "hitbox": "animal_card_bounds",
+      "z_order": 34,
+      "states": [
+        "waiting",
+        "selected",
+        "treating",
+        "recovered",
+        "stressed"
+      ],
+      "animation_rules": "idle bob, selected outline, recovered highlight, and stress badge marker",
+      "movement_rules": "drag from intake lane to care station or release lane"
+    },
+    {
+      "role": "rabbit",
+      "asset_key": "canvas_rabbit_silhouette",
+      "default_facing": "right",
+      "facing_rules": "face station or release direction by horizontal placement",
+      "anchor": "center",
+      "hitbox": "animal_card_bounds",
+      "z_order": 35,
+      "states": [
+        "waiting",
+        "selected",
+        "treating",
+        "recovered",
+        "stressed"
+      ],
+      "animation_rules": "idle bob, selected outline, recovered highlight, and stress badge marker",
+      "movement_rules": "drag from intake lane to care station or release lane"
+    }
+  ],
+  "stations": [
+    {
+      "role": "tonic station",
+      "asset_key": "canvas_tonic_station",
+      "z_order": 20,
+      "hitbox": "station_card_bounds"
+    },
+    {
+      "role": "brush station",
+      "asset_key": "canvas_brush_station",
+      "z_order": 21,
+      "hitbox": "station_card_bounds"
+    },
+    {
+      "role": "blanket station",
+      "asset_key": "canvas_blanket_station",
+      "z_order": 22,
+      "hitbox": "station_card_bounds"
+    },
+    {
+      "role": "medicine station",
+      "asset_key": "canvas_medicine_station",
+      "z_order": 23,
+      "hitbox": "station_card_bounds"
+    },
+    {
+      "role": "recovery station",
+      "asset_key": "canvas_recovery_station",
+      "z_order": 24,
+      "hitbox": "station_card_bounds"
+    }
+  ]
+}

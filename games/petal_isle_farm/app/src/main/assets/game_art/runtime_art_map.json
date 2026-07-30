@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "game_id": "petal_isle_farm",
+  "status": "integrated",
+  "camera_perspective": "angled top-down estate view",
+  "default_coordinate_space": "screen_world",
+  "entities": [
+    {
+      "entity_key": "plot_tile",
+      "role": "terrain",
+      "asset_keys": [
+        "kenney_isometric_miniature_farm/dirtFarmland_S.png"
+      ],
+      "default_facing": "south",
+      "facing_rule": "static",
+      "anchor": "bottom_center",
+      "hitbox": "plot_rect",
+      "render_size": "fit_plot",
+      "z_order": "ground",
+      "states": [
+        "idle"
+      ],
+      "animation_rule": "static",
+      "movement_rule": "none"
+    },
+    {
+      "entity_key": "flower_crop",
+      "role": "crop_accent",
+      "asset_keys": [
+        "kenney_isometric_miniature_farm/cornYoungDouble_S.png"
+      ],
+      "default_facing": "south",
+      "facing_rule": "static",
+      "anchor": "soil_center",
+      "hitbox": "visual_only",
+      "render_size": "medium_bed",
+      "z_order": "plant",
+      "states": [
+        "grow",
+        "bloom",
+        "mature"
+      ],
+      "animation_rule": "combined with custom petal bloom draw states",
+      "movement_rule": "none"
+    },
+    {
+      "entity_key": "boutique_crop",
+      "role": "crop_accent",
+      "asset_keys": [
+        "kenney_isometric_miniature_farm/corn_S.png"
+      ],
+      "default_facing": "south",
+      "facing_rule": "static",
+      "anchor": "soil_center",
+      "hitbox": "visual_only",
+      "render_size": "medium_bed",
+      "z_order": "plant",
+      "states": [
+        "grow",
+        "mature"
+      ],
+      "animation_rule": "asset accent plus runtime color stage modulation",
+      "movement_rule": "none"
+    },
+    {
+      "entity_key": "garden_border",
+      "role": "prop",
+      "asset_keys": [
+        "kenney_isometric_miniature_farm/fenceLow_S.png"
+      ],
+      "default_facing": "south",
+      "facing_rule": "static",
+      "anchor": "bottom_edge",
+      "hitbox": "none",
+      "render_size": "wide_trim",
+      "z_order": "foreground_trim",
+      "states": [
+        "idle"
+      ],
+      "animation_rule": "static",
+      "movement_rule": "none"
+    }
+  ]
+}

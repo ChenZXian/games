@@ -1,4 +1,5 @@
 pluginManagement {
+<<<<<<< HEAD
     repositories {
         google()
         mavenCentral()
@@ -16,3 +17,20 @@ dependencyResolutionManagement {
 
 rootProject.name = 'EpicCampaignWar'
 include ':app'
+=======
+  repositories {
+    google()
+    mavenCentral()
+    gradlePluginPortal()
+  }
+}
+dependencyResolutionManagement {
+  repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+  repositories {
+    google()
+    mavenCentral()
+  }
+}
+rootProject.name = "EpicCampaignWar"
+include(":app")
+>>>>>>> 3c7b97b2767c18f7148a38978109fc8945bb525b

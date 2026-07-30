@@ -1,0 +1,6 @@
+{
+  "game_id": "pocket_landlord_classic",
+  "status": "passed",
+  "reviewed_at_utc": "2026-05-11T06:58:00Z",
+  "summary": "Offline Dou Dizhu flow, bidding, landlord assignment, turn order, campaign stage progression, card-table UI, shared audio, icon export, and runtime art map are implemented."
+}

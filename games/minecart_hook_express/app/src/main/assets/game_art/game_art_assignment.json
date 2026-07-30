@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "game_id": "minecart_hook_express",
+  "pack_id": "minecart_hook_runtime_art",
+  "assignment_type": "project_internal_runtime_art_pack",
+  "status": "integrated_custom_canvas",
+  "camera_perspective": "fixed 2D side view rail runner",
+  "source_review": "shared side-view platformer packs exist but do not include minecart side hooks, rail switch hazards, cargo targets, or route signal meters; this workflow keeps custom canvas art for exact mechanics",
+  "license": "project-local generated runtime canvas art",
+  "shared_pack_path": "shared_assets/game_art/packs/minecart_hook_runtime_art",
+  "art_roles_covered": [
+    "minecart",
+    "rail_lanes",
+    "left_hook",
+    "right_hook",
+    "ore",
+    "gem",
+    "barricade",
+    "broken_rail",
+    "switch_box",
+    "coolant",
+    "repair_bolt",
+    "tunnel_background",
+    "support_braces",
+    "station_signal_gate",
+    "route_meter"
+  ],
+  "animation_tier": "directional_static with runtime cable launch, scrolling rails, moving braces, lane highlight, hook pull, warning lamp, and station meter animation",
+  "runtime_usage": "all mapped roles are drawn by app/src/main/java/com/android/boot/ui/GameView.java and synchronized with HUD views in MainActivity",
+  "remaining_roles": [
+    "upgrade_shop",
+    "chapter_map",
+    "station_crew"
+  ],
+  "next_upgrade_path": "import a license-clear industrial mine or rail prop pack if the project moves to full delivery-ready art replacement"
+}

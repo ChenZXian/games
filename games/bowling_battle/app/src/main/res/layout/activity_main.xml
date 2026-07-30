@@ -3,10 +3,18 @@
 	android:layout_height="match_parent"
 	android:background="@color/cst_bg_main">
 
+<<<<<<< HEAD
 	<com.android.boot.ui.GameView
 		android:id="@+id/game_view"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent" />
+=======
+    <com.android.boot.ui.GameView
+        android:id="@+id/game_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/cst_hud_height" />
+>>>>>>> 3c7b97b2767c18f7148a38978109fc8945bb525b
 
 	<LinearLayout
 		android:layout_width="match_parent"

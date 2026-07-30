@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
 <<<<<<< HEAD
   "version": 1,
@@ -457,6 +458,9 @@
     }
   ]
 =======
+=======
+﻿{
+>>>>>>> 3c7b97b2767c18f7148a38978109fc8945bb525b
     "version":  1,
     "games":  [
                   {
@@ -490,6 +494,17 @@
                       "created_at":  "2026-01-18"
                   },
                   {
+                      "id":  "mosaic_studio",
+                      "name":  "Mosaic Studio",
+                      "tags":  [
+                                   "design",
+                                   "puzzle",
+                                   "creativity"
+                               ],
+                      "core_loop":  "design puzzle: recreate target mosaic on grid with tools (brush line fill mirror) and score by accuracy with optional constraints",
+                      "created_at":  "2026-01-18"
+                  },
+                  {
                       "id":  "orbit_dodger",
                       "name":  "Orbit Dodger",
                       "tags":  [
@@ -510,19 +525,6 @@
                                    "dash"
                                ],
                       "core_loop":  "auto-run jump dash collect relics avoid hazards",
-                      "created_at":  "2026-01-18"
-                  },
-                  {
-                      "id":  "sky_relic_runner_shift",
-                      "name":  "Sky Relic Runner Shift",
-                      "tags":  [
-                                   "runner",
-                                   "platformer",
-                                   "endless",
-                                   "dash",
-                                   "phase"
-                               ],
-                      "core_loop":  "auto-run jump charge dash burst to phase across platforms collect shards cores runes avoid collapsing lanes",
                       "created_at":  "2026-01-18"
                   },
                   {
@@ -552,14 +554,16 @@
                       "created_at":  "2026-01-18"
                   },
                   {
-                      "id":  "mosaic_studio",
-                      "name":  "Mosaic Studio",
+                      "id":  "sky_relic_runner_shift",
+                      "name":  "Sky Relic Runner Shift",
                       "tags":  [
-                                   "design",
-                                   "puzzle",
-                                   "creativity"
+                                   "runner",
+                                   "platformer",
+                                   "endless",
+                                   "dash",
+                                   "phase"
                                ],
-                      "core_loop":  "design puzzle: recreate target mosaic on grid with tools (brush line fill mirror) and score by accuracy with optional constraints",
+                      "core_loop":  "auto-run jump charge dash burst to phase across platforms collect shards cores runes avoid collapsing lanes",
                       "created_at":  "2026-01-18"
                   },
                   {
@@ -803,39 +807,6 @@
                       "ui_skin":  "skin_neon_future"
                   },
                   {
-                      "id":  "relic_blade_trials",
-                      "name":  "Relic Blade Trials",
-                      "tags":  [
-                                   "action",
-                                   "melee",
-                                   "boss",
-                                   "loot",
-                                   "equipment",
-                                   "stage_clear",
-                                   "rpg",
-                                   "variant_b_engine_render_input_ui_model_audio"
-                               ],
-                      "core_loop":  "Choose an unlocked stage, fight through enemy encounters with responsive melee combat, defeat a boss, collect guaranteed Green+ loot, and replay stages to chase boss-exclusive Purple and Gold gear upgrades.",
-                      "created_at":  "2026-04-21",
-                      "ui_skin":  "skin_dark_arcade"
-                  },
-                  {
-                      "id":  "clockwork_courier",
-                      "name":  "Clockwork Courier",
-                      "tags":  [
-                                   "action",
-                                   "puzzle",
-                                   "top_down",
-                                   "delivery",
-                                   "hazard",
-                                   "neon",
-                                   "variant_a_core_ui_entity_fx_audio"
-                               ],
-                      "core_loop":  "read hazard rhythms steer a courier with virtual joystick and timed dash collect badges and key unlock exits reach delivery gate before timer for star ratings",
-                      "created_at":  "2026-04-21",
-                      "ui_skin":  "skin_neon_future"
-                  },
-                  {
                       "id":  "bloom_orchard",
                       "name":  "Bloom Orchard",
                       "tags":  [
@@ -856,6 +827,22 @@
                       "ui_skin":  "skin_cartoon_light"
                   },
                   {
+                      "id":  "clockwork_courier",
+                      "name":  "Clockwork Courier",
+                      "tags":  [
+                                   "action",
+                                   "puzzle",
+                                   "top_down",
+                                   "delivery",
+                                   "hazard",
+                                   "neon",
+                                   "variant_a_core_ui_entity_fx_audio"
+                               ],
+                      "core_loop":  "read hazard rhythms steer a courier with virtual joystick and timed dash collect badges and key unlock exits reach delivery gate before timer for star ratings",
+                      "created_at":  "2026-04-21",
+                      "ui_skin":  "skin_neon_future"
+                  },
+                  {
                       "id":  "pasture_parade_deluxe",
                       "name":  "Pasture Parade Deluxe",
                       "tags":  [
@@ -870,6 +857,36 @@
                       "core_loop":  "Manage multi-species pens, maintain feed and cleanliness, chain timed collections for combo growth, fulfill rotating delivery board contracts, leverage pen adjacency bonuses, claim achievement rewards, and survive escalating neglect pressure.",
                       "created_at":  "2026-04-21",
                       "ui_skin":  "skin_cartoon_light"
+                  },
+                  {
+                      "id":  "relic_blade_trials",
+                      "name":  "Relic Blade Trials",
+                      "tags":  [
+                                   "action",
+                                   "melee",
+                                   "boss",
+                                   "loot",
+                                   "equipment",
+                                   "stage_clear",
+                                   "rpg",
+                                   "variant_b_engine_render_input_ui_model_audio"
+                               ],
+                      "core_loop":  "Choose an unlocked stage, fight through enemy encounters with responsive melee combat, defeat a boss, collect guaranteed Green+ loot, and replay stages to chase boss-exclusive Purple and Gold gear upgrades.",
+                      "created_at":  "2026-04-21",
+                      "ui_skin":  "skin_dark_arcade"
+                  },
+                  {
+                      "id":  "bowling_battle",
+                      "name":  "Bowling Battle",
+                      "tags":  [
+                                   "bowling",
+                                   "arcade",
+                                   "lane",
+                                   "battle"
+                               ],
+                      "core_loop":  "launch bowling balls down tactical lanes, ricochet through enemies, collect powerups, and survive waves",
+                      "created_at":  "2026-04-22",
+                      "ui_skin":  "skin_dark_arcade"
                   },
                   {
                       "id":  "island_supply_command",
@@ -888,20 +905,34 @@
                       "ui_skin":  "skin_cartoon_light"
                   },
                   {
-                      "id":  "minecart_bastion",
-                      "name":  "Minecart Bastion",
+                      "id":  "magnet_scrapper",
+                      "name":  "Magnet Scrapper",
+                      "tags":  [
+                                   "survival",
+                                   "magnet",
+                                   "salvage",
+                                   "arena"
+                               ],
+                      "core_loop":  "drag a drone, pull scrap into charge, switch polarity to push threats, and survive enemy swarms",
+                      "created_at":  "2026-04-22",
+                      "ui_skin":  "skin_neon_future"
+                  },
+                  {
+                      "id":  "crownroad_bastion",
+                      "name":  "Crownroad Bastion",
                       "tags":  [
                                    "tower_defense",
                                    "strategy",
-                                   "rail",
-                                   "minecart",
-                                   "moving_towers",
-                                   "junction",
+                                   "fantasy",
+                                   "node_graph_map",
+                                   "hero",
+                                   "barracks",
+                                   "spells",
                                    "waves"
                                ],
-                      "core_loop":  "build armed minecart towers on depot rails switch junction routes to patrol lanes intercept cave monster waves earn ore upgrade carts and defend the reactor",
+                      "core_loop":  "build and upgrade fixed towers around a curved merge split road network move a hero rally barracks cast spells and stop fantasy waves before they reach the bastion",
                       "created_at":  "2026-04-23",
-                      "ui_skin":  "skin_post_apocalypse"
+                      "ui_skin":  "skin_cartoon_light"
                   },
                   {
                       "id":  "empire_wall_guard",
@@ -920,21 +951,20 @@
                       "ui_skin":  "skin_military_tech"
                   },
                   {
-                      "id":  "crownroad_bastion",
-                      "name":  "Crownroad Bastion",
+                      "id":  "minecart_bastion",
+                      "name":  "Minecart Bastion",
                       "tags":  [
                                    "tower_defense",
                                    "strategy",
-                                   "fantasy",
-                                   "node_graph_map",
-                                   "hero",
-                                   "barracks",
-                                   "spells",
+                                   "rail",
+                                   "minecart",
+                                   "moving_towers",
+                                   "junction",
                                    "waves"
                                ],
-                      "core_loop":  "build and upgrade fixed towers around a curved merge split road network move a hero rally barracks cast spells and stop fantasy waves before they reach the bastion",
+                      "core_loop":  "build armed minecart towers on depot rails switch junction routes to patrol lanes intercept cave monster waves earn ore upgrade carts and defend the reactor",
                       "created_at":  "2026-04-23",
-                      "ui_skin":  "skin_cartoon_light"
+                      "ui_skin":  "skin_post_apocalypse"
                   },
                   {
                       "id":  "ashen_frontier",
@@ -988,21 +1018,6 @@
                       "ui_skin":  "skin_military_tech"
                   },
                   {
-                      "id":  "castaway_clan",
-                      "name":  "Castaway Clan",
-                      "tags":  [
-                                   "survival_management",
-                                   "top_down",
-                                   "island",
-                                   "camp_building",
-                                   "survivor_roles",
-                                   "beacon_escape"
-                               ],
-                      "core_loop":  "explore island sectors gather resources rescue castaways assign camp jobs build survival structures endure daily weather and night threats then light the rescue beacon",
-                      "created_at":  "2026-04-29",
-                      "ui_skin":  "skin_cartoon_light"
-                  },
-                  {
                       "id":  "bronze_camp_command",
                       "name":  "Bronze Camp Command",
                       "tags":  [
@@ -1017,6 +1032,21 @@
                       "core_loop":  "assign villagers to food wood and stone place buildings train counter squads scout fog capture obelisks and destroy the enemy Chief Hall in short real-time skirmishes",
                       "created_at":  "2026-04-29",
                       "ui_skin":  "skin_military_tech"
+                  },
+                  {
+                      "id":  "castaway_clan",
+                      "name":  "Castaway Clan",
+                      "tags":  [
+                                   "survival_management",
+                                   "top_down",
+                                   "island",
+                                   "camp_building",
+                                   "survivor_roles",
+                                   "beacon_escape"
+                               ],
+                      "core_loop":  "explore island sectors gather resources rescue castaways assign camp jobs build survival structures endure daily weather and night threats then light the rescue beacon",
+                      "created_at":  "2026-04-29",
+                      "ui_skin":  "skin_cartoon_light"
                   },
                   {
                       "id":  "mountain_pass_guard",
@@ -1036,6 +1066,22 @@
                       "ui_skin":  "skin_military_tech"
                   },
                   {
+                      "id":  "scrap_ring_outpost",
+                      "name":  "Scrap Ring Outpost",
+                      "tags":  [
+                                   "strategy",
+                                   "defense",
+                                   "zombie",
+                                   "ring_perimeter",
+                                   "sector_focus",
+                                   "scrapyard",
+                                   "menu_10_complete_flow"
+                               ],
+                      "core_loop":  "salvage scrap fuel and parts during prep build sector defenses around a circular outpost rotate command focus into weak gates and survive zombie night waves before the inner yard collapses",
+                      "created_at":  "2026-04-29",
+                      "ui_skin":  "skin_post_apocalypse"
+                  },
+                  {
                       "id":  "iron_banner_realms",
                       "name":  "Iron Banner Realms",
                       "tags":  [
@@ -1052,20 +1098,218 @@
                       "ui_skin":  "skin_military_tech"
                   },
                   {
-                      "id":  "scrap_ring_outpost",
-                      "name":  "Scrap Ring Outpost",
+                      "id":  "ring_prefecture_clash",
+                      "name":  "Ring Prefecture Clash",
                       "tags":  [
                                    "strategy",
-                                   "defense",
-                                   "zombie",
-                                   "ring_perimeter",
-                                   "sector_focus",
-                                   "scrapyard",
+                                   "territory",
+                                   "conquest",
+                                   "prefecture",
+                                   "map",
+                                   "round_units",
                                    "menu_10_complete_flow"
                                ],
-                      "core_loop":  "salvage scrap fuel and parts during prep build sector defenses around a circular outpost rotate command focus into weak gates and survive zombie night waves before the inner yard collapses",
-                      "created_at":  "2026-04-29",
+                      "core_loop":  "grow forces on connected prefecture nodes drag routes send round unit streams cut reinforcements capture capitals and conquer the region",
+                      "created_at":  "2026-05-07",
+                      "ui_skin":  "skin_cartoon_light"
+                  },
+                  {
+                      "id":  "flame_dragon_onslaught",
+                      "name":  "Flame Dragon Onslaught",
+                      "tags":  [
+                                   "action",
+                                   "side_scroller",
+                                   "dragon",
+                                   "boss_rush",
+                                   "fire",
+                                   "menu_10_complete_flow"
+                               ],
+                      "core_loop":  "move jump chain light and heavy attacks build heat unleash flame skill trigger overdrive clear arena locks defeat chapter bosses and earn ember medals for upgrades",
+                      "created_at":  "2026-05-09",
+                      "ui_skin":  "skin_dark_arcade"
+                  },
+                  {
+                      "id":  "three_minute_empire",
+                      "name":  "Three Minute Empire",
+                      "tags":  [
+                                   "strategy",
+                                   "node_capture",
+                                   "resource_points",
+                                   "short_session",
+                                   "menu_10_complete_flow"
+                               ],
+                      "core_loop":  "capture gray neutral resource points drag routes dispatch troop streams upgrade nodes trigger surge and win a fixed three minute command match by destroying the enemy base or leading on score",
+                      "created_at":  "2026-05-12",
+                      "ui_skin":  "skin_military_tech"
+                  },
+                  {
+                      "id":  "black_spade_alliance",
+                      "name":  "Black Spade Alliance",
+                      "tags":  [
+                                   "arcade",
+                                   "battle",
+                                   "ball",
+                                   "alliance"
+                               ],
+                      "core_loop":  "aim and launch special balls, break enemy formations, collect power shots, and clear staged battles",
+                      "created_at":  "2026-06-01",
+                      "ui_skin":  "skin_dark_arcade"
+                  },
+                  {
+                      "id":  "blaze_dragon_reborn",
+                      "name":  "Blaze Dragon Reborn",
+                      "tags":  [
+                                   "action",
+                                   "dragon",
+                                   "side_scroller",
+                                   "combat"
+                               ],
+                      "core_loop":  "move, strike, dodge enemy waves, build fire power, and defeat stage bosses",
+                      "created_at":  "2026-06-01",
+                      "ui_skin":  "skin_dark_arcade"
+                  },
+                  {
+                      "id":  "candy_pulse_parade",
+                      "name":  "Candy Pulse Parade",
+                      "tags":  [
+                                   "puzzle",
+                                   "match",
+                                   "candy",
+                                   "combo"
+                               ],
+                      "core_loop":  "swap candy pieces, trigger pulse combos, clear stage goals, and chain parade bonuses",
+                      "created_at":  "2026-06-01",
+                      "ui_skin":  "skin_cartoon_light"
+                  },
+                  {
+                      "id":  "crystal_cavern_hook",
+                      "name":  "Crystal Cavern Hook",
+                      "tags":  [
+                                   "arcade",
+                                   "hook",
+                                   "cavern",
+                                   "collection"
+                               ],
+                      "core_loop":  "aim a hook through crystal caverns, pull valuable gems, avoid hazards, and upgrade shifts",
+                      "created_at":  "2026-06-01",
+                      "ui_skin":  "skin_cartoon_light"
+                  },
+                  {
+                      "id":  "lunar_salvage_miner",
+                      "name":  "Lunar Salvage Miner",
+                      "tags":  [
+                                   "mining",
+                                   "salvage",
+                                   "space",
+                                   "arcade"
+                               ],
+                      "core_loop":  "pilot a lunar miner, gather salvage, avoid hazards, manage cargo, and complete extraction shifts",
+                      "created_at":  "2026-06-01",
+                      "ui_skin":  "skin_military_tech"
+                  },
+                  {
+                      "id":  "market_morning_farm",
+                      "name":  "Market Morning Farm",
+                      "tags":  [
+                                   "farm",
+                                   "market",
+                                   "management",
+                                   "casual"
+                               ],
+                      "core_loop":  "harvest crops, prepare goods for the morning market, fulfill orders, and expand the farm stand",
+                      "created_at":  "2026-06-01",
+                      "ui_skin":  "skin_cartoon_light"
+                  },
+                  {
+                      "id":  "meadow_snack_ranch",
+                      "name":  "Meadow Snack Ranch",
+                      "tags":  [
+                                   "ranch",
+                                   "animals",
+                                   "snack",
+                                   "management"
+                               ],
+                      "core_loop":  "mix snacks, feed ranch animals, match delivery requests, and keep production flowing",
+                      "created_at":  "2026-06-01",
+                      "ui_skin":  "skin_cartoon_light"
+                  },
+                  {
+                      "id":  "minecart_hook_express",
+                      "name":  "Minecart Hook Express",
+                      "tags":  [
+                                   "minecart",
+                                   "hook",
+                                   "rail",
+                                   "arcade"
+                               ],
+                      "core_loop":  "guide a minecart, hook ore and crates, dodge rail hazards, and finish delivery runs",
+                      "created_at":  "2026-06-01",
                       "ui_skin":  "skin_post_apocalypse"
+                  },
+                  {
+                      "id":  "petal_isle_farm",
+                      "name":  "Petal Isle Farm",
+                      "tags":  [
+                                   "farm",
+                                   "flowers",
+                                   "island",
+                                   "management"
+                               ],
+                      "core_loop":  "plant boutique blooms, care for beds, sell harvests, and restore a flower island estate",
+                      "created_at":  "2026-06-01",
+                      "ui_skin":  "skin_cartoon_light"
+                  },
+                  {
+                      "id":  "pocket_landlord_classic",
+                      "name":  "Pocket Landlord Classic",
+                      "tags":  [
+                                   "card",
+                                   "landlord",
+                                   "classic",
+                                   "strategy"
+                               ],
+                      "core_loop":  "play landlord card hands, choose legal moves, outplay opponents, and win rounds",
+                      "created_at":  "2026-06-01",
+                      "ui_skin":  "skin_dark_arcade"
+                  },
+                  {
+                      "id":  "prism_sector_collapse",
+                      "name":  "Prism Sector Collapse",
+                      "tags":  [
+                                   "puzzle",
+                                   "sector",
+                                   "reactor",
+                                   "chain"
+                               ],
+                      "core_loop":  "stabilize prism sectors, trigger chain collapses, manage reactor pressure, and clear objectives",
+                      "created_at":  "2026-06-01",
+                      "ui_skin":  "skin_neon_future"
+                  },
+                  {
+                      "id":  "ranch_vet_rescue",
+                      "name":  "Ranch Vet Rescue",
+                      "tags":  [
+                                   "ranch",
+                                   "veterinary",
+                                   "animals",
+                                   "puzzle"
+                               ],
+                      "core_loop":  "diagnose animals, match treatment cards, manage care queues, and release recovered patients",
+                      "created_at":  "2026-06-01",
+                      "ui_skin":  "skin_cartoon_light"
+                  },
+                  {
+                      "id":  "stormbeak_siege",
+                      "name":  "Stormbeak Siege",
+                      "tags":  [
+                                   "siege",
+                                   "strategy",
+                                   "action",
+                                   "birds"
+                               ],
+                      "core_loop":  "launch stormbeak units, break siege structures, chain abilities, and clear fortress stages",
+                      "created_at":  "2026-06-01",
+                      "ui_skin":  "skin_dark_arcade"
                   }
               ]
 >>>>>>> ca55be502ad6967c7f08a6d57ad23d89182143ca

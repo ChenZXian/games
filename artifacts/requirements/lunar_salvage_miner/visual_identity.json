@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "game_id": "lunar_salvage_miner",
+  "status": "passed",
+  "visual_differentiation_axes": [
+    "lunar control dashboard instead of cave console or farm/ranch panels",
+    "oxygen and battery gauges as primary HUD shapes instead of score pills",
+    "moon gray, oxygen teal, solar amber, vacuum navy, and warning red palette",
+    "electromagnetic salvage claw icon with satellite scrap and oxygen canister",
+    "blueprint base repair module motifs on results and upgrade screens",
+    "strict clear central hook field with HUD anchored to instrument zones"
+  ],
+  "forbidden_visual_reuse": [
+    "do not reuse the brass crystal hook icon or emerald cave badge",
+    "do not reuse a generic gold hook on nugget icon",
+    "do not reuse farm crates, animal portraits, medical station cards, tower shields, swords, or card table motifs",
+    "do not reuse top rounded HUD pills plus bottom command strip if it hides the salvage field",
+    "do not use fantasy parchment, bright ranch pastel cards, or candy puzzle board motifs"
+  ],
+  "ui_identity": {
+    "layout_archetype": "lunar control dashboard with central salvage field, top cart rail, upper-corner life-support gauges, side repair schematic rail, and compact bottom control pods",
+    "hud_composition": "oxygen segmented gauge upper-left, battery segmented gauge upper-right, hull and parts mini readouts near the cart rail, repair objective strip on the right, scan and boost controls near bottom corners",
+    "navigation_model": "menu to region select to gameplay to base repair or upgrade workshop to result, with pause and help as overlays",
+    "palette_signature": "moon gray, dark vacuum navy, oxygen teal, solar amber, warning red, and instrument white",
+    "material_language": "brushed dark metal panels, frosted glass readouts, EVA control buttons, caution stripes, lunar dust texture, cable metal, and blueprint module lines",
+    "typography_style": "compact technical sans style using uppercase English labels and clear numeric gauges",
+    "primary_ui_pack": "skin_military_tech with lunar dashboard token tuning and module schematic motifs",
+    "secondary_ui_assets": [
+      "segmented oxygen meter",
+      "segmented battery meter",
+      "hull warning badge",
+      "base module schematic cards",
+      "scanner reticle accents",
+      "region unlock blueprint panel"
+    ],
+    "playfield_safety": {
+      "reserved_edges": [
+        "top 14 percent for cart rail and life-support instruments",
+        "right 16 percent for repair objective and scan readout",
+        "bottom 12 percent for left right cart controls and magnet boost"
+      ],
+      "hud_anchor_zones": [
+        "upper-left oxygen gauge",
+        "upper-right battery gauge",
+        "right-side repair schematic rail",
+        "bottom-left movement buttons",
+        "bottom-right scan and boost buttons"
+      ],
+      "protected_gameplay_zones": [
+        "central hook arc",
+        "debris field",
+        "meteor lanes",
+        "hook return path",
+        "deep salvage pocket"
+      ],
+      "frame_overlay_policy": "decorative frames and bezels must stay in reserved instrument zones and must never cover hook collision targets, meteor lanes, or collectible objects"
+    },
+    "unique_screen_motifs": [
+      "region select as moon map with damaged base silhouette",
+      "base repair as blueprint sockets filling with recovered parts",
+      "result as mission log with oxygen and battery leftovers",
+      "help as compact EVA manual diagram"
+    ],
+    "forbidden_ui_elements": [
+      "generic floating score pill row",
+      "wide bottom card strip covering the debris field",
+      "farm market shelf layout",
+      "animal care station rack",
+      "crystal cave order rail",
+      "tower defense build pad drawer"
+    ]
+  },
+  "icon_identity": {
+    "subject": "electromagnetic salvage claw lifting a broken satellite panel and oxygen canister from a moon crater",
+    "silhouette": "diagonal cable and hooked magnet head, angular satellite scrap, round oxygen canister, crescent lunar horizon",
+    "composition": "magnet claw enters from upper-left, satellite panel fills center, oxygen canister sits lower-right, moon crater horizon and small stars sit behind",
+    "palette": "oxygen teal, solar amber, moon gray, dark navy, instrument white, small warning red",
+    "background": "dark lunar crater badge with subtle stars and a pale moon rim",
+    "game_specific_motif": "magnetic salvage and life-support recovery rather than gold, crystals, farming, ranch care, or combat",
+    "forbidden_icon_reuse": [
+      "no brass claw gripping emerald crystal",
+      "no plain gold nugget hook",
+      "no farm crate or market stall",
+      "no animal face or medical kit",
+      "no shield tower sword or card crown",
+      "no generic spaceship without hook and oxygen canister"
+    ]
+  }
+}

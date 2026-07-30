@@ -1,0 +1,21 @@
+{
+    "version":  1,
+    "game_id":  "prism_sector_collapse",
+    "title":  "Prism Sector Collapse",
+    "direction":  "large-board color-collapse puzzle with strong color separation and a clearly different UI from the first finished puzzle game",
+    "selected_concept":  "Prism Sector Collapse",
+    "status":  "confirmed",
+    "ui_skin":  "skin_neon_future",
+    "current_stage":  "requirements",
+    "created_at_utc":  "2026-05-11T03:06:37Z",
+    "updated_at_utc":  "2026-05-11T03:07:48Z",
+    "selected_at_utc":  "2026-05-11T03:06:37Z",
+    "confirmed_at_utc":  "2026-05-11T03:07:48Z",
+    "files":  {
+                  "metadata_json":  "artifacts/requirements/prism_sector_collapse/metadata.json",
+                  "requirements_md":  "artifacts/requirements/prism_sector_collapse/requirements.md",
+                  "candidates_md":  "",
+                  "gameplay_diversity_json":  "artifacts/requirements/prism_sector_collapse/gameplay_diversity.json",
+                  "visual_identity_json":  "artifacts/requirements/prism_sector_collapse/visual_identity.json"
+              }
+}

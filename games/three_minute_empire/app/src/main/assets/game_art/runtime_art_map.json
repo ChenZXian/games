@@ -1,0 +1,118 @@
+{
+  "version": 1,
+  "game_id": "three_minute_empire",
+  "status": "integrated",
+  "camera_perspective": "top_down",
+  "default_coordinate_space": "normalized_screen",
+  "theme": "tactical command node graph resource capture",
+  "game_type": "real_time_strategy_node_capture",
+  "animation_quality_target": "medium_route_and_state_animation",
+  "entities": [
+    {
+      "role": "player_troop_stream",
+      "asset_keys": [
+        "game_art/ring_prefecture_tokens/assets/player_round_a.png",
+        "game_art/ring_prefecture_tokens/assets/player_round_b.png"
+      ],
+      "default_facing": "route_direction",
+      "facing_rule": "marker follows route interpolation and alternates frames while moving",
+      "anchor": "center",
+      "hitbox": "route_marker_visual",
+      "z_order": 40,
+      "states": [
+        "move",
+        "surge"
+      ],
+      "animation_rule": "alternate player round frames during route movement",
+      "movement_rule": "linear interpolation from source node to target node"
+    },
+    {
+      "role": "enemy_troop_stream",
+      "asset_keys": [
+        "game_art/ring_prefecture_tokens/assets/enemy_round_a.png",
+        "game_art/ring_prefecture_tokens/assets/enemy_round_b.png"
+      ],
+      "default_facing": "route_direction",
+      "facing_rule": "marker follows route interpolation and alternates frames while moving",
+      "anchor": "center",
+      "hitbox": "route_marker_visual",
+      "z_order": 40,
+      "states": [
+        "move",
+        "surge"
+      ],
+      "animation_rule": "alternate enemy round frames during route movement",
+      "movement_rule": "linear interpolation from source node to target node"
+    },
+    {
+      "role": "resource_node",
+      "asset_keys": [
+        "runtime_canvas_node_fill",
+        "runtime_canvas_owner_ring",
+        "runtime_canvas_flag_marker"
+      ],
+      "default_facing": "top_down",
+      "facing_rule": "static node with owner color state",
+      "anchor": "center",
+      "hitbox": "circle_radius_plus_touch_padding",
+      "z_order": 30,
+      "states": [
+        "neutral_gray",
+        "player_owned_teal",
+        "enemy_owned_red",
+        "contested_amber_pulse",
+        "capture_flash"
+      ],
+      "animation_rule": "neutral gray fill switches to owner color on capture with pulse and flash",
+      "movement_rule": "static"
+    },
+    {
+      "role": "map_backdrop",
+      "asset_keys": [
+        "game_art/ring_prefecture_tokens/assets/map_backdrop.png"
+      ],
+      "default_facing": "top_down",
+      "facing_rule": "static",
+      "anchor": "screen_bounds",
+      "hitbox": "none",
+      "z_order": 0,
+      "states": [
+        "idle"
+      ],
+      "animation_rule": "none",
+      "movement_rule": "static scaled to playfield"
+    }
+  ],
+  "required_runtime_checks": [
+    "player and enemy moving streams alternate frames",
+    "neutral nodes are gray before capture",
+    "captured player nodes become teal",
+    "captured enemy nodes become red",
+    "contested nodes use amber pulse",
+    "route lines render below nodes and streams",
+    "hud stays outside active node graph"
+  ],
+  "map_art_plan": {
+    "enabled": true,
+    "roles": [
+      "map_backdrop",
+      "resource_node",
+      "route_line",
+      "troop_stream",
+      "capture_effect"
+    ],
+    "camera_perspective": "top_down",
+    "recommended_layers": [
+      "backdrop",
+      "route",
+      "stream",
+      "node",
+      "flag",
+      "hud"
+    ],
+    "builder_notes": [
+      "Use owner color as primary gameplay read.",
+      "Keep neutral resource points gray until captured."
+    ]
+  }
+}

@@ -140,6 +140,95 @@
         "management",
         "world"
       ]
+    },
+    {
+      "game_id": "three_minute_empire",
+      "pack_ids": [
+        "ring_prefecture_tokens",
+        "kenney_space_shooter_extension",
+        "kenney_tower_defense_top_down"
+      ],
+      "camera_perspectives": [
+        "top_down"
+      ],
+      "style_tags": [
+        "arcade",
+        "atlas",
+        "cartoon",
+        "conquest",
+        "defense",
+        "down",
+        "fi",
+        "laser",
+        "map",
+        "round",
+        "sci",
+        "ship",
+        "shooter",
+        "space",
+        "strategy",
+        "terrain",
+        "top",
+        "tower"
+      ],
+      "map_roles": [
+        "background",
+        "building",
+        "prop",
+        "terrain",
+        "tileset"
+      ],
+      "map_capabilities": [
+        "background_layers",
+        "route_overlay_support",
+        "top_down_layout"
+      ],
+      "map_builder_strengths": [
+        "moderate",
+        "weak"
+      ],
+      "theme": "tactical command node graph resource capture",
+      "game_type": "real_time_strategy_node_capture",
+      "art_roles": "base,node,route,effect,resource,beacon",
+      "signature_tokens": [
+        "tactical",
+        "command",
+        "node",
+        "graph",
+        "resource",
+        "capture",
+        "real",
+        "time",
+        "strategy",
+        "base",
+        "route",
+        "effect",
+        "beacon",
+        "cartoon",
+        "round",
+        "map",
+        "conquest",
+        "atlas",
+        "space",
+        "shooter",
+        "ship",
+        "laser",
+        "arcade",
+        "sci",
+        "fi",
+        "top",
+        "down",
+        "tower",
+        "defense",
+        "terrain",
+        "territory",
+        "shmup",
+        "lane",
+        "background",
+        "building",
+        "prop",
+        "tileset"
+      ]
     }
   ]
 }

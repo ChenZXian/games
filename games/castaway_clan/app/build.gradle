@@ -23,7 +23,7 @@ android {
     }
 
     defaultConfig {
-        applicationId 'com.android.boot'
+        applicationId 'com.android.boot.castawayclan'
         minSdk 24
         targetSdk 34
         versionCode 1

@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "game_id": "market_morning_farm",
+  "status": "passed",
+  "visual_differentiation_axes": [
+    "split garden-and-stall workspace rather than full-screen crop grid",
+    "chalkboard revenue meter as the primary HUD motif",
+    "bottom workbench storage and shelf controls instead of generic command buttons",
+    "striped awning and paper price tags as screen motifs",
+    "produce crate launcher icon with price tag and awning backdrop"
+  ],
+  "forbidden_visual_reuse": [
+    "no generic orchard tree hero image",
+    "no flower basket icon like a flower boutique game",
+    "no animal pen or pasture HUD motif",
+    "no dark arcade or neon dashboard skin",
+    "no repeated top HUD pills plus bottom command strip as the central identity"
+  ],
+  "ui_identity": {
+    "layout_archetype": "split garden-and-stall workspace with upper crop grid, lower market counter, left seed tray drawer, and chalkboard target meter",
+    "hud_composition": "chalkboard revenue progress centered above the work area, day and time plaque on the left, reputation stamp hearts on the right, and a compact pause icon button",
+    "navigation_model": "menu to day select, day select to active market day, day result to upgrade screen or next day, pause overlay during play",
+    "palette_signature": "sky blue, leaf green, tomato red, carrot orange, cream paper, and warm light wood over skin_cartoon_light tokens",
+    "material_language": "painted wood, paper price tags, chalkboard signs, cloth awning stripes, soft produce crates",
+    "typography_style": "rounded friendly sans-serif with large numeric price and revenue values",
+    "primary_ui_pack": "skin_cartoon_light",
+    "secondary_ui_assets": [
+      "market awning stripe motif",
+      "paper price tag chips",
+      "chalkboard target panel",
+      "wooden crate storage panel"
+    ],
+    "playfield_safety": {
+      "reserved_edges": [
+        "shallow top HUD banner",
+        "left seed tray drawer",
+        "bottom stall workbench"
+      ],
+      "hud_anchor_zones": [
+        "top-left day and time plaque",
+        "top-center chalkboard revenue meter",
+        "top-right reputation and pause cluster",
+        "bottom storage and shelf strip"
+      ],
+      "protected_gameplay_zones": [
+        "all crop plot cells",
+        "all stall shelf slots",
+        "customer queue lane",
+        "customer thought bubbles"
+      ],
+      "frame_overlay_policy": "decorative awning and wooden trim must be structural reserved-edge art only and must not cover touch-critical plot, shelf, or customer regions"
+    },
+    "unique_screen_motifs": [
+      "striped morning market awning",
+      "chalkboard revenue sign",
+      "paper price tags",
+      "wooden produce crates",
+      "daily special placard"
+    ],
+    "forbidden_ui_elements": [
+      "generic floating rounded HUD pills for every stat",
+      "bottom-only command strip unrelated to the stall workbench",
+      "heavy frame overlay on active crop plots",
+      "neon or military panels",
+      "flower boutique beauty meter"
+    ]
+  },
+  "icon_identity": {
+    "subject": "smiling wooden market crate overflowing with carrots, tomatoes, corn, and a small price tag",
+    "silhouette": "large crate base, diagonal price tag, rounded produce cluster, and small awning triangle behind it",
+    "composition": "foreground crate centered, produce rising above the rim, price tag angled on the right, awning arc in the background",
+    "palette": "fresh green, tomato red, carrot orange, warm wood brown, cream tag, and sky blue background",
+    "background": "simple bright sky-blue rounded square with a subtle striped awning shape",
+    "game_specific_motif": "visible price tag connects the icon to live market selling rather than generic farming",
+    "forbidden_icon_reuse": [
+      "single crop on plain field",
+      "flower basket",
+      "orchard tree",
+      "animal face",
+      "generic coin bag",
+      "unmodified shared farm icon"
+    ]
+  }
+}

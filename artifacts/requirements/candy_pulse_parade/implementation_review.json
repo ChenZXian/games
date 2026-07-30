@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "game_id": "candy_pulse_parade",
+  "status": "passed",
+  "reviewed_at": "2026-05-11T11:05:00+08:00",
+  "review_source": "codex_delivery_review",
+  "summary": "Implemented portrait match-3 board flow, goal tracking, specials, blockers, overlays, icon, tracked UI, tracked runtime art, and tracked audio in line with the confirmed requirements."
+}

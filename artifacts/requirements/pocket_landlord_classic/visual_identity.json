@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "game_id": "pocket_landlord_classic",
+  "status": "passed",
+  "visual_differentiation_axes": [
+    "premium tabletop lounge instead of neon reactor sci-fi",
+    "three-seat radial card layout instead of full-screen action board",
+    "bottom lacquer command rail instead of arcade bottom strip",
+    "crown-and-card icon motif instead of gem or candy subjects"
+  ],
+  "forbidden_visual_reuse": [
+    "no reactor hex patterns",
+    "no candy gradients or dessert props",
+    "no split-board puzzle frame",
+    "no neon cyan-magenta dominant palette",
+    "no reused icon foreground from earlier projects"
+  ],
+  "ui_identity": {
+    "layout_archetype": "centered felt table with radial three-seat layout and bottom command rail",
+    "hud_composition": "top status header, center last-play lane, side seat counters, bottom player hand band, bottom action rail",
+    "navigation_model": "hub menu to hall map to table to result flow",
+    "palette_signature": "emerald felt, walnut brown, antique gold, ivory, charcoal, restrained red accent",
+    "material_language": "polished wood, felt, brass, and card stock",
+    "typography_style": "refined slab-serif headings with clean readable labels",
+    "primary_ui_pack": "skin_dark_arcade customized for classic card table presentation",
+    "secondary_ui_assets": [
+      "felt texture set",
+      "brass counter tokens",
+      "hall crest panels",
+      "result stamps"
+    ],
+    "playfield_safety": {
+      "reserved_edges": [
+        "top header zone",
+        "bottom player hand zone",
+        "left seat margin",
+        "right seat margin"
+      ],
+      "hud_anchor_zones": [
+        "top outer frame",
+        "bottom outer command rail",
+        "side seat rails"
+      ],
+      "protected_gameplay_zones": [
+        "player card fan",
+        "center trick reveal area",
+        "left and right ai card stacks"
+      ],
+      "frame_overlay_policy": "decorative frame stays outside all card interaction zones"
+    },
+    "unique_screen_motifs": [
+      "hall crest banners",
+      "boss table medallions",
+      "engraved scoreboard counters",
+      "result wax-stamp seals"
+    ],
+    "forbidden_ui_elements": [
+      "top hud pills",
+      "candy bubble buttons",
+      "reactor warning strips",
+      "sci-fi hologram frames"
+    ]
+  },
+  "icon_identity": {
+    "subject": "landlord crown above premium card fan",
+    "silhouette": "three-card fan with crown peak and red joker focal point",
+    "composition": "crown centered above overlapping cards with shallow gold badge frame",
+    "palette": "emerald, gold, ivory, black, restrained red",
+    "background": "dark emerald felt disk with subtle gold rim",
+    "game_specific_motif": "landlord crown and joker pairing",
+    "forbidden_icon_reuse": [
+      "no gem cluster icons",
+      "no candy pieces",
+      "no tower or gun motifs",
+      "no bird slingshot silhouettes"
+    ]
+  }
+}

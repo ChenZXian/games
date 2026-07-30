@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "game_id": "meadow_snack_ranch",
+  "status": "implemented",
+  "theme": "cozy feed recipe ranch",
+  "camera_perspective": "three-quarter top-down",
+  "game_type": "casual ranch management",
+  "license_tier": "CC0 shared pack references plus project-local runtime Canvas drawing",
+  "placeholder_art_acceptable": false,
+  "required_art_roles": [
+    "animal",
+    "terrain",
+    "building",
+    "prop",
+    "item",
+    "effect",
+    "background"
+  ],
+  "style_tags": [
+    "cartoon",
+    "farm",
+    "ranch",
+    "semi_realistic_silhouette",
+    "friendly"
+  ],
+  "target_visual_tone": "cute but readable animals with real body features, warm painted ranch props, paper and wood UI accents",
+  "runtime_orientation_needs": "animals face right in the initial pens with clear head, tail, leg, horn, ear, snout, beak, or muzzle cues; future roaming can flip grouped silhouettes",
+  "animation_needs": [
+    "idle body bob",
+    "eat or fed marker",
+    "ready quality marker",
+    "low mood marker",
+    "leg or ear offset for life"
+  ],
+  "shared_packs": [
+    "kenney_animal_pack",
+    "kenney_isometric_miniature_farm"
+  ],
+  "runtime_mapping": "app/src/main/assets/game_art/runtime_art_map.json"
+}

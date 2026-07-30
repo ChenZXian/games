@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "game_id": "stormbeak_siege",
+  "status": "passed",
+  "reviewed_at": "2026-05-11T08:45:00Z",
+  "summary": "Landscape slingshot launch, in-flight bird skills, weather-modified fortress stages, pause flow, result flow, tracked icon, tracked UI, tracked game art, and tracked audio are implemented."
+}

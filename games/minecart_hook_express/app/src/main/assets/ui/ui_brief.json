@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "game_id": "minecart_hook_express",
+  "ui_skin": "skin_post_apocalypse",
+  "screen_list": [
+    "menu",
+    "gameplay_hud",
+    "pause",
+    "help",
+    "result"
+  ],
+  "state_map": [
+    "MENU",
+    "PLAYING",
+    "PAUSED",
+    "GAME_OVER"
+  ],
+  "hud_priorities": [
+    "durability",
+    "cargo",
+    "cable_heat",
+    "station_target",
+    "lane",
+    "route_distance",
+    "warning_signal"
+  ],
+  "playfield_safe_area": {
+    "top": "external signal HUD bar with status chips",
+    "right": "structural route meter panel outside the GameView",
+    "bottom": "in-view station progress meter below active rail lanes",
+    "left": "open left hook corridor inside GameView",
+    "protected": "three rail lanes, left and right hook travel corridors, obstacle preview lane, and station gate approach"
+  },
+  "frame_and_border_policy": "route and HUD chrome are outside the live rail viewport; in-field signal frames are decorative and avoid target hit zones",
+  "style_tags": [
+    "post_apocalypse_rail",
+    "rusted_signal_dashboard",
+    "route_meter_panel",
+    "hazard_lamps",
+    "side_hook_runner"
+  ],
+  "asset_strategy": "project-local XML UI with tracked custom signal layout and no external binary UI import in this workflow run",
+  "shared_ui_assets_reviewed": [
+    "kenney_ui_pack_rusted_control"
+  ],
+  "shared_ui_assets_used": [],
+  "visual_identity_source": "artifacts/requirements/minecart_hook_express/visual_identity.json",
+  "implemented_paths": [
+    "app/src/main/res/layout/activity_main.xml",
+    "app/src/main/java/com/android/boot/MainActivity.java",
+    "app/src/main/java/com/android/boot/ui/GameView.java",
+    "app/src/main/assets/ui/ui_pack_assignment.json"
+  ]
+}

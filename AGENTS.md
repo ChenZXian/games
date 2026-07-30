@@ -156,10 +156,14 @@ Resource workflow policy:
 - UI Kit is the required structural foundation, not sufficient final visual quality for menu item `10` or delivery-ready output
 - Treat `project_local_xml_ui` as placeholder-only for production-grade, menu item `10`, or delivery-ready output
 - UI workflow must produce a concrete UI brief with screen list, state map, HUD priorities, playfield safe area, frame and border policy, chosen ui_skin, style tags, and asset strategy before implementation
+- UI workflow must target adaptive layouts across common phone and tablet aspect ratios instead of one fixed screen shape
 - UI workflow should resolve assets in this order by default: style-matched shared UI pack -> import licensed open-source UI pack into shared_assets/ui/ -> project-local custom refinement
 - UI workflow must not silently fall back to generic shape-only placeholder controls for production-grade or delivery-ready requests
 - UI workflow must follow the visual identity contract when available and must not repeatedly reuse the same top HUD pill layout, bottom command strip, palette, or pack preset without explicit justification
 - UI workflow must keep decorative borders, bezels, and HUD chrome out of active gameplay space unless that space is explicitly reserved as dead space in the requirements and UI brief
+- Battle-state buttons, HUD bars, tactical panels, and floating controls must not cover units, lanes, routes, board cells, build pads, drag paths, or other touch-critical gameplay targets
+- A full-screen GameView with gameplay-state controls merely stacked on top is forbidden unless the gameplay viewport is structurally reduced to a verified safe area first
+- Before inspection or packaging, UI must be judged against small-phone, tall-phone, and tablet-style aspect ratios; cramped or overlapping battle-state UI should be treated as not ready
 - Gameplay art workflow is a formal track and should define gameplay visual roles before asset selection or project wiring
 - Gameplay art workflow covers characters, enemies, animals, maps, tilesets, props, items, projectiles, effects, and gameplay backgrounds
 - Gameplay art workflow may use binary gameplay art assets only when the license and provenance are tracked

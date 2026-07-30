@@ -45,6 +45,14 @@ function Match-First($text, $pattern) {
   return $null
 }
 
+function Normalize-GradlePathValue($value) {
+  if ([string]::IsNullOrWhiteSpace($value)) { return "" }
+  $normalized = $value.Trim().Trim('"').Trim("'")
+  $normalized = $normalized -replace '\\:', ':'
+  $normalized = $normalized -replace '\\\\', '\'
+  return $normalized
+}
+
 function Run-Cmd($exe, $args, $workdir) {
   $p = New-Object System.Diagnostics.Process
   $p.StartInfo.FileName = $exe
@@ -190,8 +198,37 @@ if ($projects.Count -eq 0) {
 }
 
 foreach ($projDir in $projects) {
+  Write-Section "Check Project Gradle Properties"
+  $projectGradlePropsPath = Join-Path $projDir "gradle.properties"
+  $projectGradlePropsText = Read-FileText $projectGradlePropsPath
+  if ($null -eq $projectGradlePropsText) {
+    Write-Fail "Missing gradle.properties in $projDir"
+    $failCount++
+  } else {
+    $projectJavaHome = Match-First $projectGradlePropsText 'org\.gradle\.java\.home\s*=\s*([^\r\n]+)'
+    if ([string]::IsNullOrWhiteSpace($projectJavaHome)) {
+      Write-Fail "org.gradle.java.home not found in $projectGradlePropsPath"
+      $failCount++
+    } else {
+      $projectJavaHomePath = Normalize-GradlePathValue $projectJavaHome
+      if (Test-Path $projectJavaHomePath) {
+        Write-Ok "Project org.gradle.java.home path exists: $projectJavaHomePath"
+      } else {
+        Write-Fail "Project org.gradle.java.home path does not exist: $projectJavaHome"
+        $failCount++
+      }
+    }
+  }
+
   Write-Section "Check Gradle Wrapper Version (per project)"
   $gradlew = Join-Path $projDir "gradlew.bat"
+  $wrapperJar = Join-Path $projDir "gradle\wrapper\gradle-wrapper.jar"
+  if (!(Test-Path $wrapperJar)) {
+    Write-Fail "gradle-wrapper.jar not found in project: $projDir"
+    $failCount++
+  } else {
+    Write-Ok "gradle-wrapper.jar found"
+  }
   if (!(Test-Path $gradlew)) {
     Write-Fail "gradlew.bat not found in project: $projDir"
     $failCount++
@@ -231,6 +268,25 @@ foreach ($projDir in $projects) {
   }
   if (-not $agpFound) { Write-Warn "AGP plugins DSL not found in $projDir"; $warnCount++ }
 
+  Write-Section "Check Plugin Repository Setup"
+  $settingsText = Read-FileText (Join-Path $projDir "settings.gradle")
+  $rootBuildText = Read-FileText (Join-Path $projDir "build.gradle")
+  if ($rootBuildText -match 'id\s+["'']com\.android\.application["'']\s+version') {
+    $hasPluginRepos = $settingsText -match 'pluginManagement' -and
+      $settingsText -match 'google\s*\(\s*\)' -and
+      $settingsText -match 'mavenCentral\s*\(\s*\)' -and
+      $settingsText -match 'gradlePluginPortal\s*\(\s*\)'
+    if ($hasPluginRepos) {
+      Write-Ok "Plugin repositories found"
+    } else {
+      Write-Fail "settings.gradle must define pluginManagement repositories google, mavenCentral, and gradlePluginPortal"
+      $failCount++
+    }
+  } else {
+    Write-Warn "Root AGP plugin declaration not found; plugin repository check skipped"
+    $warnCount++
+  }
+
   Write-Section "Check Project SDK Config (compileSdk/minSdk/targetSdk)"
   $appGradle = Join-Path $projDir "app\build.gradle"
   $appGradleKts = Join-Path $projDir "app\build.gradle.kts"
@@ -249,6 +305,18 @@ foreach ($projDir in $projects) {
     if ($cs -eq $requiredCompileSdk) { Write-Ok "compileSdk = $cs" } else { Write-Fail "compileSdk mismatch. Expected $requiredCompileSdk, got $cs"; $failCount++ }
     if ($mins -eq $requiredMinSdk) { Write-Ok "minSdk = $mins" } else { Write-Fail "minSdk mismatch. Expected $requiredMinSdk, got $mins"; $failCount++ }
     if ($ts -eq $requiredTargetSdk) { Write-Ok "targetSdk = $ts" } else { Write-Fail "targetSdk mismatch. Expected $requiredTargetSdk, got $ts"; $failCount++ }
+
+    $blockedDependencyPatterns = @(
+      'androidx\.core:core(?:-ktx)?:1\.16\.',
+      'androidx\.appcompat:appcompat:1\.7\.1',
+      'androidx\.constraintlayout:constraintlayout:2\.2\.1'
+    )
+    foreach ($pattern in $blockedDependencyPatterns) {
+      if ($appText -match $pattern) {
+        Write-Fail "Dependency version is not compatible with compileSdk 34 or this baseline: $pattern"
+        $failCount++
+      }
+    }
   }
 }
 

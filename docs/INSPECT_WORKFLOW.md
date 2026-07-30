@@ -23,9 +23,11 @@ The inspect workflow may check:
 - registry presence
 - requirements trace presence
 - gameplay diversity contract status
+- mechanic fingerprint duplicate risk
 - visual identity contract status
 - icon track status
 - UI track status
+- runtime UI safety status
 - gameplay art track status
 - gameplay art runtime-map status
 - audio track status
@@ -146,8 +148,10 @@ The inspect workflow should report two top-level conclusions.
 - gameplay diversity status is `passed`
 - visual identity status is `passed`
 - implementation fidelity status is `passed`
+- mechanic duplicate risk is `low`
 - icon status is `complete`
 - UI status is `complete`
+- runtime UI occlusion risk is `low`
 - gameplay art status is `complete`
 - gameplay art runtime status is `integrated`, `passed`, or `complete`
 - audio status is `complete`
@@ -169,9 +173,13 @@ Every inspect run should report:
 - `GAMEPLAY_DIVERSITY_STATUS`
 - `VISUAL_IDENTITY_STATUS`
 - `IMPLEMENTATION_FIDELITY_STATUS`
+- `MECHANIC_FINGERPRINT_STATUS`
+- `MECHANIC_DUPLICATE_RISK`
 - `ICON_STATUS`
 - `ICON_DUPLICATE_RISK`
 - `UI_STATUS`
+- `RUNTIME_UI_SAFETY_STATUS`
+- `RUNTIME_UI_OCCLUSION_RISK`
 - `GAME_ART_STATUS`
 - `GAME_ART_RUNTIME_STATUS`
 - `AUDIO_STATUS`

@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "game_id": "ring_prefecture_clash",
+  "status": "passed",
+  "direction": "Inspired by prefecture and city conquest strategy games with round battle units and bright tabletop-style territorial warfare.",
+  "selected_concept": "Nationwide node-link conquest across prefectures and major cities with auto-growing forces, visible front-line streams, and supply-cut tactics.",
+  "visual_differentiation_axes": [
+    "bright atlas-board UI instead of neon conquest styling",
+    "left tactical rail and bottom node card instead of bottom-wide command strip",
+    "paper-card and enamel-chip material language",
+    "round commander icon silhouette over a map-pin crest",
+    "route ribbons and stamp motifs as recurring screen language"
+  ],
+  "forbidden_visual_reuse": [
+    "no black-magenta neon conquest palette",
+    "no military steel dashboard framing",
+    "no repeated top-pill chain plus bottom bar HUD",
+    "no generic castle or sword icon subject",
+    "no overlays placed over contested node clusters"
+  ],
+  "ui_identity": {
+    "layout_archetype": "corner command cards with left tactical rail and unobstructed central atlas",
+    "hud_composition": "upper-left objective card upper-right utility controls left-edge commander rail lower-left node card lower-right mode controls",
+    "navigation_model": "chapter region map with stage nodes medals and codex side paths",
+    "palette_signature": "sky blue cream paper red faction accents gold stamps and ink-blue labels",
+    "material_language": "travel atlas paper cards polished enamel chips route ribbons and stamp seals",
+    "typography_style": "rounded poster-like sans with bold compact numerals",
+    "primary_ui_pack": "skin_cartoon_light",
+    "secondary_ui_assets": [
+      "atlas tabs",
+      "stamp badges",
+      "route labels",
+      "paper-panel dividers"
+    ],
+    "playfield_safety": {
+      "reserved_edges": [
+        "top shallow metadata band",
+        "left slim skill gutter",
+        "bottom contextual card band",
+        "right compact utility gutter"
+      ],
+      "hud_anchor_zones": [
+        "upper-left corner",
+        "upper-right corner",
+        "left outer edge",
+        "lower-left corner",
+        "lower-right corner"
+      ],
+      "protected_gameplay_zones": [
+        "central route mesh",
+        "dense node intersections",
+        "capital approach corridors"
+      ],
+      "frame_overlay_policy": "all ornamental map framing must remain outside the protected route mesh and use structural gutters instead of live overlays"
+    },
+    "unique_screen_motifs": [
+      "chapter stamps",
+      "rail-map route ribbons",
+      "regional seal badges",
+      "ticket-like result cards"
+    ],
+    "forbidden_ui_elements": [
+      "heavy metallic bezels",
+      "neon glow grid panels",
+      "full-width bottom command strip",
+      "floating buttons over node intersections"
+    ]
+  },
+  "icon_identity": {
+    "subject": "round prefecture atlas ticket token over regional map pin",
+    "silhouette": "large circle face over a regional map pin with atlas ticket accent",
+    "composition": "foreground prefecture token breaking out of a regional map pin with atlas ticket accent and trailing route streaks",
+    "palette": "sky blue warm red cream white gold accents",
+    "background": "soft paper-map burst with faint route lines",
+    "game_specific_motif": "prefecture conquest route streak and command baton",
+    "forbidden_icon_reuse": [
+      "no castle-only silhouette",
+      "no sword-only silhouette",
+      "no copied neon emblem",
+      "no reused shield badge from another war game"
+    ]
+  }
+}

@@ -1,0 +1,163 @@
+{
+  "version": 1,
+  "game_id": "blaze_dragon_reborn",
+  "status": "integrated",
+  "camera_perspective": "side_view_combo_brawler",
+  "runtime_code": "app/src/main/java/com/android/boot/ui/GameView.java",
+  "animation_quality_target": "pose_swap_runtime_flip_with_chi_fx",
+  "entities": [
+    {
+      "entity_key": "dragon_hero",
+      "role": "character",
+      "asset_keys": [
+        "game_art/kenney_platformer_characters/assets/PNG/Player/Poses/player_idle.png",
+        "game_art/kenney_platformer_characters/assets/PNG/Player/Poses/player_walk1.png",
+        "game_art/kenney_platformer_characters/assets/PNG/Player/Poses/player_walk2.png",
+        "game_art/kenney_platformer_characters/assets/PNG/Player/Poses/player_action1.png",
+        "game_art/kenney_platformer_characters/assets/PNG/Player/Poses/player_action2.png",
+        "game_art/kenney_platformer_characters/assets/PNG/Player/Poses/player_hurt.png",
+        "game_art/kenney_platformer_characters/assets/PNG/Player/Poses/player_jump.png"
+      ],
+      "default_facing": "right",
+      "facing_rule": "flip sprite horizontally from movement or attack direction",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.98
+      },
+      "hitbox": {
+        "x": 0.22,
+        "y": 0.10,
+        "w": 0.56,
+        "h": 0.86
+      },
+      "z_order": "player_above_ground",
+      "states": [
+        "idle",
+        "move",
+        "attack",
+        "hurt",
+        "jump",
+        "chi_cast"
+      ],
+      "animation_rule": "GameView swaps idle walk action hurt and jump poses and layers runtime chi arcs during burst attacks",
+      "movement_rule": "left and right movement, short jump, chained melee pressure, and forward chi wave burst"
+    },
+    {
+      "entity_key": "dragon_grunts",
+      "role": "enemy",
+      "asset_keys": [
+        "game_art/kenney_platformer_characters/assets/PNG/Soldier/Poses/soldier_idle.png",
+        "game_art/kenney_platformer_characters/assets/PNG/Soldier/Poses/soldier_walk1.png",
+        "game_art/kenney_platformer_characters/assets/PNG/Soldier/Poses/soldier_walk2.png",
+        "game_art/kenney_platformer_characters/assets/PNG/Soldier/Poses/soldier_hurt.png"
+      ],
+      "default_facing": "left",
+      "facing_rule": "flip toward player position",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.98
+      },
+      "hitbox": {
+        "x": 0.22,
+        "y": 0.12,
+        "w": 0.56,
+        "h": 0.84
+      },
+      "z_order": "enemy_above_ground",
+      "states": [
+        "idle",
+        "move",
+        "attack",
+        "hurt",
+        "death"
+      ],
+      "animation_rule": "GameView alternates walk frames and uses the hurt pose on impact flash",
+      "movement_rule": "close in on the player and swing at short range"
+    },
+    {
+      "entity_key": "sky_hunters",
+      "role": "enemy",
+      "asset_keys": [
+        "game_art/kenney_platformer_art_deluxe/assets/Base pack/Enemies/flyFly1.png",
+        "game_art/kenney_platformer_art_deluxe/assets/Base pack/Enemies/flyFly2.png"
+      ],
+      "default_facing": "left",
+      "facing_rule": "flip toward player position",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "hitbox": {
+        "x": 0.18,
+        "y": 0.18,
+        "w": 0.64,
+        "h": 0.64
+      },
+      "z_order": "enemy_air_layer",
+      "states": [
+        "move",
+        "attack",
+        "hurt"
+      ],
+      "animation_rule": "GameView alternates both wing frames during movement and impact flash",
+      "movement_rule": "hover in an upper lane and rush into short strike range"
+    },
+    {
+      "entity_key": "gate_boss",
+      "role": "boss",
+      "asset_keys": [
+        "game_art/kenney_platformer_art_deluxe/assets/Base pack/Enemies/blockerBody.png",
+        "game_art/kenney_platformer_art_deluxe/assets/Base pack/Enemies/blockerMad.png",
+        "game_art/kenney_platformer_art_deluxe/assets/Base pack/Enemies/blockerSad.png"
+      ],
+      "default_facing": "left",
+      "facing_rule": "flip toward player position",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.98
+      },
+      "hitbox": {
+        "x": 0.16,
+        "y": 0.12,
+        "w": 0.68,
+        "h": 0.86
+      },
+      "z_order": "boss_above_ground",
+      "states": [
+        "idle",
+        "move",
+        "attack",
+        "hurt",
+        "phase_shift"
+      ],
+      "animation_rule": "GameView swaps body and pressure faces while preserving a larger hurt flash and dedicated hp bar",
+      "movement_rule": "slow pressure walk with heavy close-range hits"
+    },
+    {
+      "entity_key": "arena_backdrop",
+      "role": "background",
+      "asset_keys": [
+        "game_art/kenney_platformer_art_deluxe/assets/Base pack/bg_castle.png",
+        "game_art/kenney_new_platformer_pack/assets/Sprites/Backgrounds/Double/background_clouds.png"
+      ],
+      "default_facing": "right",
+      "facing_rule": "static",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "hitbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "w": 1.0,
+        "h": 1.0
+      },
+      "z_order": "background_then_parallax",
+      "states": [
+        "idle"
+      ],
+      "animation_rule": "GameView scrolls cloud parallax above a large castle backdrop",
+      "movement_rule": "background stays static while camera follows the combat lane"
+    }
+  ]
+}

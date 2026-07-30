@@ -7,7 +7,7 @@ android {
   compileSdk 34
 
   defaultConfig {
-    applicationId "com.android.boot"
+    applicationId "com.android.boot.epicfrontierwar"
     minSdk 24
     targetSdk 34
     versionCode 1

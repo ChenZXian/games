@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "game_id": "minecart_hook_express",
+  "status": "passed",
+  "reviewed_at": "2026-05-28",
+  "requirements_source": "artifacts/requirements/minecart_hook_express/requirements.md",
+  "review_scope": [
+    "core loop",
+    "controls",
+    "lane switching",
+    "side hook behavior",
+    "cable heat",
+    "cart durability",
+    "station target",
+    "UI safe area",
+    "icon",
+    "audio"
+  ],
+  "implemented_mechanics": [
+    "auto-scrolling side-view minecart run",
+    "left half and right half tap side hook launch",
+    "vertical swipe rail lane switching across three lanes",
+    "tap hold heavy pull with higher heat cost",
+    "ore and gem collection for cargo value",
+    "barricade and broken rail hazard clearing through hooks",
+    "switch box interaction and route lane changes",
+    "coolant and repair bolt support pickups",
+    "cart durability damage from lane hazards",
+    "cable heat buildup and cooldown with warning cue",
+    "station target and route distance completion",
+    "menu, pause, help, HUD, and game over states",
+    "right route meter panel outside active hook lanes",
+    "tracked app icon export",
+    "tracked BGM and SFX assignment"
+  ],
+  "known_delivery_notes": [
+    "chapter map and garage progression are represented as current-run systems and documented as future expansion",
+    "runtime art is custom canvas rendering tracked through a project internal shared pack",
+    "UI is custom XML and canvas signal rendering tracked through a project internal shared pack"
+  ],
+  "result": "The implementation preserves the confirmed Minecart Hook Express requirements closely enough for debug APK packaging."
+}

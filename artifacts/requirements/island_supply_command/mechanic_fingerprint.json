@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "game_id": "island_supply_command",
+  "status": "passed",
+  "duplicate_risk": "low",
+  "top_similarity": 0.0,
+  "fingerprint": {
+    "version": 1,
+    "game_id": "island_supply_command",
+    "tokens": [],
+    "mechanic_axes": [],
+    "genre_family": "",
+    "genre_archetype": "",
+    "control_model": "",
+    "core_loop_signature": ""
+  },
+  "similar_projects": [],
+  "nearest_projects": []
+}

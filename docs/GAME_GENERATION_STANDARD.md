@@ -133,6 +133,11 @@ Rules:
 com.android.boot
 ```
 
+- Android namespace should remain `com.android.boot`
+- Launcher Activity must remain `com.android.boot.MainActivity`
+- Installable `applicationId` must be unique per game and must not be exactly `com.android.boot`
+- A unique `applicationId` does not change the Java root package or launcher Activity requirement
+
 ------
 
 ### 5.2 Recommended Structure (Per Game)
@@ -199,6 +204,7 @@ If this standard conflicts with UI_KIT_FACTORY_SPEC_v1_0.md, the stricter rule a
 - Layout XML SHOULD NOT inline literal color values
 - Themed borders, bezels, rails, and decorative frames MUST NOT be placed on top of active gameplay space
 - If a project uses a framed presentation, the gameplay viewport MUST reserve a safe area for movement, interaction, and touch-critical regions before decorative chrome is applied
+- Any `SurfaceView` or custom canvas loop that calls `lockCanvas` MUST protect `lockCanvas` and `unlockCanvasAndPost` with a null guard, `catch`, and `finally`
 - UI is allowed to look commercial only by:
   - token tuning (colors/dimens)
   - XML drawables (shape/gradient/layer-list/vector)
@@ -213,6 +219,8 @@ At minimum, each project MUST contain:
 - res/values/dimens.xml
 - res/values/styles.xml
 - res/values/themes.xml
+
+When nested UI Kit widget styles are used, `styles.xml` MUST keep resolvable base styles such as `Widget`, `Widget.Game`, and `Widget.Game.Button` as needed.
 
 And the required drawables specified by the UI Kit contract, including:
 

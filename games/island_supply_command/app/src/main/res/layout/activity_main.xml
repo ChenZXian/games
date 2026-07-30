@@ -7,12 +7,14 @@
     <com.android.boot.ui.GameView
         android:id="@+id/game_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/cst_top_hud_reserved_height"
+        android:layout_marginBottom="@dimen/cst_bottom_bar_reserved_height" />
 
     <LinearLayout
         android:id="@+id/top_hud"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/cst_top_hud_reserved_height"
         android:layout_gravity="top"
         android:background="@drawable/ui_panel_header"
         android:gravity="center_vertical"
@@ -107,7 +109,7 @@
     <LinearLayout
         android:id="@+id/bottom_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/cst_bottom_bar_reserved_height"
         android:layout_gravity="bottom"
         android:background="@drawable/ui_panel"
         android:orientation="vertical"

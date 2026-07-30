@@ -1,0 +1,123 @@
+{
+  "version": 1,
+  "game_id": "lunar_salvage_miner",
+  "status": "integrated",
+  "entities": [
+    {
+      "role": "salvage_cart",
+      "asset_key": "canvas_lunar_cart",
+      "default_facing": "right",
+      "facing_rules": "faces movement direction through cart input state",
+      "anchor": "bottom_center",
+      "hitbox": "cart_body",
+      "z_order": 60,
+      "states": [
+        "idle",
+        "moving_left",
+        "moving_right"
+      ],
+      "animation_rules": "wheel pulse is driven by railPulse while moving",
+      "movement_rules": "horizontal rail movement inside top safe zone"
+    },
+    {
+      "role": "electromagnetic_hook",
+      "asset_key": "canvas_magnet_hook",
+      "default_facing": "down",
+      "facing_rules": "rotates and extends along the launch angle and cable vector",
+      "anchor": "cable_tip",
+      "hitbox": "magnet_circle",
+      "z_order": 90,
+      "states": [
+        "ready_swing",
+        "launch",
+        "magnet_lock",
+        "return",
+        "boosted"
+      ],
+      "animation_rules": "boost adds a pulsing teal amber ring around the hook head",
+      "movement_rules": "linear launch, weighted rewind, caught object follows cable tip"
+    },
+    {
+      "role": "oxygen_canister",
+      "asset_key": "canvas_oxygen_canister",
+      "default_facing": "front",
+      "facing_rules": "static except pulled state",
+      "anchor": "center",
+      "hitbox": "slightly_smaller_than_visual",
+      "z_order": 42,
+      "states": [
+        "idle",
+        "scanned",
+        "hooked",
+        "delivered"
+      ],
+      "animation_rules": "white label and blue cylinder; scan ring highlights non-metal support target",
+      "movement_rules": "follows hook while caught"
+    },
+    {
+      "role": "battery_cell",
+      "asset_key": "canvas_battery_cell",
+      "default_facing": "front",
+      "facing_rules": "static except pulled state",
+      "anchor": "center",
+      "hitbox": "rect_inner_bounds",
+      "z_order": 42,
+      "states": [
+        "idle",
+        "scanned",
+        "hooked",
+        "delivered"
+      ],
+      "animation_rules": "amber shell with teal charge core and terminal cap",
+      "movement_rules": "follows hook while caught"
+    },
+    {
+      "role": "module_part",
+      "asset_key": "canvas_module_core",
+      "default_facing": "front",
+      "facing_rules": "static except pulled state",
+      "anchor": "center",
+      "hitbox": "diamond_inner_bounds",
+      "z_order": 44,
+      "states": [
+        "idle",
+        "scanned",
+        "hooked",
+        "delivered",
+        "repair_flash"
+      ],
+      "animation_rules": "diamond module with ring socket; delivery advances the base module rail",
+      "movement_rules": "heavier weighted rewind"
+    },
+    {
+      "role": "meteor_fragment",
+      "asset_key": "canvas_meteor_fragment",
+      "default_facing": "left",
+      "facing_rules": "horizontal drift direction follows vx",
+      "anchor": "center",
+      "hitbox": "oval_core",
+      "z_order": 46,
+      "states": [
+        "drifting",
+        "impact",
+        "cleared"
+      ],
+      "animation_rules": "red crater spot and lateral drift imply rotation and danger",
+      "movement_rules": "bounces inside meteor lane and damages hull when hooked"
+    },
+    {
+      "role": "moon_wreck_background",
+      "asset_key": "canvas_lunar_wreckage",
+      "default_facing": "front",
+      "facing_rules": "static",
+      "anchor": "background",
+      "hitbox": "none",
+      "z_order": 10,
+      "states": [
+        "region_backdrop"
+      ],
+      "animation_rules": "subtle scanner and starfield motion through update loop",
+      "movement_rules": "fixed stage backdrop"
+    }
+  ]
+}

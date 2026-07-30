@@ -1,0 +1,179 @@
+{
+  "version": 1,
+  "game_id": "ranch_vet_rescue",
+  "status": "passed",
+  "genre_family": "casual management",
+  "genre_archetype": "veterinary triage and recovery routing ranch",
+  "camera_perspective": "three-quarter top-down pasture clinic board with readable animal paths and station drop zones",
+  "control_model": "tap animals to inspect, drag animal cards to care stations, tap treatment cards to queue treatments, tap completed stations to release",
+  "core_loop_signature": "receive animals with visible conditions, diagnose needs, match treatment cards to stations, manage station queues and stress, release recovered animals, earn trust and upgrade clinic capacity",
+  "differentiation_axes": [
+    "diagnosis and treatment sequencing are the primary decisions instead of feed recipe matching",
+    "animal stress and waiting lane overflow create time pressure",
+    "station queues create routing decisions distinct from pen adjacency or crop stall stocking",
+    "recovery ratings reward correct care order and low-stress completion",
+    "UI uses bottom treatment card tray, intake lane, and station rack instead of cookbook and delivery clipboard"
+  ],
+  "forbidden_template_reuse": [
+    "do not copy Meadow Snack Ranch feed recipe matching or product quality order loop",
+    "do not copy Pasture Parade Deluxe adjacency combo pen maintenance loop",
+    "do not copy Market Morning Farm crop stall pricing and customer queue loop",
+    "do not reduce the game to a single generic animal pen",
+    "do not use animals as circles, rectangles, or label-only placeholders",
+    "do not reuse the cow feed bowl icon composition"
+  ],
+  "map_content_budget": {
+    "play_area_model": "fixed landscape pasture clinic board with intake path, central care stations, and recovery exit flow",
+    "route_or_region_count": 8,
+    "interactive_regions": [
+      "arrival lane",
+      "diagnosis desk",
+      "feed tonic trough",
+      "grooming brush station",
+      "warm blanket stall",
+      "medicine shelf",
+      "recovery meadow",
+      "release gate"
+    ],
+    "terrain_types": [
+      "short meadow grass",
+      "canvas clinic floor",
+      "hay mat station floor",
+      "stone walking path",
+      "flower recovery patch"
+    ],
+    "decorative_prop_count": 20,
+    "functional_map_elements": [
+      "waiting fence",
+      "condition tag board",
+      "medicine crate",
+      "water basin",
+      "treatment card tray",
+      "station timers",
+      "release arch",
+      "upgrade board"
+    ],
+    "landmarks": [
+      "striped clinic awning",
+      "red-cross ranch kit sign",
+      "heart-tag release gate"
+    ],
+    "camera_or_scroll_model": "fixed board with no scrolling for core play; overlays must use reserved zones"
+  },
+  "entity_content_budget": {
+    "player_unit_types": [
+      "clinic cursor hand",
+      "selected animal card",
+      "treatment card tray"
+    ],
+    "enemy_types": [],
+    "neutral_or_resource_entities": [
+      "dairy cow",
+      "laying hen",
+      "wool sheep",
+      "goat",
+      "piglet",
+      "rabbit",
+      "hungry condition",
+      "tired condition",
+      "scratched condition",
+      "chilled condition",
+      "dirty condition",
+      "stressed condition"
+    ],
+    "boss_or_elite_types": [
+      "rare alpaca visitor",
+      "pony visitor"
+    ],
+    "projectile_or_effect_types": [
+      "diagnosis sparkle",
+      "medicine puff",
+      "brush dust",
+      "warm blanket glow",
+      "stress pulse",
+      "heart recovery burst"
+    ],
+    "item_or_powerup_types": [
+      "feed tonic card",
+      "brush card",
+      "blanket card",
+      "medicine card",
+      "water card",
+      "comfort treat card"
+    ]
+  },
+  "mechanic_content_budget": {
+    "primary_player_actions": [
+      "inspect incoming animal condition",
+      "drag animal to matching care station",
+      "select treatment card",
+      "collect recovered animal at release gate"
+    ],
+    "secondary_player_actions": [
+      "queue station work",
+      "prioritize urgent animals",
+      "restock limited treatment cards",
+      "upgrade station speed or capacity",
+      "activate assistant auto-check"
+    ],
+    "upgrade_paths": [
+      "intake lane size",
+      "diagnosis speed",
+      "station treatment speed",
+      "medicine stock capacity",
+      "comfort bedding stress reduction",
+      "recovery meadow capacity"
+    ],
+    "wave_or_level_variants": [
+      "single-condition tutorial shift",
+      "mixed-symptom shift",
+      "cold morning blanket demand",
+      "muddy pasture grooming demand",
+      "festival crowd arrival rush",
+      "rare visitor rescue"
+    ],
+    "special_rules": [
+      "each animal can hold one or two condition tags",
+      "wrong treatment raises stress and wastes station time",
+      "waiting lane overflow causes animals to leave stressed",
+      "excellent recovery requires correct treatment and low waiting time",
+      "rare visitors require two-stage care for bonus rewards"
+    ],
+    "risk_reward_systems": [
+      "treat urgent animals first for trust or treat easy animals for fast throughput",
+      "spend rare medicine on high-value visitors or save it for later waves",
+      "queue multiple animals at one station but risk waiting lane pressure"
+    ],
+    "failure_pressure_variants": [
+      "shift timer expires below trust target",
+      "waiting lane overflows",
+      "too many stressed departures",
+      "medicine stock runs out during urgent wave"
+    ]
+  },
+  "asset_variety_budget": {
+    "primary_game_art_packs": [
+      "license-clear semi-realistic farm animal sprites with readable quadruped and bird silhouettes"
+    ],
+    "secondary_game_art_packs": [
+      "ranch clinic props",
+      "condition icons",
+      "treatment card icons",
+      "heart and trust effects"
+    ],
+    "ui_pack": "skin_cartoon_light with custom clinic card tray and station sign refinements",
+    "animation_tier": "delivery-ready animal idle, worried, treatment, recovering, happy, excellent, and stressed states",
+    "required_animation_states": [
+      "idle",
+      "walk left right",
+      "worried",
+      "being treated",
+      "recovering",
+      "happy",
+      "excellent release",
+      "stressed departure"
+    ],
+    "minimum_distinct_sprite_families": 9,
+    "asset_reuse_note": "animal art may reuse approved ranch animal packs only when silhouettes, state markers, and treatment feedback clearly support veterinary care rather than generic feeding"
+  }
+}

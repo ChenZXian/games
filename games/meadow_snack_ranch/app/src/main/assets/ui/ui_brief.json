@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "game_id": "meadow_snack_ranch",
+  "ui_skin": "skin_cartoon_light",
+  "status": "implemented",
+  "screen_list": [
+    "menu",
+    "gameplay_hud",
+    "recipe_book_rail",
+    "delivery_clipboard",
+    "pause",
+    "result",
+    "help_toast"
+  ],
+  "state_map": {
+    "MENU": "menu overlay above reserved ranch board",
+    "PLAYING": "central ranch board with side rails and compact HUD",
+    "PAUSED": "dialog overlay with resume and restart",
+    "GAME_OVER": "result banner and restart dialog"
+  },
+  "hud_priorities": [
+    "day",
+    "coins",
+    "reputation",
+    "time",
+    "cooler inventory",
+    "recipe stock",
+    "delivery requirements"
+  ],
+  "playfield_safe_area": {
+    "left_reserved_percent": 18,
+    "right_reserved_percent": 22,
+    "top_reserved_percent": 12,
+    "bottom_reserved_percent": 10,
+    "protected_regions": [
+      "animal pens",
+      "feed mixer drop zone",
+      "ingredient beds",
+      "collection crate path"
+    ]
+  },
+  "frame_and_border_policy": "book spine, clipboard, and HUD badges are drawn inside reserved panel zones; animal pens and touch targets stay in the central playfield.",
+  "style_tags": [
+    "storybook",
+    "ranch",
+    "cookbook",
+    "clipboard",
+    "painted_wood",
+    "milk_white",
+    "mint_green"
+  ],
+  "asset_strategy": "Kenney UI Pack green preset for button assets plus project-local Canvas cookbook, clipboard, HUD ribbon, and cooler refinements.",
+  "visual_identity_alignment": "Matches the confirmed visual identity contract for cookbook rail, delivery clipboard, warm ranch palette, and protected playfield."
+}

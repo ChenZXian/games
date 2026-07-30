@@ -107,11 +107,13 @@ public class MainActivity extends Activity {
         findViewById(R.id.spell_button).setOnClickListener(v -> useSpell());
         findViewById(R.id.next_wave_button).setOnClickListener(v -> gameView.startNextWave());
         soundButton.setOnClickListener(v -> toggleSound());
+        updateBuildButtons(GameView.BUILD_ARCHER);
     }
 
     private void selectBuild(int buildMode) {
         audio.playSfx("ui_click");
         gameView.setBuildMode(buildMode);
+        updateBuildButtons(buildMode);
     }
 
     private void commandHero() {
@@ -132,6 +134,8 @@ public class MainActivity extends Activity {
     private void startRun() {
         audio.playSfx("ui_click");
         audio.playGameplay();
+        setGameInputEnabled(true);
+        updateBuildButtons(GameView.BUILD_ARCHER);
         menuPanel.setVisibility(View.GONE);
         helpPanel.setVisibility(View.GONE);
         pausePanel.setVisibility(View.GONE);
@@ -143,6 +147,7 @@ public class MainActivity extends Activity {
 
     private void pauseRun() {
         audio.playSfx("ui_click");
+        setGameInputEnabled(false);
         gameView.pauseGame();
         pausePanel.setVisibility(View.VISIBLE);
     }
@@ -151,12 +156,14 @@ public class MainActivity extends Activity {
         audio.playSfx("ui_click");
         pausePanel.setVisibility(View.GONE);
         gameView.resumeGame();
+        setGameInputEnabled(true);
     }
 
     private void showMenu() {
         if (audio != null) {
             audio.playMenu();
         }
+        setGameInputEnabled(false);
         gameView.resetForMenu();
         menuPanel.setVisibility(View.VISIBLE);
         helpPanel.setVisibility(View.GONE);
@@ -168,6 +175,7 @@ public class MainActivity extends Activity {
 
     private void showHelp() {
         audio.playSfx("ui_click");
+        setGameInputEnabled(false);
         menuPanel.setVisibility(View.GONE);
         helpPanel.setVisibility(View.VISIBLE);
         pausePanel.setVisibility(View.GONE);
@@ -175,6 +183,7 @@ public class MainActivity extends Activity {
     }
 
     private void showResult(boolean cleared, int wave, int escaped, int stars, int lives) {
+        setGameInputEnabled(false);
         pausePanel.setVisibility(View.GONE);
         menuPanel.setVisibility(View.GONE);
         helpPanel.setVisibility(View.GONE);
@@ -190,6 +199,27 @@ public class MainActivity extends Activity {
         soundButton.setText(soundOn ? "Sound On" : "Sound Off");
         audio.setEnabled(soundOn);
         gameView.setSoundEnabled(soundOn);
+    }
+
+    private void setGameInputEnabled(boolean enabled) {
+        gameView.setEnabled(enabled);
+        gameView.setFocusable(enabled);
+    }
+
+    private void updateBuildButtons(int selected) {
+        int[] ids = {
+                R.id.archer_button,
+                R.id.barracks_button,
+                R.id.cannon_button,
+                R.id.mage_button,
+                R.id.shrine_button
+        };
+        for (int i = 0; i < ids.length; i++) {
+            View button = findViewById(ids[i]);
+            boolean active = i == selected;
+            button.setSelected(active);
+            button.setAlpha(active ? 1.0f : 0.72f);
+        }
     }
 
     @Override

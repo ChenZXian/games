@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "game_id": "black_spade_alliance",
+  "status": "integrated",
+  "updated_at_utc": "2026-04-29T08:24:00Z",
+  "entities": [
+    {
+      "role": "table_felt",
+      "asset_key": "felt_badge",
+      "default_facing": "none",
+      "facing_rules": "static",
+      "anchors": {
+        "x": 0.5,
+        "y": 0.46
+      },
+      "hitboxes": [],
+      "z_order": 0,
+      "states": [
+        "idle"
+      ],
+      "animation_rules": "static background"
+    },
+    {
+      "role": "lead_marker",
+      "asset_key": "lead_token",
+      "default_facing": "up",
+      "facing_rules": "static",
+      "anchors": {
+        "x": 0.5,
+        "y": 0.2
+      },
+      "hitboxes": [],
+      "z_order": 3,
+      "states": [
+        "active"
+      ],
+      "animation_rules": "seat highlight pulse"
+    },
+    {
+      "role": "alliance_marker",
+      "asset_key": "alliance_seal",
+      "default_facing": "up",
+      "facing_rules": "static",
+      "anchors": {
+        "x": 0.78,
+        "y": 0.16
+      },
+      "hitboxes": [],
+      "z_order": 3,
+      "states": [
+        "paired",
+        "solo"
+      ],
+      "animation_rules": "soft glow when allied"
+    }
+  ]
+}

@@ -1,0 +1,172 @@
+{
+  "version": 1,
+  "game_id": "flame_dragon_onslaught",
+  "status": "passed",
+  "direction": "Inspired by Yan Long action legends with a fiery dragon warrior, side-scrolling combat, flame powers, and boss-focused chapter progression.",
+  "selected_concept": "Side-scrolling action stage game where a fire dragon warrior clears enemy waves, builds heat energy, transforms into a half-dragon burst state, and defeats chapter bosses.",
+  "genre_family": "action",
+  "genre_archetype": "side_scrolling_combo_brawler",
+  "camera_perspective": "side_view",
+  "control_model": "virtual_stick_plus_four_action_buttons",
+  "core_loop_signature": "advance through side-scrolling combat arenas chain melee attacks build heat spend flame skills transform into half-dragon overdrive and defeat chapter bosses",
+  "differentiation_axes": [
+    "heat gauge and overdrive transformation define combat tempo",
+    "chapter-boss structure with dedicated finale stages",
+    "fire breath spacing and flame-resource decisions beyond plain melee combos",
+    "mythic dragon-warrior presentation instead of grounded urban or relic action",
+    "hazard-rich stage scripting tied to volcanic and infernal themes"
+  ],
+  "forbidden_template_reuse": [
+    "no endless runner loop",
+    "no one-button auto-combat simplification",
+    "no static actor placeholder presentation",
+    "no overdrive as a minor stat buff without form shift",
+    "no generic side-action reskin with only palette changes"
+  ],
+  "map_content_budget": {
+    "play_area_model": "scripted side-scrolling stages with combat arenas hazards and boss chambers",
+    "route_or_region_count": "24 stages across 6 chapters",
+    "interactive_regions": "combat lanes vertical jump arcs locked arenas boss chambers hazard pits and reward clear spaces",
+    "terrain_types": [
+      "burning fortress",
+      "volcanic pass",
+      "ruined shrine",
+      "dragon forge",
+      "ash forest",
+      "sky citadel"
+    ],
+    "decorative_prop_count": "at least 12 major stage prop families",
+    "functional_map_elements": [
+      "falling magma vents",
+      "collapsing ledges",
+      "flame gates",
+      "spike cages",
+      "rolling fireballs",
+      "temporary inferno zones"
+    ],
+    "landmarks": [
+      "dragon statue",
+      "forge pillar",
+      "lava bridge",
+      "shrine gate",
+      "siege brazier",
+      "sky chain tower"
+    ],
+    "camera_or_scroll_model": "side-view stage scroll with arena lock pauses and fixed boss framing"
+  },
+  "entity_content_budget": {
+    "player_unit_types": [
+      "base flame warrior",
+      "half-dragon overdrive form"
+    ],
+    "enemy_types": [
+      "melee raider",
+      "shield brute",
+      "archer",
+      "fire cultist",
+      "flying drake",
+      "heavy lancer"
+    ],
+    "neutral_or_resource_entities": [
+      "flame shard pickup",
+      "health orb",
+      "heat orb",
+      "combo medal",
+      "checkpoint sigil"
+    ],
+    "boss_or_elite_types": [
+      "forge warden",
+      "magma beast",
+      "shrine executioner",
+      "ash harpy queen",
+      "dragon knight rival",
+      "final inferno tyrant"
+    ],
+    "projectile_or_effect_types": [
+      "fire breath cone",
+      "ember slash trail",
+      "launch burst",
+      "boss flame wave",
+      "impact burst",
+      "overdrive ignition ring"
+    ],
+    "item_or_powerup_types": [
+      "temporary attack buff",
+      "heat refill",
+      "revive token",
+      "bonus medal cache"
+    ]
+  },
+  "mechanic_content_budget": {
+    "primary_player_actions": [
+      "light attack combo",
+      "heavy attack combo finisher",
+      "jump and air follow-up",
+      "fire breath skill",
+      "overdrive activation"
+    ],
+    "secondary_player_actions": [
+      "dodge reposition",
+      "pickup collection",
+      "boss pattern punish",
+      "chapter upgrade spending"
+    ],
+    "upgrade_paths": [
+      "flame core",
+      "dragon body",
+      "sky step"
+    ],
+    "wave_or_level_variants": [
+      "arena lock stages",
+      "hazard gauntlet stages",
+      "elite escort stages",
+      "boss finale stages",
+      "vertical jump segment stages",
+      "survival burst stages"
+    ],
+    "special_rules": [
+      "heat gauge fills through offense",
+      "overdrive transforms the player into a stronger combat state",
+      "boss phases escalate patterns at health thresholds",
+      "stage hazards reshape spacing during combat"
+    ],
+    "risk_reward_systems": [
+      "spending heat early reduces overdrive timing potential",
+      "maintaining long combos improves score but increases positioning risk",
+      "air aggression can bypass hazards but exposes landing recovery",
+      "boss punish windows reward commitment"
+    ],
+    "failure_pressure_variants": [
+      "health depletion",
+      "boss pressure phase collapse",
+      "hazard misplay",
+      "combo break under crowd pressure"
+    ]
+  },
+  "asset_variety_budget": {
+    "primary_game_art_packs": [
+      "fantasy action humanoid combat pack",
+      "fire effects pack"
+    ],
+    "secondary_game_art_packs": [
+      "boss-scale creature pack",
+      "lava and shrine background pack"
+    ],
+    "ui_pack": "skin_dark_arcade",
+    "animation_tier": "medium_high",
+    "required_animation_states": [
+      "idle",
+      "run",
+      "jump",
+      "light_attack",
+      "heavy_attack",
+      "fire_breath",
+      "hit",
+      "knockdown",
+      "transform",
+      "defeat"
+    ],
+    "minimum_distinct_sprite_families": "at least 2 player forms 6 standard enemy families 3 elite families and 6 bosses",
+    "asset_reuse_note": "delivery-ready output must preserve animated fire-action readability and cannot degrade into static actor placeholders"
+  }
+}

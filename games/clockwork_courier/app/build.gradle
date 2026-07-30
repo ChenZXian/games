@@ -7,7 +7,7 @@ android {
     compileSdk 34
 
     defaultConfig {
-        applicationId 'com.android.boot'
+        applicationId 'com.android.boot.clockworkcourier'
         minSdk 24
         targetSdk 34
         versionCode 1
@@ -45,7 +45,11 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.7.1'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.11.0'
+<<<<<<< HEAD
     implementation 'androidx.core:core-ktx:1.13.1'
+=======
+    implementation 'androidx.core:core:1.12.0'
+>>>>>>> 3c7b97b2767c18f7148a38978109fc8945bb525b
 }

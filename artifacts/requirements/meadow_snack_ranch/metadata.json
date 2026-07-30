@@ -1,0 +1,21 @@
+{
+    "version":  1,
+    "game_id":  "meadow_snack_ranch",
+    "title":  "Meadow Snack Ranch",
+    "direction":  "A QQ Ranch inspired animal management game focused on feed recipes, cute premium UI, and realistic animal silhouettes.",
+    "selected_concept":  "Meadow Snack Ranch: manage a snack recipe ranch, mix different feeds, feed animals, collect quality products, fulfill orders, and unlock new recipes.",
+    "status":  "confirmed",
+    "ui_skin":  "skin_cartoon_light",
+    "current_stage":  "requirements",
+    "created_at_utc":  "2026-05-26T06:55:00Z",
+    "updated_at_utc":  "2026-05-26T07:09:22Z",
+    "selected_at_utc":  "2026-05-26T06:55:00Z",
+    "confirmed_at_utc":  "2026-05-26T07:09:22Z",
+    "files":  {
+                  "metadata_json":  "artifacts/requirements/meadow_snack_ranch/metadata.json",
+                  "requirements_md":  "artifacts/requirements/meadow_snack_ranch/requirements.md",
+                  "candidates_md":  "",
+                  "gameplay_diversity_json":  "artifacts/requirements/meadow_snack_ranch/gameplay_diversity.json",
+                  "visual_identity_json":  "artifacts/requirements/meadow_snack_ranch/visual_identity.json"
+              }
+}

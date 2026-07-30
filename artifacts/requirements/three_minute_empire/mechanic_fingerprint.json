@@ -1,0 +1,262 @@
+{
+  "version": 1,
+  "game_id": "three_minute_empire",
+  "status": "warning",
+  "duplicate_risk": "medium",
+  "top_similarity": 0.3986,
+  "fingerprint": {
+    "version": 1,
+    "game_id": "three_minute_empire",
+    "tokens": [
+      "adaptive",
+      "amber",
+      "are",
+      "assault",
+      "band",
+      "base",
+      "beacon",
+      "beacons",
+      "bridge",
+      "burst",
+      "bypass",
+      "camera",
+      "can",
+      "capture",
+      "captured",
+      "central",
+      "charge",
+      "choke",
+      "color",
+      "command",
+      "commander",
+      "commands",
+      "competes",
+      "complete",
+      "connected",
+      "contested",
+      "controlled",
+      "convert",
+      "cooldown",
+      "counter",
+      "crate",
+      "defend",
+      "defense",
+      "defensive",
+      "deficit",
+      "depot",
+      "destroy",
+      "destroying",
+      "dispatch",
+      "down",
+      "drag",
+      "durability",
+      "early",
+      "earn",
+      "edge",
+      "exactly",
+      "expansion",
+      "expires",
+      "exposed",
+      "fast",
+      "field",
+      "final",
+      "fixed",
+      "flank",
+      "flow",
+      "fork",
+      "front",
+      "garrison",
+      "graph",
+      "gray",
+      "heavy",
+      "high",
+      "hub",
+      "immediately",
+      "income",
+      "last",
+      "lead",
+      "leading",
+      "left",
+      "linked",
+      "local",
+      "losing",
+      "matches",
+      "menu",
+      "mine",
+      "mines",
+      "minute",
+      "minutes",
+      "neutral",
+      "node",
+      "nodes",
+      "one",
+      "open",
+      "outpost",
+      "outposts",
+      "overextend",
+      "owner",
+      "ownership",
+      "placement",
+      "point",
+      "points",
+      "post",
+      "posts",
+      "pressure",
+      "prioritize",
+      "pulse",
+      "race",
+      "raider",
+      "rail",
+      "real",
+      "reinforced",
+      "relay",
+      "repair",
+      "reserved",
+      "resolves",
+      "resource",
+      "ridge",
+      "ring",
+      "risks",
+      "risky",
+      "road",
+      "route",
+      "routes",
+      "score",
+      "screen",
+      "select",
+      "session",
+      "shard",
+      "single",
+      "size",
+      "spending",
+      "standard",
+      "static",
+      "strategy",
+      "stream",
+      "streams",
+      "supply",
+      "surge",
+      "tactical",
+      "tap",
+      "three",
+      "ties",
+      "time",
+      "timer",
+      "top",
+      "touch",
+      "trail",
+      "trigger",
+      "troop",
+      "troops",
+      "two",
+      "until",
+      "upgrade",
+      "value",
+      "war",
+      "watch",
+      "when",
+      "win"
+    ],
+    "mechanic_axes": [
+      "drag_route_dispatch",
+      "node_graph_capture",
+      "timer_pressure"
+    ],
+    "genre_family": "real_time_strategy",
+    "genre_archetype": "three_minute_node_capture_resource_war",
+    "control_model": "tap_select_drag_route_touch_commands",
+    "core_loop_signature": "capture gray neutral resource points, convert ownership color, earn supply, upgrade nodes, dispatch troop streams, trigger surge, destroy enemy base or win by three minute score"
+  },
+  "similar_projects": [
+    {
+      "game_id": "bronze_camp_command",
+      "score": 0.3986,
+      "shared_axes": [
+        "drag_route_dispatch",
+        "node_graph_capture",
+        "timer_pressure"
+      ]
+    },
+    {
+      "game_id": "ring_prefecture_clash",
+      "score": 0.3372,
+      "shared_axes": [
+        "drag_route_dispatch",
+        "node_graph_capture"
+      ]
+    },
+    {
+      "game_id": "mountain_pass_guard",
+      "score": 0.3329,
+      "shared_axes": [
+        "drag_route_dispatch",
+        "node_graph_capture"
+      ]
+    }
+  ],
+  "nearest_projects": [
+    {
+      "game_id": "bronze_camp_command",
+      "score": 0.3986,
+      "shared_axes": [
+        "drag_route_dispatch",
+        "node_graph_capture",
+        "timer_pressure"
+      ]
+    },
+    {
+      "game_id": "ring_prefecture_clash",
+      "score": 0.3372,
+      "shared_axes": [
+        "drag_route_dispatch",
+        "node_graph_capture"
+      ]
+    },
+    {
+      "game_id": "mountain_pass_guard",
+      "score": 0.3329,
+      "shared_axes": [
+        "drag_route_dispatch",
+        "node_graph_capture"
+      ]
+    },
+    {
+      "game_id": "iron_banner_realms",
+      "score": 0.2853,
+      "shared_axes": [
+        "drag_route_dispatch",
+        "node_graph_capture"
+      ]
+    },
+    {
+      "game_id": "castaway_clan",
+      "score": 0.2535,
+      "shared_axes": [
+        "drag_route_dispatch",
+        "node_graph_capture"
+      ]
+    },
+    {
+      "game_id": "ashen_frontier",
+      "score": 0.2428,
+      "shared_axes": [
+        "drag_route_dispatch",
+        "node_graph_capture"
+      ]
+    },
+    {
+      "game_id": "island_supply_command",
+      "score": 0.2108,
+      "shared_axes": [
+        "node_graph_capture"
+      ]
+    },
+    {
+      "game_id": "crownroad_bastion",
+      "score": 0.1871,
+      "shared_axes": [
+        "node_graph_capture"
+      ]
+    }
+  ]
+}

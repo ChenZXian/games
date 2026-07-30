@@ -1,0 +1,13 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cst_bg_main"
+    android:paddingTop="1dp"
+    android:paddingBottom="1dp">
+
+    <com.android.boot.ui.GameView
+        android:id="@+id/game_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/cst_bg_main" />
+</FrameLayout>

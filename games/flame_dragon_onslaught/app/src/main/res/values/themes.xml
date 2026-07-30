@@ -1,0 +1,12 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <style name="Theme.FlameDragonOnslaught" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <item name="colorPrimary">@color/cst_accent</item>
+    <item name="colorPrimaryVariant">@color/cst_accent_2</item>
+    <item name="colorOnPrimary">@color/cst_text_on_primary</item>
+    <item name="colorSecondary">@color/cst_accent_2</item>
+    <item name="android:statusBarColor">@color/cst_bg_main</item>
+    <item name="android:navigationBarColor">@color/cst_bg_main</item>
+    <item name="android:windowBackground">@color/cst_bg_main</item>
+    <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+  </style>
+</resources>

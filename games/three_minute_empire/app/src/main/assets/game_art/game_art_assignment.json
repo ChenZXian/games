@@ -1,0 +1,152 @@
+{
+  "version": 1,
+  "game_id": "three_minute_empire",
+  "assigned_at_utc": "2026-05-12T02:35:13Z",
+  "packs": [
+    {
+      "pack_id": "ring_prefecture_tokens",
+      "pack_title": "Ring Prefecture Tokens",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "repository_generated",
+      "art_roles": [
+        "character",
+        "enemy",
+        "building",
+        "prop",
+        "background",
+        "effect"
+      ],
+      "recommended_game_types": [
+        "strategy",
+        "territory",
+        "top",
+        "down",
+        "map"
+      ],
+      "style_tags": [
+        "cartoon",
+        "round",
+        "strategy",
+        "map",
+        "conquest",
+        "atlas"
+      ],
+      "quality_tags": [
+        "production",
+        "generated",
+        "open",
+        "cc0"
+      ],
+      "animation_capabilities": [
+        "top_down",
+        "runtime_swap",
+        "bounce_cycle",
+        "directional_badge"
+      ],
+      "animation_states": [
+        "idle",
+        "move",
+        "attack",
+        "hit",
+        "capture",
+        "defeat"
+      ],
+      "project_pack_path": "app/src/main/assets/game_art/ring_prefecture_tokens",
+      "copied_file_count": 10
+    },
+    {
+      "pack_id": "kenney_space_shooter_extension",
+      "pack_title": "Kenney Space Shooter Extension",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://kenney.nl/assets/space-shooter-extension",
+      "art_roles": [
+        "ship",
+        "enemy",
+        "projectile",
+        "pickup",
+        "effect",
+        "background"
+      ],
+      "recommended_game_types": [
+        "space",
+        "shooter",
+        "shmup",
+        "arcade"
+      ],
+      "style_tags": [
+        "space",
+        "shooter",
+        "ship",
+        "laser",
+        "arcade",
+        "sci",
+        "fi"
+      ],
+      "quality_tags": [
+        "production",
+        "free",
+        "open",
+        "cc0"
+      ],
+      "animation_capabilities": [],
+      "animation_states": [],
+      "project_pack_path": "app/src/main/assets/game_art/kenney_space_shooter_extension",
+      "copied_file_count": 565
+    },
+    {
+      "pack_id": "kenney_tower_defense_top_down",
+      "pack_title": "Kenney Tower Defense Top-Down",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://kenney.nl/assets/tower-defense-top-down",
+      "art_roles": [
+        "tower",
+        "enemy",
+        "tileset",
+        "terrain",
+        "projectile",
+        "building"
+      ],
+      "recommended_game_types": [
+        "tower",
+        "defense",
+        "strategy",
+        "lane",
+        "top",
+        "down"
+      ],
+      "style_tags": [
+        "top",
+        "down",
+        "tower",
+        "defense",
+        "strategy",
+        "cartoon",
+        "terrain"
+      ],
+      "quality_tags": [
+        "production",
+        "free",
+        "open",
+        "cc0"
+      ],
+      "animation_capabilities": [
+        "top_down",
+        "turret_rotation",
+        "projectile_rotation",
+        "impact_effect",
+        "static_building"
+      ],
+      "animation_states": [
+        "idle",
+        "fire",
+        "hit"
+      ],
+      "project_pack_path": "app/src/main/assets/game_art/kenney_tower_defense_top_down",
+      "copied_file_count": 605
+    }
+  ],
+  "copied_file_count": 1180
+}

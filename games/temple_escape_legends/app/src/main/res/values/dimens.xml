@@ -24,5 +24,5 @@
     <dimen name="cst_text_xxl">28sp</dimen>
     <dimen name="cst_hud_height">56dp</dimen>
     <dimen name="cst_hud_badge_min_w">64dp</dimen>
-    <dimen name="cst_hud_icon_size">20dp</dimen>
+    <dimen name="cst_hud_icon_size">48dp</dimen>
 </resources>

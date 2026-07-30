@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "game_id": "crystal_cavern_hook",
+  "status": "complete",
+  "source": "shared_library_reuse",
+  "theme": "generic arcade cave mining",
+  "mood": "clear audible shared background music with existing SFX",
+  "pacing": "calm menu and medium arcade play",
+  "bgm": {
+    "menu": "audio/bgm_menu.wav",
+    "play": "audio/bgm.wav",
+    "win": "audio/bgm_win.wav",
+    "fail": "audio/bgm_fail.wav"
+  },
+  "sfx": [
+    "ui_click",
+    "launch",
+    "collect",
+    "tool",
+    "hazard",
+    "prism",
+    "win",
+    "fail"
+  ],
+  "shared_library_ids": [
+    "bgm_menu_underground_4ec667ce",
+    "bgm_play_default_3aad06a6",
+    "sfx_ui_click_crystal_cavern_hook_20260527",
+    "sfx_launch_crystal_cavern_hook_20260527",
+    "sfx_collect_crystal_cavern_hook_20260527",
+    "sfx_tool_crystal_cavern_hook_20260527",
+    "sfx_hazard_crystal_cavern_hook_20260527",
+    "sfx_prism_crystal_cavern_hook_20260527",
+    "sfx_win_crystal_cavern_hook_20260527",
+    "sfx_fail_crystal_cavern_hook_20260527"
+  ],
+  "notes": "Menu and play BGM plus themed SFX are assigned from shared generated repository assets."
+}

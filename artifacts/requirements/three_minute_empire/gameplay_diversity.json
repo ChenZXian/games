@@ -1,0 +1,170 @@
+{
+  "version": 1,
+  "game_id": "three_minute_empire",
+  "status": "passed",
+  "genre_family": "real_time_strategy",
+  "genre_archetype": "three_minute_node_capture_resource_war",
+  "camera_perspective": "top_down_one_screen_tactical_graph",
+  "control_model": "tap_select_drag_route_touch_commands",
+  "core_loop_signature": "capture gray neutral resource points, convert ownership color, earn supply, upgrade nodes, dispatch troop streams, trigger surge, destroy enemy base or win by three minute score",
+  "differentiation_axes": [
+    "fixed three minute match timer",
+    "one screen node graph instead of lane map or large territory map",
+    "neutral points are gray and convert to owner color on capture",
+    "resource point income drives upgrade timing",
+    "score tiebreaker combines ownership, upgrades, and enemy base damage",
+    "left command rail replaces bottom unit strip"
+  ],
+  "forbidden_template_reuse": [
+    "three horizontal lanes",
+    "bottom only unit spawn strip",
+    "worker economy base building",
+    "prefecture map conquest",
+    "tower placement along fixed path",
+    "large RTS fog scouting loop"
+  ],
+  "map_content_budget": {
+    "play_area_model": "single screen connected node graph with reserved top timer band and left command rail",
+    "route_or_region_count": 8,
+    "interactive_regions": [
+      "player base",
+      "enemy base",
+      "neutral resource points",
+      "mine points",
+      "repair outposts",
+      "watch posts",
+      "command beacons"
+    ],
+    "terrain_types": [
+      "open field",
+      "bridge choke",
+      "ridge bypass",
+      "central supply hub",
+      "flank road"
+    ],
+    "decorative_prop_count": 8,
+    "functional_map_elements": [
+      "linked routes",
+      "resource income nodes",
+      "repair nodes",
+      "surge beacon nodes",
+      "high value mine nodes"
+    ],
+    "landmarks": [
+      "player command base",
+      "enemy command base",
+      "central relay",
+      "resource depot"
+    ],
+    "camera_or_scroll_model": "static one screen camera with adaptive node placement"
+  },
+  "entity_content_budget": {
+    "player_unit_types": [
+      "standard troop stream",
+      "reinforced surge troop stream",
+      "defensive garrison"
+    ],
+    "enemy_types": [
+      "standard enemy stream",
+      "fast raider stream",
+      "heavy assault stream",
+      "enemy surge stream"
+    ],
+    "neutral_or_resource_entities": [
+      "neutral gray resource point",
+      "mine point",
+      "repair outpost",
+      "watch post",
+      "command beacon"
+    ],
+    "boss_or_elite_types": [
+      "final stage enemy commander base"
+    ],
+    "projectile_or_effect_types": [
+      "route trail",
+      "capture burst",
+      "surge trail",
+      "repair pulse",
+      "ownership ring pulse"
+    ],
+    "item_or_powerup_types": [
+      "supply crate",
+      "surge cooldown shard",
+      "repair charge"
+    ]
+  },
+  "mechanic_content_budget": {
+    "primary_player_actions": [
+      "select controlled node",
+      "drag route to dispatch troops",
+      "capture neutral gray resource points",
+      "capture enemy controlled points",
+      "upgrade controlled points"
+    ],
+    "secondary_player_actions": [
+      "trigger command surge",
+      "trigger repair pulse",
+      "prioritize score lead or base assault",
+      "defend exposed high value nodes"
+    ],
+    "upgrade_paths": [
+      "resource income",
+      "local defense",
+      "dispatch size",
+      "surge cooldown",
+      "base durability"
+    ],
+    "wave_or_level_variants": [
+      "central race",
+      "two front fork",
+      "bridge choke",
+      "ring road",
+      "risky mine flank"
+    ],
+    "special_rules": [
+      "matches last exactly three minutes",
+      "neutral nodes are gray until captured",
+      "captured nodes use owner color immediately",
+      "contested nodes pulse with amber edge",
+      "score resolves ties when timer expires"
+    ],
+    "risk_reward_systems": [
+      "high income mines are exposed",
+      "surge can overextend defense",
+      "repair charge competes with upgrade spending",
+      "early expansion risks losing front nodes"
+    ],
+    "failure_pressure_variants": [
+      "timer pressure",
+      "enemy base assault",
+      "enemy counter capture",
+      "score deficit in final minute"
+    ]
+  },
+  "asset_variety_budget": {
+    "primary_game_art_packs": [
+      "tactical map nodes",
+      "command route effects",
+      "compact military base icons"
+    ],
+    "secondary_game_art_packs": [
+      "supply depot props",
+      "terrain markers",
+      "capture and surge effects"
+    ],
+    "ui_pack": "military tactical command ui kit",
+    "animation_tier": "medium",
+    "required_animation_states": [
+      "neutral gray idle",
+      "player owned idle",
+      "enemy owned idle",
+      "contested pulse",
+      "capture transition",
+      "route stream move",
+      "surge stream move",
+      "upgrade flash"
+    ],
+    "minimum_distinct_sprite_families": 6,
+    "asset_reuse_note": "Use tactical node and route visuals specific to short-session command maps, not lane battle units, tower defense turrets, or prefecture map shapes."
+  }
+}

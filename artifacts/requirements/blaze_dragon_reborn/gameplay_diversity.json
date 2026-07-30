@@ -1,0 +1,176 @@
+{
+  "version": 1,
+  "game_id": "blaze_dragon_reborn",
+  "status": "passed",
+  "direction": "Side-scrolling fantasy brawler inspired by classic combo-driven action games with fluid chaining, beautiful chi blasts, attractive heroes, and premium UI presentation",
+  "selected_concept": "Blaze Dragon Reborn",
+  "genre_family": "action beat-em-up",
+  "genre_archetype": "chapter-based side-scrolling fantasy combo brawler with aerial juggle routing and chi-finisher crowd control",
+  "camera_perspective": "side-view side-scrolling combat lane with slight depth stacking",
+  "control_model": "landscape virtual stick plus light attack, heavy attack, jump, dodge, and chi art buttons with input buffering",
+  "core_loop_signature": "advance through linked combat arenas, chain grounded and aerial combos, build chi, spend chi on spectacular finishers, defeat elites and bosses, and upgrade persistent techniques",
+  "differentiation_axes": [
+    "multi-enemy lane-clearing combo focus rather than short duel-only trials",
+    "chi-finisher spectacle as a core spend loop rather than a single burst skill",
+    "chapter-length progression with gated combat scenes and boss climaxes",
+    "aerial juggle routing and cancel windows tuned for continuous mobile touch combat",
+    "fantasy martial presentation distinct from office, district-control, or loot-first brawlers"
+  ],
+  "forbidden_template_reuse": [
+    "do not reduce the project to one-room arena survival",
+    "do not replace chapter push stages with boss-rush only progression",
+    "do not reuse office street or district capture framing from earlier brawlers",
+    "do not ship with one ground enemy family plus one boss only",
+    "do not collapse chi arts into one generic fireball projectile"
+  ],
+  "map_content_budget": {
+    "play_area_model": "linked side-scrolling combat scenes with traversal strips, gated encounters, and dedicated boss arenas",
+    "route_or_region_count": "6 chapters with at least 4 stage nodes each, including 1 boss node per chapter",
+    "interactive_regions": "combat lane center, lane-depth dodge space, traversal strips, hazard corners, breakable prop pockets, checkpoint nodes",
+    "terrain_types": [
+      "temple road",
+      "cliff bridge",
+      "courtyard",
+      "shrine terrace",
+      "fort hall",
+      "volcanic gate approach"
+    ],
+    "decorative_prop_count": "minimum 6 decorative prop families across chapters",
+    "functional_map_elements": [
+      "breakable jars",
+      "hazard braziers",
+      "drop ledges",
+      "seal pylons",
+      "temporary combat gates",
+      "checkpoint banners"
+    ],
+    "landmarks": [
+      "dragon statue",
+      "moon gate",
+      "banner tower",
+      "furnace chain rig",
+      "cliff shrine bell",
+      "boss altar"
+    ],
+    "camera_or_scroll_model": "horizontal follow camera with short lock arenas and boss-room framing"
+  },
+  "entity_content_budget": {
+    "player_unit_types": [
+      "main hero swordsman-brawler",
+      "planned alternate spear hero direction",
+      "planned alternate gauntlet hero direction"
+    ],
+    "enemy_types": [
+      "light bandit",
+      "spear soldier",
+      "shield brute",
+      "archer acolyte",
+      "masked assassin",
+      "winged demon"
+    ],
+    "neutral_or_resource_entities": [
+      "spirit mote pickup",
+      "gold pickup",
+      "crest shard drop",
+      "breakable urn"
+    ],
+    "boss_or_elite_types": [
+      "banner captain elite",
+      "flame monk elite",
+      "chain ogre elite",
+      "chapter boss family set of 6"
+    ],
+    "projectile_or_effect_types": [
+      "light slash arcs",
+      "heavy launcher burst",
+      "narrow chi bolt",
+      "wide chi wave",
+      "pillar eruption",
+      "impact sparks",
+      "knockdown dust"
+    ],
+    "item_or_powerup_types": [
+      "checkpoint continue token",
+      "temporary chi fill pickup",
+      "post-boss boon card",
+      "technique scroll fragment"
+    ]
+  },
+  "mechanic_content_budget": {
+    "primary_player_actions": [
+      "ground combo chaining",
+      "heavy launcher",
+      "aerial continuation",
+      "dodge cancel",
+      "chi finisher cast"
+    ],
+    "secondary_player_actions": [
+      "pickup collection",
+      "hazard trigger use",
+      "checkpoint continue",
+      "training room practice"
+    ],
+    "upgrade_paths": [
+      "combo extension tree",
+      "chi mastery tree",
+      "survivability tree",
+      "style reward multiplier tree"
+    ],
+    "wave_or_level_variants": [
+      "escort defense stage",
+      "elite ambush corridor",
+      "hazard-rich gauntlet",
+      "multi-wave courtyard siege",
+      "full boss arena"
+    ],
+    "special_rules": [
+      "combat gates lock until wave clear",
+      "boss phase transitions at health thresholds",
+      "chi gain scales with uninterrupted hit chains",
+      "air juggle duration decays if repeated too long"
+    ],
+    "risk_reward_systems": [
+      "longer combos generate more chi and score",
+      "late finisher timing yields bonus rewards",
+      "aggressive aerial routes expose the hero to anti-air counters"
+    ],
+    "failure_pressure_variants": [
+      "surround pressure from mixed enemy packs",
+      "ranged poke during combo commitments",
+      "protection-objective loss in special stages",
+      "boss enrage attacks in final phase"
+    ]
+  },
+  "asset_variety_budget": {
+    "primary_game_art_packs": [
+      "fantasy martial humanoid combat pack",
+      "high-energy chi effect pack"
+    ],
+    "secondary_game_art_packs": [
+      "chapter-specific environment tiles and props",
+      "boss silhouette enhancement pack"
+    ],
+    "ui_pack": "skin_dark_arcade",
+    "animation_tier": "medium-plus 2D action animation with anticipation and recovery on hero and bosses",
+    "required_animation_states": [
+      "idle",
+      "walk",
+      "run",
+      "light combo chain",
+      "heavy strike",
+      "launcher",
+      "jump rise",
+      "jump fall",
+      "aerial attack",
+      "dodge",
+      "hurt",
+      "knockdown",
+      "recovery",
+      "chi cast startup",
+      "chi cast release",
+      "death or defeat"
+    ],
+    "minimum_distinct_sprite_families": "at least 9 distinct gameplay sprite families before VFX variants",
+    "asset_reuse_note": "reuse must remain style-matched and role-specific; do not clone the same enemy body across all families or reuse a previous brawler pack without visual identity adaptation"
+  }
+}

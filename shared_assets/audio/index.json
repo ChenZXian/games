@@ -49,7 +49,8 @@
       "loop": true,
       "duration_sec": 30,
       "used_by": [
-        "overtime_street_fighter"
+        "overtime_street_fighter",
+        "flame_dragon_onslaught"
       ],
       "source": "legacy_bgm_library",
       "retrieved_at": "2026-04-22",
@@ -111,7 +112,8 @@
       "loop": true,
       "duration_sec": 24.0,
       "used_by": [
-        "island_supply_command"
+        "island_supply_command",
+        "three_minute_empire"
       ],
       "source": "synth_audio",
       "retrieved_at": "2026-04-22",
@@ -1262,7 +1264,8 @@
         "empire_wall_guard",
         "crownroad_bastion",
         "crownblock_hunt",
-        "bronze_camp_command"
+        "bronze_camp_command",
+        "flame_dragon_onslaught"
       ],
       "source": "synth_audio",
       "retrieved_at": "2026-04-23",
@@ -2205,7 +2208,8 @@
       "loop": true,
       "duration_sec": 18.0,
       "used_by": [
-        "crownroad_bastion"
+        "crownroad_bastion",
+        "three_minute_empire"
       ],
       "source": "synth_audio",
       "retrieved_at": "2026-04-23",
@@ -2531,7 +2535,8 @@
       "duration_sec": 24.0,
       "used_by": [
         "crown_frontier_tactics",
-        "iron_banner_realms"
+        "iron_banner_realms",
+        "ring_prefecture_clash"
       ],
       "source": "synth_audio",
       "retrieved_at": "2026-04-28",
@@ -2796,7 +2801,8 @@
       "duration_sec": 0.42,
       "used_by": [
         "crown_frontier_tactics",
-        "iron_banner_realms"
+        "iron_banner_realms",
+        "three_minute_empire"
       ],
       "source": "synth_audio",
       "retrieved_at": "2026-04-28",
@@ -3209,7 +3215,8 @@
       "used_by": [
         "bronze_camp_command",
         "mountain_pass_guard",
-        "iron_banner_realms"
+        "iron_banner_realms",
+        "ring_prefecture_clash"
       ],
       "source": "synth_audio",
       "retrieved_at": "2026-04-29",
@@ -3419,6 +3426,784 @@
       ],
       "source": "synth_audio",
       "retrieved_at": "2026-04-29",
+      "license": "",
+      "license_url": "",
+      "generated": true,
+      "format": "wav"
+    },
+    {
+      "id": "bgm_boss_mythic_0f18e50b",
+      "file": "bgm/bgm_boss_mythic_0f18e50b.wav",
+      "type": "bgm",
+      "role": "boss",
+      "tags": [
+        "mythic",
+        "heroic",
+        "intense",
+        "molten",
+        "menu",
+        "steady",
+        "play",
+        "fast",
+        "boss",
+        "climactic",
+        "dragon",
+        "flame",
+        "forge",
+        "action",
+        "fantasy"
+      ],
+      "style": "mythic",
+      "style_tags": [
+        "dragon",
+        "flame",
+        "forge",
+        "action",
+        "boss",
+        "fantasy"
+      ],
+      "mood": "heroic intense molten",
+      "pacing": "menu steady play fast boss climactic",
+      "loop": true,
+      "duration_sec": 24.0,
+      "used_by": [
+        "flame_dragon_onslaught"
+      ],
+      "source": "synth_audio",
+      "retrieved_at": "2026-05-09",
+      "license": "",
+      "license_url": "",
+      "generated": true,
+      "format": "wav"
+    },
+    {
+      "id": "sfx_attack_mythic_d297e3bb",
+      "file": "sfx/sfx_attack_mythic_d297e3bb.wav",
+      "type": "sfx",
+      "role": "attack",
+      "tags": [
+        "mythic",
+        "heroic",
+        "intense",
+        "molten",
+        "menu",
+        "steady",
+        "play",
+        "fast",
+        "boss",
+        "climactic",
+        "dragon",
+        "flame",
+        "forge",
+        "action",
+        "fantasy"
+      ],
+      "style": "mythic",
+      "style_tags": [
+        "dragon",
+        "flame",
+        "forge",
+        "action",
+        "boss",
+        "fantasy"
+      ],
+      "mood": "heroic intense molten",
+      "pacing": "menu steady play fast boss climactic",
+      "loop": false,
+      "duration_sec": 0.14,
+      "used_by": [
+        "flame_dragon_onslaught"
+      ],
+      "source": "synth_audio",
+      "retrieved_at": "2026-05-09",
+      "license": "",
+      "license_url": "",
+      "generated": true,
+      "format": "wav"
+    },
+    {
+      "id": "sfx_heavy_mythic_7bdf99a8",
+      "file": "sfx/sfx_heavy_mythic_7bdf99a8.wav",
+      "type": "sfx",
+      "role": "heavy",
+      "tags": [
+        "mythic",
+        "heroic",
+        "intense",
+        "molten",
+        "menu",
+        "steady",
+        "play",
+        "fast",
+        "boss",
+        "climactic",
+        "dragon",
+        "flame",
+        "forge",
+        "action",
+        "fantasy"
+      ],
+      "style": "mythic",
+      "style_tags": [
+        "dragon",
+        "flame",
+        "forge",
+        "action",
+        "boss",
+        "fantasy"
+      ],
+      "mood": "heroic intense molten",
+      "pacing": "menu steady play fast boss climactic",
+      "loop": false,
+      "duration_sec": 0.18,
+      "used_by": [
+        "flame_dragon_onslaught"
+      ],
+      "source": "synth_audio",
+      "retrieved_at": "2026-05-09",
+      "license": "",
+      "license_url": "",
+      "generated": true,
+      "format": "wav"
+    },
+    {
+      "id": "sfx_flame_mythic_567e87fd",
+      "file": "sfx/sfx_flame_mythic_567e87fd.wav",
+      "type": "sfx",
+      "role": "flame",
+      "tags": [
+        "mythic",
+        "heroic",
+        "intense",
+        "molten",
+        "menu",
+        "steady",
+        "play",
+        "fast",
+        "boss",
+        "climactic",
+        "dragon",
+        "flame",
+        "forge",
+        "action",
+        "fantasy"
+      ],
+      "style": "mythic",
+      "style_tags": [
+        "dragon",
+        "flame",
+        "forge",
+        "action",
+        "boss",
+        "fantasy"
+      ],
+      "mood": "heroic intense molten",
+      "pacing": "menu steady play fast boss climactic",
+      "loop": false,
+      "duration_sec": 0.18,
+      "used_by": [
+        "flame_dragon_onslaught"
+      ],
+      "source": "synth_audio",
+      "retrieved_at": "2026-05-09",
+      "license": "",
+      "license_url": "",
+      "generated": true,
+      "format": "wav"
+    },
+    {
+      "id": "sfx_overdrive_mythic_d2081cf4",
+      "file": "sfx/sfx_overdrive_mythic_d2081cf4.wav",
+      "type": "sfx",
+      "role": "overdrive",
+      "tags": [
+        "mythic",
+        "heroic",
+        "intense",
+        "molten",
+        "menu",
+        "steady",
+        "play",
+        "fast",
+        "boss",
+        "climactic",
+        "dragon",
+        "flame",
+        "forge",
+        "action",
+        "fantasy"
+      ],
+      "style": "mythic",
+      "style_tags": [
+        "dragon",
+        "flame",
+        "forge",
+        "action",
+        "boss",
+        "fantasy"
+      ],
+      "mood": "heroic intense molten",
+      "pacing": "menu steady play fast boss climactic",
+      "loop": false,
+      "duration_sec": 0.18,
+      "used_by": [
+        "flame_dragon_onslaught"
+      ],
+      "source": "synth_audio",
+      "retrieved_at": "2026-05-09",
+      "license": "",
+      "license_url": "",
+      "generated": true,
+      "format": "wav"
+    },
+    {
+      "id": "sfx_hit_mythic_1537903e",
+      "file": "sfx/sfx_hit_mythic_1537903e.wav",
+      "type": "sfx",
+      "role": "hit",
+      "tags": [
+        "mythic",
+        "heroic",
+        "intense",
+        "molten",
+        "menu",
+        "steady",
+        "play",
+        "fast",
+        "boss",
+        "climactic",
+        "dragon",
+        "flame",
+        "forge",
+        "action",
+        "fantasy"
+      ],
+      "style": "mythic",
+      "style_tags": [
+        "dragon",
+        "flame",
+        "forge",
+        "action",
+        "boss",
+        "fantasy"
+      ],
+      "mood": "heroic intense molten",
+      "pacing": "menu steady play fast boss climactic",
+      "loop": false,
+      "duration_sec": 0.12,
+      "used_by": [
+        "flame_dragon_onslaught"
+      ],
+      "source": "synth_audio",
+      "retrieved_at": "2026-05-09",
+      "license": "",
+      "license_url": "",
+      "generated": true,
+      "format": "wav"
+    },
+    {
+      "id": "sfx_pickup_mythic_4cf95d9e",
+      "file": "sfx/sfx_pickup_mythic_4cf95d9e.wav",
+      "type": "sfx",
+      "role": "pickup",
+      "tags": [
+        "mythic",
+        "heroic",
+        "intense",
+        "molten",
+        "menu",
+        "steady",
+        "play",
+        "fast",
+        "boss",
+        "climactic",
+        "dragon",
+        "flame",
+        "forge",
+        "action",
+        "fantasy"
+      ],
+      "style": "mythic",
+      "style_tags": [
+        "dragon",
+        "flame",
+        "forge",
+        "action",
+        "boss",
+        "fantasy"
+      ],
+      "mood": "heroic intense molten",
+      "pacing": "menu steady play fast boss climactic",
+      "loop": false,
+      "duration_sec": 0.18,
+      "used_by": [
+        "flame_dragon_onslaught"
+      ],
+      "source": "synth_audio",
+      "retrieved_at": "2026-05-09",
+      "license": "",
+      "license_url": "",
+      "generated": true,
+      "format": "wav"
+    },
+    {
+      "id": "sfx_defeat_mythic_e0f005a8",
+      "file": "sfx/sfx_defeat_mythic_e0f005a8.wav",
+      "type": "sfx",
+      "role": "defeat",
+      "tags": [
+        "mythic",
+        "heroic",
+        "intense",
+        "molten",
+        "menu",
+        "steady",
+        "play",
+        "fast",
+        "boss",
+        "climactic",
+        "dragon",
+        "flame",
+        "forge",
+        "action",
+        "fantasy"
+      ],
+      "style": "mythic",
+      "style_tags": [
+        "dragon",
+        "flame",
+        "forge",
+        "action",
+        "boss",
+        "fantasy"
+      ],
+      "mood": "heroic intense molten",
+      "pacing": "menu steady play fast boss climactic",
+      "loop": false,
+      "duration_sec": 0.18,
+      "used_by": [
+        "flame_dragon_onslaught"
+      ],
+      "source": "synth_audio",
+      "retrieved_at": "2026-05-09",
+      "license": "",
+      "license_url": "",
+      "generated": true,
+      "format": "wav"
+    },
+    {
+      "id": "bgm_final_30_short_50084946",
+      "file": "bgm/bgm_final_30_short_50084946.wav",
+      "type": "bgm",
+      "role": "final_30",
+      "tags": [
+        "short",
+        "clean",
+        "urgent",
+        "electronic",
+        "three",
+        "minute",
+        "match",
+        "tactical",
+        "light",
+        "strategy"
+      ],
+      "style": "short",
+      "style_tags": [
+        "tactical",
+        "electronic",
+        "light",
+        "strategy"
+      ],
+      "mood": "clean urgent electronic",
+      "pacing": "three minute match",
+      "loop": true,
+      "duration_sec": 24.0,
+      "used_by": [
+        "three_minute_empire"
+      ],
+      "source": "synth_audio",
+      "retrieved_at": "2026-05-12",
+      "license": "",
+      "license_url": "",
+      "generated": true,
+      "format": "wav"
+    },
+    {
+      "id": "sfx_node_select_short_eda0084f",
+      "file": "sfx/sfx_node_select_short_eda0084f.wav",
+      "type": "sfx",
+      "role": "node_select",
+      "tags": [
+        "short",
+        "clean",
+        "urgent",
+        "electronic",
+        "three",
+        "minute",
+        "match",
+        "tactical",
+        "light",
+        "strategy"
+      ],
+      "style": "short",
+      "style_tags": [
+        "tactical",
+        "electronic",
+        "light",
+        "strategy"
+      ],
+      "mood": "clean urgent electronic",
+      "pacing": "three minute match",
+      "loop": false,
+      "duration_sec": 0.18,
+      "used_by": [
+        "three_minute_empire"
+      ],
+      "source": "synth_audio",
+      "retrieved_at": "2026-05-12",
+      "license": "",
+      "license_url": "",
+      "generated": true,
+      "format": "wav"
+    },
+    {
+      "id": "sfx_dispatch_short_258a009d",
+      "file": "sfx/sfx_dispatch_short_258a009d.wav",
+      "type": "sfx",
+      "role": "dispatch",
+      "tags": [
+        "short",
+        "clean",
+        "urgent",
+        "electronic",
+        "three",
+        "minute",
+        "match",
+        "tactical",
+        "light",
+        "strategy"
+      ],
+      "style": "short",
+      "style_tags": [
+        "tactical",
+        "electronic",
+        "light",
+        "strategy"
+      ],
+      "mood": "clean urgent electronic",
+      "pacing": "three minute match",
+      "loop": false,
+      "duration_sec": 0.18,
+      "used_by": [
+        "three_minute_empire"
+      ],
+      "source": "synth_audio",
+      "retrieved_at": "2026-05-12",
+      "license": "",
+      "license_url": "",
+      "generated": true,
+      "format": "wav"
+    },
+    {
+      "id": "sfx_capture_neutral_short_eaff22db",
+      "file": "sfx/sfx_capture_neutral_short_eaff22db.wav",
+      "type": "sfx",
+      "role": "capture_neutral",
+      "tags": [
+        "short",
+        "clean",
+        "urgent",
+        "electronic",
+        "three",
+        "minute",
+        "match",
+        "tactical",
+        "light",
+        "strategy"
+      ],
+      "style": "short",
+      "style_tags": [
+        "tactical",
+        "electronic",
+        "light",
+        "strategy"
+      ],
+      "mood": "clean urgent electronic",
+      "pacing": "three minute match",
+      "loop": false,
+      "duration_sec": 0.18,
+      "used_by": [
+        "three_minute_empire"
+      ],
+      "source": "synth_audio",
+      "retrieved_at": "2026-05-12",
+      "license": "",
+      "license_url": "",
+      "generated": true,
+      "format": "wav"
+    },
+    {
+      "id": "sfx_capture_enemy_short_e924f4bf",
+      "file": "sfx/sfx_capture_enemy_short_e924f4bf.wav",
+      "type": "sfx",
+      "role": "capture_enemy",
+      "tags": [
+        "short",
+        "clean",
+        "urgent",
+        "electronic",
+        "three",
+        "minute",
+        "match",
+        "tactical",
+        "light",
+        "strategy"
+      ],
+      "style": "short",
+      "style_tags": [
+        "tactical",
+        "electronic",
+        "light",
+        "strategy"
+      ],
+      "mood": "clean urgent electronic",
+      "pacing": "three minute match",
+      "loop": false,
+      "duration_sec": 0.18,
+      "used_by": [
+        "three_minute_empire"
+      ],
+      "source": "synth_audio",
+      "retrieved_at": "2026-05-12",
+      "license": "",
+      "license_url": "",
+      "generated": true,
+      "format": "wav"
+    },
+    {
+      "id": "sfx_lose_point_short_13d60ab5",
+      "file": "sfx/sfx_lose_point_short_13d60ab5.wav",
+      "type": "sfx",
+      "role": "lose_point",
+      "tags": [
+        "short",
+        "clean",
+        "urgent",
+        "electronic",
+        "three",
+        "minute",
+        "match",
+        "tactical",
+        "light",
+        "strategy"
+      ],
+      "style": "short",
+      "style_tags": [
+        "tactical",
+        "electronic",
+        "light",
+        "strategy"
+      ],
+      "mood": "clean urgent electronic",
+      "pacing": "three minute match",
+      "loop": false,
+      "duration_sec": 0.18,
+      "used_by": [
+        "three_minute_empire"
+      ],
+      "source": "synth_audio",
+      "retrieved_at": "2026-05-12",
+      "license": "",
+      "license_url": "",
+      "generated": true,
+      "format": "wav"
+    },
+    {
+      "id": "sfx_upgrade_short_19d3c7a7",
+      "file": "sfx/sfx_upgrade_short_19d3c7a7.wav",
+      "type": "sfx",
+      "role": "upgrade",
+      "tags": [
+        "short",
+        "clean",
+        "urgent",
+        "electronic",
+        "three",
+        "minute",
+        "match",
+        "tactical",
+        "light",
+        "strategy"
+      ],
+      "style": "short",
+      "style_tags": [
+        "tactical",
+        "electronic",
+        "light",
+        "strategy"
+      ],
+      "mood": "clean urgent electronic",
+      "pacing": "three minute match",
+      "loop": false,
+      "duration_sec": 0.3,
+      "used_by": [
+        "three_minute_empire"
+      ],
+      "source": "synth_audio",
+      "retrieved_at": "2026-05-12",
+      "license": "",
+      "license_url": "",
+      "generated": true,
+      "format": "wav"
+    },
+    {
+      "id": "sfx_surge_ready_short_d696dd0c",
+      "file": "sfx/sfx_surge_ready_short_d696dd0c.wav",
+      "type": "sfx",
+      "role": "surge_ready",
+      "tags": [
+        "short",
+        "clean",
+        "urgent",
+        "electronic",
+        "three",
+        "minute",
+        "match",
+        "tactical",
+        "light",
+        "strategy"
+      ],
+      "style": "short",
+      "style_tags": [
+        "tactical",
+        "electronic",
+        "light",
+        "strategy"
+      ],
+      "mood": "clean urgent electronic",
+      "pacing": "three minute match",
+      "loop": false,
+      "duration_sec": 0.18,
+      "used_by": [
+        "three_minute_empire"
+      ],
+      "source": "synth_audio",
+      "retrieved_at": "2026-05-12",
+      "license": "",
+      "license_url": "",
+      "generated": true,
+      "format": "wav"
+    },
+    {
+      "id": "sfx_surge_activate_short_ea7c9880",
+      "file": "sfx/sfx_surge_activate_short_ea7c9880.wav",
+      "type": "sfx",
+      "role": "surge_activate",
+      "tags": [
+        "short",
+        "clean",
+        "urgent",
+        "electronic",
+        "three",
+        "minute",
+        "match",
+        "tactical",
+        "light",
+        "strategy"
+      ],
+      "style": "short",
+      "style_tags": [
+        "tactical",
+        "electronic",
+        "light",
+        "strategy"
+      ],
+      "mood": "clean urgent electronic",
+      "pacing": "three minute match",
+      "loop": false,
+      "duration_sec": 0.18,
+      "used_by": [
+        "three_minute_empire"
+      ],
+      "source": "synth_audio",
+      "retrieved_at": "2026-05-12",
+      "license": "",
+      "license_url": "",
+      "generated": true,
+      "format": "wav"
+    },
+    {
+      "id": "sfx_timer_warning_short_ed88e824",
+      "file": "sfx/sfx_timer_warning_short_ed88e824.wav",
+      "type": "sfx",
+      "role": "timer_warning",
+      "tags": [
+        "short",
+        "clean",
+        "urgent",
+        "electronic",
+        "three",
+        "minute",
+        "match",
+        "tactical",
+        "light",
+        "strategy"
+      ],
+      "style": "short",
+      "style_tags": [
+        "tactical",
+        "electronic",
+        "light",
+        "strategy"
+      ],
+      "mood": "clean urgent electronic",
+      "pacing": "three minute match",
+      "loop": false,
+      "duration_sec": 0.18,
+      "used_by": [
+        "three_minute_empire"
+      ],
+      "source": "synth_audio",
+      "retrieved_at": "2026-05-12",
+      "license": "",
+      "license_url": "",
+      "generated": true,
+      "format": "wav"
+    },
+    {
+      "id": "sfx_lose_short_a1f6c8ab",
+      "file": "sfx/sfx_lose_short_a1f6c8ab.wav",
+      "type": "sfx",
+      "role": "lose",
+      "tags": [
+        "short",
+        "clean",
+        "urgent",
+        "electronic",
+        "three",
+        "minute",
+        "match",
+        "tactical",
+        "light",
+        "strategy"
+      ],
+      "style": "short",
+      "style_tags": [
+        "tactical",
+        "electronic",
+        "light",
+        "strategy"
+      ],
+      "mood": "clean urgent electronic",
+      "pacing": "three minute match",
+      "loop": false,
+      "duration_sec": 0.18,
+      "used_by": [
+        "three_minute_empire"
+      ],
+      "source": "synth_audio",
+      "retrieved_at": "2026-05-12",
       "license": "",
       "license_url": "",
       "generated": true,

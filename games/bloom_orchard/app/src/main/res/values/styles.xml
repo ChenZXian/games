@@ -47,7 +47,11 @@
         <item name="android:paddingRight">@dimen/cst_pad_16</item>
         <item name="backgroundTint">@null</item>
     </style>
+<<<<<<< HEAD
     <style name="Widget.Game.Button.Icon" parent="Widget.AppCompat.ImageButton">
+=======
+    <style name="Widget.Game.Button.Icon" parent="Widget.MaterialComponents.Button">
+>>>>>>> 3c7b97b2767c18f7148a38978109fc8945bb525b
         <item name="android:background">@drawable/ui_button_icon</item>
         <item name="android:tint">@color/cst_text_on_primary</item>
         <item name="backgroundTint">@null</item>

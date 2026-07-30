@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "game_id": "flame_dragon_onslaught",
+  "assigned_at_utc": "2026-05-09T03:03:05Z",
+  "packs": [
+    {
+      "pack_id": "flame_dragon_forge_pack",
+      "pack_title": "Flame Dragon Forge Pack",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "repository_generated",
+      "art_roles": [
+        "character",
+        "enemy",
+        "boss",
+        "background",
+        "pickup",
+        "effect",
+        "projectile"
+      ],
+      "recommended_game_types": [
+        "side",
+        "scroller",
+        "action",
+        "boss",
+        "fantasy"
+      ],
+      "style_tags": [
+        "dragon",
+        "flame",
+        "fantasy",
+        "side_view",
+        "action",
+        "forge"
+      ],
+      "quality_tags": [
+        "production",
+        "generated",
+        "open",
+        "cc0"
+      ],
+      "animation_capabilities": [
+        "side_view",
+        "humanoid",
+        "boss_pose_set",
+        "runtime_frame_swap",
+        "horizontal_flip"
+      ],
+      "animation_states": [
+        "idle",
+        "run",
+        "jump",
+        "attack",
+        "skill",
+        "hit",
+        "boss_phase"
+      ],
+      "project_pack_path": "app/src/main/assets/game_art/flame_dragon_forge_pack",
+      "copied_file_count": 44
+    }
+  ],
+  "copied_file_count": 44
+}

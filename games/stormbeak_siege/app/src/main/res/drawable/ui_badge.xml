@@ -1,0 +1,10 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <corners android:radius="@dimen/cst_radius_xl" />
+    <gradient
+        android:angle="270"
+        android:endColor="@color/cst_chip_bg"
+        android:startColor="@color/cst_panel_header_bg" />
+    <stroke
+        android:width="@dimen/cst_stroke_s"
+        android:color="@color/cst_chip_stroke" />
+</shape>

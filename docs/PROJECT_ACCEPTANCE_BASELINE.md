@@ -1,7 +1,7 @@
 # Project Acceptance Baseline
 
-Version: 1.4
-Last updated: 2026-04-23
+Version: 1.7
+Last updated: 2026-06-01
 
 This document defines the generic structure and acceptance baseline for any Android Java mini-game in this repository.
 
@@ -23,6 +23,7 @@ Every new game project should satisfy all of the following:
 Every project must satisfy:
 
 - root package is `com.android.boot`
+- Android namespace may remain `com.android.boot`, but installable `applicationId` must be unique per game
 - launcher activity is `com.android.boot.MainActivity`
 - `AndroidManifest.xml` uses:
   - `android:label="@string/app_name"`
@@ -38,6 +39,7 @@ Every project must satisfy:
 - no comments in Java, XML, or Gradle files
 - custom color resources use the `cst_` prefix and must not conflict with `android.jar`
 - exactly one allowed `ui_skin` is selected
+- SurfaceView or GameView canvas loops that use `lockCanvas` must protect `lockCanvas` and `unlockCanvasAndPost` with a null guard, `catch`, and `finally`
 
 ## 4. Gameplay And Screen Baseline
 
@@ -104,6 +106,10 @@ For a delivery-ready result, the project should have:
 - a coherent UI direction using the repository UI workflow
 - a documented playfield safe area so decorative borders or HUD chrome do not block active gameplay space
 - a gameplay layout that materially reserves that safe area in `activity_main.xml`, container padding, or an equivalent verified viewport wrapper instead of relying on overlays sitting on top of a full-screen playfield
+- adaptive gameplay-state UI that remains readable across narrow phones, tall phones, and tablet-style aspect ratios
+- battle-state buttons, panels, bars, and floating controls that do not cover units, routes, nodes, lanes, build pads, drag paths, or other touch-critical gameplay targets
+- battle-state controls that preserve minimum touch target size across representative phone and tablet viewports
+- button labels that fit their adaptive target width after `@string` resolution
 - gameplay visuals that are not limited to bare placeholder circles or rectangles when a delivery-ready target is requested
 - UI that is more than UI Kit-only token scaffolding when a delivery-ready target is requested
 - a tracked gameplay art strategy using the repository gameplay art workflow when external or reusable character, map, prop, item, effect, or background assets are used
@@ -133,9 +139,31 @@ The expected readiness ladder is:
 - inspect can report `CAN_ENTER_PACK=true`
 - resource tracks are complete, not deferred or placeholder-only, for the intended release target
 - inspect and validate can report the playfield safe area as passed rather than warning or failed
+- inspect should block packaging when `UI_OCCLUSION_RISK` is not `low`
+- validate should run a runtime UI safety check that simulates representative phone and tablet viewports and blocks visible HUD or panel collisions with runtime gameplay nodes when they can be inferred from code
+- validate should block dense horizontal battle-control rows, undersized direct touch targets, and likely button text overflow across the runtime UI viewport matrix
+- validate should block missing `gradle-wrapper.jar`, invalid per-project `org.gradle.java.home`, missing plugin repositories, AndroidX dependency versions known to require a higher compileSdk than the baseline, unsupported UI style parents, missing `Widget` or `Widget.Game` base styles, and unsafe Surface canvas drawing loops
+- packaging should run a Gradle Java compile sanity task before APK export so old source type errors, AAPT resource linking errors, AAR metadata errors, and plugin resolution errors are caught before delivery
+- inspect should block delivery readiness when `MECHANIC_DUPLICATE_RISK` is not `low`
 - packaging is run only when explicitly requested
 
-## 9. Initialization Residue Baseline
+## 9. Build Preflight Baseline
+
+Before APK export, a project should pass both static and Gradle-backed build preflight.
+
+Static preflight should verify:
+
+- `gradle/wrapper/gradle-wrapper.jar` exists
+- project `gradle.properties` defines a valid `org.gradle.java.home`
+- root AGP plugin declarations have `pluginManagement` repositories with `google`, `mavenCentral`, and `gradlePluginPortal`
+- dependencies remain compatible with compileSdk 34
+- UI Kit nested styles have resolvable base styles
+- no unsupported style parent references are used
+- Surface canvas drawing has lifecycle and exception protection
+
+Gradle-backed preflight should run the Java compile task for the requested variant before final APK export.
+
+## 10. Initialization Residue Baseline
 
 A newly initialized project should not carry identity residue from an older finished game.
 

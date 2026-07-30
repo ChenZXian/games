@@ -1,0 +1,136 @@
+{
+  "version": 1,
+  "game_id": "pocket_landlord_classic",
+  "status": "passed",
+  "genre_family": "card strategy",
+  "genre_archetype": "offline dou dizhu campaign battler",
+  "camera_perspective": "top-down tabletop",
+  "control_model": "tap-select card play with action buttons and drag-range quick selection",
+  "core_loop_signature": "deal bid determine landlord play legal combinations empty hand earn stars unlock next table",
+  "differentiation_axes": [
+    "turn-based legal-pattern trick-taking instead of real-time action",
+    "three-seat card table presentation",
+    "campaign hall progression with boss tables",
+    "ai personality-driven difficulty scaling",
+    "endgame drill side mode"
+  ],
+  "forbidden_template_reuse": [
+    "no match-3 swapping",
+    "no cluster-tap collapse board",
+    "no lane defense or shooter loops",
+    "no neon reactor split-board layout",
+    "no candy parade hud structure"
+  ],
+  "map_content_budget": {
+    "play_area_model": "single card-table interface with themed halls",
+    "route_or_region_count": 5,
+    "interactive_regions": [
+      "bottom player hand band",
+      "center trick reveal lane",
+      "left opponent seat",
+      "right opponent seat",
+      "top status header",
+      "bottom action dock"
+    ],
+    "terrain_types": [
+      "emerald felt",
+      "royal blue felt",
+      "mahogany hall table",
+      "jade hall table",
+      "crown hall championship table"
+    ],
+    "decorative_prop_count": 10,
+    "functional_map_elements": [
+      "bid panel",
+      "multiplier token",
+      "landlord badge",
+      "remaining-card counters",
+      "last-play strip",
+      "turn marker"
+    ],
+    "landmarks": [
+      "boss table crest",
+      "hall badge",
+      "result stamp panel"
+    ],
+    "camera_or_scroll_model": "fixed top-down table"
+  },
+  "entity_content_budget": {
+    "player_unit_types": 1,
+    "enemy_types": 5,
+    "neutral_or_resource_entities": 8,
+    "boss_or_elite_types": 5,
+    "projectile_or_effect_types": 12,
+    "item_or_powerup_types": 6
+  },
+  "mechanic_content_budget": {
+    "primary_player_actions": [
+      "call score",
+      "play cards",
+      "pass",
+      "request hint",
+      "reselect cards",
+      "sort hand"
+    ],
+    "secondary_player_actions": [
+      "view rules",
+      "toggle speed",
+      "retry table",
+      "enter endgame drill"
+    ],
+    "upgrade_paths": [
+      "hall unlock progression",
+      "cosmetic table unlocks",
+      "assist toggle unlocks",
+      "achievement badge collection"
+    ],
+    "wave_or_level_variants": [
+      "standard tables",
+      "aggressive bidding tables",
+      "bomb-heavy tables",
+      "race-pressure tables",
+      "boss tables",
+      "endgame drill puzzles"
+    ],
+    "special_rules": [
+      "full dou dizhu legal pattern support",
+      "ai style packages",
+      "three-star stage scoring"
+    ],
+    "risk_reward_systems": [
+      "calling higher score for landlord",
+      "saving bombs for swing turns",
+      "speed-clear bonus stars"
+    ],
+    "failure_pressure_variants": [
+      "chapter star requirements",
+      "challenge hearts limit",
+      "elite ai end-of-hall boss pressure"
+    ]
+  },
+  "asset_variety_budget": {
+    "primary_game_art_packs": [
+      "project-local premium card table set",
+      "classic card face set"
+    ],
+    "secondary_game_art_packs": [
+      "hall badge set",
+      "boss portrait set",
+      "result stamp set"
+    ],
+    "ui_pack": "skin_dark_arcade refined into tabletop lounge identity",
+    "animation_tier": "polished card-motion",
+    "required_animation_states": [
+      "deal",
+      "hover select",
+      "play throw",
+      "illegal shake",
+      "landlord assign",
+      "bomb burst",
+      "win stamp",
+      "loss fade"
+    ],
+    "minimum_distinct_sprite_families": 8,
+    "asset_reuse_note": "must not reuse sci-fi puzzle or candy puzzle art language"
+  }
+}

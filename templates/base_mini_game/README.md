@@ -12,6 +12,7 @@ Before a generated project is treated as initialization-complete, rewrite and ve
 - `artifacts/requirements/<game_id>/gameplay_diversity.json`
 - `artifacts/requirements/<game_id>/visual_identity.json`
 - `artifacts/icons/<game_id>/metadata.json`
+- `app/build.gradle` applicationId
 - `app/src/main/res/values/strings.xml`
 - `app/src/main/assets/ui/ui_pack_assignment.json`
 - `app/src/main/assets/game_art/game_art_assignment.json`

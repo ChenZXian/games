@@ -1,0 +1,150 @@
+{
+  "version": 1,
+  "game_id": "empire_wall_guard",
+  "status": "failed",
+  "duplicate_risk": "high",
+  "top_similarity": 0.617,
+  "fingerprint": {
+    "version": 1,
+    "game_id": "empire_wall_guard",
+    "tokens": [
+      "ancient",
+      "archer",
+      "barracks",
+      "beacons",
+      "block",
+      "build",
+      "burn",
+      "cauldrons",
+      "defense",
+      "empire",
+      "enemies",
+      "gate",
+      "lanes",
+      "oil",
+      "repair",
+      "shield",
+      "siege",
+      "spend",
+      "stacked",
+      "stone",
+      "strategy",
+      "supplies",
+      "survive",
+      "throwers",
+      "tower",
+      "towers",
+      "wall",
+      "waves"
+    ],
+    "mechanic_axes": [
+      "tower_defense"
+    ],
+    "genre_family": "",
+    "genre_archetype": "",
+    "control_model": "",
+    "core_loop_signature": "build archer towers shield barracks stone throwers oil cauldrons and beacons spend supplies to block lanes repair the gate burn stacked enemies and survive ancient siege waves"
+  },
+  "similar_projects": [
+    {
+      "game_id": "minecart_bastion",
+      "score": 0.617,
+      "shared_axes": [
+        "tower_defense"
+      ]
+    },
+    {
+      "game_id": "royal_line_defense",
+      "score": 0.6087,
+      "shared_axes": [
+        "tower_defense"
+      ]
+    },
+    {
+      "game_id": "garden_siege",
+      "score": 0.3219,
+      "shared_axes": [
+        "tower_defense"
+      ]
+    },
+    {
+      "game_id": "bowling_barrage",
+      "score": 0.3219,
+      "shared_axes": [
+        "tower_defense"
+      ]
+    },
+    {
+      "game_id": "crownroad_bastion",
+      "score": 0.3096,
+      "shared_axes": [
+        "tower_defense"
+      ]
+    },
+    {
+      "game_id": "castle_keep_defender",
+      "score": 0.302,
+      "shared_axes": [
+        "tower_defense"
+      ]
+    }
+  ],
+  "nearest_projects": [
+    {
+      "game_id": "minecart_bastion",
+      "score": 0.617,
+      "shared_axes": [
+        "tower_defense"
+      ]
+    },
+    {
+      "game_id": "royal_line_defense",
+      "score": 0.6087,
+      "shared_axes": [
+        "tower_defense"
+      ]
+    },
+    {
+      "game_id": "garden_siege",
+      "score": 0.3219,
+      "shared_axes": [
+        "tower_defense"
+      ]
+    },
+    {
+      "game_id": "bowling_barrage",
+      "score": 0.3219,
+      "shared_axes": [
+        "tower_defense"
+      ]
+    },
+    {
+      "game_id": "crownroad_bastion",
+      "score": 0.3096,
+      "shared_axes": [
+        "tower_defense"
+      ]
+    },
+    {
+      "game_id": "castle_keep_defender",
+      "score": 0.302,
+      "shared_axes": [
+        "tower_defense"
+      ]
+    },
+    {
+      "game_id": "flame_dragon_onslaught",
+      "score": 0.2906,
+      "shared_axes": [
+        "tower_defense"
+      ]
+    },
+    {
+      "game_id": "scrap_ring_outpost",
+      "score": 0.2001,
+      "shared_axes": [
+        "tower_defense"
+      ]
+    }
+  ]
+}

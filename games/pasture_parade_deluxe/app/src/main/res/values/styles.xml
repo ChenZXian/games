@@ -1,6 +1,11 @@
 <resources>
+<<<<<<< HEAD
     <style name="Widget.Game" parent="" />
 
+=======
+    <style name="Widget" />
+    <style name="Widget.Game" />
+>>>>>>> 3c7b97b2767c18f7148a38978109fc8945bb525b
     <style name="TextAppearance.Game.Title" parent="TextAppearance.MaterialComponents.Headline4">
         <item name="android:textColor">@color/cst_text_primary</item>
         <item name="android:textSize">@dimen/cst_text_xxl</item>
@@ -33,7 +38,11 @@
         <item name="android:textColor">@color/cst_text_on_secondary</item>
         <item name="android:background">@drawable/ui_button_secondary</item>
     </style>
+<<<<<<< HEAD
     <style name="Widget.Game.Button.Icon" parent="Widget.AppCompat.ImageButton">
+=======
+    <style name="Widget.Game.Button.Icon" parent="Widget.MaterialComponents.Button">
+>>>>>>> 3c7b97b2767c18f7148a38978109fc8945bb525b
         <item name="android:background">@drawable/ui_button_icon</item>
         <item name="android:scaleType">centerInside</item>
         <item name="android:tint">@color/cst_text_primary</item>

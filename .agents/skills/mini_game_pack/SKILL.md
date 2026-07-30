@@ -14,10 +14,20 @@ Use this skill only when packaging or release preparation is directly requested,
   Packaging workflow:
   1. Run environment verification first
   2. Run repository or project validation next
-  3. Run the packaging or build script only after verification passes
-  4. Export only the requested artifact type
-  5. Update registry only if requested and allowed by repository policy
-  6. Do not commit or push unless explicitly requested
+  3. Run a Gradle Java compile sanity task for the requested variant before APK export
+  4. Run the packaging or build script only after verification passes
+  5. Export only the requested artifact type
+  6. Update registry only if requested and allowed by repository policy
+  7. Do not commit or push unless explicitly requested
+
+  Build-risk checks that must be treated as blockers:
+  - missing `gradle-wrapper.jar`
+  - invalid per-project `org.gradle.java.home`
+  - missing `pluginManagement` repositories for AGP plugin resolution
+  - AndroidX dependency versions requiring a higher compileSdk than the baseline
+  - unsupported UI style parents or missing UI Kit base styles
+  - unsafe `lockCanvas` or `unlockCanvasAndPost` handling
+  - Java type errors exposed by `compileDebugJavaWithJavac` or `compileReleaseJavaWithJavac`
 
   Menu item 10 rule:
   - Treat APK export as the final stage of the complete menu item `10` pipeline

@@ -148,6 +148,10 @@ $requirementsStatus = "untracked"
 $gameplayDiversityStatus = "missing"
 $visualIdentityStatus = "missing"
 $implementationFidelityStatus = "untracked"
+$mechanicFingerprintStatus = "unknown"
+$mechanicDuplicateRisk = "unknown"
+$runtimeUiSafetyStatus = "unknown"
+$runtimeUiOcclusionRisk = "unknown"
 $iconStatus = "deferred"
 $iconUniquenessStatus = "unknown"
 $iconDuplicateRisk = "unknown"
@@ -386,6 +390,33 @@ if ($requirementsStatus -eq "confirmed") {
   $implementationFidelityStatus = "not_ready"
 }
 
+$mechanicScript = Join-Path $root "tools\check_mechanic_fingerprint.ps1"
+if (Test-Path $mechanicScript) {
+  $mechanic = Run-PowerShellScript $mechanicScript @("-GameId", $gameId, "-Write") $root
+  $mechanicText = $mechanic.Output
+  $mechanicFingerprintStatus = Match-First $mechanicText 'MECHANIC_FINGERPRINT_STATUS=([^\r\n]+)'
+  $mechanicDuplicateRisk = Match-First $mechanicText 'MECHANIC_DUPLICATE_RISK=([^\r\n]+)'
+  $mechanicSimilar = Match-First $mechanicText 'MECHANIC_SIMILAR_PROJECTS=([^\r\n]+)'
+  if ([string]::IsNullOrWhiteSpace($mechanicFingerprintStatus)) { $mechanicFingerprintStatus = "unknown" }
+  if ([string]::IsNullOrWhiteSpace($mechanicDuplicateRisk)) { $mechanicDuplicateRisk = "unknown" }
+  if ($mechanicFingerprintStatus -eq "passed") {
+    Write-Ok "Mechanic fingerprint: passed"
+    $passCount++
+  } elseif ($mechanicFingerprintStatus -eq "warning") {
+    Write-Warn "Mechanic fingerprint: warning (similar: $mechanicSimilar)"
+    $warnCount++
+  } elseif ($mechanicFingerprintStatus -eq "failed") {
+    Write-Warn "Mechanic fingerprint: failed (similar: $mechanicSimilar)"
+    $warnCount++
+  } else {
+    Write-Warn "Mechanic fingerprint: unknown"
+    $warnCount++
+  }
+} else {
+  Write-Warn "Mechanic fingerprint checker is missing"
+  $warnCount++
+}
+
 Write-Section "Resource Tracks"
 $resDir = Join-Path $projResolved "app\src\main\res"
 $adaptiveIcon = Join-Path $resDir "mipmap-anydpi-v26\app_icon.xml"
@@ -609,6 +640,30 @@ if ($playfieldSafeAreaStatus -eq "passed") {
   $warnCount++
 }
 
+$runtimeUiScript = Join-Path $root "tools\check_runtime_ui_safety.ps1"
+if (Test-Path $runtimeUiScript) {
+  $runtimeUi = Run-PowerShellScript $runtimeUiScript @("-Project", $projectArg) $root
+  $runtimeUiText = $runtimeUi.Output
+  $runtimeUiSafetyStatus = Match-First $runtimeUiText 'RUNTIME_UI_SAFETY_STATUS=([^\r\n]+)'
+  $runtimeUiOcclusionRisk = Match-First $runtimeUiText 'RUNTIME_UI_OCCLUSION_RISK=([^\r\n]+)'
+  $runtimeUiCollisions = Match-First $runtimeUiText 'RUNTIME_UI_COLLISIONS=([^\r\n]+)'
+  if ([string]::IsNullOrWhiteSpace($runtimeUiSafetyStatus)) { $runtimeUiSafetyStatus = "unknown" }
+  if ([string]::IsNullOrWhiteSpace($runtimeUiOcclusionRisk)) { $runtimeUiOcclusionRisk = "unknown" }
+  if ($runtimeUiSafetyStatus -eq "passed") {
+    Write-Ok "Runtime UI safety: passed ($runtimeUiCollisions collision(s))"
+    $passCount++
+  } elseif ($runtimeUiSafetyStatus -eq "failed") {
+    Write-Warn "Runtime UI safety: failed ($runtimeUiCollisions collision(s))"
+    $warnCount++
+  } else {
+    Write-Warn "Runtime UI safety: $runtimeUiSafetyStatus"
+    $warnCount++
+  }
+} else {
+  Write-Warn "Runtime UI safety checker is missing"
+  $warnCount++
+}
+
 $gameArtRecordPath = Join-Path $projResolved "app\src\main\assets\game_art\game_art_assignment.json"
 $projectGameArtDir = Join-Path $projResolved "app\src\main\assets\game_art"
 $projectGameArtFiles = @()
@@ -781,8 +836,8 @@ if ($apkFiles.Count -gt 0) {
   $warnCount++
 }
 
-$canEnterPack = $doctorReady -and $validatorReady -and $registryReady
-$deliveryReady = $canEnterPack -and ($requirementsStatus -eq "confirmed") -and ($gameplayDiversityStatus -eq "passed") -and ($visualIdentityStatus -eq "passed") -and ($implementationFidelityStatus -eq "passed") -and ($iconStatus -eq "complete") -and ($iconGenerationIntegrity -eq "passed") -and ($iconMetadataTrust -eq "high") -and ($iconUniquenessStatus -eq "passed") -and ($uiStatus -eq "complete") -and ($playfieldSafeAreaStatus -eq "passed") -and ($gameArtStatus -eq "complete") -and ($audioStatus -eq "complete") -and ($bgmStatus -eq "complete")
+$canEnterPack = $doctorReady -and $validatorReady -and $registryReady -and ($playfieldSafeAreaStatus -eq "passed") -and ($uiOcclusionRisk -eq "low") -and ($runtimeUiSafetyStatus -eq "passed") -and ($runtimeUiOcclusionRisk -eq "low") -and ($mechanicFingerprintStatus -eq "passed") -and ($mechanicDuplicateRisk -eq "low")
+$deliveryReady = $canEnterPack -and ($requirementsStatus -eq "confirmed") -and ($gameplayDiversityStatus -eq "passed") -and ($visualIdentityStatus -eq "passed") -and ($implementationFidelityStatus -eq "passed") -and ($mechanicFingerprintStatus -eq "passed") -and ($mechanicDuplicateRisk -eq "low") -and ($iconStatus -eq "complete") -and ($iconGenerationIntegrity -eq "passed") -and ($iconMetadataTrust -eq "high") -and ($iconUniquenessStatus -eq "passed") -and ($uiStatus -eq "complete") -and ($playfieldSafeAreaStatus -eq "passed") -and ($gameArtStatus -eq "complete") -and ($audioStatus -eq "complete") -and ($bgmStatus -eq "complete")
 
 $nextStep = ""
 if (-not $doctorReady) {
@@ -803,6 +858,8 @@ if (-not $doctorReady) {
   $nextStep = "Complete the visual identity contract before icon and UI release delivery"
 } elseif ($implementationFidelityStatus -ne "passed") {
   $nextStep = "Review and repair implementation fidelity against the confirmed requirements before release delivery"
+} elseif ($mechanicFingerprintStatus -ne "passed" -or $mechanicDuplicateRisk -ne "low") {
+  $nextStep = "Revise the core mechanics or requirements because the mechanic fingerprint is too similar to an existing project"
 } elseif ($iconStatus -eq "deferred" -or $iconStatus -eq "placeholder_only") {
   $nextStep = "Run the icon workflow to export upload-ready icon assets"
 } elseif ($iconGenerationIntegrity -ne "passed" -or $iconMetadataTrust -ne "high") {
@@ -811,6 +868,10 @@ if (-not $doctorReady) {
   $nextStep = "Regenerate a game-specific icon and avoid generic repeated motifs"
 } elseif ($playfieldSafeAreaStatus -ne "passed") {
   $nextStep = "Reserve gameplay safe area in activity_main.xml before allowing HUD or frame overlays near the playfield"
+} elseif ($uiOcclusionRisk -ne "low") {
+  $nextStep = "Reduce battle-state UI occlusion risk and keep controls or panels out of the active gameplay area"
+} elseif ($runtimeUiSafetyStatus -ne "passed" -or $runtimeUiOcclusionRisk -ne "low") {
+  $nextStep = "Fix runtime UI collisions across representative screen sizes before packaging"
 } elseif ($gameArtStatus -eq "deferred") {
   $nextStep = "Run the gameplay art workflow to assign tracked character, map, prop, effect, or background assets"
 } elseif ($gameArtStatus -eq "placeholder_only") {
@@ -833,6 +894,8 @@ Write-Host "REQUIREMENTS_STATUS=$(Get-StatusValue $requirementsStatus)"
 Write-Host "GAMEPLAY_DIVERSITY_STATUS=$(Get-StatusValue $gameplayDiversityStatus)"
 Write-Host "VISUAL_IDENTITY_STATUS=$(Get-StatusValue $visualIdentityStatus)"
 Write-Host "IMPLEMENTATION_FIDELITY_STATUS=$(Get-StatusValue $implementationFidelityStatus)"
+Write-Host "MECHANIC_FINGERPRINT_STATUS=$(Get-StatusValue $mechanicFingerprintStatus)"
+Write-Host "MECHANIC_DUPLICATE_RISK=$(Get-StatusValue $mechanicDuplicateRisk)"
 Write-Host "ICON_STATUS=$(Get-StatusValue $iconStatus)"
 Write-Host "ICON_GENERATION_INTEGRITY=$(Get-StatusValue $iconGenerationIntegrity)"
 Write-Host "ICON_METADATA_TRUST=$(Get-StatusValue $iconMetadataTrust)"
@@ -841,6 +904,8 @@ Write-Host "ICON_DUPLICATE_RISK=$(Get-StatusValue $iconDuplicateRisk)"
 Write-Host "UI_STATUS=$(Get-StatusValue $uiStatus)"
 Write-Host "PLAYFIELD_SAFE_AREA_STATUS=$(Get-StatusValue $playfieldSafeAreaStatus)"
 Write-Host "UI_OCCLUSION_RISK=$(Get-StatusValue $uiOcclusionRisk)"
+Write-Host "RUNTIME_UI_SAFETY_STATUS=$(Get-StatusValue $runtimeUiSafetyStatus)"
+Write-Host "RUNTIME_UI_OCCLUSION_RISK=$(Get-StatusValue $runtimeUiOcclusionRisk)"
 Write-Host "GAME_ART_STATUS=$(Get-StatusValue $gameArtStatus)"
 Write-Host "GAME_ART_RUNTIME_STATUS=$(Get-StatusValue $gameArtRuntimeStatus)"
 Write-Host "AUDIO_STATUS=$(Get-StatusValue $audioStatus)"

@@ -1,0 +1,194 @@
+{
+  "version": 1,
+  "game_id": "lunar_salvage_miner",
+  "status": "passed",
+  "genre_family": "physics grabbing and resource survival",
+  "genre_archetype": "electromagnetic lunar salvage with oxygen, battery, cart positioning, and base repair objectives",
+  "camera_perspective": "fixed 2D side cutaway lunar salvage field with top cart rail and layered debris below",
+  "control_model": "tap to fire hook, left and right buttons to reposition cart, scan button to reveal target roles, magnet boost button for one stronger pull",
+  "core_loop_signature": "scan lunar wreckage, reposition cart, launch electromagnetic hook, recover parts batteries oxygen and repair cores, avoid meteor debris, repair base modules, unlock six ruin regions",
+  "differentiation_axes": [
+    "oxygen and battery are active survival resources during each stage",
+    "cart position changes the launch geometry before each pull",
+    "magnetic material filtering makes metal, stone, oxygen, and battery targets behave differently",
+    "base repair modules convert recovered parts into region unlocks and permanent utility",
+    "meteor debris and fragile parts create risk beyond simple value collection",
+    "lunar sci-fi dashboard identity differs from crystal cave, farm, ranch, card, runner, and defense projects"
+  ],
+  "forbidden_template_reuse": [
+    "do not copy a classic hook miner loop as aim hook pull coins only",
+    "do not reuse crystal prism bending as the primary hook mechanic",
+    "do not use farm, ranch, care station, card table, runner lane, brawler street, or tower defense layouts",
+    "do not use a generic top score pill and bottom command strip that covers the hook field",
+    "do not represent salvage objects as plain circles without material, weight, survival, or repair roles"
+  ],
+  "map_content_budget": {
+    "play_area_model": "side-view lunar surface with movable top rail, hook arc, layered salvage field, meteor lanes, and reserved HUD edges",
+    "route_or_region_count": "6 lunar ruin regions with escalating salvage rules and base module objectives",
+    "interactive_regions": "cart rail, hook launch arc, shallow scrap layer, deep salvage layer, oxygen cache pockets, battery pockets, meteor hazard lanes, buried module part pockets, scanner overlay zone, and base repair objective rail",
+    "terrain_types": [
+      "crater ridge",
+      "regolith mound",
+      "broken solar array",
+      "hull wreck shell",
+      "cargo crater pocket",
+      "comms dish debris",
+      "reactor shadow basin",
+      "moon rock obstruction"
+    ],
+    "decorative_prop_count": "at least 18 prop families across antennas, panel shards, cable coils, boot tracks, warning beacons, cargo tags, crater stones, and module wreckage",
+    "functional_map_elements": [
+      "metal salvage targets",
+      "non-metal bounce debris",
+      "oxygen canister pocket",
+      "battery cell pocket",
+      "meteor drift lane",
+      "fragile repair part",
+      "shielded container",
+      "cable snag",
+      "scanner highlight region",
+      "repair objective socket"
+    ],
+    "landmarks": [
+      "Landing Pad Ruins",
+      "Solar Array Field",
+      "Cargo Crater",
+      "Habitation Wreck",
+      "Comms Dish Valley",
+      "Reactor Shadow Basin"
+    ],
+    "camera_or_scroll_model": "fixed stage camera with optional subtle parallax background and no scrolling during a pull"
+  },
+  "entity_content_budget": {
+    "player_unit_types": [
+      "lunar salvage cart",
+      "electromagnetic hook",
+      "scanner pulse",
+      "magnet boost charge"
+    ],
+    "enemy_types": [
+      "drifting meteor fragment",
+      "unstable debris shell",
+      "sparking drone husk"
+    ],
+    "neutral_or_resource_entities": [
+      "oxygen canister",
+      "battery cell",
+      "credit scrap",
+      "solar panel plate",
+      "hull plate",
+      "circuit core",
+      "engine nozzle",
+      "satellite dish fragment",
+      "module crate"
+    ],
+    "boss_or_elite_types": [
+      "reactor core salvage pod",
+      "sealed comms relay part",
+      "large cargo vault"
+    ],
+    "projectile_or_effect_types": [
+      "hook cable",
+      "magnet spark",
+      "scan pulse",
+      "oxygen pickup glow",
+      "battery recharge arc",
+      "meteor impact flash",
+      "dust puff",
+      "repair beam",
+      "hull warning blink",
+      "region unlock flare"
+    ],
+    "item_or_powerup_types": [
+      "oxygen tank",
+      "battery cell",
+      "magnet boost reserve",
+      "scanner charge",
+      "emergency hull patch",
+      "rare module core"
+    ]
+  },
+  "mechanic_content_budget": {
+    "primary_player_actions": [
+      "reposition cart left or right",
+      "scan debris field",
+      "fire electromagnetic hook",
+      "time magnet boost",
+      "choose repair upgrades between stages"
+    ],
+    "secondary_player_actions": [
+      "prioritize oxygen over valuable scrap",
+      "use battery cells to extend scanner and hook activity",
+      "avoid non-metal bounce debris",
+      "recover fragile parts with slower safer pulls"
+    ],
+    "upgrade_paths": [
+      "cable length",
+      "magnet strength",
+      "rewind speed",
+      "scanner width",
+      "oxygen reserve",
+      "battery efficiency",
+      "cart armor",
+      "emergency reserve systems"
+    ],
+    "wave_or_level_variants": [
+      "oxygen-rich training field",
+      "low-battery salvage field",
+      "meteor-heavy crater stage",
+      "fragile module recovery stage",
+      "shielded container stage",
+      "reactor basin pressure stage"
+    ],
+    "special_rules": [
+      "metal targets can magnet-lock while moon rocks bounce the hook",
+      "oxygen drains by time and battery drains by scanner or hook activity",
+      "meteor impacts damage cart hull or knock loose salvage",
+      "some critical parts must be recovered without hard impacts"
+    ],
+    "risk_reward_systems": [
+      "deep high-value parts cost more oxygen and battery",
+      "scanner use improves planning but consumes power",
+      "magnet boost can save a heavy pull but leaves less energy for later",
+      "oxygen pickups may be worth more than credits in late-stage pressure"
+    ],
+    "failure_pressure_variants": [
+      "oxygen depletion",
+      "battery exhaustion",
+      "cart hull damage",
+      "critical part destruction",
+      "timer-like repair window in late regions"
+    ]
+  },
+  "asset_variety_budget": {
+    "primary_game_art_packs": [
+      "lunar salvage cart and hook set",
+      "moon wreckage and spacecraft scrap set",
+      "life-support pickups and module repair set"
+    ],
+    "secondary_game_art_packs": [
+      "meteor hazard effects",
+      "scanner and magnetic energy effects",
+      "base module schematic UI motifs"
+    ],
+    "ui_pack": "skin_military_tech with lunar dashboard gauges, segmented oxygen and battery meters, and blueprint repair panels",
+    "animation_tier": "medium 2D utility animation with rotating hook, cable extension, magnet pulse, cart tread movement, meteor drift, and dust impacts",
+    "required_animation_states": [
+      "cart idle",
+      "cart moving left",
+      "cart moving right",
+      "hook idle",
+      "hook firing",
+      "hook magnet lock",
+      "hook rewind",
+      "object highlighted",
+      "object hooked",
+      "object delivered",
+      "meteor drift",
+      "meteor impact",
+      "module repair complete"
+    ],
+    "minimum_distinct_sprite_families": "minimum 14 sprite families across cart, hook, oxygen, battery, six salvage object families, three hazard families, module schematics, scanner effects, and repair effects",
+    "asset_reuse_note": "Existing hook or mining assets may only be reused if the lunar cart, oxygen, battery, magnetic metal filtering, meteor hazards, and base repair identity are visually distinct from classic gold or crystal hook mining."
+  }
+}

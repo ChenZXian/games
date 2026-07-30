@@ -6,7 +6,9 @@
     <com.android.boot.ui.GameView
         android:id="@+id/game_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/cst_hud_height"
+        android:layout_marginBottom="@dimen/cst_command_panel_height" />
 
     <LinearLayout
         android:id="@+id/top_hud"
@@ -70,82 +72,96 @@
         android:id="@+id/build_panel"
         style="@style/Widget.Game.Panel"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/cst_command_panel_height"
         android:layout_gravity="bottom"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
+        android:gravity="center"
+        android:orientation="vertical"
         android:padding="@dimen/cst_pad_8">
 
-        <Button
-            android:id="@+id/archer_button"
-            style="@style/Widget.Game.Button.Primary"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="@string/btn_archer" />
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/barracks_button"
-            style="@style/Widget.Game.Button.Secondary"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/cst_pad_6"
-            android:layout_weight="1"
-            android:text="@string/btn_barracks" />
+            <Button
+                android:id="@+id/archer_button"
+                style="@style/Widget.Game.Button.Primary"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/btn_archer" />
 
-        <Button
-            android:id="@+id/stone_button"
-            style="@style/Widget.Game.Button.Secondary"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/cst_pad_6"
-            android:layout_weight="1"
-            android:text="@string/btn_stone" />
+            <Button
+                android:id="@+id/barracks_button"
+                style="@style/Widget.Game.Button.Secondary"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/cst_pad_6"
+                android:layout_weight="1"
+                android:text="@string/btn_barracks" />
 
-        <Button
-            android:id="@+id/oil_button"
-            style="@style/Widget.Game.Button.Secondary"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/cst_pad_6"
-            android:layout_weight="1"
-            android:text="@string/btn_oil" />
+            <Button
+                android:id="@+id/stone_button"
+                style="@style/Widget.Game.Button.Secondary"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/cst_pad_6"
+                android:layout_weight="1"
+                android:text="@string/btn_stone" />
 
-        <Button
-            android:id="@+id/beacon_button"
-            style="@style/Widget.Game.Button.Secondary"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/cst_pad_6"
-            android:layout_weight="1"
-            android:text="@string/btn_beacon" />
+            <Button
+                android:id="@+id/oil_button"
+                style="@style/Widget.Game.Button.Secondary"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/cst_pad_6"
+                android:layout_weight="1"
+                android:text="@string/btn_oil" />
+        </LinearLayout>
 
-        <Button
-            android:id="@+id/fire_oil_button"
-            style="@style/Widget.Game.Button.Secondary"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/cst_pad_6"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/cst_pad_6"
             android:layout_weight="1"
-            android:text="@string/btn_fire_oil" />
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/repair_button"
-            style="@style/Widget.Game.Button.Secondary"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/cst_pad_6"
-            android:layout_weight="1"
-            android:text="@string/btn_repair" />
+            <Button
+                android:id="@+id/beacon_button"
+                style="@style/Widget.Game.Button.Secondary"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/btn_beacon" />
 
-        <Button
-            android:id="@+id/next_wave_button"
-            style="@style/Widget.Game.Button.Primary"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/cst_pad_6"
-            android:layout_weight="1"
-            android:text="@string/btn_next_wave" />
+            <Button
+                android:id="@+id/fire_oil_button"
+                style="@style/Widget.Game.Button.Secondary"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/cst_pad_6"
+                android:layout_weight="1"
+                android:text="@string/btn_fire_oil" />
+
+            <Button
+                android:id="@+id/repair_button"
+                style="@style/Widget.Game.Button.Secondary"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/cst_pad_6"
+                android:layout_weight="1"
+                android:text="@string/btn_repair" />
+
+            <Button
+                android:id="@+id/next_wave_button"
+                style="@style/Widget.Game.Button.Primary"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/cst_pad_6"
+                android:layout_weight="1"
+                android:text="@string/btn_next_wave" />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout

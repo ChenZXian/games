@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "game_id": "ranch_vet_rescue",
+  "theme": "cozy pasture veterinary clinic",
+  "camera_perspective": "fixed three-quarter top-down board",
+  "art_roles": {
+    "animal": [
+      "cow",
+      "hen",
+      "sheep",
+      "goat",
+      "piglet",
+      "rabbit"
+    ],
+    "terrain": [
+      "meadow grass",
+      "clinic path",
+      "release meadow"
+    ],
+    "prop": [
+      "awning",
+      "fence",
+      "release gate",
+      "station signs"
+    ],
+    "item": [
+      "treatment cards",
+      "condition badges"
+    ],
+    "effect": [
+      "stress marker",
+      "ready highlight",
+      "timer ring"
+    ]
+  },
+  "animal_shape_expectations": [
+    "cow uses broad body, muzzle, horns, spots, tail, and three visible legs",
+    "hen uses compact bird body, wing, comb, beak, and thin legs",
+    "sheep uses wool clusters, dark face, and compact legs",
+    "goat uses lean body, head, horns, beard line, and visible legs",
+    "piglet uses pink body, snout nostrils, triangular ear, and small legs",
+    "rabbit uses long ears, compact body, head, eye, and tail"
+  ],
+  "animation_expectations": [
+    "idle bob for active animals",
+    "stress badge state",
+    "selected outline state",
+    "recovered ready highlight"
+  ],
+  "asset_strategy": "project-local runtime silhouettes now; replace with license-clear multi-frame sprites in a later delivery art pass"
+}

@@ -23,6 +23,10 @@
     <dimen name="cst_text_xl">24sp</dimen>
     <dimen name="cst_text_xxl">30sp</dimen>
     <dimen name="cst_hud_height">56dp</dimen>
+    <dimen name="cst_playfield_margin_start">156dp</dimen>
+    <dimen name="cst_playfield_margin_end">172dp</dimen>
+    <dimen name="cst_playfield_margin_top">92dp</dimen>
+    <dimen name="cst_playfield_margin_bottom">82dp</dimen>
     <dimen name="cst_hud_badge_min_w">72dp</dimen>
-    <dimen name="cst_hud_icon_size">24dp</dimen>
+    <dimen name="cst_hud_icon_size">48dp</dimen>
 </resources>

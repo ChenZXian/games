@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "game_id": "crystal_cavern_hook",
+  "status": "passed",
+  "visual_differentiation_axes": [
+    "luminous crystal cave console instead of plain dirt mine frame",
+    "top brass winch beam integrated with timer and swing pivot",
+    "right-side faceted tool pocket for dynamite, magnet, boost, prism, and shield tools",
+    "bottom carved order rail with crystal chips instead of generic score strip",
+    "icon uses brass claw gripping emerald crystal with cable spark and gold nugget instead of generic gold hook"
+  ],
+  "forbidden_visual_reuse": [
+    "do not reuse a classic hook miner icon or generic hook-on-gold composition",
+    "do not reuse ranch, farm, market, medical kit, or animal icon subjects",
+    "do not reuse dark arcade panels that hide the cave field",
+    "do not reuse tower defense lane HUD or card battle table composition",
+    "do not cover the central hook swing arc with decorative frames"
+  ],
+  "ui_identity": {
+    "layout_archetype": "top winch beam plus central crystal cavern field, right tool pocket, and bottom carved order rail",
+    "hud_composition": "timer and swing pivot in the top beam, coin counter near upper-left, order progress on bottom rail, tool charges in a right faceted pocket, and small pull value toast near the winch",
+    "navigation_model": "menu opens to cave preview; gameplay stays fixed-screen; shop, help, pause, and result appear as carved stone sheets anchored outside the hook arc",
+    "palette_signature": "deep indigo cave shadow, emerald crystal, cyan glow, warm gold, amber lantern, and magenta prism highlight",
+    "material_language": "faceted crystal panels, brass winch hardware, rope cable, carved stone labels, lantern glow, and translucent order chips",
+    "typography_style": "bold rounded English labels with high-contrast value numbers and compact tool captions",
+    "primary_ui_pack": "skin_cartoon_light customized with crystal cave panels and brass tool buttons",
+    "secondary_ui_assets": [
+      "faceted order chips",
+      "tool charge gems",
+      "cable tension meter",
+      "depth marker plaques",
+      "prism preview marker",
+      "coin burst badge"
+    ],
+    "playfield_safety": {
+      "reserved_edges": [
+        "top 12 percent for winch, timer, and swing pivot",
+        "right 16 percent for tool pocket",
+        "bottom 14 percent for order rail",
+        "left 8 percent for coin and quota badges only"
+      ],
+      "hud_anchor_zones": [
+        "top winch beam",
+        "upper-left coin chip",
+        "right tool pocket",
+        "bottom order rail",
+        "small winch-adjacent toast zone"
+      ],
+      "protected_gameplay_zones": [
+        "central hook swing arc",
+        "outbound hook path",
+        "return cable path",
+        "shallow gem band",
+        "mid crystal band",
+        "deep treasure band",
+        "prism bend cluster"
+      ],
+      "frame_overlay_policy": "decorative cave frames, crystal borders, and sheets must stay in reserved strips or inactive shop overlays and must never cover active targets, hook travel, or prism bend routes"
+    },
+    "unique_screen_motifs": [
+      "brass winch beam",
+      "glowing prism path preview",
+      "faceted tool pocket",
+      "carved order rail",
+      "lantern depth marker",
+      "crystal shatter toast"
+    ],
+    "forbidden_ui_elements": [
+      "plain brown dirt mine frame",
+      "generic full-width bottom command strip covering targets",
+      "farm order clipboard",
+      "ranch animal card rail",
+      "dark arcade neon panels",
+      "large modal over swing arc during active play"
+    ]
+  },
+  "icon_identity": {
+    "subject": "split-tip brass mining hook gripping an emerald cave gem beside a nugget and cable spark",
+    "silhouette": "diagonal cable, forked claw hook, large faceted emerald gem, nugget cluster, and tiny cable spark",
+    "composition": "claw enters from upper-left, emerald crystal fills center, gold nugget sits lower-right, cable spark sits behind the claw, dark cave badge frames the subject",
+    "palette": "emerald green, cyan glow, warm gold, brass yellow, deep indigo, and magenta prism accent",
+    "background": "rounded dark crystal cave badge with subtle cyan glow and faceted stone rim",
+    "game_specific_motif": "emerald hook pull rather than generic gold nugget mining",
+    "forbidden_icon_reuse": [
+      "no generic shield or sword",
+      "no cow, rabbit, medical kit, crate, flower basket, or farm produce",
+      "no plain gold hook without crystal",
+      "no dirt tunnel background without prism identity",
+      "no copied classic hook miner icon subject"
+    ]
+  }
+}

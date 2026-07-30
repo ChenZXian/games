@@ -1,0 +1,14 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <shape android:shape="oval">
+            <solid android:color="@color/cst_accent_2" />
+            <stroke android:width="@dimen/cst_stroke_s" android:color="@color/cst_btn_primary_stroke" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="oval">
+            <gradient android:angle="270" android:startColor="@color/cst_panel_header_bg" android:endColor="@color/cst_panel_bg" />
+            <stroke android:width="@dimen/cst_stroke_s" android:color="@color/cst_panel_stroke" />
+        </shape>
+    </item>
+</selector>

@@ -1,6 +1,11 @@
 <resources>
+<<<<<<< HEAD
     <style name="Widget.Game" parent="Widget.MaterialComponents.Button" />
 
+=======
+    <style name="Widget" />
+    <style name="Widget.Game" />
+>>>>>>> 3c7b97b2767c18f7148a38978109fc8945bb525b
     <style name="TextAppearance.Game.Title" parent="TextAppearance.MaterialComponents.Headline5">
         <item name="android:textColor">@color/cst_text_primary</item>
         <item name="android:textSize">@dimen/cst_text_xxl</item>

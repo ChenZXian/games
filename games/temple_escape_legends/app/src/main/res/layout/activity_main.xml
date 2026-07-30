@@ -6,7 +6,8 @@
     <com.android.boot.ui.GameView
         android:id="@+id/gameView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/cst_hud_height" />
 
     <LinearLayout
         android:id="@+id/hudRoot"
@@ -17,6 +18,7 @@
         android:padding="@dimen/cst_pad_8"
         android:background="@drawable/ui_panel"
         android:gravity="center_vertical">
+<<<<<<< HEAD
         <TextView
             android:text="S"
             style="@style/TextAppearance.Game.HudLabel"
@@ -109,6 +111,23 @@
             style="@style/Widget.Game.Button.Icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+=======
+        <TextView android:text="S" style="@style/TextAppearance.Game.HudLabel" />
+        <TextView android:id="@+id/hudScore" style="@style/TextAppearance.Game.HudValue" android:layout_marginEnd="@dimen/cst_pad_8" android:text="0" />
+        <TextView android:text="C" style="@style/TextAppearance.Game.HudLabel" />
+        <TextView android:id="@+id/hudCoins" style="@style/TextAppearance.Game.HudValue" android:layout_marginEnd="@dimen/cst_pad_8" android:text="0" />
+        <TextView android:text="L" style="@style/TextAppearance.Game.HudLabel" />
+        <TextView android:id="@+id/hudLife" style="@style/TextAppearance.Game.HudValue" android:layout_marginEnd="@dimen/cst_pad_8" android:text="3" />
+        <TextView android:text="P" style="@style/TextAppearance.Game.HudLabel" />
+        <TextView android:id="@+id/hudPressure" style="@style/TextAppearance.Game.HudValue" android:layout_marginEnd="@dimen/cst_pad_8" android:text="0%" />
+        <TextView android:id="@+id/hudSpeed" style="@style/TextAppearance.Game.HudValue" android:layout_marginEnd="@dimen/cst_pad_8" android:text="T1" />
+        <TextView android:id="@+id/hudDistance" style="@style/TextAppearance.Game.HudValue" android:layout_marginEnd="@dimen/cst_pad_8" android:text="0m" />
+        <TextView android:id="@+id/hudShield" style="@style/TextAppearance.Game.HudValue" android:text="Off" />
+        <TextView android:id="@+id/hudMagnet" style="@style/TextAppearance.Game.HudValue" android:text="Off" />
+        <TextView android:id="@+id/hudSlow" style="@style/TextAppearance.Game.HudValue" android:text="Off" />
+        <TextView android:id="@+id/hudRevive" style="@style/TextAppearance.Game.HudValue" android:text="No" />
+        <Button android:id="@+id/btnPause" android:layout_width="48dp" android:layout_height="48dp" android:text="||" style="@style/Widget.Game.Button.Icon" />
+>>>>>>> 3c7b97b2767c18f7148a38978109fc8945bb525b
     </LinearLayout>
 
     <LinearLayout

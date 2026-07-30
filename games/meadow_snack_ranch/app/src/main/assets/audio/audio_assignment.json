@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "game_id": "meadow_snack_ranch",
+  "status": "complete",
+  "assigned_at_utc": "2026-05-26T07:50:00Z",
+  "audio_brief": {
+    "theme": "cozy feed recipe ranch",
+    "mood": "warm, bright, tactile, cute, and lightly acoustic",
+    "pacing": "gentle menu pacing and medium upbeat gameplay pacing",
+    "bgm_roles": [
+      "menu",
+      "play",
+      "win",
+      "fail"
+    ],
+    "sfx_roles": [
+      "ui_click",
+      "feed_mix",
+      "feed_drop",
+      "animal_happy",
+      "product_collect",
+      "order_stamp",
+      "upgrade",
+      "day_clear",
+      "day_fail"
+    ]
+  },
+  "bgm": {
+    "menu": {
+      "shared_id": "bgm_menu_meadow_snack_ranch_20260526",
+      "project_file": "bgm_menu.wav",
+      "loop": true
+    },
+    "play": {
+      "shared_id": "bgm_play_meadow_snack_ranch_20260526",
+      "project_file": "bgm.wav",
+      "loop": true
+    },
+    "win": {
+      "shared_id": "bgm_win_meadow_snack_ranch_20260526",
+      "project_file": "bgm_win.wav",
+      "loop": false
+    },
+    "fail": {
+      "shared_id": "bgm_fail_meadow_snack_ranch_20260526",
+      "project_file": "bgm_fail.wav",
+      "loop": false
+    }
+  },
+  "sfx": {
+    "ui_click": {
+      "shared_id": "sfx_ui_click_meadow_snack_ranch_20260526",
+      "project_file": "sfx_ui_click.wav"
+    },
+    "feed_mix": {
+      "shared_id": "sfx_feed_mix_meadow_snack_ranch_20260526",
+      "project_file": "sfx_feed_mix.wav"
+    },
+    "feed_drop": {
+      "shared_id": "sfx_feed_drop_meadow_snack_ranch_20260526",
+      "project_file": "sfx_feed_drop.wav"
+    },
+    "animal_happy": {
+      "shared_id": "sfx_animal_happy_meadow_snack_ranch_20260526",
+      "project_file": "sfx_animal_happy.wav"
+    },
+    "product_collect": {
+      "shared_id": "sfx_product_collect_meadow_snack_ranch_20260526",
+      "project_file": "sfx_product_collect.wav"
+    },
+    "order_stamp": {
+      "shared_id": "sfx_order_stamp_meadow_snack_ranch_20260526",
+      "project_file": "sfx_order_stamp.wav"
+    },
+    "upgrade": {
+      "shared_id": "sfx_upgrade_meadow_snack_ranch_20260526",
+      "project_file": "sfx_upgrade.wav"
+    },
+    "day_clear": {
+      "shared_id": "sfx_day_clear_meadow_snack_ranch_20260526",
+      "project_file": "sfx_day_clear.wav"
+    },
+    "day_fail": {
+      "shared_id": "sfx_day_fail_meadow_snack_ranch_20260526",
+      "project_file": "sfx_day_fail.wav"
+    }
+  },
+  "source": "repository_synthesis_fallback",
+  "license": "generated_repository_asset"
+}

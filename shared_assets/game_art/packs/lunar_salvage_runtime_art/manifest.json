@@ -1,0 +1,48 @@
+{
+  "pack_id": "lunar_salvage_runtime_art",
+  "title": "Lunar Salvage Runtime Art",
+  "license": "Project Internal",
+  "license_url": "",
+  "source_url": "project_local_shared_pack",
+  "asset_types": [
+    "json",
+    "canvas"
+  ],
+  "art_roles": [
+    "salvage_cart",
+    "electromagnetic_hook",
+    "oxygen_canister",
+    "battery_cell",
+    "module_part",
+    "rare_core",
+    "metal_scrap",
+    "meteor_fragment",
+    "moon_rock",
+    "cable_snag",
+    "scanner_pulse",
+    "magnet_boost_ring",
+    "moon_crater_background",
+    "base_module_rail"
+  ],
+  "recommended_game_types": [
+    "hook",
+    "salvage",
+    "survival",
+    "side_view"
+  ],
+  "style_tags": [
+    "lunar",
+    "salvage",
+    "mechanical",
+    "runtime_drawn",
+    "space"
+  ],
+  "quality_tags": [
+    "production",
+    "mobile_game",
+    "runtime_animation"
+  ],
+  "used_by": [
+    "lunar_salvage_miner"
+  ]
+}

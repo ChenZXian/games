@@ -1,0 +1,15 @@
+{
+  "pack_id": "prism_sector_runtime_art",
+  "title": "Prism Sector Runtime Art Pack",
+  "license": "Project Internal",
+  "source_url": "project_local_shared_pack",
+  "style_tags": [
+    "prism",
+    "reactor",
+    "neon",
+    "runtime_drawn"
+  ],
+  "used_by": [
+    "prism_sector_collapse"
+  ]
+}

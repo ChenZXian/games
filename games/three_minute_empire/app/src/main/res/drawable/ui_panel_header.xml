@@ -1,0 +1,6 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/cst_panel_header_bg" />
+    <stroke
+        android:width="@dimen/cst_stroke_hair"
+        android:color="@color/cst_panel_stroke" />
+</shape>

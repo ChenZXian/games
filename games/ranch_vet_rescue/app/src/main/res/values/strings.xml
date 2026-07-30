@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Ranch Vet Rescue</string>
+    <string name="btn_start">Start Shift</string>
+    <string name="btn_restart">Restart</string>
+    <string name="btn_resume">Resume</string>
+    <string name="btn_menu">Menu</string>
+    <string name="btn_mute">Sound</string>
+    <string name="btn_how_to_play">Help</string>
+    <string name="menu_title">Ranch Vet Rescue</string>
+    <string name="menu_subtitle">Diagnose animals, match treatment cards, and release happy patients.</string>
+</resources>

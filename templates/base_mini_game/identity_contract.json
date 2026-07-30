@@ -23,6 +23,7 @@
     "visual identity contract",
     "icon metadata and exported icon assets",
     "app_name and project-visible strings",
+    "unique applicationId distinct from com.android.boot",
     "ui pack assignment and ui_skin linkage",
     "game art assignment and runtime_art_map game_id",
     "audio assignment game_id and role mapping"

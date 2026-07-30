@@ -1,0 +1,130 @@
+{
+  "version": 1,
+  "game_id": "ring_prefecture_clash",
+  "status": "integrated",
+  "camera_perspective": "top_down",
+  "default_coordinate_space": "world_space_pixels",
+  "theme": "bright atlas conquest with round battle units",
+  "game_type": "real_time_node_conquest",
+  "runtime_code": "app/src/main/java/com/android/boot/ui/GameView.java",
+  "animation_quality_target": "runtime alternate frame bounce with directional badge cues",
+  "entities": [
+    {
+      "entity_key": "player_round_units",
+      "role": "character",
+      "asset_keys": [
+        "game_art/ring_prefecture_tokens/player_round_a.png",
+        "game_art/ring_prefecture_tokens/player_round_b.png"
+      ],
+      "default_facing": "movement_vector",
+      "facing_rule": "GameView swaps between player_round_a and player_round_b while streams advance and uses travel direction to position route motion.",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "hitbox": {
+        "x": 0.18,
+        "y": 0.18,
+        "w": 0.64,
+        "h": 0.64
+      },
+      "z_order": "stream_above_route",
+      "states": [
+        "idle",
+        "move",
+        "attack",
+        "capture",
+        "defeat"
+      ],
+      "animation_rule": "Alternate frame swap every stream phase to create bounce cadence.",
+      "movement_rule": "Streams interpolate between connected nodes with speed modifiers from rail and port nodes."
+    },
+    {
+      "entity_key": "enemy_round_units",
+      "role": "enemy",
+      "asset_keys": [
+        "game_art/ring_prefecture_tokens/enemy_round_a.png",
+        "game_art/ring_prefecture_tokens/enemy_round_b.png"
+      ],
+      "default_facing": "movement_vector",
+      "facing_rule": "Enemy streams mirror the same alternating bounce cadence while route color and badge imply pressure direction.",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "hitbox": {
+        "x": 0.18,
+        "y": 0.18,
+        "w": 0.64,
+        "h": 0.64
+      },
+      "z_order": "stream_above_route",
+      "states": [
+        "idle",
+        "move",
+        "attack",
+        "capture",
+        "defeat"
+      ],
+      "animation_rule": "Alternate frame swap every stream phase to create bounce cadence.",
+      "movement_rule": "Enemy streams interpolate between connected nodes using AI route selection."
+    },
+    {
+      "entity_key": "node_badges",
+      "role": "building",
+      "asset_keys": [
+        "game_art/ring_prefecture_tokens/node_capital.png",
+        "game_art/ring_prefecture_tokens/node_city.png",
+        "game_art/ring_prefecture_tokens/node_rail.png",
+        "game_art/ring_prefecture_tokens/node_shrine.png",
+        "game_art/ring_prefecture_tokens/node_port.png"
+      ],
+      "default_facing": "up",
+      "facing_rule": "Node badges stay map-facing and communicate ownership through surrounding rings and unit totals.",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "hitbox": {
+        "x": 0.12,
+        "y": 0.12,
+        "w": 0.76,
+        "h": 0.76
+      },
+      "z_order": "node_above_background_below_streams",
+      "states": [
+        "idle",
+        "selected",
+        "guarded",
+        "capturing"
+      ],
+      "animation_rule": "Pulse ring and selection halo provide state feedback while badges remain crisp.",
+      "movement_rule": "Static node anchors drive stream endpoints and touch targets."
+    },
+    {
+      "entity_key": "map_backdrop",
+      "role": "background",
+      "asset_keys": [
+        "game_art/ring_prefecture_tokens/map_backdrop.png"
+      ],
+      "default_facing": "up",
+      "facing_rule": "Backdrop is static atlas art.",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "hitbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "w": 1.0,
+        "h": 1.0
+      },
+      "z_order": "background",
+      "states": [
+        "idle"
+      ],
+      "animation_rule": "No animation.",
+      "movement_rule": "Static background fit to viewport."
+    }
+  ]
+}

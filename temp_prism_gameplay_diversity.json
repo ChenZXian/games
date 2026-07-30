@@ -1,0 +1,148 @@
+﻿{
+  "version": 1,
+  "game_id": "prism_sector_collapse",
+  "status": "passed",
+  "genre_family": "puzzle",
+  "genre_archetype": "oversized same-color cluster collapse puzzle with device-driven chain routing",
+  "camera_perspective": "fixed portrait top-down oversized board",
+  "control_model": "single-finger tap cluster collapse with hold preview",
+  "core_loop_signature": "read giant board collapse connected color regions charge devices and complete multi-step goals under move pressure",
+  "differentiation_axes": [
+    "tap cluster collapse instead of adjacent swap match-3",
+    "10x14 to 12x16 large board footprint",
+    "reactor device routing and charge sequencing",
+    "dark neon sci-fi presentation",
+    "color-accessibility symbols baked into pieces"
+  ],
+  "forbidden_template_reuse": [
+    "no adjacent swap puzzle loop",
+    "no candy parade board framing",
+    "no bottom booster tray gameplay shell",
+    "no pastel candy palette",
+    "no small-board prototype layouts"
+  ],
+  "map_content_budget": {
+    "play_area_model": "portrait oversized rectangular board with partitions and side support rails outside play",
+    "route_or_region_count": "at least 10 board silhouette families and 6 partitioned chamber layouts",
+    "interactive_regions": [
+      "main collapse field",
+      "relay corridors",
+      "converter pockets",
+      "objective core zones"
+    ],
+    "terrain_types": [
+      "standard prism field",
+      "void gaps",
+      "slide channels",
+      "locked chambers"
+    ],
+    "decorative_prop_count": "minimal in-board decoration to preserve clarity",
+    "functional_map_elements": [
+      "relay nodes",
+      "color converters",
+      "pulse emitters",
+      "armored blockers",
+      "rescue cores"
+    ],
+    "landmarks": [
+      "sector finale giant core chambers",
+      "wide split-board reactors"
+    ],
+    "camera_or_scroll_model": "fixed camera with full board scaled for portrait readability"
+  },
+  "entity_content_budget": {
+    "player_unit_types": [
+      "tap collapse input"
+    ],
+    "enemy_types": [
+      "armored prism block",
+      "locked cell",
+      "charge dampener"
+    ],
+    "neutral_or_resource_entities": [
+      "relay node",
+      "converter device",
+      "pulse emitter",
+      "rescue core"
+    ],
+    "boss_or_elite_types": [
+      "sector giant core finale objectives"
+    ],
+    "projectile_or_effect_types": [
+      "collapse pulse",
+      "line beam",
+      "sector burst",
+      "charge arc",
+      "landing spark",
+      "warning outline"
+    ],
+    "item_or_powerup_types": [
+      "column pulse",
+      "color scanner",
+      "reshuffle token"
+    ]
+  },
+  "mechanic_content_budget": {
+    "primary_player_actions": [
+      "tap cluster collapse",
+      "hold preview",
+      "goal routing",
+      "device charging"
+    ],
+    "secondary_player_actions": [
+      "reserve tool activation",
+      "converter setup play",
+      "relay sequencing"
+    ],
+    "upgrade_paths": [
+      "sector unlocks",
+      "utility unlock milestones",
+      "cosmetic theme unlocks"
+    ],
+    "wave_or_level_variants": [
+      "energy quota",
+      "color collection",
+      "blocker purge",
+      "relay activation",
+      "core rescue"
+    ],
+    "special_rules": [
+      "large boards",
+      "partition chambers",
+      "slide channel behavior",
+      "device-triggered line clears"
+    ],
+    "risk_reward_systems": [
+      "saving giant clusters for higher charge",
+      "opening board space versus immediate objective progress"
+    ],
+    "failure_pressure_variants": [
+      "move limit",
+      "board fragmentation",
+      "color isolation",
+      "late-device misfire"
+    ]
+  },
+  "asset_variety_budget": {
+    "primary_game_art_packs": [
+      "project_local_prism_runtime_art"
+    ],
+    "secondary_game_art_packs": [
+      "shared sci-fi UI support assets only"
+    ],
+    "ui_pack": "skin_neon_future with reactor-console refinement",
+    "animation_tier": "high",
+    "required_animation_states": [
+      "idle",
+      "highlighted",
+      "hold_preview",
+      "collapse_pull",
+      "device_charged",
+      "device_firing",
+      "blocker_damaged",
+      "column_landing"
+    ],
+    "minimum_distinct_sprite_families": 6,
+    "asset_reuse_note": "must not reuse candy silhouettes, candy particles, or rounded confection blockers from the first game"
+  }
+}

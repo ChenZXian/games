@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "game_id": "flame_dragon_onslaught",
+  "status": "passed",
+  "direction": "Inspired by Yan Long action legends with a fiery dragon warrior, side-scrolling combat, flame powers, and boss-focused chapter progression.",
+  "selected_concept": "Side-scrolling action stage game where a fire dragon warrior clears enemy waves, builds heat energy, transforms into a half-dragon burst state, and defeats chapter bosses.",
+  "visual_differentiation_axes": [
+    "molten forge action HUD instead of tactical or cute layouts",
+    "heat-focused upper-left meter cluster with corner combat controls",
+    "black steel and ember palette rather than neon or pastel balance",
+    "dragon-warrior head icon instead of map, city, or bunker motifs",
+    "boss warning overlays and forge-metal screen motifs"
+  ],
+  "forbidden_visual_reuse": [
+    "top pill chain plus bottom strategy strip",
+    "city-map conquest iconography",
+    "cute rounded pastoral UI language",
+    "military dashboard framing",
+    "generic sword crest icon without dragon identity"
+  ],
+  "ui_identity": {
+    "layout_archetype": "top combat ribbon with lower-corner controls and centered boss overlays",
+    "hud_composition": "upper-left health and heat upper-right score and timer upper-center boss strip lower-left stick lower-right action cluster",
+    "navigation_model": "menu to chapter map to stage battle with separate upgrades and boss-intel screens",
+    "palette_signature": "black steel ember orange molten gold deep crimson and cyan-white spark highlights",
+    "material_language": "forged metal, dragon-scale accents, ember glass, and glowing heat channels",
+    "typography_style": "bold arcade combat lettering with sharp condensed numerals",
+    "primary_ui_pack": "skin_dark_arcade",
+    "secondary_ui_assets": [
+      "heat-gauge dragon trim",
+      "forge warning banners",
+      "ember-lit skill sockets",
+      "boss alert plaques"
+    ],
+    "playfield_safety": {
+      "reserved_edges": [
+        "top 12 percent for HUD ribbon",
+        "lower-left corner for movement stick dead space",
+        "lower-right corner for action cluster dead space"
+      ],
+      "hud_anchor_zones": [
+        "upper-left health and heat",
+        "upper-right score and timer",
+        "upper-center boss strip",
+        "lower-left movement",
+        "lower-right attacks"
+      ],
+      "protected_gameplay_zones": [
+        "center combat lane",
+        "jump apex space",
+        "boss telegraph area",
+        "projectile travel space"
+      ],
+      "frame_overlay_policy": "forge-metal framing and decorative dragon ornaments must remain outside the live combat lane and never cover active threats or dodge routes"
+    },
+    "unique_screen_motifs": [
+      "chapter intro forge gate card",
+      "boss warning ember banner",
+      "upgrade screen as dragon shrine forge altar",
+      "result card with cracked molten seal"
+    ],
+    "forbidden_ui_elements": [
+      "bottom-only command strip",
+      "strategy map side rails",
+      "cute soft-outline badges",
+      "full-screen decorative frame over combat space"
+    ]
+  },
+  "icon_identity": {
+    "subject": "roaring half-dragon warrior head",
+    "silhouette": "forward-leaning dragon-warrior face with one blazing horn crest and a wide flame arc",
+    "composition": "close-up dragon-warrior head fills the icon with a diagonal flame arc and dark forged backing plate",
+    "palette": "hot orange crimson black steel gold ember accents",
+    "background": "dark forge glow with molten sparks rather than map or crest motifs",
+    "game_specific_motif": "half-dragon overdrive identity and flame burst jawline",
+    "forbidden_icon_reuse": [
+      "map pins",
+      "castle gatehouses",
+      "bunker symbols",
+      "plain fist emblem",
+      "generic sword shield crest"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+    "version":  1,
+    "game_id":  "lunar_salvage_miner",
+    "title":  "Lunar Salvage Miner",
+    "direction":  "A Gold Miner inspired Android Java physics grabbing and resource survival game set in lunar ruins, focused on electromagnetic hook salvage, oxygen pressure, battery management, meteor hazards, cart positioning, and base repair progression.",
+    "selected_concept":  "Candidate 2 - Lunar Salvage Miner: recover spacecraft parts in lunar ruins with an electromagnetic hook while managing oxygen and battery, avoiding meteor debris, and repairing base modules.",
+    "status":  "confirmed",
+    "ui_skin":  "skin_military_tech",
+    "current_stage":  "requirements",
+    "created_at_utc":  "2026-05-27T08:25:00Z",
+    "updated_at_utc":  "2026-05-27T08:50:09Z",
+    "selected_at_utc":  "2026-05-27T08:25:00Z",
+    "confirmed_at_utc":  "2026-05-27T08:50:09Z",
+    "files":  {
+                  "metadata_json":  "artifacts/requirements/lunar_salvage_miner/metadata.json",
+                  "requirements_md":  "artifacts/requirements/lunar_salvage_miner/requirements.md",
+                  "candidates_md":  "",
+                  "gameplay_diversity_json":  "artifacts/requirements/lunar_salvage_miner/gameplay_diversity.json",
+                  "visual_identity_json":  "artifacts/requirements/lunar_salvage_miner/visual_identity.json"
+              }
+}

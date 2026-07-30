@@ -1,0 +1,21 @@
+{
+    "version":  1,
+    "game_id":  "three_minute_empire",
+    "title":  "Three Minute Empire",
+    "direction":  "WeChat-style lightweight strategy short-session node capture",
+    "selected_concept":  "Three Minute Empire: capture resource points, upgrade buildings, dispatch troops, and win a fixed three-minute match; neutral resource points are gray and captured points change to owner color.",
+    "status":  "confirmed",
+    "ui_skin":  "skin_military_tech",
+    "current_stage":  "requirements",
+    "created_at_utc":  "2026-05-12T02:25:08Z",
+    "updated_at_utc":  "2026-05-12T02:27:02Z",
+    "selected_at_utc":  "2026-05-12T02:25:08Z",
+    "confirmed_at_utc":  "2026-05-12T02:27:02Z",
+    "files":  {
+                  "metadata_json":  "artifacts/requirements/three_minute_empire/metadata.json",
+                  "requirements_md":  "artifacts/requirements/three_minute_empire/requirements.md",
+                  "candidates_md":  "",
+                  "gameplay_diversity_json":  "artifacts/requirements/three_minute_empire/gameplay_diversity.json",
+                  "visual_identity_json":  "artifacts/requirements/three_minute_empire/visual_identity.json"
+              }
+}

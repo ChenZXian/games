@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Meadow Snack Ranch</string>
+    <string name="btn_start">Start</string>
+    <string name="btn_restart">Restart</string>
+    <string name="btn_resume">Resume</string>
+    <string name="btn_menu">Menu</string>
+    <string name="btn_mute">Sound</string>
+    <string name="btn_how_to_play">Help</string>
+    <string name="hud_day">Day</string>
+    <string name="hud_coins">Coins</string>
+    <string name="hud_rep">Reputation</string>
+    <string name="menu_title">Meadow Snack Ranch</string>
+    <string name="menu_subtitle">Mix snacks, feed real ranch animals, and deliver perfect products.</string>
+</resources>
